@@ -5,11 +5,18 @@ import { Field } from '../../../../packages/components-react/src/atoms/Field';
 const meta: Meta<typeof Textarea> = {
   title: 'Atoms/Textarea',
   component: Textarea,
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: '320px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
-    placeholder: { control: 'text' },
-    disabled: { control: 'boolean' },
-    error: { control: 'boolean' },
-    rows: { control: 'number' },
+    placeholder: { control: 'text', name: 'Placeholder' },
+    disabled: { control: 'boolean', name: 'Disabled' },
+    error: { control: 'boolean', name: 'Error' },
+    rows: { control: 'number', name: 'Rows' },
     className: { table: { disable: true } },
   },
   args: {
@@ -25,19 +32,17 @@ type Story = StoryObj<typeof Textarea>;
 
 export const Default: Story = {};
 
-export const WithField: Story = {
-  render: (args) => (
-    <Field label="Message" description="Max 500 characters." htmlFor="msg-textarea">
-      <Textarea {...args} id="msg-textarea" placeholder="Tell us what you think..." />
-    </Field>
-  ),
-};
-
 export const AllStates: Story = {
+  argTypes: {
+    placeholder: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    error: { table: { disable: true } },
+    rows: { table: { disable: true } },
+  },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '320px' }}>
-      <Field label="Default" htmlFor="ta-default">
-        <Textarea id="ta-default" placeholder="Default" />
+      <Field label="Enabled" htmlFor="ta-default">
+        <Textarea id="ta-default" placeholder="Placeholder" />
       </Field>
       <Field label="Disabled" disabled htmlFor="ta-disabled">
         <Textarea id="ta-disabled" disabled placeholder="Disabled" />
