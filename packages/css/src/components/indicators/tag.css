@@ -1,0 +1,113 @@
+/* -------------------------------------------------------------------------
+   Tag
+
+   Status pill for categories, labels, and section headings.
+   Pill shape (border-radius: 1000px). Non-interactive.
+
+   Variants: ghost (no bg), filled (bg), outlined (border)
+   Intents:  success, warning, danger, info, neutral, brand, ai, disabled
+   Sizes:    xs (16px), s (20px), m (24px)
+   Features: hasDots, hasIcon, hasAvatar
+   ------------------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  max-width: 200px;
+  border-radius: 1000px;
+  border: 1px solid transparent;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Sizes ---- */
+
+.tag--xs { height: 16px; padding: 0 8px; font-size: 8px; }
+.tag--s  { height: 20px; padding: 0 8px; font-size: 10px; }
+.tag--m  { height: 24px; padding: 0 8px; font-size: 12px; }
+
+/* ---- Ghost (text only, no bg) ---- */
+
+.tag--ghost.tag--success   { color: #007a56; }
+.tag--ghost.tag--warning   { color: #a76000; }
+.tag--ghost.tag--danger    { color: #c10008; }
+.tag--ghost.tag--info      { color: #1447e6; }
+.tag--ghost.tag--neutral   { color: #3f3f46; }
+.tag--ghost.tag--brand     { color: #a44200; }
+.tag--ghost.tag--ai        { color: #8200da; }
+.tag--ghost.tag--disabled  { color: #a1a1aa; }
+
+/* ---- Filled (bg + text) ---- */
+
+.tag--filled.tag--success   { background-color: #ecfef6; color: #007a56; }
+.tag--filled.tag--warning   { background-color: #fefce8; color: #a76000; }
+.tag--filled.tag--danger    { background-color: #fef3f3; color: #c10008; }
+.tag--filled.tag--info      { background-color: #eff6ff; color: #1447e6; }
+.tag--filled.tag--neutral   { background-color: #f4f4f5; color: #3f3f46; }
+.tag--filled.tag--brand     { background-color: #fff4ed; color: #a44200; }
+.tag--filled.tag--ai        { background: linear-gradient(136deg, #ede9ff, #fde7f4); color: #8200da; }
+.tag--filled.tag--disabled  { background-color: #f4f4f5; color: #a1a1aa; }
+
+/* ---- Outlined (border + text) ---- */
+
+.tag--outlined.tag--success   { border-color: #007a56; color: #007a56; }
+.tag--outlined.tag--warning   { border-color: #a76000; color: #a76000; }
+.tag--outlined.tag--danger    { border-color: #c10008; color: #c10008; }
+.tag--outlined.tag--info      { border-color: #1447e6; color: #1447e6; }
+.tag--outlined.tag--neutral   { border-color: #3f3f46; color: #3f3f46; }
+.tag--outlined.tag--brand     { border-color: #a44200; color: #a44200; }
+.tag--outlined.tag--ai        { border-color: #8200da; color: #8200da; }
+.tag--outlined.tag--disabled  { border-color: #a1a1aa; color: #a1a1aa; }
+
+/* ---- Parts ---- */
+
+.tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+.tag__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.tag__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tag__avatar {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.tag--s .tag__avatar { width: 14px; height: 14px; }
+.tag--m .tag__avatar { width: 16px; height: 16px; }
+
+.tag__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
