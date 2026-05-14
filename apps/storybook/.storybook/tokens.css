@@ -408,8 +408,8 @@
   --button-pressed-bg-destructive-tertiary: var(--color-red-100);
   --button-disabled-fg-all: var(--muted-foreground);
   --button-font-size-xs: var(--font-size-xs);
-  --button-font-size-s: var(--font-size-xs);
-  --button-font-size-m: var(--font-size-sm);
-  --button-font-size-l: var(--font-size-sm);
-  --button-font-size-xl: var(--font-size-base);
+  --button-font-size-s: var(--font-size-sm);
+  --button-font-size-m: var(--font-size-base);
+  --button-font-size-l: var(--font-size-lg);
+  --button-font-size-xl: var(--font-size-xl);
 }

@@ -52,10 +52,10 @@
     "font-size": {
       "$type": "dimension",
       "xs": { "$value": "{font-size.xs}", "$description": "10px" },
-      "s": { "$value": "{font-size.xs}", "$description": "10px" },
-      "m": { "$value": "{font-size.sm}", "$description": "13px" },
-      "l": { "$value": "{font-size.sm}", "$description": "13px" },
-      "xl": { "$value": "{font-size.base}", "$description": "16px" }
+      "s": { "$value": "{font-size.sm}", "$description": "13px" },
+      "m": { "$value": "{font-size.base}", "$description": "16px" },
+      "l": { "$value": "{font-size.lg}", "$description": "20px" },
+      "xl": { "$value": "{font-size.xl}", "$description": "25px" }
     }
   }
 }
