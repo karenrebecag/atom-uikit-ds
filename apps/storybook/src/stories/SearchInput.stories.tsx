@@ -2,6 +2,30 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { SearchInput } from '../../../../packages/components-react/src/atoms/SearchInput';
 
+const InteractiveSearch = (args: any) => {
+  const [value, setValue] = useState('');
+  return (
+    <SearchInput
+      {...args}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onClear={() => setValue('')}
+    />
+  );
+};
+
+const FilledSearch = () => {
+  const [value, setValue] = useState('Components');
+  return (
+    <SearchInput
+      placeholder="Search..."
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onClear={() => setValue('')}
+    />
+  );
+};
+
 const meta: Meta<typeof SearchInput> = {
   title: 'Atoms/SearchInput',
   component: SearchInput,
@@ -29,18 +53,6 @@ const meta: Meta<typeof SearchInput> = {
 export default meta;
 type Story = StoryObj<typeof SearchInput>;
 
-const InteractiveSearch = (args: any) => {
-  const [value, setValue] = useState('');
-  return (
-    <SearchInput
-      {...args}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      onClear={() => setValue('')}
-    />
-  );
-};
-
 export const Default: Story = {
   render: (args) => <InteractiveSearch {...args} />,
 };
@@ -58,7 +70,7 @@ export const AllStates: Story = {
       </div>
       <div>
         <strong style={{ fontSize: 11, color: '#71717b', display: 'block', marginBottom: 8 }}>Filled (with clear)</strong>
-        <InteractiveFilledSearch />
+        <FilledSearch />
       </div>
       <div>
         <strong style={{ fontSize: 11, color: '#71717b', display: 'block', marginBottom: 8 }}>Disabled</strong>
@@ -67,15 +79,3 @@ export const AllStates: Story = {
     </div>
   ),
 };
-
-function InteractiveFilledSearch() {
-  const [value, setValue] = useState('Components');
-  return (
-    <SearchInput
-      placeholder="Search..."
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      onClear={() => setValue('')}
-    />
-  );
-}
