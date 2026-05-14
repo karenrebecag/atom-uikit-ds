@@ -91,10 +91,23 @@ const meta: Meta<typeof Sidebar> = {
         return cleanup;
       }, []);
       return (
-      <div style={{ height: 'calc(100vh - 80px)', display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8 }}>
+      <div style={{ height: 'calc(100vh - 80px)', display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, position: 'relative' }}>
         <Story />
         <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
           <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
+          <div style={{ marginTop: 24, padding: 16, background: '#f4f4f5', borderRadius: 8, fontSize: 12, fontFamily: 'monospace' }}>
+            <p style={{ fontWeight: 600, marginBottom: 8 }}>Debug: Collapse sidebar and hover items to test tooltips</p>
+            <p>Tooltip system: [data-tooltip] on each SidebarItem</p>
+            <p>CSS: tooltip.css handles ::before/::after pseudo-elements</p>
+            <p>Sidebar overrides: direction=right, theme=light when collapsed</p>
+            <p style={{ marginTop: 8 }}>If tooltips don't show, inspect the sidebar__item element and check:</p>
+            <ul style={{ paddingLeft: 16 }}>
+              <li>data-tooltip attribute present?</li>
+              <li>::before pseudo-element has content?</li>
+              <li>overflow on parents clipping?</li>
+              <li>z-index stacking?</li>
+            </ul>
+          </div>
         </div>
       </div>
       );
