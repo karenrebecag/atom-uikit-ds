@@ -127,11 +127,5 @@
       "800": { "$type": "color", "$value": "#97266d" },
       "900": { "$type": "color", "$value": "#702459" }
     }
-  },
-  "opacity": {
-    "$type": "opacity",
-    "low": { "$value": "10%" },
-    "md": { "$value": "50%" },
-    "high": { "$value": "90%" }
   }
 }

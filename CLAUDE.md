@@ -146,6 +146,23 @@ Base-4 geometric scale. 13 steps, each visually distinct.
 
 ---
 
+## Opacity
+
+8 steps. Perceptually distinct — no adjacent values that look the same.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `opacity-5` | 0.05 | Skeleton shimmer, ghost elements |
+| `opacity-10` | 0.10 | Disabled backgrounds, faint tints |
+| `opacity-20` | 0.20 | Hover overlays, subtle highlights |
+| `opacity-30` | 0.30 | Backdrop light, soft overlays |
+| `opacity-50` | 0.50 | Backdrop medium, placeholder text |
+| `opacity-70` | 0.70 | Backdrop heavy, dimmed content |
+| `opacity-80` | 0.80 | Modal overlay, focus backdrop |
+| `opacity-90` | 0.90 | Near-opaque layers, frosted glass |
+
+---
+
 ## Stroke
 
 6 steps with semantic names. Covers dividers through decorative borders.

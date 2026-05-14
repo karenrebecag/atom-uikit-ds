@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Spacing: replaced linear +4 scale (27 tokens) with base-4 geometric scale (13 tokens)
 - Radius: replaced linear +4 scale (16 tokens) with 7 purposeful steps (none through full)
 - Stroke: replaced 2 tokens (with typo) with 6 semantic steps (hairline through heavy)
+- Opacity: replaced %-named tokens (9) with numeric scale (8), added 5% step, removed duplicate from core.json
 - Removed separate mobile/desktop typography files — fluid scaling system handles responsive
 - core.json: resolved self-references to literal values, removed redundant typography definitions
 

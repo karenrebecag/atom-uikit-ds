@@ -1,38 +1,13 @@
 {
-  "10%": {
+  "opacity": {
     "$type": "number",
-    "$value": 10
-  },
-  "20%": {
-    "$type": "number",
-    "$value": 20
-  },
-  "30%": {
-    "$type": "number",
-    "$value": 30
-  },
-  "40%": {
-    "$type": "number",
-    "$value": 40
-  },
-  "50%": {
-    "$type": "number",
-    "$value": 50
-  },
-  "60%": {
-    "$type": "number",
-    "$value": 60
-  },
-  "70%": {
-    "$type": "number",
-    "$value": 70
-  },
-  "80%": {
-    "$type": "number",
-    "$value": 80
-  },
-  "90%": {
-    "$type": "number",
-    "$value": 90
+    "5": { "$value": 0.05, "$description": "Barely visible — skeleton shimmer, ghost elements" },
+    "10": { "$value": 0.10, "$description": "Disabled backgrounds, faint tints" },
+    "20": { "$value": 0.20, "$description": "Hover overlays, subtle highlights" },
+    "30": { "$value": 0.30, "$description": "Backdrop light, soft overlays" },
+    "50": { "$value": 0.50, "$description": "Backdrop medium, placeholder text" },
+    "70": { "$value": 0.70, "$description": "Backdrop heavy, dimmed content" },
+    "80": { "$value": 0.80, "$description": "Modal overlay, focus backdrop" },
+    "90": { "$value": 0.90, "$description": "Near-opaque layers, frosted glass" }
   }
 }
