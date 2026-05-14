@@ -41,14 +41,25 @@ export const AllStates: Story = {
   },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '320px' }}>
-      <Field label="Enabled" htmlFor="ta-default">
-        <Textarea id="ta-default" placeholder="Placeholder" />
+      <strong style={{ fontSize: 11, color: '#71717b' }}>States (Hovered, Pressed, Focused are CSS-native — hover/click to see)</strong>
+
+      <Field label="Enabled" htmlFor="ta-enabled">
+        <Textarea id="ta-enabled" placeholder="Placeholder" />
+      </Field>
+      <Field label="Filled" htmlFor="ta-filled">
+        <Textarea id="ta-filled" defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
       </Field>
       <Field label="Disabled" disabled htmlFor="ta-disabled">
         <Textarea id="ta-disabled" disabled placeholder="Disabled" />
       </Field>
-      <Field label="Error" error="Message is too short." htmlFor="ta-error">
-        <Textarea id="ta-error" error placeholder="Error" />
+      <Field label="Error enabled" error="Supportive text negative" htmlFor="ta-error-enabled">
+        <Textarea id="ta-error-enabled" error placeholder="Error enabled" />
+      </Field>
+      <Field label="Error filled" error="Supportive text negative" htmlFor="ta-error-filled">
+        <Textarea id="ta-error-filled" error defaultValue="Invalid content here" />
+      </Field>
+      <Field label="Error focused" error="Supportive text negative" htmlFor="ta-error-focused">
+        <Textarea id="ta-error-focused" error autoFocus defaultValue="Click to see ring" />
       </Field>
     </div>
   ),
