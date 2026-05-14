@@ -81,7 +81,7 @@
 }
 
 .toggle__input:checked ~ .toggle__track .toggle__thumb {
-  transform: translateX(16px);
+  transform: translateX(calc(36px - 4px - 16px));
 }
 
 /* ---- Focus ---- */
@@ -93,6 +93,10 @@
 /* ---- Disabled ---- */
 
 .toggle__input:disabled ~ .toggle__track {
+  background-color: var(--color-zinc-100);
+}
+
+.toggle__input:disabled:checked ~ .toggle__track {
   background-color: var(--color-zinc-100);
 }
 
