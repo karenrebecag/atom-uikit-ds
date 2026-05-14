@@ -1,8 +1,7 @@
 import { forwardRef, useRef, useEffect, type InputHTMLAttributes } from 'react';
 
 export type CheckboxProps = {
-  checked?: boolean;
-  indeterminate?: boolean;
+  checked?: boolean | 'indeterminate';
   disabled?: boolean;
   error?: boolean;
   label?: string;
@@ -30,7 +29,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       checked = false,
-      indeterminate = false,
       disabled = false,
       error = false,
       label,
@@ -42,12 +40,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = (forwardedRef as React.RefObject<HTMLInputElement>) || innerRef;
+    const isIndeterminate = checked === 'indeterminate';
+    const isChecked = checked === true;
 
     useEffect(() => {
       if (ref && 'current' in ref && ref.current) {
-        ref.current.indeterminate = indeterminate;
+        ref.current.indeterminate = isIndeterminate;
       }
-    }, [indeterminate, ref]);
+    }, [isIndeterminate, ref]);
 
     const classes = cn(
       'checkbox',
@@ -62,19 +62,23 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           ref={ref}
           type="checkbox"
           className="checkbox__input"
-          checked={checked}
+          checked={isChecked || isIndeterminate}
           disabled={disabled}
           onChange={(e) => onChange?.(e.target.checked)}
-          {...(indeterminate ? { 'data-indeterminate': '' } : {})}
+          {...(isIndeterminate ? { 'data-indeterminate': '' } : {})}
           {...props}
         />
         <span className="checkbox__box">
-          <span className="checkbox__icon checkbox__icon--check">
-            <CheckIcon />
-          </span>
-          <span className="checkbox__icon checkbox__icon--minus">
-            <MinusIcon />
-          </span>
+          {isChecked && (
+            <span className="checkbox__icon">
+              <CheckIcon />
+            </span>
+          )}
+          {isIndeterminate && (
+            <span className="checkbox__icon">
+              <MinusIcon />
+            </span>
+          )}
         </span>
         {label && <span className="checkbox__label">{label}</span>}
       </label>

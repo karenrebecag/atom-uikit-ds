@@ -6,17 +6,18 @@ const meta: Meta<typeof Checkbox> = {
   title: 'Atoms/Checkbox',
   component: Checkbox,
   argTypes: {
-    checked: { control: 'boolean' },
-    indeterminate: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-    error: { control: 'boolean' },
-    label: { control: 'text' },
+    checked: {
+      control: 'select',
+      options: [false, true, 'indeterminate'],
+    },
+    label: { table: { disable: true } },
+    error: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    className: { table: { disable: true } },
+    onChange: { table: { disable: true } },
   },
   args: {
     checked: false,
-    indeterminate: false,
-    disabled: false,
-    error: false,
     label: 'Accept terms and conditions',
   },
 };
@@ -25,8 +26,8 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 const Interactive = (args: any) => {
-  const [checked, setChecked] = useState(args.checked);
-  return <Checkbox {...args} checked={checked} onChange={setChecked} />;
+  const [checked, setChecked] = useState<boolean | 'indeterminate'>(args.checked);
+  return <Checkbox {...args} checked={checked} onChange={(v) => setChecked(v)} />;
 };
 
 export const Default: Story = {
@@ -34,19 +35,14 @@ export const Default: Story = {
 };
 
 export const AllStates: Story = {
-  argTypes: {
-    checked: { table: { disable: true } },
-    indeterminate: { table: { disable: true } },
-    disabled: { table: { disable: true } },
-    error: { table: { disable: true } },
-  },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Checkbox label="Unchecked" />
       <Checkbox checked label="Checked" />
-      <Checkbox indeterminate checked label="Indeterminate" />
-      <Checkbox disabled label="Disabled unchecked" />
+      <Checkbox checked="indeterminate" label="Indeterminate" />
+      <Checkbox disabled label="Disabled" />
       <Checkbox disabled checked label="Disabled checked" />
+      <Checkbox disabled checked="indeterminate" label="Disabled indeterminate" />
       <Checkbox error label="Error" />
     </div>
   ),

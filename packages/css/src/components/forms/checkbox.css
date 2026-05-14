@@ -55,7 +55,9 @@
 
 /* Check / minus icon */
 .checkbox__icon {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 12px;
   height: 12px;
   color: var(--checkbox-fg-checked);
@@ -85,10 +87,6 @@
   border-color: var(--checkbox-bg-checked);
 }
 
-.checkbox__input:checked ~ .checkbox__box .checkbox__icon--check,
-.checkbox__input[data-indeterminate] ~ .checkbox__box .checkbox__icon--minus {
-  display: flex;
-}
 
 /* ---- Focus ---- */
 
