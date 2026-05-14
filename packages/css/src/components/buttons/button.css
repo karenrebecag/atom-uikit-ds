@@ -1,29 +1,41 @@
 /* -------------------------------------------------------------------------
    Button
 
+   Convention: font-size is the only absolute value (from tokens).
+   Everything else (padding, gap, radius, icon) is em-relative,
+   so the entire button scales proportionally with font-size.
+
    Variants: primary, secondary, tertiary,
              destructive, destructive-secondary, destructive-tertiary
    Sizes:    xs, s, m (default), l, xl
    States:   enabled, hover, focus, active, disabled, loading
-
-   Tokens:   see tokens/src/components/button.json
    ------------------------------------------------------------------------- */
 
 .button {
+  --_button-padding: 0.75em 1.25em;
+  --_button-gap: 0.5em;
+  --_button-radius: 0.625em;
+  --_button-icon: 1em;
+  --_button-border: 0.0625em;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--button-gap-default);
-  border-radius: var(--button-radius-default);
+  gap: var(--_button-gap);
+  padding: var(--_button-padding);
+  border-radius: var(--_button-radius);
+  border: var(--_button-border) solid transparent;
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-medium);
+  line-height: 1;
   width: auto;
   max-width: 100%;
   cursor: pointer;
   user-select: none;
-  border: var(--stroke-hairline) solid transparent;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
   box-shadow: var(--shadow-none);
-  transition-property: background-color, color, border-color, box-shadow, transform;
+  transition-property: background-color, color, border-color, box-shadow, scale;
   transition-duration: var(--duration-150);
   transition-timing-function: var(--easing-in-out);
   position: relative;
@@ -34,7 +46,7 @@
 }
 
 .button:active:not(.button--disabled):not(.button--loading) {
-  transform: scale(0.98);
+  scale: 0.955 0.925;
   box-shadow: var(--shadow-none);
 }
 
@@ -48,7 +60,7 @@
     transition-duration: 0ms;
   }
   .button:active:not(.button--disabled) {
-    transform: none;
+    scale: none;
   }
 }
 
@@ -122,42 +134,13 @@
   background-color: var(--button-pressed-bg-destructive-tertiary);
 }
 
-/* ---- Sizes ---- */
+/* ---- Sizes (only font-size changes, everything else scales via em) ---- */
 
-.button--xs {
-  padding: var(--button-padding-y-xs) var(--button-padding-x-xs);
-  font-size: var(--button-font-size-xs);
-  line-height: var(--line-height-xs);
-}
-.button--xs .button__icon { width: 12px; height: 12px; }
-
-.button--s {
-  padding: var(--button-padding-y-s) var(--button-padding-x-s);
-  font-size: var(--button-font-size-s);
-  line-height: var(--line-height-xs);
-}
-.button--s .button__icon { width: 14px; height: 14px; }
-
-.button--m {
-  padding: var(--button-padding-y-m) var(--button-padding-x-m);
-  font-size: var(--button-font-size-m);
-  line-height: var(--line-height-sm);
-}
-.button--m .button__icon { width: 16px; height: 16px; }
-
-.button--l {
-  padding: var(--button-padding-y-l) var(--button-padding-x-l);
-  font-size: var(--button-font-size-l);
-  line-height: var(--line-height-sm);
-}
-.button--l .button__icon { width: 18px; height: 18px; }
-
-.button--xl {
-  padding: var(--button-padding-y-xl) var(--button-padding-x-xl);
-  font-size: var(--button-font-size-xl);
-  line-height: var(--line-height-base);
-}
-.button--xl .button__icon { width: 20px; height: 20px; }
+.button--xs { font-size: var(--button-font-size-xs); }
+.button--s  { font-size: var(--button-font-size-s); }
+.button--m  { font-size: var(--button-font-size-m); }
+.button--l  { font-size: var(--button-font-size-l); }
+.button--xl { font-size: var(--button-font-size-xl); }
 
 /* ---- States ---- */
 
@@ -205,6 +188,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: var(--_button-icon);
+  height: var(--_button-icon);
 }
 
 .button__icon svg {

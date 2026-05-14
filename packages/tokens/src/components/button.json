@@ -45,42 +45,9 @@
       "destructive-secondary": { "$value": "{color.red.100}" },
       "destructive-tertiary": { "$value": "{color.red.100}" }
     },
-    "disabled-bg": {
-      "$type": "color",
-      "primary": { "$value": "{muted}" },
-      "secondary": { "$value": "{muted}" },
-      "tertiary": { "$value": "transparent" },
-      "destructive": { "$value": "{muted}" },
-      "destructive-secondary": { "$value": "{muted}" },
-      "destructive-tertiary": { "$value": "transparent" }
-    },
     "disabled-fg": {
       "$type": "color",
       "all": { "$value": "{muted-foreground}", "$description": "Same for all disabled variants" }
-    },
-    "radius": {
-      "$type": "dimension",
-      "default": { "$value": "{radius.md}", "$description": "8px" }
-    },
-    "gap": {
-      "$type": "dimension",
-      "default": { "$value": "{spacing.2}", "$description": "8px — icon to label" }
-    },
-    "padding-x": {
-      "$type": "dimension",
-      "xs": { "$value": "{spacing.2}", "$description": "8px" },
-      "s": { "$value": "{spacing.3}", "$description": "12px" },
-      "m": { "$value": "{spacing.3}", "$description": "12px" },
-      "l": { "$value": "{spacing.4}", "$description": "16px" },
-      "xl": { "$value": "{spacing.5}", "$description": "20px" }
-    },
-    "padding-y": {
-      "$type": "dimension",
-      "xs": { "$value": "{spacing.1}", "$description": "4px" },
-      "s": { "$value": "{spacing.2}", "$description": "8px" },
-      "m": { "$value": "{spacing.3}", "$description": "12px" },
-      "l": { "$value": "{spacing.3}", "$description": "12px" },
-      "xl": { "$value": "{spacing.4}", "$description": "16px" }
     },
     "font-size": {
       "$type": "dimension",
@@ -89,14 +56,6 @@
       "m": { "$value": "{font-size.sm}", "$description": "13px" },
       "l": { "$value": "{font-size.sm}", "$description": "13px" },
       "xl": { "$value": "{font-size.base}", "$description": "16px" }
-    },
-    "icon-size": {
-      "$type": "dimension",
-      "xs": { "$value": "12px" },
-      "s": { "$value": "14px" },
-      "m": { "$value": "16px" },
-      "l": { "$value": "18px" },
-      "xl": { "$value": "20px" }
     }
   }
 }

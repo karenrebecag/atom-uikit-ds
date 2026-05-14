@@ -341,6 +341,37 @@ Components that need `@media` queries use these values directly as hardcoded px 
 
 ---
 
+## Component em Convention
+
+**All component dimensions (padding, gap, radius, icon size) use `em` units, not px.**
+
+Only `font-size` is an absolute value from tokens. Everything else is relative to it. This means changing the size of a component only requires changing its font-size — padding, radius, gap, and icons scale automatically.
+
+```css
+/* The button size classes only set font-size */
+.button--xs { font-size: var(--button-font-size-xs); }
+.button--xl { font-size: var(--button-font-size-xl); }
+
+/* Everything else is em-relative — scales with font-size */
+.button {
+  padding: 0.75em 1.25em;
+  gap: 0.5em;
+  border-radius: 0.625em;
+}
+.button__icon { width: 1em; height: 1em; }
+```
+
+**Rules:**
+- Tokens define font-size per size variant (absolute px from type scale)
+- CSS defines proportions in `em` (relative to that font-size)
+- No per-size padding/gap/radius tokens — proportions are universal
+- `line-height: 1` on interactive components (buttons, inputs)
+- `-webkit-tap-highlight-color: transparent` on all interactive elements
+- `scale` for press feedback, not `transform: scale()` (composited, no layout shift)
+- `prefers-reduced-motion: reduce` disables transitions and scale
+
+---
+
 ## Build Pipeline
 
 ```
