@@ -41,21 +41,22 @@
 
 /* Track */
 .toggle__track {
-  display: flex;
-  align-items: center;
+  position: relative;
   width: 36px;
   height: 20px;
   flex-shrink: 0;
   border-radius: 9999px;
   background-color: var(--color-zinc-100);
-  padding: 2px;
   transition:
     background-color 0.2s cubic-bezier(0.19, 1, 0.22, 1),
     box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Thumb */
+/* Thumb — absolute positioned for pixel-perfect alignment */
 .toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
   width: 16px;
   height: 16px;
   border-radius: 9999px;
