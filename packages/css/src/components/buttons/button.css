@@ -258,7 +258,8 @@
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .button:is(:hover, :focus-visible) .button__text.is--default .button__split-char,
-  [data-hover]:is(:hover, :focus-visible) .button .button__text.is--default .button__split-char {
+  .link-button:is(:hover, :focus-visible) .button__text.is--default .button__split-char,
+  [data-hover]:is(:hover, :focus-visible) :is(.button, .link-button) .button__text.is--default .button__split-char {
     opacity: 0;
     filter: blur(5px);
     translate: 0.5em 0 0;
@@ -271,7 +272,8 @@
   }
 
   .button:is(:hover, :focus-visible) .button__text.is--hover .button__split-char,
-  [data-hover]:is(:hover, :focus-visible) .button .button__text.is--hover .button__split-char {
+  .link-button:is(:hover, :focus-visible) .button__text.is--hover .button__split-char,
+  [data-hover]:is(:hover, :focus-visible) :is(.button, .link-button) .button__text.is--hover .button__split-char {
     opacity: 1;
     filter: blur(0);
     translate: 0 0 0;

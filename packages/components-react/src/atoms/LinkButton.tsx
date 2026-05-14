@@ -46,7 +46,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
 
     const label = animated && !loading ? (
       <span className="link-button__label">
-        <span className="link-button__label-inner">
+        <span className="button__label-inner">
           <span className="button__text is--default" data-button-text="">{children}</span>
           <span className="button__text is--hover" data-button-text="" aria-hidden="true">{children}</span>
         </span>
