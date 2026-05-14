@@ -1,0 +1,16 @@
+{
+  "name": "@atom-uikit/components-astro",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Astro components for the ATOM UIKit design system",
+  "license": "MIT",
+  "exports": {
+    "./atoms/*": "./src/atoms/*.astro",
+    "./molecules/*": "./src/molecules/*.astro"
+  },
+  "files": ["src/"],
+  "peerDependencies": {
+    "@atom-uikit/css": ">=0.0.0",
+    "astro": "^5.0.0"
+  }
+}

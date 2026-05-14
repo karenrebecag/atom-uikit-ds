@@ -1,0 +1,33 @@
+{
+  "name": "@atom-uikit/animations",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "GSAP animation modules for the ATOM UIKit design system",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    }
+  },
+  "files": ["dist/"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist/"
+  },
+  "peerDependencies": {
+    "gsap": "^3.12.0"
+  },
+  "devDependencies": {
+    "gsap": "^3.12.0",
+    "typescript": "^5.8.0"
+  }
+}

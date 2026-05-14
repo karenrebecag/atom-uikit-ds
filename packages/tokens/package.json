@@ -1,0 +1,33 @@
+{
+  "name": "@atom-uikit/tokens",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Design tokens for the ATOM UIKit design system",
+  "license": "MIT",
+  "main": "build/js/tokens.cjs",
+  "module": "build/js/tokens.js",
+  "types": "build/js/tokens.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/js/tokens.d.ts",
+      "import": "./build/js/tokens.js",
+      "require": "./build/js/tokens.cjs"
+    },
+    "./css": "./build/css/tokens.css",
+    "./css/primitives": "./build/css/primitives.css",
+    "./css/semantic": "./build/css/semantic.css",
+    "./css/components": "./build/css/components.css",
+    "./css/dark": "./build/css/dark.css",
+    "./scss": "./build/scss/_tokens.scss",
+    "./json": "./build/json/tokens.json"
+  },
+  "files": ["build/"],
+  "scripts": {
+    "build": "style-dictionary build --config config/style-dictionary.config.mjs",
+    "build:dark": "style-dictionary build --config config/style-dictionary.dark.config.mjs",
+    "clean": "rm -rf build/"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  }
+}

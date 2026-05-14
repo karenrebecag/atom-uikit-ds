@@ -1,0 +1,17 @@
+{
+  "name": "atom-uikit-ds",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "validate": "node scripts/validate-tokens.js",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "turbo": "^2.4.0"
+  },
+  "packageManager": "pnpm@10.0.0"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@atom-uikit/css",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Pure CSS components and utilities for the ATOM UIKit design system",
+  "license": "MIT",
+  "main": "./dist/atom.css",
+  "style": "./dist/atom.css",
+  "exports": {
+    ".": "./dist/atom.css",
+    "./atom.css": "./dist/atom.css"
+  },
+  "files": ["dist/"],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "clean": "rm -rf dist/"
+  },
+  "peerDependencies": {
+    "@atom-uikit/tokens": ">=0.0.0"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.25.0",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.turbo/
+.next/
+storybook-static/
+*.tsbuildinfo
+.env
+.env.local
+.DS_Store

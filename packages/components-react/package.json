@@ -1,0 +1,41 @@
+{
+  "name": "@atom-uikit/components-react",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "React components for the ATOM UIKit design system",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./atoms/*": {
+      "types": "./dist/atoms/*.d.ts",
+      "import": "./dist/atoms/*.js"
+    },
+    "./molecules/*": {
+      "types": "./dist/molecules/*.d.ts",
+      "import": "./dist/molecules/*.js"
+    }
+  },
+  "files": ["dist/"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist/"
+  },
+  "peerDependencies": {
+    "@atom-uikit/css": ">=0.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.8.0"
+  }
+}
