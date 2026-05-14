@@ -55,6 +55,9 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {};
 
 export const AllVariants: Story = {
+  argTypes: {
+    variant: { table: { disable: true } },
+  },
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -72,6 +75,9 @@ export const AllVariants: Story = {
 };
 
 export const AllSizes: Story = {
+  argTypes: {
+    size: { table: { disable: true } },
+  },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
       <Button {...args} size="xs">XS</Button>
