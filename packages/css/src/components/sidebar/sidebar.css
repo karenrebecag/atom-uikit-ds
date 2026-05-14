@@ -51,14 +51,18 @@
   padding: 16px 12px;
   flex-shrink: 0;
   min-height: 56px;
-  overflow: hidden;
 }
 
 .sidebar--collapsed .sidebar__header {
   flex-direction: column;
   gap: 8px;
-  padding: 12px 8px;
+  padding: 8px;
   align-items: center;
+}
+
+/* Generic: hide any data-sidebar-label in collapsed */
+.sidebar--collapsed [data-sidebar-label] {
+  display: none;
 }
 
 /* ---- Content (scrollable) ---- */
@@ -70,6 +74,11 @@
   padding: 8px;
 }
 
+.sidebar--collapsed .sidebar__content {
+  overflow: visible;
+  padding: 4px;
+}
+
 /* ---- Footer ---- */
 
 .sidebar__footer {
@@ -79,7 +88,11 @@
   padding: 12px;
   flex-shrink: 0;
   border-top: 1px solid var(--color-zinc-100);
-  overflow: hidden;
+}
+
+.sidebar--collapsed .sidebar__footer {
+  padding: 8px;
+  justify-content: center;
 }
 
 /* ---- Group ---- */
