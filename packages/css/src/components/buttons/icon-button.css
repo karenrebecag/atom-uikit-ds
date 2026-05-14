@@ -1,0 +1,206 @@
+/* -------------------------------------------------------------------------
+   Icon Button
+
+   Square button with icon only, no label.
+   Shares color variants with Button. Own sizing and animation.
+
+   Variants: primary, secondary, tertiary,
+             destructive, destructive-secondary, destructive-tertiary
+   Sizes:    xs, sm, default (default), lg, xl
+   Animation: icon 360deg rotation on hover (opt-in via data-icon-button-animate)
+   ------------------------------------------------------------------------- */
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 0.625em;
+  border: 1px solid transparent;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  transition:
+    background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+  position: relative;
+}
+
+.icon-button:active:not(.icon-button--disabled):not(.icon-button--loading) {
+  scale: 0.925;
+}
+
+.icon-button:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .icon-button[data-icon-button-animate]:hover:not(.icon-button--disabled):not(.icon-button--loading) {
+    scale: 1.095;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-button {
+    transition-duration: 0ms;
+  }
+  .icon-button:active:not(.icon-button--disabled) {
+    scale: none;
+  }
+}
+
+/* ---- Sizes (square: width = height) ---- */
+
+.icon-button--xs      { width: var(--button-height-xs); height: var(--button-height-xs); font-size: var(--button-font-size-all); }
+.icon-button--sm      { width: var(--button-height-sm); height: var(--button-height-sm); font-size: var(--button-font-size-all); }
+.icon-button--default { width: var(--button-height-default); height: var(--button-height-default); font-size: var(--button-font-size-all); }
+.icon-button--lg      { width: var(--button-height-lg); height: var(--button-height-lg); font-size: var(--button-font-size-all); }
+.icon-button--xl      { width: var(--button-height-xl); height: var(--button-height-xl); font-size: var(--button-font-size-all); }
+
+/* ---- Variants (same tokens as Button) ---- */
+
+.icon-button--primary {
+  background-color: var(--button-bg-primary);
+  color: var(--button-fg-primary);
+}
+.icon-button--primary:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-primary);
+}
+.icon-button--primary:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-primary);
+}
+
+.icon-button--secondary {
+  background-color: var(--button-bg-secondary);
+  color: var(--button-fg-secondary);
+  border-color: var(--button-border-secondary);
+}
+.icon-button--secondary:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-secondary);
+}
+.icon-button--secondary:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-secondary);
+}
+
+.icon-button--tertiary {
+  background-color: var(--button-bg-tertiary);
+  color: var(--button-fg-tertiary);
+}
+.icon-button--tertiary:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-tertiary);
+}
+.icon-button--tertiary:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-tertiary);
+}
+
+.icon-button--destructive {
+  background-color: var(--button-bg-destructive);
+  color: var(--button-fg-destructive);
+}
+.icon-button--destructive:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-destructive);
+}
+.icon-button--destructive:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-destructive);
+}
+
+.icon-button--destructive-secondary {
+  background-color: var(--button-bg-destructive-secondary);
+  color: var(--button-fg-destructive-secondary);
+  border-color: var(--button-border-destructive-secondary);
+}
+.icon-button--destructive-secondary:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-destructive-secondary);
+}
+.icon-button--destructive-secondary:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-destructive-secondary);
+}
+
+.icon-button--destructive-tertiary {
+  background-color: var(--button-bg-destructive-tertiary);
+  color: var(--button-fg-destructive-tertiary);
+}
+.icon-button--destructive-tertiary:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-destructive-tertiary);
+}
+.icon-button--destructive-tertiary:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-destructive-tertiary);
+}
+
+/* ---- States ---- */
+
+.icon-button--disabled {
+  color: var(--button-disabled-fg-all);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.icon-button--disabled.icon-button--primary,
+.icon-button--disabled.icon-button--secondary,
+.icon-button--disabled.icon-button--destructive,
+.icon-button--disabled.icon-button--destructive-secondary {
+  background-color: var(--muted);
+  border-color: transparent;
+}
+
+.icon-button--disabled.icon-button--tertiary,
+.icon-button--disabled.icon-button--destructive-tertiary {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.icon-button--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+/* ---- Icon ---- */
+
+.icon-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+  will-change: transform;
+  transition: rotate 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.icon-button__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .icon-button[data-icon-button-animate]:is(:hover, :focus-visible) .icon-button__icon,
+  [data-hover]:is(:hover, :focus-visible) .icon-button[data-icon-button-animate] .icon-button__icon {
+    rotate: 360deg;
+    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+/* ---- Spinner ---- */
+
+.icon-button__spinner {
+  display: none;
+}
+
+.icon-button--loading .icon-button__icon {
+  opacity: 0;
+}
+
+.icon-button--loading .icon-button__spinner {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+}
