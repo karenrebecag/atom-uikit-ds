@@ -88,8 +88,8 @@ export const Default: Story = {
       <Sidebar>
         <SidebarHeader>
           <AtomLogo />
-          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
-          <span style={{ marginLeft: 'auto' }}><SidebarTrigger /></span>
+          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Atom UIKit</span>
+          <SidebarTrigger />
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup label="Navigation">
@@ -116,8 +116,8 @@ export const Collapsed: Story = {
       <Sidebar>
         <SidebarHeader>
           <AtomLogo />
-          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
-          <span style={{ marginLeft: 'auto' }}><SidebarTrigger /></span>
+          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Atom UIKit</span>
+          <SidebarTrigger />
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
@@ -165,8 +165,8 @@ export const WithCollapsible: Story = {
       <Sidebar>
         <SidebarHeader>
           <AtomLogo />
-          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
-          <span style={{ marginLeft: 'auto' }}><SidebarTrigger /></span>
+          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Atom UIKit</span>
+          <SidebarTrigger />
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup label="Documentation">
