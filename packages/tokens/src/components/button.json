@@ -49,6 +49,22 @@
       "$type": "color",
       "all": { "$value": "{muted-foreground}", "$description": "Same for all disabled variants" }
     },
+    "height": {
+      "$type": "dimension",
+      "xs": { "$value": "{spacing.6}", "$description": "24px" },
+      "s": { "$value": "{spacing.8}", "$description": "32px" },
+      "m": { "$value": "{spacing.10}", "$description": "40px" },
+      "l": { "$value": "{spacing.12}", "$description": "48px" },
+      "xl": { "$value": "{spacing.16}", "$description": "64px" }
+    },
+    "padding-x": {
+      "$type": "dimension",
+      "xs": { "$value": "{spacing.2}", "$description": "8px" },
+      "s": { "$value": "{spacing.3}", "$description": "12px" },
+      "m": { "$value": "{spacing.4}", "$description": "16px" },
+      "l": { "$value": "{spacing.5}", "$description": "20px" },
+      "xl": { "$value": "{spacing.6}", "$description": "24px" }
+    },
     "font-size": {
       "$type": "dimension",
       "xs": { "$value": "{font-size.xs}", "$description": "10px" },

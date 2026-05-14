@@ -407,6 +407,16 @@
   --button-pressed-bg-destructive-secondary: var(--color-red-100);
   --button-pressed-bg-destructive-tertiary: var(--color-red-100);
   --button-disabled-fg-all: var(--muted-foreground);
+  --button-height-xs: var(--spacing-6);
+  --button-height-s: var(--spacing-8);
+  --button-height-m: var(--spacing-10);
+  --button-height-l: var(--spacing-12);
+  --button-height-xl: var(--spacing-16);
+  --button-padding-x-xs: var(--spacing-2);
+  --button-padding-x-s: var(--spacing-3);
+  --button-padding-x-m: var(--spacing-4);
+  --button-padding-x-l: var(--spacing-5);
+  --button-padding-x-xl: var(--spacing-6);
   --button-font-size-xs: var(--font-size-xs);
   --button-font-size-s: var(--font-size-sm);
   --button-font-size-m: var(--font-size-base);
