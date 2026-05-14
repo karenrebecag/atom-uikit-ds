@@ -11,7 +11,7 @@ import {
   SidebarDivider,
   SidebarCollapsible,
 } from '../../../../packages/components-react/src/molecules/sidebar';
-import { Avatar } from '../../../../packages/components-react/src/atoms/Avatar';
+import { UserProfile } from '../../../../packages/components-react/src/molecules/UserProfile';
 
 const IconHome = () => (
   <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -90,7 +90,7 @@ export const Default: Story = {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <SidebarItem icon={<Avatar type="initials" initials="KO" shape="square" size="xs" status />} label="Karen Ortiz" href="#" />
+          <UserProfile name="John Doe" org="Atom Design" />
         </SidebarFooter>
       </Sidebar>
     </SidebarProvider>
@@ -116,7 +116,7 @@ export const Collapsed: Story = {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <SidebarItem icon={<Avatar type="initials" initials="KO" shape="square" size="xs" status />} label="Karen Ortiz" href="#" />
+          <UserProfile name="John Doe" org="Atom Design" />
         </SidebarFooter>
       </Sidebar>
     </SidebarProvider>
@@ -177,7 +177,7 @@ export const WithCollapsible: Story = {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <SidebarItem icon={<Avatar type="initials" initials="KO" shape="square" size="xs" status />} label="Karen Ortiz" href="#" />
+          <UserProfile name="John Doe" org="Atom Design" />
         </SidebarFooter>
       </Sidebar>
     </SidebarProvider>

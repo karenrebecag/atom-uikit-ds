@@ -1,0 +1,68 @@
+/* -------------------------------------------------------------------------
+   User Profile (Molecule)
+
+   Avatar + name + org/role in a row. Collapses to avatar-only
+   when parent constrains width (e.g., sidebar collapsed).
+
+   Composes: Avatar atom.
+   Used in: sidebar footer, dropdowns, settings pages.
+   ------------------------------------------------------------------------- */
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.user-profile:hover {
+  background-color: var(--color-zinc-100);
+}
+
+.user-profile__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  min-width: 0;
+  transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+.user-profile__name {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: var(--color-zinc-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-profile__org {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  color: var(--color-zinc-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapses in sidebar collapsed state */
+.sidebar--collapsed .user-profile__info {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar--collapsed .user-profile {
+  padding: 0;
+  justify-content: center;
+}

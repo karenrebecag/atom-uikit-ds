@@ -22,3 +22,4 @@ export {
   SidebarTrigger, SidebarDivider,
   SidebarCollapsible, type SidebarCollapsibleProps,
 } from './molecules/sidebar';
+export { UserProfile, type UserProfileProps } from './molecules/UserProfile';
