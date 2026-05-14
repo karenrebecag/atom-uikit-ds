@@ -14,9 +14,12 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  overflow: hidden;
   position: relative;
   background-color: var(--color-zinc-100);
+}
+
+.avatar__image {
+  overflow: hidden;
 }
 
 /* ---- Sizes ---- */
