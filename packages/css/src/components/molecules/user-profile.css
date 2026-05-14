@@ -63,6 +63,7 @@
 }
 
 .sidebar--collapsed .user-profile {
-  padding: 0;
+  padding: 4px;
   justify-content: center;
+  overflow: visible;
 }

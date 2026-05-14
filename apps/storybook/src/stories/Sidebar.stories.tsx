@@ -19,37 +19,61 @@ const AtomLogo = () => (
   <img src="/Logo Mark - Atom.svg" alt="Atom" width="24" height="24" />
 );
 
+// Lucide icons (viewBox 0 0 24 24)
 const IconHome = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2.5 6.5L8 2l5.5 4.5V13a1 1 0 01-1 1h-10a1 1 0 01-1-1V6.5z" />
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+    <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
   </svg>
 );
 
-const IconDoc = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 2H4.5A1.5 1.5 0 003 3.5v9A1.5 1.5 0 004.5 14h7a1.5 1.5 0 001.5-1.5V6L9 2z" />
-    <path d="M9 2v4h4" />
+const IconBell = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+  </svg>
+);
+
+const IconSearch = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+);
+
+const IconMessageSquare = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
   </svg>
 );
 
 const IconBox = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2.5 5L8 2l5.5 3v6L8 14l-5.5-3V5z" />
-    <path d="M8 8v6M8 8l5.5-3M8 8L2.5 5" />
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+    <path d="m3.3 7 8.7 5 8.7-5" />
+    <path d="M12 22V12" />
   </svg>
 );
 
 const IconSettings = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="8" cy="8" r="2" />
-    <path d="M13.5 8a5.5 5.5 0 01-.3 1.8l1.2.7-1 1.7-1.2-.7a5.5 5.5 0 01-1.5 1V14h-2v-1.5a5.5 5.5 0 01-1.5-1l-1.2.7-1-1.7 1.2-.7A5.5 5.5 0 014.5 8c0-.6.1-1.2.3-1.8L3.6 5.5l1-1.7 1.2.7a5.5 5.5 0 011.5-1V2h2v1.5a5.5 5.5 0 011.5 1l1.2-.7 1 1.7-1.2.7c.2.6.3 1.2.3 1.8z" />
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+    <circle cx="12" cy="12" r="3" />
   </svg>
 );
 
-const IconUser = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="8" cy="5" r="3" />
-    <path d="M2.5 14a5.5 5.5 0 0111 0" />
+const IconHelpCircle = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+    <path d="M12 17h.01" />
+  </svg>
+);
+
+const IconDoc = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
   </svg>
 );
 
@@ -92,14 +116,17 @@ export const Default: Story = {
           <SidebarTrigger />
         </SidebarHeader>
         <SidebarContent>
-          <SidebarGroup label="Navigation">
+          <SidebarGroup label="Main">
             <SidebarItem icon={<IconHome />} label="Home" href="#" active />
-            <SidebarItem icon={<IconDoc />} label="Documentation" href="#" badge="12" />
-            <SidebarItem icon={<IconBox />} label="Components" href="#" />
+            <SidebarItem icon={<IconBell />} label="Notifications" href="#" />
+            <SidebarItem icon={<IconSearch />} label="Search" href="#" />
+            <SidebarItem icon={<IconMessageSquare />} label="Messages" href="#" />
+            <SidebarItem icon={<IconBox />} label="Components" href="#" badge="12" />
           </SidebarGroup>
           <SidebarDivider />
           <SidebarGroup label="Settings">
-            <SidebarItem icon={<IconSettings />} label="Preferences" href="#" />
+            <SidebarItem icon={<IconHelpCircle />} label="Help" href="#" />
+            <SidebarItem icon={<IconSettings />} label="Settings" href="#" />
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
@@ -122,12 +149,15 @@ export const Collapsed: Story = {
         <SidebarContent>
           <SidebarGroup>
             <SidebarItem icon={<IconHome />} label="Home" href="#" active />
-            <SidebarItem icon={<IconDoc />} label="Documentation" href="#" />
+            <SidebarItem icon={<IconBell />} label="Notifications" href="#" />
+            <SidebarItem icon={<IconSearch />} label="Search" href="#" />
+            <SidebarItem icon={<IconMessageSquare />} label="Messages" href="#" />
             <SidebarItem icon={<IconBox />} label="Components" href="#" />
           </SidebarGroup>
           <SidebarDivider />
           <SidebarGroup>
-            <SidebarItem icon={<IconSettings />} label="Preferences" href="#" />
+            <SidebarItem icon={<IconHelpCircle />} label="Help" href="#" />
+            <SidebarItem icon={<IconSettings />} label="Settings" href="#" />
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
