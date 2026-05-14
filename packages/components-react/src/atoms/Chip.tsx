@@ -1,9 +1,11 @@
 import { type ReactNode } from 'react';
 
 type ChipType = 'outlined' | 'filled';
+type ChipSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export type ChipProps = {
   type?: ChipType;
+  size?: ChipSize;
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
@@ -25,6 +27,7 @@ const CloseIcon = () => (
 
 export function Chip({
   type = 'outlined',
+  size = 's',
   disabled = false,
   error = false,
   focused = false,
@@ -36,6 +39,7 @@ export function Chip({
   const classes = cn(
     'chip',
     `chip--${type}`,
+    `chip--${size}`,
     disabled && 'chip--disabled',
     error && 'chip--error',
     focused && 'chip--focused',

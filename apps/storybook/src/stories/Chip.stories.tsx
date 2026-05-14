@@ -16,6 +16,11 @@ const meta: Meta<typeof Chip> = {
       options: ['outlined', 'filled'],
       name: 'Type',
     },
+    size: {
+      control: 'select',
+      options: ['xs', 's', 'm', 'l', 'xl'],
+      name: 'Size',
+    },
     iconLeft: {
       control: 'boolean',
       mapping: { true: <IconFilter />, false: undefined },
@@ -23,7 +28,7 @@ const meta: Meta<typeof Chip> = {
     },
     onClose: {
       control: 'boolean',
-      mapping: { true: () => alert('Close'), false: undefined },
+      mapping: { true: () => {}, false: undefined },
       name: 'Closable',
     },
     disabled: { control: 'boolean', name: 'Disabled' },
@@ -34,6 +39,7 @@ const meta: Meta<typeof Chip> = {
   },
   args: {
     type: 'outlined',
+    size: 's',
     children: 'Label',
     iconLeft: true as any,
     onClose: true as any,
@@ -47,35 +53,47 @@ type Story = StoryObj<typeof Chip>;
 
 export const Default: Story = {};
 
-export const AllStates: Story = {
+export const AllVariants: Story = {
   argTypes: {
     type: { table: { disable: true } },
-    iconLeft: { table: { disable: true } },
-    onClose: { table: { disable: true } },
     disabled: { table: { disable: true } },
     error: { table: { disable: true } },
-    children: { table: { disable: true } },
   },
-  render: () => (
+  render: (args) => (
     <div style={{ display: 'grid', gridTemplateColumns: 'auto auto', gap: '24px 48px' }}>
       <div>
         <strong style={{ fontSize: 11, color: '#71717b', display: 'block', marginBottom: 12 }}>Outlined</strong>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
-          <Chip type="outlined" iconLeft={<IconFilter />} onClose={() => {}}>Enabled</Chip>
-          <Chip type="outlined" disabled iconLeft={<IconFilter />} onClose={() => {}}>Disabled</Chip>
-          <Chip type="outlined" error iconLeft={<IconFilter />} onClose={() => {}}>Error</Chip>
-          <Chip type="outlined" focused iconLeft={<IconFilter />} onClose={() => {}}>Focused</Chip>
+          <Chip {...args} type="outlined">Enabled</Chip>
+          <Chip {...args} type="outlined" disabled>Disabled</Chip>
+          <Chip {...args} type="outlined" error>Error</Chip>
+          <Chip {...args} type="outlined" focused>Focused</Chip>
         </div>
       </div>
       <div>
         <strong style={{ fontSize: 11, color: '#71717b', display: 'block', marginBottom: 12 }}>Filled</strong>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
-          <Chip type="filled" iconLeft={<IconFilter />} onClose={() => {}}>Enabled</Chip>
-          <Chip type="filled" disabled iconLeft={<IconFilter />} onClose={() => {}}>Disabled</Chip>
-          <Chip type="filled" error iconLeft={<IconFilter />} onClose={() => {}}>Error</Chip>
-          <Chip type="filled" focused iconLeft={<IconFilter />} onClose={() => {}}>Focused</Chip>
+          <Chip {...args} type="filled">Enabled</Chip>
+          <Chip {...args} type="filled" disabled>Disabled</Chip>
+          <Chip {...args} type="filled" error>Error</Chip>
+          <Chip {...args} type="filled" focused>Focused</Chip>
         </div>
       </div>
+    </div>
+  ),
+};
+
+export const AllSizes: Story = {
+  argTypes: {
+    size: { table: { disable: true } },
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <Chip {...args} size="xs">XS</Chip>
+      <Chip {...args} size="s">S</Chip>
+      <Chip {...args} size="m">M</Chip>
+      <Chip {...args} size="l">L</Chip>
+      <Chip {...args} size="xl">XL</Chip>
     </div>
   ),
 };
@@ -83,6 +101,7 @@ export const AllStates: Story = {
 export const ChipGroup: Story = {
   argTypes: {
     type: { table: { disable: true } },
+    size: { table: { disable: true } },
     iconLeft: { table: { disable: true } },
     onClose: { table: { disable: true } },
     disabled: { table: { disable: true } },
@@ -91,11 +110,11 @@ export const ChipGroup: Story = {
   },
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      <Chip type="filled" onClose={() => {}}>React</Chip>
-      <Chip type="filled" onClose={() => {}}>TypeScript</Chip>
-      <Chip type="filled" onClose={() => {}}>Astro</Chip>
-      <Chip type="filled" onClose={() => {}}>Tailwind</Chip>
-      <Chip type="outlined">+ Add</Chip>
+      <Chip type="filled" size="s" onClose={() => {}}>React</Chip>
+      <Chip type="filled" size="s" onClose={() => {}}>TypeScript</Chip>
+      <Chip type="filled" size="s" onClose={() => {}}>Astro</Chip>
+      <Chip type="filled" size="s" onClose={() => {}}>Tailwind</Chip>
+      <Chip type="outlined" size="s">+ Add</Chip>
     </div>
   ),
 };
