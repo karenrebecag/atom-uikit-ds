@@ -422,4 +422,9 @@
   --link-button-fg-hover: var(--color-blue-600);
   --link-button-fg-pressed: var(--color-blue-700);
   --link-button-fg-disabled: var(--muted-foreground);
+  --nav-link-fg-default: var(--muted-foreground);
+  --nav-link-fg-hover: var(--foreground);
+  --nav-link-fg-active: var(--foreground);
+  --nav-link-fg-disabled: var(--color-zinc-300);
+  --nav-link-indicator-active: var(--primary);
 }

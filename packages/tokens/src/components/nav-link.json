@@ -1,0 +1,15 @@
+{
+  "nav-link": {
+    "fg": {
+      "$type": "color",
+      "default": { "$value": "{muted-foreground}", "$description": "Inactive nav item" },
+      "hover": { "$value": "{foreground}", "$description": "Full contrast on hover" },
+      "active": { "$value": "{foreground}", "$description": "Current page" },
+      "disabled": { "$value": "{color.zinc.300}", "$description": "Unavailable" }
+    },
+    "indicator": {
+      "$type": "color",
+      "active": { "$value": "{primary}", "$description": "Underline on active item" }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+/* -------------------------------------------------------------------------
+   Nav Link
+
+   Internal navigation link. Child of Navbar.
+   Neutral text, full contrast on hover/active. Underline on active.
+
+   Sizes:    sm, default, lg
+   States:   default, hover, active, disabled
+   ------------------------------------------------------------------------- */
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: var(--nav-link-fg-default);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+}
+
+.nav-link:hover:not(.nav-link--disabled):not(.nav-link--active) {
+  color: var(--nav-link-fg-hover);
+}
+
+.nav-link:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+  border-radius: 0.125em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link {
+    transition-duration: 0ms;
+  }
+}
+
+/* ---- Sizes ---- */
+
+.nav-link--sm      { font-size: var(--font-size-xs); }
+.nav-link--default { font-size: var(--font-size-sm); }
+.nav-link--lg      { font-size: var(--font-size-base); }
+
+/* ---- Active ---- */
+
+.nav-link--active {
+  color: var(--nav-link-fg-active);
+  cursor: default;
+}
+
+.nav-link--active .nav-link__text::before {
+  transform-origin: left;
+  transform: scaleX(1) rotate(0.001deg);
+}
+
+/* ---- Disabled ---- */
+
+.nav-link--disabled {
+  color: var(--nav-link-fg-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Parts ---- */
+
+.nav-link__text {
+  display: inline;
+  position: relative;
+}
+
+/* ---- Underline ---- */
+
+.nav-link__text::before {
+  content: "";
+  position: absolute;
+  bottom: -0.125em;
+  left: 0;
+  width: 100%;
+  height: 0.0625em;
+  background-color: var(--nav-link-indicator-active);
+  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transform-origin: right;
+  transform: scaleX(0) rotate(0.001deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover:not(.nav-link--disabled):not(.nav-link--active) .nav-link__text::before,
+  [data-hover]:hover .nav-link:not(.nav-link--disabled):not(.nav-link--active) .nav-link__text::before {
+    transform-origin: left;
+    transform: scaleX(1) rotate(0.001deg);
+  }
+}
