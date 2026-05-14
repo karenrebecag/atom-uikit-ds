@@ -9,3 +9,4 @@ export { Input, type InputProps } from './atoms/Input';
 export { Textarea, type TextareaProps } from './atoms/Textarea';
 export { Field, type FieldProps } from './atoms/Field';
 export { SearchInput, type SearchInputProps } from './atoms/SearchInput';
+export { Chip, type ChipProps } from './atoms/Chip';
