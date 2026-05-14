@@ -9,8 +9,9 @@ const meta: Meta<typeof LinkButton> = {
       control: 'select',
       options: ['xs', 'sm', 'default', 'lg', 'xl'],
     },
-    disabled: { control: 'boolean' },
     children: { control: 'text' },
+    disabled: { table: { disable: true } },
+    href: { table: { disable: true } },
   },
   args: {
     size: 'default',
