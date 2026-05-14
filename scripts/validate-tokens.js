@@ -38,6 +38,12 @@ function isCompositeValue(value) {
   return typeof value === 'string' && /^(rgba?|hsla?)\(/.test(value);
 }
 
+// CSS keywords and literal px values are allowed in component layer
+// for values that have no corresponding primitive (transparent, icon sizes)
+function isAllowedComponentLiteral(value) {
+  return typeof value === 'string' && (/^(transparent|inherit|currentColor)$/.test(value) || /^\d+(\.\d+)?px$/.test(value));
+}
+
 function validateToken(path, obj, layer) {
   for (const [key, val] of Object.entries(obj)) {
     if (key.startsWith('$')) continue;
@@ -52,7 +58,7 @@ function validateToken(path, obj, layer) {
           console.error(`  ERROR: ${path} > ${key}: semantic tokens must reference primitives, not literals`);
           errors++;
         }
-        if (layer === 'components' && !ref) {
+        if (layer === 'components' && !ref && !isAllowedComponentLiteral(val.$value)) {
           console.error(`  ERROR: ${path} > ${key}: component tokens must reference semantic tokens, not literals`);
           errors++;
         }

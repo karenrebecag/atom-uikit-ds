@@ -1,0 +1,62 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'destructive-secondary' | 'destructive-tertiary';
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+  disabled?: boolean;
+  loading?: boolean;
+  href?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'primary',
+  size = 'm',
+  disabled = false,
+  loading = false,
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const classes = [
+  'button',
+  `button--${variant}`,
+  `button--${size}`,
+  disabled && 'button--disabled',
+  loading && 'button--loading',
+  className,
+].filter(Boolean).join(' ');
+
+const attrs = href
+  ? { href, 'aria-disabled': disabled || loading }
+  : { disabled: disabled || loading, 'aria-busy': loading };
+---
+
+<Tag class={classes} {...attrs} {...rest}>
+  {Astro.slots.has('icon-left') && (
+    <span class="button__icon">
+      <slot name="icon-left" />
+    </span>
+  )}
+  <span class="button__label">
+    <slot />
+  </span>
+  {Astro.slots.has('icon-right') && (
+    <span class="button__icon">
+      <slot name="icon-right" />
+    </span>
+  )}
+  {loading && (
+    <span class="button__spinner">
+      <svg class="button__spinner-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" />
+        <path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <animateTransform attributeName="transform" type="rotate" from="0 8 8" to="360 8 8" dur="0.75s" repeatCount="indefinite" />
+        </path>
+      </svg>
+    </span>
+  )}
+</Tag>

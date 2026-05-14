@@ -1,2 +1,1 @@
-// ATOM UIKit React Components
-// Export atoms and molecules here as they are created
+export { Button, type ButtonProps } from './atoms/Button';
