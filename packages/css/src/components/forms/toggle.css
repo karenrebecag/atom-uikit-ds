@@ -1,0 +1,123 @@
+/* -------------------------------------------------------------------------
+   Toggle (Switch)
+
+   Single size. Track + thumb that slides on checked.
+   Native <input type="checkbox"> hidden, visual replacement via label.
+
+   Unchecked: white track, zinc border
+   Checked:   zinc-950 track, white thumb
+   States:    unchecked, checked, disabled, error
+   ------------------------------------------------------------------------- */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.toggle--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Hidden native input with touch target */
+.toggle__input {
+  position: absolute;
+  width: 44px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: inherit;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Track */
+.toggle__track {
+  display: flex;
+  align-items: center;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid var(--checkbox-border-default);
+  background-color: var(--checkbox-bg-unchecked);
+  padding: 2px;
+  transition:
+    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Thumb */
+.toggle__thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background-color: var(--checkbox-border-default);
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ---- Hover ---- */
+
+.toggle__input:hover:not(:disabled) ~ .toggle__track {
+  background-color: var(--checkbox-bg-unchecked-hover);
+}
+
+.toggle__input:checked:hover:not(:disabled) ~ .toggle__track {
+  background-color: var(--checkbox-bg-checked-hover);
+}
+
+/* ---- Checked ---- */
+
+.toggle__input:checked ~ .toggle__track {
+  background-color: var(--checkbox-bg-checked);
+  border-color: var(--checkbox-bg-checked);
+}
+
+.toggle__input:checked ~ .toggle__track .toggle__thumb {
+  background-color: var(--checkbox-fg-checked);
+  transform: translateX(16px);
+}
+
+/* ---- Focus ---- */
+
+.toggle__input:focus-visible ~ .toggle__track {
+  box-shadow: 0 0 0 2px var(--checkbox-focus-ring-default);
+}
+
+/* ---- Disabled ---- */
+
+.toggle__input:disabled ~ .toggle__track {
+  background-color: var(--checkbox-bg-disabled);
+  border-color: var(--checkbox-bg-disabled);
+}
+
+.toggle__input:disabled ~ .toggle__track .toggle__thumb {
+  background-color: var(--checkbox-fg-disabled);
+}
+
+/* ---- Error ---- */
+
+.toggle--error .toggle__track {
+  border-color: var(--checkbox-border-error);
+}
+
+/* ---- Label ---- */
+
+.toggle__label {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.toggle--disabled .toggle__label {
+  color: var(--muted-foreground);
+}
