@@ -30,6 +30,8 @@ const meta: Meta<typeof IconButton> = {
     animated: { control: 'boolean' },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
+    icon: { table: { disable: true } },
+    'aria-label': { table: { disable: true } },
   },
   args: {
     variant: 'primary',
