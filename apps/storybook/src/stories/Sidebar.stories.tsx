@@ -9,6 +9,7 @@ import {
   SidebarItem,
   SidebarTrigger,
   SidebarDivider,
+  SidebarCollapsible,
 } from '../../../../packages/components-react/src/molecules/sidebar';
 
 const IconHome = () => (
@@ -110,6 +111,67 @@ export const Collapsed: Story = {
           </SidebarGroup>
           <SidebarDivider />
           <SidebarGroup>
+            <SidebarItem icon={<IconSettings />} label="Preferences" href="#" />
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarItem icon={<IconUser />} label="Karen Ortiz" href="#" />
+        </SidebarFooter>
+      </Sidebar>
+    </SidebarProvider>
+  ),
+};
+
+const IconCode = () => (
+  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 4L1.5 8 5 12M11 4l3.5 4L11 12" />
+  </svg>
+);
+
+const IconPalette = () => (
+  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="8" cy="8" r="6" />
+    <circle cx="6" cy="6" r="1" fill="currentColor" />
+    <circle cx="10" cy="6" r="1" fill="currentColor" />
+    <circle cx="6" cy="10" r="1" fill="currentColor" />
+  </svg>
+);
+
+const IconBook = () => (
+  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2 3h4.5a2 2 0 012 2v8.5a1.5 1.5 0 00-1.5-1.5H2V3zM14 3H9.5a2 2 0 00-2 2v8.5A1.5 1.5 0 019 12h5V3z" />
+  </svg>
+);
+
+export const WithCollapsible: Story = {
+  render: () => (
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarHeader>
+          <SidebarTrigger />
+          <span style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup label="Documentation">
+            <SidebarCollapsible icon={<IconBook />} label="Getting Started" defaultOpen>
+              <SidebarItem icon={<IconDoc />} label="Introduction" href="#" active />
+              <SidebarItem icon={<IconDoc />} label="Installation" href="#" />
+              <SidebarItem icon={<IconDoc />} label="Quick Start" href="#" />
+            </SidebarCollapsible>
+            <SidebarCollapsible icon={<IconPalette />} label="Foundations">
+              <SidebarItem icon={<IconDoc />} label="Colors" href="#" />
+              <SidebarItem icon={<IconDoc />} label="Typography" href="#" />
+              <SidebarItem icon={<IconDoc />} label="Spacing" href="#" />
+            </SidebarCollapsible>
+            <SidebarCollapsible icon={<IconCode />} label="Components">
+              <SidebarItem icon={<IconDoc />} label="Button" href="#" />
+              <SidebarItem icon={<IconDoc />} label="Input" href="#" />
+              <SidebarItem icon={<IconDoc />} label="Checkbox" href="#" />
+              <SidebarItem icon={<IconDoc />} label="Tag" href="#" />
+            </SidebarCollapsible>
+          </SidebarGroup>
+          <SidebarDivider />
+          <SidebarGroup label="Settings">
             <SidebarItem icon={<IconSettings />} label="Preferences" href="#" />
           </SidebarGroup>
         </SidebarContent>

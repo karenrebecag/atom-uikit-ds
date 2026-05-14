@@ -7,3 +7,4 @@ export { SidebarGroup } from './SidebarGroup';
 export { SidebarItem, type SidebarItemProps } from './SidebarItem';
 export { SidebarTrigger } from './SidebarTrigger';
 export { SidebarDivider } from './SidebarDivider';
+export { SidebarCollapsible, type SidebarCollapsibleProps } from './SidebarCollapsible';

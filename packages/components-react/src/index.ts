@@ -19,4 +19,5 @@ export {
   SidebarGroup,
   SidebarItem, type SidebarItemProps,
   SidebarTrigger, SidebarDivider,
+  SidebarCollapsible, type SidebarCollapsibleProps,
 } from './molecules/sidebar';

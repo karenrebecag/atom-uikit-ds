@@ -265,3 +265,111 @@
 .sidebar--collapsed .sidebar__item:hover .sidebar__item-tooltip {
   display: block;
 }
+
+/* ---- Collapsible section ---- */
+
+.sidebar-collapsible__trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  height: 36px;
+  width: 100%;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: var(--color-zinc-600);
+  cursor: pointer;
+  user-select: none;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    color 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.sidebar-collapsible__trigger:hover {
+  background-color: var(--color-zinc-100);
+  color: var(--color-zinc-900);
+}
+
+.sidebar-collapsible__label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar--collapsed .sidebar-collapsible__label {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar-collapsible__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-zinc-400);
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.sidebar-collapsible--open .sidebar-collapsible__chevron {
+  transform: rotate(0deg);
+}
+
+.sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__chevron {
+  transform: rotate(-90deg);
+}
+
+.sidebar--collapsed .sidebar-collapsible__chevron {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Content: animated height */
+.sidebar-collapsible__content {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+}
+
+.sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__content {
+  grid-template-rows: 0fr;
+}
+
+.sidebar-collapsible__content > * {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Sub-items indent */
+.sidebar-collapsible__content .sidebar__item {
+  padding-left: 34px;
+}
+
+/* Collapsed sidebar: hide content, center trigger as icon */
+.sidebar--collapsed .sidebar-collapsible__trigger {
+  justify-content: center;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.sidebar--collapsed .sidebar-collapsible__content {
+  display: none;
+}
+
+.sidebar--collapsed .sidebar-collapsible__trigger:hover .sidebar__item-tooltip {
+  display: block;
+}
