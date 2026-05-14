@@ -1,0 +1,40 @@
+import { type ReactNode, type AnchorHTMLAttributes } from 'react';
+
+function cn(...classes: (string | false | undefined | null)[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
+export type SidebarItemProps = {
+  icon: ReactNode;
+  label: string;
+  badge?: string;
+  active?: boolean;
+  disabled?: boolean;
+  className?: string;
+} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'>;
+
+export function SidebarItem({
+  icon,
+  label,
+  badge,
+  active = false,
+  disabled = false,
+  className,
+  ...props
+}: SidebarItemProps) {
+  const classes = cn(
+    'sidebar__item',
+    active && 'sidebar__item--active',
+    disabled && 'sidebar__item--disabled',
+    className,
+  );
+
+  return (
+    <a className={classes} aria-current={active ? 'page' : undefined} aria-disabled={disabled || undefined} {...props}>
+      <span className="sidebar__item-icon">{icon}</span>
+      <span className="sidebar__item-label">{label}</span>
+      {badge && <span className="sidebar__item-badge">{badge}</span>}
+      <span className="sidebar__item-tooltip">{label}</span>
+    </a>
+  );
+}

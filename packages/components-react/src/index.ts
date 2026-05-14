@@ -12,3 +12,11 @@ export { SearchInput, type SearchInputProps } from './atoms/SearchInput';
 export { Chip, type ChipProps } from './atoms/Chip';
 export { Tag, type TagProps } from './atoms/Tag';
 export { Divider, type DividerProps } from './atoms/Divider';
+export {
+  SidebarProvider, useSidebar,
+  Sidebar, type SidebarProps,
+  SidebarHeader, SidebarContent, SidebarFooter,
+  SidebarGroup,
+  SidebarItem, type SidebarItemProps,
+  SidebarTrigger, SidebarDivider,
+} from './molecules/sidebar';
