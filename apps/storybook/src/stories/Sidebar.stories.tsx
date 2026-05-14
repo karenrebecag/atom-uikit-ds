@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { initSidebarAnimation } from '../../../../packages/animations/src/sidebar';
 import {
   SidebarProvider,
   Sidebar,
@@ -56,14 +58,20 @@ const meta: Meta<typeof Sidebar> = {
     children: { table: { disable: true } },
   },
   decorators: [
-    (Story) => (
+    (Story) => {
+      useEffect(() => {
+        const cleanup = initSidebarAnimation();
+        return cleanup;
+      }, []);
+      return (
       <div style={{ height: 500, display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, overflow: 'hidden' }}>
         <Story />
         <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
           <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
         </div>
       </div>
-    ),
+      );
+    },
   ],
 };
 
