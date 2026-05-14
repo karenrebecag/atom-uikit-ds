@@ -147,7 +147,6 @@
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  overflow: hidden;
   transition:
     background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
     color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
@@ -365,7 +364,6 @@
   user-select: none;
   text-align: left;
   white-space: nowrap;
-  overflow: hidden;
   transition:
     background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
     color 0.15s cubic-bezier(0.19, 1, 0.22, 1);
