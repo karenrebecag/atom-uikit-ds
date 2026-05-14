@@ -1,0 +1,138 @@
+/* -------------------------------------------------------------------------
+   Avatar
+
+   User representation: image, initials, or icon placeholder.
+   Optional status dot (online indicator).
+
+   Types:   image, image-border, initials, icon
+   Shapes:  circle, square
+   Sizes:   xs (24px), s (32px), m (40px), l (48px)
+   ------------------------------------------------------------------------- */
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-zinc-100);
+}
+
+/* ---- Sizes ---- */
+
+.avatar--xs { width: 24px; height: 24px; }
+.avatar--s  { width: 32px; height: 32px; }
+.avatar--m  { width: 40px; height: 40px; }
+.avatar--l  { width: 48px; height: 48px; }
+
+/* ---- Shapes ---- */
+
+.avatar--circle { border-radius: 9999px; }
+
+.avatar--square.avatar--xs { border-radius: 6px; }
+.avatar--square.avatar--s  { border-radius: 8px; }
+.avatar--square.avatar--m  { border-radius: 10px; }
+.avatar--square.avatar--l  { border-radius: 12px; }
+
+/* ---- Types ---- */
+
+/* Image (no border) */
+.avatar--image {
+  background: none;
+  padding: 0;
+}
+
+/* Image with border ring */
+.avatar--image-border {
+  padding: 2px;
+}
+.avatar--image-border.avatar--m,
+.avatar--image-border.avatar--l {
+  padding: 4px;
+}
+
+/* Initials */
+.avatar--initials {
+  border: 2px solid var(--color-zinc-200);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-zinc-900);
+  font-size: 12px;
+  line-height: 1;
+}
+.avatar--initials.avatar--l {
+  font-size: 16px;
+}
+
+/* Icon */
+.avatar--icon {
+  border: 2px solid var(--color-zinc-200);
+  color: var(--color-zinc-500);
+}
+
+/* ---- Image element ---- */
+
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar--image-border .avatar__image {
+  border-radius: inherit;
+}
+
+.avatar--circle .avatar__image {
+  border-radius: 9999px;
+}
+
+/* ---- Icon element ---- */
+
+.avatar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar--xs .avatar__icon { width: 12px; height: 12px; }
+.avatar--s .avatar__icon  { width: 16px; height: 16px; }
+.avatar--m .avatar__icon  { width: 20px; height: 20px; }
+.avatar--l .avatar__icon  { width: 24px; height: 24px; }
+
+.avatar__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Status dot ---- */
+
+.avatar__status {
+  position: absolute;
+  background-color: var(--color-green-500);
+  border-radius: 9999px;
+  border-style: solid;
+  border-color: var(--color-zinc-100);
+}
+
+.avatar--xs .avatar__status { width: 8px; height: 8px; border-width: 1px; bottom: -1px; right: -1px; }
+.avatar--s .avatar__status  { width: 8px; height: 8px; border-width: 1px; bottom: 0; right: 0; }
+.avatar--m .avatar__status  { width: 12px; height: 12px; border-width: 1.5px; bottom: 0; right: 0; }
+.avatar--l .avatar__status  { width: 16px; height: 16px; border-width: 2px; bottom: 0; right: 0; }
+
+/* ---- Skeleton ---- */
+
+.avatar--skeleton {
+  border: none;
+  animation: avatar-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.avatar--skeleton * {
+  display: none;
+}
+
+@keyframes avatar-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
