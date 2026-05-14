@@ -13,10 +13,6 @@ const meta: Meta<typeof Toggle> = {
       control: 'boolean',
       name: 'State: Disabled',
     },
-    error: {
-      control: 'boolean',
-      name: 'State: Error',
-    },
     label: { table: { disable: true } },
     className: { table: { disable: true } },
     onChange: { table: { disable: true } },
@@ -24,7 +20,6 @@ const meta: Meta<typeof Toggle> = {
   args: {
     checked: false,
     disabled: false,
-    error: false,
     label: 'Enable notifications',
   },
 };
@@ -38,7 +33,6 @@ export const AllStates: Story = {
   argTypes: {
     checked: { table: { disable: true } },
     disabled: { table: { disable: true } },
-    error: { table: { disable: true } },
   },
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, auto)', gap: '16px 32px', alignItems: 'center' }}>
@@ -50,13 +44,13 @@ export const AllStates: Story = {
       <Toggle label="Off" />
       <Toggle checked label="On" />
 
+      <span style={{ fontSize: 12 }}>Hovered</span>
+      <span style={{ fontSize: 11, color: '#a1a1a1' }}>hover to see</span>
+      <span style={{ fontSize: 11, color: '#a1a1a1' }}>hover to see</span>
+
       <span style={{ fontSize: 12 }}>Disabled</span>
       <Toggle disabled label="Disabled off" />
       <Toggle disabled checked label="Disabled on" />
-
-      <span style={{ fontSize: 12 }}>Error</span>
-      <Toggle error label="Error" />
-      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
     </div>
   ),
 };

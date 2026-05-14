@@ -2,11 +2,12 @@
    Toggle (Switch)
 
    Single size. Track + thumb that slides on checked.
-   Native <input type="checkbox"> hidden, visual replacement via label.
+   Native <input type="checkbox" role="switch"> hidden.
 
-   Unchecked: white track, zinc border
-   Checked:   zinc-950 track, white thumb
-   States:    unchecked, checked, disabled, error
+   Off:      zinc-100 track, white thumb with shadow
+   On:       zinc-950 track, white thumb with shadow
+   States:   unchecked, checked, disabled
+   Figma:    Size=s (36x20), Size=m (44x24) — we use s (web standard)
    ------------------------------------------------------------------------- */
 
 .toggle {
@@ -46,67 +47,58 @@
   height: 20px;
   flex-shrink: 0;
   border-radius: 9999px;
-  border: 1px solid var(--checkbox-border-default);
-  background-color: var(--checkbox-bg-unchecked);
+  background-color: var(--color-zinc-100);
   padding: 2px;
   transition:
-    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    background-color 0.2s cubic-bezier(0.19, 1, 0.22, 1),
     box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* Thumb */
 .toggle__thumb {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 9999px;
-  background-color: var(--checkbox-border-default);
+  background-color: var(--color-zinc-50);
+  box-shadow: 0px 2px 4px 0px rgba(9, 9, 11, 0.08);
   transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* ---- Hover ---- */
 
 .toggle__input:hover:not(:disabled) ~ .toggle__track {
-  background-color: var(--checkbox-bg-unchecked-hover);
+  background-color: var(--color-zinc-200);
 }
 
 .toggle__input:checked:hover:not(:disabled) ~ .toggle__track {
-  background-color: var(--checkbox-bg-checked-hover);
+  background-color: var(--color-zinc-800);
 }
 
 /* ---- Checked ---- */
 
 .toggle__input:checked ~ .toggle__track {
-  background-color: var(--checkbox-bg-checked);
-  border-color: var(--checkbox-bg-checked);
+  background-color: var(--color-zinc-950);
 }
 
 .toggle__input:checked ~ .toggle__track .toggle__thumb {
-  background-color: var(--checkbox-fg-checked);
   transform: translateX(16px);
 }
 
 /* ---- Focus ---- */
 
 .toggle__input:focus-visible ~ .toggle__track {
-  box-shadow: 0 0 0 2px var(--checkbox-focus-ring-default);
+  box-shadow: 0 0 0 2px rgba(161, 161, 161, 0.7);
 }
 
 /* ---- Disabled ---- */
 
 .toggle__input:disabled ~ .toggle__track {
-  background-color: var(--checkbox-bg-disabled);
-  border-color: var(--checkbox-bg-disabled);
+  background-color: var(--color-zinc-100);
 }
 
 .toggle__input:disabled ~ .toggle__track .toggle__thumb {
-  background-color: var(--checkbox-fg-disabled);
-}
-
-/* ---- Error ---- */
-
-.toggle--error .toggle__track {
-  border-color: var(--checkbox-border-error);
+  background-color: var(--color-zinc-200);
+  box-shadow: none;
 }
 
 /* ---- Label ---- */

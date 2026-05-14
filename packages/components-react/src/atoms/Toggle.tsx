@@ -3,7 +3,6 @@ import { forwardRef, type InputHTMLAttributes } from 'react';
 export type ToggleProps = {
   checked?: boolean;
   disabled?: boolean;
-  error?: boolean;
   label?: string;
   className?: string;
   onChange?: (checked: boolean) => void;
@@ -18,7 +17,6 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
     {
       checked = false,
       disabled = false,
-      error = false,
       label,
       className,
       onChange,
@@ -29,7 +27,6 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
     const classes = cn(
       'toggle',
       disabled && 'toggle--disabled',
-      error && 'toggle--error',
       className,
     );
 
