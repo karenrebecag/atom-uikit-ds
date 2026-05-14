@@ -418,6 +418,18 @@
   --button-padding-x-lg: var(--spacing-6);
   --button-padding-x-xl: var(--spacing-8);
   --button-font-size-all: var(--font-size-sm);
+  --checkbox-bg-unchecked: var(--background);
+  --checkbox-bg-unchecked-hover: var(--color-zinc-50);
+  --checkbox-bg-checked: var(--color-zinc-950);
+  --checkbox-bg-checked-hover: var(--color-zinc-800);
+  --checkbox-bg-disabled: var(--muted);
+  --checkbox-fg-checked: var(--color-zinc-50);
+  --checkbox-fg-disabled: var(--color-zinc-300);
+  --checkbox-border-default: var(--color-zinc-500);
+  --checkbox-border-hover: var(--color-zinc-500);
+  --checkbox-border-disabled: var(--muted);
+  --checkbox-border-error: var(--destructive);
+  --checkbox-focus-ring-default: rgba(161, 161, 161, 0.7);
   --link-button-fg-enabled: var(--color-blue-500);
   --link-button-fg-hover: var(--color-blue-600);
   --link-button-fg-pressed: var(--color-blue-700);

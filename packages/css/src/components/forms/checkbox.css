@@ -1,0 +1,127 @@
+/* -------------------------------------------------------------------------
+   Checkbox
+
+   Single size (16px box, 40px touch target).
+   Native <input type="checkbox"> hidden, visual replacement via label.
+
+   States:  unchecked, checked, indeterminate, disabled, error
+   ------------------------------------------------------------------------- */
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.checkbox--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Hidden native input with 40px touch target */
+.checkbox__input {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: inherit;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Visual box */
+.checkbox__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid var(--checkbox-border-default);
+  background-color: var(--checkbox-bg-unchecked);
+  transition:
+    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Check / minus icon */
+.checkbox__icon {
+  display: none;
+  width: 12px;
+  height: 12px;
+  color: var(--checkbox-fg-checked);
+}
+
+.checkbox__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Hover ---- */
+
+.checkbox__input:hover:not(:disabled) ~ .checkbox__box {
+  background-color: var(--checkbox-bg-unchecked-hover);
+}
+
+.checkbox__input:checked:hover:not(:disabled) ~ .checkbox__box,
+.checkbox__input[data-indeterminate]:hover:not(:disabled) ~ .checkbox__box {
+  background-color: var(--checkbox-bg-checked-hover);
+}
+
+/* ---- Checked ---- */
+
+.checkbox__input:checked ~ .checkbox__box,
+.checkbox__input[data-indeterminate] ~ .checkbox__box {
+  background-color: var(--checkbox-bg-checked);
+  border-color: var(--checkbox-bg-checked);
+}
+
+.checkbox__input:checked ~ .checkbox__box .checkbox__icon--check,
+.checkbox__input[data-indeterminate] ~ .checkbox__box .checkbox__icon--minus {
+  display: flex;
+}
+
+/* ---- Focus ---- */
+
+.checkbox__input:focus-visible ~ .checkbox__box {
+  box-shadow: 0 0 0 2px var(--checkbox-focus-ring-default);
+}
+
+/* ---- Disabled ---- */
+
+.checkbox__input:disabled ~ .checkbox__box {
+  background-color: var(--checkbox-bg-disabled);
+  border-color: var(--checkbox-bg-disabled);
+}
+
+.checkbox__input:disabled ~ .checkbox__box .checkbox__icon {
+  color: var(--checkbox-fg-disabled);
+}
+
+/* ---- Error ---- */
+
+.checkbox--error .checkbox__box {
+  border-color: var(--checkbox-border-error);
+}
+
+/* ---- Label ---- */
+
+.checkbox__label {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.checkbox--disabled .checkbox__label {
+  color: var(--muted-foreground);
+}

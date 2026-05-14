@@ -41,7 +41,11 @@ function isCompositeValue(value) {
 // CSS keywords and literal px values are allowed in component layer
 // for values that have no corresponding primitive (transparent, icon sizes)
 function isAllowedComponentLiteral(value) {
-  return typeof value === 'string' && (/^(transparent|inherit|currentColor)$/.test(value) || /^\d+(\.\d+)?px$/.test(value));
+  return typeof value === 'string' && (
+    /^(transparent|inherit|currentColor)$/.test(value) ||
+    /^\d+(\.\d+)?px$/.test(value) ||
+    /^(rgba?|hsla?)\(/.test(value)
+  );
 }
 
 function validateToken(path, obj, layer) {
