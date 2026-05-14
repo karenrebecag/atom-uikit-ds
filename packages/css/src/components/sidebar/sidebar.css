@@ -320,35 +320,33 @@
   position: relative;
 }
 
-/* Override tooltip position to right */
+/* Force tooltip direction=right, theme=light in collapsed sidebar */
 .sidebar--collapsed [data-tooltip]::before {
-  bottom: auto;
-  top: 50%;
-  left: calc(100% + 10px);
-  right: auto;
-  transform: translateY(-50%) translateX(-4px);
-  /* Light theme */
-  background-color: var(--background);
-  color: var(--foreground);
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  bottom: auto !important;
+  top: 50% !important;
+  left: calc(100% + 10px) !important;
+  right: auto !important;
+  transform: translateY(-50%) translateX(-4px) !important;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
 }
 
 .sidebar--collapsed [data-tooltip]:hover::before {
-  transform: translateY(-50%) translateX(0);
+  transform: translateY(-50%) translateX(0) !important;
 }
 
 .sidebar--collapsed [data-tooltip]::after {
-  bottom: auto;
-  top: 50%;
-  left: calc(100% + 7px);
-  right: auto;
-  transform: translateY(-50%) rotate(225deg);
-  /* Light theme */
-  background-color: var(--background);
-  border: 1px solid var(--border);
-  border-top: none;
-  border-left: none;
+  bottom: auto !important;
+  top: 50% !important;
+  left: calc(100% + 7px) !important;
+  right: auto !important;
+  transform: translateY(-50%) rotate(225deg) !important;
+  background-color: var(--background) !important;
+  border: 1px solid var(--border) !important;
+  border-top: none !important;
+  border-left: none !important;
 }
 
 /* ---- Collapsible section ---- */
