@@ -158,11 +158,6 @@
   color: var(--color-zinc-600);
 }
 
-/* Hover: icon fills (stroke → fill swap via CSS) */
-.sidebar__item:hover .sidebar__item-icon svg {
-  fill: currentColor;
-  stroke: none;
-}
 
 .sidebar__item:active:not(.sidebar__item--disabled) {
   scale: 0.955 0.925;
@@ -173,11 +168,6 @@
   color: var(--color-orange-700);
 }
 
-/* Active: icon fills */
-.sidebar__item--active .sidebar__item-icon svg {
-  fill: currentColor;
-  stroke: none;
-}
 
 .sidebar__item--disabled {
   color: var(--color-zinc-300);
