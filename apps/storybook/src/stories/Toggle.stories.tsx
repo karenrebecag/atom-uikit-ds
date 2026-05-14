@@ -9,6 +9,10 @@ const meta: Meta<typeof Toggle> = {
       control: 'boolean',
       name: 'Checked',
     },
+    animated: {
+      control: 'boolean',
+      name: 'Animated',
+    },
     disabled: {
       control: 'boolean',
       name: 'State: Disabled',
@@ -19,6 +23,7 @@ const meta: Meta<typeof Toggle> = {
   },
   args: {
     checked: false,
+    animated: false,
     disabled: false,
     label: 'Enable notifications',
   },

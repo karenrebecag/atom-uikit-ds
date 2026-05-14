@@ -61,7 +61,13 @@
   border-radius: 9999px;
   background-color: var(--color-zinc-50);
   box-shadow: 0px 2px 4px 0px rgba(9, 9, 11, 0.08);
-  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateX(0) rotate(0.001deg);
+  transition: transform 0.4s cubic-bezier(0.35, 1, 0.6, 1);
+}
+
+/* Animated toggle: thumb bounces with overshoot */
+.toggle--animated .toggle__thumb {
+  transition: transform 0.4s cubic-bezier(0.35, 1.5, 0.6, 1);
 }
 
 /* ---- Hover ---- */
