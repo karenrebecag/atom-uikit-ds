@@ -1,52 +1,43 @@
 /* -------------------------------------------------------------------------
    Link Button
 
-   Ghost-style link in blue. No background by default, subtle blue-50
-   highlight on hover. Optional left/right icons.
+   Semantic link (<a>) for external navigation. Not a button.
+   Blue text with animated underline on hover. No background, no border.
 
-   Sizes:    s, l
-   States:   enabled, hover, focus, active, disabled, loading
+   Sizes:    xs, sm, default, lg, xl
+   States:   enabled, hover, focus, disabled
    ------------------------------------------------------------------------- */
 
 .link-button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5em;
-  padding: 2px;
-  background: var(--link-button-bg-enabled);
-  border: 1px solid transparent;
-  border-radius: 0.5em;
+  padding: 0;
+  background: none;
+  border: none;
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-medium);
   line-height: 1;
   color: var(--link-button-fg-enabled);
-  width: auto;
-  max-width: 100%;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
-  transition:
-    background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
-  position: relative;
+  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.link-button:hover:not(.link-button--disabled):not(.link-button--loading) {
-  background-color: var(--link-button-bg-hover);
+.link-button:hover:not(.link-button--disabled) {
   color: var(--link-button-fg-hover);
 }
 
-.link-button:active:not(.link-button--disabled):not(.link-button--loading) {
+.link-button:active:not(.link-button--disabled) {
   color: var(--link-button-fg-pressed);
 }
 
 .link-button:focus-visible {
-  border-color: var(--link-button-border-focused);
-  color: var(--link-button-fg-focused);
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+  border-radius: 0.125em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -55,21 +46,13 @@
   }
 }
 
-/* ---- Sizes (same scale as Button) ---- */
+/* ---- Sizes ---- */
 
-.link-button--xs      { height: var(--link-button-height-xs); font-size: var(--link-button-font-size-all); }
-.link-button--sm      { height: var(--link-button-height-sm); font-size: var(--link-button-font-size-all); }
-.link-button--default { height: var(--link-button-height-default); font-size: var(--link-button-font-size-all); }
-.link-button--lg      { height: var(--link-button-height-lg); font-size: var(--link-button-font-size-all); }
-.link-button--xl      { height: var(--link-button-height-xl); font-size: var(--link-button-font-size-all); }
-
-/* ---- Animation (opt-in via data-link-button-animate) ---- */
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .link-button[data-link-button-animate]:hover:not(.link-button--disabled):not(.link-button--loading) {
-    scale: 1.06 1.095;
-  }
-}
+.link-button--xs      { font-size: var(--font-size-xs); }
+.link-button--sm      { font-size: var(--font-size-sm); }
+.link-button--default { font-size: var(--font-size-base); }
+.link-button--lg      { font-size: var(--font-size-lg); }
+.link-button--xl      { font-size: var(--font-size-xl); }
 
 /* ---- States ---- */
 
@@ -79,49 +62,16 @@
   pointer-events: none;
 }
 
-.link-button--disabled .link-button__label {
-  text-decoration: underline;
-}
-
-.link-button--loading {
-  color: var(--link-button-fg-loading);
-  cursor: wait;
-  pointer-events: none;
-}
-
-.link-button--loading .link-button__label {
-  text-decoration: underline;
-}
-
-.link-button--loading .link-button__icon {
-  display: none;
-}
-
 /* ---- Parts ---- */
 
-.link-button__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1em;
-  height: 1em;
-}
-
-.link-button__icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.link-button__label {
-  display: inline-flex;
-  align-items: center;
+.link-button__text {
+  display: inline;
   position: relative;
 }
 
 /* ---- Underline animation ---- */
 
-.link-button__label::before {
+.link-button__text::before {
   content: "";
   position: absolute;
   bottom: -0.0625em;
@@ -135,8 +85,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .link-button:hover:not(.link-button--disabled):not(.link-button--loading) .link-button__label::before,
-  [data-hover]:hover .link-button:not(.link-button--disabled):not(.link-button--loading) .link-button__label::before {
+  .link-button:hover:not(.link-button--disabled) .link-button__text::before,
+  [data-hover]:hover .link-button:not(.link-button--disabled) .link-button__text::before {
     transform-origin: left;
     transform: scaleX(1) rotate(0.001deg);
   }

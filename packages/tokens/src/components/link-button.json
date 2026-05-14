@@ -1,36 +1,11 @@
 {
   "link-button": {
-    "bg": {
-      "$type": "color",
-      "enabled": { "$value": "transparent" },
-      "hover": { "$value": "{color.blue.50}", "$description": "#eff6ff subtle highlight" },
-      "pressed": { "$value": "transparent" },
-      "focused": { "$value": "transparent" }
-    },
     "fg": {
       "$type": "color",
-      "enabled": { "$value": "{color.blue.500}", "$description": "#2c7fff" },
-      "hover": { "$value": "{color.blue.600}", "$description": "#165dfc" },
-      "pressed": { "$value": "{color.blue.700}", "$description": "#1447e6" },
-      "focused": { "$value": "{color.blue.500}" },
-      "disabled": { "$value": "{muted-foreground}" },
-      "loading": { "$value": "{color.blue.500}" }
-    },
-    "border": {
-      "$type": "color",
-      "focused": { "$value": "{color.blue.500}", "$description": "Focus ring in blue" }
-    },
-    "font-size": {
-      "$type": "dimension",
-      "all": { "$value": "{font-size.sm}", "$description": "13px — same as Button" }
-    },
-    "height": {
-      "$type": "dimension",
-      "xs": { "$value": "{spacing.6}", "$description": "24px — same as Button" },
-      "sm": { "$value": "{spacing.8}", "$description": "32px" },
-      "default": { "$value": "{spacing.10}", "$description": "40px" },
-      "lg": { "$value": "{spacing.12}", "$description": "48px" },
-      "xl": { "$value": "52px", "$description": "52px" }
+      "enabled": { "$value": "{color.blue.500}", "$description": "Blue link text" },
+      "hover": { "$value": "{color.blue.600}", "$description": "Darker on hover" },
+      "pressed": { "$value": "{color.blue.700}", "$description": "Darkest on press" },
+      "disabled": { "$value": "{muted-foreground}", "$description": "Muted when disabled" }
     }
   }
 }
