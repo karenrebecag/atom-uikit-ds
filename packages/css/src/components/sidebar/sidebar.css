@@ -149,7 +149,8 @@
   overflow: hidden;
   transition:
     background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    color 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+    color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .sidebar__item:hover {
@@ -161,6 +162,10 @@
 .sidebar__item:hover .sidebar__item-icon svg {
   fill: currentColor;
   stroke: none;
+}
+
+.sidebar__item:active:not(.sidebar__item--disabled) {
+  scale: 0.955 0.925;
 }
 
 .sidebar__item--active {
@@ -180,13 +185,34 @@
   pointer-events: none;
 }
 
-/* Collapsed: center icon, hide text */
+/* ---- Expanded: Button-style scale grow on hover ---- */
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .sidebar:not(.sidebar--collapsed) .sidebar__item:hover:not(.sidebar__item--disabled):not(.sidebar__item--active) {
+    scale: 1.03 1.05;
+  }
+}
+
+/* ---- Collapsed: IconButton-style ---- */
+
 .sidebar--collapsed .sidebar__item {
   justify-content: center;
   padding: 0;
   width: 32px;
   height: 32px;
   margin: 0 auto;
+}
+
+/* Collapsed hover: IconButton scale + icon rotation */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .sidebar--collapsed .sidebar__item:hover:not(.sidebar__item--disabled):not(.sidebar__item--active) {
+    scale: 1.095;
+  }
+
+  .sidebar--collapsed .sidebar__item:hover .sidebar__item-icon {
+    rotate: 360deg;
+    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);
+  }
 }
 
 /* ---- Item parts ---- */
@@ -198,6 +224,8 @@
   flex-shrink: 0;
   width: 18px;
   height: 18px;
+  will-change: transform;
+  transition: rotate 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .sidebar__item-icon svg {
