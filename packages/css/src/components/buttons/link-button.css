@@ -30,7 +30,8 @@
   transition:
     background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
     color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
   position: relative;
 }
 
@@ -54,16 +55,20 @@
   }
 }
 
-/* ---- Sizes ---- */
+/* ---- Sizes (same scale as Button) ---- */
 
-.link-button--s {
-  height: var(--link-button-height-s);
-  font-size: var(--link-button-font-size-s);
-}
+.link-button--xs      { height: var(--link-button-height-xs); font-size: var(--link-button-font-size-all); }
+.link-button--sm      { height: var(--link-button-height-sm); font-size: var(--link-button-font-size-all); }
+.link-button--default { height: var(--link-button-height-default); font-size: var(--link-button-font-size-all); }
+.link-button--lg      { height: var(--link-button-height-lg); font-size: var(--link-button-font-size-all); }
+.link-button--xl      { height: var(--link-button-height-xl); font-size: var(--link-button-font-size-all); }
 
-.link-button--l {
-  height: var(--link-button-height-l);
-  font-size: var(--link-button-font-size-l);
+/* ---- Animation (opt-in via data-link-button-animate) ---- */
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .link-button[data-link-button-animate]:hover:not(.link-button--disabled):not(.link-button--loading) {
+    scale: 1.06 1.095;
+  }
 }
 
 /* ---- States ---- */

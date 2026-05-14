@@ -22,13 +22,15 @@
     },
     "font-size": {
       "$type": "dimension",
-      "s": { "$value": "{font-size.xs}", "$description": "12px" },
-      "l": { "$value": "{font-size.base}", "$description": "16px" }
+      "all": { "$value": "{font-size.sm}", "$description": "13px — same as Button" }
     },
     "height": {
       "$type": "dimension",
-      "s": { "$value": "24px" },
-      "l": { "$value": "28px" }
+      "xs": { "$value": "{spacing.6}", "$description": "24px — same as Button" },
+      "sm": { "$value": "{spacing.8}", "$description": "32px" },
+      "default": { "$value": "{spacing.10}", "$description": "40px" },
+      "lg": { "$value": "{spacing.12}", "$description": "48px" },
+      "xl": { "$value": "52px", "$description": "52px" }
     }
   }
 }

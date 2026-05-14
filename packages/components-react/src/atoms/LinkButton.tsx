@@ -1,11 +1,12 @@
 import { forwardRef, type AnchorHTMLAttributes, type ReactNode } from 'react';
 
-type LinkButtonSize = 's' | 'l';
+type LinkButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 export type LinkButtonProps = {
   size?: LinkButtonSize;
   disabled?: boolean;
   loading?: boolean;
+  animated?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   children: ReactNode;
@@ -19,9 +20,10 @@ function cn(...classes: (string | false | undefined | null)[]) {
 export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     {
-      size = 's',
+      size = 'default',
       disabled = false,
       loading = false,
+      animated = false,
       iconLeft,
       iconRight,
       children,
@@ -38,15 +40,31 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       className,
     );
 
+    const animateAttrs = animated
+      ? { 'data-link-button-animate': '' }
+      : {};
+
+    const label = animated && !loading ? (
+      <span className="link-button__label">
+        <span className="link-button__label-inner">
+          <span className="button__text is--default" data-button-text="">{children}</span>
+          <span className="button__text is--hover" data-button-text="" aria-hidden="true">{children}</span>
+        </span>
+      </span>
+    ) : (
+      <span className="link-button__label">{loading ? 'Loading...' : children}</span>
+    );
+
     return (
       <a
         ref={ref}
         className={classes}
         aria-disabled={disabled || loading}
+        {...animateAttrs}
         {...props}
       >
         {!loading && iconLeft && <span className="link-button__icon">{iconLeft}</span>}
-        <span className="link-button__label">{loading ? 'Loading...' : children}</span>
+        {label}
         {!loading && iconRight && <span className="link-button__icon">{iconRight}</span>}
       </a>
     );
