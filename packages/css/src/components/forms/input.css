@@ -1,0 +1,69 @@
+/* -------------------------------------------------------------------------
+   Input
+
+   Base text input. Height matches Button m (40px).
+   Used standalone or inside Field wrapper.
+
+   States: default, focus, disabled, error
+   ------------------------------------------------------------------------- */
+
+.input {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  outline: none;
+  transition:
+    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.input:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px rgba(161, 161, 161, 0.7);
+}
+
+.input:disabled {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+
+.input[aria-invalid="true"]:focus {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 2px rgba(231, 0, 11, 0.15);
+}
+
+/* File input */
+.input[type="file"] {
+  padding: 0;
+}
+
+.input[type="file"]::file-selector-button {
+  height: 100%;
+  padding: 0 12px;
+  border: none;
+  border-right: 1px solid var(--border);
+  background-color: var(--muted);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}

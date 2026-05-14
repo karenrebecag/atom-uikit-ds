@@ -5,3 +5,6 @@ export { NavLink, type NavLinkProps } from './atoms/NavLink';
 export { Checkbox, type CheckboxProps } from './atoms/Checkbox';
 export { Radio, type RadioProps } from './atoms/Radio';
 export { Toggle, type ToggleProps } from './atoms/Toggle';
+export { Input, type InputProps } from './atoms/Input';
+export { Textarea, type TextareaProps } from './atoms/Textarea';
+export { Field, type FieldProps } from './atoms/Field';

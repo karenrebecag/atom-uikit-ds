@@ -6,3 +6,6 @@
 @import './forms/checkbox.css';
 @import './forms/radio.css';
 @import './forms/toggle.css';
+@import './forms/input.css';
+@import './forms/textarea.css';
+@import './forms/field.css';

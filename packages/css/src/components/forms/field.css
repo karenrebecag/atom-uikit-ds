@@ -1,0 +1,47 @@
+/* -------------------------------------------------------------------------
+   Field
+
+   Wrapper for form controls: label + input + description + error.
+   Composes with Input, Textarea, Select, Checkbox, etc.
+
+   Orientation: vertical (default)
+   ------------------------------------------------------------------------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.field__label {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.field__label--required::after {
+  content: " *";
+  color: var(--destructive);
+}
+
+.field__description {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+.field__error {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  color: var(--destructive);
+}
+
+/* Disabled state on field grays out label */
+.field--disabled .field__label {
+  color: var(--muted-foreground);
+}
