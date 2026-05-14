@@ -253,6 +253,26 @@ Typography scales fluidly across viewports. No abrupt breakpoint jumps for font 
 - Line-heights are paired 1:1 with font sizes (not independent scales)
 - Display sizes (5xl, 6xl) use tighter line-height (~1.1) than body (~1.5)
 
+### Breakpoints — CSS concern, not tokens
+
+Breakpoints are defined ONLY in `css/foundation/scaling.css`. They are NOT design tokens.
+
+**Why:**
+- `@media` queries cannot consume CSS custom properties (CSS spec limitation)
+- Responsive behavior is layout logic, not a design value
+- Tailwind, shadcn, Material — none publish breakpoints as JSON tokens
+
+**Reference values** (defined in scaling.css):
+
+| Viewport | Range | Ideal design width |
+|----------|-------|-------------------|
+| Desktop (default) | 992px - 1920px | 1440px |
+| Tablet | 768px - 991px | 834px |
+| Mobile Landscape | 480px - 767px | 550px |
+| Mobile Portrait | 320px - 479px | 390px |
+
+Components that need `@media` queries use these values directly as hardcoded px in their CSS. The source of truth is `scaling.css`.
+
 ---
 
 ## Build Pipeline

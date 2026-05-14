@@ -5,12 +5,29 @@
    Base unit (--size-unit) matches the body font-size from design.
    All rem-based values scale automatically through the root font-size.
 
+   This is the ONLY place where viewport breakpoints are defined.
+   Breakpoints are not design tokens — @media queries cannot consume
+   CSS custom properties (spec limitation), and responsive behavior
+   is a CSS concern, not a token value. Tokens define WHAT sizes exist;
+   this file defines HOW they adapt to the viewport.
+
    Usage:
      body { font-size: var(--size-font); }
      .container { max-width: var(--size-container); }
+     .container-md { max-width: calc(var(--size-container) * 0.85); }
+     .container-sm { max-width: calc(var(--size-container) * 0.7); }
 
-   Scale:  Major Third (1.25) — see tokens/primitives/typography.json
+   Type scale: Major Third (1.25) — see tokens/primitives/typography.json
    ------------------------------------------------------------------------- */
+
+
+/* ---- Breakpoint reference (for component @media queries) ----
+   desktop:          >= 992px   (default)
+   tablet:           768–991px
+   mobile-landscape:  480–767px
+   mobile-portrait:   320–479px
+   --------------------------------------------------------------- */
+
 
 /* Desktop (default) */
 :root {

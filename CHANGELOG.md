@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - Removed Figma $extensions metadata from all semantic tokens
 - Removed duplicate color palette from core.json (source of truth is colors.json)
 - Removed theme-components.json and themes/ (will be rebuilt in component layer)
+- Removed breakpoints from tokens layer (CSS concern, not design tokens)
 - Validator now passes with 0 errors across all layers
 - Removed separate mobile/desktop typography files — fluid scaling system handles responsive
 - core.json: resolved self-references to literal values, removed redundant typography definitions
