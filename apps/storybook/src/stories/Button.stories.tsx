@@ -52,72 +52,20 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
-  args: { variant: 'primary' },
-};
+export const Default: Story = {};
 
-export const Secondary: Story = {
-  args: { variant: 'secondary' },
-};
-
-export const Tertiary: Story = {
-  args: { variant: 'tertiary' },
-};
-
-export const Destructive: Story = {
-  args: { variant: 'destructive' },
-};
-
-export const DestructiveSecondary: Story = {
-  args: { variant: 'destructive-secondary' },
-};
-
-export const DestructiveTertiary: Story = {
-  args: { variant: 'destructive-tertiary' },
-};
-
-export const WithLeftIcon: Story = {
-  args: {
-    iconLeft: <IconPlus />,
-    children: 'Create',
-  },
-};
-
-export const WithRightIcon: Story = {
-  args: {
-    iconRight: <IconChevronDown />,
-    children: 'Options',
-  },
-};
-
-export const WithBothIcons: Story = {
-  args: {
-    iconLeft: <IconPlus />,
-    iconRight: <IconChevronDown />,
-    children: 'Create',
-  },
-};
-
-export const IconCombinations: Story = {
+export const AllVariants: Story = {
   render: (args) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Button {...args}>Label only</Button>
-        <Button {...args} iconLeft={<IconPlus />}>Left icon</Button>
-        <Button {...args} iconRight={<IconChevronDown />}>Right icon</Button>
-        <Button {...args} iconLeft={<IconPlus />} iconRight={<IconChevronDown />}>Both icons</Button>
+        <Button {...args} variant="primary">Primary</Button>
+        <Button {...args} variant="secondary">Secondary</Button>
+        <Button {...args} variant="tertiary">Tertiary</Button>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Button {...args} variant="secondary">Label only</Button>
-        <Button {...args} variant="secondary" iconLeft={<IconPlus />}>Left icon</Button>
-        <Button {...args} variant="secondary" iconRight={<IconChevronDown />}>Right icon</Button>
-        <Button {...args} variant="secondary" iconLeft={<IconPlus />} iconRight={<IconChevronDown />}>Both icons</Button>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Button {...args} variant="tertiary">Label only</Button>
-        <Button {...args} variant="tertiary" iconLeft={<IconPlus />}>Left icon</Button>
-        <Button {...args} variant="tertiary" iconRight={<IconChevronDown />}>Right icon</Button>
-        <Button {...args} variant="tertiary" iconLeft={<IconPlus />} iconRight={<IconChevronDown />}>Both icons</Button>
+        <Button {...args} variant="destructive">Destructive</Button>
+        <Button {...args} variant="destructive-secondary">Dest. Secondary</Button>
+        <Button {...args} variant="destructive-tertiary">Dest. Tertiary</Button>
       </div>
     </div>
   ),
@@ -126,36 +74,11 @@ export const IconCombinations: Story = {
 export const AllSizes: Story = {
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-      <Button {...args} size="xs" iconLeft={<IconPlus />}>XS</Button>
-      <Button {...args} size="s" iconLeft={<IconPlus />}>Small</Button>
-      <Button {...args} size="m" iconLeft={<IconPlus />}>Medium</Button>
-      <Button {...args} size="l" iconLeft={<IconPlus />}>Large</Button>
-      <Button {...args} size="xl" iconLeft={<IconPlus />}>XL</Button>
+      <Button {...args} size="xs">XS</Button>
+      <Button {...args} size="s">Small</Button>
+      <Button {...args} size="m">Medium</Button>
+      <Button {...args} size="l">Large</Button>
+      <Button {...args} size="xl">XL</Button>
     </div>
   ),
-};
-
-export const AllVariants: Story = {
-  render: (args) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Button {...args} variant="primary" iconLeft={<IconPlus />}>Primary</Button>
-        <Button {...args} variant="secondary" iconLeft={<IconPlus />}>Secondary</Button>
-        <Button {...args} variant="tertiary" iconLeft={<IconPlus />}>Tertiary</Button>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Button {...args} variant="destructive" iconLeft={<IconPlus />}>Destructive</Button>
-        <Button {...args} variant="destructive-secondary" iconLeft={<IconPlus />}>Dest. Secondary</Button>
-        <Button {...args} variant="destructive-tertiary" iconLeft={<IconPlus />}>Dest. Tertiary</Button>
-      </div>
-    </div>
-  ),
-};
-
-export const Loading: Story = {
-  args: { loading: true, children: 'Saving...' },
-};
-
-export const Disabled: Story = {
-  args: { disabled: true, iconLeft: <IconPlus />, iconRight: <IconChevronDown /> },
 };
