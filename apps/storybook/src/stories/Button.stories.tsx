@@ -24,7 +24,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 's', 'm', 'l', 'xl'],
+      options: ['xs', 'sm', 'default', 'lg', 'xl'],
     },
     iconLeft: {
       control: 'boolean',
@@ -40,7 +40,7 @@ const meta: Meta<typeof Button> = {
   },
   args: {
     variant: 'primary',
-    size: 'm',
+    size: 'default',
     iconLeft: false as any,
     iconRight: false as any,
     disabled: false,
@@ -81,9 +81,9 @@ export const AllSizes: Story = {
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
       <Button {...args} size="xs">XS</Button>
-      <Button {...args} size="s">Small</Button>
-      <Button {...args} size="m">Medium</Button>
-      <Button {...args} size="l">Large</Button>
+      <Button {...args} size="sm">Small</Button>
+      <Button {...args} size="default">Default</Button>
+      <Button {...args} size="lg">Large</Button>
       <Button {...args} size="xl">XL</Button>
     </div>
   ),

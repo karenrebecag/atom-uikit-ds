@@ -1,7 +1,7 @@
 ---
 export interface Props {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'destructive-secondary' | 'destructive-tertiary';
-  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+  size?: 'xs' | 'sm' | 'default' | 'lg' | 'xl';
   disabled?: boolean;
   loading?: boolean;
   href?: string;
@@ -11,7 +11,7 @@ export interface Props {
 
 const {
   variant = 'primary',
-  size = 'm',
+  size = 'default',
   disabled = false,
   loading = false,
   href,

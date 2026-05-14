@@ -8,7 +8,7 @@ type ButtonVariant =
   | 'destructive-secondary'
   | 'destructive-tertiary';
 
-type ButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+type ButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 type ButtonBaseProps = {
   variant?: ButtonVariant;
@@ -50,7 +50,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
   (
     {
       variant = 'primary',
-      size = 'm',
+      size = 'default',
       disabled = false,
       loading = false,
       iconLeft,

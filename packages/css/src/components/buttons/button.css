@@ -56,36 +56,36 @@
   }
 }
 
-/* ---- Sizes (height + padding from tokens, gap/radius/icon em-relative) ---- */
+/* ---- Sizes (same font-size, different height + padding) ---- */
 
 .button--xs {
   height: var(--button-height-xs);
   padding: 0 var(--button-padding-x-xs);
-  font-size: var(--button-font-size-xs);
+  font-size: var(--button-font-size-all);
 }
 
-.button--s {
-  height: var(--button-height-s);
-  padding: 0 var(--button-padding-x-s);
-  font-size: var(--button-font-size-s);
+.button--sm {
+  height: var(--button-height-sm);
+  padding: 0 var(--button-padding-x-sm);
+  font-size: var(--button-font-size-all);
 }
 
-.button--m {
-  height: var(--button-height-m);
-  padding: 0 var(--button-padding-x-m);
-  font-size: var(--button-font-size-m);
+.button--default {
+  height: var(--button-height-default);
+  padding: 0 var(--button-padding-x-default);
+  font-size: var(--button-font-size-all);
 }
 
-.button--l {
-  height: var(--button-height-l);
-  padding: 0 var(--button-padding-x-l);
-  font-size: var(--button-font-size-l);
+.button--lg {
+  height: var(--button-height-lg);
+  padding: 0 var(--button-padding-x-lg);
+  font-size: var(--button-font-size-all);
 }
 
 .button--xl {
   height: var(--button-height-xl);
   padding: 0 var(--button-padding-x-xl);
-  font-size: var(--button-font-size-xl);
+  font-size: var(--button-font-size-all);
 }
 
 /* ---- Variants ---- */

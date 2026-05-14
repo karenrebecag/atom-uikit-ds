@@ -51,27 +51,23 @@
     },
     "height": {
       "$type": "dimension",
-      "xs": { "$value": "{spacing.6}", "$description": "24px" },
-      "s": { "$value": "{spacing.8}", "$description": "32px" },
-      "m": { "$value": "{spacing.10}", "$description": "40px" },
-      "l": { "$value": "{spacing.12}", "$description": "48px" },
-      "xl": { "$value": "{spacing.16}", "$description": "64px" }
+      "xs": { "$value": "28px", "$description": "Inline actions, table rows" },
+      "sm": { "$value": "{spacing.8}", "$description": "32px — compact, toolbars" },
+      "default": { "$value": "{spacing.10}", "$description": "40px — standard" },
+      "lg": { "$value": "{spacing.12}", "$description": "48px — prominent actions" },
+      "xl": { "$value": "52px", "$description": "Hero CTAs" }
     },
     "padding-x": {
       "$type": "dimension",
       "xs": { "$value": "{spacing.2}", "$description": "8px" },
-      "s": { "$value": "{spacing.3}", "$description": "12px" },
-      "m": { "$value": "{spacing.4}", "$description": "16px" },
-      "l": { "$value": "{spacing.5}", "$description": "20px" },
-      "xl": { "$value": "{spacing.6}", "$description": "24px" }
+      "sm": { "$value": "{spacing.3}", "$description": "12px" },
+      "default": { "$value": "{spacing.4}", "$description": "16px" },
+      "lg": { "$value": "{spacing.6}", "$description": "24px" },
+      "xl": { "$value": "{spacing.8}", "$description": "32px — wider for prominence" }
     },
     "font-size": {
       "$type": "dimension",
-      "xs": { "$value": "{font-size.xs}", "$description": "10px" },
-      "s": { "$value": "{font-size.sm}", "$description": "13px" },
-      "m": { "$value": "{font-size.base}", "$description": "16px" },
-      "l": { "$value": "{font-size.lg}", "$description": "20px" },
-      "xl": { "$value": "{font-size.xl}", "$description": "25px" }
+      "all": { "$value": "{font-size.sm}", "$description": "13px — same across all sizes" }
     }
   }
 }

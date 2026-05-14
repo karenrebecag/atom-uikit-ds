@@ -365,15 +365,17 @@ Gap, radius, and icon-size use `em` so they scale with font-size.
 .button__icon { width: 1em; height: 1em; }
 ```
 
-**Size scale:**
+**Size scale (uniform font-size, height + padding differentiate):**
 
-| Size | Height | Padding | Font-size |
-|------|--------|---------|-----------|
-| xs | 1.5rem (24px) | 0 0.5rem | 10px |
-| s | 2rem (32px) | 0 0.75rem | 13px |
-| m | 2.5rem (40px) | 0 1rem | 16px |
-| l | 2.75rem (44px) | 0 1.25rem | 20px |
-| xl | 3.25rem (52px) | 0 1.5rem | 25px |
+| Size | Height | H-Padding | Font-size | Usage |
+|------|--------|-----------|-----------|-------|
+| xs | 28px | 8px | 13px | Inline actions, table rows |
+| sm | 32px | 12px | 13px | Compact actions, toolbars |
+| default | 40px | 16px | 13px | Standard buttons |
+| lg | 48px | 24px | 13px | Prominent actions |
+| xl | 52px | 32px | 13px | Hero CTAs |
+
+Font-size is the same across all sizes. Differentiation comes from height and horizontal padding. xl uses wider padding for visual prominence. xs minimum 28px for touch target safety.
 
 **Rules:**
 - `height` in `rem` (matches other components at same size)
