@@ -1,0 +1,98 @@
+/* -------------------------------------------------------------------------
+   Link Button
+
+   Text-only link styled as a button. No background, no border.
+   Always renders as <a>. Arrow icon with SVG draw animation on hover.
+
+   Variants: default, destructive
+   Sizes:    sm, default, lg
+   Animation: arrow SVG draw + text nudge (opt-in via data-link-button-animate)
+   ------------------------------------------------------------------------- */
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375em;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: var(--link-button-fg-default);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  transition:
+    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.link-button:hover:not(.link-button--disabled) {
+  color: var(--link-button-fg-hover);
+}
+
+.link-button:active:not(.link-button--disabled) {
+  color: var(--link-button-fg-pressed);
+  scale: 0.97;
+}
+
+.link-button:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+  border-radius: 0.25em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-button {
+    transition-duration: 0ms;
+  }
+  .link-button:active:not(.link-button--disabled) {
+    scale: none;
+  }
+}
+
+/* ---- Sizes ---- */
+
+.link-button--sm      { height: var(--link-button-height-sm); font-size: var(--link-button-font-size-all); }
+.link-button--default { height: var(--link-button-height-default); font-size: var(--link-button-font-size-all); }
+.link-button--lg      { height: var(--link-button-height-lg); font-size: var(--link-button-font-size-all); }
+
+/* ---- Variants ---- */
+
+.link-button--destructive {
+  color: var(--link-button-fg-destructive);
+}
+.link-button--destructive:hover:not(.link-button--disabled) {
+  color: var(--link-button-fg-destructive-hover);
+}
+
+/* ---- States ---- */
+
+.link-button--disabled {
+  color: var(--link-button-fg-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Parts ---- */
+
+.link-button__text {
+  position: relative;
+}
+
+.link-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 0.875em;
+  height: 0.875em;
+}
+
+.link-button__icon svg {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,23 @@
+{
+  "link-button": {
+    "fg": {
+      "$type": "color",
+      "default": { "$value": "{color.cyan.600}", "$description": "Cyan link text" },
+      "hover": { "$value": "{color.cyan.700}", "$description": "Darker on hover" },
+      "pressed": { "$value": "{color.cyan.800}", "$description": "Darkest on press" },
+      "disabled": { "$value": "{muted-foreground}", "$description": "Muted when disabled" },
+      "destructive": { "$value": "{destructive}", "$description": "Red link" },
+      "destructive-hover": { "$value": "{color.red.600}", "$description": "Darker red on hover" }
+    },
+    "font-size": {
+      "$type": "dimension",
+      "all": { "$value": "{font-size.sm}", "$description": "13px — same across all sizes" }
+    },
+    "height": {
+      "$type": "dimension",
+      "sm": { "$value": "{spacing.8}", "$description": "32px" },
+      "default": { "$value": "{spacing.10}", "$description": "40px" },
+      "lg": { "$value": "{spacing.12}", "$description": "48px" }
+    }
+  }
+}
