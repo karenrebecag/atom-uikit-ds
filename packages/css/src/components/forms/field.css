@@ -20,7 +20,7 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1;
-  color: var(--color-zinc-800);
+  color: var(--foreground);
 }
 
 .field__label--required::after {
@@ -32,7 +32,7 @@
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-xs);
   line-height: 1.4;
-  color: var(--color-zinc-600);
+  color: var(--placeholder);
 }
 
 .field__error {
@@ -49,5 +49,5 @@
 
 /* Disabled state — label grays out */
 .field--disabled .field__label {
-  color: var(--color-zinc-400);
+  color: var(--muted-foreground);
 }

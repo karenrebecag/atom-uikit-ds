@@ -15,7 +15,7 @@
   justify-content: center;
   flex-shrink: 0;
   position: relative;
-  background-color: var(--color-zinc-100);
+  background-color: var(--muted);
 }
 
 .avatar__image {
@@ -60,7 +60,7 @@
   border: 2px solid var(--color-zinc-200);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-regular);
-  color: var(--color-zinc-900);
+  color: var(--border-focus);
   font-size: 12px;
   line-height: 1;
 }
@@ -116,7 +116,7 @@
   background-color: var(--color-green-500);
   border-radius: 9999px;
   border-style: solid;
-  border-color: var(--color-zinc-100);
+  border-color: var(--muted);
 }
 
 .avatar--xs .avatar__status { width: 8px; height: 8px; border-width: 1px; bottom: -1px; right: -1px; }

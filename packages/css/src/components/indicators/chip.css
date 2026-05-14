@@ -20,7 +20,7 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1;
-  color: var(--color-zinc-800);
+  color: var(--foreground);
   cursor: default;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -93,7 +93,7 @@
 }
 
 .chip--filled {
-  background-color: var(--color-zinc-100);
+  background-color: var(--muted);
 }
 
 .chip--filled:hover:not(.chip--disabled) {
@@ -103,7 +103,7 @@
 /* ---- Disabled ---- */
 
 .chip--disabled {
-  color: var(--color-zinc-400);
+  color: var(--muted-foreground);
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -113,7 +113,7 @@
 }
 
 .chip--disabled.chip--filled {
-  background-color: var(--color-zinc-100);
+  background-color: var(--muted);
 }
 
 /* ---- Error ---- */
@@ -140,7 +140,7 @@
 
 .chip:focus-visible,
 .chip--focused {
-  box-shadow: 0 0 0 2px rgba(161, 161, 161, 0.7);
+  box-shadow: 0 0 0 2px var(--focus-ring-color);
   outline: none;
 }
 

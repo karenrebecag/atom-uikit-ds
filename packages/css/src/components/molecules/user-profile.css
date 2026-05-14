@@ -21,7 +21,7 @@
 }
 
 .user-profile:hover {
-  background-color: var(--color-zinc-100);
+  background-color: var(--muted);
 }
 
 .user-profile__info {
@@ -38,7 +38,7 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   line-height: 1;
-  color: var(--color-zinc-900);
+  color: var(--foreground);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

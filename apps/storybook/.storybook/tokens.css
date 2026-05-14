@@ -371,11 +371,18 @@
   --info: var(--color-blue-500);
   --info-foreground: var(--color-blue-950);
   --border: var(--color-zinc-200);
+  --border-input: var(--color-zinc-300);
+  --border-focus: var(--color-zinc-900);
   --input: var(--color-zinc-200);
   --ring: var(--color-zinc-950);
   --ring-width: var(--stroke-medium);
   --ring-offset: var(--stroke-thin);
   --overlay: rgba(0, 0, 0, 0.5);
+  --sidebar-bg: var(--color-zinc-50);
+  --sidebar-border: var(--color-zinc-100);
+  --sidebar-active: var(--color-orange-50);
+  --sidebar-active-foreground: var(--color-orange-700);
+  --placeholder: var(--color-zinc-600);
   --button-bg-primary: var(--primary);
   --button-bg-secondary: var(--background);
   --button-bg-tertiary: transparent;

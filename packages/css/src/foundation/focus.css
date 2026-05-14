@@ -1,0 +1,17 @@
+/* -------------------------------------------------------------------------
+   Focus Ring — single source of truth
+
+   All interactive components use this pattern.
+   Normal: outline via --ring token
+   Error:  red ring via --color-red-300
+   ------------------------------------------------------------------------- */
+
+:root {
+  --focus-ring-color: rgba(161, 161, 161, 0.7);
+  --focus-ring-width: 2px;
+  --focus-ring-error-color: var(--color-red-300);
+}
+
+[data-theme="dark"] {
+  --focus-ring-color: rgba(161, 161, 161, 0.5);
+}

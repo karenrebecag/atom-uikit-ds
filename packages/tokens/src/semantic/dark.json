@@ -124,6 +124,16 @@
     "$value": "{color.zinc.800}",
     "$description": "Default borders (dark)"
   },
+  "border-input": {
+    "$type": "color",
+    "$value": "{color.zinc.700}",
+    "$description": "Form input borders (dark)"
+  },
+  "border-focus": {
+    "$type": "color",
+    "$value": "{color.zinc.100}",
+    "$description": "Input border when focused (dark)"
+  },
   "input": {
     "$type": "color",
     "$value": "{color.zinc.800}",
@@ -148,5 +158,30 @@
     "$type": "color",
     "$value": "rgba(0, 0, 0, 0.7)",
     "$description": "Modal backdrop, dim layers (dark, heavier)"
+  },
+  "sidebar-bg": {
+    "$type": "color",
+    "$value": "{color.zinc.900}",
+    "$description": "Sidebar background (dark)"
+  },
+  "sidebar-border": {
+    "$type": "color",
+    "$value": "{color.zinc.800}",
+    "$description": "Sidebar border (dark)"
+  },
+  "sidebar-active": {
+    "$type": "color",
+    "$value": "{color.orange.950}",
+    "$description": "Sidebar active item background (dark)"
+  },
+  "sidebar-active-foreground": {
+    "$type": "color",
+    "$value": "{color.orange.400}",
+    "$description": "Sidebar active item text (dark)"
+  },
+  "placeholder": {
+    "$type": "color",
+    "$value": "{color.zinc.400}",
+    "$description": "Input placeholder text (dark)"
   }
 }
