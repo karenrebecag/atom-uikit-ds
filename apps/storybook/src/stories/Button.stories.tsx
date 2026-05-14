@@ -14,6 +14,12 @@ const IconChevronDown = () => (
   </svg>
 );
 
+const iconOptions: Record<string, React.ReactNode | undefined> = {
+  none: undefined,
+  plus: <IconPlus />,
+  chevronDown: <IconChevronDown />,
+};
+
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
@@ -27,6 +33,18 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['xs', 's', 'm', 'l', 'xl'],
       description: 'Button size',
+    },
+    iconLeft: {
+      control: 'select',
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      description: 'Left icon',
+    },
+    iconRight: {
+      control: 'select',
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      description: 'Right icon',
     },
     disabled: {
       control: 'boolean',
@@ -44,6 +62,8 @@ const meta: Meta<typeof Button> = {
   args: {
     variant: 'primary',
     size: 'm',
+    iconLeft: 'none' as any,
+    iconRight: 'none' as any,
     disabled: false,
     loading: false,
     children: 'Button',
