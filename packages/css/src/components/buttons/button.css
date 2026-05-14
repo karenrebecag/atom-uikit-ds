@@ -21,16 +21,35 @@
   cursor: pointer;
   user-select: none;
   border: var(--stroke-hairline) solid transparent;
-  transition-property: background-color, color, border-color, box-shadow;
+  box-shadow: var(--shadow-none);
+  transition-property: background-color, color, border-color, box-shadow, transform;
   transition-duration: var(--duration-150);
   transition-timing-function: var(--easing-in-out);
   position: relative;
   overflow: hidden;
 }
 
+.button:hover:not(.button--disabled):not(.button--loading) {
+  box-shadow: var(--shadow-xs);
+}
+
+.button:active:not(.button--disabled):not(.button--loading) {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-none);
+}
+
 .button:focus-visible {
   outline: var(--ring-width) solid var(--ring);
   outline-offset: var(--ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition-duration: 0ms;
+  }
+  .button:active:not(.button--disabled) {
+    transform: none;
+  }
 }
 
 /* ---- Variants ---- */

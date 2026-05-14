@@ -14,12 +14,6 @@ const IconChevronDown = () => (
   </svg>
 );
 
-const iconOptions: Record<string, React.ReactNode | undefined> = {
-  none: undefined,
-  plus: <IconPlus />,
-  chevronDown: <IconChevronDown />,
-};
-
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
@@ -27,43 +21,28 @@ const meta: Meta<typeof Button> = {
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'tertiary', 'destructive', 'destructive-secondary', 'destructive-tertiary'],
-      description: 'Visual style of the button',
     },
     size: {
       control: 'select',
       options: ['xs', 's', 'm', 'l', 'xl'],
-      description: 'Button size',
     },
     iconLeft: {
-      control: 'select',
-      options: Object.keys(iconOptions),
-      mapping: iconOptions,
-      description: 'Left icon',
+      control: 'boolean',
+      mapping: { true: <IconPlus />, false: undefined },
     },
     iconRight: {
-      control: 'select',
-      options: Object.keys(iconOptions),
-      mapping: iconOptions,
-      description: 'Right icon',
-    },
-    disabled: {
       control: 'boolean',
-      description: 'Disabled state',
+      mapping: { true: <IconChevronDown />, false: undefined },
     },
-    loading: {
-      control: 'boolean',
-      description: 'Loading state with spinner',
-    },
-    children: {
-      control: 'text',
-      description: 'Button label',
-    },
+    disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
+    children: { control: 'text' },
   },
   args: {
     variant: 'primary',
     size: 'm',
-    iconLeft: 'none' as any,
-    iconRight: 'none' as any,
+    iconLeft: false as any,
+    iconRight: false as any,
     disabled: false,
     loading: false,
     children: 'Button',
