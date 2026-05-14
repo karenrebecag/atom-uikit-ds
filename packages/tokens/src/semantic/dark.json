@@ -1,149 +1,137 @@
 {
   "background": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.950}",
+    "$value": "{color.zinc.950}",
     "$description": "Default page background (dark)"
   },
   "foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Default text on background (dark)"
   },
-
   "card": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.900}",
+    "$value": "{color.zinc.900}",
     "$description": "Card surface (dark)"
   },
   "card-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Text on card (dark)"
   },
-
   "popover": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.900}",
+    "$value": "{color.zinc.900}",
     "$description": "Popover surface (dark)"
   },
   "popover-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Text on popover (dark)"
   },
-
   "primary": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Primary actions (dark)"
   },
   "primary-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.900}",
+    "$value": "{color.zinc.900}",
     "$description": "Text on primary (dark)"
   },
-
   "secondary": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.800}",
+    "$value": "{color.zinc.800}",
     "$description": "Secondary actions (dark)"
   },
   "secondary-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Text on secondary (dark)"
   },
-
   "muted": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.800}",
+    "$value": "{color.zinc.800}",
     "$description": "Subtle backgrounds (dark)"
   },
   "muted-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.400}",
+    "$value": "{color.zinc.400}",
     "$description": "Subdued text (dark)"
   },
-
   "accent": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.800}",
+    "$value": "{color.zinc.800}",
     "$description": "Hover/focus highlight (dark)"
   },
   "accent-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Text on accent (dark)"
   },
-
   "destructive": {
     "$type": "color",
-    "$value": "{Primitive.Red.600}",
+    "$value": "{color.red.600}",
     "$description": "Error, danger (dark)"
   },
   "destructive-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.50}",
+    "$value": "{color.zinc.50}",
     "$description": "Text on destructive (dark)"
   },
-
   "brand": {
     "$type": "color",
-    "$value": "{Brand}",
+    "$value": "{color.brand}",
     "$description": "Brand accent (dark)"
   },
   "brand-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Neutral.0}",
+    "$value": "{color.white}",
     "$description": "Text on brand (dark)"
   },
-
   "success": {
     "$type": "color",
-    "$value": "{Primitive.Esmerald.600}",
+    "$value": "{color.emerald.600}",
     "$description": "Success state (dark)"
   },
   "success-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Esmerald.50}",
+    "$value": "{color.emerald.50}",
     "$description": "Text on success (dark)"
   },
-
   "warning": {
     "$type": "color",
-    "$value": "{Primitive.Amber.600}",
+    "$value": "{color.amber.600}",
     "$description": "Warning state (dark)"
   },
   "warning-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Amber.50}",
+    "$value": "{color.amber.50}",
     "$description": "Text on warning (dark)"
   },
-
   "info": {
     "$type": "color",
-    "$value": "{Primitive.Blue.600}",
+    "$value": "{color.blue.600}",
     "$description": "Info state (dark)"
   },
   "info-foreground": {
     "$type": "color",
-    "$value": "{Primitive.Blue.50}",
+    "$value": "{color.blue.50}",
     "$description": "Text on info (dark)"
   },
-
   "border": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.800}",
+    "$value": "{color.zinc.800}",
     "$description": "Default borders (dark)"
   },
   "input": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.800}",
+    "$value": "{color.zinc.800}",
     "$description": "Form input borders (dark)"
   },
   "ring": {
     "$type": "color",
-    "$value": "{Primitive.Zinc.300}",
+    "$value": "{color.zinc.300}",
     "$description": "Focus rings (dark)"
   }
 }

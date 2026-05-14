@@ -1,10 +1,19 @@
 {
-  "Brand": {
-    "$type": "color",
-    "$value": "#ff6600"
-  },
-  "Primitive": {
-    "Stone": {
+  "color": {
+    "white": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "black": {
+      "$type": "color",
+      "$value": "#000000"
+    },
+    "brand": {
+      "$type": "color",
+      "$value": "#ff6600",
+      "$description": "Atom brand orange"
+    },
+    "stone": {
       "50": {
         "$type": "color",
         "$value": "#fafaf9"
@@ -50,11 +59,7 @@
         "$value": "#0c0a09"
       }
     },
-    "Neutral": {
-      "0": {
-        "$type": "color",
-        "$value": "#ffffff"
-      },
+    "neutral": {
       "50": {
         "$type": "color",
         "$value": "#fafafa"
@@ -98,13 +103,9 @@
       "950": {
         "$type": "color",
         "$value": "#0a0a0a"
-      },
-      "1000": {
-        "$type": "color",
-        "$value": "#000000"
       }
     },
-    "Zinc": {
+    "zinc": {
       "50": {
         "$type": "color",
         "$value": "#fafafa"
@@ -150,7 +151,7 @@
         "$value": "#09090b"
       }
     },
-    "Gray": {
+    "gray": {
       "50": {
         "$type": "color",
         "$value": "#f9fafb"
@@ -196,7 +197,7 @@
         "$value": "#030712"
       }
     },
-    "Rose": {
+    "rose": {
       "50": {
         "$type": "color",
         "$value": "#fff2f2"
@@ -242,7 +243,7 @@
         "$value": "#4d0218"
       }
     },
-    "Pink": {
+    "pink": {
       "50": {
         "$type": "color",
         "$value": "#fdf3f8"
@@ -288,7 +289,7 @@
         "$value": "#510324"
       }
     },
-    "Fuchsia": {
+    "fuchsia": {
       "50": {
         "$type": "color",
         "$value": "#fcf5ff"
@@ -334,7 +335,7 @@
         "$value": "#4b0050"
       }
     },
-    "Neutral Alpha": {
+    "neutral-alpha": {
       "50": {
         "$type": "color",
         "$value": "#fafafab3"
@@ -380,7 +381,7 @@
         "$value": "#0a0a0ab3"
       }
     },
-    "Purple": {
+    "purple": {
       "50": {
         "$type": "color",
         "$value": "#faf5ff"
@@ -426,7 +427,7 @@
         "$value": "#3c0366"
       }
     },
-    "Violet": {
+    "violet": {
       "50": {
         "$type": "color",
         "$value": "#f5f3ff"
@@ -472,7 +473,7 @@
         "$value": "#2f0d68"
       }
     },
-    "Indigo": {
+    "indigo": {
       "50": {
         "$type": "color",
         "$value": "#eef2ff"
@@ -518,7 +519,7 @@
         "$value": "#1e1a4d"
       }
     },
-    "Blue": {
+    "blue": {
       "50": {
         "$type": "color",
         "$value": "#eff6ff"
@@ -564,7 +565,7 @@
         "$value": "#162456"
       }
     },
-    "Sky": {
+    "sky": {
       "50": {
         "$type": "color",
         "$value": "#f0f9ff"
@@ -610,7 +611,7 @@
         "$value": "#042f4a"
       }
     },
-    "Cyan": {
+    "cyan": {
       "50": {
         "$type": "color",
         "$value": "#ebffff"
@@ -656,7 +657,7 @@
         "$value": "#053345"
       }
     },
-    "Teal": {
+    "teal": {
       "50": {
         "$type": "color",
         "$value": "#f1fdfa"
@@ -702,7 +703,7 @@
         "$value": "#022f2e"
       }
     },
-    "Esmerald": {
+    "emerald": {
       "50": {
         "$type": "color",
         "$value": "#ecfef6"
@@ -748,7 +749,7 @@
         "$value": "#002d21"
       }
     },
-    "Yellow": {
+    "yellow": {
       "50": {
         "$type": "color",
         "$value": "#fefce8"
@@ -794,7 +795,7 @@
         "$value": "#432005"
       }
     },
-    "Lime": {
+    "lime": {
       "50": {
         "$type": "color",
         "$value": "#f8fee7"
@@ -840,7 +841,7 @@
         "$value": "#192f03"
       }
     },
-    "Amber": {
+    "amber": {
       "50": {
         "$type": "color",
         "$value": "#fffbea"
@@ -886,7 +887,7 @@
         "$value": "#471901"
       }
     },
-    "Orange": {
+    "orange": {
       "50": {
         "$type": "color",
         "$value": "#fff4ed"
@@ -932,7 +933,7 @@
         "$value": "#371600"
       }
     },
-    "Red": {
+    "red": {
       "50": {
         "$type": "color",
         "$value": "#fef3f3"
@@ -978,7 +979,7 @@
         "$value": "#460808"
       }
     },
-    "Green": {
+    "green": {
       "50": {
         "$type": "color",
         "$value": "#f1fdf4"
