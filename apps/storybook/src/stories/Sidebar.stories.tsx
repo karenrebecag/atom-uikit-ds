@@ -105,68 +105,6 @@ const meta: Meta<typeof Sidebar> = {
 export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
-export const Default: Story = {
-  render: () => (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader>
-          <AtomLogo />
-          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Atom UIKit</span>
-          <SidebarTrigger />
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup label="Main">
-            <SidebarItem icon={<IconHome />} label="Home" href="#" active />
-            <SidebarItem icon={<IconBell />} label="Notifications" href="#" />
-            <SidebarItem icon={<IconSearch />} label="Search" href="#" />
-            <SidebarItem icon={<IconMessageSquare />} label="Messages" href="#" />
-            <SidebarItem icon={<IconBox />} label="Components" href="#" badge="12" />
-          </SidebarGroup>
-          <SidebarDivider />
-          <SidebarGroup label="Settings">
-            <SidebarItem icon={<IconHelpCircle />} label="Help" href="#" />
-            <SidebarItem icon={<IconSettings />} label="Settings" href="#" />
-          </SidebarGroup>
-        </SidebarContent>
-        <SidebarFooter>
-          <UserProfile name="John Doe" org="Atom Design" />
-        </SidebarFooter>
-      </Sidebar>
-    </SidebarProvider>
-  ),
-};
-
-export const Collapsed: Story = {
-  render: () => (
-    <SidebarProvider defaultCollapsed>
-      <Sidebar>
-        <SidebarHeader>
-          <AtomLogo />
-          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Atom UIKit</span>
-          <SidebarTrigger />
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup>
-            <SidebarItem icon={<IconHome />} label="Home" href="#" active />
-            <SidebarItem icon={<IconBell />} label="Notifications" href="#" />
-            <SidebarItem icon={<IconSearch />} label="Search" href="#" />
-            <SidebarItem icon={<IconMessageSquare />} label="Messages" href="#" />
-            <SidebarItem icon={<IconBox />} label="Components" href="#" />
-          </SidebarGroup>
-          <SidebarDivider />
-          <SidebarGroup>
-            <SidebarItem icon={<IconHelpCircle />} label="Help" href="#" />
-            <SidebarItem icon={<IconSettings />} label="Settings" href="#" />
-          </SidebarGroup>
-        </SidebarContent>
-        <SidebarFooter>
-          <UserProfile name="John Doe" org="Atom Design" />
-        </SidebarFooter>
-      </Sidebar>
-    </SidebarProvider>
-  ),
-};
-
 const IconCode = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
@@ -189,7 +127,7 @@ const IconBook = () => (
   </svg>
 );
 
-export const WithCollapsible: Story = {
+export const Default: Story = {
   render: () => (
     <SidebarProvider>
       <Sidebar>
@@ -199,9 +137,16 @@ export const WithCollapsible: Story = {
           <SidebarTrigger />
         </SidebarHeader>
         <SidebarContent>
+          <SidebarGroup label="Main">
+            <SidebarItem icon={<IconHome />} label="Home" href="#" active />
+            <SidebarItem icon={<IconBell />} label="Notifications" href="#" />
+            <SidebarItem icon={<IconSearch />} label="Search" href="#" />
+            <SidebarItem icon={<IconMessageSquare />} label="Messages" href="#" />
+          </SidebarGroup>
+          <SidebarDivider />
           <SidebarGroup label="Documentation">
             <SidebarCollapsible icon={<IconBook />} label="Getting Started" defaultOpen>
-              <SidebarItem icon={<IconDoc />} label="Introduction" href="#" active />
+              <SidebarItem icon={<IconDoc />} label="Introduction" href="#" />
               <SidebarItem icon={<IconDoc />} label="Installation" href="#" />
               <SidebarItem icon={<IconDoc />} label="Quick Start" href="#" />
             </SidebarCollapsible>
@@ -211,7 +156,7 @@ export const WithCollapsible: Story = {
               <SidebarItem icon={<IconDoc />} label="Spacing" href="#" />
             </SidebarCollapsible>
             <SidebarCollapsible icon={<IconCode />} label="Components">
-              <SidebarItem icon={<IconDoc />} label="Button" href="#" />
+              <SidebarItem icon={<IconBox />} label="Button" href="#" badge="12" />
               <SidebarItem icon={<IconDoc />} label="Input" href="#" />
               <SidebarItem icon={<IconDoc />} label="Checkbox" href="#" />
               <SidebarItem icon={<IconDoc />} label="Tag" href="#" />
