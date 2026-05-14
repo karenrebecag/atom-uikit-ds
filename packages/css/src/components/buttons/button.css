@@ -143,16 +143,23 @@
 /* ---- States ---- */
 
 .button--disabled {
-  background-color: var(--button-disabled-bg-all);
   color: var(--button-disabled-fg-all);
-  border-color: transparent;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.button--disabled.button--primary,
+.button--disabled.button--secondary,
+.button--disabled.button--destructive,
+.button--disabled.button--destructive-secondary {
+  background-color: var(--muted);
+  border-color: transparent;
 }
 
 .button--disabled.button--tertiary,
 .button--disabled.button--destructive-tertiary {
   background-color: transparent;
+  border-color: transparent;
 }
 
 .button--loading {
