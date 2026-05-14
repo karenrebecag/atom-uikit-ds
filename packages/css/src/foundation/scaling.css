@@ -1,0 +1,50 @@
+/* -------------------------------------------------------------------------
+   Fluid Scaling System
+
+   Scales typography and layout proportionally to the viewport.
+   Base unit (--size-unit) matches the body font-size from design.
+   All rem-based values scale automatically through the root font-size.
+
+   Usage:
+     body { font-size: var(--size-font); }
+     .container { max-width: var(--size-container); }
+
+   Scale:  Major Third (1.25) — see tokens/primitives/typography.json
+   ------------------------------------------------------------------------- */
+
+/* Desktop (default) */
+:root {
+  --size-unit: 16;
+  --size-container-ideal: 1440;
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
+  --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+}
+
+/* Tablet */
+@media screen and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 834;
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+  }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 550;
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+  }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 390;
+    --size-container-min: 320px;
+    --size-container-max: 479px;
+  }
+}

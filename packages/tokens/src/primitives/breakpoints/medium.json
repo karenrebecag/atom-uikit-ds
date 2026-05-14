@@ -1,0 +1,18 @@
+{
+  "menu-icon": {
+    "$type": "boolean",
+    "$value": "false"
+  },
+  "menu-buttons": {
+    "$type": "boolean",
+    "$value": "true"
+  },
+  "breakpoint-base": {
+    "$type": "number",
+    "$value": 1024
+  },
+  "padding": {
+    "$type": "number",
+    "$value": 88
+  }
+}

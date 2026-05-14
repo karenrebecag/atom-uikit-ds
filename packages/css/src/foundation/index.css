@@ -1,1 +1,3 @@
-/* Foundation styles: reset, base, typography */
+/* Foundation styles */
+@import './scaling.css';
+@import './typography.css';

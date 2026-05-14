@@ -106,6 +106,64 @@ Scoped to a specific UI component. References semantic tokens.
 
 ---
 
+## Typography & Scaling
+
+### Type Scale: Major Third (1.25)
+
+Base: 16px. Each step multiplies by 1.25.
+
+| Token | px | rem | Line-height | Usage |
+|-------|-----|-----|-------------|-------|
+| `font-size-xs` | 10 | 0.625 | 16px | Labels, uppercase micro text |
+| `font-size-sm` | 13 | 0.8125 | 20px | Captions, secondary text |
+| `font-size-base` | 16 | 1 | 24px | Body text (default) |
+| `font-size-lg` | 20 | 1.25 | 28px | Body large, h5 |
+| `font-size-xl` | 25 | 1.5625 | 34px | h4 |
+| `font-size-2xl` | 31 | 1.9375 | 40px | h3 |
+| `font-size-3xl` | 39 | 2.4375 | 48px | h2 |
+| `font-size-4xl` | 49 | 3.0625 | 57px | h1 |
+| `font-size-5xl` | 61 | 3.8125 | 68px | Display large |
+| `font-size-6xl` | 76 | 4.75 | 82px | Display XL |
+
+### Fluid Scaling System
+
+Typography scales fluidly across viewports. No abrupt breakpoint jumps for font sizes.
+
+**How it works:**
+1. A root `--size-font` variable is calculated from the viewport width relative to the design's ideal container size
+2. `body { font-size: var(--size-font); }` sets the root size
+3. All `rem` values scale proportionally through the root
+
+**Breakpoints (container-based):**
+
+| Viewport | Ideal design width | Container range |
+|----------|-------------------|-----------------|
+| Desktop | 1440px | 992px - 1920px |
+| Tablet | 834px | 768px - 991px |
+| Mobile Landscape | 550px | 480px - 767px |
+| Mobile Portrait | 390px | 320px - 479px |
+
+**Container usage:**
+```css
+.container { max-width: var(--size-container); }
+.container-md { max-width: calc(var(--size-container) * 0.85); }
+.container-sm { max-width: calc(var(--size-container) * 0.7); }
+```
+
+**Files:**
+- `packages/tokens/src/primitives/typography.json` -- raw scale values
+- `packages/css/src/foundation/scaling.css` -- fluid scaling system
+- `packages/css/src/foundation/typography.css` -- type classes (.h1, .body, .label, etc.)
+
+**Rules:**
+- Token font sizes are defined in px (primitives are raw values)
+- CSS consumes tokens via custom properties and scales through rem
+- No separate mobile/desktop typography files -- scaling system handles responsive
+- Line-heights are paired 1:1 with font sizes (not independent scales)
+- Display sizes (5xl, 6xl) use tighter line-height (~1.1) than body (~1.5)
+
+---
+
 ## Build Pipeline
 
 ```

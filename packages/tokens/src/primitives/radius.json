@@ -1,0 +1,66 @@
+{
+  "none": {
+    "$type": "number",
+    "$value": 0
+  },
+  "xxs": {
+    "$type": "number",
+    "$value": 2
+  },
+  "xs": {
+    "$type": "number",
+    "$value": 4
+  },
+  "s": {
+    "$type": "number",
+    "$value": 8
+  },
+  "sm": {
+    "$type": "number",
+    "$value": 12
+  },
+  "m": {
+    "$type": "number",
+    "$value": 16
+  },
+  "md": {
+    "$type": "number",
+    "$value": 20
+  },
+  "l": {
+    "$type": "number",
+    "$value": 24
+  },
+  "lg": {
+    "$type": "number",
+    "$value": 28
+  },
+  "xl": {
+    "$type": "number",
+    "$value": 32
+  },
+  "xxl": {
+    "$type": "number",
+    "$value": 36
+  },
+  "2xxl": {
+    "$type": "number",
+    "$value": 40
+  },
+  "3xxl": {
+    "$type": "number",
+    "$value": 44
+  },
+  "4xxl": {
+    "$type": "number",
+    "$value": 48
+  },
+  "5xxl": {
+    "$type": "number",
+    "$value": 52
+  },
+  "pill": {
+    "$type": "number",
+    "$value": 1000
+  }
+}

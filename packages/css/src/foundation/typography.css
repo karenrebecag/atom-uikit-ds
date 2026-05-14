@@ -1,0 +1,122 @@
+/* -------------------------------------------------------------------------
+   Typography
+
+   Applies the Major Third (1.25) type scale via token CSS custom properties.
+   Fluid sizing is handled by the scaling system (scaling.css) — all rem
+   values scale proportionally through the root font-size.
+
+   Font size tokens (primitives):
+     --font-size-xs   10px / 0.625rem
+     --font-size-sm   13px / 0.8125rem
+     --font-size-base 16px / 1rem
+     --font-size-lg   20px / 1.25rem
+     --font-size-xl   25px / 1.5625rem
+     --font-size-2xl  31px / 1.9375rem
+     --font-size-3xl  39px / 2.4375rem
+     --font-size-4xl  49px / 3.0625rem
+     --font-size-5xl  61px / 3.8125rem
+     --font-size-6xl  76px / 4.75rem
+   ------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--size-font);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+  color: var(--fg-primary, currentColor);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Display --- */
+
+.display-xl {
+  font-size: var(--font-size-6xl);
+  line-height: var(--line-height-6xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.display-lg {
+  font-size: var(--font-size-5xl);
+  line-height: var(--line-height-5xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* --- Headings --- */
+
+.h1 {
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-4xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.h2 {
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-3xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.h3 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-2xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.h4 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.h5 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* --- Body --- */
+
+.body-lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+}
+
+.body {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.body-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+/* --- Small text --- */
+
+.caption {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--fg-muted, currentColor);
+}
+
+.label {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+/* --- Code --- */
+
+.code {
+  font-family: var(--font-family-mono), ui-monospace, monospace;
+  font-size: 0.875em;
+}
