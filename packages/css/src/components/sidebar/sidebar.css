@@ -334,25 +334,27 @@
   overflow: hidden;
 }
 
-/* Content: animated height */
+/* Content: animated height via grid-template-rows */
 .sidebar-collapsible__content {
   display: grid;
   grid-template-rows: 1fr;
   transition: grid-template-rows 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  overflow: hidden;
 }
 
 .sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__content {
   grid-template-rows: 0fr;
 }
 
-.sidebar-collapsible__content > * {
+.sidebar-collapsible__inner {
   overflow: hidden;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 /* Sub-items indent */
-.sidebar-collapsible__content .sidebar__item {
+.sidebar-collapsible__inner .sidebar__item {
   padding-left: 34px;
 }
 

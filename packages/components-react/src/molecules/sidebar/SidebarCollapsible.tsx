@@ -43,7 +43,9 @@ export function SidebarCollapsible({
         <span className="sidebar__item-tooltip">{label}</span>
       </button>
       <div className="sidebar-collapsible__content">
-        {children}
+        <div className="sidebar-collapsible__inner">
+          {children}
+        </div>
       </div>
     </div>
   );
