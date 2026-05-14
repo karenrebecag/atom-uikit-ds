@@ -15,6 +15,7 @@ type ButtonBaseProps = {
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
+  animated?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   children: ReactNode;
@@ -53,6 +54,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       size = 'default',
       disabled = false,
       loading = false,
+      animated = false,
       iconLeft,
       iconRight,
       children,
@@ -70,11 +72,25 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       className,
     );
 
+    const animateAttrs = animated
+      ? { 'data-button-animate': '' }
+      : {};
+
     const content = (
       <>
-        {iconLeft && <span className="button__icon">{iconLeft}</span>}
-        <span className="button__label">{children}</span>
-        {iconRight && <span className="button__icon">{iconRight}</span>}
+        {iconLeft && (
+          <span className="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
+            {iconLeft}
+          </span>
+        )}
+        <span className="button__label" {...(animated ? { 'data-button-text': '' } : {})}>
+          {children}
+        </span>
+        {iconRight && (
+          <span className="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
+            {iconRight}
+          </span>
+        )}
         {loading && (
           <span className="button__spinner">
             <Spinner />
@@ -89,6 +105,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           ref={ref as React.Ref<HTMLAnchorElement>}
           className={classes}
           aria-disabled={disabled || loading}
+          {...animateAttrs}
           {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {content}
@@ -102,6 +119,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         className={classes}
         disabled={disabled || loading}
         aria-busy={loading}
+        {...animateAttrs}
         {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}

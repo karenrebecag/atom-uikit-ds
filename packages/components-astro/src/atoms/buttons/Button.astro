@@ -4,6 +4,7 @@ export interface Props {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'xl';
   disabled?: boolean;
   loading?: boolean;
+  animated?: boolean;
   href?: string;
   class?: string;
   [key: string]: unknown;
@@ -14,6 +15,7 @@ const {
   size = 'default',
   disabled = false,
   loading = false,
+  animated = false,
   href,
   class: className,
   ...rest
@@ -33,19 +35,23 @@ const classes = [
 const attrs = href
   ? { href, 'aria-disabled': disabled || loading }
   : { disabled: disabled || loading, 'aria-busy': loading };
+
+const animateAttrs = animated
+  ? { 'data-button-animate': '' }
+  : {};
 ---
 
-<Tag class={classes} {...attrs} {...rest}>
+<Tag class={classes} {...attrs} {...animateAttrs} {...rest}>
   {Astro.slots.has('icon-left') && (
-    <span class="button__icon">
+    <span class="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
       <slot name="icon-left" />
     </span>
   )}
-  <span class="button__label">
+  <span class="button__label" {...(animated ? { 'data-button-text': '' } : {})}>
     <slot />
   </span>
   {Astro.slots.has('icon-right') && (
-    <span class="button__icon">
+    <span class="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
       <slot name="icon-right" />
     </span>
   )}

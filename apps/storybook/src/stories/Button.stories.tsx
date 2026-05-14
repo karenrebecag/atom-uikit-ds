@@ -1,5 +1,7 @@
+import { useEffect, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
+import { initButtonHover } from '../../../../packages/animations/src/button-hover';
 
 const IconPlus = () => (
   <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -14,9 +16,32 @@ const IconChevronDown = () => (
   </svg>
 );
 
+const AnimationWrapper = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const cleanup = initButtonHover({ scope: ref.current ?? undefined });
+    return cleanup;
+  }, []);
+
+  return <div ref={ref}>{children}</div>;
+};
+
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
+  decorators: [
+    (Story, context) => {
+      if (context.args.animated) {
+        return (
+          <AnimationWrapper>
+            <Story />
+          </AnimationWrapper>
+        );
+      }
+      return <Story />;
+    },
+  ],
   argTypes: {
     variant: {
       control: 'select',
@@ -34,6 +59,7 @@ const meta: Meta<typeof Button> = {
       control: 'boolean',
       mapping: { true: <IconChevronDown />, false: undefined },
     },
+    animated: { control: 'boolean' },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
     children: { control: 'text' },
@@ -43,6 +69,7 @@ const meta: Meta<typeof Button> = {
     size: 'default',
     iconLeft: false as any,
     iconRight: false as any,
+    animated: false,
     disabled: false,
     loading: false,
     children: 'Button',
