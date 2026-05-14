@@ -77,8 +77,14 @@ const meta: Meta<typeof Input> = {
       name: 'Type',
     },
     placeholder: { control: 'text', name: 'Placeholder' },
-    iconLeft: { table: { disable: true } },
-    iconRight: { table: { disable: true } },
+    iconLeft: {
+      control: 'boolean',
+      name: 'Icon left',
+    },
+    iconRight: {
+      control: 'boolean',
+      name: 'Icon right',
+    },
     disabled: { control: 'boolean', name: 'Disabled' },
     error: { control: 'boolean', name: 'Error' },
     className: { table: { disable: true } },
@@ -86,6 +92,8 @@ const meta: Meta<typeof Input> = {
   args: {
     type: 'email',
     placeholder: 'Enter text...',
+    iconLeft: true as any,
+    iconRight: false as any,
     disabled: false,
     error: false,
   },
@@ -109,7 +117,14 @@ export const Default: Story = {
     const type = (args.type as string) || 'text';
     const icons = typeIcons[type] || {};
     const placeholder = args.placeholder === 'Enter text...' ? placeholders[type] || args.placeholder : args.placeholder;
-    return <Input {...args} placeholder={placeholder} iconLeft={icons.left} iconRight={icons.right} />;
+    return (
+      <Input
+        {...args}
+        placeholder={placeholder}
+        iconLeft={args.iconLeft ? icons.left || <IconSearch /> : undefined}
+        iconRight={args.iconRight ? icons.right || <IconSearch /> : undefined}
+      />
+    );
   },
 };
 
