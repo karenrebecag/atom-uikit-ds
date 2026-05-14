@@ -140,19 +140,19 @@ export const AllStates: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '320px' }}>
       <Field label="Enabled" htmlFor="s-default">
-        <Input id="s-default" placeholder="Placeholder" iconLeft={<IconSearch />} iconRight={<IconInfo />} />
+        <Input id="s-default" placeholder="Placeholder" iconLeft={<IconSearch />} iconRight={<IconEye />} />
       </Field>
       <Field label="Filled" htmlFor="s-value">
-        <Input id="s-value" defaultValue="Hello world" iconLeft={<IconSearch />} iconRight={<IconInfo />} />
+        <Input id="s-value" defaultValue="Hello world" iconLeft={<IconSearch />} iconRight={<IconEye />} />
       </Field>
       <Field label="Disabled" disabled htmlFor="s-disabled">
-        <Input id="s-disabled" disabled placeholder="Disabled" iconLeft={<IconSearch />} iconRight={<IconInfo />} />
+        <Input id="s-disabled" disabled placeholder="Disabled" iconLeft={<IconSearch />} iconRight={<IconEye />} />
       </Field>
       <Field label="Error enabled" error="This field is required." htmlFor="s-error">
-        <Input id="s-error" error placeholder="Error" iconLeft={<IconSearch />} iconRight={<IconInfo />} />
+        <Input id="s-error" error placeholder="Error" iconLeft={<IconSearch />} iconRight={<IconEye />} />
       </Field>
       <Field label="Error filled" error="Invalid email address." htmlFor="s-error-filled">
-        <Input id="s-error-filled" error defaultValue="invalid@" iconLeft={<IconSearch />} iconRight={<IconInfo />} />
+        <Input id="s-error-filled" error defaultValue="invalid@" iconLeft={<IconSearch />} iconRight={<IconEye />} />
       </Field>
       <Field label="With description" description="Supportive text" htmlFor="s-desc">
         <Input id="s-desc" placeholder="With description" />
