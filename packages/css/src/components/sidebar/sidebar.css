@@ -29,14 +29,12 @@
   height: 100%;
   background-color: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border);
-  overflow: hidden;
   flex-shrink: 0;
   transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .sidebar--collapsed {
   width: var(--sidebar-collapsed-width);
-  overflow: visible;
 }
 
 .sidebar--right {
@@ -307,20 +305,17 @@
 
 /* ---- Collapsed tooltips ---- */
 
-/* Hide tooltip system on expanded sidebar */
+/* Hide tooltips when expanded */
 .sidebar:not(.sidebar--collapsed) [data-tooltip]::before,
 .sidebar:not(.sidebar--collapsed) [data-tooltip]::after {
   display: none !important;
 }
 
-/* In collapsed, items use the global [data-tooltip] system from tooltip.css.
-   Force direction=right and theme=light via overrides. */
-.sidebar--collapsed .sidebar__item,
-.sidebar--collapsed .sidebar-collapsible__trigger {
+/* Collapsed: force tooltip to right, light theme */
+.sidebar--collapsed [data-tooltip] {
   position: relative;
 }
 
-/* Force tooltip direction=right, theme=light in collapsed sidebar */
 .sidebar--collapsed [data-tooltip]::before {
   bottom: auto !important;
   top: 50% !important;
