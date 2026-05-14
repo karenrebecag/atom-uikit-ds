@@ -17,7 +17,8 @@
   border-radius: var(--button-radius-default);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-medium);
-  white-space: nowrap;
+  width: auto;
+  max-width: 100%;
   cursor: pointer;
   user-select: none;
   border: var(--stroke-hairline) solid transparent;
@@ -26,7 +27,6 @@
   transition-duration: var(--duration-150);
   transition-timing-function: var(--easing-in-out);
   position: relative;
-  overflow: hidden;
 }
 
 .button:hover:not(.button--disabled):not(.button--loading) {
