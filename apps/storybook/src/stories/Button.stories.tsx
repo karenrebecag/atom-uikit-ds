@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
 import { initButtonHover } from '../../../../packages/animations/src/button-hover';
@@ -16,13 +16,17 @@ const IconChevronDown = () => (
   </svg>
 );
 
-const AnimationWrapper = ({ children }: { children: React.ReactNode }) => {
+const AnimationScope = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
-    const cleanup = initButtonHover({ scope: ref.current ?? undefined });
-    return cleanup;
-  }, []);
+    if (!ref.current) return;
+    const id = requestAnimationFrame(() => {
+      initButtonHover({ scope: ref.current ?? undefined });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [key, children]);
 
   return <div ref={ref}>{children}</div>;
 };
@@ -34,9 +38,9 @@ const meta: Meta<typeof Button> = {
     (Story, context) => {
       if (context.args.animated) {
         return (
-          <AnimationWrapper>
+          <AnimationScope>
             <Story />
-          </AnimationWrapper>
+          </AnimationScope>
         );
       }
       return <Story />;
