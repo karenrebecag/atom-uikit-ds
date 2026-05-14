@@ -15,6 +15,10 @@ import {
 } from '../../../../packages/components-react/src/molecules/sidebar';
 import { UserProfile } from '../../../../packages/components-react/src/molecules/UserProfile';
 
+const AtomLogo = () => (
+  <img src="/Logo Mark - Atom.svg" alt="Atom" width="24" height="24" />
+);
+
 const IconHome = () => (
   <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M2.5 6.5L8 2l5.5 4.5V13a1 1 0 01-1 1h-10a1 1 0 01-1-1V6.5z" />
@@ -83,8 +87,9 @@ export const Default: Story = {
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
-          <SidebarTrigger />
-          <span style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
+          <AtomLogo />
+          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
+          <span style={{ marginLeft: 'auto' }}><SidebarTrigger /></span>
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup label="Navigation">
@@ -110,7 +115,9 @@ export const Collapsed: Story = {
     <SidebarProvider defaultCollapsed>
       <Sidebar>
         <SidebarHeader>
-          <SidebarTrigger />
+          <AtomLogo />
+          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
+          <span style={{ marginLeft: 'auto' }}><SidebarTrigger /></span>
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
@@ -157,8 +164,9 @@ export const WithCollapsible: Story = {
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
-          <SidebarTrigger />
-          <span style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
+          <AtomLogo />
+          <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600 }}>Atom UIKit</span>
+          <span style={{ marginLeft: 'auto' }}><SidebarTrigger /></span>
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup label="Documentation">

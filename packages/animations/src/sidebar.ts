@@ -58,60 +58,57 @@ export function initSidebarAnimation(config: AnimationConfig = {}): CleanupFn {
     // Large items: stagger slide from left
     if (labels.length) {
       gsap.fromTo(labels,
-        { autoAlpha: 0, xPercent: 25 },
+        { autoAlpha: 0, xPercent: 15 },
         {
           autoAlpha: 1,
           xPercent: 0,
-          duration: 0.5,
-          stagger: 0.04,
+          duration: 0.3,
+          stagger: 0.02,
           ease,
-          delay: 0.1,
+          delay: 0.05,
           clearProps: 'transform,opacity,visibility',
         }
       );
     }
 
-    // Group labels: fade up
     if (groupLabels.length) {
       gsap.fromTo(groupLabels,
-        { autoAlpha: 0, yPercent: 50 },
+        { autoAlpha: 0, yPercent: 30 },
         {
           autoAlpha: 1,
           yPercent: 0,
-          duration: 0.4,
-          stagger: 0.05,
+          duration: 0.25,
+          stagger: 0.03,
           ease: 'power3.out',
-          delay: 0.2,
+          delay: 0.08,
           clearProps: 'transform,opacity,visibility',
         }
       );
     }
 
-    // User info: slide from left
     if (userInfo.length) {
       gsap.fromTo(userInfo,
-        { autoAlpha: 0, xPercent: 30 },
+        { autoAlpha: 0, xPercent: 15 },
         {
           autoAlpha: 1,
           xPercent: 0,
-          duration: 0.5,
+          duration: 0.3,
           ease,
-          delay: 0.15,
+          delay: 0.06,
           clearProps: 'transform,opacity,visibility',
         }
       );
     }
 
-    // Chevrons: fade in
     if (chevrons.length) {
       gsap.fromTo(chevrons,
         { autoAlpha: 0 },
         {
           autoAlpha: 1,
-          duration: 0.3,
-          stagger: 0.03,
+          duration: 0.2,
+          stagger: 0.02,
           ease: 'power2.out',
-          delay: 0.25,
+          delay: 0.1,
           clearProps: 'opacity,visibility',
         }
       );
