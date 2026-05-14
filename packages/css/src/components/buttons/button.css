@@ -33,18 +33,23 @@
   position: relative;
 }
 
-.button:hover:not(.button--disabled):not(.button--loading) {
-  box-shadow: var(--shadow-xs);
-}
-
 .button:active:not(.button--disabled):not(.button--loading) {
   scale: 0.955 0.925;
-  box-shadow: var(--shadow-none);
 }
 
 .button:focus-visible {
   outline: var(--ring-width) solid var(--ring);
   outline-offset: var(--ring-offset);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:hover:not(.button--disabled):not(.button--loading) {
+    scale: 1.06 1.095;
+    transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+                color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+                border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+                scale 0.45s 0.05s cubic-bezier(0.32, 0.72, 0, 1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
