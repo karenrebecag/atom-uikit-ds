@@ -49,22 +49,41 @@ Raw design values. No semantic meaning. Updated manually.
 
 ### Layer 2: Semantic (`packages/tokens/src/semantic/`)
 
-Intent-based aliases that reference primitives.
+Intent-based aliases following shadcn/ui pairing convention. Every surface token has a `-foreground` companion.
 
 ```json
 {
-  "bg": {
-    "$type": "color",
-    "primary": { "$value": "{color.neutral-0}" },
-    "inverse-primary": { "$value": "{color.zinc-950}" }
-  }
+  "primary": { "$type": "color", "$value": "{Primitive.Zinc.900}" },
+  "primary-foreground": { "$type": "color", "$value": "{Primitive.Zinc.50}" }
 }
 ```
 
+**Surface pairs (bg + text that sits on it):**
+
+| Token | Foreground | Usage |
+|-------|-----------|-------|
+| `background` | `foreground` | Default page |
+| `card` | `card-foreground` | Elevated surfaces |
+| `popover` | `popover-foreground` | Floating overlays |
+| `primary` | `primary-foreground` | High-emphasis actions |
+| `secondary` | `secondary-foreground` | Lower-emphasis actions |
+| `muted` | `muted-foreground` | Subtle surfaces, disabled |
+| `accent` | `accent-foreground` | Hover/focus highlights |
+| `destructive` | `destructive-foreground` | Error, danger |
+| `brand` | `brand-foreground` | Brand accent (#ff6600) |
+| `success` | `success-foreground` | Success state |
+| `warning` | `warning-foreground` | Warning state |
+| `info` | `info-foreground` | Informational state |
+
+**Utility tokens:** `border`, `input`, `ring`
+
+**Dark mode:** Same token names with inverted values in `dark.json`. Applied via `[data-theme="dark"]` selector.
+
 **Rules:**
 - Every value is a reference to a primitive (never a literal)
-- Named by intent: `bg-*`, `fg-*`, `border-*`, `brand-*`
-- Dark mode overrides go in `themes/dark/` (same structure, overridden values only)
+- Surface token = background color. `-foreground` = text/icon color on that surface
+- No interactive states here (hovered, pressed, focused) — those belong in component layer
+- No product-specific tokens (inbox, notifications) — this is a generic web DS
 
 ### Layer 3: Component (`packages/tokens/src/components/`)
 

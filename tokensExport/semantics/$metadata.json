@@ -1,0 +1,9 @@
+{
+  "tokenSetOrder": [
+    "primitives-color (test)",
+    "semantics-color (test)",
+    "Semantics",
+    "Semantic/Light Mode",
+    "Semantic/Dark Mode"
+  ]
+}

@@ -1,0 +1,1046 @@
+{
+  "bg": {
+    "primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Neutral.0}"
+    },
+    "secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.50}"
+    },
+    "quaternary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.200}"
+    },
+    "tertiary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.100}"
+    },
+    "soft-primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Alpha.700}"
+    },
+    "disabled": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.100}"
+    },
+    "status": {
+      "info": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.50}"
+      },
+      "success": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Esmerald.50}"
+      },
+      "warning": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Yellow.50}"
+      },
+      "error": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.50}"
+      }
+    },
+    "accent": {
+      "ai": {
+        "primary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Violet.600}"
+        },
+        "secondary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Violet.100}"
+        },
+        "tertiary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Pink.50}"
+        }
+      },
+      "inbox": {
+        "new": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Green.50}"
+        },
+        "active": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Blue.50}"
+        },
+        "return": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Cyan.50}"
+        },
+        "reassigned": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Orange.50}"
+        },
+        "tipificacion": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Orange.100}"
+        },
+        "message": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Indigo.100}"
+        }
+      },
+      "notifications": {
+        "primary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Red.500}"
+        },
+        "secondary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          },
+          "$type": "color",
+          "$value": "{Primitive.Red.100}"
+        }
+      }
+    },
+    "inverse-primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.950}"
+    },
+    "inverse-secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.800}"
+    },
+    "inverse-tertiary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.600}"
+    },
+    "indicators": {
+      "online": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Green.500}"
+      },
+      "offline": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      }
+    },
+    "soft-secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Alpha.0}"
+    },
+    "interactive": {
+      "primary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.800}"
+      },
+      "primary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.900}"
+      },
+      "secondary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.50}"
+      },
+      "secondary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.100}"
+      },
+      "tertiary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.50}"
+      },
+      "tertiary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.100}"
+      },
+      "link-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.100}"
+      },
+      "link-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.50}"
+      },
+      "danger-primary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.400}"
+      },
+      "danger-primary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.600}"
+      },
+      "danger-secondary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.50}"
+      },
+      "danger-secondary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.100}"
+      },
+      "danger-tertiary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.50}"
+      },
+      "danger-tertiary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.100}"
+      },
+      "danger-primary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-secondary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.50}"
+      },
+      "danger-tertiary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.50}"
+      }
+    },
+    "danger-primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Red.500}"
+    },
+    "danger-secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Alpha.0}"
+    }
+  },
+  "fg": {
+    "brand": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Orange.500}"
+    },
+    "secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.800}"
+    },
+    "tertiary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.600}"
+    },
+    "disabled": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.400}"
+    },
+    "inverse-primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.50}"
+    },
+    "inverse-secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.200}"
+    },
+    "status": {
+      "info": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.800}"
+      },
+      "success": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Esmerald.800}"
+      },
+      "warning": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Amber.800}"
+      },
+      "error": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.800}"
+      }
+    },
+    "accent": {
+      "ai-primary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.50}"
+      },
+      "ai-secondary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Violet.700}"
+      },
+      "ai-tertiary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Pink.700}"
+      }
+    },
+    "inverse-tertiary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.400}"
+    },
+    "inverse-disabled": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.300}"
+    },
+    "interactive": {
+      "link-primary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.500}"
+      },
+      "link-disabled": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.400}"
+      },
+      "danger-primary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-secondary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-tertiary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "link-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.600}"
+      },
+      "link-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.700}"
+      },
+      "link-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.500}"
+      },
+      "danger-primary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.600}"
+      },
+      "danger-primary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.700}"
+      },
+      "danger-secondary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.600}"
+      },
+      "danger-secondary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.700}"
+      },
+      "danger-tertiary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.600}"
+      },
+      "danger-tertiary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.700}"
+      },
+      "danger-primary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-secondary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-tertiary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      }
+    },
+    "primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.900}"
+    },
+    "quaternary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.500}"
+    }
+  },
+  "border": {
+    "primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.300}"
+    },
+    "secondary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.200}"
+    },
+    "disabled": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Zinc.100}"
+    },
+    "status": {
+      "informative": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.500}"
+      },
+      "success": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Green.500}"
+      },
+      "warning": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Yellow.500}"
+      },
+      "error": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      }
+    },
+    "accent": {
+      "orange": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Orange.300}"
+      },
+      "ai-primary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Violet.300}"
+      },
+      "ai-secondary": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Violet.500}"
+      }
+    },
+    "interactive": {
+      "link-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Blue.500}"
+      },
+      "danger-primary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.50}"
+      },
+      "danger-secondary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.600}"
+      },
+      "danger-secondary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-secondary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-tertiary-loading": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "secondary-disabled": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.100}"
+      },
+      "secondary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.200}"
+      },
+      "secondary-pressed": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.200}"
+      },
+      "secondary-hovered": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.300}"
+      },
+      "secondary-enabled": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.200}"
+      },
+      "primary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Zinc.50}"
+      },
+      "danger-secondary-enabled": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      },
+      "danger-tertiary-focused": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "{Primitive.Red.500}"
+      }
+    }
+  },
+  "brand": {
+    "primary": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Orange.500}"
+    },
+    "partners": {
+      "facebook": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "#0064df"
+      },
+      "whatsapp": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        "$type": "color",
+        "$value": "#22d366"
+      }
+    },
+    "secondary-orange": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Orange.50}"
+    },
+    "secondary-green": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Green.50}"
+    },
+    "secondary-violet": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Violet.50}"
+    },
+    "secondary-blue": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Blue.50}"
+    },
+    "secondary-rose": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{Primitive.Rose.50}"
+    }
+  }
+}

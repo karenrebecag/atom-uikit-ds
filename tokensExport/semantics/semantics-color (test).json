@@ -1,0 +1,70 @@
+{
+  "color": {
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{Primitive.Neutral.900}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{Primitive.Neutral.600}"
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.neutral.500}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.neutral.0}"
+      }
+    },
+    "background": {
+      "canvas": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.neutral.0}"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.neutral.50}"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{Colors/Hex.Primitive.Neutral.100}"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.neutral.200}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.neutral.400}"
+      }
+    },
+    "feedback": {
+      "success": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.green.600}"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.amber.500}"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.red.600}"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{colors/hex.primitive.blue.600}"
+      }
+    },
+    "brand": {
+      "primary": {
+        "$type": "color",
+        "$value": "{colors/hex.brand}"
+      }
+    }
+  }
+}

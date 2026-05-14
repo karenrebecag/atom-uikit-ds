@@ -1,0 +1,19 @@
+{
+  "tokenSetOrder": [
+    "core",
+    "light",
+    "dark",
+    "theme",
+    "Colors/Hex",
+    "Breakpoints/Large",
+    "Breakpoints/Medium",
+    "Breakpoints/Small",
+    "Breakpoints/xSmall",
+    "Typography/Mobile",
+    "Typography/Desktop",
+    "Spacing/Mode 1",
+    "Radius/Mode 1",
+    "Stroke/Mode 1",
+    "Opacity/Mode 1"
+  ]
+}
