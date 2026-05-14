@@ -1,23 +1,34 @@
 {
   "link-button": {
+    "bg": {
+      "$type": "color",
+      "enabled": { "$value": "transparent" },
+      "hover": { "$value": "{color.blue.50}", "$description": "#eff6ff subtle highlight" },
+      "pressed": { "$value": "transparent" },
+      "focused": { "$value": "transparent" }
+    },
     "fg": {
       "$type": "color",
-      "default": { "$value": "{color.cyan.600}", "$description": "Cyan link text" },
-      "hover": { "$value": "{color.cyan.700}", "$description": "Darker on hover" },
-      "pressed": { "$value": "{color.cyan.800}", "$description": "Darkest on press" },
-      "disabled": { "$value": "{muted-foreground}", "$description": "Muted when disabled" },
-      "destructive": { "$value": "{destructive}", "$description": "Red link" },
-      "destructive-hover": { "$value": "{color.red.600}", "$description": "Darker red on hover" }
+      "enabled": { "$value": "{color.blue.500}", "$description": "#2c7fff" },
+      "hover": { "$value": "{color.blue.600}", "$description": "#165dfc" },
+      "pressed": { "$value": "{color.blue.700}", "$description": "#1447e6" },
+      "focused": { "$value": "{color.blue.500}" },
+      "disabled": { "$value": "{muted-foreground}" },
+      "loading": { "$value": "{color.blue.500}" }
+    },
+    "border": {
+      "$type": "color",
+      "focused": { "$value": "{color.blue.500}", "$description": "Focus ring in blue" }
     },
     "font-size": {
       "$type": "dimension",
-      "all": { "$value": "{font-size.sm}", "$description": "13px — same across all sizes" }
+      "s": { "$value": "{font-size.xs}", "$description": "12px" },
+      "l": { "$value": "{font-size.base}", "$description": "16px" }
     },
     "height": {
       "$type": "dimension",
-      "sm": { "$value": "{spacing.8}", "$description": "32px" },
-      "default": { "$value": "{spacing.10}", "$description": "40px" },
-      "lg": { "$value": "{spacing.12}", "$description": "48px" }
+      "s": { "$value": "24px" },
+      "l": { "$value": "28px" }
     }
   }
 }

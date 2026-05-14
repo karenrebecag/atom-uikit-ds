@@ -1,55 +1,46 @@
-import { useEffect, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { LinkButton } from '../../../../packages/components-react/src/atoms/LinkButton';
-import { initLinkButtonHover } from '../../../../packages/animations/src/link-button-hover';
 
-const AnimationScope = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null);
+const IconPlus = () => (
+  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <line x1="8" y1="3" x2="8" y2="13" />
+    <line x1="3" y1="8" x2="13" y2="8" />
+  </svg>
+);
 
-  useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      initLinkButtonHover({ scope: ref.current ?? undefined });
-    });
-    return () => cancelAnimationFrame(id);
-  });
-
-  return <div ref={ref}>{children}</div>;
-};
+const IconChevronDown = () => (
+  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 6l4 4 4-4" />
+  </svg>
+);
 
 const meta: Meta<typeof LinkButton> = {
   title: 'Atoms/LinkButton',
   component: LinkButton,
-  decorators: [
-    (Story, context) => {
-      if (context.args.animated) {
-        return (
-          <AnimationScope>
-            <Story />
-          </AnimationScope>
-        );
-      }
-      return <Story />;
-    },
-  ],
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['default', 'destructive'],
-    },
     size: {
       control: 'select',
-      options: ['sm', 'default', 'lg'],
+      options: ['s', 'l'],
     },
-    animated: { control: 'boolean' },
+    iconLeft: {
+      control: 'boolean',
+      mapping: { true: <IconPlus />, false: undefined },
+    },
+    iconRight: {
+      control: 'boolean',
+      mapping: { true: <IconChevronDown />, false: undefined },
+    },
     disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
     children: { control: 'text' },
   },
   args: {
-    variant: 'default',
-    size: 'default',
-    animated: false,
+    size: 's',
+    iconLeft: true as any,
+    iconRight: true as any,
     disabled: false,
-    children: 'Learn more',
+    loading: false,
+    children: 'Enabled',
     href: '#',
   },
 };
@@ -59,8 +50,22 @@ type Story = StoryObj<typeof LinkButton>;
 
 export const Default: Story = {};
 
-export const Destructive: Story = {
-  args: { variant: 'destructive', children: 'Delete account' },
+export const Large: Story = {
+  args: { size: 'l' },
+};
+
+export const AllStates: Story = {
+  argTypes: {
+    disabled: { table: { disable: true } },
+    loading: { table: { disable: true } },
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+      <LinkButton {...args}>Enabled</LinkButton>
+      <LinkButton {...args} disabled>Disabled</LinkButton>
+      <LinkButton {...args} loading>Loading</LinkButton>
+    </div>
+  ),
 };
 
 export const AllSizes: Story = {
@@ -69,9 +74,8 @@ export const AllSizes: Story = {
   },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-      <LinkButton {...args} size="sm">Small</LinkButton>
-      <LinkButton {...args} size="default">Default</LinkButton>
-      <LinkButton {...args} size="lg">Large</LinkButton>
+      <LinkButton {...args} size="s">Small</LinkButton>
+      <LinkButton {...args} size="l">Large</LinkButton>
     </div>
   ),
 };

@@ -6,4 +6,3 @@ export interface AnimationConfig {
 }
 
 export { initButtonHover } from './button-hover';
-export { initLinkButtonHover } from './link-button-hover';

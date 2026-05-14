@@ -1,13 +1,13 @@
 import { forwardRef, type AnchorHTMLAttributes, type ReactNode } from 'react';
 
-type LinkButtonVariant = 'default' | 'destructive';
-type LinkButtonSize = 'sm' | 'default' | 'lg';
+type LinkButtonSize = 's' | 'l';
 
 export type LinkButtonProps = {
-  variant?: LinkButtonVariant;
   size?: LinkButtonSize;
   disabled?: boolean;
-  animated?: boolean;
+  loading?: boolean;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
   children: ReactNode;
   className?: string;
 } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'>;
@@ -16,29 +16,14 @@ function cn(...classes: (string | false | undefined | null)[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-const ArrowIcon = ({ animated }: { animated: boolean }) => (
-  <span className="link-button__icon">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-      {...(animated ? { 'data-link-button-icon': '' } : {})}
-    >
-      <path d="M2 12H21" stroke="currentColor" strokeWidth="2" />
-      <path d="M14 5L21 12L14 19" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  </span>
-);
-
 export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     {
-      variant = 'default',
-      size = 'default',
+      size = 's',
       disabled = false,
-      animated = false,
+      loading = false,
+      iconLeft,
+      iconRight,
       children,
       className,
       ...props
@@ -48,8 +33,8 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
     const classes = cn(
       'link-button',
       `link-button--${size}`,
-      variant === 'destructive' && 'link-button--destructive',
       disabled && 'link-button--disabled',
+      loading && 'link-button--loading',
       className,
     );
 
@@ -57,14 +42,12 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       <a
         ref={ref}
         className={classes}
-        aria-disabled={disabled}
-        {...(animated ? { 'data-link-button-animate': '' } : {})}
+        aria-disabled={disabled || loading}
         {...props}
       >
-        <span className="link-button__text" {...(animated ? { 'data-link-button-text': '' } : {})}>
-          {children}
-        </span>
-        <ArrowIcon animated={animated} />
+        {!loading && iconLeft && <span className="link-button__icon">{iconLeft}</span>}
+        <span className="link-button__label">{loading ? 'Loading...' : children}</span>
+        {!loading && iconRight && <span className="link-button__icon">{iconRight}</span>}
       </a>
     );
   },
