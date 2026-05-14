@@ -32,6 +32,7 @@ export function SidebarCollapsible({
       <button
         type="button"
         className="sidebar-collapsible__trigger"
+        data-tooltip={label}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
@@ -40,7 +41,6 @@ export function SidebarCollapsible({
         <span className="sidebar-collapsible__chevron" data-sidebar-chevron="">
           <ChevronDown />
         </span>
-        <span className="sidebar__item-tooltip">{label}</span>
       </button>
       <div className="sidebar-collapsible__content">
         <div className="sidebar-collapsible__inner">

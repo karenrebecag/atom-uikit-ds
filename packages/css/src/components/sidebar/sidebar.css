@@ -304,31 +304,75 @@
   margin: 8px 0;
 }
 
-/* ---- Tooltip (collapsed hover hint) ---- */
+/* ---- Collapsed tooltips (reuses tooltip system, light theme, right) ---- */
 
 .sidebar__item-tooltip {
   display: none;
-  position: absolute;
-  left: calc(100% + 8px);
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 4px 8px;
-  background-color: var(--foreground);
-  color: var(--color-zinc-50);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  border-radius: 6px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 50;
 }
 
 .sidebar--collapsed .sidebar__item {
   position: relative;
 }
 
-.sidebar--collapsed .sidebar__item:hover .sidebar__item-tooltip {
-  display: block;
+.sidebar--collapsed .sidebar__item::before,
+.sidebar--collapsed .sidebar-collapsible__trigger::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translateY(-50%) translateX(-4px);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  white-space: nowrap;
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 70;
+  transition:
+    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1),
+    transform 0.25s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.sidebar--collapsed .sidebar__item::after,
+.sidebar--collapsed .sidebar-collapsible__trigger::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 7px);
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%) rotate(225deg);
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 70;
+  transition:
+    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.sidebar--collapsed .sidebar__item:hover::before,
+.sidebar--collapsed .sidebar-collapsible__trigger:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.sidebar--collapsed .sidebar__item:hover::after,
+.sidebar--collapsed .sidebar-collapsible__trigger:hover::after {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ---- Collapsible section ---- */
