@@ -156,6 +156,9 @@ export const AllStates: Story = {
       <Field label="Error filled" error="Supportive text negative" htmlFor="s-error-filled">
         <Input id="s-error-filled" error defaultValue="invalid@" iconLeft={<IconSearch />} iconRight={<IconEye />} />
       </Field>
+      <Field label="Error focused" error="Supportive text negative" htmlFor="s-error-focused">
+        <Input id="s-error-focused" error autoFocus defaultValue="Click to see ring" iconLeft={<IconSearch />} iconRight={<IconEye />} />
+      </Field>
     </div>
   ),
 };

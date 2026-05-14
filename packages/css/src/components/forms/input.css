@@ -50,7 +50,7 @@
 
 .input[aria-invalid="true"]:focus {
   border-color: var(--color-red-700);
-  box-shadow: 0 0 0 2px rgba(255, 162, 163, 0.5);
+  box-shadow: 0 0 0 2px var(--color-red-300);
 }
 
 /* File input */
@@ -100,7 +100,7 @@
 
 .input-group--error:focus-within {
   border-color: var(--color-red-700);
-  box-shadow: 0 0 0 2px rgba(255, 162, 163, 0.5);
+  box-shadow: 0 0 0 2px var(--color-red-300);
 }
 
 .input-group--disabled {
