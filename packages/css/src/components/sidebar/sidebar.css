@@ -205,21 +205,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
   border: none;
-  background: none;
-  color: var(--color-zinc-400);
+  background-color: var(--color-zinc-200);
+  color: var(--color-zinc-600);
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 4px;
   flex-shrink: 0;
   transition:
     background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    color 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+    color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .sidebar__trigger:hover {
+  background-color: var(--color-zinc-300);
+  color: var(--color-zinc-700);
+}
+
+/* Collapsed: lighter bg + shadow */
+.sidebar--collapsed .sidebar__trigger {
+  background-color: var(--color-zinc-50);
+  color: var(--color-zinc-500);
+  box-shadow: 0 6px 14px rgba(46, 33, 74, 0.08);
+}
+
+.sidebar--collapsed .sidebar__trigger:hover {
   background-color: var(--color-zinc-100);
   color: var(--color-zinc-600);
 }
