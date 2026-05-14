@@ -1,46 +1,46 @@
 {
   "font-family": {
     "$type": "fontFamilies",
-    "sans": { "$value": "Inter" },
-    "mono": { "$value": "JetBrains Mono" }
+    "sans": { "$value": "Inter", "$description": "Primary — UI and body text" },
+    "mono": { "$value": "JetBrains Mono", "$description": "Code blocks, technical content" }
   },
   "font-weight": {
     "$type": "fontWeights",
-    "regular": { "$value": "400" },
-    "medium": { "$value": "500" },
-    "semibold": { "$value": "600" },
-    "bold": { "$value": "700" }
+    "regular": { "$value": "400", "$description": "Body text, paragraphs" },
+    "medium": { "$value": "500", "$description": "Labels, emphasis, nav items" },
+    "semibold": { "$value": "600", "$description": "Subheadings, buttons" },
+    "bold": { "$value": "700", "$description": "Headings, display text" }
   },
   "font-size": {
     "$type": "dimension",
-    "xs": { "$value": "10px" },
-    "sm": { "$value": "13px" },
-    "base": { "$value": "16px" },
-    "lg": { "$value": "20px" },
-    "xl": { "$value": "25px" },
-    "2xl": { "$value": "31px" },
-    "3xl": { "$value": "39px" },
-    "4xl": { "$value": "49px" },
-    "5xl": { "$value": "61px" },
-    "6xl": { "$value": "76px" }
+    "xs": { "$value": "10px", "$description": "Labels, uppercase micro text" },
+    "sm": { "$value": "13px", "$description": "Captions, secondary text" },
+    "base": { "$value": "16px", "$description": "Body text (default)" },
+    "lg": { "$value": "20px", "$description": "Body large, h5" },
+    "xl": { "$value": "25px", "$description": "h4" },
+    "2xl": { "$value": "31px", "$description": "h3" },
+    "3xl": { "$value": "39px", "$description": "h2" },
+    "4xl": { "$value": "49px", "$description": "h1" },
+    "5xl": { "$value": "61px", "$description": "Display large" },
+    "6xl": { "$value": "76px", "$description": "Display XL, hero headlines" }
   },
   "line-height": {
     "$type": "dimension",
-    "xs": { "$value": "16px" },
-    "sm": { "$value": "20px" },
-    "base": { "$value": "24px" },
-    "lg": { "$value": "28px" },
-    "xl": { "$value": "34px" },
-    "2xl": { "$value": "40px" },
-    "3xl": { "$value": "48px" },
-    "4xl": { "$value": "57px" },
-    "5xl": { "$value": "68px" },
-    "6xl": { "$value": "82px" }
+    "xs": { "$value": "16px", "$description": "Paired with font-size-xs" },
+    "sm": { "$value": "20px", "$description": "Paired with font-size-sm" },
+    "base": { "$value": "24px", "$description": "Paired with font-size-base" },
+    "lg": { "$value": "28px", "$description": "Paired with font-size-lg" },
+    "xl": { "$value": "34px", "$description": "Paired with font-size-xl" },
+    "2xl": { "$value": "40px", "$description": "Paired with font-size-2xl" },
+    "3xl": { "$value": "48px", "$description": "Paired with font-size-3xl" },
+    "4xl": { "$value": "57px", "$description": "Paired with font-size-4xl" },
+    "5xl": { "$value": "68px", "$description": "Paired with font-size-5xl" },
+    "6xl": { "$value": "82px", "$description": "Paired with font-size-6xl" }
   },
   "letter-spacing": {
     "$type": "dimension",
-    "tight": { "$value": "-0.02em" },
-    "normal": { "$value": "0em" },
-    "wide": { "$value": "0.04em" }
+    "tight": { "$value": "-0.02em", "$description": "Headings, display text" },
+    "normal": { "$value": "0em", "$description": "Body text (default)" },
+    "wide": { "$value": "0.04em", "$description": "Labels, uppercase text" }
   }
 }

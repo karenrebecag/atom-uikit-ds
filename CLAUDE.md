@@ -106,6 +106,61 @@ Scoped to a specific UI component. References semantic tokens.
 
 ---
 
+## Spacing
+
+Base-4 geometric scale. 13 steps, each visually distinct.
+
+| Token | px | Usage |
+|-------|-----|-------|
+| `spacing-0` | 0 | None |
+| `spacing-1` | 4 | Hairline gaps, icon-to-text |
+| `spacing-2` | 8 | Tight spacing, inline elements |
+| `spacing-3` | 12 | Compact groups, form fields |
+| `spacing-4` | 16 | Base unit, default gap |
+| `spacing-5` | 20 | Comfortable spacing |
+| `spacing-6` | 24 | Card padding, section inner |
+| `spacing-8` | 32 | Card padding large, group gap |
+| `spacing-10` | 40 | Section gap |
+| `spacing-12` | 48 | Large section gap |
+| `spacing-16` | 64 | Section padding |
+| `spacing-20` | 80 | Hero spacing, page margin |
+| `spacing-24` | 96 | Max spacing, hero padding |
+
+**Rule:** Token number x 4 = pixel value. No exceptions.
+
+---
+
+## Radius
+
+7 steps from sharp to full pill.
+
+| Token | px | Usage |
+|-------|-----|-------|
+| `radius-none` | 0 | Sharp corners |
+| `radius-sm` | 4 | Tags, badges |
+| `radius-md` | 8 | Buttons, inputs, chips |
+| `radius-lg` | 12 | Cards, dropdowns |
+| `radius-xl` | 16 | Modals, large cards |
+| `radius-2xl` | 24 | Hero elements, feature cards |
+| `radius-full` | 9999 | Pills, circles, avatars |
+
+---
+
+## Stroke
+
+6 steps with semantic names. Covers dividers through decorative borders.
+
+| Token | px | Usage |
+|-------|-----|-------|
+| `stroke-none` | 0 | No border |
+| `stroke-hairline` | 1 | Dividers, subtle borders |
+| `stroke-thin` | 1.5 | Input borders, cards |
+| `stroke-medium` | 2 | Active states, focus rings |
+| `stroke-thick` | 3 | Accent borders, emphasis |
+| `stroke-heavy` | 4 | Decorative borders, nav indicators |
+
+---
+
 ## Typography & Scaling
 
 ### Type Scale: Major Third (1.25)

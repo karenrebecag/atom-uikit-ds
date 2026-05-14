@@ -1,110 +1,18 @@
 {
-  "none": {
-    "$type": "number",
-    "$value": 0
-  },
-  "xxs": {
-    "$type": "number",
-    "$value": 2
-  },
-  "xs": {
-    "$type": "number",
-    "$value": 4
-  },
-  "s": {
-    "$type": "number",
-    "$value": 8
-  },
-  "sm": {
-    "$type": "number",
-    "$value": 12
-  },
-  "m": {
-    "$type": "number",
-    "$value": 16
-  },
-  "md": {
-    "$type": "number",
-    "$value": 20
-  },
-  "l": {
-    "$type": "number",
-    "$value": 24
-  },
-  "lg": {
-    "$type": "number",
-    "$value": 28
-  },
-  "xl": {
-    "$type": "number",
-    "$value": 32
-  },
-  "xxl": {
-    "$type": "number",
-    "$value": 36
-  },
-  "2xxl": {
-    "$type": "number",
-    "$value": 40
-  },
-  "3xxl": {
-    "$type": "number",
-    "$value": 44
-  },
-  "4xxl": {
-    "$type": "number",
-    "$value": 48
-  },
-  "5xxl": {
-    "$type": "number",
-    "$value": 52
-  },
-  "6xxl": {
-    "$type": "number",
-    "$value": 56
-  },
-  "7xxl": {
-    "$type": "number",
-    "$value": 60
-  },
-  "10xxl": {
-    "$type": "number",
-    "$value": 72
-  },
-  "12xxl": {
-    "$type": "number",
-    "$value": 80
-  },
-  "13xxl": {
-    "$type": "number",
-    "$value": 84
-  },
-  "8 xxl": {
-    "$type": "number",
-    "$value": 64
-  },
-  "9 xxl": {
-    "$type": "number",
-    "$value": 68
-  },
-  "11xxl": {
-    "$type": "number",
-    "$value": 76
-  },
-  "14xxl": {
-    "$type": "number",
-    "$value": 88
-  },
-  "15xxl": {
-    "$type": "number",
-    "$value": 92
-  },
-  "16xxl": {
-    "$type": "number",
-    "$value": 96
-  },
-  "17xxl": {
-    "$type": "number",
-    "$value": 100
+  "spacing": {
+    "$type": "dimension",
+    "0": { "$value": "0px", "$description": "None" },
+    "1": { "$value": "4px", "$description": "Hairline gaps, icon-to-text" },
+    "2": { "$value": "8px", "$description": "Tight spacing, inline elements" },
+    "3": { "$value": "12px", "$description": "Compact groups, form fields" },
+    "4": { "$value": "16px", "$description": "Base unit, default gap" },
+    "5": { "$value": "20px", "$description": "Comfortable spacing" },
+    "6": { "$value": "24px", "$description": "Card padding, section inner" },
+    "8": { "$value": "32px", "$description": "Card padding large, group gap" },
+    "10": { "$value": "40px", "$description": "Section gap" },
+    "12": { "$value": "48px", "$description": "Large section gap" },
+    "16": { "$value": "64px", "$description": "Section padding" },
+    "20": { "$value": "80px", "$description": "Hero spacing, page margin" },
+    "24": { "$value": "96px", "$description": "Max spacing, hero padding" }
   }
 }
