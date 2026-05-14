@@ -36,8 +36,8 @@ export function SidebarCollapsible({
         aria-expanded={open}
       >
         <span className="sidebar__item-icon">{icon}</span>
-        <span className="sidebar-collapsible__label">{label}</span>
-        <span className="sidebar-collapsible__chevron">
+        <span className="sidebar-collapsible__label" data-sidebar-label="">{label}</span>
+        <span className="sidebar-collapsible__chevron" data-sidebar-chevron="">
           <ChevronDown />
         </span>
         <span className="sidebar__item-tooltip">{label}</span>

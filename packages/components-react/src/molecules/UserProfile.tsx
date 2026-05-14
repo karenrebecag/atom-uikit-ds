@@ -27,7 +27,7 @@ export function UserProfile({
         {...avatar}
         initials={avatar?.initials || name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
       />
-      <div className="user-profile__info">
+      <div className="user-profile__info" data-sidebar-user-info="">
         <span className="user-profile__name">{name}</span>
         {org && <span className="user-profile__org">{org}</span>}
       </div>

@@ -30,10 +30,10 @@ export function SidebarItem({
   );
 
   return (
-    <a className={classes} aria-current={active ? 'page' : undefined} aria-disabled={disabled || undefined} {...props}>
+    <a data-sidebar-item="" className={classes} aria-current={active ? 'page' : undefined} aria-disabled={disabled || undefined} {...props}>
       <span className="sidebar__item-icon">{icon}</span>
-      <span className="sidebar__item-label">{label}</span>
-      {badge && <span className="sidebar__item-badge">{badge}</span>}
+      <span className="sidebar__item-label" data-sidebar-label="">{label}</span>
+      {badge && <span className="sidebar__item-badge" data-sidebar-label="">{badge}</span>}
       <span className="sidebar__item-tooltip">{label}</span>
     </a>
   );

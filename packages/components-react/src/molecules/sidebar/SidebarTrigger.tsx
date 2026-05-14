@@ -20,6 +20,7 @@ export function SidebarTrigger({ className }: { className?: string }) {
   return (
     <button
       type="button"
+      data-sidebar-trigger=""
       className={`sidebar__trigger ${className || ''}`}
       onClick={toggle}
       aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}

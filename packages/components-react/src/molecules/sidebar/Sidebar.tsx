@@ -15,6 +15,7 @@ export function Sidebar({ side = 'left', children, className }: SidebarProps) {
   const { collapsed } = useSidebar();
   return (
     <aside
+      data-sidebar=""
       className={cn(
         'sidebar',
         collapsed && 'sidebar--collapsed',
