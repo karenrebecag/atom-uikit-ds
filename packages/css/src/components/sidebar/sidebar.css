@@ -305,75 +305,50 @@
   margin: 8px 0;
 }
 
-/* ---- Collapsed tooltips (reuses tooltip system, light theme, right) ---- */
+/* ---- Collapsed tooltips ---- */
 
-.sidebar__item-tooltip {
-  display: none;
+/* Hide tooltip system on expanded sidebar */
+.sidebar:not(.sidebar--collapsed) [data-tooltip]::before,
+.sidebar:not(.sidebar--collapsed) [data-tooltip]::after {
+  display: none !important;
 }
 
-.sidebar--collapsed .sidebar__item {
+/* In collapsed, items use the global [data-tooltip] system from tooltip.css.
+   Force direction=right and theme=light via overrides. */
+.sidebar--collapsed .sidebar__item,
+.sidebar--collapsed .sidebar-collapsible__trigger {
   position: relative;
 }
 
-.sidebar--collapsed .sidebar__item::before,
-.sidebar--collapsed .sidebar-collapsible__trigger::before {
-  content: attr(data-tooltip);
-  position: absolute;
+/* Override tooltip position to right */
+.sidebar--collapsed [data-tooltip]::before {
+  bottom: auto;
   top: 50%;
   left: calc(100% + 10px);
+  right: auto;
   transform: translateY(-50%) translateX(-4px);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.4;
-  white-space: nowrap;
+  /* Light theme */
   background-color: var(--background);
   color: var(--foreground);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 70;
-  transition:
-    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1),
-    transform 0.25s cubic-bezier(0.625, 0.05, 0, 1);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
-.sidebar--collapsed .sidebar__item::after,
-.sidebar--collapsed .sidebar-collapsible__trigger::after {
-  content: '';
-  position: absolute;
+.sidebar--collapsed [data-tooltip]:hover::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+.sidebar--collapsed [data-tooltip]::after {
+  bottom: auto;
   top: 50%;
   left: calc(100% + 7px);
-  width: 6px;
-  height: 6px;
+  right: auto;
   transform: translateY(-50%) rotate(225deg);
+  /* Light theme */
   background-color: var(--background);
   border: 1px solid var(--border);
   border-top: none;
   border-left: none;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 70;
-  transition:
-    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1);
-}
-
-.sidebar--collapsed .sidebar__item:hover::before,
-.sidebar--collapsed .sidebar-collapsible__trigger:hover::before {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(0);
-}
-
-.sidebar--collapsed .sidebar__item:hover::after,
-.sidebar--collapsed .sidebar-collapsible__trigger:hover::after {
-  opacity: 1;
-  visibility: visible;
 }
 
 /* ---- Collapsible section ---- */
