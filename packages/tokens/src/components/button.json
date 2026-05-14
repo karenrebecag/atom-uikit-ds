@@ -5,7 +5,7 @@
       "primary": { "$value": "{primary}", "$description": "Solid dark background" },
       "secondary": { "$value": "{background}", "$description": "White/transparent with border" },
       "tertiary": { "$value": "transparent", "$description": "Ghost — no background" },
-      "destructive": { "$value": "{destructive}", "$description": "Danger solid" },
+      "destructive-primary": { "$value": "{destructive}", "$description": "Danger solid" },
       "destructive-secondary": { "$value": "{background}", "$description": "Danger outlined" },
       "destructive-tertiary": { "$value": "transparent", "$description": "Danger ghost" }
     },
@@ -14,7 +14,7 @@
       "primary": { "$value": "{primary-foreground}", "$description": "Light text on dark bg" },
       "secondary": { "$value": "{foreground}", "$description": "Dark text on light bg" },
       "tertiary": { "$value": "{foreground}", "$description": "Dark text, no bg" },
-      "destructive": { "$value": "{destructive-foreground}", "$description": "Light text on danger" },
+      "destructive-primary": { "$value": "{destructive-foreground}", "$description": "Light text on danger" },
       "destructive-secondary": { "$value": "{destructive}", "$description": "Red text on light bg" },
       "destructive-tertiary": { "$value": "{destructive}", "$description": "Red text, no bg" }
     },
@@ -23,7 +23,7 @@
       "primary": { "$value": "transparent" },
       "secondary": { "$value": "{border}" },
       "tertiary": { "$value": "transparent" },
-      "destructive": { "$value": "transparent" },
+      "destructive-primary": { "$value": "transparent" },
       "destructive-secondary": { "$value": "{destructive}" },
       "destructive-tertiary": { "$value": "transparent" }
     },
@@ -32,7 +32,7 @@
       "primary": { "$value": "{color.zinc.800}" },
       "secondary": { "$value": "{accent}" },
       "tertiary": { "$value": "{accent}" },
-      "destructive": { "$value": "{color.red.600}" },
+      "destructive-primary": { "$value": "{color.red.600}" },
       "destructive-secondary": { "$value": "{color.red.50}" },
       "destructive-tertiary": { "$value": "{color.red.50}" }
     },
@@ -41,7 +41,7 @@
       "primary": { "$value": "{color.zinc.900}" },
       "secondary": { "$value": "{color.zinc.100}" },
       "tertiary": { "$value": "{color.zinc.100}" },
-      "destructive": { "$value": "{color.red.700}" },
+      "destructive-primary": { "$value": "{color.red.700}" },
       "destructive-secondary": { "$value": "{color.red.100}" },
       "destructive-tertiary": { "$value": "{color.red.100}" }
     },
@@ -52,17 +52,17 @@
     "height": {
       "$type": "dimension",
       "xs": { "$value": "28px", "$description": "Inline actions, table rows" },
-      "sm": { "$value": "{spacing.8}", "$description": "32px — compact, toolbars" },
-      "default": { "$value": "{spacing.10}", "$description": "40px — standard" },
-      "lg": { "$value": "{spacing.12}", "$description": "48px — prominent actions" },
+      "s": { "$value": "{spacing.8}", "$description": "32px — compact, toolbars" },
+      "m": { "$value": "{spacing.10}", "$description": "40px — standard" },
+      "l": { "$value": "{spacing.12}", "$description": "48px — prominent actions" },
       "xl": { "$value": "52px", "$description": "Hero CTAs" }
     },
     "padding-x": {
       "$type": "dimension",
       "xs": { "$value": "{spacing.2}", "$description": "8px" },
-      "sm": { "$value": "{spacing.3}", "$description": "12px" },
-      "default": { "$value": "{spacing.4}", "$description": "16px" },
-      "lg": { "$value": "{spacing.6}", "$description": "24px" },
+      "s": { "$value": "{spacing.3}", "$description": "12px" },
+      "m": { "$value": "{spacing.4}", "$description": "16px" },
+      "l": { "$value": "{spacing.6}", "$description": "24px" },
       "xl": { "$value": "{spacing.8}", "$description": "32px — wider for prominence" }
     },
     "font-size": {

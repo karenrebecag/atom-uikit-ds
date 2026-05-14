@@ -4,11 +4,11 @@ type IconButtonVariant =
   | 'primary'
   | 'secondary'
   | 'tertiary'
-  | 'destructive'
+  | 'destructive-primary'
   | 'destructive-secondary'
   | 'destructive-tertiary';
 
-type IconButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
+type IconButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export type IconButtonProps = {
   variant?: IconButtonVariant;
@@ -38,7 +38,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
     {
       variant = 'primary',
-      size = 'default',
+      size = 'm',
       disabled = false,
       loading = false,
       animated = false,

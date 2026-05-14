@@ -49,11 +49,11 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'destructive', 'destructive-secondary', 'destructive-tertiary'],
+      options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary'],
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'default', 'lg', 'xl'],
+      options: ['xs', 's', 'm', 'l', 'xl'],
     },
     iconLeft: {
       control: 'boolean',
@@ -70,7 +70,7 @@ const meta: Meta<typeof Button> = {
   },
   args: {
     variant: 'primary',
-    size: 'default',
+    size: 'm',
     iconLeft: false as any,
     iconRight: false as any,
     animated: false,
@@ -97,7 +97,7 @@ export const AllVariants: Story = {
         <Button {...args} variant="tertiary">Tertiary</Button>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Button {...args} variant="destructive">Destructive</Button>
+        <Button {...args} variant="destructive-primary">Destructive Primary</Button>
         <Button {...args} variant="destructive-secondary">Dest. Secondary</Button>
         <Button {...args} variant="destructive-tertiary">Dest. Tertiary</Button>
       </div>
@@ -112,9 +112,9 @@ export const AllSizes: Story = {
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
       <Button {...args} size="xs">XS</Button>
-      <Button {...args} size="sm">Small</Button>
-      <Button {...args} size="default">Default</Button>
-      <Button {...args} size="lg">Large</Button>
+      <Button {...args} size="s">S</Button>
+      <Button {...args} size="m">M</Button>
+      <Button {...args} size="l">L</Button>
       <Button {...args} size="xl">XL</Button>
     </div>
   ),

@@ -370,12 +370,21 @@ Gap, radius, and icon-size use `em` so they scale with font-size.
 | Size | Height | H-Padding | Font-size | Usage |
 |------|--------|-----------|-----------|-------|
 | xs | 28px | 8px | 13px | Inline actions, table rows |
-| sm | 32px | 12px | 13px | Compact actions, toolbars |
-| default | 40px | 16px | 13px | Standard buttons |
-| lg | 48px | 24px | 13px | Prominent actions |
+| s | 32px | 12px | 13px | Compact actions, toolbars |
+| m | 40px | 16px | 13px | Standard buttons |
+| l | 48px | 24px | 13px | Prominent actions |
 | xl | 52px | 32px | 13px | Hero CTAs |
 
 Font-size is the same across all sizes. Differentiation comes from height and horizontal padding. xl uses wider padding for visual prominence. xs minimum 28px for touch target safety.
+
+### Naming convention
+
+Component and variant names MUST match Figma exactly. Internal token names can differ.
+
+**Sizes:** `xs`, `s`, `m`, `l`, `xl` (not sm/default/lg)
+**Variants:** `primary`, `secondary`, `tertiary`, `destructive-primary`, `destructive-secondary`, `destructive-tertiary`
+
+Figma has a typo "Terceary" — we correct it to `tertiary` in code but the variant structure stays the same.
 
 **Rules:**
 - `height` in `rem` (matches other components at same size)

@@ -59,9 +59,9 @@
 /* ---- Sizes (square: width = height) ---- */
 
 .icon-button--xs      { width: var(--button-height-xs); height: var(--button-height-xs); font-size: var(--button-font-size-all); }
-.icon-button--sm      { width: var(--button-height-sm); height: var(--button-height-sm); font-size: var(--button-font-size-all); }
-.icon-button--default { width: var(--button-height-default); height: var(--button-height-default); font-size: var(--button-font-size-all); }
-.icon-button--lg      { width: var(--button-height-lg); height: var(--button-height-lg); font-size: var(--button-font-size-all); }
+.icon-button--s      { width: var(--button-height-s); height: var(--button-height-s); font-size: var(--button-font-size-all); }
+.icon-button--m { width: var(--button-height-m); height: var(--button-height-m); font-size: var(--button-font-size-all); }
+.icon-button--l      { width: var(--button-height-l); height: var(--button-height-l); font-size: var(--button-font-size-all); }
 .icon-button--xl      { width: var(--button-height-xl); height: var(--button-height-xl); font-size: var(--button-font-size-all); }
 
 /* ---- Variants (same tokens as Button) ---- */
@@ -100,15 +100,15 @@
   background-color: var(--button-pressed-bg-tertiary);
 }
 
-.icon-button--destructive {
-  background-color: var(--button-bg-destructive);
-  color: var(--button-fg-destructive);
+.icon-button--destructive-primary {
+  background-color: var(--button-bg-destructive-primary);
+  color: var(--button-fg-destructive-primary);
 }
-.icon-button--destructive:hover:not(.icon-button--disabled) {
-  background-color: var(--button-hover-bg-destructive);
+.icon-button--destructive-primary:hover:not(.icon-button--disabled) {
+  background-color: var(--button-hover-bg-destructive-primary);
 }
-.icon-button--destructive:active:not(.icon-button--disabled) {
-  background-color: var(--button-pressed-bg-destructive);
+.icon-button--destructive-primary:active:not(.icon-button--disabled) {
+  background-color: var(--button-pressed-bg-destructive-primary);
 }
 
 .icon-button--destructive-secondary {
@@ -144,7 +144,7 @@
 
 .icon-button--disabled.icon-button--primary,
 .icon-button--disabled.icon-button--secondary,
-.icon-button--disabled.icon-button--destructive,
+.icon-button--disabled.icon-button--destructive-primary,
 .icon-button--disabled.icon-button--destructive-secondary {
   background-color: var(--muted);
   border-color: transparent;

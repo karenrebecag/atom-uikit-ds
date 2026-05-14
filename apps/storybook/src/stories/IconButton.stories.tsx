@@ -21,11 +21,11 @@ const meta: Meta<typeof IconButton> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'destructive', 'destructive-secondary', 'destructive-tertiary'],
+      options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary'],
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'default', 'lg', 'xl'],
+      options: ['xs', 's', 'm', 'l', 'xl'],
     },
     animated: { control: 'boolean' },
     disabled: { control: 'boolean' },
@@ -35,7 +35,7 @@ const meta: Meta<typeof IconButton> = {
   },
   args: {
     variant: 'primary',
-    size: 'default',
+    size: 'm',
     animated: false,
     disabled: false,
     loading: false,
@@ -61,7 +61,7 @@ export const AllVariants: Story = {
         <IconButton {...args} variant="tertiary" aria-label="Tertiary" />
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <IconButton {...args} variant="destructive" aria-label="Destructive" />
+        <IconButton {...args} variant="destructive-primary" aria-label="Destructive Primary" />
         <IconButton {...args} variant="destructive-secondary" aria-label="Dest. Secondary" />
         <IconButton {...args} variant="destructive-tertiary" aria-label="Dest. Tertiary" />
       </div>
@@ -76,9 +76,9 @@ export const AllSizes: Story = {
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
       <IconButton {...args} size="xs" aria-label="XS" />
-      <IconButton {...args} size="sm" aria-label="Small" />
-      <IconButton {...args} size="default" aria-label="Default" />
-      <IconButton {...args} size="lg" aria-label="Large" />
+      <IconButton {...args} size="s" aria-label="S" />
+      <IconButton {...args} size="m" aria-label="M" />
+      <IconButton {...args} size="l" aria-label="L" />
       <IconButton {...args} size="xl" aria-label="XL" />
     </div>
   ),
