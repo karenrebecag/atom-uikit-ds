@@ -9,6 +9,7 @@ export type ChipProps = {
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
+  animated?: boolean;
   iconLeft?: ReactNode;
   onClose?: () => void;
   children: string;
@@ -31,6 +32,7 @@ export function Chip({
   disabled = false,
   error = false,
   focused = false,
+  animated = false,
   iconLeft,
   onClose,
   children,
@@ -47,7 +49,7 @@ export function Chip({
   );
 
   return (
-    <span className={classes}>
+    <span className={classes} {...(animated ? { 'data-chip-animate': '' } : {})}>
       {iconLeft && <span className="chip__icon">{iconLeft}</span>}
       <span className="chip__label">{children}</span>
       {onClose && (

@@ -31,8 +31,18 @@
     scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.chip:active:not(.chip--disabled) {
+.chip[data-chip-animate]:active:not(.chip--disabled) {
   scale: 0.955 0.925;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .chip[data-chip-animate]:hover:not(.chip--disabled) {
+    scale: 1.06 1.095;
+    transition:
+      background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+      border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+      scale 0.45s 0.05s cubic-bezier(0.32, 0.72, 0, 1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
