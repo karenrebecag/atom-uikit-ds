@@ -1,8 +1,9 @@
 /* -------------------------------------------------------------------------
    Textarea
 
-   Multi-line text input. Shares styling with Input.
+   Multi-line text input. Shares color system with Input.
    Min height 80px, resizable vertically by default.
+   Colors matched to Figma atom-text-field.
 
    States: default, focus, disabled, error
    ------------------------------------------------------------------------- */
@@ -11,11 +12,11 @@
   display: flex;
   width: 100%;
   min-height: 80px;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
+  padding: 8px;
+  border: 1px solid var(--color-zinc-300);
   border-radius: 8px;
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--color-zinc-800);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-sm);
   line-height: 1.5;
@@ -27,27 +28,29 @@
 }
 
 .textarea::placeholder {
-  color: var(--muted-foreground);
+  color: var(--color-zinc-600);
 }
 
 .textarea:focus {
-  border-color: var(--ring);
+  border-color: var(--color-zinc-900);
   box-shadow: 0 0 0 2px rgba(161, 161, 161, 0.7);
 }
 
 .textarea:disabled {
-  background-color: var(--muted);
-  color: var(--muted-foreground);
+  background-color: var(--color-zinc-100);
+  border-color: var(--color-zinc-100);
+  color: var(--color-zinc-400);
   cursor: not-allowed;
   resize: none;
   opacity: 1;
 }
 
 .textarea[aria-invalid="true"] {
-  border-color: var(--destructive);
+  border-color: var(--color-red-700);
+  box-shadow: 0 0 2px 0 var(--color-red-300);
 }
 
 .textarea[aria-invalid="true"]:focus {
-  border-color: var(--destructive);
-  box-shadow: 0 0 0 2px rgba(231, 0, 11, 0.15);
+  border-color: var(--color-red-700);
+  box-shadow: 0 0 0 2px rgba(255, 162, 163, 0.5);
 }
