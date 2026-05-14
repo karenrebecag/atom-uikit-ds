@@ -1,9 +1,8 @@
 /* -------------------------------------------------------------------------
    Button
 
-   Convention: font-size is the only absolute value (from tokens).
-   Everything else (padding, gap, radius, icon) is em-relative,
-   so the entire button scales proportionally with font-size.
+   Sizing: explicit height + padding per size (shadcn/Radix convention).
+   Gap, radius, icon-size remain em-relative for proportional scaling.
 
    Variants: primary, secondary, tertiary,
              destructive, destructive-secondary, destructive-tertiary
@@ -12,19 +11,12 @@
    ------------------------------------------------------------------------- */
 
 .button {
-  --_button-padding: 0.75em 1.25em;
-  --_button-gap: 0.5em;
-  --_button-radius: 0.625em;
-  --_button-icon: 1em;
-  --_button-border: 0.0625em;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--_button-gap);
-  padding: var(--_button-padding);
-  border-radius: var(--_button-radius);
-  border: var(--_button-border) solid transparent;
+  gap: 0.5em;
+  border-radius: 0.625em;
+  border: 1px solid transparent;
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-medium);
   line-height: 1;
@@ -62,6 +54,38 @@
   .button:active:not(.button--disabled) {
     scale: none;
   }
+}
+
+/* ---- Sizes (explicit height + padding, font-size from tokens) ---- */
+
+.button--xs {
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  font-size: var(--button-font-size-xs);
+}
+
+.button--s {
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: var(--button-font-size-s);
+}
+
+.button--m {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-size: var(--button-font-size-m);
+}
+
+.button--l {
+  height: 2.75rem;
+  padding: 0 1.25rem;
+  font-size: var(--button-font-size-l);
+}
+
+.button--xl {
+  height: 3.25rem;
+  padding: 0 1.5rem;
+  font-size: var(--button-font-size-xl);
 }
 
 /* ---- Variants ---- */
@@ -134,14 +158,6 @@
   background-color: var(--button-pressed-bg-destructive-tertiary);
 }
 
-/* ---- Sizes (only font-size changes, everything else scales via em) ---- */
-
-.button--xs { font-size: var(--button-font-size-xs); }
-.button--s  { font-size: var(--button-font-size-s); }
-.button--m  { font-size: var(--button-font-size-m); }
-.button--l  { font-size: var(--button-font-size-l); }
-.button--xl { font-size: var(--button-font-size-xl); }
-
 /* ---- States ---- */
 
 .button--disabled {
@@ -188,8 +204,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: var(--_button-icon);
-  height: var(--_button-icon);
+  width: 1em;
+  height: 1em;
 }
 
 .button__icon svg {

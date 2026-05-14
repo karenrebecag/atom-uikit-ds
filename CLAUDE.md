@@ -341,33 +341,48 @@ Components that need `@media` queries use these values directly as hardcoded px 
 
 ---
 
-## Component em Convention
+## Component Sizing Convention
 
-**All component dimensions (padding, gap, radius, icon size) use `em` units, not px.**
+**Sizing follows shadcn/Radix convention: explicit height + padding per size.**
 
-Only `font-size` is an absolute value from tokens. Everything else is relative to it. This means changing the size of a component only requires changing its font-size — padding, radius, gap, and icons scale automatically.
+Each size defines `height`, `padding`, and `font-size` explicitly. This guarantees buttons align with inputs at the same size and heights are pixel-perfect across browsers.
+
+Gap, radius, and icon-size use `em` so they scale with font-size.
 
 ```css
-/* The button size classes only set font-size */
-.button--xs { font-size: var(--button-font-size-xs); }
-.button--xl { font-size: var(--button-font-size-xl); }
+/* Explicit per-size: height, padding, font-size */
+.button--m {
+  height: 2.5rem;        /* 40px — matches input--m */
+  padding: 0 1rem;       /* horizontal padding */
+  font-size: var(--button-font-size-m);  /* 16px from tokens */
+}
 
-/* Everything else is em-relative — scales with font-size */
+/* em-relative: scales with font-size */
 .button {
-  padding: 0.75em 1.25em;
   gap: 0.5em;
   border-radius: 0.625em;
 }
 .button__icon { width: 1em; height: 1em; }
 ```
 
+**Size scale:**
+
+| Size | Height | Padding | Font-size |
+|------|--------|---------|-----------|
+| xs | 1.5rem (24px) | 0 0.5rem | 10px |
+| s | 2rem (32px) | 0 0.75rem | 13px |
+| m | 2.5rem (40px) | 0 1rem | 16px |
+| l | 2.75rem (44px) | 0 1.25rem | 20px |
+| xl | 3.25rem (52px) | 0 1.5rem | 25px |
+
 **Rules:**
-- Tokens define font-size per size variant (absolute px from type scale)
-- CSS defines proportions in `em` (relative to that font-size)
-- No per-size padding/gap/radius tokens — proportions are universal
-- `line-height: 1` on interactive components (buttons, inputs)
+- `height` in `rem` (matches other components at same size)
+- `padding` in `rem` (consistent spacing)
+- `font-size` from tokens (Major Third scale)
+- `gap`, `radius`, `icon-size` in `em` (proportional to font-size)
+- `line-height: 1` on interactive components
 - `-webkit-tap-highlight-color: transparent` on all interactive elements
-- `scale` for press feedback, not `transform: scale()` (composited, no layout shift)
+- `scale` for press feedback (composited, no layout shift)
 - `prefers-reduced-motion: reduce` disables transitions and scale
 
 ---
