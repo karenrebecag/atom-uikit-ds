@@ -36,6 +36,7 @@
 
 .sidebar--collapsed {
   width: var(--sidebar-collapsed-width);
+  overflow: visible;
 }
 
 .sidebar--right {

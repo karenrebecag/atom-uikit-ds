@@ -91,7 +91,7 @@ const meta: Meta<typeof Sidebar> = {
         return cleanup;
       }, []);
       return (
-      <div style={{ height: 'calc(100vh - 80px)', display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, overflow: 'hidden' }}>
+      <div style={{ height: 'calc(100vh - 80px)', display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8 }}>
         <Story />
         <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
           <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
