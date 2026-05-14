@@ -101,9 +101,3 @@ export const Disabled: Story = {
   args: { disabled: true },
 };
 
-export const AsLink: Story = {
-  args: {
-    children: 'Go to Atom',
-    href: 'https://atomchat.io',
-  } as any,
-};

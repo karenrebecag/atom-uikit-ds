@@ -15,7 +15,7 @@
   justify-content: center;
   gap: var(--button-gap-default);
   border-radius: var(--button-radius-default);
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-medium);
   white-space: nowrap;
   cursor: pointer;
