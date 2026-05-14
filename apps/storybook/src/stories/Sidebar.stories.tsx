@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { initSidebarAnimation } from '../../../../packages/animations/src/sidebar';
 import {
   SidebarProvider,
   Sidebar,
@@ -49,17 +47,6 @@ const IconUser = () => (
   </svg>
 );
 
-const SidebarAnimationScope = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      initSidebarAnimation({ scope: ref.current ?? undefined });
-    });
-    return () => cancelAnimationFrame(id);
-  }, []);
-  return <div ref={ref}>{children}</div>;
-};
-
 const meta: Meta<typeof Sidebar> = {
   title: 'Molecules/Sidebar',
   component: Sidebar,
@@ -70,14 +57,12 @@ const meta: Meta<typeof Sidebar> = {
   },
   decorators: [
     (Story) => (
-      <SidebarAnimationScope>
-        <div style={{ height: 500, display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, overflow: 'hidden' }}>
-          <Story />
-          <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
-            <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
-          </div>
+      <div style={{ height: 500, display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, overflow: 'hidden' }}>
+        <Story />
+        <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
+          <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
         </div>
-      </SidebarAnimationScope>
+      </div>
     ),
   ],
 };
