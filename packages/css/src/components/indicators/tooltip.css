@@ -1,0 +1,174 @@
+/* -------------------------------------------------------------------------
+   Tooltip (CSS Only)
+
+   Small text hint on hover. Attach to any element.
+   Direction: top (default), bottom, left, right
+   Theme: dark (default), light
+
+   Usage: wrap trigger in [data-tooltip] with content as attribute value.
+   <button data-tooltip="Save changes" data-tooltip-dir="top">Save</button>
+   ------------------------------------------------------------------------- */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1),
+    transform 0.25s cubic-bezier(0.625, 0.05, 0, 1);
+  z-index: var(--z-index-70, 70);
+}
+
+/* Text bubble */
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+/* Arrow */
+[data-tooltip]::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+}
+
+/* ---- Dark theme (default) ---- */
+
+[data-tooltip]::before {
+  background-color: var(--color-zinc-900);
+  color: var(--color-zinc-50);
+}
+
+[data-tooltip]::after {
+  background-color: var(--color-zinc-900);
+}
+
+/* ---- Light theme ---- */
+
+[data-tooltip-theme="light"]::before {
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-tooltip-theme="light"]::after {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+}
+
+/* ---- Show on hover ---- */
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---- Top (default) ---- */
+
+[data-tooltip]::before,
+[data-tooltip-dir="top"]::before {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip-dir="top"]:hover::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-tooltip]::after,
+[data-tooltip-dir="top"]::after {
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ---- Bottom ---- */
+
+[data-tooltip-dir="bottom"]::before {
+  bottom: auto;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+[data-tooltip-dir="bottom"]:hover::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-tooltip-dir="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%) rotate(225deg);
+}
+
+/* ---- Left ---- */
+
+[data-tooltip-dir="left"]::before {
+  bottom: auto;
+  top: 50%;
+  right: calc(100% + 8px);
+  left: auto;
+  transform: translateY(-50%) translateX(4px);
+}
+
+[data-tooltip-dir="left"]:hover::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-tooltip-dir="left"]::after {
+  bottom: auto;
+  top: 50%;
+  right: calc(100% + 5px);
+  left: auto;
+  transform: translateY(-50%) rotate(315deg);
+}
+
+/* ---- Right ---- */
+
+[data-tooltip-dir="right"]::before {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-4px);
+}
+
+[data-tooltip-dir="right"]:hover::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-tooltip-dir="right"]::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 5px);
+  transform: translateY(-50%) rotate(135deg);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-tooltip]::before,
+  [data-tooltip]::after {
+    transition-duration: 0ms;
+  }
+}

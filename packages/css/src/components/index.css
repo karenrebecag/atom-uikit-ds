@@ -13,6 +13,7 @@
 @import './indicators/chip.css';
 @import './indicators/tag.css';
 @import './indicators/avatar.css';
+@import './indicators/tooltip.css';
 @import './layout/divider.css';
 @import './molecules/user-profile.css';
 @import './sidebar/sidebar.css';
