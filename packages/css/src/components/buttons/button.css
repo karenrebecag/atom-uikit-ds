@@ -218,6 +218,69 @@
   align-items: center;
 }
 
+/* ---- Animated text swap (opt-in via data-button-animate) ---- */
+
+.button__label-inner {
+  display: grid;
+}
+
+.button__text {
+  grid-area: 1 / 1;
+  will-change: transform;
+}
+
+.button__text.is--default .button__split-char {
+  transition:
+    translate 0.82s var(--easing-out, cubic-bezier(0, 0, 0.2, 1)),
+    scale 0.82s var(--easing-out, cubic-bezier(0, 0, 0.2, 1)),
+    opacity 0.15s ease-out,
+    filter 0.15s ease-out;
+}
+
+.button__text.is--hover .button__split-char {
+  opacity: 0;
+  filter: blur(0.2em);
+  translate: -1em 0 0;
+  scale: 0.5;
+  transition:
+    translate 0.45s var(--easing-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
+    scale 0.45s var(--easing-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
+    opacity 0.15s 0.05s ease-out,
+    filter 0.15s 0.05s ease-out;
+}
+
+.button__split-char {
+  will-change: filter;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:is(:hover, :focus-visible) .button__text.is--default .button__split-char,
+  [data-hover]:is(:hover, :focus-visible) .button .button__text.is--default .button__split-char {
+    opacity: 0;
+    filter: blur(5px);
+    translate: 0.5em 0 0;
+    scale: 0.5;
+    transition:
+      translate 0.45s calc((var(--char) - 1) * 0.018s) var(--easing-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
+      scale 0.45s calc((var(--char) - 1) * 0.018s) var(--easing-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
+      opacity 0.15s calc((var(--char) - 1) * 0.018s + 0.05s) ease-out,
+      filter 0.15s calc((var(--char) - 1) * 0.018s + 0.05s) ease-out;
+  }
+
+  .button:is(:hover, :focus-visible) .button__text.is--hover .button__split-char,
+  [data-hover]:is(:hover, :focus-visible) .button .button__text.is--hover .button__split-char {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0 0;
+    scale: 1;
+    transition:
+      translate 0.82s calc((var(--char) - 1) * 0.018s + 0.05s) var(--easing-out, cubic-bezier(0, 0, 0.2, 1)),
+      scale 0.82s calc((var(--char) - 1) * 0.018s + 0.05s) var(--easing-out, cubic-bezier(0, 0, 0.2, 1)),
+      opacity 0.15s calc((var(--char) - 1) * 0.018s + 0.05s) ease-out,
+      filter 0.15s calc((var(--char) - 1) * 0.018s + 0.05s) ease-out;
+  }
+}
+
 .button__spinner {
   display: none;
 }

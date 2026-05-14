@@ -76,21 +76,22 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       ? { 'data-button-animate': '' }
       : {};
 
+    const label = animated ? (
+      <span className="button__label">
+        <span className="button__label-inner">
+          <span className="button__text is--default" data-button-text="">{children}</span>
+          <span className="button__text is--hover" data-button-text="" aria-hidden="true">{children}</span>
+        </span>
+      </span>
+    ) : (
+      <span className="button__label">{children}</span>
+    );
+
     const content = (
       <>
-        {iconLeft && (
-          <span className="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
-            {iconLeft}
-          </span>
-        )}
-        <span className="button__label" {...(animated ? { 'data-button-text': '' } : {})}>
-          {children}
-        </span>
-        {iconRight && (
-          <span className="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
-            {iconRight}
-          </span>
-        )}
+        {iconLeft && <span className="button__icon">{iconLeft}</span>}
+        {label}
+        {iconRight && <span className="button__icon">{iconRight}</span>}
         {loading && (
           <span className="button__spinner">
             <Spinner />

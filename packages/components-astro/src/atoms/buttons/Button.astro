@@ -43,15 +43,28 @@ const animateAttrs = animated
 
 <Tag class={classes} {...attrs} {...animateAttrs} {...rest}>
   {Astro.slots.has('icon-left') && (
-    <span class="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
+    <span class="button__icon">
       <slot name="icon-left" />
     </span>
   )}
-  <span class="button__label" {...(animated ? { 'data-button-text': '' } : {})}>
-    <slot />
-  </span>
+  {animated ? (
+    <span class="button__label">
+      <span class="button__label-inner">
+        <span class="button__text is--default" data-button-text>
+          <slot />
+        </span>
+        <span class="button__text is--hover" data-button-text aria-hidden="true">
+          <slot />
+        </span>
+      </span>
+    </span>
+  ) : (
+    <span class="button__label">
+      <slot />
+    </span>
+  )}
   {Astro.slots.has('icon-right') && (
-    <span class="button__icon" {...(animated ? { 'data-button-icon': '' } : {})}>
+    <span class="button__icon">
       <slot name="icon-right" />
     </span>
   )}
