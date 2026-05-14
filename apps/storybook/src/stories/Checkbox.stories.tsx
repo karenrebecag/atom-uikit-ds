@@ -12,11 +12,11 @@ const meta: Meta<typeof Checkbox> = {
     },
     disabled: {
       control: 'boolean',
-      name: 'Disabled',
+      name: 'State: Disabled',
     },
     error: {
       control: 'boolean',
-      name: 'Error',
+      name: 'State: Error',
     },
     label: { table: { disable: true } },
     className: { table: { disable: true } },
@@ -42,14 +42,36 @@ export const AllStates: Story = {
     error: { table: { disable: true } },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <Checkbox label="Enabled" />
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, auto)', gap: '16px 32px', alignItems: 'center' }}>
+      {/* Row headers */}
+      <strong style={{ fontSize: 11, color: '#71717b' }}>State</strong>
+      <strong style={{ fontSize: 11, color: '#71717b' }}>Checked: false</strong>
+      <strong style={{ fontSize: 11, color: '#71717b' }}>Checked: true</strong>
+
+      {/* Enabled */}
+      <span style={{ fontSize: 12 }}>Enabled</span>
+      <Checkbox label="Unchecked" />
       <Checkbox checked label="Checked" />
+
+      {/* Enabled + Indeterminate */}
+      <span style={{ fontSize: 12 }}>Indeterminate</span>
+      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
       <Checkbox checked="indeterminate" label="Indeterminate" />
+
+      {/* Disabled */}
+      <span style={{ fontSize: 12 }}>Disabled</span>
       <Checkbox disabled label="Disabled" />
-      <Checkbox disabled checked label="Disabled Checked" />
-      <Checkbox disabled checked="indeterminate" label="Disabled Indeterminate" />
+      <Checkbox disabled checked label="Disabled checked" />
+
+      {/* Disabled + Indeterminate */}
+      <span style={{ fontSize: 12 }}>Disabled indeterminate</span>
+      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
+      <Checkbox disabled checked="indeterminate" label="Disabled indeterminate" />
+
+      {/* Error */}
+      <span style={{ fontSize: 12 }}>Error</span>
       <Checkbox error label="Error" />
+      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
     </div>
   ),
 };
