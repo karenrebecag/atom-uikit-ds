@@ -32,6 +32,12 @@ function isReference(value) {
   return typeof value === 'string' && value.startsWith('{') && value.endsWith('}');
 }
 
+// Composite values (rgba, hsla) are allowed in semantic layer
+// because they combine multiple primitives in a single value
+function isCompositeValue(value) {
+  return typeof value === 'string' && /^(rgba?|hsla?)\(/.test(value);
+}
+
 function validateToken(path, obj, layer) {
   for (const [key, val] of Object.entries(obj)) {
     if (key.startsWith('$')) continue;
@@ -42,7 +48,7 @@ function validateToken(path, obj, layer) {
           console.error(`  ERROR: ${path} > ${key}: primitives must use literal values, not references`);
           errors++;
         }
-        if (layer === 'semantic' && !ref) {
+        if (layer === 'semantic' && !ref && !isCompositeValue(val.$value)) {
           console.error(`  ERROR: ${path} > ${key}: semantic tokens must reference primitives, not literals`);
           errors++;
         }

@@ -133,5 +133,20 @@
     "$type": "color",
     "$value": "{color.zinc.300}",
     "$description": "Focus rings (dark)"
+  },
+  "ring-width": {
+    "$type": "dimension",
+    "$value": "{stroke.medium}",
+    "$description": "Focus ring thickness (dark)"
+  },
+  "ring-offset": {
+    "$type": "dimension",
+    "$value": "{stroke.thin}",
+    "$description": "Gap between element and focus ring (dark)"
+  },
+  "overlay": {
+    "$type": "color",
+    "$value": "rgba(0, 0, 0, 0.7)",
+    "$description": "Modal backdrop, dim layers (dark, heavier)"
   }
 }

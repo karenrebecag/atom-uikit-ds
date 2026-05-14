@@ -197,6 +197,72 @@ Base-4 geometric scale. 13 steps, each visually distinct.
 
 ---
 
+## Shadows
+
+8 steps from invisible to dramatic. Based on Tailwind's shadow scale.
+
+| Token | Usage |
+|-------|-------|
+| `shadow-none` | No shadow |
+| `shadow-2xs` | Barely visible, subtle depth hint |
+| `shadow-xs` | Inputs, small elements |
+| `shadow-sm` | Cards, buttons on hover |
+| `shadow-md` | Dropdowns, hover cards |
+| `shadow-lg` | Popovers, floating panels |
+| `shadow-xl` | Modals, dialogs |
+| `shadow-2xl` | Full-screen overlays, hero elements |
+
+---
+
+## Z-index
+
+8 layers with gaps of 10 for custom intermediate values.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `z-index-0` | 0 | Base layer |
+| `z-index-10` | 10 | Sticky headers, raised elements |
+| `z-index-20` | 20 | Dropdowns, select menus |
+| `z-index-30` | 30 | Fixed navbars, sidebars |
+| `z-index-40` | 40 | Modal backdrops, overlays |
+| `z-index-50` | 50 | Modals, dialogs |
+| `z-index-60` | 60 | Toasts, notifications |
+| `z-index-70` | 70 | Tooltips, popovers (topmost) |
+
+---
+
+## Duration & Easing
+
+### Duration
+
+9 steps covering micro-interactions through long animations.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `duration-0` | 0ms | Instant |
+| `duration-75` | 75ms | Checkbox, toggle |
+| `duration-100` | 100ms | Button press, focus ring |
+| `duration-150` | 150ms | Hover states, tooltips |
+| `duration-200` | 200ms | Default — most UI interactions |
+| `duration-300` | 300ms | Dropdowns, panels |
+| `duration-500` | 500ms | Modals, page elements |
+| `duration-700` | 700ms | Entrance animations, stagger |
+| `duration-1000` | 1000ms | Skeleton shimmer, loaders |
+
+### Easing
+
+5 curves based on Tailwind + Material Design conventions.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `easing-linear` | `linear` | Progress bars |
+| `easing-in` | `cubic-bezier(0.4, 0, 1, 1)` | Elements exiting view |
+| `easing-out` | `cubic-bezier(0, 0, 0.2, 1)` | Elements entering view |
+| `easing-in-out` | `cubic-bezier(0.4, 0, 0.2, 1)` | Default — most transitions |
+| `easing-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Bouncy, playful interactions |
+
+---
+
 ## Typography & Scaling
 
 ### Type Scale: Major Third (1.25)

@@ -1,0 +1,13 @@
+{
+  "shadow": {
+    "$type": "shadow",
+    "none": { "$value": "0 0 #0000", "$description": "No shadow" },
+    "2xs": { "$value": "0 1px rgb(0 0 0 / 0.05)", "$description": "Barely visible, subtle depth hint" },
+    "xs": { "$value": "0 1px 2px 0 rgb(0 0 0 / 0.05)", "$description": "Inputs, small elements" },
+    "sm": { "$value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)", "$description": "Cards, buttons on hover" },
+    "md": { "$value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)", "$description": "Dropdowns, hover cards" },
+    "lg": { "$value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)", "$description": "Popovers, floating panels" },
+    "xl": { "$value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)", "$description": "Modals, dialogs" },
+    "2xl": { "$value": "0 25px 50px -12px rgb(0 0 0 / 0.25)", "$description": "Full-screen overlays, hero elements" }
+  }
+}

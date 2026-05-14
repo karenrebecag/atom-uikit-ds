@@ -1,0 +1,13 @@
+{
+  "z-index": {
+    "$type": "number",
+    "0": { "$value": 0, "$description": "Base layer, default stacking" },
+    "10": { "$value": 10, "$description": "Sticky headers, raised elements" },
+    "20": { "$value": 20, "$description": "Dropdowns, select menus" },
+    "30": { "$value": 30, "$description": "Fixed navbars, sidebars" },
+    "40": { "$value": 40, "$description": "Modal backdrops, overlays" },
+    "50": { "$value": 50, "$description": "Modals, dialogs" },
+    "60": { "$value": 60, "$description": "Toasts, notifications" },
+    "70": { "$value": 70, "$description": "Tooltips, popovers (topmost)" }
+  }
+}

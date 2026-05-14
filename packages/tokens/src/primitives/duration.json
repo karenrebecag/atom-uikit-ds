@@ -1,0 +1,22 @@
+{
+  "duration": {
+    "$type": "duration",
+    "0": { "$value": "0ms", "$description": "Instant, no transition" },
+    "75": { "$value": "75ms", "$description": "Micro-interactions: checkbox, toggle" },
+    "100": { "$value": "100ms", "$description": "Fast feedback: button press, focus ring" },
+    "150": { "$value": "150ms", "$description": "Quick transitions: hover states, tooltips" },
+    "200": { "$value": "200ms", "$description": "Default transition: most UI interactions" },
+    "300": { "$value": "300ms", "$description": "Medium transitions: dropdowns, panels" },
+    "500": { "$value": "500ms", "$description": "Slow transitions: modals, page elements" },
+    "700": { "$value": "700ms", "$description": "Entrance animations: hero, stagger" },
+    "1000": { "$value": "1000ms", "$description": "Long animations: skeleton shimmer, loaders" }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "linear": { "$value": "linear", "$description": "Constant speed, progress bars" },
+    "in": { "$value": "cubic-bezier(0.4, 0, 1, 1)", "$description": "Accelerate — elements exiting view" },
+    "out": { "$value": "cubic-bezier(0, 0, 0.2, 1)", "$description": "Decelerate — elements entering view" },
+    "in-out": { "$value": "cubic-bezier(0.4, 0, 0.2, 1)", "$description": "Default — most transitions" },
+    "spring": { "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)", "$description": "Bouncy overshoot — playful interactions" }
+  }
+}

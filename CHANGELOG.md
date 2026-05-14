@@ -26,6 +26,9 @@ All notable changes to this project will be documented in this file.
 - Removed duplicate color palette from core.json (source of truth is colors.json)
 - Removed theme-components.json and themes/ (will be rebuilt in component layer)
 - Removed breakpoints from tokens layer (CSS concern, not design tokens)
+- Primitives: shadows (8 steps, Tailwind-based), z-index (8 layers), duration (9 steps), easing (5 curves)
+- Semantic: overlay (light 50%, dark 70%), ring-width and ring-offset
+- Validator updated to allow composite values (rgba/hsla) in semantic layer
 - Validator now passes with 0 errors across all layers
 - Removed separate mobile/desktop typography files — fluid scaling system handles responsive
 - core.json: resolved self-references to literal values, removed redundant typography definitions
