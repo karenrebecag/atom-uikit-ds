@@ -116,4 +116,28 @@
 .link-button__label {
   display: inline-flex;
   align-items: center;
+  position: relative;
+}
+
+/* ---- Underline animation ---- */
+
+.link-button__label::before {
+  content: "";
+  position: absolute;
+  bottom: -0.0625em;
+  left: 0;
+  width: 100%;
+  height: 0.0625em;
+  background-color: currentColor;
+  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transform-origin: right;
+  transform: scaleX(0) rotate(0.001deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link-button:hover:not(.link-button--disabled):not(.link-button--loading) .link-button__label::before,
+  [data-hover]:hover .link-button:not(.link-button--disabled):not(.link-button--loading) .link-button__label::before {
+    transform-origin: left;
+    transform: scaleX(1) rotate(0.001deg);
+  }
 }
