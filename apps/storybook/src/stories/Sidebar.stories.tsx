@@ -91,7 +91,7 @@ const meta: Meta<typeof Sidebar> = {
         return cleanup;
       }, []);
       return (
-      <div style={{ height: '100%', minHeight: 600, display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, overflow: 'hidden' }}>
+      <div style={{ height: 'calc(100vh - 80px)', display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8, overflow: 'hidden' }}>
         <Story />
         <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
           <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
@@ -168,23 +168,24 @@ export const Collapsed: Story = {
 };
 
 const IconCode = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M5 4L1.5 8 5 12M11 4l3.5 4L11 12" />
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
   </svg>
 );
 
 const IconPalette = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="8" cy="8" r="6" />
-    <circle cx="6" cy="6" r="1" fill="currentColor" />
-    <circle cx="10" cy="6" r="1" fill="currentColor" />
-    <circle cx="6" cy="10" r="1" fill="currentColor" />
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="9" cy="9" r="1.5" stroke="none" fill="currentColor" />
+    <circle cx="15" cy="9" r="1.5" stroke="none" fill="currentColor" />
+    <circle cx="9" cy="15" r="1.5" stroke="none" fill="currentColor" />
   </svg>
 );
 
 const IconBook = () => (
-  <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 3h4.5a2 2 0 012 2v8.5a1.5 1.5 0 00-1.5-1.5H2V3zM14 3H9.5a2 2 0 00-2 2v8.5A1.5 1.5 0 019 12h5V3z" />
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
   </svg>
 );
 
@@ -218,7 +219,8 @@ export const WithCollapsible: Story = {
           </SidebarGroup>
           <SidebarDivider />
           <SidebarGroup label="Settings">
-            <SidebarItem icon={<IconSettings />} label="Preferences" href="#" />
+            <SidebarItem icon={<IconHelpCircle />} label="Help" href="#" />
+            <SidebarItem icon={<IconSettings />} label="Settings" href="#" />
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
