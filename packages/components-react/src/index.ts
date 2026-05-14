@@ -11,3 +11,4 @@ export { Field, type FieldProps } from './atoms/Field';
 export { SearchInput, type SearchInputProps } from './atoms/SearchInput';
 export { Chip, type ChipProps } from './atoms/Chip';
 export { Tag, type TagProps } from './atoms/Tag';
+export { Divider, type DividerProps } from './atoms/Divider';

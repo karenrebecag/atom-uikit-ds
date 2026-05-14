@@ -1,0 +1,27 @@
+/* -------------------------------------------------------------------------
+   Divider
+
+   Horizontal or vertical separator line.
+   Figma: atom-horizontal-divider. We add vertical variant.
+
+   Orientation: horizontal (default), vertical
+   ------------------------------------------------------------------------- */
+
+.divider {
+  border: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.divider--horizontal {
+  width: 100%;
+  height: 0;
+  border-top: 1px solid var(--color-zinc-200);
+}
+
+.divider--vertical {
+  height: 100%;
+  width: 0;
+  border-left: 1px solid var(--color-zinc-200);
+  align-self: stretch;
+}
