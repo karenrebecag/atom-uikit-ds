@@ -160,19 +160,17 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
-  padding: 0;
+  width: 1.125em;
+  height: 1.125em;
+  padding: 0.125em;
   border: none;
-  background: none;
+  background-color: rgba(0, 0, 0, 0.06);
   color: inherit;
   cursor: pointer;
   border-radius: 9999px;
-  transition: opacity 0.15s ease;
-}
-
-.chip__close:hover {
-  opacity: 0.7;
+  transition:
+    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .chip__close svg {
@@ -180,7 +178,27 @@
   height: 100%;
 }
 
+.chip__close:active {
+  scale: 0.9;
+}
+
+.chip--error .chip__close {
+  background-color: rgba(193, 0, 8, 0.1);
+}
+
 .chip--disabled .chip__close {
   cursor: not-allowed;
   pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .chip__close:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+    scale: 1.06 1.095;
+  }
+
+  .chip--error .chip__close:hover {
+    background-color: rgba(193, 0, 8, 0.18);
+  }
 }
