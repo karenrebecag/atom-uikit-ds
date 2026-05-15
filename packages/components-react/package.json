@@ -1,6 +1,6 @@
 {
   "name": "@atom-uikit/components-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "React components for the ATOM UIKit design system",
   "license": "MIT",
@@ -22,7 +22,8 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "src/"
   ],
   "scripts": {
     "build": "tsup",
