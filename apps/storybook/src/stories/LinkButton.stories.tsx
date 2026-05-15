@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LinkButton } from '../../../../packages/components-react/src/atoms/LinkButton';
 
 const meta: Meta<typeof LinkButton> = {
-  title: 'Atoms/LinkButton',
+  title: 'Atoms/Buttons/LinkButton',
   component: LinkButton,
   argTypes: {
     size: {

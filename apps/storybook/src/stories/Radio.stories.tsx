@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Radio } from '../../../../packages/components-react/src/atoms/Radio';
 
 const meta: Meta<typeof Radio> = {
-  title: 'Atoms/Radio',
+  title: 'Atoms/Forms/Radio',
   component: Radio,
   argTypes: {
     checked: {

@@ -61,7 +61,7 @@ const typeIcons: Record<string, { left?: React.ReactNode; right?: React.ReactNod
 };
 
 const meta: Meta<typeof Input> = {
-  title: 'Atoms/Input',
+  title: 'Atoms/Forms/Input',
   component: Input,
   decorators: [
     (Story) => (

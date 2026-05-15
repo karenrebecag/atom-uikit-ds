@@ -4,7 +4,7 @@ import { Avatar } from '../../../../packages/components-react/src/atoms/Avatar';
 const sampleImg = 'https://i.pravatar.cc/150?img=12';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Atoms/Avatar',
+  title: 'Atoms/Indicators/Avatar',
   component: Avatar,
   argTypes: {
     type: {

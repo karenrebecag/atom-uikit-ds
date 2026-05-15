@@ -1,0 +1,82 @@
+/* -------------------------------------------------------------------------
+   Accordion
+
+   Collapsible content sections. Single or multiple open.
+   Inspired by shadcn/Radix accordion.
+
+   Parts: .accordion, .accordion__item, .accordion__trigger, .accordion__content
+   ------------------------------------------------------------------------- */
+
+.accordion {
+  width: 100%;
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  background: none;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  color: var(--foreground);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.accordion__trigger:hover {
+  text-decoration: underline;
+}
+
+.accordion__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--muted-foreground);
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.accordion__chevron svg {
+  width: 100%;
+  height: 100%;
+}
+
+.accordion__item--open .accordion__chevron {
+  transform: rotate(180deg);
+}
+
+/* Content: animated height via grid */
+.accordion__content-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.accordion__item--open .accordion__content-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.accordion__content {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.accordion__content-inner {
+  padding-bottom: 16px;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}

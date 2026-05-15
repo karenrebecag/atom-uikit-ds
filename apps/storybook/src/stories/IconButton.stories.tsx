@@ -16,7 +16,7 @@ const IconArrow = () => (
 );
 
 const meta: Meta<typeof IconButton> = {
-  title: 'Atoms/IconButton',
+  title: 'Atoms/Buttons/IconButton',
   component: IconButton,
   argTypes: {
     variant: {

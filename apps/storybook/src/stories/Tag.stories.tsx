@@ -10,7 +10,7 @@ const IconStar = () => (
 const intents = ['success', 'warning', 'danger', 'info', 'neutral', 'brand', 'ai', 'disabled'] as const;
 
 const meta: Meta<typeof Tag> = {
-  title: 'Atoms/Tag',
+  title: 'Atoms/Indicators/Tag',
   component: Tag,
   argTypes: {
     variant: {

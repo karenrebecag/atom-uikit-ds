@@ -27,7 +27,7 @@ const FilledSearch = () => {
 };
 
 const meta: Meta<typeof SearchInput> = {
-  title: 'Atoms/SearchInput',
+  title: 'Atoms/Forms/SearchInput',
   component: SearchInput,
   decorators: [
     (Story) => (

@@ -8,7 +8,7 @@ const IconFilter = () => (
 );
 
 const meta: Meta<typeof Chip> = {
-  title: 'Atoms/Chip',
+  title: 'Atoms/Indicators/Chip',
   component: Chip,
   argTypes: {
     type: {

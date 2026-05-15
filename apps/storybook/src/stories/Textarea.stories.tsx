@@ -3,7 +3,7 @@ import { Textarea } from '../../../../packages/components-react/src/atoms/Textar
 import { Field } from '../../../../packages/components-react/src/atoms/Field';
 
 const meta: Meta<typeof Textarea> = {
-  title: 'Atoms/Textarea',
+  title: 'Atoms/Forms/Textarea',
   component: Textarea,
   decorators: [
     (Story) => (

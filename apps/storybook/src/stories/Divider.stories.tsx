@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Divider } from '../../../../packages/components-react/src/atoms/Divider';
 
 const meta: Meta<typeof Divider> = {
-  title: 'Atoms/Divider',
+  title: 'Atoms/Layout/Divider',
   component: Divider,
   argTypes: {
     orientation: {

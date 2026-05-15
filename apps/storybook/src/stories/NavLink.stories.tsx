@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { NavLink } from '../../../../packages/components-react/src/atoms/NavLink';
 
 const meta: Meta<typeof NavLink> = {
-  title: 'Atoms/NavLink',
+  title: 'Atoms/Navigation/NavLink',
   component: NavLink,
   argTypes: {
     size: {

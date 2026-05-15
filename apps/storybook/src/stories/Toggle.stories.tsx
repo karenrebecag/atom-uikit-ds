@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
 
 const meta: Meta<typeof Toggle> = {
-  title: 'Atoms/Toggle',
+  title: 'Atoms/Forms/Toggle',
   component: Toggle,
   argTypes: {
     checked: {

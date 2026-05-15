@@ -15,5 +15,6 @@
 @import './indicators/avatar.css';
 @import './indicators/tooltip.css';
 @import './layout/divider.css';
+@import './layout/accordion.css';
 @import './molecules/user-profile.css';
 @import './sidebar/sidebar.css';

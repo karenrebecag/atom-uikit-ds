@@ -32,7 +32,7 @@ const AnimationScope = ({ children }: { children: React.ReactNode }) => {
 };
 
 const meta: Meta<typeof Button> = {
-  title: 'Atoms/Button',
+  title: 'Atoms/Buttons/Button',
   component: Button,
   decorators: [
     (Story, context) => {

@@ -16,7 +16,7 @@ const IconTrash = () => (
 );
 
 const meta: Meta = {
-  title: 'Atoms/Tooltip',
+  title: 'Atoms/Indicators/Tooltip',
   argTypes: {},
   decorators: [
     (Story) => (

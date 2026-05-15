@@ -13,6 +13,7 @@ export { Chip, type ChipProps } from './atoms/Chip';
 export { Tag, type TagProps } from './atoms/Tag';
 export { Divider, type DividerProps } from './atoms/Divider';
 export { Avatar, type AvatarProps } from './atoms/Avatar';
+export { Accordion, AccordionItem, type AccordionProps, type AccordionItemProps } from './atoms/Accordion';
 export {
   SidebarProvider, useSidebar,
   Sidebar, type SidebarProps,
