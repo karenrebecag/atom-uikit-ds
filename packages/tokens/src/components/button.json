@@ -29,21 +29,21 @@
     },
     "hover-bg": {
       "$type": "color",
-      "primary": { "$value": "{color.zinc.800}" },
-      "secondary": { "$value": "{accent}" },
-      "tertiary": { "$value": "{accent}" },
-      "destructive-primary": { "$value": "{color.red.600}" },
-      "destructive-secondary": { "$value": "{color.red.50}" },
-      "destructive-tertiary": { "$value": "{color.red.50}" }
+      "primary": { "$value": "{secondary}", "$description": "Slightly lighter than primary" },
+      "secondary": { "$value": "{accent}", "$description": "Subtle highlight" },
+      "tertiary": { "$value": "{accent}", "$description": "Subtle highlight" },
+      "destructive-primary": { "$value": "{color.red.600}", "$description": "Darker red" },
+      "destructive-secondary": { "$value": "{accent}", "$description": "Subtle highlight" },
+      "destructive-tertiary": { "$value": "{accent}", "$description": "Subtle highlight" }
     },
     "pressed-bg": {
       "$type": "color",
-      "primary": { "$value": "{color.zinc.900}" },
-      "secondary": { "$value": "{color.zinc.100}" },
-      "tertiary": { "$value": "{color.zinc.100}" },
-      "destructive-primary": { "$value": "{color.red.700}" },
-      "destructive-secondary": { "$value": "{color.red.100}" },
-      "destructive-tertiary": { "$value": "{color.red.100}" }
+      "primary": { "$value": "{muted}", "$description": "Pressed feedback" },
+      "secondary": { "$value": "{muted}", "$description": "Pressed feedback" },
+      "tertiary": { "$value": "{muted}", "$description": "Pressed feedback" },
+      "destructive-primary": { "$value": "{color.red.700}", "$description": "Darkest red" },
+      "destructive-secondary": { "$value": "{muted}", "$description": "Pressed feedback" },
+      "destructive-tertiary": { "$value": "{muted}", "$description": "Pressed feedback" }
     },
     "disabled-fg": {
       "$type": "color",
