@@ -1,6 +1,6 @@
 {
   "name": "@atom-uikit/animations",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "GSAP animation modules for the ATOM UIKit design system",
   "license": "MIT",
@@ -17,7 +17,9 @@
       "import": "./dist/*.js"
     }
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

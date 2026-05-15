@@ -1,0 +1,88 @@
+/* -------------------------------------------------------------------------
+   Slider
+
+   Range input. Drag thumb along track to select value.
+   Supports single value and range (two thumbs).
+
+   Parts: .slider, .slider__track, .slider__range, .slider__thumb
+   ------------------------------------------------------------------------- */
+
+/* ---- Root ---- */
+
+.slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  touch-action: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* ---- Track ---- */
+
+.slider__track {
+  position: relative;
+  width: 100%;
+  height: var(--spacing-2, 8px);
+  border-radius: var(--radius-full);
+  background-color: var(--muted);
+  overflow: hidden;
+}
+
+/* ---- Range (filled portion) ---- */
+
+.slider__range {
+  position: absolute;
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+/* ---- Thumb ---- */
+
+.slider__thumb {
+  position: absolute;
+  top: 50%;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
+  border-radius: var(--radius-full);
+  border: var(--stroke-medium) solid var(--primary);
+  background-color: var(--background);
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  transition:
+    box-shadow var(--duration-150) var(--easing-in-out),
+    scale var(--duration-150) var(--easing-in-out);
+}
+
+.slider__thumb:hover {
+  box-shadow: 0 0 0 var(--spacing-2, 8px) rgba(0, 0, 0, 0.04);
+}
+
+.slider__thumb:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.slider__thumb:active,
+.slider__thumb--dragging {
+  cursor: grabbing;
+  scale: 1.1;
+}
+
+/* ---- Disabled ---- */
+
+.slider--disabled {
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .slider__thumb {
+    transition-duration: 0ms;
+  }
+}

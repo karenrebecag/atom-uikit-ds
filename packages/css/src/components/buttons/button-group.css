@@ -1,0 +1,99 @@
+/* -------------------------------------------------------------------------
+   Button Group
+
+   Joins adjacent buttons into a cohesive unit.
+   Removes inner radius, collapses inner borders.
+
+   Orientation: horizontal (default), vertical
+   Parts: .button-group, .button-group__separator, .button-group__text
+   ------------------------------------------------------------------------- */
+
+/* ---- Container ---- */
+
+.button-group {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.button-group--vertical {
+  flex-direction: column;
+}
+
+/* ---- Horizontal: radius + border collapse ---- */
+
+.button-group:not(.button-group--vertical) > .button,
+.button-group:not(.button-group--vertical) > .icon-button {
+  border-radius: 0;
+}
+
+.button-group:not(.button-group--vertical) > .button:first-child,
+.button-group:not(.button-group--vertical) > .icon-button:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.button-group:not(.button-group--vertical) > .button:last-child,
+.button-group:not(.button-group--vertical) > .icon-button:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.button-group:not(.button-group--vertical) > .button + .button,
+.button-group:not(.button-group--vertical) > .icon-button + .icon-button,
+.button-group:not(.button-group--vertical) > .button + .icon-button,
+.button-group:not(.button-group--vertical) > .icon-button + .button {
+  margin-left: calc(-1 * var(--stroke-hairline));
+}
+
+/* ---- Vertical: radius + border collapse ---- */
+
+.button-group--vertical > .button,
+.button-group--vertical > .icon-button {
+  border-radius: 0;
+  width: 100%;
+}
+
+.button-group--vertical > .button:first-child,
+.button-group--vertical > .icon-button:first-child {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.button-group--vertical > .button:last-child,
+.button-group--vertical > .icon-button:last-child {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.button-group--vertical > .button + .button,
+.button-group--vertical > .icon-button + .icon-button,
+.button-group--vertical > .button + .icon-button,
+.button-group--vertical > .icon-button + .button {
+  margin-top: calc(-1 * var(--stroke-hairline));
+}
+
+/* ---- Separator ---- */
+
+.button-group__separator {
+  align-self: stretch;
+  background-color: var(--border);
+}
+
+.button-group:not(.button-group--vertical) > .button-group__separator {
+  width: var(--stroke-hairline);
+}
+
+.button-group--vertical > .button-group__separator {
+  height: var(--stroke-hairline);
+}
+
+/* ---- Text ---- */
+
+.button-group__text {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--spacing-3, 12px);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  border: var(--stroke-hairline) solid var(--border);
+  background-color: var(--muted);
+}

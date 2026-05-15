@@ -1,0 +1,154 @@
+/* -------------------------------------------------------------------------
+   Dialog
+
+   Modal window with overlay. Focus-trapped, scroll-locked.
+   Composable: Dialog > Trigger + Content > Header + Footer
+
+   Parts: .dialog__overlay, .dialog__content, .dialog__header,
+          .dialog__title, .dialog__description, .dialog__footer,
+          .dialog__close
+   ------------------------------------------------------------------------- */
+
+/* ---- Overlay ---- */
+
+.dialog__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-40);
+  background-color: var(--overlay);
+  animation: dialog-overlay-in var(--duration-200) var(--easing-out);
+}
+
+.dialog__overlay--exiting {
+  animation: dialog-overlay-out var(--duration-200) var(--easing-in) forwards;
+}
+
+@keyframes dialog-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dialog-overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ---- Content ---- */
+
+.dialog__content {
+  position: fixed;
+  z-index: var(--z-index-50);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - var(--spacing-8, 32px));
+  max-width: 512px;
+  max-height: calc(100vh - var(--spacing-8, 32px));
+  display: flex;
+  flex-direction: column;
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: var(--radius-xl);
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-xl);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  animation: dialog-content-in var(--duration-300) var(--easing-out);
+}
+
+.dialog__content--exiting {
+  animation: dialog-content-out var(--duration-200) var(--easing-in) forwards;
+}
+
+@keyframes dialog-content-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes dialog-content-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+/* ---- Header ---- */
+
+.dialog__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-6, 24px);
+  padding-bottom: 0;
+}
+
+/* ---- Title ---- */
+
+.dialog__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-lg);
+  color: var(--foreground);
+  margin: 0;
+}
+
+/* ---- Description ---- */
+
+.dialog__description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ---- Body (scrollable) ---- */
+
+.dialog__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-6, 24px);
+}
+
+/* ---- Footer ---- */
+
+.dialog__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-6, 24px);
+  padding-top: 0;
+}
+
+.dialog__footer--sticky {
+  border-top: var(--stroke-hairline) solid var(--border);
+  padding-top: var(--spacing-6, 24px);
+}
+
+/* ---- Close button ---- */
+
+.dialog__close {
+  position: absolute;
+  top: var(--spacing-4, 16px);
+  right: var(--spacing-4, 16px);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog__overlay,
+  .dialog__overlay--exiting,
+  .dialog__content,
+  .dialog__content--exiting {
+    animation-duration: 0ms;
+  }
+}

@@ -114,9 +114,66 @@ body {
   text-transform: uppercase;
 }
 
+/* --- Semantic variants --- */
+
+.lead {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  color: var(--muted-foreground);
+}
+
+.large {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.small {
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  font-weight: var(--font-weight-medium);
+}
+
+.muted {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+}
+
+/* --- Blockquote --- */
+
+.blockquote {
+  border-left: var(--stroke-medium) solid var(--border);
+  padding-left: var(--spacing-6, 24px);
+  font-style: italic;
+  color: var(--foreground);
+}
+
+/* --- List --- */
+
+.list {
+  list-style-type: disc;
+  margin-left: var(--spacing-6, 24px);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.list > li + li {
+  margin-top: var(--spacing-2, 8px);
+}
+
 /* --- Code --- */
 
 .code {
   font-family: var(--font-family-mono), ui-monospace, monospace;
   font-size: 0.875em;
+}
+
+.code-inline {
+  font-family: var(--font-family-mono), ui-monospace, monospace;
+  font-size: 0.875em;
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--muted);
+  border-radius: var(--radius-sm);
+  padding: 0.2em 0.4em;
 }

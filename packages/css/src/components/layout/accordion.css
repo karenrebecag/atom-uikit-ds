@@ -85,7 +85,7 @@
   padding-bottom: var(--spacing-4, 16px);
   font-family: inherit;
   font-size: var(--font-size-sm);
-  line-height: 1.6;
+  line-height: var(--line-height-sm);
   color: var(--muted-foreground);
 }
 

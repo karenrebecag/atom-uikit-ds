@@ -1,0 +1,155 @@
+/* -------------------------------------------------------------------------
+   Drawer
+
+   Touch-dismissible panel. Extends Sheet with drag gesture.
+   Swipe to dismiss. Visual drag indicator.
+
+   Directions: bottom (default), top, left, right
+   Parts: .drawer, .drawer__handle, .drawer__header, .drawer__title,
+          .drawer__description, .drawer__body, .drawer__footer
+   ------------------------------------------------------------------------- */
+
+/* ---- Content ---- */
+
+.drawer {
+  position: fixed;
+  z-index: var(--z-index-50);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-xl);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  touch-action: none;
+}
+
+/* ---- Directions ---- */
+
+.drawer--bottom {
+  bottom: 0; left: 0; right: 0;
+  max-height: 85vh;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  animation: drawer-bottom-in var(--duration-300) var(--easing-out);
+}
+.drawer--bottom.drawer--exiting {
+  animation: drawer-bottom-out var(--duration-200) var(--easing-in) forwards;
+}
+
+.drawer--top {
+  top: 0; left: 0; right: 0;
+  max-height: 85vh;
+  border-bottom-left-radius: var(--radius-xl);
+  border-bottom-right-radius: var(--radius-xl);
+  animation: drawer-top-in var(--duration-300) var(--easing-out);
+}
+.drawer--top.drawer--exiting {
+  animation: drawer-top-out var(--duration-200) var(--easing-in) forwards;
+}
+
+.drawer--left {
+  top: 0; left: 0; bottom: 0;
+  max-width: 400px;
+  width: 100%;
+  animation: sheet-left-in var(--duration-300) var(--easing-out);
+}
+.drawer--left.drawer--exiting {
+  animation: sheet-left-out var(--duration-200) var(--easing-in) forwards;
+}
+
+.drawer--right {
+  top: 0; right: 0; bottom: 0;
+  max-width: 400px;
+  width: 100%;
+  animation: sheet-right-in var(--duration-300) var(--easing-out);
+}
+.drawer--right.drawer--exiting {
+  animation: sheet-right-out var(--duration-200) var(--easing-in) forwards;
+}
+
+/* Slide animations for top/bottom */
+@keyframes drawer-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes drawer-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }
+@keyframes drawer-top-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes drawer-top-out { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+
+/* ---- Drag handle ---- */
+
+.drawer__handle {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-3, 12px) 0 var(--spacing-1, 4px);
+  cursor: grab;
+}
+
+.drawer__handle::after {
+  content: "";
+  width: var(--spacing-10, 40px);
+  height: var(--spacing-1, 4px);
+  border-radius: var(--radius-full);
+  background-color: var(--muted-foreground);
+  opacity: var(--opacity-30);
+}
+
+.drawer__handle:active {
+  cursor: grabbing;
+}
+
+/* ---- Drag state ---- */
+
+.drawer--dragging {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ---- Header ---- */
+
+.drawer__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-4, 16px) var(--spacing-6, 24px);
+  text-align: center;
+}
+
+.drawer__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-lg);
+  color: var(--foreground);
+  margin: 0;
+}
+
+.drawer__description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ---- Body ---- */
+
+.drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 var(--spacing-6, 24px);
+}
+
+/* ---- Footer ---- */
+
+.drawer__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-6, 24px);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .drawer--exiting {
+    animation-duration: 0ms;
+  }
+}

@@ -1,0 +1,170 @@
+/* -------------------------------------------------------------------------
+   Toggle Group
+
+   Selectable button group. Single or multiple selection.
+   Extends button-group layout with active state.
+
+   Variants: default (ghost bg), outline (border)
+   Sizes:    xs, s, m, l
+   Parts:    .toggle-group, .toggle-group__item
+   ------------------------------------------------------------------------- */
+
+/* ---- Container ---- */
+
+.toggle-group {
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--spacing-1, 4px);
+  border-radius: var(--radius-md);
+}
+
+.toggle-group--vertical {
+  flex-direction: column;
+}
+
+.toggle-group--outline {
+  gap: 0;
+}
+
+/* ---- Item ---- */
+
+.toggle-group__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 8px);
+  border: none;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--muted-foreground);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-150) var(--easing-in-out),
+    color var(--duration-150) var(--easing-in-out);
+}
+
+.toggle-group__item:hover {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.toggle-group__item:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+
+/* Active */
+
+.toggle-group__item--active {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Disabled */
+
+.toggle-group__item--disabled {
+  color: var(--muted-foreground);
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Icon ---- */
+
+.toggle-group__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.toggle-group__item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Sizes ---- */
+
+.toggle-group__item--xs { height: 28px; padding: 0 var(--spacing-2, 8px); }
+.toggle-group__item--s  { height: 32px; padding: 0 var(--spacing-3, 12px); }
+.toggle-group__item--m  { height: var(--spacing-10, 40px); padding: 0 var(--spacing-3, 12px); }
+.toggle-group__item--l  { height: var(--spacing-12, 48px); padding: 0 var(--spacing-4, 16px); }
+
+/* Icon-only (square) */
+.toggle-group__item--icon-only.toggle-group__item--xs { width: 28px; padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--s  { width: 32px; padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--m  { width: var(--spacing-10, 40px); padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--l  { width: var(--spacing-12, 48px); padding: 0; }
+
+/* ---- Outline variant ---- */
+
+.toggle-group--outline .toggle-group__item {
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: 0;
+}
+
+.toggle-group--outline:not(.toggle-group--vertical) .toggle-group__item + .toggle-group__item {
+  margin-left: calc(-1 * var(--stroke-hairline));
+}
+
+.toggle-group--outline:not(.toggle-group--vertical) .toggle-group__item:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.toggle-group--outline:not(.toggle-group--vertical) .toggle-group__item:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.toggle-group--outline.toggle-group--vertical .toggle-group__item + .toggle-group__item {
+  margin-top: calc(-1 * var(--stroke-hairline));
+}
+
+.toggle-group--outline.toggle-group--vertical .toggle-group__item:first-child {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.toggle-group--outline.toggle-group--vertical .toggle-group__item:last-child {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+/* ---- Animation (opt-in) ---- */
+
+.toggle-group__item-icon {
+  transition: rotate var(--duration-500) cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .toggle-group[data-animate] .toggle-group__item:hover:not(.toggle-group__item--disabled) {
+    scale: 1.095;
+  }
+
+  .toggle-group[data-animate] .toggle-group__item:hover:not(.toggle-group__item--disabled) .toggle-group__item-icon {
+    rotate: 360deg;
+    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+.toggle-group__item:active:not(.toggle-group__item--disabled) {
+  scale: 0.925;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle-group__item,
+  .toggle-group__item-icon {
+    transition-duration: 0ms;
+  }
+
+  .toggle-group__item:active {
+    scale: none;
+  }
+}

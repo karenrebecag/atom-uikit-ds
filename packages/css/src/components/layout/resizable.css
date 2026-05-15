@@ -1,0 +1,102 @@
+/* -------------------------------------------------------------------------
+   Resizable
+
+   Draggable panel layout. Horizontal or vertical.
+   Keyboard accessible (Arrow keys to resize).
+
+   Parts: .resizable, .resizable__panel, .resizable__handle
+   ------------------------------------------------------------------------- */
+
+/* ---- Group ---- */
+
+.resizable {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.resizable--vertical {
+  flex-direction: column;
+}
+
+/* ---- Panel ---- */
+
+.resizable__panel {
+  overflow: auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ---- Handle ---- */
+
+.resizable__handle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: col-resize;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-150) var(--easing-in-out);
+}
+
+.resizable--vertical .resizable__handle {
+  cursor: row-resize;
+}
+
+/* Horizontal handle: thin vertical bar */
+.resizable:not(.resizable--vertical) > .resizable__handle {
+  width: var(--spacing-2, 8px);
+}
+
+/* Vertical handle: thin horizontal bar */
+.resizable--vertical > .resizable__handle {
+  height: var(--spacing-2, 8px);
+}
+
+.resizable__handle:hover {
+  background-color: var(--accent);
+}
+
+.resizable__handle:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* ---- Visible grip ---- */
+
+.resizable__handle-grip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background-color: var(--border);
+}
+
+.resizable:not(.resizable--vertical) .resizable__handle-grip {
+  width: var(--spacing-1, 4px);
+  height: var(--spacing-6, 24px);
+}
+
+.resizable--vertical .resizable__handle-grip {
+  width: var(--spacing-6, 24px);
+  height: var(--spacing-1, 4px);
+}
+
+/* ---- Active drag state ---- */
+
+.resizable__handle--dragging {
+  background-color: var(--accent);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .resizable__handle {
+    transition-duration: 0ms;
+  }
+}

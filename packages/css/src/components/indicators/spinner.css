@@ -1,0 +1,41 @@
+/* -------------------------------------------------------------------------
+   Spinner
+
+   Loading indicator. Rotating circle with partial stroke.
+   Sizes: xs, s, m, l. Inherits color from parent.
+
+   Parts: .spinner
+   ------------------------------------------------------------------------- */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  animation: spinner-rotate var(--duration-700) linear infinite;
+}
+
+/* ---- Sizes ---- */
+
+.spinner--xs { width: 14px; height: 14px; }
+.spinner--s  { width: 18px; height: 18px; }
+.spinner--m  { width: 24px; height: 24px; }
+.spinner--l  { width: 32px; height: 32px; }
+
+.spinner svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes spinner-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 0ms;
+  }
+}

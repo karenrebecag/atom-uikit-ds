@@ -1,6 +1,6 @@
 {
   "name": "@atom-uikit/css",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Pure CSS components and utilities for the ATOM UIKit design system",
   "license": "MIT",
@@ -10,7 +10,9 @@
     ".": "./dist/atom.css",
     "./atom.css": "./dist/atom.css"
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",

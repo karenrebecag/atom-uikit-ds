@@ -1,0 +1,224 @@
+/* -------------------------------------------------------------------------
+   Select
+
+   Dropdown picker. Trigger + floating list, no search.
+   Composable: Select > Trigger + Content > Group + Label + Item
+
+   Parts: .select, .select__trigger, .select__value, .select__content,
+          .select__item, .select__label, .select__separator
+   ------------------------------------------------------------------------- */
+
+/* ---- Root ---- */
+
+.select {
+  position: relative;
+  display: inline-flex;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- Trigger ---- */
+
+.select__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2, 8px);
+  width: 100%;
+  height: var(--spacing-10, 40px);
+  padding: 0 var(--spacing-3, 12px);
+  border: var(--stroke-hairline) solid var(--border-input);
+  border-radius: var(--radius-md);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color var(--duration-150) var(--easing-in-out),
+    box-shadow var(--duration-150) var(--easing-in-out);
+}
+
+.select__trigger:hover {
+  border-color: var(--border-focus);
+}
+
+.select__trigger:focus-visible {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 var(--focus-ring-width, 2px) var(--focus-ring-color);
+  outline: none;
+}
+
+.select__trigger--open {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 var(--focus-ring-width, 2px) var(--focus-ring-color);
+}
+
+.select__trigger--disabled {
+  background-color: var(--muted);
+  border-color: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.select__trigger[aria-invalid="true"] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 var(--focus-ring-width, 2px) 0 var(--focus-ring-error-color);
+}
+
+.select__trigger[aria-invalid="true"]:focus-visible,
+.select__trigger[aria-invalid="true"].select__trigger--open {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 var(--focus-ring-width, 2px) var(--focus-ring-error-color);
+}
+
+/* ---- Value ---- */
+
+.select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select__value--placeholder {
+  color: var(--placeholder);
+}
+
+/* ---- Chevron ---- */
+
+.select__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  color: var(--muted-foreground);
+  transition: transform var(--duration-200) var(--easing-in-out);
+}
+
+.select__trigger--open .select__icon {
+  transform: rotate(180deg);
+}
+
+/* ---- Content ---- */
+
+.select__content {
+  position: absolute;
+  top: calc(100% + var(--spacing-1, 4px));
+  left: 0;
+  z-index: var(--z-index-20);
+  width: 100%;
+  min-width: 160px;
+  max-height: 256px;
+  overflow-y: auto;
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-1, 4px);
+  transform-origin: top;
+  animation: select-in var(--duration-200) var(--easing-out);
+}
+
+@keyframes select-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---- Label ---- */
+
+.select__label {
+  padding: var(--spacing-2, 8px) var(--spacing-2, 8px) var(--spacing-1, 4px);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--muted-foreground);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+/* ---- Group list ---- */
+
+.select__group-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Item ---- */
+
+.select__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  width: 100%;
+  padding: var(--spacing-2, 8px);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--popover-foreground);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-100) var(--easing-in-out);
+}
+
+.select__item:hover,
+.select__item--highlighted {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.select__item--selected {
+  font-weight: var(--font-weight-medium);
+}
+
+.select__item--disabled {
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.select__item:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Separator ---- */
+
+.select__separator {
+  height: var(--stroke-hairline);
+  margin: var(--spacing-1, 4px) calc(-1 * var(--spacing-1, 4px));
+  background-color: var(--border);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .select__trigger,
+  .select__icon,
+  .select__item {
+    transition-duration: 0ms;
+  }
+
+  .select__content {
+    animation-duration: 0ms;
+  }
+}

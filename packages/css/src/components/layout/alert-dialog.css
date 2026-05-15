@@ -1,0 +1,136 @@
+/* -------------------------------------------------------------------------
+   Alert Dialog
+
+   Non-dismissible confirmation modal. No overlay close, no X button.
+   Requires explicit Cancel or Action to close.
+
+   Sizes: default (512px), sm (400px)
+   Parts: .alert-dialog, .alert-dialog__header, .alert-dialog__media,
+          .alert-dialog__title, .alert-dialog__description,
+          .alert-dialog__footer
+   ------------------------------------------------------------------------- */
+
+/* ---- Content ---- */
+
+.alert-dialog {
+  position: fixed;
+  z-index: var(--z-index-50);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - var(--spacing-8, 32px));
+  max-width: 512px;
+  display: flex;
+  flex-direction: column;
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: var(--radius-xl);
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-xl);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  animation: alert-dialog-in var(--duration-300) var(--easing-out);
+}
+
+.alert-dialog--sm {
+  max-width: 400px;
+}
+
+.alert-dialog--exiting {
+  animation: alert-dialog-out var(--duration-200) var(--easing-in) forwards;
+}
+
+@keyframes alert-dialog-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes alert-dialog-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+/* ---- Header ---- */
+
+.alert-dialog__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-6, 24px);
+  padding-bottom: 0;
+  text-align: center;
+}
+
+/* ---- Media ---- */
+
+.alert-dialog__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-12, 48px);
+  height: var(--spacing-12, 48px);
+  border-radius: var(--radius-full);
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  padding: var(--spacing-3, 12px);
+}
+
+.alert-dialog__media--destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+.alert-dialog__media svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Title ---- */
+
+.alert-dialog__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-lg);
+  color: var(--foreground);
+  margin: 0;
+}
+
+/* ---- Description ---- */
+
+.alert-dialog__description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ---- Footer ---- */
+
+.alert-dialog__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-6, 24px);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .alert-dialog,
+  .alert-dialog--exiting {
+    animation-duration: 0ms;
+  }
+}

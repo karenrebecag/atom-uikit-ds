@@ -1,6 +1,6 @@
 {
   "name": "@atom-uikit/tokens",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Design tokens for the ATOM UIKit design system",
   "license": "MIT",
@@ -21,10 +21,11 @@
     "./scss": "./build/scss/_tokens.scss",
     "./json": "./build/json/tokens.json"
   },
-  "files": ["build/"],
+  "files": [
+    "build/"
+  ],
   "scripts": {
-    "build": "style-dictionary build --config config/style-dictionary.config.mjs",
-    "build:dark": "style-dictionary build --config config/style-dictionary.dark.config.mjs",
+    "build": "style-dictionary build --config config/style-dictionary.config.mjs && style-dictionary build --config config/style-dictionary.dark.config.mjs",
     "clean": "rm -rf build/"
   },
   "devDependencies": {

@@ -1,0 +1,97 @@
+/* -------------------------------------------------------------------------
+   Empty
+
+   Empty state placeholder. Centered layout with media, title,
+   description, and action slot.
+
+   Variants: outline (border), filled (bg)
+   Parts:    .empty, .empty__header, .empty__media, .empty__title,
+             .empty__description, .empty__content
+   ------------------------------------------------------------------------- */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-6, 24px);
+  width: 100%;
+  padding: var(--spacing-12, 48px) var(--spacing-6, 24px);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  text-align: center;
+}
+
+/* ---- Variants ---- */
+
+.empty--outline {
+  border: var(--stroke-hairline) dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.empty--filled {
+  background-color: var(--muted);
+  border-radius: var(--radius-lg);
+}
+
+/* ---- Header ---- */
+
+.empty__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  max-width: 420px;
+}
+
+/* ---- Media ---- */
+
+.empty__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+}
+
+.empty__media--icon {
+  width: var(--spacing-12, 48px);
+  height: var(--spacing-12, 48px);
+  border-radius: var(--radius-lg);
+  background-color: var(--muted);
+  padding: var(--spacing-3, 12px);
+}
+
+.empty--filled .empty__media--icon {
+  background-color: var(--background);
+}
+
+.empty__media svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Title ---- */
+
+.empty__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-base);
+  color: var(--foreground);
+  margin: 0;
+}
+
+/* ---- Description ---- */
+
+.empty__description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ---- Content (actions slot) ---- */
+
+.empty__content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+}

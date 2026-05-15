@@ -1,0 +1,179 @@
+/* -------------------------------------------------------------------------
+   Tabs
+
+   Tabbed content switcher. Horizontal or vertical.
+   Variants: default (pill bg), line (underline indicator).
+
+   Parts: .tabs, .tabs__list, .tabs__trigger, .tabs__content
+   ------------------------------------------------------------------------- */
+
+/* ---- Root ---- */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.tabs--vertical {
+  flex-direction: row;
+  gap: var(--spacing-4, 16px);
+}
+
+/* ---- List ---- */
+
+.tabs__list {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  padding: var(--spacing-1, 4px);
+  background-color: var(--muted);
+  border-radius: var(--radius-lg);
+}
+
+/* Line variant: no bg, bottom border */
+.tabs__list--line {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  gap: 0;
+  border-bottom: var(--stroke-hairline) solid var(--border);
+}
+
+/* Vertical list */
+.tabs--vertical .tabs__list {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.tabs--vertical .tabs__list:not(.tabs__list--line) {
+  border-radius: var(--radius-lg);
+}
+
+.tabs--vertical .tabs__list--line {
+  border-bottom: none;
+  border-right: var(--stroke-hairline) solid var(--border);
+}
+
+/* ---- Trigger ---- */
+
+.tabs__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  border: none;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--muted-foreground);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--duration-150) var(--easing-in-out),
+    background-color var(--duration-150) var(--easing-in-out),
+    box-shadow var(--duration-150) var(--easing-in-out);
+}
+
+.tabs__trigger:hover {
+  color: var(--foreground);
+}
+
+.tabs__trigger:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Active (default variant) */
+.tabs__trigger--active {
+  background-color: var(--background);
+  color: var(--foreground);
+  box-shadow: var(--shadow-2xs);
+}
+
+/* Disabled */
+.tabs__trigger--disabled {
+  color: var(--muted-foreground);
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Line variant triggers ---- */
+
+.tabs__list--line .tabs__trigger {
+  border-radius: 0;
+  padding: var(--spacing-2, 8px) var(--spacing-4, 16px);
+  position: relative;
+}
+
+.tabs__list--line .tabs__trigger::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: var(--stroke-medium);
+  background-color: transparent;
+  transition: background-color var(--duration-150) var(--easing-in-out);
+}
+
+.tabs__list--line .tabs__trigger--active {
+  background: none;
+  box-shadow: none;
+  color: var(--foreground);
+}
+
+.tabs__list--line .tabs__trigger--active::after {
+  background-color: var(--primary);
+}
+
+/* Line vertical */
+.tabs--vertical .tabs__list--line .tabs__trigger::after {
+  bottom: auto;
+  left: auto;
+  right: -1px;
+  top: 0;
+  width: var(--stroke-medium);
+  height: 100%;
+}
+
+/* ---- Trigger icon ---- */
+
+.tabs__trigger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+}
+
+.tabs__trigger-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Content ---- */
+
+.tabs__content {
+  padding-top: var(--spacing-4, 16px);
+}
+
+.tabs--vertical .tabs__content {
+  padding-top: 0;
+  flex: 1;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs__trigger,
+  .tabs__list--line .tabs__trigger::after {
+    transition-duration: 0ms;
+  }
+}

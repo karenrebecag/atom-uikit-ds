@@ -1,0 +1,104 @@
+/* -------------------------------------------------------------------------
+   Table
+
+   Semantic HTML table with consistent styling.
+   Thin wrapper: Table, TableHeader, TableBody, TableFooter,
+                 TableRow, TableHead, TableCell, TableCaption
+
+   Parts: .table, .table__header, .table__body, .table__footer,
+          .table__row, .table__head, .table__cell, .table__caption
+   ------------------------------------------------------------------------- */
+
+/* ---- Wrapper ---- */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ---- Table ---- */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  text-align: left;
+}
+
+/* ---- Caption ---- */
+
+.table__caption {
+  padding-top: var(--spacing-4, 16px);
+  font-size: var(--font-size-sm);
+  color: var(--muted-foreground);
+  caption-side: bottom;
+}
+
+/* ---- Header ---- */
+
+.table__header {
+  border-bottom: var(--stroke-hairline) solid var(--border);
+}
+
+.table__head {
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  font-weight: var(--font-weight-medium);
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  vertical-align: middle;
+  height: var(--spacing-10, 40px);
+}
+
+/* ---- Body ---- */
+
+.table__row {
+  border-bottom: var(--stroke-hairline) solid var(--border);
+  transition: background-color var(--duration-100) var(--easing-in-out);
+}
+
+.table__row:hover {
+  background-color: var(--muted);
+}
+
+.table__row--selected {
+  background-color: var(--accent);
+}
+
+.table__cell {
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  color: var(--foreground);
+  vertical-align: middle;
+}
+
+/* ---- Footer ---- */
+
+.table__footer {
+  border-top: var(--stroke-hairline) solid var(--border);
+  background-color: var(--muted);
+}
+
+.table__footer .table__cell {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ---- Alignment helpers ---- */
+
+.table__head--right,
+.table__cell--right {
+  text-align: right;
+}
+
+.table__head--center,
+.table__cell--center {
+  text-align: center;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .table__row {
+    transition-duration: 0ms;
+  }
+}

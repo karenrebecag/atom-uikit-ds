@@ -1,0 +1,201 @@
+import {
+  type ReactNode,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  createContext,
+  useContext,
+} from 'react';
+import { IconButton } from '../atoms/IconButton';
+
+function cn(...classes: (string | false | undefined | null)[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
+/* ---- Context ---- */
+
+type SheetContextValue = {
+  open: boolean;
+  setOpen: (v: boolean) => void;
+};
+
+const SheetContext = createContext<SheetContextValue | null>(null);
+
+function useSheet() {
+  const ctx = useContext(SheetContext);
+  if (!ctx) throw new Error('Sheet components must be used within <Sheet>');
+  return ctx;
+}
+
+/* ---- Root ---- */
+
+export type SheetProps = {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children: ReactNode;
+};
+
+export function Sheet({ open: controlledOpen, onOpenChange, children }: SheetProps) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen ?? internalOpen;
+
+  const setOpen = useCallback(
+    (v: boolean) => {
+      onOpenChange ? onOpenChange(v) : setInternalOpen(v);
+    },
+    [onOpenChange],
+  );
+
+  return (
+    <SheetContext.Provider value={{ open, setOpen }}>
+      {children}
+    </SheetContext.Provider>
+  );
+}
+
+/* ---- Trigger ---- */
+
+export function SheetTrigger({ children, className }: { children: ReactNode; className?: string }) {
+  const { setOpen } = useSheet();
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      className={className}
+      style={{ display: 'inline-flex' }}
+      onClick={() => setOpen(true)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(true); }
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ---- Content ---- */
+
+export type SheetContentProps = {
+  side?: 'top' | 'right' | 'bottom' | 'left';
+  showCloseButton?: boolean;
+  children: ReactNode;
+  className?: string;
+};
+
+export function SheetContent({
+  side = 'right',
+  showCloseButton = true,
+  children,
+  className,
+}: SheetContentProps) {
+  const { open, setOpen } = useSheet();
+  const [exiting, setExiting] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      setMounted(true);
+      setExiting(false);
+    }
+  }, [open]);
+
+  const handleClose = useCallback(() => {
+    setExiting(true);
+    setTimeout(() => {
+      setOpen(false);
+      setMounted(false);
+    }, 200);
+  }, [setOpen]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [mounted, handleClose]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [mounted]);
+
+  useEffect(() => {
+    if (mounted && contentRef.current) {
+      contentRef.current.focus();
+    }
+  }, [mounted]);
+
+  if (!mounted) return null;
+
+  return (
+    <>
+      <div
+        className={cn('dialog__overlay', exiting && 'dialog__overlay--exiting')}
+        onClick={handleClose}
+        aria-hidden="true"
+      />
+      <div
+        ref={contentRef}
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        className={cn('sheet', `sheet--${side}`, exiting && 'sheet--exiting', className)}
+      >
+        {children}
+        {showCloseButton && (
+          <IconButton
+            variant="tertiary"
+            size="xs"
+            className="sheet__close"
+            icon={<CloseIcon />}
+            aria-label="Close"
+            onClick={handleClose}
+          />
+        )}
+      </div>
+    </>
+  );
+}
+
+/* ---- Header ---- */
+
+export function SheetHeader({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={cn('sheet__header', className)}>{children}</div>;
+}
+
+/* ---- Title ---- */
+
+export function SheetTitle({ children, className }: { children: ReactNode; className?: string }) {
+  return <h2 className={cn('sheet__title', className)}>{children}</h2>;
+}
+
+/* ---- Description ---- */
+
+export function SheetDescription({ children, className }: { children: ReactNode; className?: string }) {
+  return <p className={cn('sheet__description', className)}>{children}</p>;
+}
+
+/* ---- Body ---- */
+
+export function SheetBody({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={cn('sheet__body', className)}>{children}</div>;
+}
+
+/* ---- Footer ---- */
+
+export function SheetFooter({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={cn('sheet__footer', className)}>{children}</div>;
+}

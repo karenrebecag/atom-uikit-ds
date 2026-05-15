@@ -61,11 +61,11 @@
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--font-weight-regular);
   color: var(--border-focus);
-  font-size: 12px;
+  font-size: var(--font-size-sm);
   line-height: 1;
 }
 .avatar--initials.avatar--l {
-  font-size: 16px;
+  font-size: var(--font-size-base);
 }
 
 /* Icon */

@@ -25,7 +25,7 @@ StyleDictionary.registerTransformGroup({
 export default {
   source: [
     'src/primitives/**/*.json',
-    'src/semantic/**/*.json',
+    'src/semantic/light.json',
     'src/components/**/*.json',
   ],
   platforms: {

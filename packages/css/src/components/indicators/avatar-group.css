@@ -1,0 +1,49 @@
+/* -------------------------------------------------------------------------
+   Avatar Group
+
+   Stacked row of avatars with negative overlap.
+   Wraps standard Avatar components.
+
+   Sizes:   xs, s, m, l (match Avatar sizes)
+   Parts:   .avatar-group, .avatar-group__count
+   ------------------------------------------------------------------------- */
+
+.avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Negative overlap per size */
+
+.avatar-group--xs > .avatar { margin-left: -6px; }
+.avatar-group--s  > .avatar { margin-left: -8px; }
+.avatar-group--m  > .avatar { margin-left: -10px; }
+.avatar-group--l  > .avatar { margin-left: -12px; }
+
+.avatar-group > .avatar:first-child { margin-left: 0; }
+
+/* Ring to separate overlapping avatars */
+
+.avatar-group > .avatar {
+  box-shadow: 0 0 0 var(--stroke-medium) var(--background);
+}
+
+/* Count badge (+3 more) */
+
+.avatar-group__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  box-shadow: 0 0 0 var(--stroke-medium) var(--background);
+}
+
+.avatar-group--xs .avatar-group__count { width: 24px; height: 24px; font-size: var(--font-size-xs); margin-left: -6px; }
+.avatar-group--s  .avatar-group__count { width: 32px; height: 32px; font-size: var(--font-size-xs); margin-left: -8px; }
+.avatar-group--m  .avatar-group__count { width: 40px; height: 40px; font-size: var(--font-size-sm); margin-left: -10px; }
+.avatar-group--l  .avatar-group__count { width: 48px; height: 48px; font-size: var(--font-size-sm); margin-left: -12px; }

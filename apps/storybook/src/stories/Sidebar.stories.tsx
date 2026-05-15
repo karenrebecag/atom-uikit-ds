@@ -14,6 +14,15 @@ import {
   SidebarCollapsible,
 } from '../../../../packages/components-react/src/molecules/sidebar';
 import { UserProfile } from '../../../../packages/components-react/src/molecules/UserProfile';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuGroup,
+  DropdownMenuSeparator,
+} from '../../../../packages/components-react/src/molecules/DropdownMenu';
 
 const AtomLogo = () => (
   <img src="/Logo Mark - Atom.svg" alt="Atom" width="24" height="24" />
@@ -73,6 +82,34 @@ const IconDoc = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
     <path d="M14 2v6h6" />
+  </svg>
+);
+
+const IconUser = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
+const IconCreditCard = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="1" y="4" width="22" height="16" rx="2" />
+    <line x1="1" y1="10" x2="23" y2="10" />
+  </svg>
+);
+
+const IconLogOut = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+    <polyline points="16 17 21 12 16 7" />
+    <line x1="21" y1="12" x2="9" y2="12" />
+  </svg>
+);
+
+const IconChevronUp = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 15l-6-6-6 6" />
   </svg>
 );
 
@@ -169,7 +206,39 @@ export const Default: Story = {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <UserProfile name="John Doe" org="Atom Design" />
+          <DropdownMenu>
+            <DropdownMenuTrigger style={{ width: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}>
+                <UserProfile name="John Doe" org="Atom Design" />
+                <span data-sidebar-label="" style={{ marginLeft: 'auto', width: 16, height: 16, color: 'var(--muted-foreground)' }}>
+                  <IconChevronUp />
+                </span>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side="top" align="start">
+              <DropdownMenuLabel>John Doe</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem onSelect={() => {}}>
+                  <span className="dropdown-menu__item-icon"><IconUser /></span>
+                  Account
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => {}}>
+                  <span className="dropdown-menu__item-icon"><IconCreditCard /></span>
+                  Billing
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => {}}>
+                  <span className="dropdown-menu__item-icon"><IconBell /></span>
+                  Notifications
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem variant="destructive" onSelect={() => {}}>
+                <span className="dropdown-menu__item-icon"><IconLogOut /></span>
+                Sign out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </SidebarFooter>
       </Sidebar>
     </SidebarProvider>

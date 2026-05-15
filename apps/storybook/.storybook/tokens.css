@@ -379,6 +379,13 @@
   --ring-width: var(--stroke-medium);
   --ring-offset: var(--stroke-thin);
   --overlay: rgba(0, 0, 0, 0.5);
+  --surface-glass: rgba(100, 100, 100, 0.2);
+  --surface-glass-blur: 16px;
+  --surface-dark: #131313;
+  --surface-dark-overlay: rgba(19, 19, 19, 0.33);
+  --player-accent: var(--color-brand);
+  --player-progress-bg: rgba(239, 238, 236, 0.2);
+  --player-foreground: #efeeec;
   --sidebar-bg: var(--color-zinc-50);
   --sidebar-border: var(--color-zinc-100);
   --sidebar-active: var(--color-orange-50);
@@ -483,6 +490,12 @@
   --ring-width: var(--stroke-medium);
   --ring-offset: var(--stroke-thin);
   --overlay: rgba(0, 0, 0, 0.7);
+  --surface-glass: rgba(100, 100, 100, 0.25);
+  --surface-dark: #0a0a0a;
+  --surface-dark-overlay: rgba(10, 10, 10, 0.4);
+  --player-accent: var(--color-brand);
+  --player-progress-bg: rgba(255, 255, 255, 0.15);
+  --player-foreground: #efeeec;
   --sidebar-bg: var(--color-zinc-900);
   --sidebar-border: var(--color-zinc-800);
   --sidebar-active: var(--color-orange-950);

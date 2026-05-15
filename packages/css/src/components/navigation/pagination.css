@@ -1,0 +1,114 @@
+/* -------------------------------------------------------------------------
+   Pagination
+
+   Page navigation: prev, page links, ellipsis, next.
+   Semantic <nav> + <ul> structure.
+
+   Parts: .pagination, .pagination__list, .pagination__item,
+          .pagination__link, .pagination__ellipsis
+   ------------------------------------------------------------------------- */
+
+/* ---- Nav ---- */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- List ---- */
+
+.pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Link ---- */
+
+.pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--spacing-2, 8px);
+  border: var(--stroke-hairline) solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-100) var(--easing-in-out),
+    border-color var(--duration-100) var(--easing-in-out);
+}
+
+.pagination__link:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.pagination__link:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Active page */
+.pagination__link--active {
+  border-color: var(--border);
+  background-color: var(--background);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Disabled (prev/next at bounds) */
+.pagination__link--disabled {
+  color: var(--muted-foreground);
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Nav icon ---- */
+
+.pagination__link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+}
+
+.pagination__link-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Ellipsis ---- */
+
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  color: var(--muted-foreground);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pagination__link {
+    transition-duration: 0ms;
+  }
+}

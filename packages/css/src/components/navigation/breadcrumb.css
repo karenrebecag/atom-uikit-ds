@@ -1,0 +1,78 @@
+/* -------------------------------------------------------------------------
+   Breadcrumb
+
+   Navigation trail showing current location in hierarchy.
+   All semantic tokens. Inherits font from parent.
+
+   Parts: .breadcrumb, .breadcrumb__list, .breadcrumb__item,
+          .breadcrumb__link, .breadcrumb__page, .breadcrumb__separator
+   ------------------------------------------------------------------------- */
+
+.breadcrumb {
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}
+
+.breadcrumb__list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+}
+
+.breadcrumb__link {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color var(--duration-150) var(--easing-in-out);
+}
+
+.breadcrumb__link:hover {
+  color: var(--foreground);
+}
+
+.breadcrumb__link:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.breadcrumb__page {
+  color: var(--foreground);
+  font-weight: var(--font-weight-medium);
+}
+
+.breadcrumb__separator {
+  color: var(--muted-foreground);
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb__separator svg {
+  width: 1em;
+  height: 1em;
+}
+
+.breadcrumb__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+  color: var(--muted-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb__link {
+    transition-duration: 0ms;
+  }
+}

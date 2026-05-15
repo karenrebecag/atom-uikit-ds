@@ -1,0 +1,150 @@
+/* -------------------------------------------------------------------------
+   Sheet
+
+   Side panel extending Dialog. Slides from screen edge.
+   Reuses dialog__overlay for backdrop.
+
+   Sides: top, right, bottom, left
+   Parts: .sheet, .sheet__header, .sheet__title,
+          .sheet__description, .sheet__body, .sheet__footer, .sheet__close
+   ------------------------------------------------------------------------- */
+
+/* ---- Content ---- */
+
+.sheet {
+  position: fixed;
+  z-index: var(--z-index-50);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-xl);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  border: var(--stroke-hairline) solid var(--border);
+}
+
+.sheet--exiting {
+  pointer-events: none;
+}
+
+/* ---- Sides ---- */
+
+.sheet--right {
+  top: 0; right: 0; bottom: 0;
+  width: 100%;
+  max-width: 400px;
+  border-left: var(--stroke-hairline) solid var(--border);
+  border-right: none;
+  animation: sheet-right-in var(--duration-300) var(--easing-out);
+}
+.sheet--right.sheet--exiting {
+  animation: sheet-right-out var(--duration-200) var(--easing-in) forwards;
+}
+
+.sheet--left {
+  top: 0; left: 0; bottom: 0;
+  width: 100%;
+  max-width: 400px;
+  border-right: var(--stroke-hairline) solid var(--border);
+  border-left: none;
+  animation: sheet-left-in var(--duration-300) var(--easing-out);
+}
+.sheet--left.sheet--exiting {
+  animation: sheet-left-out var(--duration-200) var(--easing-in) forwards;
+}
+
+.sheet--top {
+  top: 0; left: 0; right: 0;
+  height: auto;
+  max-height: 80vh;
+  border-bottom: var(--stroke-hairline) solid var(--border);
+  border-top: none;
+  animation: sheet-top-in var(--duration-300) var(--easing-out);
+}
+.sheet--top.sheet--exiting {
+  animation: sheet-top-out var(--duration-200) var(--easing-in) forwards;
+}
+
+.sheet--bottom {
+  bottom: 0; left: 0; right: 0;
+  height: auto;
+  max-height: 80vh;
+  border-top: var(--stroke-hairline) solid var(--border);
+  border-bottom: none;
+  animation: sheet-bottom-in var(--duration-300) var(--easing-out);
+}
+.sheet--bottom.sheet--exiting {
+  animation: sheet-bottom-out var(--duration-200) var(--easing-in) forwards;
+}
+
+/* ---- Slide animations ---- */
+
+@keyframes sheet-right-in  { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes sheet-right-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes sheet-left-in   { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes sheet-left-out  { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes sheet-top-in    { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes sheet-top-out   { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+@keyframes sheet-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes sheet-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
+/* ---- Header ---- */
+
+.sheet__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-6, 24px);
+  padding-bottom: 0;
+}
+
+.sheet__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-lg);
+  color: var(--foreground);
+  margin: 0;
+}
+
+.sheet__description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ---- Body ---- */
+
+.sheet__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-6, 24px);
+}
+
+/* ---- Footer ---- */
+
+.sheet__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-6, 24px);
+  padding-top: 0;
+}
+
+/* ---- Close ---- */
+
+.sheet__close {
+  position: absolute;
+  top: var(--spacing-4, 16px);
+  right: var(--spacing-4, 16px);
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .sheet--exiting {
+    animation-duration: 0ms;
+  }
+}

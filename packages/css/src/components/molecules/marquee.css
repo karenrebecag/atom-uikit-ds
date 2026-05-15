@@ -1,0 +1,109 @@
+/* -------------------------------------------------------------------------
+   Marquee
+
+   Infinite horizontal scroll. CSS animation, JS for speed + duplication.
+   Pauses when out of viewport. Hover pauses optional.
+
+   Parts: .marquee, .marquee__list, .marquee__item
+   ------------------------------------------------------------------------- */
+
+/* ---- Container ---- */
+
+.marquee {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- Fade edges ---- */
+
+.marquee--fade {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--spacing-10, 40px),
+    black calc(100% - var(--spacing-10, 40px)),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--spacing-10, 40px),
+    black calc(100% - var(--spacing-10, 40px)),
+    transparent
+  );
+}
+
+/* ---- List (duplicated by JS) ---- */
+
+.marquee__list {
+  flex: none;
+  display: flex;
+  align-items: center;
+  animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+  animation-play-state: var(--marquee-state, running);
+}
+
+.marquee--reverse .marquee__list {
+  animation-direction: reverse;
+}
+
+.marquee--pause-hover:hover .marquee__list {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ---- Item ---- */
+
+.marquee__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4, 16px);
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ---- Separator (optional decorative element between items) ---- */
+
+.marquee__separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+}
+
+.marquee__separator svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* ---- Draggable mode (GSAP) ---- */
+
+.marquee__collection {
+  display: flex;
+  align-items: center;
+  flex: none;
+  will-change: transform;
+  cursor: grab;
+}
+
+.marquee__collection:active {
+  cursor: grabbing;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__list {
+    animation-play-state: paused;
+  }
+}
