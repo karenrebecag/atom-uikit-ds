@@ -23,6 +23,7 @@ const preview: Preview = {
       const theme = context.globals.theme || 'light';
       document.documentElement.setAttribute('data-theme', theme);
       document.documentElement.style.colorScheme = theme;
+      document.body.style.backgroundColor = theme === 'dark' ? '#151313' : '#eaeaea';
       return Story();
     },
   ],
