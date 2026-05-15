@@ -24,7 +24,8 @@ const meta: Meta<typeof VideoPlayer> = {
         return () => {
           cancelAnimationFrame(raf);
           cleanup?.();
-        };
+          parameters: { layout: 'fullscreen' },
+};
       }, []);
       return (
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
@@ -33,6 +34,7 @@ const meta: Meta<typeof VideoPlayer> = {
       );
     },
   ],
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;

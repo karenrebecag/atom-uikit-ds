@@ -40,11 +40,13 @@ const meta: Meta<typeof Marquee> = {
         return () => {
           cancelAnimationFrame(raf);
           cleanup?.();
-        };
+          parameters: { layout: 'fullscreen' },
+};
       }, [draggable]);
       return <Story />;
     },
   ],
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;

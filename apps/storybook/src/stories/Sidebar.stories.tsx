@@ -137,6 +137,7 @@ const meta: Meta<typeof Sidebar> = {
       );
     },
   ],
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;

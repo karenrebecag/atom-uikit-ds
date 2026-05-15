@@ -182,6 +182,7 @@ const meta: Meta = {
       </div>
     ),
   ],
+  parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
