@@ -157,18 +157,18 @@
   height: 24px;
   padding: 4px;
   border: none;
-  background: var(--color-zinc-200);
-  color: var(--placeholder);
+  background: var(--muted);
+  color: var(--muted-foreground);
   cursor: pointer;
   border-radius: 4px;
   flex-shrink: 0;
   transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.sidebar__trigger:hover { background: var(--border-input); color: var(--color-zinc-700); }
+.sidebar__trigger:hover { background: var(--border); color: var(--foreground); }
 .sidebar__trigger svg { width: 16px; height: 16px; }
 
-.sidebar--collapsed .sidebar__trigger { background: var(--color-zinc-50); color: var(--color-zinc-500); box-shadow: 0 6px 14px rgba(46, 33, 74, 0.08); }
+.sidebar--collapsed .sidebar__trigger { background: var(--sidebar-bg); color: var(--muted-foreground); box-shadow: var(--shadow-md); }
 .sidebar--collapsed .sidebar__trigger:hover { background: var(--muted); color: var(--placeholder); }
 
 /* ---- Tooltips (collapsed only) ---- */

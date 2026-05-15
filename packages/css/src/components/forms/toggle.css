@@ -60,8 +60,8 @@
   width: 16px;
   height: 16px;
   border-radius: 9999px;
-  background-color: var(--color-zinc-50);
-  box-shadow: 0px 2px 4px 0px rgba(9, 9, 11, 0.08);
+  background-color: var(--background);
+  box-shadow: var(--shadow-xs);
   transform: translateX(0) rotate(0.001deg);
 }
 
@@ -73,7 +73,7 @@
 /* ---- Hover ---- */
 
 .toggle__input:hover:not(:disabled) ~ .toggle__track {
-  background-color: var(--color-zinc-200);
+  background-color: var(--border);
 }
 
 .toggle__input:checked:hover:not(:disabled) ~ .toggle__track {
@@ -83,7 +83,7 @@
 /* ---- Checked ---- */
 
 .toggle__input:checked ~ .toggle__track {
-  background-color: var(--color-zinc-950);
+  background-color: var(--foreground);
 }
 
 .toggle__input:checked ~ .toggle__track .toggle__thumb {
@@ -107,7 +107,7 @@
 }
 
 .toggle__input:disabled ~ .toggle__track .toggle__thumb {
-  background-color: var(--color-zinc-200);
+  background-color: var(--border);
   box-shadow: none;
 }
 

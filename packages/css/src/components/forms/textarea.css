@@ -46,11 +46,11 @@
 }
 
 .textarea[aria-invalid="true"] {
-  border-color: var(--color-red-700);
-  box-shadow: 0 0 2px 0 var(--color-red-300);
+  border-color: var(--destructive);
+  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);
 }
 
 .textarea[aria-invalid="true"]:focus {
-  border-color: var(--color-red-700);
-  box-shadow: 0 0 0 2px var(--color-red-300);
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 2px var(--focus-ring-error-color);
 }
