@@ -29,7 +29,7 @@
     },
     "hover-bg": {
       "$type": "color",
-      "primary": { "$value": "{secondary}", "$description": "Slightly lighter than primary" },
+      "primary": { "$value": "{primary-hover}", "$description": "Theme-aware primary hover" },
       "secondary": { "$value": "{accent}", "$description": "Subtle highlight" },
       "tertiary": { "$value": "{accent}", "$description": "Subtle highlight" },
       "destructive-primary": { "$value": "{color.red.600}", "$description": "Darker red" },

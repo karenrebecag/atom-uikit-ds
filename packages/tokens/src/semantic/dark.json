@@ -34,6 +34,11 @@
     "$value": "{color.zinc.50}",
     "$description": "Primary actions (dark)"
   },
+  "primary-hover": {
+    "$type": "color",
+    "$value": "{color.zinc.200}",
+    "$description": "Primary hover — slightly darker than white (dark)"
+  },
   "primary-foreground": {
     "$type": "color",
     "$value": "{color.zinc.900}",

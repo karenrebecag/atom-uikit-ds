@@ -353,6 +353,7 @@
   --popover: var(--color-white);
   --popover-foreground: var(--color-zinc-950);
   --primary: var(--color-zinc-900);
+  --primary-hover: var(--color-zinc-800);
   --primary-foreground: var(--color-zinc-50);
   --secondary: var(--color-zinc-100);
   --secondary-foreground: var(--color-zinc-900);
@@ -401,7 +402,7 @@
   --button-border-destructive-primary: transparent;
   --button-border-destructive-secondary: var(--destructive);
   --button-border-destructive-tertiary: transparent;
-  --button-hover-bg-primary: var(--secondary);
+  --button-hover-bg-primary: var(--primary-hover);
   --button-hover-bg-secondary: var(--accent);
   --button-hover-bg-tertiary: var(--accent);
   --button-hover-bg-destructive-primary: var(--color-red-600);
@@ -456,6 +457,7 @@
   --popover: var(--color-zinc-900);
   --popover-foreground: var(--color-zinc-50);
   --primary: var(--color-zinc-50);
+  --primary-hover: var(--color-zinc-200);
   --primary-foreground: var(--color-zinc-900);
   --secondary: var(--color-zinc-800);
   --secondary-foreground: var(--color-zinc-50);
