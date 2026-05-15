@@ -2,7 +2,7 @@
    Accordion
 
    Collapsible content sections. Single or multiple open.
-   Inspired by shadcn/Radix accordion.
+   All colors via semantic tokens. Spacing via token values.
 
    Parts: .accordion, .accordion__item, .accordion__trigger, .accordion__content
    ------------------------------------------------------------------------- */
@@ -19,22 +19,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--spacing-2, 8px);
   width: 100%;
-  padding: 16px 0;
+  padding: var(--spacing-4, 16px) 0;
   border: none;
   background: none;
-  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: inherit;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   line-height: 1.4;
   color: var(--foreground);
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
   transition: color 0.15s ease;
 }
 
 .accordion__trigger:hover {
-  text-decoration: underline;
+  color: var(--muted-foreground);
+}
+
+.accordion__trigger:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .accordion__chevron {
@@ -74,9 +82,16 @@
 }
 
 .accordion__content-inner {
-  padding-bottom: 16px;
-  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  padding-bottom: var(--spacing-4, 16px);
+  font-family: inherit;
   font-size: var(--font-size-sm);
   line-height: 1.6;
   color: var(--muted-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion__content-wrapper,
+  .accordion__chevron {
+    transition-duration: 0ms;
+  }
 }
