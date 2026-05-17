@@ -1,5 +1,13 @@
 # @atom-uikit/components-react
 
+## 1.0.3
+
+### Patch Changes
+
+- TabsList animated indicator: sliding indicator that tracks the active tab with spring easing. Inactive tab text contrast improved for WCAG AA. Tabs list now uses flex layout with equal-width triggers.
+- Updated dependencies
+  - @atom-uikit/css@1.0.3
+
 ## 1.0.1
 
 ### Patch Changes
