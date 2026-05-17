@@ -1,8 +1,11 @@
 import {
   type ReactNode,
   type KeyboardEvent,
+  type CSSProperties,
   useState,
   useCallback,
+  useEffect,
+  useRef,
   createContext,
   useContext,
 } from 'react';
@@ -69,16 +72,50 @@ export function Tabs({
 
 export type TabsListProps = {
   variant?: 'default' | 'line';
+  animated?: boolean;
   children: ReactNode;
   className?: string;
 };
 
-export function TabsList({ variant = 'default', children, className }: TabsListProps) {
+export function TabsList({ variant = 'default', animated = false, children, className }: TabsListProps) {
+  const { value } = useTabs();
+  const listRef = useRef<HTMLDivElement>(null);
+  const [indicatorStyle, setIndicatorStyle] = useState<CSSProperties>({ opacity: 0 });
+
+  useEffect(() => {
+    if (!animated || !listRef.current) return;
+
+    const list = listRef.current;
+    const active = list.querySelector<HTMLButtonElement>('[role="tab"][aria-selected="true"]');
+    if (!active) {
+      setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    const listRect = list.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+
+    setIndicatorStyle({
+      opacity: 1,
+      left: `${activeRect.left - listRect.left}px`,
+      top: `${activeRect.top - listRect.top}px`,
+      width: `${activeRect.width}px`,
+      height: `${activeRect.height}px`,
+    });
+  }, [animated, value]);
+
   return (
     <div
+      ref={listRef}
       role="tablist"
-      className={cn('tabs__list', variant === 'line' && 'tabs__list--line', className)}
+      className={cn(
+        'tabs__list',
+        variant === 'line' && 'tabs__list--line',
+        animated && 'tabs__list--animated',
+        className,
+      )}
     >
+      {animated && <div className="tabs__indicator" style={indicatorStyle} />}
       {children}
     </div>
   );

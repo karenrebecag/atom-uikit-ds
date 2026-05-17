@@ -23,12 +23,17 @@
 /* ---- List ---- */
 
 .tabs__list {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: var(--spacing-1, 4px);
-  padding: var(--spacing-1, 4px);
+  gap: 2px;
+  padding: 3px;
   background-color: var(--muted);
   border-radius: var(--radius-lg);
+}
+
+.tabs__list .tabs__trigger {
+  flex: 1;
+  text-align: center;
 }
 
 /* Line variant: no bg, bottom border */
@@ -55,6 +60,37 @@
   border-right: var(--stroke-hairline) solid var(--border);
 }
 
+/* ---- Animated indicator ---- */
+
+.tabs__list--animated {
+  position: relative;
+}
+
+.tabs__indicator {
+  position: absolute;
+  border-radius: var(--radius-md);
+  background-color: var(--background);
+  box-shadow: var(--shadow-2xs);
+  pointer-events: none;
+  z-index: 0;
+  transition:
+    left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity var(--duration-200) var(--easing-in-out);
+}
+
+.tabs__list--animated .tabs__trigger {
+  position: relative;
+  z-index: 1;
+}
+
+.tabs__list--animated .tabs__trigger--active {
+  background: none;
+  box-shadow: none;
+}
+
 /* ---- Trigger ---- */
 
 .tabs__trigger {
@@ -66,7 +102,7 @@
   border: none;
   border-radius: var(--radius-md);
   background: none;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--foreground) 55%, var(--muted-foreground));
   font-family: inherit;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);

@@ -464,6 +464,142 @@ Scope: `@atom-uikit/`. Access: public. Managed by Changesets.
 
 ---
 
+## Storybook Interactive Preview Pattern
+
+Stories use inline controls rendered inside the canvas (not Storybook's external controls panel). This is required because the documentation site (`UIKitDocumentation_ATOM`) embeds stories via `iframe.html?viewMode=story`, which hides the external panel.
+
+Reference implementation: `apps/storybook/src/stories/Button.stories.tsx`
+
+### Layout structure
+
+```
++-------------------------------------------------------------+
+|  Glass container (border-radius: 20px, margin: 12px)        |
+|                                                              |
+|  +--Controls (left, 300px)--+--Divider--+--Preview (right)--+
+|  |                          |     |     |                    |
+|  |  VARIANTE                |     |     |  PREVIEW           |
+|  |  [Tabs animated]        |     |     |                    |
+|  |                          |     |     |     [Component]    |
+|  |  TAMANO                  |     |     |                    |
+|  |  [Tabs animated]        |     |     |                    |
+|  |                          |     |     |                    |
+|  |  ESTADO                  |     |     |                    |
+|  |  [Tabs animated]        |     |     |                    |
+|  |                          |     |     |                    |
+|  |  PROPIEDADES             |     |     |                    |
+|  |  Label         (Toggle)  |     |     |                    |
+|  |  Label         (Toggle)  |     |     |                    |
+|  +--------------------------+-----+-----+--------------------+
++-------------------------------------------------------------+
+```
+
+### Glass container
+
+Wraps the entire story. Provides depth and visual separation from the Storybook canvas.
+
+```tsx
+const glass: React.CSSProperties = {
+  position: 'relative',
+  borderRadius: '20px',
+  overflow: 'hidden',
+  isolation: 'isolate',
+  backdropFilter: 'saturate(120%) blur(16px)',
+  WebkitBackdropFilter: 'saturate(120%) blur(16px)',
+  background: 'color-mix(in srgb, var(--card, #27272a) 55%, transparent)',
+  boxShadow: '0 8px 32px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.04)',
+  border: '1px solid color-mix(in srgb, var(--border, #3f3f46) 40%, transparent)',
+};
+```
+
+Inside the container, render `glassLayer` (5 absolute-positioned divs with mix-blend-modes: fill, highlight-soft, highlight-strong, edge-dark, inner-glow). These are `pointer-events: none`, `z-index: 0`. All content must have `position: relative; z-index: 1`.
+
+### Controls panel (left side)
+
+Width: `300px`. Padding: `24px`. Flex column, gap `16px`.
+
+#### Control types
+
+Only two control types are allowed:
+
+1. **Segmented controls** (`<Tabs>` + `<TabsList animated>` + `<TabsTrigger>`) for selecting one option among several (variant, size, state). Each trigger gets `flex: 1` via CSS. The `animated` prop on `TabsList` renders a sliding indicator.
+
+2. **Toggle switches** (`<Toggle animated>`) for boolean properties (disabled, animated, icon on/off). Laid out as rows: label left (`font-size: 13px`, `color: var(--foreground)`), toggle right (`justify-content: space-between`).
+
+#### Section labels
+
+Each control group has a label row with a lucide-style SVG icon (14x14, stroke-based):
+
+```tsx
+const sectionLabelRow: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '6px',
+  fontSize: '10px',
+  fontWeight: 600,
+  textTransform: 'uppercase',
+  letterSpacing: '0.08em',
+  color: 'var(--muted-foreground, #a1a1aa)',
+  marginBottom: '8px',
+};
+
+// Usage:
+<div style={sectionLabelRow}><IconLayers />Variante</div>
+```
+
+Icons are inline SVGs (no external dependency). Use lucide icon paths at 24x24 viewBox rendered at 14x14.
+
+#### UX rules for control organization
+
+- **Separate intent from hierarchy**: e.g. for Button, "destructive" is a toggle, "primary/secondary/tertiary" is a segmented control. Don't mix them into one flat list.
+- **Mutually exclusive states** go in a single segmented control (Normal | Cargando | Deshab.), never separate toggles.
+- **Independent booleans** get individual toggle rows.
+- **Labels in Spanish**: Variante, Tamano, Estado, Propiedades, Destructivo, Animado, Icono izquierda, Icono derecha, Preview.
+
+### Divider
+
+`<Divider orientation="vertical" />` from the DS, wrapped in a flex container with `padding: 16px 0` and `align-items: stretch`.
+
+### Preview area (right side)
+
+`flex: 1`, `padding: 24px`. Label "Preview" with eye icon at top left. Component centered vertically and horizontally in the remaining space.
+
+### Transition animation
+
+When variant, size, or state changes, the preview component animates out/in:
+
+```tsx
+const animateTransition = (fn: () => void) => {
+  setTransitioning(true);
+  setTimeout(() => { fn(); setTransitioning(false); }, 200);
+};
+
+// On the preview wrapper:
+style={{
+  transition: 'opacity 0.2s cubic-bezier(0.625, 0.05, 0, 1), transform 0.2s cubic-bezier(0.625, 0.05, 0, 1)',
+  opacity: transitioning ? 0 : 1,
+  transform: transitioning ? 'scale(0.92)' : 'scale(1)',
+}}
+```
+
+### DS components used in stories
+
+All controls must use DS components, never native HTML or inline-styled replacements:
+
+| Control | Component | Import path |
+|---------|-----------|-------------|
+| Segmented control | `Tabs`, `TabsList`, `TabsTrigger` | `components-react/src/atoms/Tabs` |
+| Boolean switch | `Toggle` | `components-react/src/atoms/Toggle` |
+| Separator | `Divider` | `components-react/src/atoms/Divider` |
+
+Always pass `animated` to `TabsList` and `Toggle` for smooth interactions.
+
+### Dark mode compatibility
+
+All colors use CSS custom properties (`var(--card)`, `var(--border)`, `var(--foreground)`, `var(--muted-foreground)`) with fallback hex values. The glass container uses `color-mix()` for transparency. Never hardcode light-only or dark-only colors.
+
+---
+
 ## Prohibited
 
 - Hardcoded hex, px, rem, or timing values in CSS or components
