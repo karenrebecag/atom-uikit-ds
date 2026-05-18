@@ -13,6 +13,7 @@ export { Textarea, type TextareaProps } from './atoms/Textarea';
 export { Field, type FieldProps } from './atoms/Field';
 export { Chip, type ChipProps } from './atoms/Chip';
 export { Tag, type TagProps } from './atoms/Tag';
+export { Badge, type BadgeProps, type BadgeVariant, type BadgeState } from './atoms/Badge';
 export { Divider, type DividerProps } from './atoms/Divider';
 export { Skeleton, type SkeletonProps } from './atoms/Skeleton';
 export { Spinner, type SpinnerProps } from './atoms/Spinner';

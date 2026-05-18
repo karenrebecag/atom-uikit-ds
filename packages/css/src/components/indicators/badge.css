@@ -1,0 +1,68 @@
+/* -------------------------------------------------------------------------
+   Badge
+
+   Numeric counter pill. Compact indicator for counts and notifications.
+   Non-interactive. Fixed height (16px), pill shape, truncates with ellipsis.
+
+   Variants: neutral, inbox
+   States:   enabled, focused, subtle
+   ------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  max-width: 2.25rem;
+  height: 1rem;
+  padding: 0 var(--spacing-1);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.badge__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  min-width: 1px;
+}
+
+/* ---- Neutral ---- */
+
+.badge--neutral.badge--enabled {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.badge--neutral.badge--focused {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.badge--neutral.badge--subtle {
+  background-color: var(--color-zinc-800);
+  color: var(--color-zinc-50);
+}
+
+/* ---- Inbox ---- */
+
+.badge--inbox.badge--enabled {
+  background-color: var(--color-red-100);
+  color: var(--color-zinc-950);
+}
+
+.badge--inbox.badge--focused {
+  background-color: var(--color-red-900);
+  color: var(--color-zinc-50);
+}
+
+.badge--inbox.badge--subtle {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
