@@ -1,5 +1,13 @@
 # @atom-uikit/components-react
 
+## 1.0.4
+
+### Patch Changes
+
+- LinkButton: new `animated` prop adds persistent underline and subtle text shimmer toward a lighter shade. Disabled state disables both effects.
+- Updated dependencies
+  - @atom-uikit/css@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
