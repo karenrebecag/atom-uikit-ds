@@ -17,10 +17,10 @@
 
 /* ---- Sizes ---- */
 
-.spinner--xs { width: 14px; height: 14px; }
-.spinner--s  { width: 18px; height: 18px; }
-.spinner--m  { width: 24px; height: 24px; }
-.spinner--l  { width: 32px; height: 32px; }
+.spinner--xs { width: 0.875rem; height: 0.875rem; }
+.spinner--s  { width: 1.125rem; height: 1.125rem; }
+.spinner--m  { width: 1.5rem; height: 1.5rem; }
+.spinner--l  { width: 2rem; height: 2rem; }
 
 .spinner svg {
   width: 100%;

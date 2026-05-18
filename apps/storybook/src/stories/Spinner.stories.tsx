@@ -1,64 +1,59 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Spinner } from '../../../../packages/components-react/src/atoms/Spinner';
-import { Button } from '../../../../packages/components-react/src/atoms/Button';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { StoryPreviewLayout, sectionLabelRow, useTransition } from '../utils/StoryPreviewLayout';
+import { IconRuler } from '../utils/SectionIcons';
 
 const meta: Meta<typeof Spinner> = {
   title: 'Atoms/Indicators/Spinner',
   component: Spinner,
   argTypes: {
-    size: {
-      control: 'select',
-      options: ['xs', 's', 'm', 'l'],
-      name: 'Size',
-    },
+    size: { control: 'select', options: ['xs', 's', 'm', 'l'] },
     className: { table: { disable: true } },
   },
-  args: {
-    size: 'm',
-  },
+  args: { size: 'm' },
 };
 
 export default meta;
 type Story = StoryObj<typeof Spinner>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => {
+    type Size = 'xs' | 's' | 'm' | 'l';
 
-export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-4)' }}>
-      {(['xs', 's', 'm', 'l'] as const).map((size) => (
-        <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+    const sizeOpts: { value: Size; label: string }[] = [
+      { value: 'xs', label: 'XS' },
+      { value: 's', label: 'S' },
+      { value: 'm', label: 'M' },
+      { value: 'l', label: 'L' },
+    ];
+
+    const [size, setSize] = useState<Size>('m');
+    const { animateTransition, transitionStyle } = useTransition();
+
+    return (
+      <StoryPreviewLayout
+        minHeight={250}
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconRuler />{`Tama\u00f1o`}</div>
+              <Tabs value={size} onValueChange={(v) => animateTransition(() => setSize(v as Size))}>
+                <TabsList animated>
+                  {sizeOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+          </>
+        }
+      >
+        <div style={transitionStyle}>
           <Spinner size={size} />
-          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--muted-foreground)' }}>{size}</span>
         </div>
-      ))}
-    </div>
-  ),
-};
-
-export const InButton: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-3)' }}>
-      <Button variant="primary" size="m" disabled>
-        <Spinner size="xs" />
-        Loading...
-      </Button>
-      <Button variant="secondary" size="m" disabled>
-        <Spinner size="xs" />
-        Saving...
-      </Button>
-    </div>
-  ),
-};
-
-export const CustomColor: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-4)' }}>
-      <Spinner size="m" style={{ color: 'var(--destructive)' }} />
-      <Spinner size="m" style={{ color: 'var(--success)' }} />
-      <Spinner size="m" style={{ color: 'var(--info)' }} />
-      <Spinner size="m" style={{ color: 'var(--warning)' }} />
-      <Spinner size="m" style={{ color: 'var(--brand)' }} />
-    </div>
-  ),
+      </StoryPreviewLayout>
+    );
+  },
 };
