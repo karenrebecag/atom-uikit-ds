@@ -18,6 +18,7 @@ type ToggleGroupContextValue = {
   onToggle: (val: string) => void;
   variant: 'default' | 'outline';
   size: 'xs' | 's' | 'm' | 'l';
+  animated: boolean;
 };
 
 const ToggleGroupContext = createContext<ToggleGroupContextValue | null>(null);
@@ -78,10 +79,10 @@ export function ToggleGroup({
   );
 
   return (
-    <ToggleGroupContext.Provider value={{ type, value, onToggle, variant, size }}>
+    <ToggleGroupContext.Provider value={{ type, value, onToggle, variant, size, animated }}>
       <div
         role="group"
-        data-animate={animated || undefined}
+        {...(animated ? { 'data-toggle-group-animate': '' } : {})}
         className={cn(
           'toggle-group',
           orientation === 'vertical' && 'toggle-group--vertical',
@@ -105,9 +106,19 @@ export type ToggleGroupItemProps = {
 };
 
 export function ToggleGroupItem({ value: itemValue, disabled = false, children, className }: ToggleGroupItemProps) {
-  const { value, onToggle, size } = useToggleGroup();
+  const { value, onToggle, size, animated } = useToggleGroup();
   const isActive = value.includes(itemValue);
   const isIconOnly = typeof children !== 'string';
+  const useTextSwap = animated && !isIconOnly;
+
+  const content = useTextSwap ? (
+    <span className="button__label">
+      <span className="button__label-inner">
+        <span className="button__text is--default" data-button-text="">{children}</span>
+        <span className="button__text is--hover" data-button-text="" aria-hidden="true">{children}</span>
+      </span>
+    </span>
+  ) : children;
 
   return (
     <button
@@ -116,6 +127,7 @@ export function ToggleGroupItem({ value: itemValue, disabled = false, children, 
       aria-checked={isActive}
       aria-disabled={disabled || undefined}
       disabled={disabled}
+      {...(useTextSwap ? { 'data-toggle-group-animate': '' } : {})}
       className={cn(
         'toggle-group__item',
         `toggle-group__item--${size}`,
@@ -128,7 +140,7 @@ export function ToggleGroupItem({ value: itemValue, disabled = false, children, 
         if (!disabled) onToggle(itemValue);
       }}
     >
-      {children}
+      {content}
     </button>
   );
 }

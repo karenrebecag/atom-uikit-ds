@@ -54,16 +54,16 @@
 }
 
 .toggle-group__item:focus-visible {
-  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
-  outline-offset: -2px;
+  outline: var(--stroke-medium) solid var(--focus-ring-color);
+  outline-offset: calc(-1 * var(--stroke-medium));
   border-radius: var(--radius-md);
 }
 
-/* Active */
+/* Active — follows button primary convention */
 
 .toggle-group__item--active {
-  background-color: var(--accent);
-  color: var(--accent-foreground);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
 /* Disabled */
@@ -93,16 +93,16 @@
 
 /* ---- Sizes ---- */
 
-.toggle-group__item--xs { height: 28px; padding: 0 var(--spacing-2, 8px); }
-.toggle-group__item--s  { height: 32px; padding: 0 var(--spacing-3, 12px); }
-.toggle-group__item--m  { height: var(--spacing-10, 40px); padding: 0 var(--spacing-3, 12px); }
-.toggle-group__item--l  { height: var(--spacing-12, 48px); padding: 0 var(--spacing-4, 16px); }
+.toggle-group__item--xs { height: 1.75rem; padding: 0 var(--spacing-2); }
+.toggle-group__item--s  { height: 2rem; padding: 0 var(--spacing-3); }
+.toggle-group__item--m  { height: 2.5rem; padding: 0 var(--spacing-3); }
+.toggle-group__item--l  { height: 3rem; padding: 0 var(--spacing-4); }
 
 /* Icon-only (square) */
-.toggle-group__item--icon-only.toggle-group__item--xs { width: 28px; padding: 0; }
-.toggle-group__item--icon-only.toggle-group__item--s  { width: 32px; padding: 0; }
-.toggle-group__item--icon-only.toggle-group__item--m  { width: var(--spacing-10, 40px); padding: 0; }
-.toggle-group__item--icon-only.toggle-group__item--l  { width: var(--spacing-12, 48px); padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--xs { width: 1.75rem; padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--s  { width: 2rem; padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--m  { width: 2.5rem; padding: 0; }
+.toggle-group__item--icon-only.toggle-group__item--l  { width: 3rem; padding: 0; }
 
 /* ---- Outline variant ---- */
 
@@ -142,11 +142,11 @@
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .toggle-group[data-animate] .toggle-group__item:hover:not(.toggle-group__item--disabled) {
+  .toggle-group[data-toggle-group-animate] .toggle-group__item:hover:not(.toggle-group__item--disabled) {
     scale: 1.095;
   }
 
-  .toggle-group[data-animate] .toggle-group__item:hover:not(.toggle-group__item--disabled) .toggle-group__item-icon {
+  .toggle-group[data-toggle-group-animate] .toggle-group__item:hover:not(.toggle-group__item--disabled) .toggle-group__item-icon {
     rotate: 360deg;
     transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);
   }

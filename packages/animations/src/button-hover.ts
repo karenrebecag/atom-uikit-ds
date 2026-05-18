@@ -28,7 +28,7 @@ export function initButtonHover(config: AnimationConfig = {}): CleanupFn {
 
   if (!scope) return () => {};
 
-  const selector = '[data-button-animate], [data-link-button-animate]';
+  const selector = '[data-button-animate], [data-link-button-animate], [data-toggle-group-animate]';
   const buttons = (scope as Element).querySelectorAll
     ? (scope as Element).querySelectorAll(selector)
     : document.querySelectorAll(selector);
