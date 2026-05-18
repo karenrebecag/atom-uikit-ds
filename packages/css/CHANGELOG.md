@@ -1,5 +1,11 @@
 # @atom-uikit/css
 
+## 1.0.6
+
+### Patch Changes
+
+- ButtonGroup: forwardRef support, exported types for all sub-components, aria-label prop for accessibility. Removed hardcoded CSS fallback.
+
 ## 1.0.5
 
 ### Patch Changes
