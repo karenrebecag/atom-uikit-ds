@@ -1,5 +1,11 @@
 # @atom-uikit/css
 
+## 1.0.5
+
+### Patch Changes
+
+- LinkButton: hover underline now only appears when animated prop is active.
+
 ## 1.0.4
 
 ### Patch Changes
