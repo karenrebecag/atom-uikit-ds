@@ -75,7 +75,7 @@ export const Default: Story = {
 
     const [size, setSize] = useState<'xs' | 'sm' | 'default' | 'lg' | 'xl'>('default');
     const [linkState, setLinkState] = useState<LinkState>('default');
-    const [animated, setAnimated] = useState(true);
+    const [animated, setAnimated] = useState(false);
     const [transitioning, setTransitioning] = useState(false);
 
     const animateTransition = (fn: () => void) => {
