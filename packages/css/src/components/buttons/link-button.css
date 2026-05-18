@@ -91,3 +91,39 @@
     transform: scaleX(1) rotate(0.001deg);
   }
 }
+
+/* ---- Animated variant: persistent underline + text shimmer ---- */
+
+.link-button--animated:not(.link-button--disabled) .link-button__text::before {
+  transform-origin: left;
+  transform: scaleX(1) rotate(0.001deg);
+}
+
+.link-button--animated:not(.link-button--disabled) .link-button__text {
+  background: linear-gradient(
+    120deg,
+    currentColor 0%,
+    currentColor 35%,
+    color-mix(in srgb, currentColor 40%, white) 50%,
+    currentColor 65%,
+    currentColor 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: link-button-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes link-button-shimmer {
+  0%, 100% { background-position: 200% center; }
+  50% { background-position: 0% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-button--animated:not(.link-button--disabled) .link-button__text {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}

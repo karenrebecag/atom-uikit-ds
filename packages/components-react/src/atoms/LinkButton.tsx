@@ -5,6 +5,7 @@ type LinkButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 export type LinkButtonProps = {
   size?: LinkButtonSize;
   disabled?: boolean;
+  animated?: boolean;
   children: string;
   className?: string;
   href: string;
@@ -19,6 +20,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
     {
       size = 'default',
       disabled = false,
+      animated = false,
       children,
       className,
       href,
@@ -30,6 +32,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       'link-button',
       `link-button--${size}`,
       disabled && 'link-button--disabled',
+      animated && 'link-button--animated',
       className,
     );
 
