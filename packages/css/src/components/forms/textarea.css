@@ -11,10 +11,10 @@
 .textarea {
   display: flex;
   width: 100%;
-  min-height: 80px;
-  padding: 8px;
-  border: 1px solid var(--border-input);
-  border-radius: 8px;
+  min-height: 5rem;
+  padding: var(--spacing-2);
+  border: var(--stroke-thin) solid var(--border-input);
+  border-radius: var(--radius-md);
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
@@ -23,8 +23,8 @@
   resize: vertical;
   outline: none;
   transition:
-    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+    border-color var(--duration-150) var(--easing-out),
+    box-shadow var(--duration-150) var(--easing-out);
 }
 
 .textarea::placeholder {
@@ -33,7 +33,7 @@
 
 .textarea:focus {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px var(--focus-ring-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);
 }
 
 .textarea:disabled {
@@ -47,10 +47,10 @@
 
 .textarea[aria-invalid="true"] {
   border-color: var(--destructive);
-  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);
+  box-shadow: 0 0 var(--stroke-medium) 0 var(--focus-ring-error-color);
 }
 
 .textarea[aria-invalid="true"]:focus {
   border-color: var(--destructive);
-  box-shadow: 0 0 0 2px var(--focus-ring-error-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-error-color);
 }
