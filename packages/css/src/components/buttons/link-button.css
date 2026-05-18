@@ -85,8 +85,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .link-button:hover:not(.link-button--disabled) .link-button__text::before,
-  [data-hover]:hover .link-button:not(.link-button--disabled) .link-button__text::before {
+  .link-button--animated:hover:not(.link-button--disabled) .link-button__text::before,
+  [data-hover]:hover .link-button--animated:not(.link-button--disabled) .link-button__text::before {
     transform-origin: left;
     transform: scaleX(1) rotate(0.001deg);
   }
