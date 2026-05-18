@@ -28,10 +28,10 @@
   text-decoration: none;
   box-shadow: var(--shadow-none);
   transition:
-    background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+    background-color var(--duration-300) var(--easing-out),
+    color var(--duration-300) var(--easing-out),
+    border-color var(--duration-300) var(--easing-out),
+    scale var(--duration-500) cubic-bezier(0.32, 0.72, 0, 1);
   position: relative;
 }
 
@@ -55,7 +55,7 @@
     transition-duration: 0ms;
   }
   .button:active:not(.button--disabled) {
-    scale: none;
+    scale: 1;
   }
 }
 
@@ -292,4 +292,18 @@
 
 .button--loading .button__spinner {
   display: flex;
+}
+
+.button__spinner-icon {
+  animation: button-spin var(--duration-700) linear infinite;
+}
+
+@keyframes button-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button__spinner-icon {
+    animation: none;
+  }
 }

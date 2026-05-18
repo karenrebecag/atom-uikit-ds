@@ -52,7 +52,7 @@
     transition-duration: 0ms;
   }
   .icon-button:active:not(.icon-button--disabled) {
-    scale: none;
+    scale: 1;
   }
 }
 

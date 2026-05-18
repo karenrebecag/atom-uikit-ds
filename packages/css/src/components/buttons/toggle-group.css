@@ -165,6 +165,6 @@
   }
 
   .toggle-group__item:active {
-    scale: none;
+    scale: 1;
   }
 }

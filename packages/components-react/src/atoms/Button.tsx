@@ -41,9 +41,7 @@ function cn(...classes: (string | false | undefined | null)[]) {
 const Spinner = () => (
   <svg className="button__spinner-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <circle cx="8" cy="8" r="6" stroke="currentColor" strokeOpacity="0.25" strokeWidth="2" />
-    <path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <animateTransform attributeName="transform" type="rotate" from="0 8 8" to="360 8 8" dur="0.75s" repeatCount="indefinite" />
-    </path>
+    <path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 
@@ -101,11 +99,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
 
     if ('href' in props && props.href) {
+      const isInactive = disabled || loading;
       return (
         <a
           ref={ref as React.Ref<HTMLAnchorElement>}
           className={classes}
-          aria-disabled={disabled || loading}
+          aria-disabled={isInactive || undefined}
+          tabIndex={isInactive ? -1 : undefined}
+          onClick={isInactive ? (e: React.MouseEvent) => e.preventDefault() : undefined}
           {...animateAttrs}
           {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
         >

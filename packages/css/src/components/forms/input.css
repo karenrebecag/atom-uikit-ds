@@ -11,10 +11,10 @@
 .input {
   display: flex;
   width: 100%;
-  height: 40px;
-  padding: 0 8px;
-  border: 1px solid var(--border-input);
-  border-radius: 8px;
+  height: 2.5rem;
+  padding: 0 var(--spacing-2);
+  border: var(--stroke-thin) solid var(--border-input);
+  border-radius: var(--radius-md);
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
@@ -22,8 +22,8 @@
   line-height: 1;
   outline: none;
   transition:
-    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+    border-color var(--duration-150) var(--easing-out),
+    box-shadow var(--duration-150) var(--easing-out);
 }
 
 .input::placeholder {
@@ -32,7 +32,7 @@
 
 .input:focus {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px var(--focus-ring-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);
 }
 
 .input:disabled {
@@ -45,12 +45,12 @@
 
 .input[aria-invalid="true"] {
   border-color: var(--destructive);
-  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);
+  box-shadow: 0 0 var(--stroke-medium) 0 var(--focus-ring-error-color);
 }
 
 .input[aria-invalid="true"]:focus {
   border-color: var(--destructive);
-  box-shadow: 0 0 0 2px var(--focus-ring-error-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-error-color);
 }
 
 /* File input */
@@ -60,9 +60,9 @@
 
 .input[type="file"]::file-selector-button {
   height: 100%;
-  padding: 0 12px;
+  padding: 0 var(--spacing-3);
   border: none;
-  border-right: 1px solid var(--border-input);
+  border-right: var(--stroke-thin) solid var(--border-input);
   background-color: var(--muted);
   color: var(--foreground);
   font-family: inherit;
@@ -76,31 +76,31 @@
 .input-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-2);
   width: 100%;
-  height: 40px;
-  padding: 0 8px;
-  border: 1px solid var(--border-input);
-  border-radius: 8px;
+  height: 2.5rem;
+  padding: 0 var(--spacing-2);
+  border: var(--stroke-thin) solid var(--border-input);
+  border-radius: var(--radius-md);
   background-color: var(--background);
   transition:
-    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+    border-color var(--duration-150) var(--easing-out),
+    box-shadow var(--duration-150) var(--easing-out);
 }
 
 .input-group:focus-within {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px var(--focus-ring-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);
 }
 
 .input-group--error {
   border-color: var(--destructive);
-  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);
+  box-shadow: 0 0 var(--stroke-medium) 0 var(--focus-ring-error-color);
 }
 
 .input-group--error:focus-within {
   border-color: var(--destructive);
-  box-shadow: 0 0 0 2px var(--focus-ring-error-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-error-color);
 }
 
 .input-group--disabled {
@@ -136,8 +136,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 16px;
-  height: 16px;
+  width: 1em;
+  height: 1em;
   color: var(--placeholder);
 }
 
