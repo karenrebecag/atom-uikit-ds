@@ -11,7 +11,7 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-1);
   width: 100%;
 }
 
@@ -29,6 +29,7 @@
 }
 
 .field__description {
+  margin-top: var(--spacing-1);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-xs);
   line-height: 1.4;
@@ -36,6 +37,7 @@
 }
 
 .field__error {
+  margin-top: var(--spacing-1);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-xs);
   line-height: 1.4;

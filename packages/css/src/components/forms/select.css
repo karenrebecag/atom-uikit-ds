@@ -12,7 +12,8 @@
 
 .select {
   position: relative;
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
