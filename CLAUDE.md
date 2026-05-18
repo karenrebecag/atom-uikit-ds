@@ -600,6 +600,148 @@ All colors use CSS custom properties (`var(--card)`, `var(--border)`, `var(--for
 
 ---
 
+## Component Review & Story Workflow (paso a paso)
+
+Proceso repetitivo para revisar cada componente del DS y dejarlo production-ready. Seguir en orden.
+
+### Paso 1: Leer el componente
+
+Leer 3 archivos:
+- `packages/components-react/src/atoms/{Component}.tsx`
+- `packages/css/src/components/{category}/{component}.css`
+- `apps/storybook/src/stories/{Component}.stories.tsx`
+
+### Paso 2: Tokenizar CSS
+
+Reemplazar todos los valores hardcoded en el CSS del componente:
+
+| Hardcoded | Token |
+|-----------|-------|
+| `Npx` (height) | `Nrem` (ej: `40px` -> `2.5rem`) |
+| `padding: 8px` | `var(--spacing-2)` |
+| `border-radius: 8px` | `var(--radius-md)` |
+| `border: 1px` | `var(--stroke-thin)` |
+| `box-shadow: 0 0 0 2px` | `0 0 0 var(--stroke-medium)` |
+| `0.15s cubic-bezier(...)` | `var(--duration-150) var(--easing-out)` |
+| `0.3s` | `var(--duration-300)` |
+| `scale: none` | `scale: 1` (en `prefers-reduced-motion`) |
+| `width: 16px` (iconos) | `1em` (escala con font-size) |
+
+### Paso 3: Verificar componente React
+
+Checklist:
+- [ ] `forwardRef` presente
+- [ ] Tipos exportados (`export type {Component}Props`)
+- [ ] Sub-componentes tienen tipos exportados
+- [ ] `aria-*` atributos correctos (aria-invalid, aria-disabled, aria-busy)
+- [ ] Anchor disabled previene navegacion (`onClick preventDefault`)
+- [ ] Spinner usa CSS animation (no inline `animateTransform`), respeta `prefers-reduced-motion`
+- [ ] `cn()` importado de util compartido (si aplica)
+
+### Paso 4: Crear story interactiva
+
+Usar utilidades compartidas:
+```tsx
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconRuler, IconActivity, IconSettings } from '../utils/SectionIcons';
+```
+
+Estructura del render:
+```tsx
+const { animateTransition, transitionStyle } = useTransition();
+
+return (
+  <StoryPreviewLayout minHeight={420} controls={<>...</>}>
+    <div style={transitionStyle}>
+      <Component ... />
+    </div>
+  </StoryPreviewLayout>
+);
+```
+
+#### Categorias de controles (4 bloques jerarquicos)
+
+1. **Seleccion multiple** -> `<Tabs>` + `<TabsList animated>` + `<TabsTrigger>`
+   - Variante, Tamano, Estado, Tipo, Composicion, Orientacion, etc.
+   - Mutually exclusive (ej: Normal | Cargando | Deshab.)
+
+2. **Booleanos** -> `<Toggle animated>`
+   - Destructivo, Animado, Icono izq., Etiqueta, etc.
+   - Layout: `switchRow` (label izq, toggle der, full width)
+
+#### Reglas de organizacion
+
+- Separar intent de jerarquia (ej: "Destructivo" es toggle, "Primario/Secundario/Terciario" es segmented)
+- Estados mutuamente excluyentes en un solo segmented (Normal | Cargando | Deshab.)
+- Composicion con Field cuando el componente tiene label/helper/error
+- Labels en espanol: Variante, Tamano, Estado, Propiedades, Marcado, Filas, Contenido, etc.
+- Section labels con icono de `SectionIcons` + uppercase 10px
+
+#### Iconos de seccion disponibles
+
+`IconLayers` (variante), `IconRuler` (tamano/filas), `IconActivity` (estado/marcado), `IconSettings` (propiedades), `IconEye` (preview), `IconLayout` (orientacion), `IconBox` (composicion/contenido), `IconImage` (icono), `IconType` (tipo)
+
+### Paso 5: Build y verificar
+
+```bash
+pnpm build   # debe pasar sin errores
+```
+
+Refresca Storybook local y verifica visualmente.
+
+### Paso 6: Commit y push
+
+```bash
+git add {archivos modificados}
+git commit -m "feat({component}): tokenize CSS, interactive story with {features}"
+git push origin main
+```
+
+Solo Storybook (privado) no necesita npm release. Si CSS o React cambiaron:
+
+### Paso 7: Publicar npm (solo si cambiaron packages)
+
+```bash
+# Crear changeset manual (CLI interactivo no funciona)
+# Escribir .changeset/{nombre}.md con frontmatter:
+# ---
+# "@atom-uikit/components-react": patch
+# "@atom-uikit/css": patch
+# ---
+# Descripcion del cambio.
+
+pnpm changeset version
+git add .changeset/ packages/*/CHANGELOG.md packages/*/package.json
+git commit -m "chore(release): @atom-uikit/components-react@X.Y.Z, @atom-uikit/css@X.Y.Z"
+git push origin main
+pnpm release
+git push origin main --tags
+```
+
+Usar `patch` para fixes, `minor` para breaking changes (eliminacion de componentes).
+
+### Componentes ya revisados
+
+| Componente | CSS | Story | npm |
+|------------|-----|-------|-----|
+| Button | tokenizado | interactiva | 2.0.0 |
+| IconButton | tokenizado | interactiva | 2.0.0 |
+| LinkButton | tokenizado + shimmer | interactiva | 2.0.0 |
+| ButtonGroup | tokenizado | interactiva | 2.0.0 |
+| Input | tokenizado | interactiva | 2.0.0 |
+| Textarea | tokenizado | interactiva | pendiente |
+| Select | limpio | interactiva | pendiente |
+| Checkbox | tokenizado | interactiva | pendiente |
+| Toggle | limpio | pendiente | - |
+| Tabs | indicador animado | pendiente | 2.0.0 |
+| SearchInput | eliminado | - | 2.0.0 |
+
+### Componentes pendientes
+
+Radio, Chip, Tag, Slider, Divider, Skeleton, Spinner, Field, Accordion, Avatar, AvatarGroup, Breadcrumb, BurgerIcon, Calendar, Empty, Item, NavLink, Pagination, Resizable, Table, Typography, y todas las molecules.
+
+---
+
 ## Prohibited
 
 - Hardcoded hex, px, rem, or timing values in CSS or components
