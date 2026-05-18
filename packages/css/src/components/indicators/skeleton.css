@@ -9,7 +9,7 @@
 
 .skeleton {
   display: block;
-  background-color: var(--muted);
+  background-color: var(--border);
   border-radius: var(--radius-md);
   animation: skeleton-pulse var(--duration-1000) var(--easing-in-out) infinite;
 }
