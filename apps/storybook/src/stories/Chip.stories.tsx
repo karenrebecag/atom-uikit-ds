@@ -1,5 +1,10 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Chip } from '../../../../packages/components-react/src/atoms/Chip';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconRuler, IconActivity, IconSettings } from '../utils/SectionIcons';
 
 const IconFilter = () => (
   <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -11,31 +16,15 @@ const meta: Meta<typeof Chip> = {
   title: 'Atoms/Indicators/Chip',
   component: Chip,
   argTypes: {
-    type: {
-      control: 'select',
-      options: ['outlined', 'filled'],
-      name: 'Type',
-    },
-    size: {
-      control: 'select',
-      options: ['xs', 's', 'm', 'l', 'xl'],
-      name: 'Size',
-    },
-    iconLeft: {
-      control: 'boolean',
-      mapping: { true: <IconFilter />, false: undefined },
-      name: 'Icon left',
-    },
-    onClose: {
-      control: 'boolean',
-      mapping: { true: () => {}, false: undefined },
-      name: 'Closable',
-    },
-    animated: { control: 'boolean', name: 'Animated' },
-    disabled: { control: 'boolean', name: 'Disabled' },
-    error: { control: 'boolean', name: 'Error' },
+    type: { control: 'select', options: ['outlined', 'filled'] },
+    size: { control: 'select', options: ['xs', 's', 'm', 'l', 'xl'] },
+    iconLeft: { control: 'boolean', mapping: { true: <IconFilter />, false: undefined } },
+    onClose: { control: 'boolean', mapping: { true: () => {}, false: undefined } },
+    animated: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    error: { control: 'boolean' },
     focused: { table: { disable: true } },
-    children: { control: 'text', name: 'Label' },
+    children: { control: 'text' },
     className: { table: { disable: true } },
   },
   args: {
@@ -53,70 +42,122 @@ const meta: Meta<typeof Chip> = {
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => {
+    type ChipType = 'outlined' | 'filled';
+    type ChipState = 'default' | 'disabled' | 'error' | 'focused';
+    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
 
-export const AllVariants: Story = {
-  argTypes: {
-    type: { table: { disable: true } },
-    disabled: { table: { disable: true } },
-    error: { table: { disable: true } },
-  },
-  render: (args) => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'auto auto', gap: '24px 48px' }}>
-      <div>
-        <strong style={{ fontSize: 11, color: '#71717b', display: 'block', marginBottom: 12 }}>Outlined</strong>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
-          <Chip {...args} type="outlined">Enabled</Chip>
-          <Chip {...args} type="outlined" disabled>Disabled</Chip>
-          <Chip {...args} type="outlined" error>Error</Chip>
-          <Chip {...args} type="outlined" focused>Focused</Chip>
-        </div>
-      </div>
-      <div>
-        <strong style={{ fontSize: 11, color: '#71717b', display: 'block', marginBottom: 12 }}>Filled</strong>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
-          <Chip {...args} type="filled">Enabled</Chip>
-          <Chip {...args} type="filled" disabled>Disabled</Chip>
-          <Chip {...args} type="filled" error>Error</Chip>
-          <Chip {...args} type="filled" focused>Focused</Chip>
-        </div>
-      </div>
-    </div>
-  ),
-};
+    const typeOpts: { value: ChipType; label: string }[] = [
+      { value: 'outlined', label: 'Outlined' },
+      { value: 'filled', label: 'Filled' },
+    ];
+    const stateOpts: { value: ChipState; label: string }[] = [
+      { value: 'default', label: 'Normal' },
+      { value: 'disabled', label: 'Deshab.' },
+      { value: 'error', label: 'Error' },
+      { value: 'focused', label: 'Focus' },
+    ];
+    const sizeOpts: { value: Size; label: string }[] = [
+      { value: 'xs', label: 'XS' },
+      { value: 's', label: 'S' },
+      { value: 'm', label: 'M' },
+      { value: 'l', label: 'L' },
+      { value: 'xl', label: 'XL' },
+    ];
 
-export const AllSizes: Story = {
-  argTypes: {
-    size: { table: { disable: true } },
+    const [chipType, setChipType] = useState<ChipType>('outlined');
+    const [chipState, setChipState] = useState<ChipState>('default');
+    const [size, setSize] = useState<Size>('s');
+    const [showIcon, setShowIcon] = useState(true);
+    const [closable, setClosable] = useState(true);
+    const [isAnimated, setIsAnimated] = useState(false);
+    const { animateTransition, transitionStyle } = useTransition();
+
+    return (
+      <StoryPreviewLayout
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconLayers />Tipo</div>
+              <Tabs value={chipType} onValueChange={(v) => animateTransition(() => setChipType(v as ChipType))}>
+                <TabsList animated>
+                  {typeOpts.map((t) => (
+                    <TabsTrigger key={t.value} value={t.value}>{t.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconRuler />{`Tama\u00f1o`}</div>
+              <Tabs value={size} onValueChange={(v) => animateTransition(() => setSize(v as Size))}>
+                <TabsList animated>
+                  {sizeOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconActivity />Estado</div>
+              <Tabs value={chipState} onValueChange={(v) => animateTransition(() => setChipState(v as ChipState))}>
+                <TabsList animated>
+                  {stateOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Elementos</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Icono</span>
+                  <Toggle animated checked={showIcon} onChange={setShowIcon} />
+                </div>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Cerrable</span>
+                  <Toggle animated checked={closable} onChange={setClosable} />
+                </div>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Animado</span>
+                  <Toggle animated checked={isAnimated} onChange={setIsAnimated} />
+                </div>
+              </div>
+            </div>
+          </>
+        }
+      >
+        <div style={transitionStyle}>
+          <Chip
+            type={chipType}
+            size={size}
+            disabled={chipState === 'disabled'}
+            error={chipState === 'error'}
+            focused={chipState === 'focused'}
+            animated={isAnimated}
+            iconLeft={showIcon ? <IconFilter /> : undefined}
+            onClose={closable ? () => {} : undefined}
+          >
+            Filtro
+          </Chip>
+        </div>
+      </StoryPreviewLayout>
+    );
   },
-  render: (args) => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <Chip {...args} size="xs">XS</Chip>
-      <Chip {...args} size="s">S</Chip>
-      <Chip {...args} size="m">M</Chip>
-      <Chip {...args} size="l">L</Chip>
-      <Chip {...args} size="xl">XL</Chip>
-    </div>
-  ),
 };
 
 export const ChipGroup: Story = {
-  argTypes: {
-    type: { table: { disable: true } },
-    size: { table: { disable: true } },
-    iconLeft: { table: { disable: true } },
-    onClose: { table: { disable: true } },
-    disabled: { table: { disable: true } },
-    error: { table: { disable: true } },
-    children: { table: { disable: true } },
-  },
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
       <Chip type="filled" size="s" onClose={() => {}}>React</Chip>
       <Chip type="filled" size="s" onClose={() => {}}>TypeScript</Chip>
       <Chip type="filled" size="s" onClose={() => {}}>Astro</Chip>
-      <Chip type="filled" size="s" onClose={() => {}}>Tailwind</Chip>
-      <Chip type="outlined" size="s">+ Add</Chip>
+      <Chip type="filled" size="s" onClose={() => {}}>CSS</Chip>
+      <Chip type="outlined" size="s">+ Agregar</Chip>
     </div>
   ),
 };

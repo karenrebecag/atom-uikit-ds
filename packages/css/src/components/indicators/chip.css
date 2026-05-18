@@ -15,7 +15,7 @@
   align-items: center;
   gap: 0.375em;
   border-radius: 0.5em;
-  border: 1px solid transparent;
+  border: var(--stroke-thin) solid transparent;
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
@@ -26,9 +26,9 @@
   -webkit-tap-highlight-color: transparent;
   white-space: nowrap;
   transition:
-    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color var(--duration-150) var(--easing-out),
+    border-color var(--duration-150) var(--easing-out),
+    scale var(--duration-150) var(--easing-in-out);
 }
 
 .chip[data-chip-animate]:active:not(.chip--disabled) {
@@ -41,7 +41,7 @@
     transition:
       background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
       border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-      scale 0.45s 0.05s cubic-bezier(0.32, 0.72, 0, 1);
+      scale var(--duration-500) 0.05s cubic-bezier(0.32, 0.72, 0, 1);
   }
 }
 
@@ -50,46 +50,46 @@
     transition-duration: 0ms;
   }
   .chip:active:not(.chip--disabled) {
-    scale: none;
+    scale: 1;
   }
 }
 
 /* ---- Sizes (height + h-padding explicit, font-size uniform) ---- */
 
 .chip--xs {
-  height: 20px;
-  padding: 0 6px;
+  height: 1.25rem;
+  padding: 0 var(--spacing-1);
 }
 
 .chip--s {
-  height: 24px;
-  padding: 0 8px;
+  height: 1.5rem;
+  padding: 0 var(--spacing-2);
 }
 
 .chip--m {
-  height: 32px;
-  padding: 0 10px;
+  height: 2rem;
+  padding: 0 var(--spacing-2);
 }
 
 .chip--l {
-  height: 40px;
-  padding: 0 12px;
+  height: 2.5rem;
+  padding: 0 var(--spacing-3);
 }
 
 .chip--xl {
-  height: 48px;
-  padding: 0 16px;
+  height: 3rem;
+  padding: 0 var(--spacing-4);
 }
 
 /* ---- Types ---- */
 
 .chip--outlined {
   background-color: var(--background);
-  border-color: var(--color-zinc-500);
+  border-color: var(--border);
 }
 
 .chip--outlined:hover:not(.chip--disabled) {
-  background-color: var(--color-zinc-50);
+  background-color: var(--accent);
 }
 
 .chip--filled {
@@ -97,7 +97,7 @@
 }
 
 .chip--filled:hover:not(.chip--disabled) {
-  background-color: var(--color-zinc-200);
+  background-color: var(--accent);
 }
 
 /* ---- Disabled ---- */
@@ -109,7 +109,8 @@
 }
 
 .chip--disabled.chip--outlined {
-  border-color: var(--color-zinc-200);
+  border-color: var(--muted);
+  background-color: var(--muted);
 }
 
 .chip--disabled.chip--filled {
@@ -119,28 +120,28 @@
 /* ---- Error ---- */
 
 .chip--error.chip--outlined {
-  border-color: var(--color-red-700);
-  color: var(--color-red-700);
+  border-color: var(--destructive);
+  color: var(--destructive);
 }
 
 .chip--error.chip--outlined:hover:not(.chip--disabled) {
-  background-color: var(--color-red-50);
+  background-color: color-mix(in srgb, var(--destructive) 6%, var(--background));
 }
 
 .chip--error.chip--filled {
-  background-color: var(--color-red-50);
-  color: var(--color-red-700);
+  background-color: color-mix(in srgb, var(--destructive) 8%, var(--background));
+  color: var(--destructive);
 }
 
 .chip--error.chip--filled:hover:not(.chip--disabled) {
-  background-color: var(--color-red-100);
+  background-color: color-mix(in srgb, var(--destructive) 12%, var(--background));
 }
 
 /* ---- Focus ---- */
 
 .chip:focus-visible,
 .chip--focused {
-  box-shadow: 0 0 0 2px var(--focus-ring-color);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);
   outline: none;
 }
 
@@ -174,13 +175,13 @@
   height: 1.125em;
   padding: 0.125em;
   border: none;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: color-mix(in srgb, var(--foreground) 6%, transparent);
   color: inherit;
   cursor: pointer;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   transition:
-    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+    background-color var(--duration-150) var(--easing-out),
+    scale var(--duration-500) cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .chip__close svg {
@@ -193,22 +194,22 @@
 }
 
 .chip--error .chip__close {
-  background-color: rgba(193, 0, 8, 0.1);
+  background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
 }
 
 .chip--disabled .chip__close {
   cursor: not-allowed;
   pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: color-mix(in srgb, var(--foreground) 4%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .chip__close:hover {
-    background-color: rgba(0, 0, 0, 0.12);
+    background-color: color-mix(in srgb, var(--foreground) 12%, transparent);
     scale: 1.06 1.095;
   }
 
   .chip--error .chip__close:hover {
-    background-color: rgba(193, 0, 8, 0.18);
+    background-color: color-mix(in srgb, var(--destructive) 18%, transparent);
   }
 }
