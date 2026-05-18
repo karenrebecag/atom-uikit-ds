@@ -88,7 +88,7 @@
 .button-group__text {
   display: inline-flex;
   align-items: center;
-  padding: 0 var(--spacing-3, 12px);
+  padding: 0 var(--spacing-3);
   font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
