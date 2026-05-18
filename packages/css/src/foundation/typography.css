@@ -144,7 +144,7 @@ body {
 
 .blockquote {
   border-left: var(--stroke-medium) solid var(--border);
-  padding-left: var(--spacing-6, 24px);
+  padding-left: var(--spacing-6);
   font-style: italic;
   color: var(--foreground);
 }
@@ -153,13 +153,13 @@ body {
 
 .list {
   list-style-type: disc;
-  margin-left: var(--spacing-6, 24px);
+  margin-left: var(--spacing-6);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
 }
 
 .list > li + li {
-  margin-top: var(--spacing-2, 8px);
+  margin-top: var(--spacing-2);
 }
 
 /* --- Code --- */

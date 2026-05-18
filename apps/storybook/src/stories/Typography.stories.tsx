@@ -1,141 +1,98 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  TypographyH1,
-  TypographyH2,
-  TypographyH3,
-  TypographyH4,
-  TypographyP,
-  TypographyLead,
-  TypographyLarge,
-  TypographySmall,
-  TypographyMuted,
-  TypographyBlockquote,
-  TypographyInlineCode,
-  TypographyList,
+  TypographyH1, TypographyH2, TypographyH3, TypographyH4,
+  TypographyP, TypographyLead, TypographyLarge, TypographySmall,
+  TypographyMuted, TypographyBlockquote, TypographyInlineCode, TypographyList,
 } from '../../../../packages/components-react/src/atoms/Typography';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { StoryPreviewLayout, sectionLabelRow, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers } from '../utils/SectionIcons';
 
 const meta: Meta = {
   title: 'Atoms/Typography',
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <div style={{ maxWidth: 640, margin: '0 auto' }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 type Story = StoryObj;
 
-export const AllPrimitives: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <section>
-        <TypographySmall>Heading 1 — 4xl / bold / tight</TypographySmall>
-        <TypographyH1>The quick brown fox jumps over the lazy dog</TypographyH1>
-      </section>
+export const Default: Story = {
+  render: () => {
+    type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'lead' | 'large' | 'small' | 'muted' | 'blockquote' | 'code' | 'list';
 
-      <section>
-        <TypographySmall>Heading 2 — 3xl / semibold / tight</TypographySmall>
-        <TypographyH2>The quick brown fox jumps over the lazy dog</TypographyH2>
-      </section>
+    const variantOpts: { value: Variant; label: string }[] = [
+      { value: 'h1', label: 'H1' },
+      { value: 'h2', label: 'H2' },
+      { value: 'h3', label: 'H3' },
+      { value: 'h4', label: 'H4' },
+      { value: 'body', label: 'Body' },
+      { value: 'lead', label: 'Lead' },
+      { value: 'large', label: 'Large' },
+      { value: 'small', label: 'Small' },
+      { value: 'muted', label: 'Muted' },
+      { value: 'blockquote', label: 'Quote' },
+      { value: 'code', label: 'Code' },
+      { value: 'list', label: 'Lista' },
+    ];
 
-      <section>
-        <TypographySmall>Heading 3 — 2xl / semibold</TypographySmall>
-        <TypographyH3>The quick brown fox jumps over the lazy dog</TypographyH3>
-      </section>
+    const [variant, setVariant] = useState<Variant>('h1');
+    const { animateTransition, transitionStyle } = useTransition();
 
-      <section>
-        <TypographySmall>Heading 4 — xl / medium</TypographySmall>
-        <TypographyH4>The quick brown fox jumps over the lazy dog</TypographyH4>
-      </section>
+    const sampleText = 'El zorro veloz salta sobre el perro perezoso';
+    const sampleParagraph = 'El rey, al ver lo felices que eran sus subditos, se dio cuenta del error de sus actos y derogo el impuesto a las bromas. La gente se regocijo y el reino se lleno de risas una vez mas.';
 
-      <section>
-        <TypographySmall>Paragraph — base / regular</TypographySmall>
-        <TypographyP>
-          The king, seeing how much happier his subjects were, realized the error of
-          his ways and repealed the joke tax. The people rejoiced, and the kingdom was
-          once again filled with laughter.
-        </TypographyP>
-      </section>
+    const renderVariant = () => {
+      switch (variant) {
+        case 'h1': return <TypographyH1>{sampleText}</TypographyH1>;
+        case 'h2': return <TypographyH2>{sampleText}</TypographyH2>;
+        case 'h3': return <TypographyH3>{sampleText}</TypographyH3>;
+        case 'h4': return <TypographyH4>{sampleText}</TypographyH4>;
+        case 'body': return <TypographyP>{sampleParagraph}</TypographyP>;
+        case 'lead': return <TypographyLead>{sampleParagraph}</TypographyLead>;
+        case 'large': return <TypographyLarge>{sampleText}</TypographyLarge>;
+        case 'small': return <TypographySmall>{sampleText}</TypographySmall>;
+        case 'muted': return <TypographyMuted>{sampleText}</TypographyMuted>;
+        case 'blockquote': return <TypographyBlockquote>{sampleParagraph}</TypographyBlockquote>;
+        case 'code': return <TypographyP>Usa <TypographyInlineCode>@atom-uikit/css</TypographyInlineCode> para instalar el paquete CSS.</TypographyP>;
+        case 'list': return (
+          <TypographyList>
+            <li>Primer elemento de la lista</li>
+            <li>Segundo elemento con mas detalle</li>
+            <li>Tercer elemento para completar</li>
+          </TypographyList>
+        );
+      }
+    };
 
-      <section>
-        <TypographySmall>Lead — lg / muted</TypographySmall>
-        <TypographyLead>
-          A longer description or introductory paragraph that provides context
-          for the content below.
-        </TypographyLead>
-      </section>
-
-      <section>
-        <TypographySmall>Large — lg / semibold</TypographySmall>
-        <TypographyLarge>Are you absolutely sure?</TypographyLarge>
-      </section>
-
-      <section>
-        <TypographySmall>Small — sm / medium</TypographySmall>
-        <TypographySmall>Email address</TypographySmall>
-      </section>
-
-      <section>
-        <TypographySmall>Muted — sm / muted</TypographySmall>
-        <TypographyMuted>Enter your email address.</TypographyMuted>
-      </section>
-
-      <section>
-        <TypographySmall>Blockquote</TypographySmall>
-        <TypographyBlockquote>
-          After all, everyone enjoys a good joke, and few are able to resist
-          the urge to tell one.
-        </TypographyBlockquote>
-      </section>
-
-      <section>
-        <TypographySmall>Inline Code</TypographySmall>
-        <TypographyP>
-          Use <TypographyInlineCode>@atom-uikit/css</TypographyInlineCode> to install the CSS package.
-        </TypographyP>
-      </section>
-
-      <section>
-        <TypographySmall>List</TypographySmall>
-        <TypographyList>
-          <li>First item in the list</li>
-          <li>Second item with more detail</li>
-          <li>Third item to round it out</li>
-        </TypographyList>
-      </section>
-    </div>
-  ),
+    return (
+      <StoryPreviewLayout
+        minHeight={320}
+        controls={
+          <div>
+            <div style={sectionLabelRow}><IconLayers />Variante</div>
+            <Tabs value={variant} onValueChange={(v) => animateTransition(() => setVariant(v as Variant))}>
+              <TabsList animated>
+                {variantOpts.map((v) => (
+                  <TabsTrigger key={v.value} value={v.value}>{v.label}</TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
+        }
+      >
+        <div style={{ maxWidth: '480px', ...transitionStyle }}>
+          {renderVariant()}
+        </div>
+      </StoryPreviewLayout>
+    );
+  },
 };
 
-export const Headings: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <TypographyH1>Heading 1</TypographyH1>
-      <TypographyH2>Heading 2</TypographyH2>
-      <TypographyH3>Heading 3</TypographyH3>
-      <TypographyH4>Heading 4</TypographyH4>
-    </div>
-  ),
-};
-
-export const BodyVariants: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <TypographyLead>Lead paragraph — used for introductions</TypographyLead>
-      <TypographyP>Default paragraph — the workhorse of body text</TypographyP>
-      <TypographyLarge>Large text — emphasis without heading weight</TypographyLarge>
-      <TypographySmall>Small text — labels and metadata</TypographySmall>
-      <TypographyMuted>Muted text — secondary information</TypographyMuted>
-    </div>
-  ),
-};
+export const AllPrimitives: Story = Default;
 
 export const TypeScale: Story = {
-  name: 'Major Third Scale',
+  name: 'Escala Major Third',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       {[

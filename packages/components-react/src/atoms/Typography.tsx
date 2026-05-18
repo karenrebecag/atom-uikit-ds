@@ -4,7 +4,7 @@ function cn(...classes: (string | false | undefined | null)[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-type TypographyProps = {
+export type TypographyProps = {
   children: ReactNode;
   className?: string;
 } & HTMLAttributes<HTMLElement>;
