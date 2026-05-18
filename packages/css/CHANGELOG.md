@@ -1,5 +1,11 @@
 # @atom-uikit/css
 
+## 1.2.0
+
+### Minor Changes
+
+- New Badge component: numeric counter pill with neutral/inbox variants and enabled/focused/subtle states. Colors aligned with Figma for both light and dark mode.
+
 ## 1.1.0
 
 ### Minor Changes

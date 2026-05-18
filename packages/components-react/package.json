@@ -1,6 +1,6 @@
 {
   "name": "@atom-uikit/components-react",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "description": "React components for the ATOM UIKit design system",
   "license": "MIT",
