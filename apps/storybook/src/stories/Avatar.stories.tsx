@@ -1,5 +1,9 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from '../../../../packages/components-react/src/atoms/Avatar';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { StoryPreviewLayout, sectionLabelRow, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconRuler, IconLayout, IconActivity } from '../utils/SectionIcons';
 
 const sampleImg = 'https://i.pravatar.cc/150?img=12';
 
@@ -7,23 +11,11 @@ const meta: Meta<typeof Avatar> = {
   title: 'Atoms/Indicators/Avatar',
   component: Avatar,
   argTypes: {
-    type: {
-      control: 'select',
-      options: ['image', 'image-border', 'initials', 'icon'],
-      name: 'Type',
-    },
-    shape: {
-      control: 'select',
-      options: ['circle', 'square'],
-      name: 'Shape',
-    },
-    size: {
-      control: 'select',
-      options: ['xs', 's', 'm', 'l'],
-      name: 'Size',
-    },
-    status: { control: 'boolean', name: 'Status dot' },
-    skeleton: { control: 'boolean', name: 'Skeleton' },
+    type: { control: 'select', options: ['image', 'image-border', 'initials', 'icon'] },
+    shape: { control: 'select', options: ['circle', 'square'] },
+    size: { control: 'select', options: ['xs', 's', 'm', 'l'] },
+    status: { control: 'boolean' },
+    skeleton: { control: 'boolean' },
     src: { table: { disable: true } },
     alt: { table: { disable: true } },
     initials: { table: { disable: true } },
@@ -44,88 +36,124 @@ const meta: Meta<typeof Avatar> = {
 export default meta;
 type Story = StoryObj<typeof Avatar>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => {
+    type AvatarType = 'image' | 'image-border' | 'initials' | 'icon' | 'skeleton';
+    type Shape = 'circle' | 'square';
+    type Size = 'xs' | 's' | 'm' | 'l';
+    type Status = 'none' | 'online';
+
+    const typeOpts: { value: AvatarType; label: string }[] = [
+      { value: 'image', label: 'Imagen' },
+      { value: 'image-border', label: 'Con borde' },
+      { value: 'initials', label: 'Iniciales' },
+      { value: 'icon', label: 'Icono' },
+      { value: 'skeleton', label: 'Skeleton' },
+    ];
+    const shapeOpts: { value: Shape; label: string }[] = [
+      { value: 'circle', label: 'Circular' },
+      { value: 'square', label: 'Cuadrado' },
+    ];
+    const sizeOpts: { value: Size; label: string }[] = [
+      { value: 'xs', label: 'XS' },
+      { value: 's', label: 'S' },
+      { value: 'm', label: 'M' },
+      { value: 'l', label: 'L' },
+    ];
+    const statusOpts: { value: Status; label: string }[] = [
+      { value: 'none', label: 'Ninguno' },
+      { value: 'online', label: 'Online' },
+    ];
+
+    const [avatarType, setAvatarType] = useState<AvatarType>('image-border');
+    const [shape, setShape] = useState<Shape>('circle');
+    const [size, setSize] = useState<Size>('m');
+    const [status, setStatus] = useState<Status>('online');
+    const { animateTransition, transitionStyle } = useTransition();
+
+    const isSkeleton = avatarType === 'skeleton';
+    const resolvedType = isSkeleton ? 'image-border' : avatarType;
+
+    return (
+      <StoryPreviewLayout
+        minHeight={340}
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconLayers />Tipo</div>
+              <Tabs value={avatarType} onValueChange={(v) => animateTransition(() => setAvatarType(v as AvatarType))}>
+                <TabsList animated>
+                  {typeOpts.map((t) => (
+                    <TabsTrigger key={t.value} value={t.value}>{t.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconLayout />Forma</div>
+              <Tabs value={shape} onValueChange={(v) => animateTransition(() => setShape(v as Shape))}>
+                <TabsList animated>
+                  {shapeOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconRuler />{`Tama\u00f1o`}</div>
+              <Tabs value={size} onValueChange={(v) => animateTransition(() => setSize(v as Size))}>
+                <TabsList animated>
+                  {sizeOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconActivity />Estado</div>
+              <Tabs value={status} onValueChange={(v) => animateTransition(() => setStatus(v as Status))}>
+                <TabsList animated>
+                  {statusOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+          </>
+        }
+      >
+        <div style={transitionStyle}>
+          <Avatar
+            type={resolvedType}
+            shape={shape}
+            size={size}
+            src={sampleImg}
+            initials="KO"
+            status={status === 'online' && !isSkeleton}
+            skeleton={isSkeleton}
+          />
+        </div>
+      </StoryPreviewLayout>
+    );
+  },
+};
 
 export const AllTypes: Story = {
-  argTypes: {
-    type: { table: { disable: true } },
-  },
-  render: (args) => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} type="image" src={sampleImg} />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>Image</p>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} type="image-border" src={sampleImg} />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>Image border</p>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} type="initials" initials="KO" />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>Initials</p>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} type="icon" />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>Icon</p>
-      </div>
-    </div>
-  ),
-};
-
-export const AllSizes: Story = {
-  argTypes: {
-    size: { table: { disable: true } },
-  },
-  render: (args) => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'end' }}>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} size="xs" src={sampleImg} />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>XS</p>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} size="s" src={sampleImg} />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>S</p>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} size="m" src={sampleImg} />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>M</p>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar {...args} size="l" src={sampleImg} />
-        <p style={{ fontSize: 10, color: '#71717b', marginTop: 4 }}>L</p>
-      </div>
-    </div>
-  ),
-};
-
-export const Shapes: Story = {
-  argTypes: {
-    shape: { table: { disable: true } },
-  },
-  render: (args) => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, auto)', gap: '16px 24px', alignItems: 'center' }}>
-      <strong style={{ fontSize: 10, color: '#71717b' }}>Circle</strong>
-      <Avatar {...args} shape="circle" type="image-border" size="s" src={sampleImg} />
-      <Avatar {...args} shape="circle" type="initials" size="s" initials="KO" />
-      <Avatar {...args} shape="circle" type="icon" size="s" />
-
-      <strong style={{ fontSize: 10, color: '#71717b' }}>Square</strong>
-      <Avatar {...args} shape="square" type="image-border" size="s" src={sampleImg} />
-      <Avatar {...args} shape="square" type="initials" size="s" initials="KO" />
-      <Avatar {...args} shape="square" type="icon" size="s" />
-    </div>
-  ),
-};
-
-export const Skeleton: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <Avatar size="xs" skeleton shape="circle" />
-      <Avatar size="s" skeleton shape="circle" />
-      <Avatar size="m" skeleton shape="circle" />
-      <Avatar size="l" skeleton shape="circle" />
-      <Avatar size="s" skeleton shape="square" />
-      <Avatar size="m" skeleton shape="square" />
+    <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+      {(['image', 'image-border', 'initials', 'icon'] as const).map((t) => (
+        <div key={t} style={{ textAlign: 'center' }}>
+          <Avatar type={t} size="m" shape="circle" src={sampleImg} initials="KO" status />
+          <p style={{ fontSize: 10, color: 'var(--muted-foreground)', marginTop: 4 }}>{t}</p>
+        </div>
+      ))}
+      <div style={{ textAlign: 'center' }}>
+        <Avatar type="image-border" size="m" shape="circle" skeleton />
+        <p style={{ fontSize: 10, color: 'var(--muted-foreground)', marginTop: 4 }}>skeleton</p>
+      </div>
     </div>
   ),
 };
