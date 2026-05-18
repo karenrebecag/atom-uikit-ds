@@ -1,5 +1,11 @@
 # @atom-uikit/css
 
+## 1.1.0
+
+### Minor Changes
+
+- BREAKING: Removed SearchInput component. Use `<Input type="search" iconLeft={...} />` instead.
+
 ## 1.0.7
 
 ### Patch Changes

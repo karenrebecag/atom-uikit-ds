@@ -1,5 +1,16 @@
 # @atom-uikit/components-react
 
+## 2.0.0
+
+### Minor Changes
+
+- BREAKING: Removed SearchInput component. Use `<Input type="search" iconLeft={...} />` instead.
+
+### Patch Changes
+
+- Updated dependencies
+  - @atom-uikit/css@1.1.0
+
 ## 1.0.6
 
 ### Patch Changes
