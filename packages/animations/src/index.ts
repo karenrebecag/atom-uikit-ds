@@ -6,4 +6,5 @@ export interface AnimationConfig {
 }
 
 export { initButtonHover } from './button-hover';
+export { initTextReveal } from './text-reveal';
 export { initSidebarAnimation } from './sidebar';
