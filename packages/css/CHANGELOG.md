@@ -1,5 +1,11 @@
 # @atom-uikit/css
 
+## 1.0.7
+
+### Patch Changes
+
+- Critical fixes: `scale: none` → `scale: 1` across button, icon-button, toggle-group. Button transitions tokenized. Anchor button prevents navigation when disabled. Spinner uses CSS animation respecting prefers-reduced-motion. Input CSS fully tokenized. Tabs list supports flex-wrap.
+
 ## 1.0.6
 
 ### Patch Changes
