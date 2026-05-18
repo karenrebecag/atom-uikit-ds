@@ -250,6 +250,8 @@ export const Default: Story = {
   },
 };
 
+export const Single: Story = Default;
+
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)', alignItems: 'flex-start' }}>

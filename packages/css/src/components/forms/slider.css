@@ -24,7 +24,7 @@
 .slider__track {
   position: relative;
   width: 100%;
-  height: var(--spacing-2, 8px);
+  height: var(--spacing-2);
   border-radius: var(--radius-full);
   background-color: var(--muted);
   overflow: hidden;
@@ -44,8 +44,8 @@
 .slider__thumb {
   position: absolute;
   top: 50%;
-  width: var(--spacing-5, 20px);
-  height: var(--spacing-5, 20px);
+  width: var(--spacing-5);
+  height: var(--spacing-5);
   border-radius: var(--radius-full);
   border: var(--stroke-medium) solid var(--primary);
   background-color: var(--background);
@@ -57,12 +57,12 @@
 }
 
 .slider__thumb:hover {
-  box-shadow: 0 0 0 var(--spacing-2, 8px) rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 0 var(--spacing-2) color-mix(in srgb, var(--foreground) 4%, transparent);
 }
 
 .slider__thumb:focus-visible {
-  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
-  outline-offset: 2px;
+  outline: var(--stroke-medium) solid var(--focus-ring-color);
+  outline-offset: var(--stroke-medium);
 }
 
 .slider__thumb:active,
