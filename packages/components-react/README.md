@@ -57,7 +57,6 @@ function Example() {
 - `Input` -- text input
 - `Textarea` -- multiline text input
 - `Field` -- form field wrapper with label and error
-- `SearchInput` -- input with search affordances
 - `Checkbox` -- checkbox control
 - `Radio` -- radio button
 - `Toggle` -- switch toggle

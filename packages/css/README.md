@@ -36,7 +36,7 @@ Or in your HTML:
 
 **Buttons** -- button, icon-button, link-button, button-group, toggle-group, menu-button (burger icon)
 
-**Forms** -- input, textarea, field, search-input, checkbox, radio, toggle, select, combobox, dropdown-menu, context-menu, calendar, slider
+**Forms** -- input, textarea, field, checkbox, radio, toggle, select, combobox, dropdown-menu, context-menu, calendar, slider
 
 **Indicators** -- avatar, avatar-group, chip, tag, skeleton, spinner, tooltip
 
