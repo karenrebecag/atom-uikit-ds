@@ -1,5 +1,10 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from '../../../../packages/components-react/src/atoms/Checkbox';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconActivity, IconSettings } from '../utils/SectionIcons';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Atoms/Forms/Checkbox',
@@ -8,16 +13,9 @@ const meta: Meta<typeof Checkbox> = {
     checked: {
       control: 'select',
       options: [false, true, 'indeterminate'],
-      name: 'Checked',
     },
-    disabled: {
-      control: 'boolean',
-      name: 'State: Disabled',
-    },
-    error: {
-      control: 'boolean',
-      name: 'State: Error',
-    },
+    disabled: { control: 'boolean' },
+    error: { control: 'boolean' },
     label: { table: { disable: true } },
     className: { table: { disable: true } },
     onChange: { table: { disable: true } },
@@ -26,14 +24,91 @@ const meta: Meta<typeof Checkbox> = {
     checked: false,
     disabled: false,
     error: false,
-    label: 'Accept terms and conditions',
+    label: 'Aceptar terminos',
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => {
+    type CheckedState = 'unchecked' | 'checked' | 'indeterminate';
+    type CheckboxState = 'default' | 'disabled' | 'error';
+    const checkedOpts: { value: CheckedState; label: string }[] = [
+      { value: 'unchecked', label: 'No' },
+      { value: 'checked', label: 'Si' },
+      { value: 'indeterminate', label: 'Parcial' },
+    ];
+    const stateOpts: { value: CheckboxState; label: string }[] = [
+      { value: 'default', label: 'Normal' },
+      { value: 'disabled', label: 'Deshab.' },
+      { value: 'error', label: 'Error' },
+    ];
+
+    const [checkedState, setCheckedState] = useState<CheckedState>('unchecked');
+    const [checkboxState, setCheckboxState] = useState<CheckboxState>('default');
+    const [showLabel, setShowLabel] = useState(true);
+    const { animateTransition, transitionStyle } = useTransition();
+
+    const checkedValue: boolean | 'indeterminate' =
+      checkedState === 'checked' ? true :
+      checkedState === 'indeterminate' ? 'indeterminate' : false;
+
+    return (
+      <StoryPreviewLayout
+        minHeight={320}
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconActivity />Marcado</div>
+              <Tabs value={checkedState} onValueChange={(v) => animateTransition(() => setCheckedState(v as CheckedState))}>
+                <TabsList animated>
+                  {checkedOpts.map((c) => (
+                    <TabsTrigger key={c.value} value={c.value}>{c.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconActivity />Estado</div>
+              <Tabs value={checkboxState} onValueChange={(v) => animateTransition(() => setCheckboxState(v as CheckboxState))}>
+                <TabsList animated>
+                  {stateOpts.map((s) => (
+                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Etiqueta</span>
+                  <Toggle animated checked={showLabel} onChange={setShowLabel} />
+                </div>
+              </div>
+            </div>
+          </>
+        }
+      >
+        <div style={transitionStyle}>
+          <Checkbox
+            checked={checkedValue}
+            disabled={checkboxState === 'disabled'}
+            error={checkboxState === 'error'}
+            label={showLabel ? 'Aceptar terminos y condiciones' : undefined}
+            onChange={() => {
+              setCheckedState(checkedState === 'checked' ? 'unchecked' : 'checked');
+            }}
+          />
+        </div>
+      </StoryPreviewLayout>
+    );
+  },
+};
 
 export const AllStates: Story = {
   argTypes: {
@@ -43,35 +118,25 @@ export const AllStates: Story = {
   },
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, auto)', gap: '16px 32px', alignItems: 'center' }}>
-      {/* Row headers */}
-      <strong style={{ fontSize: 11, color: '#71717b' }}>State</strong>
-      <strong style={{ fontSize: 11, color: '#71717b' }}>Checked: false</strong>
-      <strong style={{ fontSize: 11, color: '#71717b' }}>Checked: true</strong>
+      <strong style={{ fontSize: 11, color: 'var(--muted-foreground)' }}>Estado</strong>
+      <strong style={{ fontSize: 11, color: 'var(--muted-foreground)' }}>No marcado</strong>
+      <strong style={{ fontSize: 11, color: 'var(--muted-foreground)' }}>Marcado</strong>
 
-      {/* Enabled */}
-      <span style={{ fontSize: 12 }}>Enabled</span>
-      <Checkbox label="Unchecked" />
-      <Checkbox checked label="Checked" />
+      <span style={{ fontSize: 12 }}>Habilitado</span>
+      <Checkbox label="Sin marcar" />
+      <Checkbox checked label="Marcado" />
 
-      {/* Enabled + Indeterminate */}
-      <span style={{ fontSize: 12 }}>Indeterminate</span>
-      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
-      <Checkbox checked="indeterminate" label="Indeterminate" />
+      <span style={{ fontSize: 12 }}>Indeterminado</span>
+      <span style={{ fontSize: 11, color: 'var(--muted-foreground)' }}>&mdash;</span>
+      <Checkbox checked="indeterminate" label="Indeterminado" />
 
-      {/* Disabled */}
-      <span style={{ fontSize: 12 }}>Disabled</span>
-      <Checkbox disabled label="Disabled" />
-      <Checkbox disabled checked label="Disabled checked" />
+      <span style={{ fontSize: 12 }}>Deshabilitado</span>
+      <Checkbox disabled label="Deshabilitado" />
+      <Checkbox disabled checked label="Deshab. marcado" />
 
-      {/* Disabled + Indeterminate */}
-      <span style={{ fontSize: 12 }}>Disabled indeterminate</span>
-      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
-      <Checkbox disabled checked="indeterminate" label="Disabled indeterminate" />
-
-      {/* Error */}
       <span style={{ fontSize: 12 }}>Error</span>
       <Checkbox error label="Error" />
-      <span style={{ fontSize: 11, color: '#a1a1a1' }}>—</span>
+      <span style={{ fontSize: 11, color: 'var(--muted-foreground)' }}>&mdash;</span>
     </div>
   ),
 };

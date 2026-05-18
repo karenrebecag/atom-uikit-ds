@@ -22,16 +22,16 @@
   pointer-events: none;
 }
 
-/* Hidden native input with 40px touch target */
+/* Hidden native input with touch target */
 .checkbox__input {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   margin: 0;
   padding: 0;
   opacity: 0;
   cursor: inherit;
-  left: -12px;
+  left: -0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -41,16 +41,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   flex-shrink: 0;
-  border-radius: 4px;
-  border: 1px solid var(--checkbox-border-default);
+  border-radius: var(--radius-sm);
+  border: var(--stroke-thin) solid var(--checkbox-border-default);
   background-color: var(--checkbox-bg-unchecked);
   transition:
-    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-    box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+    background-color var(--duration-150) var(--easing-out),
+    border-color var(--duration-150) var(--easing-out),
+    box-shadow var(--duration-150) var(--easing-out);
 }
 
 /* Check / minus icon */
@@ -58,8 +58,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   color: var(--checkbox-fg-checked);
 }
 
@@ -91,7 +91,7 @@
 /* ---- Focus ---- */
 
 .checkbox__input:focus-visible ~ .checkbox__box {
-  box-shadow: 0 0 0 2px var(--checkbox-focus-ring-default);
+  box-shadow: 0 0 0 var(--stroke-medium) var(--checkbox-focus-ring-default);
 }
 
 /* ---- Disabled ---- */
