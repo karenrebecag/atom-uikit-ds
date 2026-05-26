@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: @atom-uikit/whatsapp</title>
+  <style>
+    body { font-family: system-ui; background: #0a0a0b; color: #e4e4e7; padding: 40px; }
+    h1 { font-size: 20px; margin-bottom: 8px; }
+    p { color: #a1a1aa; font-size: 14px; margin-bottom: 24px; }
+    .log { background: #18181b; border: 1px solid #2e2e33; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 12px; max-height: 400px; overflow-y: auto; white-space: pre-wrap; }
+    .log-entry { margin-bottom: 8px; border-bottom: 1px solid #2e2e33; padding-bottom: 8px; }
+    .log-entry.webhook { color: #25D366; }
+    .log-entry.click { color: #ff6600; }
+    .log-entry.error { color: #ef4444; }
+  </style>
+</head>
+<body>
+  <h1>@atom-uikit/whatsapp — Test Page</h1>
+  <p>
+    Abre DevTools > Network tab. Haz click en el boton flotante (abajo a la derecha).<br>
+    Deberias ver un POST a cloudfunctions.net/api/webhook/wci con status 201.
+  </p>
+  <div class="log" id="log"></div>
+
+  <script>
+    // Intercept fetch to log webhook calls without blocking them
+    const _fetch = window.fetch;
+    window.fetch = function(url, opts) {
+      if (typeof url === 'string' && (url.includes('/wci') || url.includes('webhook/wci'))) {
+        const body = JSON.parse(opts?.body || '{}');
+        logEntry('webhook', 'POST /webhook/wci\n' + JSON.stringify(body, null, 2));
+
+        return _fetch.apply(this, arguments).then(res => {
+          logEntry(res.ok ? 'webhook' : 'error', 'Response: ' + res.status);
+          return res;
+        }).catch(err => {
+          logEntry('error', 'Fetch error: ' + err.message);
+          throw err;
+        });
+      }
+      return _fetch.apply(this, arguments);
+    };
+
+    // Intercept window.open to log without actually opening WhatsApp
+    const _open = window.open;
+    window.open = function(url) {
+      logEntry('click', 'window.open → ' + url);
+      return _open.apply(this, arguments);
+    };
+
+    // Intercept dataLayer
+    window.dataLayer = window.dataLayer || [];
+    const _push = window.dataLayer.push;
+    window.dataLayer.push = function(obj) {
+      logEntry('click', 'dataLayer.push → ' + JSON.stringify(obj, null, 2));
+      return _push.apply(this, arguments);
+    };
+
+    function logEntry(type, msg) {
+      const el = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry ' + type;
+      entry.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+      el.prepend(entry);
+    }
+
+    logEntry('click', 'Page loaded. Waiting for SDK init...');
+  </script>
+
+  <!-- THE SDK — same script tag a client would paste -->
+  <script
+    src="./dist/auto-init.iife.js"
+    data-company-token="test-00000000-0000-0000-0000-000000000000"
+    data-phone="573142616335"
+    data-label="Probar WhatsApp"
+    data-color="#25D366"
+    data-position="bottom-right"
+    data-message="Test desde @atom-uikit/whatsapp SDK">
+  </script>
+</body>
+</html>
