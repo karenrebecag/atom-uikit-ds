@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { initSidebarAnimation } from '../../../../packages/animations/src/sidebar';
 import {
@@ -13,22 +13,11 @@ import {
   SidebarDivider,
   SidebarCollapsible,
 } from '../../../../packages/components-react/src/molecules/sidebar';
-import { UserProfile } from '../../../../packages/components-react/src/molecules/UserProfile';
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuGroup,
-  DropdownMenuSeparator,
-} from '../../../../packages/components-react/src/molecules/DropdownMenu';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconSettings } from '../utils/SectionIcons';
 
-const AtomLogo = () => (
-  <img src="/Logo Mark - Atom.svg" alt="Atom" width="24" height="24" />
-);
-
-// Simple stroke icons (viewBox 0 0 24 24, no fill)
 const IconHome = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1v-9.5z" />
@@ -50,31 +39,9 @@ const IconSearch = () => (
   </svg>
 );
 
-const IconMessageSquare = () => (
+const IconMsg = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-  </svg>
-);
-
-const IconBox = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-    <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
-  </svg>
-);
-
-const IconSettings = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M15.2 19.1L14.2 22H9.8L8.8 19.1L7.5 18.3L4.5 18.9L2.2 15.1L4.3 12.8V11.2L2.2 8.9L4.5 5.1L7.5 5.7L8.8 4.9L9.8 2H14.2L15.2 4.9L16.5 5.7L19.5 5.1L21.8 8.9L19.7 11.2V12.8L21.8 15.1L19.5 18.9L16.5 18.3L15.2 19.1Z" />
-    <circle cx="12" cy="12" r="3" strokeMiterlimit="10" />
-  </svg>
-);
-
-const IconHelpCircle = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
-    <circle cx="12" cy="17" r=".5" />
   </svg>
 );
 
@@ -85,79 +52,6 @@ const IconDoc = () => (
   </svg>
 );
 
-const IconUser = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
-);
-
-const IconCreditCard = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <rect x="1" y="4" width="22" height="16" rx="2" />
-    <line x1="1" y1="10" x2="23" y2="10" />
-  </svg>
-);
-
-const IconLogOut = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
-    <polyline points="16 17 21 12 16 7" />
-    <line x1="21" y1="12" x2="9" y2="12" />
-  </svg>
-);
-
-const IconChevronUp = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 15l-6-6-6 6" />
-  </svg>
-);
-
-const meta: Meta<typeof Sidebar> = {
-  title: 'Molecules/Sidebar',
-  component: Sidebar,
-  argTypes: {
-    side: { table: { disable: true } },
-    className: { table: { disable: true } },
-    children: { table: { disable: true } },
-  },
-  decorators: [
-    (Story) => {
-      useEffect(() => {
-        const cleanup = initSidebarAnimation();
-        return cleanup;
-      }, []);
-      return (
-      <div style={{ height: 'calc(100vh - 80px)', display: 'flex', border: '1px solid #e4e4e7', borderRadius: 8 }}>
-        <Story />
-        <div style={{ flex: 1, padding: 24, background: '#fafafa' }}>
-          <p style={{ fontSize: 13, color: '#71717b' }}>Main content area</p>
-        </div>
-      </div>
-      );
-    },
-  ],
-  parameters: { layout: 'fullscreen' },
-};
-
-export default meta;
-type Story = StoryObj<typeof Sidebar>;
-
-const IconCode = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-  </svg>
-);
-
-const IconPalette = () => (
-  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <circle cx="12" cy="12" r="10" />
-    <circle cx="9" cy="9" r="1.5" stroke="none" fill="currentColor" />
-    <circle cx="15" cy="9" r="1.5" stroke="none" fill="currentColor" />
-    <circle cx="9" cy="15" r="1.5" stroke="none" fill="currentColor" />
-  </svg>
-);
-
 const IconBook = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
@@ -165,83 +59,165 @@ const IconBook = () => (
   </svg>
 );
 
+const IconBox = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+    <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+  </svg>
+);
+
+const IconGear = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9c.2.65.77 1.09 1.45 1.09H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+  </svg>
+);
+
+const IconHelp = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+    <circle cx="12" cy="17" r=".5" />
+  </svg>
+);
+
+const IconUser = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
+const meta: Meta<typeof Sidebar> = {
+  title: 'Molecules/Sidebar',
+  component: Sidebar,
+  parameters: { layout: 'fullscreen' },
+};
+
+export default meta;
+type Story = StoryObj<typeof Sidebar>;
+
 export const Default: Story = {
-  render: () => (
-    <SidebarProvider>
-      <Sidebar>
+  render: () => {
+    type Side = 'left' | 'right';
+
+    const sideOptions: { value: Side; label: string }[] = [
+      { value: 'left', label: 'Izquierda' },
+      { value: 'right', label: 'Derecha' },
+    ];
+
+    const [side, setSide] = useState<Side>('left');
+    const [withCollapsible, setWithCollapsible] = useState(true);
+    const [withFooter, setWithFooter] = useState(true);
+    const [withBadge, setWithBadge] = useState(true);
+
+    const { animateTransition, transitionStyle } = useTransition();
+
+    useEffect(() => {
+      const cleanup = initSidebarAnimation();
+      return cleanup;
+    }, []);
+
+    const sidebar = (
+      <Sidebar side={side}>
         <SidebarHeader>
-          <AtomLogo />
+          <span style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14 }}>A</span>
           <span data-sidebar-label="" style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Atom UIKit</span>
           <SidebarTrigger />
         </SidebarHeader>
         <SidebarContent>
-          <SidebarGroup label="Main">
-            <SidebarItem icon={<IconHome />} label="Home" href="#" active />
-            <SidebarItem icon={<IconBell />} label="Notifications" href="#" />
-            <SidebarItem icon={<IconSearch />} label="Search" href="#" />
-            <SidebarItem icon={<IconMessageSquare />} label="Messages" href="#" />
+          <SidebarGroup label="Principal">
+            <SidebarItem icon={<IconHome />} label="Inicio" href="#" active />
+            <SidebarItem icon={<IconBell />} label="Notificaciones" href="#" badge={withBadge ? '3' : undefined} />
+            <SidebarItem icon={<IconSearch />} label="Buscar" href="#" />
+            <SidebarItem icon={<IconMsg />} label="Mensajes" href="#" />
           </SidebarGroup>
           <SidebarDivider />
-          <SidebarGroup label="Documentation">
-            <SidebarCollapsible icon={<IconBook />} label="Getting Started" defaultOpen>
-              <SidebarItem icon={<IconDoc />} label="Introduction" href="#" />
-              <SidebarItem icon={<IconDoc />} label="Installation" href="#" />
-              <SidebarItem icon={<IconDoc />} label="Quick Start" href="#" />
-            </SidebarCollapsible>
-            <SidebarCollapsible icon={<IconPalette />} label="Foundations">
-              <SidebarItem icon={<IconDoc />} label="Colors" href="#" />
-              <SidebarItem icon={<IconDoc />} label="Typography" href="#" />
-              <SidebarItem icon={<IconDoc />} label="Spacing" href="#" />
-            </SidebarCollapsible>
-            <SidebarCollapsible icon={<IconCode />} label="Components">
-              <SidebarItem icon={<IconBox />} label="Button" href="#" badge="12" />
-              <SidebarItem icon={<IconDoc />} label="Input" href="#" />
-              <SidebarItem icon={<IconDoc />} label="Checkbox" href="#" />
-              <SidebarItem icon={<IconDoc />} label="Tag" href="#" />
-            </SidebarCollapsible>
-          </SidebarGroup>
+          {withCollapsible ? (
+            <SidebarGroup label="Documentacion">
+              <SidebarCollapsible icon={<IconBook />} label="Guias" defaultOpen>
+                <SidebarItem icon={<IconDoc />} label="Introduccion" href="#" />
+                <SidebarItem icon={<IconDoc />} label="Instalacion" href="#" />
+              </SidebarCollapsible>
+              <SidebarCollapsible icon={<IconBox />} label="Componentes">
+                <SidebarItem icon={<IconDoc />} label="Button" href="#" />
+                <SidebarItem icon={<IconDoc />} label="Input" href="#" />
+                <SidebarItem icon={<IconDoc />} label="Tabs" href="#" />
+              </SidebarCollapsible>
+            </SidebarGroup>
+          ) : (
+            <SidebarGroup label="Documentacion">
+              <SidebarItem icon={<IconBook />} label="Guias" href="#" />
+              <SidebarItem icon={<IconBox />} label="Componentes" href="#" />
+            </SidebarGroup>
+          )}
           <SidebarDivider />
-          <SidebarGroup label="Settings">
-            <SidebarItem icon={<IconHelpCircle />} label="Help" href="#" />
-            <SidebarItem icon={<IconSettings />} label="Settings" href="#" />
+          <SidebarGroup label="Sistema">
+            <SidebarItem icon={<IconHelp />} label="Ayuda" href="#" />
+            <SidebarItem icon={<IconGear />} label="Ajustes" href="#" />
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter>
-          <DropdownMenu>
-            <DropdownMenuTrigger style={{ width: '100%' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}>
-                <UserProfile name="John Doe" org="Atom Design" />
-                <span data-sidebar-label="" style={{ marginLeft: 'auto', width: 16, height: 16, color: 'var(--muted-foreground)' }}>
-                  <IconChevronUp />
-                </span>
+        {withFooter && (
+          <SidebarFooter>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ width: 32, height: 32, borderRadius: '50%', backgroundColor: 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <span style={{ width: 16, height: 16, color: 'var(--muted-foreground)' }}><IconUser /></span>
+              </span>
+              <div data-sidebar-label="" style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)', color: 'var(--foreground)' }}>Karen Ortiz</div>
+                <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--muted-foreground)' }}>karen@atomchat.io</div>
               </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent side="top" align="start">
-              <DropdownMenuLabel>John Doe</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem onSelect={() => {}}>
-                  <span className="dropdown-menu__item-icon"><IconUser /></span>
-                  Account
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => {}}>
-                  <span className="dropdown-menu__item-icon"><IconCreditCard /></span>
-                  Billing
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => {}}>
-                  <span className="dropdown-menu__item-icon"><IconBell /></span>
-                  Notifications
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem variant="destructive" onSelect={() => {}}>
-                <span className="dropdown-menu__item-icon"><IconLogOut /></span>
-                Sign out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </SidebarFooter>
+            </div>
+          </SidebarFooter>
+        )}
       </Sidebar>
-    </SidebarProvider>
-  ),
+    );
+
+    const controls = (
+      <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16, width: 280 }}>
+        <div>
+          <div style={sectionLabelRow}><IconLayers />Lado</div>
+          <Tabs value={side} onValueChange={(v) => animateTransition(() => setSide(v as Side))}>
+            <TabsList animated>
+              {sideOptions.map((o) => (
+                <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </div>
+
+        <div>
+          <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <div style={switchRow}>
+              <span style={switchLabel}>Collapsibles</span>
+              <Toggle animated checked={withCollapsible} onChange={(v) => animateTransition(() => setWithCollapsible(v))} />
+            </div>
+            <div style={switchRow}>
+              <span style={switchLabel}>Footer</span>
+              <Toggle animated checked={withFooter} onChange={(v) => animateTransition(() => setWithFooter(v))} />
+            </div>
+            <div style={switchRow}>
+              <span style={switchLabel}>Badge</span>
+              <Toggle animated checked={withBadge} onChange={(v) => animateTransition(() => setWithBadge(v))} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    return (
+      <SidebarProvider>
+        <div style={{ display: 'flex', height: 'calc(100vh - 32px)', margin: 16, border: 'var(--stroke-hairline) solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', background: 'var(--background)' }}>
+          {side === 'left' && sidebar}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
+            <div style={{ ...transitionStyle, flex: 1, display: 'flex', justifyContent: 'center' }}>
+              {controls}
+            </div>
+          </div>
+          {side === 'right' && sidebar}
+        </div>
+      </SidebarProvider>
+    );
+  },
 };
