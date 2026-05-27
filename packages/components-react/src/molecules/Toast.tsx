@@ -154,7 +154,7 @@ function ToastItem({ data, onRemove }: { data: ToastData; onRemove: (id: string)
         )}
         {data.action && (
           <Button
-            variant="tertiary"
+            variant="secondary"
             size="xs"
             className="toast__action"
             onClick={() => {
