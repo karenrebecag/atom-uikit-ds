@@ -41,7 +41,6 @@ export const Default: Story = {
 
     const [content, setContent] = useState<Content>('basico');
     const [showStatus, setShowStatus] = useState(true);
-    const [striped, setStriped] = useState(false);
 
     const { animateTransition, transitionStyle } = useTransition();
 
@@ -70,10 +69,6 @@ export const Default: Story = {
                   <span style={switchLabel}>Indicador de status</span>
                   <Toggle animated checked={showStatus} onChange={(v) => animateTransition(() => setShowStatus(v))} />
                 </div>
-                <div style={switchRow}>
-                  <span style={switchLabel}>Filas alternadas</span>
-                  <Toggle animated checked={striped} onChange={setStriped} />
-                </div>
               </div>
             </div>
           </>
@@ -95,10 +90,7 @@ export const Default: Story = {
               </TableHeader>
               <TableBody>
                 {invoices.map((inv, i) => (
-                  <TableRow
-                    key={inv.id}
-                    style={striped && i % 2 === 1 ? { backgroundColor: 'var(--muted)' } : undefined}
-                  >
+                  <TableRow key={inv.id}>
                     <TableCell style={{ fontWeight: 'var(--font-weight-medium)' }}>{inv.id}</TableCell>
                     <TableCell>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
