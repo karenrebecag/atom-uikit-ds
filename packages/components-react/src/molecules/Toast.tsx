@@ -133,6 +133,8 @@ function ToastItem({ data, onRemove }: { data: ToastData; onRemove: (id: string)
   }, [duration, dismiss]);
 
   const icon = variantIcons[data.variant];
+  const darkTextVariants: ToastVariant[] = ['default', 'success', 'warning'];
+  const actionButtonVariant = darkTextVariants.includes(data.variant) ? 'primary' : 'secondary';
 
   return (
     <div
@@ -154,7 +156,7 @@ function ToastItem({ data, onRemove }: { data: ToastData; onRemove: (id: string)
         )}
         {data.action && (
           <Button
-            variant="secondary"
+            variant={actionButtonVariant}
             size="xs"
             className="toast__action"
             onClick={() => {
