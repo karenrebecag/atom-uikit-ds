@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@atom-uikit/whatsapp -- Scaffold Documentation</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --surface: #18181b;
+      --surface-2: #1f1f23;
+      --border: #2e2e33;
+      --text: #e4e4e7;
+      --text-muted: #a1a1aa;
+      --accent: #25D366;
+      --accent-dim: rgba(37, 211, 102, 0.12);
+      --code-bg: #131316;
+      --orange: #ff6600;
+      --radius: 12px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    h1 code {
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 17px;
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 56px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    p { margin-bottom: 16px; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    code {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--surface-2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    .badge--green { background: var(--accent-dim); color: var(--accent); }
+    .badge--orange { background: rgba(255, 102, 0, 0.12); color: var(--orange); }
+    .badge--muted { background: var(--surface-2); color: var(--text-muted); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    td code {
+      font-size: 12px;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    .tree {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .tree .dir { color: var(--accent); font-weight: 600; }
+    .tree .file { color: var(--text); }
+    .tree .meta { color: var(--text-muted); font-size: 11px; }
+    .tree .entry { color: var(--orange); }
+
+    .mermaid-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .flow-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 700px) {
+      .flow-section { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+    }
+    .step-num {
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .step h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .step p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .snippet-demo {
+      background: var(--code-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .snippet-demo .label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <h1><code>@atom-uikit/whatsapp</code></h1>
+    <p class="subtitle">
+      WhatsApp CTA widget con WCI tracking inline. Un script tag. Zero dependencias externas. Inmune a adblockers.
+    </p>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;">
+      <span class="badge badge--green">v0.1.0</span>
+      <span class="badge badge--green">ESM + IIFE</span>
+      <span class="badge badge--green">~4KB</span>
+      <span class="badge badge--orange">Zero deps</span>
+      <span class="badge badge--muted">TypeScript</span>
+      <span class="badge badge--muted">tsup</span>
+    </div>
+
+    <!-- SNIPPET FINAL -->
+    <div class="snippet-demo">
+      <div class="label">Snippet final para el cliente</div>
+      <pre><code>&lt;script
+  src="https://cdn.jsdelivr.net/npm/@atom-uikit/whatsapp@0.1.0/dist/auto-init.iife.js"
+  data-company-token="YOUR_TOKEN"
+  data-phone="573142616335"
+  data-label="Habla con nosotros"
+  data-color="#25D366"
+  data-position="bottom-right"
+  data-message="Hola, quiero mas informacion"&gt;
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <!-- FILE TREE -->
+    <h2>File Tree</h2>
+
+    <div class="tree">
+<span class="dir">packages/whatsapp/</span>
+  <span class="file">package.json</span>          <span class="meta">-- npm config, dual build scripts, zero deps</span>
+  <span class="file">tsconfig.json</span>         <span class="meta">-- extends root, outDir: dist/</span>
+  <span class="file">tsup.config.ts</span>        <span class="meta">-- ESM (index.ts) + IIFE (auto-init.ts) builds</span>
+  <span class="file">CLAUDE.md</span>             <span class="meta">-- guia de desarrollo (195 lineas)</span>
+  <span class="file">CHANGELOG.md</span>          <span class="meta">-- historial de versiones</span>
+  <span class="file">PLAN.md</span>               <span class="meta">-- roadmap 5 fases</span>
+  <span class="file">docs.html</span>             <span class="meta">-- este archivo</span>
+  <span class="dir">src/</span>
+    <span class="entry">index.ts</span>            <span class="meta">--   8 lineas  -- exports publicos ESM</span>
+    <span class="entry">auto-init.ts</span>        <span class="meta">--  48 lineas  -- IIFE entry: data-attrs -> init</span>
+    <span class="entry">config.ts</span>           <span class="meta">--  69 lineas  -- tipos, defaults, parser</span>
+    <span class="entry">button.ts</span>           <span class="meta">--  93 lineas  -- initWhatsAppButton() orquestador</span>
+    <span class="entry">render.ts</span>           <span class="meta">--  78 lineas  -- floating button + CSS inline</span>
+    <span class="entry">chat-id.ts</span>          <span class="meta">--  16 lineas  -- 5-char crypto ID generator</span>
+    <span class="entry">tracking.ts</span>         <span class="meta">--  50 lineas  -- URL params, gclid, device</span>
+    <span class="entry">strategy.ts</span>         <span class="meta">--  17 lineas  -- chatId -> message embedding</span>
+    <span class="entry">webhook.ts</span>          <span class="meta">--  25 lineas  -- POST fire-and-forget</span>
+    <span class="entry">i18n.ts</span>             <span class="meta">--  36 lineas  -- locale detection, strings</span>
+  <span class="dir">dist/</span> <span class="meta">(generado por build)</span>
+    <span class="file">index.js</span>            <span class="meta">-- ESM bundle (npm, bundlers)</span>
+    <span class="file">index.d.ts</span>          <span class="meta">-- TypeScript types</span>
+    <span class="file">auto-init.iife.js</span>   <span class="meta">-- IIFE minified (CDN, script tags)</span>
+    </div>
+
+    <p><strong>Total source:</strong> 440 lineas en 10 archivos. <strong>Dependencias externas:</strong> 0.</p>
+
+    <!-- ARCHITECTURE DIAGRAM -->
+    <h2>Arquitectura (Mermaid)</h2>
+
+    <div class="mermaid-wrap">
+      <pre class="mermaid">
+graph TB
+  subgraph "Entry Points"
+    CDN["&lt;script&gt; tag (IIFE)<br/>auto-init.ts"]
+    NPM["import (ESM)<br/>index.ts"]
+  end
+
+  subgraph "Core"
+    BTN["button.ts<br/>initWhatsAppButton()"]
+    CFG["config.ts<br/>tipos + defaults + parser"]
+    I18N["i18n.ts<br/>detectLocale() + strings"]
+  end
+
+  subgraph "WCI Protocol"
+    CID["chat-id.ts<br/>generateChatId()"]
+    TRK["tracking.ts<br/>collectTrackingData()"]
+    STR["strategy.ts<br/>buildMessage()"]
+    WH["webhook.ts<br/>sendWebhook()"]
+  end
+
+  subgraph "UI"
+    RND["render.ts<br/>renderFloatingButton()"]
+  end
+
+  subgraph "External"
+    WA["wa.me<br/>WhatsApp"]
+    ATOM["cloudfunctions.net<br/>AtomChat Webhook"]
+    GA4["dataLayer<br/>GA4"]
+  end
+
+  CDN -->|"lee data-attributes"| CFG
+  CDN -->|"llama"| BTN
+  NPM -->|"exporta"| BTN
+
+  BTN --> CFG
+  BTN --> I18N
+  BTN -->|"mode: float"| RND
+  BTN -->|"click handler"| CID
+  BTN -->|"click handler"| TRK
+  BTN -->|"click handler"| STR
+  BTN -->|"click handler"| WH
+  BTN -->|"click handler"| GA4
+
+  TRK --> CID
+  WH -->|"POST keepalive"| ATOM
+  STR -->|"chatId + message"| WA
+  BTN -->|"window.open"| WA
+
+  classDef entry fill:#25D366,stroke:#1a9e4d,color:#000,font-weight:bold
+  classDef core fill:#2d2d35,stroke:#4a4a55,color:#e4e4e7
+  classDef wci fill:#1a1a2e,stroke:#3a3a55,color:#e4e4e7
+  classDef ui fill:#2a1f35,stroke:#5a4a6a,color:#e4e4e7
+  classDef ext fill:#0d1117,stroke:#30363d,color:#8b949e
+
+  class CDN,NPM entry
+  class BTN,CFG,I18N core
+  class CID,TRK,STR,WH wci
+  class RND ui
+  class WA,ATOM,GA4 ext
+      </pre>
+    </div>
+
+    <!-- CLICK FLOW -->
+    <h2>Flujo de Click</h2>
+
+    <div class="mermaid-wrap">
+      <pre class="mermaid">
+sequenceDiagram
+  participant U as Usuario
+  participant SDK as @atom-uikit/whatsapp
+  participant DOM as Browser DOM
+  participant WH as AtomChat Webhook
+  participant WA as WhatsApp
+
+  Note over SDK: El script carga y auto-inicializa
+
+  SDK->>DOM: Inyecta CSS inline
+  SDK->>DOM: Crea boton flotante
+  DOM-->>U: Boton visible
+
+  U->>SDK: Click en boton
+
+  SDK->>SDK: generateChatId() -> "aB3xZ"
+  SDK->>SDK: collectTrackingData()
+  SDK->>SDK: buildMessage(chatId, msg, strategy)
+
+  par Paralelo
+    SDK->>WH: POST /webhook/wci (fire-and-forget)
+    WH-->>SDK: 201 (no bloquea)
+  and
+    SDK->>DOM: dataLayer.push(atom_cta_click)
+  end
+
+  SDK->>WA: window.open(wa.me/?text=...)
+  WA-->>U: WhatsApp abre con mensaje + chatId
+      </pre>
+    </div>
+
+    <!-- MODULE DETAIL -->
+    <h2>Detalle por Modulo</h2>
+
+    <!-- config.ts -->
+    <h3>config.ts -- Tipos y Defaults</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>WhatsAppButtonConfig</code></td><td>interface</td><td>Todas las propiedades configurables (companyToken, phone, label, color, textColor, position, message, lang, chatIdStrategy, mode, webhookUrl, openInNewTab, scope)</td></tr>
+        <tr><td><code>TrackingData</code></td><td>interface</td><td>Payload del webhook: chatId, url, device, gclid, + params dinamicos</td></tr>
+        <tr><td><code>DEFAULTS</code></td><td>const</td><td>Valores por defecto: label "Contactanos", color #25D366, position bottom-right, strategy url, mode float</td></tr>
+        <tr><td><code>parseDataAttributes()</code></td><td>function</td><td>Lee dataset de un HTMLElement y retorna Partial&lt;WhatsAppButtonConfig&gt;</td></tr>
+        <tr><td><code>mergeConfig()</code></td><td>function</td><td>Combina defaults + overrides del usuario, elimina undefined</td></tr>
+      </table>
+    </div>
+
+    <!-- chat-id.ts -->
+    <h3>chat-id.ts -- Generador de ID</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>generateChatId()</code></td><td>function</td><td>Genera 5 caracteres alfanumericos (A-Za-z0-9). Usa <code>crypto.getRandomValues()</code> con fallback a <code>Math.random()</code></td></tr>
+      </table>
+      <p style="margin-top:12px; font-size: 13px; color: var(--text-muted);">
+        Charset: 62 caracteres. Combinaciones posibles: 62^5 = 916,132,832. Suficiente para evitar colisiones en volumen tipico de leads.
+      </p>
+    </div>
+
+    <!-- tracking.ts -->
+    <h3>tracking.ts -- Recoleccion de Datos</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>detectDevice()</code></td><td>function</td><td>Retorna "mobile" | "tablet" | "desktop" | "unknown". Prioridad: URL param <code>?device=</code> > UA regex > screen width</td></tr>
+        <tr><td><code>getGclid()</code></td><td>function</td><td>Extrae gclid de <code>?gclid=</code> en URL, o de cookie <code>_gcl_aw</code>. Retorna undefined si no existe.</td></tr>
+        <tr><td><code>collectTrackingData()</code></td><td>function</td><td>Compone el payload completo: genera chatId, lee URL params, detecta device y gclid. Retorna TrackingData.</td></tr>
+      </table>
+    </div>
+
+    <!-- strategy.ts -->
+    <h3>strategy.ts -- Estrategias de ChatId</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>ChatIdStrategy</code></td><td>type</td><td><code>'url' | 'referenceCode'</code></td></tr>
+        <tr><td><code>buildMessage()</code></td><td>function</td><td>Toma (chatId, message, strategy) y retorna el mensaje con tracking embebido</td></tr>
+      </table>
+
+      <h4 style="margin-top: 16px; font-size: 13px; font-weight: 600;">Estrategia <code>url</code> (default)</h4>
+      <pre><code>Hola, quiero mas informacion
+
+Enlace de referencia: https://sitio.com/landing?wci=aB3xZ</code></pre>
+
+      <h4 style="margin-top: 12px; font-size: 13px; font-weight: 600;">Estrategia <code>referenceCode</code></h4>
+      <pre><code>Hola, quiero mas informacion
+
+Codigo de referencia: aB3xZ</code></pre>
+    </div>
+
+    <!-- webhook.ts -->
+    <h3>webhook.ts -- Envio de Webhook</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>sendWebhook()</code></td><td>function</td><td>POST fire-and-forget al endpoint de AtomChat. Usa <code>fetch</code> con <code>keepalive: true</code>. Errores silenciados.</td></tr>
+      </table>
+      <pre style="margin-top: 12px;"><code>POST https://us-central1-atom-ai.cloudfunctions.net/api/webhook/wci
+Authorization: Bearer {companyToken}
+Content-Type: application/json
+
+{ "chatId": "aB3xZ", "url": "https://sitio.com/landing", "device": "mobile", "gclid": "Cj0..." }</code></pre>
+    </div>
+
+    <!-- i18n.ts -->
+    <h3>i18n.ts -- Localizacion</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>detectLocale()</code></td><td>function</td><td>Detecta locale: 1) URL path segment (/pt, /en) 2) html lang attr 3) fallback: es</td></tr>
+        <tr><td><code>getDefaultMessage()</code></td><td>function</td><td>Mensaje default por locale</td></tr>
+        <tr><td><code>getDefaultLabel()</code></td><td>function</td><td>Label del boton por locale</td></tr>
+      </table>
+      <table style="margin-top: 12px;">
+        <tr><th>Locale</th><th>Label</th><th>Mensaje</th></tr>
+        <tr><td><code>es</code></td><td>Contactanos</td><td>Hola, quiero mas informacion</td></tr>
+        <tr><td><code>en</code></td><td>Contact Us</td><td>Hi, I want more information</td></tr>
+        <tr><td><code>pt</code></td><td>Fale Conosco</td><td>Ola, quero mais informacoes</td></tr>
+      </table>
+    </div>
+
+    <!-- render.ts -->
+    <h3>render.ts -- Floating Button</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>renderFloatingButton()</code></td><td>function</td><td>Inyecta <code>&lt;style&gt;</code> + crea <code>&lt;button&gt;</code> flotante en el DOM. Retorna referencia al elemento.</td></tr>
+      </table>
+      <table style="margin-top: 12px;">
+        <tr><th>Propiedad</th><th>Valor</th></tr>
+        <tr><td>Posicion</td><td><code>fixed</code>, bottom-right o bottom-left, 20px offset</td></tr>
+        <tr><td>Z-index</td><td>9999</td></tr>
+        <tr><td>Shape</td><td>Pill (<code>border-radius: 999px</code>)</td></tr>
+        <tr><td>Icono</td><td>WhatsApp SVG inline (24x24)</td></tr>
+        <tr><td>Hover</td><td><code>scale(1.05)</code> + sombra profunda</td></tr>
+        <tr><td>Active</td><td><code>scale(0.97)</code></td></tr>
+        <tr><td>Mobile &lt;480px</td><td>Label oculto, solo icono</td></tr>
+        <tr><td>Reduced motion</td><td>Transiciones desactivadas</td></tr>
+        <tr><td>Style ID</td><td><code>atom-wa-styles</code> (previene duplicacion)</td></tr>
+      </table>
+    </div>
+
+    <!-- button.ts -->
+    <h3>button.ts -- Orquestador Principal</h3>
+    <div class="card">
+      <table>
+        <tr><th>Export</th><th>Tipo</th><th>Descripcion</th></tr>
+        <tr><td><code>CleanupFn</code></td><td>type</td><td><code>() => void</code> -- funcion de teardown para SPA</td></tr>
+        <tr><td><code>initWhatsAppButton()</code></td><td>function</td><td>Entry point principal. Resuelve locale, merge config, elige modo (float/attach), retorna cleanup.</td></tr>
+      </table>
+
+      <h4 style="margin-top: 16px; font-size: 13px; font-weight: 600;">Modo <code>float</code> (default)</h4>
+      <p style="font-size: 13px; color: var(--text-muted);">Renderiza boton flotante + adjunta comportamiento a <code>[data-atom-button]</code> existentes.</p>
+
+      <h4 style="margin-top: 8px; font-size: 13px; font-weight: 600;">Modo <code>attach</code></h4>
+      <p style="font-size: 13px; color: var(--text-muted);">Solo adjunta comportamiento a <code>[data-atom-button]</code> existentes. No crea UI.</p>
+    </div>
+
+    <!-- auto-init.ts -->
+    <h3>auto-init.ts -- IIFE Entry Point</h3>
+    <div class="card">
+      <table>
+        <tr><th>Responsabilidad</th><th>Descripcion</th></tr>
+        <tr><td>Lee config</td><td><code>document.currentScript.dataset</code> -> parseDataAttributes()</td></tr>
+        <tr><td>Valida</td><td>Requiere <code>data-company-token</code> y <code>data-phone</code></td></tr>
+        <tr><td>Inicializa</td><td>Llama <code>initWhatsAppButton()</code> con config parseada</td></tr>
+        <tr><td>Expone global</td><td><code>window.AtomWhatsApp = { init, destroy, _initialized }</code></td></tr>
+        <tr><td>Command queue</td><td>Drena <code>window.AtomWhatsApp._q</code> si existe (async loading)</td></tr>
+        <tr><td>Timing</td><td>Espera <code>DOMContentLoaded</code> si el DOM aun carga</td></tr>
+      </table>
+    </div>
+
+    <hr>
+
+    <!-- DATA ATTRIBUTES -->
+    <h2>Data Attributes API</h2>
+    <div class="card">
+      <table>
+        <tr><th>Atributo</th><th>Requerido</th><th>Default</th><th>Tipo</th></tr>
+        <tr><td><code>data-company-token</code></td><td>Si</td><td>--</td><td>string</td></tr>
+        <tr><td><code>data-phone</code></td><td>Si</td><td>--</td><td>string (digitos)</td></tr>
+        <tr><td><code>data-label</code></td><td>No</td><td>"Contactanos"</td><td>string</td></tr>
+        <tr><td><code>data-color</code></td><td>No</td><td>#25D366</td><td>hex color</td></tr>
+        <tr><td><code>data-text-color</code></td><td>No</td><td>#FFFFFF</td><td>hex color</td></tr>
+        <tr><td><code>data-position</code></td><td>No</td><td>bottom-right</td><td>"bottom-right" | "bottom-left"</td></tr>
+        <tr><td><code>data-message</code></td><td>No</td><td>"Hola, quiero mas informacion"</td><td>string</td></tr>
+        <tr><td><code>data-lang</code></td><td>No</td><td>auto-detect</td><td>"es" | "en" | "pt"</td></tr>
+        <tr><td><code>data-strategy</code></td><td>No</td><td>"url"</td><td>"url" | "referenceCode"</td></tr>
+        <tr><td><code>data-mode</code></td><td>No</td><td>"float"</td><td>"float" | "attach"</td></tr>
+      </table>
+    </div>
+
+    <hr>
+
+    <!-- BUILD PIPELINE -->
+    <h2>Build Pipeline</h2>
+
+    <div class="mermaid-wrap">
+      <pre class="mermaid">
+graph LR
+  subgraph "Source"
+    IDX["src/index.ts"]
+    AUTO["src/auto-init.ts"]
+  end
+
+  subgraph "tsup"
+    B1["ESM build<br/>target: ES2022<br/>dts: true"]
+    B2["IIFE build<br/>target: ES2020<br/>minify: true<br/>global: AtomWhatsApp"]
+  end
+
+  subgraph "Output"
+    ESM["dist/index.js<br/>dist/index.d.ts"]
+    IIFE["dist/auto-init.iife.js"]
+  end
+
+  subgraph "Distribution"
+    NPM["npm<br/>pnpm add @atom-uikit/whatsapp"]
+    JSDELIVR["jsDelivr CDN<br/>&lt;script src='...'&gt;"]
+  end
+
+  IDX --> B1 --> ESM --> NPM
+  AUTO --> B2 --> IIFE --> JSDELIVR
+
+  classDef src fill:#1a1a2e,stroke:#3a3a55,color:#e4e4e7
+  classDef build fill:#2d2d35,stroke:#4a4a55,color:#e4e4e7
+  classDef out fill:#25D366,stroke:#1a9e4d,color:#000,font-weight:bold
+  classDef dist fill:#0d1117,stroke:#30363d,color:#8b949e
+
+  class IDX,AUTO src
+  class B1,B2 build
+  class ESM,IIFE out
+  class NPM,JSDELIVR dist
+      </pre>
+    </div>
+
+    <hr>
+
+    <!-- COMPARISON -->
+    <h2>Antes vs Despues</h2>
+    <div class="card">
+      <table>
+        <tr><th>Metrica</th><th>Antes (wci.min.js)</th><th>Despues (@atom-uikit/whatsapp)</th></tr>
+        <tr><td>Script externo</td><td>19KB bloqueado por adblockers</td><td>0 -- todo inline</td></tr>
+        <tr><td>Tamano total</td><td>~22KB (snippet + wci.min.js)</td><td>~4KB IIFE minified</td></tr>
+        <tr><td>Dependencias</td><td>CDN de tercero</td><td>0</td></tr>
+        <tr><td>Bloqueo adblocker</td><td>Si (~15-20% usuarios)</td><td>No</td></tr>
+        <tr><td>Setup para cliente</td><td>~300 lineas + proxy + fallback</td><td>1 script tag</td></tr>
+        <tr><td>Infraestructura</td><td>Vercel rewrites, Sentry, Slater</td><td>Nada adicional</td></tr>
+        <tr><td>Distribucion</td><td>Copy-paste snippet</td><td>npm + CDN versionado</td></tr>
+        <tr><td>TypeScript</td><td>No</td><td>Si, tipos exportados</td></tr>
+        <tr><td>SPA support</td><td>No</td><td>Si, cleanup function</td></tr>
+      </table>
+    </div>
+
+    <hr>
+
+    <!-- PHASES -->
+    <h2>Roadmap de Iteracion</h2>
+
+    <div class="flow-section">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Core SDK</h4>
+        <p>Scaffold + source modules + build ESM/IIFE. Verificar webhook + WhatsApp + adblocker.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Polish + Attach</h4>
+        <p>Debounce, cleanup SPA, locale detection, gclid, edge cases. Verificar attach mode.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Docs Configurator</h4>
+        <p>Pagina interactiva en UIKit docs: preview + controles + snippet copiable.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Migration</h4>
+        <p>Migrar atomchat.io + brazil.atomchat.io de Slater a npm. Remover Sentry + rewrites.</p>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 40px;">
+      Generado el 2026-05-26 -- packages/whatsapp v0.1.0 (unreleased)
+    </p>
+
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#25D366',
+        primaryTextColor: '#000',
+        primaryBorderColor: '#1a9e4d',
+        lineColor: '#4a4a55',
+        secondaryColor: '#2d2d35',
+        tertiaryColor: '#1a1a2e',
+        fontFamily: 'Inter, -apple-system, sans-serif',
+        fontSize: '13px',
+      },
+    });
+  </script>
+</body>
+</html>

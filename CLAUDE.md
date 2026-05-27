@@ -736,9 +736,32 @@ Usar `patch` para fixes, `minor` para breaking changes (eliminacion de component
 | Tabs | indicador animado | pendiente | 2.0.0 |
 | SearchInput | eliminado | - | 2.0.0 |
 
-### Componentes pendientes
+### Componentes nuevos (en desarrollo)
 
-Radio, Chip, Tag, Slider, Divider, Skeleton, Spinner, Field, Accordion, Avatar, AvatarGroup, Breadcrumb, BurgerIcon, Calendar, Empty, Item, NavLink, Pagination, Resizable, Table, Typography, y todas las molecules.
+| Componente | Tipo | CSS | React | Story | npm |
+|------------|------|-----|-------|-------|-----|
+| Image | atom | ok | ok | ok | pendiente |
+| Stepper | atom | ok | ok | ok | pendiente |
+| StatsCard | molecule | ok | ok | ok | pendiente |
+| ProgressNav | molecule | pendiente | pendiente | pendiente | pendiente |
+| Counter | atom + animation | pendiente | pendiente | pendiente | pendiente |
+| PricingCard | molecule | pendiente | pendiente | pendiente | pendiente |
+
+### Componentes pendientes de documentacion (CMS + MCP manifest)
+
+Estos componentes estan creados en el DS pero NO tienen articulo en el CMS ni entrada en el MCP manifest:
+- Image, Stepper, StatsCard, ProgressNav (nuevos)
+- Marquee, VideoPlayer, UserProfile, Sidebar (existentes, ocultos del manifest)
+- Dialog, AlertDialog, Sheet, Drawer, Toast (existentes, ocultos)
+- DropdownMenu, ContextMenu, Combobox (existentes, ocultos)
+- Accordion, Tabs, NavLink, Breadcrumb, Pagination (existentes, ocultos)
+- Divider, Item, Empty, Table, Resizable, Calendar, Tooltip, MenuButton (existentes, ocultos)
+
+Pipeline de documentacion: atom-uikit-ds (crear) → UIKitCMS_ATOM (articulo Payload) → atom-uikit-cms-db (manifest + migration) → UIKitDocumentation_ATOM (se renderiza)
+
+### Componentes pendientes de review
+
+Radio, Chip, Tag, Slider, Divider, Skeleton, Spinner, Field, Accordion, Avatar, AvatarGroup, Breadcrumb, BurgerIcon, Calendar, Empty, Item, NavLink, Pagination, Resizable, Table, Typography.
 
 ---
 

@@ -44,3 +44,7 @@
 @import './molecules/marquee.css';
 @import './molecules/video-player.css';
 @import './sidebar/sidebar.css';
+@import './atoms/image.css';
+@import './atoms/stepper.css';
+@import './molecules/stats-card.css';
+@import './molecules/progress-nav.css';

@@ -1,0 +1,85 @@
+/* ============================================================
+   Image — responsive image with sizing variants and aspect ratios
+   ============================================================ */
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background-color: var(--muted);
+  transition: opacity var(--duration-300) var(--easing-out);
+}
+
+/* ---- Sizing variants ---- */
+.image--xs {
+  width: 3rem; /* 48px */
+  height: 3rem;
+  border-radius: var(--radius-sm);
+}
+
+.image--s {
+  width: 6rem; /* 96px */
+  height: 6rem;
+  border-radius: var(--radius-md);
+}
+
+.image--m {
+  width: 12.5rem; /* 200px */
+  height: auto;
+}
+
+.image--l {
+  width: 25rem; /* 400px */
+  height: auto;
+}
+
+.image--hero {
+  width: 100%;
+  max-height: 30rem; /* 480px */
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+}
+
+.image--full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* ---- Aspect ratios ---- */
+.image--ratio-1x1 { aspect-ratio: 1 / 1; }
+.image--ratio-4x3 { aspect-ratio: 4 / 3; }
+.image--ratio-16x9 { aspect-ratio: 16 / 9; }
+.image--ratio-21x9 { aspect-ratio: 21 / 9; }
+
+/* ---- Object fit variants ---- */
+.image--contain { object-fit: contain; }
+.image--cover { object-fit: cover; }
+
+/* ---- Border radius variants ---- */
+.image--rounded-none { border-radius: 0; }
+.image--rounded-sm { border-radius: var(--radius-sm); }
+.image--rounded-md { border-radius: var(--radius-md); }
+.image--rounded-lg { border-radius: var(--radius-lg); }
+.image--rounded-xl { border-radius: var(--radius-xl); }
+.image--rounded-full { border-radius: var(--radius-full); }
+
+/* ---- Loading state (skeleton placeholder) ---- */
+.image--loading {
+  opacity: 0;
+}
+
+.image--loaded {
+  opacity: 1;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition-duration: 0ms;
+  }
+}

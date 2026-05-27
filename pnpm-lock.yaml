@@ -92,6 +92,15 @@ importers:
         specifier: ^4.0.0
         version: 4.4.0
 
+  packages/whatsapp:
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.14)(typescript@5.9.3)(yaml@2.9.0)
+      typescript:
+        specifier: ^5.8.0
+        version: 5.9.3
+
 packages:
 
   '@babel/code-frame@7.29.0':

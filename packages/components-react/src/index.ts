@@ -160,3 +160,7 @@ export {
   TabsTrigger, type TabsTriggerProps,
   TabsContent, type TabsContentProps,
 } from './atoms/Tabs';
+export { Image, type ImageProps, type ImageSize, type ImageRatio, type ImageFit, type ImageRadius } from './atoms/Image';
+export { Stepper, type StepperProps, type StepProps, type StepState } from './atoms/Stepper';
+export { StatsCard, type StatsCardProps, type StatsTrend } from './molecules/StatsCard';
+export { ProgressNav, type ProgressNavProps, type ProgressNavItem } from './molecules/ProgressNav';

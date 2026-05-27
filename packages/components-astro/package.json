@@ -1,6 +1,6 @@
 {
   "name": "@atom-uikit/components-astro",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "type": "module",
   "description": "Astro components for the ATOM UIKit design system",
   "license": "MIT",
