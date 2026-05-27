@@ -1,15 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
-import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
-import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
 import { initButtonHover } from '../../../../packages/animations/src/button-hover';
-import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
-import { IconRuler, IconActivity, IconSettings } from '../utils/SectionIcons';
-
-/* ------------------------------------------------------------------ */
-/*  WhatsApp icon                                                      */
-/* ------------------------------------------------------------------ */
 
 const IconWhatsApp = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">
@@ -17,38 +9,12 @@ const IconWhatsApp = () => (
   </svg>
 );
 
-/* ------------------------------------------------------------------ */
-/*  WhatsApp green — overrides DS button tokens                        */
-/* ------------------------------------------------------------------ */
-
-const waStyleOverride: React.CSSProperties = {
+const waStyle: React.CSSProperties = {
   '--button-bg-primary': '#25D366',
   '--button-hover-bg-primary': '#1EB854',
   '--button-pressed-bg-primary': '#189E48',
   '--button-fg-primary': '#FFFFFF',
 } as React.CSSProperties;
-
-/* ------------------------------------------------------------------ */
-/*  Animation scope                                                    */
-/* ------------------------------------------------------------------ */
-
-const AnimationScope = ({ children, deps }: { children: React.ReactNode; deps: any[] }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const id = requestAnimationFrame(() => {
-      initButtonHover({ scope: ref.current ?? undefined });
-    });
-    return () => cancelAnimationFrame(id);
-  }, deps);
-
-  return <div ref={ref}>{children}</div>;
-};
-
-/* ------------------------------------------------------------------ */
-/*  Storybook meta                                                     */
-/* ------------------------------------------------------------------ */
 
 const meta: Meta = {
   title: 'Integraciones/WhatsApp Button',
@@ -57,91 +23,30 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-/* ------------------------------------------------------------------ */
-/*  Default story                                                      */
-/* ------------------------------------------------------------------ */
-
 export const Default: Story = {
   render: () => {
-    const sizeOptions: { value: 'xs' | 's' | 'm' | 'l' | 'xl'; label: string }[] = [
-      { value: 'xs', label: 'XS' },
-      { value: 's', label: 'S' },
-      { value: 'm', label: 'M' },
-      { value: 'l', label: 'L' },
-      { value: 'xl', label: 'XL' },
-    ];
-    const stateOptions: { value: 'default' | 'disabled'; label: string }[] = [
-      { value: 'default', label: 'Normal' },
-      { value: 'disabled', label: 'Deshab.' },
-    ];
+    const ref = useRef<HTMLDivElement>(null);
 
-    const [size, setSize] = useState<'xs' | 's' | 'm' | 'l' | 'xl'>('m');
-    const [buttonState, setButtonState] = useState<'default' | 'disabled'>('default');
-    const [animated, setAnimated] = useState(true);
-    const [iconLeft, setIconLeft] = useState(true);
-    const { animateTransition, transitionStyle } = useTransition();
+    useEffect(() => {
+      if (!ref.current) return;
+      const id = requestAnimationFrame(() => {
+        initButtonHover({ scope: ref.current ?? undefined });
+      });
+      return () => cancelAnimationFrame(id);
+    }, []);
 
     return (
-      <StoryPreviewLayout
-        minHeight={480}
-        controls={
-          <>
-            <div>
-              <div style={sectionLabelRow}><IconRuler />{`Tama\u00f1o`}</div>
-              <Tabs value={size} onValueChange={(v) => animateTransition(() => setSize(v as typeof size))}>
-                <TabsList animated>
-                  {sizeOptions.map((s) => (
-                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
-            </div>
-
-            <div>
-              <div style={sectionLabelRow}><IconActivity />Estado</div>
-              <Tabs value={buttonState} onValueChange={(v) => animateTransition(() => setButtonState(v as typeof buttonState))}>
-                <TabsList animated>
-                  {stateOptions.map((s) => (
-                    <TabsTrigger key={s.value} value={s.value}>{s.label}</TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
-            </div>
-
-            <div>
-              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <div style={switchRow}>
-                  <span style={switchLabel}>Animado</span>
-                  <Toggle animated checked={animated} onChange={setAnimated} />
-                </div>
-                <div style={switchRow}>
-                  <span style={switchLabel}>Icono WhatsApp</span>
-                  <Toggle animated checked={iconLeft} onChange={setIconLeft} />
-                </div>
-              </div>
-            </div>
-
-          </>
-        }
-      >
-        <AnimationScope deps={[size, buttonState, animated, iconLeft]}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-            <div style={transitionStyle}>
-              <Button
-                variant="primary"
-                size={size}
-                disabled={buttonState === 'disabled'}
-                animated={animated}
-                iconLeft={iconLeft ? <IconWhatsApp /> : undefined}
-                style={waStyleOverride}
-              >
-                Habla con nosotros
-              </Button>
-            </div>
-          </div>
-        </AnimationScope>
-      </StoryPreviewLayout>
+      <div ref={ref} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
+        <Button
+          variant="primary"
+          size="m"
+          animated
+          iconLeft={<IconWhatsApp />}
+          style={waStyle}
+        >
+          Habla con nosotros
+        </Button>
+      </div>
     );
   },
 };
