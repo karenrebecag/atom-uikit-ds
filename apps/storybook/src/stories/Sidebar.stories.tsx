@@ -164,8 +164,8 @@ export const Default: Story = {
                 <span style={{ width: 16, height: 16, color: 'var(--muted-foreground)' }}><IconUser /></span>
               </span>
               <div data-sidebar-label="" style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)', color: 'var(--foreground)' }}>Karen Ortiz</div>
-                <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--muted-foreground)' }}>karen@atomchat.io</div>
+                <div style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-medium)', color: 'var(--foreground)' }}>John Doe</div>
+                <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--muted-foreground)' }}>john@example.com</div>
               </div>
             </div>
           </SidebarFooter>

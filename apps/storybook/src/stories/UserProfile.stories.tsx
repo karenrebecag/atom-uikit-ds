@@ -97,7 +97,7 @@ export const Default: Story = {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
           <div style={transitionStyle}>
             <UserProfile
-              name="Karen Ortiz"
+              name="John Doe"
               org={showOrg ? 'Atom Design' : undefined}
               avatar={avatarProps}
             />
