@@ -104,7 +104,7 @@ export const Default: Story = {
         }
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-          <Button variant="secondary" size="m" onClick={fireToast}>
+          <Button variant="tertiary" size="m" onClick={fireToast}>
             Mostrar toast
           </Button>
         </div>
