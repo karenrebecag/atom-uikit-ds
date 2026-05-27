@@ -1,184 +1,147 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogBody,
-  DialogFooter,
+  Dialog, DialogTrigger, DialogContent,
+  DialogHeader, DialogTitle, DialogDescription,
+  DialogBody, DialogFooter,
 } from '../../../../packages/components-react/src/molecules/Dialog';
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
 import { Input } from '../../../../packages/components-react/src/atoms/Input';
 import { Field } from '../../../../packages/components-react/src/atoms/Field';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconSettings } from '../utils/SectionIcons';
+
+type Scenario = 'form' | 'confirm' | 'destructive';
 
 const meta: Meta<typeof Dialog> = {
   title: 'Molecules/Dialog',
   component: Dialog,
-  argTypes: {
-    children: { table: { disable: true } },
-    open: { table: { disable: true } },
-    onOpenChange: { table: { disable: true } },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Dialog>;
 
-/* ---- Default ---- */
-
 export const Default: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger>
-        <Button variant="secondary" size="m">Edit Profile</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit Profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you are done.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogBody>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <Field label="Name">
-              <Input placeholder="John Doe" />
-            </Field>
-            <Field label="Email">
-              <Input placeholder="john@example.com" type="email" />
-            </Field>
-          </div>
-        </DialogBody>
-        <DialogFooter>
-          <Button variant="primary" size="m">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
-};
-
-/* ---- No Close Button ---- */
-
-export const NoCloseButton: Story = {
   render: () => {
+    const scenarioOptions: { value: Scenario; label: string }[] = [
+      { value: 'form', label: 'Formulario' },
+      { value: 'confirm', label: 'Confirmar' },
+      { value: 'destructive', label: 'Destructivo' },
+    ];
+
+    const [scenario, setScenario] = useState<Scenario>('form');
+    const [showClose, setShowClose] = useState(true);
+    const [stickyFooter, setStickyFooter] = useState(false);
     const [open, setOpen] = useState(false);
+
+    const { animateTransition } = useTransition();
+
+    const triggerLabel: Record<Scenario, string> = {
+      form: 'Editar perfil',
+      confirm: 'Confirmar accion',
+      destructive: 'Eliminar cuenta',
+    };
+
+    const triggerVariant: Record<Scenario, 'secondary' | 'destructive-primary'> = {
+      form: 'secondary',
+      confirm: 'secondary',
+      destructive: 'destructive-primary',
+    };
+
     return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger>
-          <Button variant="secondary" size="m">Open Dialog</Button>
-        </DialogTrigger>
-        <DialogContent showCloseButton={false}>
-          <DialogHeader>
-            <DialogTitle>Confirm Action</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. Are you sure you want to continue?
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="secondary" size="m" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button variant="primary" size="m" onClick={() => setOpen(false)}>Confirm</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <StoryPreviewLayout
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconLayers />Escenario</div>
+              <Tabs value={scenario} onValueChange={(v) => animateTransition(() => { setScenario(v as Scenario); setOpen(false); })}>
+                <TabsList animated>
+                  {scenarioOptions.map((o) => (
+                    <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <div style={switchRow}>
+                  <span style={switchLabel}>{`Bot\u00f3n cerrar`}</span>
+                  <Toggle animated checked={showClose} onChange={setShowClose} />
+                </div>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Footer sticky</span>
+                  <Toggle animated checked={stickyFooter} onChange={setStickyFooter} />
+                </div>
+              </div>
+            </div>
+          </>
+        }
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger>
+              <Button variant={triggerVariant[scenario]} size="m">
+                {triggerLabel[scenario]}
+              </Button>
+            </DialogTrigger>
+            <DialogContent showCloseButton={showClose}>
+
+              {scenario === 'form' && (
+                <>
+                  <DialogHeader>
+                    <DialogTitle>Editar perfil</DialogTitle>
+                    <DialogDescription>Modifica tu informacion y guarda los cambios.</DialogDescription>
+                  </DialogHeader>
+                  <DialogBody>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                      <Field label="Nombre">
+                        <Input placeholder="John Doe" />
+                      </Field>
+                      <Field label="Email">
+                        <Input placeholder="john@example.com" type="email" />
+                      </Field>
+                    </div>
+                  </DialogBody>
+                  <DialogFooter sticky={stickyFooter}>
+                    <Button variant="primary" size="m" onClick={() => setOpen(false)}>Guardar</Button>
+                  </DialogFooter>
+                </>
+              )}
+
+              {scenario === 'confirm' && (
+                <>
+                  <DialogHeader>
+                    <DialogTitle>Confirmar accion</DialogTitle>
+                    <DialogDescription>Esta seguro de que desea continuar? Esta accion no se puede deshacer.</DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter sticky={stickyFooter}>
+                    <Button variant="secondary" size="m" onClick={() => setOpen(false)}>Cancelar</Button>
+                    <Button variant="primary" size="m" onClick={() => setOpen(false)}>Confirmar</Button>
+                  </DialogFooter>
+                </>
+              )}
+
+              {scenario === 'destructive' && (
+                <>
+                  <DialogHeader>
+                    <DialogTitle>Eliminar cuenta</DialogTitle>
+                    <DialogDescription>Esto eliminara permanentemente tu cuenta y todos los datos asociados. Esta accion no se puede deshacer.</DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter sticky={stickyFooter}>
+                    <Button variant="secondary" size="m" onClick={() => setOpen(false)}>Cancelar</Button>
+                    <Button variant="destructive-primary" size="m" onClick={() => setOpen(false)}>Eliminar</Button>
+                  </DialogFooter>
+                </>
+              )}
+
+            </DialogContent>
+          </Dialog>
+        </div>
+      </StoryPreviewLayout>
     );
   },
-};
-
-/* ---- Scrollable Content ---- */
-
-export const ScrollableContent: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger>
-        <Button variant="secondary" size="m">Terms of Service</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Terms of Service</DialogTitle>
-          <DialogDescription>
-            Please read the following terms carefully.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogBody>
-          {Array.from({ length: 12 }, (_, i) => (
-            <p key={i} style={{ fontSize: 'var(--font-size-sm)', lineHeight: 'var(--line-height-sm)', color: 'var(--muted-foreground)', marginBottom: 16 }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris.
-            </p>
-          ))}
-        </DialogBody>
-        <DialogFooter sticky>
-          <Button variant="primary" size="m">Accept</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
-};
-
-/* ---- Destructive ---- */
-
-export const Destructive: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger>
-          <Button variant="destructive-primary" size="m">Delete Account</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Delete Account</DialogTitle>
-            <DialogDescription>
-              This will permanently delete your account and all associated data.
-              This action cannot be undone.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="secondary" size="m" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button variant="destructive-primary" size="m" onClick={() => setOpen(false)}>Delete</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    );
-  },
-};
-
-/* ---- Custom Width ---- */
-
-export const CustomWidth: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger>
-        <Button variant="secondary" size="m">Wide Dialog</Button>
-      </DialogTrigger>
-      <DialogContent className="dialog__content" style={{ maxWidth: 720 }}>
-        <DialogHeader>
-          <DialogTitle>Create New Project</DialogTitle>
-          <DialogDescription>
-            Fill in the details below to create a new project.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogBody>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <Field label="Project Name">
-              <Input placeholder="My Project" />
-            </Field>
-            <Field label="Slug">
-              <Input placeholder="my-project" />
-            </Field>
-            <Field label="Description" style={{ gridColumn: '1 / -1' }}>
-              <Input placeholder="A brief description..." />
-            </Field>
-          </div>
-        </DialogBody>
-        <DialogFooter>
-          <Button variant="primary" size="m">Create Project</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
 };
