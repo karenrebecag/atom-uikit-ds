@@ -8,7 +8,7 @@ import {
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
 import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
 import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
-import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
 import { IconLayers, IconSettings } from '../utils/SectionIcons';
 
 const IconUser = () => (
@@ -70,41 +70,41 @@ export const Default: Story = {
     const { animateTransition } = useTransition();
 
     return (
-      <StoryPreviewLayout
-        controls={
-          <>
-            <div>
-              <div style={sectionLabelRow}><IconLayers />Escenario</div>
-              <Tabs value={scenario} onValueChange={(v) => animateTransition(() => setScenario(v as Scenario))}>
-                <TabsList animated>
-                  {scenarioOptions.map((o) => (
-                    <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
-            </div>
+      <div style={{ display: 'flex', gap: 'var(--spacing-6)', padding: 24, minHeight: 480 }}>
+        {/* Controls */}
+        <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: 16, flexShrink: 0 }}>
+          <div>
+            <div style={sectionLabelRow}><IconLayers />Escenario</div>
+            <Tabs value={scenario} onValueChange={(v) => animateTransition(() => setScenario(v as Scenario))}>
+              <TabsList animated>
+                {scenarioOptions.map((o) => (
+                  <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
 
-            <div>
-              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <div style={switchRow}>
-                  <span style={switchLabel}>Con iconos</span>
-                  <Toggle animated checked={withIcons} onChange={setWithIcons} />
-                </div>
-                <div style={switchRow}>
-                  <span style={switchLabel}>Shortcuts</span>
-                  <Toggle animated checked={withShortcuts} onChange={setWithShortcuts} />
-                </div>
-                <div style={switchRow}>
-                  <span style={switchLabel}>Items deshabilitados</span>
-                  <Toggle animated checked={withDisabled} onChange={setWithDisabled} />
-                </div>
+          <div>
+            <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <div style={switchRow}>
+                <span style={switchLabel}>Con iconos</span>
+                <Toggle animated checked={withIcons} onChange={setWithIcons} />
+              </div>
+              <div style={switchRow}>
+                <span style={switchLabel}>Shortcuts</span>
+                <Toggle animated checked={withShortcuts} onChange={setWithShortcuts} />
+              </div>
+              <div style={switchRow}>
+                <span style={switchLabel}>Items deshabilitados</span>
+                <Toggle animated checked={withDisabled} onChange={setWithDisabled} />
               </div>
             </div>
-          </>
-        }
-      >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+          </div>
+        </div>
+
+        {/* Preview */}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Button variant="secondary" size="m">
@@ -179,7 +179,7 @@ export const Default: Story = {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-      </StoryPreviewLayout>
+      </div>
     );
   },
 };
