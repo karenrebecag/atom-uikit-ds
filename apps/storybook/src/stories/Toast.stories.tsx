@@ -107,8 +107,8 @@ export const Default: Story = {
           <Button variant="secondary" size="m" onClick={fireToast}>
             Mostrar toast
           </Button>
+          <Toaster position={position} />
         </div>
-        <Toaster position={position} />
       </StoryPreviewLayout>
     );
   },
