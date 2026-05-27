@@ -5,65 +5,39 @@ import {
   PaginationLink, PaginationPrevious, PaginationNext,
   PaginationEllipsis,
 } from '../../../../packages/components-react/src/atoms/Pagination';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconSettings } from '../utils/SectionIcons';
 
 const meta: Meta<typeof Pagination> = {
   title: 'Atoms/Navigation/Pagination',
   component: Pagination,
-  argTypes: {
-    children: { table: { disable: true } },
-    className: { table: { disable: true } },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Pagination>;
 
-/* ---- Default ---- */
-
 export const Default: Story = {
   render: () => {
-    const [page, setPage] = useState(2);
-    const total = 5;
-    return (
-      <Pagination>
-        <PaginationItem>
-          <PaginationPrevious
-            href="#"
-            disabled={page === 1}
-            onClick={(e) => { e.preventDefault(); setPage((p) => Math.max(1, p - 1)); }}
-          />
-        </PaginationItem>
-        {Array.from({ length: total }, (_, i) => (
-          <PaginationItem key={i + 1}>
-            <PaginationLink
-              href="#"
-              isActive={page === i + 1}
-              onClick={(e) => { e.preventDefault(); setPage(i + 1); }}
-            >
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
-        <PaginationItem>
-          <PaginationNext
-            href="#"
-            disabled={page === total}
-            onClick={(e) => { e.preventDefault(); setPage((p) => Math.min(total, p + 1)); }}
-          />
-        </PaginationItem>
-      </Pagination>
-    );
-  },
-};
+    type Mode = 'completo' | 'iconos';
 
-/* ---- With Ellipsis ---- */
+    const modeOptions: { value: Mode; label: string }[] = [
+      { value: 'completo', label: 'Completo' },
+      { value: 'iconos', label: 'Solo iconos' },
+    ];
 
-export const WithEllipsis: Story = {
-  render: () => {
+    const [mode, setMode] = useState<Mode>('completo');
+    const [withEllipsis, setWithEllipsis] = useState(true);
     const [page, setPage] = useState(5);
-    const total = 20;
 
-    const getPages = () => {
+    const total = 20;
+    const { animateTransition, transitionStyle } = useTransition();
+
+    const getPages = (): (number | 'ellipsis')[] => {
+      if (!withEllipsis || total <= 7) {
+        return Array.from({ length: total }, (_, i) => i + 1);
+      }
       const pages: (number | 'ellipsis')[] = [1];
       if (page > 3) pages.push('ellipsis');
       for (let i = Math.max(2, page - 1); i <= Math.min(total - 1, page + 1); i++) pages.push(i);
@@ -73,73 +47,83 @@ export const WithEllipsis: Story = {
     };
 
     return (
-      <Pagination>
-        <PaginationItem>
-          <PaginationPrevious
-            href="#"
-            disabled={page === 1}
-            onClick={(e) => { e.preventDefault(); setPage((p) => p - 1); }}
-          />
-        </PaginationItem>
-        {getPages().map((p, i) =>
-          p === 'ellipsis' ? (
-            <PaginationItem key={`e${i}`}>
-              <PaginationEllipsis />
-            </PaginationItem>
-          ) : (
-            <PaginationItem key={p}>
-              <PaginationLink
-                href="#"
-                isActive={page === p}
-                onClick={(e) => { e.preventDefault(); setPage(p); }}
-              >
-                {p}
-              </PaginationLink>
-            </PaginationItem>
-          ),
-        )}
-        <PaginationItem>
-          <PaginationNext
-            href="#"
-            disabled={page === total}
-            onClick={(e) => { e.preventDefault(); setPage((p) => p + 1); }}
-          />
-        </PaginationItem>
-      </Pagination>
-    );
-  },
-};
+      <StoryPreviewLayout
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconLayers />Modo</div>
+              <Tabs value={mode} onValueChange={(v) => animateTransition(() => setMode(v as Mode))}>
+                <TabsList animated>
+                  {modeOptions.map((o) => (
+                    <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
 
-/* ---- Icons Only (for tables) ---- */
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Con ellipsis</span>
+                  <Toggle
+                    animated
+                    checked={withEllipsis}
+                    onChange={(v) => animateTransition(() => setWithEllipsis(v))}
+                  />
+                </div>
+              </div>
+            </div>
+          </>
+        }
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--spacing-3)', width: '100%', height: '100%' }}>
+          {mode === 'iconos' && (
+            <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--muted-foreground)' }}>
+              {`P\u00e1gina ${page} de ${total}`}
+            </span>
+          )}
+          <div style={transitionStyle}>
+            <Pagination>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  text={mode === 'iconos' ? '' : undefined}
+                  disabled={page === 1}
+                  onClick={(e) => { e.preventDefault(); setPage((p) => Math.max(1, p - 1)); }}
+                />
+              </PaginationItem>
 
-export const IconsOnly: Story = {
-  render: () => {
-    const [page, setPage] = useState(1);
-    const total = 10;
-    return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
-        <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--muted-foreground)' }}>
-          Page {page} of {total}
-        </span>
-        <Pagination>
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              text=""
-              disabled={page === 1}
-              onClick={(e) => { e.preventDefault(); setPage((p) => p - 1); }}
-            />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              text=""
-              disabled={page === total}
-              onClick={(e) => { e.preventDefault(); setPage((p) => p + 1); }}
-            />
-          </PaginationItem>
-        </Pagination>
-      </div>
+              {mode === 'completo' && getPages().map((p, i) =>
+                p === 'ellipsis' ? (
+                  <PaginationItem key={`e${i}`}>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                ) : (
+                  <PaginationItem key={p}>
+                    <PaginationLink
+                      href="#"
+                      isActive={page === p}
+                      onClick={(e) => { e.preventDefault(); setPage(p); }}
+                    >
+                      {p}
+                    </PaginationLink>
+                  </PaginationItem>
+                ),
+              )}
+
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  text={mode === 'iconos' ? '' : undefined}
+                  disabled={page === total}
+                  onClick={(e) => { e.preventDefault(); setPage((p) => Math.min(total, p + 1)); }}
+                />
+              </PaginationItem>
+            </Pagination>
+          </div>
+        </div>
+      </StoryPreviewLayout>
     );
   },
 };
