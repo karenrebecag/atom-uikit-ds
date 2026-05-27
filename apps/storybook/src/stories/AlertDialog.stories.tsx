@@ -137,7 +137,7 @@ export const Default: Story = {
           </>
         }
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--spacing-3)', width: '100%', height: '100%' }}>
           <AlertDialog>
             <AlertDialogTrigger>
               <Button variant={c.triggerVariant} size="m">{c.trigger}</Button>
@@ -158,6 +158,9 @@ export const Default: Story = {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
+          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--muted-foreground)' }}>
+            Usa los botones del footer para cerrar. No cierra con click fuera ni Escape.
+          </span>
         </div>
       </StoryPreviewLayout>
     );
