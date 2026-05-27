@@ -1,13 +1,14 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuShortcut,
+  ContextMenu, ContextMenuTrigger, ContextMenuContent,
+  ContextMenuItem, ContextMenuLabel, ContextMenuShortcut,
   ContextMenuSeparator,
 } from '../../../../packages/components-react/src/molecules/ContextMenu';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconSettings } from '../utils/SectionIcons';
 
 const IconCopy = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -18,10 +19,8 @@ const IconCopy = () => (
 
 const IconScissors = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <circle cx="6" cy="6" r="3" />
-    <circle cx="6" cy="18" r="3" />
-    <line x1="20" y1="4" x2="8.12" y2="15.88" />
-    <line x1="14.47" y1="14.48" x2="20" y2="20" />
+    <circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" />
+    <line x1="20" y1="4" x2="8.12" y2="15.88" /><line x1="14.47" y1="14.48" x2="20" y2="20" />
     <line x1="8.12" y1="8.12" x2="12" y2="12" />
   </svg>
 );
@@ -40,136 +39,137 @@ const IconTrash = () => (
   </svg>
 );
 
+type Scenario = 'browser' | 'editor' | 'file';
+
 const meta: Meta<typeof ContextMenu> = {
   title: 'Molecules/ContextMenu',
   component: ContextMenu,
-  argTypes: {
-    children: { table: { disable: true } },
-    className: { table: { disable: true } },
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ minHeight: 360, padding: 24 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof ContextMenu>;
 
-const TriggerZone = ({ children }: { children?: React.ReactNode }) => (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: 320,
-      height: 180,
-      border: '1px dashed var(--border)',
-      borderRadius: 'var(--radius-lg)',
-      color: 'var(--muted-foreground)',
-      fontSize: 'var(--font-size-sm)',
-      userSelect: 'none',
-    }}
-  >
-    {children || 'Right-click here'}
-  </div>
-);
-
-/* ---- Default ---- */
-
 export const Default: Story = {
-  render: () => (
-    <ContextMenu>
-      <ContextMenuTrigger>
-        <TriggerZone />
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuItem onSelect={() => {}}>Back</ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>Forward</ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>Reload</ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuItem onSelect={() => {}}>View Source</ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>Inspect</ContextMenuItem>
-      </ContextMenuContent>
-    </ContextMenu>
-  ),
-};
+  render: () => {
+    const scenarioOptions: { value: Scenario; label: string }[] = [
+      { value: 'browser', label: 'Navegador' },
+      { value: 'editor', label: 'Editor' },
+      { value: 'file', label: 'Archivo' },
+    ];
 
-/* ---- With Icons ---- */
+    const [scenario, setScenario] = useState<Scenario>('editor');
+    const [withIcons, setWithIcons] = useState(true);
+    const [withShortcuts, setWithShortcuts] = useState(true);
+    const [withDisabled, setWithDisabled] = useState(false);
 
-export const WithIcons: Story = {
-  render: () => (
-    <ContextMenu>
-      <ContextMenuTrigger>
-        <TriggerZone />
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuItem onSelect={() => {}}>
-          <span className="dropdown-menu__item-icon"><IconScissors /></span>
-          Cut
-          <ContextMenuShortcut>Ctrl+X</ContextMenuShortcut>
-        </ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>
-          <span className="dropdown-menu__item-icon"><IconCopy /></span>
-          Copy
-          <ContextMenuShortcut>Ctrl+C</ContextMenuShortcut>
-        </ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>
-          <span className="dropdown-menu__item-icon"><IconClipboard /></span>
-          Paste
-          <ContextMenuShortcut>Ctrl+V</ContextMenuShortcut>
-        </ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuItem variant="destructive" onSelect={() => {}}>
-          <span className="dropdown-menu__item-icon"><IconTrash /></span>
-          Delete
-        </ContextMenuItem>
-      </ContextMenuContent>
-    </ContextMenu>
-  ),
-};
+    const { animateTransition } = useTransition();
 
-/* ---- With Groups ---- */
+    return (
+      <div style={{ display: 'flex', gap: 'var(--spacing-6)', padding: 24, minHeight: 420 }}>
+        {/* Controls */}
+        <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: 16, flexShrink: 0 }}>
+          <div>
+            <div style={sectionLabelRow}><IconLayers />Escenario</div>
+            <Tabs value={scenario} onValueChange={(v) => animateTransition(() => setScenario(v as Scenario))}>
+              <TabsList animated>
+                {scenarioOptions.map((o) => (
+                  <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
 
-export const WithGroups: Story = {
-  render: () => (
-    <ContextMenu>
-      <ContextMenuTrigger>
-        <TriggerZone />
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuLabel>Edit</ContextMenuLabel>
-        <ContextMenuItem onSelect={() => {}}>Undo</ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>Redo</ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuLabel>Selection</ContextMenuLabel>
-        <ContextMenuItem onSelect={() => {}}>Select All</ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>Deselect</ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuItem variant="destructive" onSelect={() => {}}>Clear All</ContextMenuItem>
-      </ContextMenuContent>
-    </ContextMenu>
-  ),
-};
+          <div>
+            <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <div style={switchRow}>
+                <span style={switchLabel}>Con iconos</span>
+                <Toggle animated checked={withIcons} onChange={setWithIcons} />
+              </div>
+              <div style={switchRow}>
+                <span style={switchLabel}>Shortcuts</span>
+                <Toggle animated checked={withShortcuts} onChange={setWithShortcuts} />
+              </div>
+              <div style={switchRow}>
+                <span style={switchLabel}>Items deshabilitados</span>
+                <Toggle animated checked={withDisabled} onChange={setWithDisabled} />
+              </div>
+            </div>
+          </div>
+        </div>
 
-/* ---- Disabled Items ---- */
+        {/* Preview */}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <ContextMenu>
+            <ContextMenuTrigger>
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: 320, height: 180,
+                border: '1px dashed var(--border)', borderRadius: 'var(--radius-lg)',
+                color: 'var(--muted-foreground)', fontSize: 'var(--font-size-sm)', userSelect: 'none',
+              }}>
+                Click derecho aqui
+              </div>
+            </ContextMenuTrigger>
+            <ContextMenuContent>
 
-export const DisabledItems: Story = {
-  render: () => (
-    <ContextMenu>
-      <ContextMenuTrigger>
-        <TriggerZone />
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuItem onSelect={() => {}}>Cut</ContextMenuItem>
-        <ContextMenuItem onSelect={() => {}}>Copy</ContextMenuItem>
-        <ContextMenuItem disabled>Paste (clipboard empty)</ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuItem variant="destructive" disabled>Delete (no selection)</ContextMenuItem>
-      </ContextMenuContent>
-    </ContextMenu>
-  ),
+              {scenario === 'editor' && (
+                <>
+                  <ContextMenuItem onSelect={() => {}}>
+                    {withIcons && <span className="dropdown-menu__item-icon"><IconScissors /></span>}
+                    Cortar
+                    {withShortcuts && <ContextMenuShortcut>Ctrl+X</ContextMenuShortcut>}
+                  </ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}}>
+                    {withIcons && <span className="dropdown-menu__item-icon"><IconCopy /></span>}
+                    Copiar
+                    {withShortcuts && <ContextMenuShortcut>Ctrl+C</ContextMenuShortcut>}
+                  </ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}} disabled={withDisabled}>
+                    {withIcons && <span className="dropdown-menu__item-icon"><IconClipboard /></span>}
+                    Pegar
+                    {withShortcuts && <ContextMenuShortcut>Ctrl+V</ContextMenuShortcut>}
+                  </ContextMenuItem>
+                  <ContextMenuSeparator />
+                  <ContextMenuItem variant="destructive" onSelect={() => {}}>
+                    {withIcons && <span className="dropdown-menu__item-icon"><IconTrash /></span>}
+                    Eliminar
+                  </ContextMenuItem>
+                </>
+              )}
+
+              {scenario === 'browser' && (
+                <>
+                  <ContextMenuItem onSelect={() => {}}>Atras</ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}}>Adelante</ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}}>
+                    Recargar
+                    {withShortcuts && <ContextMenuShortcut>Ctrl+R</ContextMenuShortcut>}
+                  </ContextMenuItem>
+                  <ContextMenuSeparator />
+                  <ContextMenuItem onSelect={() => {}} disabled={withDisabled}>Ver fuente</ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}}>Inspeccionar</ContextMenuItem>
+                </>
+              )}
+
+              {scenario === 'file' && (
+                <>
+                  <ContextMenuLabel>Archivo</ContextMenuLabel>
+                  <ContextMenuItem onSelect={() => {}}>Abrir</ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}}>Renombrar</ContextMenuItem>
+                  <ContextMenuItem onSelect={() => {}} disabled={withDisabled}>Mover</ContextMenuItem>
+                  <ContextMenuSeparator />
+                  <ContextMenuItem variant="destructive" onSelect={() => {}}>
+                    {withIcons && <span className="dropdown-menu__item-icon"><IconTrash /></span>}
+                    Eliminar
+                  </ContextMenuItem>
+                </>
+              )}
+
+            </ContextMenuContent>
+          </ContextMenu>
+        </div>
+      </div>
+    );
+  },
 };
