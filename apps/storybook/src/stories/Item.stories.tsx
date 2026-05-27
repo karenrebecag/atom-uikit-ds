@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Item, ItemMedia, ItemContent, ItemTitle, ItemDescription,
   ItemActions, ItemGroup, ItemSeparator,
 } from '../../../../packages/components-react/src/atoms/Item';
-import { Avatar } from '../../../../packages/components-react/src/atoms/Avatar';
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
-import { Tag } from '../../../../packages/components-react/src/atoms/Tag';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
+import { IconLayers, IconRuler, IconSettings } from '../utils/SectionIcons';
 
 const IconShield = () => (
   <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -37,155 +40,149 @@ const IconLock = () => (
 const meta: Meta<typeof Item> = {
   title: 'Atoms/Layout/Item',
   component: Item,
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['default', 'outline', 'muted'],
-      name: 'Variant',
-    },
-    size: {
-      control: 'select',
-      options: ['default', 'sm', 'xs'],
-      name: 'Size',
-    },
-    children: { table: { disable: true } },
-    className: { table: { disable: true } },
-    href: { table: { disable: true } },
-  },
-  args: {
-    variant: 'default',
-    size: 'default',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ maxWidth: 480 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof Item>;
 
-/* ---- With Icon ---- */
+export const Default: Story = {
+  render: () => {
+    type Variant = 'default' | 'outline' | 'muted';
+    type Size = 'default' | 'sm' | 'xs';
+    type Media = 'icon' | 'image' | 'none';
 
-export const WithIcon: Story = {
-  render: (args) => (
-    <Item variant={args.variant} size={args.size}>
-      <ItemMedia variant="icon">
-        <IconShield />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>Two-factor authentication</ItemTitle>
-        <ItemDescription>Add an extra layer of security to your account.</ItemDescription>
-      </ItemContent>
-      <ItemActions>
-        <Button variant="secondary" size="s">Enable</Button>
-      </ItemActions>
-    </Item>
-  ),
-};
+    const variantOptions: { value: Variant; label: string }[] = [
+      { value: 'default', label: 'Default' },
+      { value: 'outline', label: 'Outline' },
+      { value: 'muted', label: 'Muted' },
+    ];
+    const sizeOptions: { value: Size; label: string }[] = [
+      { value: 'default', label: 'Default' },
+      { value: 'sm', label: 'SM' },
+      { value: 'xs', label: 'XS' },
+    ];
+    const mediaOptions: { value: Media; label: string }[] = [
+      { value: 'icon', label: 'Icono' },
+      { value: 'image', label: 'Imagen' },
+      { value: 'none', label: 'Sin media' },
+    ];
 
-/* ---- With Avatar ---- */
+    const [variant, setVariant] = useState<Variant>('default');
+    const [size, setSize] = useState<Size>('default');
+    const [media, setMedia] = useState<Media>('icon');
+    const [showActions, setShowActions] = useState(true);
+    const [showDescription, setShowDescription] = useState(true);
+    const [asGroup, setAsGroup] = useState(false);
 
-export const WithAvatar: Story = {
-  render: (args) => (
-    <Item variant={args.variant} size={args.size}>
-      <ItemMedia>
-        <Avatar type="image" shape="circle" size="s" src="https://i.pravatar.cc/64?u=item1" alt="" />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>Alice Johnson</ItemTitle>
-        <ItemDescription>alice@example.com</ItemDescription>
-      </ItemContent>
-      <ItemActions>
-        <Tag variant="filled" intent="success" size="s">Active</Tag>
-      </ItemActions>
-    </Item>
-  ),
-};
+    const { animateTransition, transitionStyle } = useTransition();
 
-/* ---- With Image ---- */
+    const items = [
+      { icon: IconShield, title: 'Autenticacion', desc: 'Agrega una capa extra de seguridad.' },
+      { icon: IconBell, title: 'Notificaciones', desc: 'Controla como recibes alertas.' },
+      { icon: IconMail, title: 'Correo', desc: 'Configura tus preferencias de email.' },
+      { icon: IconLock, title: 'Privacidad', desc: 'Controla tus datos y visibilidad.' },
+    ];
 
-export const WithImage: Story = {
-  render: (args) => (
-    <Item variant={args.variant} size={args.size}>
-      <ItemMedia variant="image">
-        <img src="https://picsum.photos/seed/item/96/96" alt="" />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>Summer Vibes</ItemTitle>
-        <ItemDescription>12 tracks - 45 min</ItemDescription>
-      </ItemContent>
-    </Item>
-  ),
-};
-
-/* ---- Group (outline) ---- */
-
-export const Group: Story = {
-  render: () => (
-    <ItemGroup variant="outline">
-      <Item>
-        <ItemMedia variant="icon"><IconBell /></ItemMedia>
+    const renderItem = (item: typeof items[0], idx: number) => (
+      <Item key={idx} variant={asGroup ? undefined : variant} size={size}>
+        {media === 'icon' && (
+          <ItemMedia variant="icon"><item.icon /></ItemMedia>
+        )}
+        {media === 'image' && (
+          <ItemMedia variant="image">
+            <img src={`https://picsum.photos/seed/item${idx}/96/96`} alt="" />
+          </ItemMedia>
+        )}
         <ItemContent>
-          <ItemTitle>Notifications</ItemTitle>
-          <ItemDescription>Manage how you receive alerts.</ItemDescription>
+          <ItemTitle>{item.title}</ItemTitle>
+          {showDescription && <ItemDescription>{item.desc}</ItemDescription>}
         </ItemContent>
+        {showActions && (
+          <ItemActions>
+            <Button variant="secondary" size="s">Editar</Button>
+          </ItemActions>
+        )}
       </Item>
-      <ItemSeparator />
-      <Item>
-        <ItemMedia variant="icon"><IconMail /></ItemMedia>
-        <ItemContent>
-          <ItemTitle>Email preferences</ItemTitle>
-          <ItemDescription>Choose what emails you receive.</ItemDescription>
-        </ItemContent>
-      </Item>
-      <ItemSeparator />
-      <Item>
-        <ItemMedia variant="icon"><IconLock /></ItemMedia>
-        <ItemContent>
-          <ItemTitle>Privacy</ItemTitle>
-          <ItemDescription>Control your data and visibility.</ItemDescription>
-        </ItemContent>
-      </Item>
-    </ItemGroup>
-  ),
-};
+    );
 
-/* ---- Small Size ---- */
+    const content = asGroup ? (
+      <ItemGroup variant={variant === 'outline' ? 'outline' : 'default'}>
+        {items.map((item, idx) => (
+          <div key={idx}>
+            {renderItem(item, idx)}
+            {idx < items.length - 1 && <ItemSeparator />}
+          </div>
+        ))}
+      </ItemGroup>
+    ) : (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-1)' }}>
+        {items.slice(0, 3).map((item, idx) => renderItem(item, idx))}
+      </div>
+    );
 
-export const Small: Story = {
-  args: { size: 'sm' },
-  render: (args) => (
-    <ItemGroup variant="outline">
-      {['Dashboard', 'Projects', 'Team', 'Settings'].map((label) => (
-        <Item key={label} size={args.size} href="#">
-          <ItemContent>
-            <ItemTitle>{label}</ItemTitle>
-          </ItemContent>
-        </Item>
-      ))}
-    </ItemGroup>
-  ),
-};
+    return (
+      <StoryPreviewLayout
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconLayers />Variante</div>
+              <Tabs value={variant} onValueChange={(v) => animateTransition(() => setVariant(v as Variant))}>
+                <TabsList animated>
+                  {variantOptions.map((o) => (
+                    <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
 
-/* ---- Muted Variant ---- */
+            <div>
+              <div style={sectionLabelRow}><IconRuler />{`Tama\u00f1o`}</div>
+              <Tabs value={size} onValueChange={(v) => animateTransition(() => setSize(v as Size))}>
+                <TabsList animated>
+                  {sizeOptions.map((o) => (
+                    <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
 
-export const Muted: Story = {
-  args: { variant: 'muted' },
-  render: (args) => (
-    <Item variant={args.variant}>
-      <ItemMedia variant="icon"><IconShield /></ItemMedia>
-      <ItemContent>
-        <ItemTitle>Security alert</ItemTitle>
-        <ItemDescription>Unusual login detected from a new device.</ItemDescription>
-      </ItemContent>
-      <ItemActions>
-        <Button variant="primary" size="s">Review</Button>
-        <Button variant="secondary" size="s">Dismiss</Button>
-      </ItemActions>
-    </Item>
-  ),
+            <div>
+              <div style={sectionLabelRow}><IconLayers />Media</div>
+              <Tabs value={media} onValueChange={(v) => animateTransition(() => setMedia(v as Media))}>
+                <TabsList animated>
+                  {mediaOptions.map((o) => (
+                    <TabsTrigger key={o.value} value={o.value}>{o.label}</TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Acciones</span>
+                  <Toggle animated checked={showActions} onChange={(v) => animateTransition(() => setShowActions(v))} />
+                </div>
+                <div style={switchRow}>
+                  <span style={switchLabel}>{`Descripci\u00f3n`}</span>
+                  <Toggle animated checked={showDescription} onChange={(v) => animateTransition(() => setShowDescription(v))} />
+                </div>
+                <div style={switchRow}>
+                  <span style={switchLabel}>Como grupo</span>
+                  <Toggle animated checked={asGroup} onChange={(v) => animateTransition(() => setAsGroup(v))} />
+                </div>
+              </div>
+            </div>
+          </>
+        }
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+          <div style={{ ...transitionStyle, width: '100%', maxWidth: 480 }}>
+            {content}
+          </div>
+        </div>
+      </StoryPreviewLayout>
+    );
+  },
 };
