@@ -28,8 +28,6 @@ export const Default: Story = {
     const dirOptions: { value: Direction; label: string }[] = [
       { value: 'bottom', label: 'Abajo' },
       { value: 'top', label: 'Arriba' },
-      { value: 'right', label: 'Der' },
-      { value: 'left', label: 'Izq' },
     ];
 
     const [direction, setDirection] = useState<Direction>('bottom');

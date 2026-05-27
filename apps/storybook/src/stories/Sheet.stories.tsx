@@ -28,8 +28,6 @@ export const Default: Story = {
     const sideOptions: { value: Side; label: string }[] = [
       { value: 'left', label: 'Izq' },
       { value: 'right', label: 'Der' },
-      { value: 'top', label: 'Arriba' },
-      { value: 'bottom', label: 'Abajo' },
     ];
 
     const [side, setSide] = useState<Side>('right');
