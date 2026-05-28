@@ -1,3 +1,7 @@
+export type ButtonVariant = 'inline' | 'pill' | 'icon';
+export type ButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+export type CTA = 'agendar_demo' | 'hablar_asesor' | 'demo_5min' | 'consultar_precio' | 'default';
+
 export interface WhatsAppButtonConfig {
   companyToken: string;
   phone: string;
@@ -9,6 +13,10 @@ export interface WhatsAppButtonConfig {
   lang?: 'es' | 'en' | 'pt';
   chatIdStrategy?: 'url' | 'referenceCode';
   mode?: 'float' | 'attach';
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  cta?: CTA;
+  animated?: boolean;
   webhookUrl?: string;
   openInNewTab?: boolean;
   /** DOM scope for querySelectorAll('[data-atom-button]'). Only used in 'attach' mode or combined with 'float'. Not configurable via data-attributes. */
@@ -34,6 +42,10 @@ export const DEFAULTS: Required<Omit<WhatsAppButtonConfig, 'companyToken' | 'pho
   lang: 'es',
   chatIdStrategy: 'url',
   mode: 'float',
+  variant: 'inline',
+  size: 'm',
+  cta: 'default',
+  animated: true,
   webhookUrl: 'https://api.atomchat.io/wci',
   openInNewTab: true,
 };
@@ -51,6 +63,10 @@ export function parseDataAttributes(el: HTMLElement): Partial<WhatsAppButtonConf
     lang: d.lang as WhatsAppButtonConfig['lang'],
     chatIdStrategy: d.strategy as WhatsAppButtonConfig['chatIdStrategy'],
     mode: d.mode as WhatsAppButtonConfig['mode'],
+    variant: d.variant as WhatsAppButtonConfig['variant'],
+    size: d.size as WhatsAppButtonConfig['size'],
+    cta: d.cta as WhatsAppButtonConfig['cta'],
+    animated: d.animated === undefined ? undefined : d.animated !== 'false',
   };
 }
 

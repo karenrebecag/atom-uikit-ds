@@ -4,13 +4,11 @@ import { detectLocale, getDefaultMessage, getDefaultLabel } from './i18n';
 import { collectTrackingData } from './tracking';
 import { buildMessage } from './strategy';
 import { sendWebhook } from './webhook';
-import { renderFloatingButton } from './render';
+import { renderButton } from './render';
 
 export type CleanupFn = () => void;
 
 const DEBOUNCE_MS = 2000;
-// Instance-level debounce — one flag for ALL buttons (floating + attach).
-// A click on button A blocks button B too. One WhatsApp redirect per 2s window.
 let _pending = false;
 
 function handleClick(config: WhatsAppButtonConfig, btn?: HTMLElement): void {
@@ -22,24 +20,19 @@ function handleClick(config: WhatsAppButtonConfig, btn?: HTMLElement): void {
     if (btn) btn.setAttribute('aria-busy', 'false');
   }, DEBOUNCE_MS);
 
-  // 1. Prepare everything synchronously (same tick as user click)
   const data = collectTrackingData();
   const enhanced = buildMessage(data.chatId, config.message!, config.chatIdStrategy!);
   const phone = config.phone.replace(/\D/g, '');
   const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(enhanced)}`;
 
-  // 2. Open WhatsApp FIRST — must be in the synchronous click handler
-  //    to avoid popup blockers on iOS Safari and other mobile browsers
   if (config.openInNewTab) {
     window.open(waUrl, '_blank', 'noopener');
   } else {
     window.location.href = waUrl;
   }
 
-  // 3. Fire-and-forget AFTER navigation (non-blocking)
   sendWebhook(data, config.webhookUrl!, config.companyToken, config.onError);
 
-  // 4. GA4 dataLayer push
   const w = window as any;
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({
@@ -48,6 +41,7 @@ function handleClick(config: WhatsAppButtonConfig, btn?: HTMLElement): void {
     path: window.location.pathname,
     chat_id: data.chatId,
     device: data.device,
+    cta: config.cta,
   });
 }
 
@@ -68,8 +62,14 @@ function attachToExisting(config: WhatsAppButtonConfig): CleanupFn {
 
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      const btnCta = btn.dataset.cta as WhatsAppButtonConfig['cta'];
+      const locale = config.lang!;
       handleClick(
-        { ...config, message: btn.dataset.message || config.message },
+        {
+          ...config,
+          message: btn.dataset.message || (btnCta ? getDefaultMessage(locale, btnCta) : config.message),
+          cta: btnCta || config.cta,
+        },
         btn
       );
     }, { signal: ac.signal });
@@ -79,22 +79,31 @@ function attachToExisting(config: WhatsAppButtonConfig): CleanupFn {
 }
 
 export function initWhatsAppButton(
-  userConfig: Partial<WhatsAppButtonConfig> & Pick<WhatsAppButtonConfig, 'companyToken' | 'phone'>
+  userConfig: Partial<WhatsAppButtonConfig> & Pick<WhatsAppButtonConfig, 'companyToken' | 'phone'>,
+  scriptEl?: HTMLElement,
 ): CleanupFn {
   const locale = userConfig.lang || detectLocale();
+  const cta = userConfig.cta || 'default';
   const config = mergeConfig({
     ...userConfig,
     lang: locale,
-    message: userConfig.message || getDefaultMessage(locale),
-    label: userConfig.label || getDefaultLabel(locale),
+    cta,
+    message: userConfig.message || getDefaultMessage(locale, cta),
+    label: userConfig.label || getDefaultLabel(locale, cta),
   });
 
   if (config.mode === 'attach') {
     return attachToExisting(config);
   }
 
-  // Float mode: render floating button + attach to existing [data-atom-button]
-  const btn = renderFloatingButton(config, (el) => handleClick(config, el));
+  const variant = config.variant || 'inline';
+
+  // inline renders where the script tag is; pill/icon float fixed
+  const btn = renderButton(
+    config,
+    (el) => handleClick(config, el),
+    variant === 'inline' ? scriptEl : undefined,
+  );
   const detachExisting = attachToExisting(config);
 
   return () => {

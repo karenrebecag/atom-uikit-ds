@@ -1,4 +1,4 @@
-export type { WhatsAppButtonConfig, TrackingData } from './config';
+export type { WhatsAppButtonConfig, TrackingData, ButtonVariant, ButtonSize, CTA } from './config';
 export type { CleanupFn } from './button';
 
 export { initWhatsAppButton } from './button';

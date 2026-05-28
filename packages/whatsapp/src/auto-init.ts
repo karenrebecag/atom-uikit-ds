@@ -24,7 +24,7 @@ function autoInit(): void {
     companyToken: attrs.companyToken,
     phone: attrs.phone,
     ...attrs,
-  });
+  }, _script);
 
   w.AtomWhatsApp = {
     init: initWhatsAppButton,
