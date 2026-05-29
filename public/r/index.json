@@ -1,0 +1,256 @@
+[
+  {
+    "name": "tokens",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Design Tokens",
+    "description": "3-layer tokens (primitives, semantic, component) as CSS custom properties"
+  },
+  {
+    "name": "tokens-dark",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Dark Theme Tokens",
+    "description": "Dark mode overrides via [data-theme=dark] selector",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "foundation",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Typography + Fluid Scaling",
+    "description": "Font stack, fluid type scale, container system, focus styles",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "button",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Button",
+    "description": "6 variantes, 5 tamanos, text-swap animation",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "icon-button",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "IconButton",
+    "description": "Square icon-only button with rotation animation",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "link-button",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "LinkButton",
+    "description": "Inline text link with shimmer animation",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "button-group",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "ButtonGroup",
+    "description": "Horizontal/vertical group of buttons",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "button"
+    ]
+  },
+  {
+    "name": "input",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Input",
+    "description": "Text input with error, disabled, and focus states",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "textarea",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Textarea",
+    "description": "Multi-line text input",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "select",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Select",
+    "description": "Dropdown select with search, groups, keyboard nav",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "checkbox",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Checkbox",
+    "description": "Checkbox with indeterminate state",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "radio",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Radio",
+    "description": "Radio button group",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "toggle",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Toggle",
+    "description": "Boolean switch",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "field",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Field",
+    "description": "Form field wrapper with label, helper, error",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "tabs",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Tabs",
+    "description": "Tabbed navigation with animated indicator",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "divider",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Divider",
+    "description": "Horizontal or vertical separator",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "avatar",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Avatar",
+    "description": "User avatar with image, initials, or icon",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "badge",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Badge",
+    "description": "Status indicator badge",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "spinner",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Spinner",
+    "description": "Loading spinner",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "skeleton",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Skeleton",
+    "description": "Content placeholder with shimmer animation",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "dialog",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Dialog",
+    "description": "Modal dialog with overlay",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "table",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Table",
+    "description": "Data table with sorting and selection",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  }
+]

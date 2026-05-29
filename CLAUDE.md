@@ -1,6 +1,6 @@
 # ATOM UIKit Design System
 
-Monorepo for the ATOM UIKit component library. Publishes tokens, CSS, animations, and framework components to npm under `@atom-uikit/` scope. Documented at `uikit.atomchat.io`.
+Monorepo for the ATOM UIKit component library. Distributes via private registry (shadcn model) — source copied to consumer projects, not installed as npm dependencies. Documented at `uikit.atomchat.io`.
 
 ## Scope
 
@@ -8,13 +8,51 @@ Web development components for landing pages, web apps, and marketing sites. Thi
 
 ## Packages
 
-| Package | npm | Purpose |
-|---------|-----|---------|
-| `packages/tokens` | `@atom-uikit/tokens` | W3C DTCG design tokens (3 layers) |
-| `packages/css` | `@atom-uikit/css` | Pure CSS components + utilities |
-| `packages/animations` | `@atom-uikit/animations` | GSAP animation modules |
-| `packages/components-react` | `@atom-uikit/components-react` | React 19 components |
-| `packages/components-astro` | `@atom-uikit/components-astro` | Astro components |
+| Package | Purpose |
+|---------|---------|
+| `packages/tokens` | W3C DTCG design tokens (3 layers) |
+| `packages/css` | Pure CSS components + utilities |
+| `packages/animations` | GSAP animation modules |
+| `packages/components-react` | React 19 components |
+| `packages/components-astro` | Astro components |
+| `packages/whatsapp` | WhatsApp WCI widget (IIFE, autocontenido) |
+
+## Distribution (Registry)
+
+Components are distributed via a private shadcn-style registry, not npm.
+
+```
+registry.json (internal schema) → build:registry → public/r/*.json (shadcn-compatible)
+```
+
+| File | Purpose |
+|------|---------|
+| `registry.json` | Root config with all items (internal `AtomRegistryItem` schema) |
+| `scripts/registry-schema.ts` | TypeScript types: `AtomRegistryItem`, `ItemKind`, `InstallGroup` |
+| `scripts/build-registry.mjs` | Compiles internal → public, writes `public/r/*.json` |
+| `public/r/index.json` | Catalog (no content, for `list` command) |
+| `public/r/{name}.json` | Per-item JSON with `files[].content` (source embebido) |
+
+### Commands
+
+```bash
+pnpm build:registry    # Generate public/r/*.json from registry.json
+npx atom-uikit init    # Consumer: create atom-uikit.json + copy foundations
+npx atom-uikit login   # Consumer: authenticate with Clerk
+npx atom-uikit add button  # Consumer: copy component + deps to project
+```
+
+### Serving layer
+
+Registry JSONs are served from `UIKitDocumentation_ATOM` at `/api/r/[name].json` with triple auth: Clerk session (browser), JWT (CLI/MCP), API key (CI).
+
+## Next Steps
+
+- [ ] Implement CLI package (`atom-uikit`): login, init, add, list, diff
+- [ ] Migrate MCP `atom_uikit_source()` to fetch from `/api/r/[name].json`
+- [ ] Update docu: replace npm install snippets with CLI commands
+- [ ] Clerk production keys (currently test keys)
+- [ ] Deprecate `@atom-uikit/*` npm packages
 
 ---
 

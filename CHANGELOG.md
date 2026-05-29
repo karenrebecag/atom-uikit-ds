@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-05-28
+
+### Added
+
+- **Registry**: shadcn-style distribution — `registry.json` (22 items), `build:registry` script, `public/r/*.json` output
+- **Registry schema**: internal `AtomRegistryItem` type (`kind`, `framework`, `installGroup`) compiles to shadcn-compatible `registry-item.json`
+- **Serving layer**: Next.js API route at `/api/r/[name].json` with triple auth (Clerk session, JWT, API key) — deployed in UIKitDocumentation_ATOM
+- **WhatsApp widget**: variants (`inline`, `pill`, `icon`), em-based sizing (`xs`-`xl`), predefined CTAs with i18n (es/en/pt), button-009 directional icon-slide animation (CSS-only)
+- **WhatsApp story**: interactive Storybook story with controls for variant, size, CTA, language, animated
+- **WhatsApp Worker**: Cloudflare Worker serves widget.js from R2 at `api.atomchat.io/wci/widget.js`
+- **CMS docs**: WhatsApp Button article (id:135) and CLI article (id:136) in Payload CMS
+
+### Changed
+
+- WhatsApp widget distribution: removed from npm, served via Cloudflare Worker + R2
+- CLAUDE.md: updated to reflect registry distribution model (replaces npm references)
+
+### Fixed
+
+- CMS CSRF: added production URL to CORS/CSRF allowlists (was blocking admin UI updates)
+
 ## [0.1.0] - 2026-05-14
 
 ### Added

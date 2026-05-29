@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:component",
+  "title": "Spinner",
+  "description": "Loading spinner",
+  "registryDependencies": [
+    "tokens"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Spinner.tsx",
+      "type": "registry:component",
+      "content": "function cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport type SpinnerProps = {\n  size?: 'xs' | 's' | 'm' | 'l';\n  className?: string;\n};\n\nexport function Spinner({ size = 'm', className }: SpinnerProps) {\n  return (\n    <span role=\"status\" aria-label=\"Loading\" className={cn('spinner', `spinner--${size}`, className)}>\n      <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.5\" strokeLinecap=\"round\">\n        <path d=\"M12 2a10 10 0 0 1 10 10\" />\n      </svg>\n    </span>\n  );\n}\n"
+    },
+    {
+      "path": "styles/components/spinner.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Spinner\n\n   Loading indicator. Rotating circle with partial stroke.\n   Sizes: xs, s, m, l. Inherits color from parent.\n\n   Parts: .spinner\n   ------------------------------------------------------------------------- */\n\n.spinner {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: currentColor;\n  animation: spinner-rotate var(--duration-700) linear infinite;\n}\n\n/* ---- Sizes ---- */\n\n.spinner--xs { width: 0.875rem; height: 0.875rem; }\n.spinner--s  { width: 1.125rem; height: 1.125rem; }\n.spinner--m  { width: 1.5rem; height: 1.5rem; }\n.spinner--l  { width: 2rem; height: 2rem; }\n\n.spinner svg {\n  width: 100%;\n  height: 100%;\n}\n\n@keyframes spinner-rotate {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .spinner {\n    animation-duration: 0ms;\n  }\n}\n"
+    }
+  ]
+}

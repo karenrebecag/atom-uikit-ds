@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:component",
+  "title": "Badge",
+  "description": "Status indicator badge",
+  "registryDependencies": [
+    "tokens"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Badge.tsx",
+      "type": "registry:component",
+      "content": "export type BadgeVariant = 'neutral' | 'inbox';\nexport type BadgeState = 'enabled' | 'focused' | 'subtle';\n\nexport type BadgeProps = {\n  variant?: BadgeVariant;\n  state?: BadgeState;\n  children: string;\n  className?: string;\n};\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport function Badge({\n  variant = 'neutral',\n  state = 'enabled',\n  children,\n  className,\n}: BadgeProps) {\n  return (\n    <span\n      className={cn(\n        'badge',\n        `badge--${variant}`,\n        `badge--${state}`,\n        className,\n      )}\n    >\n      <span className=\"badge__label\">{children}</span>\n    </span>\n  );\n}\n"
+    },
+    {
+      "path": "styles/components/badge.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Badge\n\n   Numeric counter pill. Compact indicator for counts and notifications.\n   Non-interactive. Fixed height (16px), pill shape, truncates with ellipsis.\n\n   Variants: neutral, inbox\n   States:   enabled, focused, subtle\n   ------------------------------------------------------------------------- */\n\n.badge {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 1rem;\n  max-width: 2.25rem;\n  height: 1rem;\n  padding: 0 var(--spacing-1);\n  border-radius: var(--radius-full);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.badge__label {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  text-align: center;\n  min-width: 1px;\n}\n\n/* ---- Neutral ---- */\n\n.badge--neutral.badge--enabled {\n  background-color: var(--muted);\n  color: var(--foreground);\n}\n\n.badge--neutral.badge--focused {\n  background-color: var(--primary);\n  color: var(--primary-foreground);\n}\n\n.badge--neutral.badge--subtle {\n  background-color: var(--color-zinc-800);\n  color: var(--color-zinc-50);\n}\n\n/* ---- Inbox ---- */\n\n.badge--inbox.badge--enabled {\n  background-color: var(--color-red-100);\n  color: var(--color-zinc-950);\n}\n\n.badge--inbox.badge--focused {\n  background-color: var(--color-red-900);\n  color: var(--color-zinc-50);\n}\n\n.badge--inbox.badge--subtle {\n  background-color: var(--destructive);\n  color: var(--destructive-foreground);\n}\n"
+    }
+  ]
+}

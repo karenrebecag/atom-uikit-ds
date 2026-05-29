@@ -1,0 +1,462 @@
+{
+  "name": "@atom-uikit",
+  "homepage": "https://uikit.atomchat.io",
+  "items": [
+    {
+      "name": "tokens",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Design Tokens",
+      "description": "3-layer tokens (primitives, semantic, component) as CSS custom properties",
+      "files": [
+        {
+          "sourcePath": "packages/tokens/build/css/tokens.css",
+          "outputPath": "styles/foundations/tokens.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "tokens-dark",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Dark Theme Tokens",
+      "description": "Dark mode overrides via [data-theme=dark] selector",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/tokens/build/css/dark.css",
+          "outputPath": "styles/foundations/dark.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "foundation",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Typography + Fluid Scaling",
+      "description": "Font stack, fluid type scale, container system, focus styles",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/foundation/typography.css",
+          "outputPath": "styles/foundations/typography.css",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/foundation/scaling.css",
+          "outputPath": "styles/foundations/scaling.css",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/foundation/focus.css",
+          "outputPath": "styles/foundations/focus.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Button",
+      "description": "6 variantes, 5 tamanos, text-swap animation",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Button.tsx",
+          "outputPath": "components/atoms/Button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/button.css",
+          "outputPath": "styles/components/button.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "icon-button",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "IconButton",
+      "description": "Square icon-only button with rotation animation",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/IconButton.tsx",
+          "outputPath": "components/atoms/IconButton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/icon-button.css",
+          "outputPath": "styles/components/icon-button.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "link-button",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "LinkButton",
+      "description": "Inline text link with shimmer animation",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/LinkButton.tsx",
+          "outputPath": "components/atoms/LinkButton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/link-button.css",
+          "outputPath": "styles/components/link-button.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "ButtonGroup",
+      "description": "Horizontal/vertical group of buttons",
+      "registryDependencies": ["tokens", "foundation", "button"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/ButtonGroup.tsx",
+          "outputPath": "components/atoms/ButtonGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/button-group.css",
+          "outputPath": "styles/components/button-group.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Input",
+      "description": "Text input with error, disabled, and focus states",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Input.tsx",
+          "outputPath": "components/atoms/Input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/input.css",
+          "outputPath": "styles/components/input.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Textarea",
+      "description": "Multi-line text input",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Textarea.tsx",
+          "outputPath": "components/atoms/Textarea.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/textarea.css",
+          "outputPath": "styles/components/textarea.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Select",
+      "description": "Dropdown select with search, groups, keyboard nav",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Select.tsx",
+          "outputPath": "components/atoms/Select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/select.css",
+          "outputPath": "styles/components/select.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Checkbox",
+      "description": "Checkbox with indeterminate state",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Checkbox.tsx",
+          "outputPath": "components/atoms/Checkbox.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/checkbox.css",
+          "outputPath": "styles/components/checkbox.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Radio",
+      "description": "Radio button group",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Radio.tsx",
+          "outputPath": "components/atoms/Radio.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/radio.css",
+          "outputPath": "styles/components/radio.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Toggle",
+      "description": "Boolean switch",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Toggle.tsx",
+          "outputPath": "components/atoms/Toggle.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/toggle.css",
+          "outputPath": "styles/components/toggle.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Field",
+      "description": "Form field wrapper with label, helper, error",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Field.tsx",
+          "outputPath": "components/atoms/Field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/forms/field.css",
+          "outputPath": "styles/components/field.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Tabs",
+      "description": "Tabbed navigation with animated indicator",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Tabs.tsx",
+          "outputPath": "components/atoms/Tabs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/navigation/tabs.css",
+          "outputPath": "styles/components/tabs.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "divider",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Divider",
+      "description": "Horizontal or vertical separator",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Divider.tsx",
+          "outputPath": "components/atoms/Divider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/layout/divider.css",
+          "outputPath": "styles/components/divider.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Avatar",
+      "description": "User avatar with image, initials, or icon",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Avatar.tsx",
+          "outputPath": "components/atoms/Avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/indicators/avatar.css",
+          "outputPath": "styles/components/avatar.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Badge",
+      "description": "Status indicator badge",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Badge.tsx",
+          "outputPath": "components/atoms/Badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/indicators/badge.css",
+          "outputPath": "styles/components/badge.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Spinner",
+      "description": "Loading spinner",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Spinner.tsx",
+          "outputPath": "components/atoms/Spinner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/indicators/spinner.css",
+          "outputPath": "styles/components/spinner.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Skeleton",
+      "description": "Content placeholder with shimmer animation",
+      "registryDependencies": ["tokens"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Skeleton.tsx",
+          "outputPath": "components/atoms/Skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/indicators/skeleton.css",
+          "outputPath": "styles/components/skeleton.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Dialog",
+      "description": "Modal dialog with overlay",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/molecules/Dialog.tsx",
+          "outputPath": "components/atoms/Dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/layout/dialog.css",
+          "outputPath": "styles/components/dialog.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Table",
+      "description": "Data table with sorting and selection",
+      "registryDependencies": ["tokens", "foundation"],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/atoms/Table.tsx",
+          "outputPath": "components/atoms/Table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/layout/table.css",
+          "outputPath": "styles/components/table.css",
+          "type": "registry:file"
+        }
+      ]
+    }
+  ]
+}

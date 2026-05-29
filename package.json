@@ -7,6 +7,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "validate": "node scripts/validate-tokens.js",
+    "build:registry": "node scripts/build-registry.mjs",
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
