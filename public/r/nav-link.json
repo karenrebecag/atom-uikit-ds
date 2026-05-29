@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "nav-link",
+  "type": "registry:component",
+  "title": "NavLink",
+  "description": "NavLink",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/NavLink.tsx",
+      "type": "registry:component",
+      "content": "import { forwardRef, type AnchorHTMLAttributes } from 'react';\n\ntype NavLinkSize = 'sm' | 'default' | 'lg';\n\nexport type NavLinkProps = {\n  size?: NavLinkSize;\n  active?: boolean;\n  disabled?: boolean;\n  children: string;\n  href: string;\n  className?: string;\n} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'>;\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(\n  (\n    {\n      size = 'default',\n      active = false,\n      disabled = false,\n      children,\n      href,\n      className,\n      ...props\n    },\n    ref,\n  ) => {\n    const classes = cn(\n      'nav-link',\n      `nav-link--${size}`,\n      active && 'nav-link--active',\n      disabled && 'nav-link--disabled',\n      className,\n    );\n\n    return (\n      <a\n        ref={ref}\n        className={classes}\n        href={href}\n        aria-current={active ? 'page' : undefined}\n        aria-disabled={disabled || undefined}\n        {...props}\n      >\n        <span className=\"nav-link__text\">{children}</span>\n      </a>\n    );\n  },\n);\n\nNavLink.displayName = 'NavLink';\n"
+    },
+    {
+      "path": "styles/components/nav-link.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Nav Link\n\n   Internal navigation link. Child of Navbar.\n   Neutral text, full contrast on hover/active. Underline on active.\n\n   Sizes:    sm, default, lg\n   States:   default, hover, active, disabled\n   ------------------------------------------------------------------------- */\n\n.nav-link {\n  display: inline-flex;\n  align-items: center;\n  padding: 0;\n  background: none;\n  border: none;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  color: var(--nav-link-fg-default);\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  text-decoration: none;\n  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n  position: relative;\n}\n\n.nav-link:hover:not(.nav-link--disabled):not(.nav-link--active) {\n  color: var(--nav-link-fg-hover);\n}\n\n.nav-link:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n  border-radius: 0.125em;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .nav-link {\n    transition-duration: 0ms;\n  }\n}\n\n/* ---- Sizes ---- */\n\n.nav-link--sm      { font-size: var(--font-size-xs); }\n.nav-link--default { font-size: var(--font-size-sm); }\n.nav-link--lg      { font-size: var(--font-size-base); }\n\n/* ---- Active ---- */\n\n.nav-link--active {\n  color: var(--nav-link-fg-active);\n  cursor: default;\n}\n\n.nav-link--active .nav-link__text::before {\n  transform-origin: left;\n  transform: scaleX(1) rotate(0.001deg);\n}\n\n/* ---- Disabled ---- */\n\n.nav-link--disabled {\n  color: var(--nav-link-fg-disabled);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Parts ---- */\n\n.nav-link__text {\n  display: inline;\n  position: relative;\n}\n\n/* ---- Underline ---- */\n\n.nav-link__text::before {\n  content: \"\";\n  position: absolute;\n  bottom: -0.125em;\n  left: 0;\n  width: 100%;\n  height: 0.0625em;\n  background-color: var(--nav-link-indicator-active);\n  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);\n  transform-origin: right;\n  transform: scaleX(0) rotate(0.001deg);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nav-link:hover:not(.nav-link--disabled):not(.nav-link--active) .nav-link__text::before,\n  [data-hover]:hover .nav-link:not(.nav-link--disabled):not(.nav-link--active) .nav-link__text::before {\n    transform-origin: left;\n    transform: scaleX(1) rotate(0.001deg);\n  }\n}\n"
+    }
+  ]
+}

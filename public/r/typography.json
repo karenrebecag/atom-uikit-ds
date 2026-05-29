@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography",
+  "type": "registry:component",
+  "title": "Typography",
+  "description": "Typography",
+  "registryDependencies": [
+    "tokens"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Typography.tsx",
+      "type": "registry:component",
+      "content": "import { type ReactNode, type HTMLAttributes } from 'react';\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport type TypographyProps = {\n  children: ReactNode;\n  className?: string;\n} & HTMLAttributes<HTMLElement>;\n\nexport function TypographyH1({ children, className, ...props }: TypographyProps) {\n  return <h1 className={cn('h1', className)} {...props}>{children}</h1>;\n}\n\nexport function TypographyH2({ children, className, ...props }: TypographyProps) {\n  return <h2 className={cn('h2', className)} {...props}>{children}</h2>;\n}\n\nexport function TypographyH3({ children, className, ...props }: TypographyProps) {\n  return <h3 className={cn('h3', className)} {...props}>{children}</h3>;\n}\n\nexport function TypographyH4({ children, className, ...props }: TypographyProps) {\n  return <h4 className={cn('h4', className)} {...props}>{children}</h4>;\n}\n\nexport function TypographyP({ children, className, ...props }: TypographyProps) {\n  return <p className={cn('body', className)} {...props}>{children}</p>;\n}\n\nexport function TypographyLead({ children, className, ...props }: TypographyProps) {\n  return <p className={cn('lead', className)} {...props}>{children}</p>;\n}\n\nexport function TypographyLarge({ children, className, ...props }: TypographyProps) {\n  return <div className={cn('large', className)} {...props}>{children}</div>;\n}\n\nexport function TypographySmall({ children, className, ...props }: TypographyProps) {\n  return <small className={cn('small', className)} {...props}>{children}</small>;\n}\n\nexport function TypographyMuted({ children, className, ...props }: TypographyProps) {\n  return <p className={cn('muted', className)} {...props}>{children}</p>;\n}\n\nexport function TypographyBlockquote({ children, className, ...props }: TypographyProps) {\n  return <blockquote className={cn('blockquote', className)} {...props}>{children}</blockquote>;\n}\n\nexport function TypographyInlineCode({ children, className, ...props }: TypographyProps) {\n  return <code className={cn('code-inline', className)} {...props}>{children}</code>;\n}\n\nexport function TypographyList({ children, className, ...props }: TypographyProps) {\n  return <ul className={cn('list', className)} {...props}>{children}</ul>;\n}\n"
+    }
+  ]
+}

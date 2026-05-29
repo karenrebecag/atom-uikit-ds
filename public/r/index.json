@@ -252,5 +252,351 @@
       "tokens",
       "foundation"
     ]
+  },
+  {
+    "name": "accordion",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Accordion",
+    "description": "Accordion",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "alert-dialog",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "AlertDialog",
+    "description": "AlertDialog",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "avatar-group",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "AvatarGroup",
+    "description": "AvatarGroup",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "breadcrumb",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Breadcrumb",
+    "description": "Breadcrumb",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "burger-icon",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "BurgerIcon",
+    "description": "BurgerIcon",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "calendar",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Calendar",
+    "description": "Calendar",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "chip",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Chip",
+    "description": "Chip",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "combobox",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Combobox",
+    "description": "Combobox",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "context-menu",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "ContextMenu",
+    "description": "ContextMenu",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "drawer",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Drawer",
+    "description": "Drawer",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "dropdown-menu",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "DropdownMenu",
+    "description": "DropdownMenu",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "empty",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Empty",
+    "description": "Empty",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "image",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Image",
+    "description": "Image",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "item",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Item",
+    "description": "Item",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "marquee",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Marquee",
+    "description": "Marquee",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "nav-link",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "NavLink",
+    "description": "NavLink",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "pagination",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Pagination",
+    "description": "Pagination",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "progress-nav",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "ProgressNav",
+    "description": "ProgressNav",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "resizable",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Resizable",
+    "description": "Resizable",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "sheet",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Sheet",
+    "description": "Sheet",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "slider",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Slider",
+    "description": "Slider",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "stats-card",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "StatsCard",
+    "description": "StatsCard",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "stepper",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Stepper",
+    "description": "Stepper",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "tag",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Tag",
+    "description": "Tag",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "toast",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Toast",
+    "description": "Toast",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "toggle-group",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "ToggleGroup",
+    "description": "ToggleGroup",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "typography",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Typography",
+    "description": "Typography",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "user-profile",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "UserProfile",
+    "description": "UserProfile",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "video-player",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "VideoPlayer",
+    "description": "VideoPlayer",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
   }
 ]

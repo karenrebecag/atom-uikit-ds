@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "burger-icon",
+  "type": "registry:component",
+  "title": "BurgerIcon",
+  "description": "BurgerIcon",
+  "registryDependencies": [
+    "tokens"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/BurgerIcon.tsx",
+      "type": "registry:component",
+      "content": "export function BurgerIcon() {\n  return (\n    <span className=\"burger-icon\">\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n    </span>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "image",
+  "type": "registry:component",
+  "title": "Image",
+  "description": "Image",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Image.tsx",
+      "type": "registry:component",
+      "content": "import { forwardRef, useState, type ImgHTMLAttributes } from 'react';\n\nexport type ImageSize = 'xs' | 's' | 'm' | 'l' | 'hero' | 'full';\nexport type ImageRatio = '1x1' | '4x3' | '16x9' | '21x9';\nexport type ImageFit = 'cover' | 'contain';\nexport type ImageRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';\n\nexport type ImageProps = {\n  size?: ImageSize;\n  ratio?: ImageRatio;\n  fit?: ImageFit;\n  radius?: ImageRadius;\n  className?: string;\n} & Omit<ImgHTMLAttributes<HTMLImageElement>, 'className'>;\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport const Image = forwardRef<HTMLImageElement, ImageProps>(\n  ({ size, ratio, fit, radius, className, loading = 'lazy', onLoad, ...props }, ref) => {\n    const [loaded, setLoaded] = useState(false);\n\n    const classes = cn(\n      'image',\n      size && `image--${size}`,\n      ratio && `image--ratio-${ratio}`,\n      fit && `image--${fit}`,\n      radius && `image--rounded-${radius}`,\n      !loaded && 'image--loading',\n      loaded && 'image--loaded',\n      className,\n    );\n\n    return (\n      <img\n        ref={ref}\n        className={classes}\n        loading={loading}\n        onLoad={(e) => {\n          setLoaded(true);\n          onLoad?.(e);\n        }}\n        {...props}\n      />\n    );\n  },\n);\n\nImage.displayName = 'Image';\n"
+    },
+    {
+      "path": "styles/components/image.css",
+      "type": "registry:file",
+      "content": "/* ============================================================\n   Image — responsive image with sizing variants and aspect ratios\n   ============================================================ */\n\n.image {\n  display: block;\n  width: 100%;\n  max-width: 100%;\n  height: auto;\n  object-fit: cover;\n  border-radius: var(--radius-md);\n  background-color: var(--muted);\n  transition: opacity var(--duration-300) var(--easing-out);\n}\n\n/* ---- Sizing variants ---- */\n.image--xs {\n  width: 3rem; /* 48px */\n  height: 3rem;\n  border-radius: var(--radius-sm);\n}\n\n.image--s {\n  width: 6rem; /* 96px */\n  height: 6rem;\n  border-radius: var(--radius-md);\n}\n\n.image--m {\n  width: 12.5rem; /* 200px */\n  height: auto;\n}\n\n.image--l {\n  width: 25rem; /* 400px */\n  height: auto;\n}\n\n.image--hero {\n  width: 100%;\n  max-height: 30rem; /* 480px */\n  object-fit: cover;\n  border-radius: var(--radius-xl);\n}\n\n.image--full {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  border-radius: 0;\n}\n\n/* ---- Aspect ratios ---- */\n.image--ratio-1x1 { aspect-ratio: 1 / 1; }\n.image--ratio-4x3 { aspect-ratio: 4 / 3; }\n.image--ratio-16x9 { aspect-ratio: 16 / 9; }\n.image--ratio-21x9 { aspect-ratio: 21 / 9; }\n\n/* ---- Object fit variants ---- */\n.image--contain { object-fit: contain; }\n.image--cover { object-fit: cover; }\n\n/* ---- Border radius variants ---- */\n.image--rounded-none { border-radius: 0; }\n.image--rounded-sm { border-radius: var(--radius-sm); }\n.image--rounded-md { border-radius: var(--radius-md); }\n.image--rounded-lg { border-radius: var(--radius-lg); }\n.image--rounded-xl { border-radius: var(--radius-xl); }\n.image--rounded-full { border-radius: var(--radius-full); }\n\n/* ---- Loading state (skeleton placeholder) ---- */\n.image--loading {\n  opacity: 0;\n}\n\n.image--loaded {\n  opacity: 1;\n}\n\n/* ---- Reduced motion ---- */\n@media (prefers-reduced-motion: reduce) {\n  .image {\n    transition-duration: 0ms;\n  }\n}\n"
+    }
+  ]
+}
