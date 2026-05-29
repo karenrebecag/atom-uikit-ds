@@ -633,5 +633,77 @@
       "tokens",
       "foundation"
     ]
+  },
+  {
+    "name": "layout/hero-centered",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Hero Centered",
+    "description": "Layout template: hero-centered",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "layout/hero-split",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Hero Split",
+    "description": "Layout template: hero-split",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "layout/feature-grid",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Feature Grid",
+    "description": "Layout template: feature-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "layout/cta-banner",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Cta Banner",
+    "description": "Layout template: cta-banner",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "button-hover",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Button Hover",
+    "description": "Button text-swap hover animation"
+  },
+  {
+    "name": "text-reveal",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Text Reveal",
+    "description": "Scroll-triggered text reveal"
+  },
+  {
+    "name": "marquee-draggable",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Marquee Draggable",
+    "description": "Infinite marquee with drag-to-accelerate"
   }
 ]

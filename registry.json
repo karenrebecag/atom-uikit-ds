@@ -1304,6 +1304,136 @@
           "type": "registry:file"
         }
       ]
+    },
+    {
+      "name": "layout/hero-centered",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Hero Centered",
+      "description": "Layout template: hero-centered",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/hero-centered.ts",
+          "outputPath": "layouts/hero-centered.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/hero-split",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Hero Split",
+      "description": "Layout template: hero-split",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/hero-split.ts",
+          "outputPath": "layouts/hero-split.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/feature-grid",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Feature Grid",
+      "description": "Layout template: feature-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/feature-grid.ts",
+          "outputPath": "layouts/feature-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/cta-banner",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Cta Banner",
+      "description": "Layout template: cta-banner",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/cta-banner.ts",
+          "outputPath": "layouts/cta-banner.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "button-hover",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Button Hover",
+      "description": "Button text-swap hover animation",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/button-hover.ts",
+          "outputPath": "animations/button-hover.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "text-reveal",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Text Reveal",
+      "description": "Scroll-triggered text reveal",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/text-reveal.ts",
+          "outputPath": "animations/text-reveal.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "marquee-draggable",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Marquee Draggable",
+      "description": "Infinite marquee with drag-to-accelerate",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/marquee-draggable.ts",
+          "outputPath": "animations/marquee-draggable.ts",
+          "type": "registry:file"
+        }
+      ]
     }
   ]
 }

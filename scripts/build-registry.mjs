@@ -60,7 +60,9 @@ async function main() {
         files: filesWithContent,
       };
 
-      const outPath = path.join(OUT_DIR, `${item.name}.json`);
+      // Flatten slashes in name for output filename (layout/hero-centered → layout--hero-centered)
+      const safeName = item.name.replace(/\//g, '--');
+      const outPath = path.join(OUT_DIR, `${safeName}.json`);
       await fs.writeFile(outPath, JSON.stringify(output, null, 2), 'utf8');
       built++;
     } catch (err) {
