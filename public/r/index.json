@@ -598,5 +598,40 @@
       "tokens",
       "foundation"
     ]
+  },
+  {
+    "name": "sidebar",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Sidebar",
+    "description": "Navigation sidebar with 11 sub-components",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
+  },
+  {
+    "name": "tooltip",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "Tooltip",
+    "description": "Tooltip popup on hover",
+    "registryDependencies": [
+      "tokens"
+    ]
+  },
+  {
+    "name": "menu-button",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "MenuButton",
+    "description": "Button that triggers a dropdown menu",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ]
   }
 ]

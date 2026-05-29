@@ -1198,6 +1198,112 @@
           "type": "registry:file"
         }
       ]
+    },
+    {
+      "name": "sidebar",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Sidebar",
+      "description": "Navigation sidebar with 11 sub-components",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/Sidebar.tsx",
+          "outputPath": "components/molecules/sidebar/Sidebar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarContext.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarContext.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarHeader.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarHeader.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarContent.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarContent.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarFooter.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarFooter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarGroup.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarItem.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarItem.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarCollapsible.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarCollapsible.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarTrigger.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarTrigger.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/components-react/src/molecules/sidebar/SidebarDivider.tsx",
+          "outputPath": "components/molecules/sidebar/SidebarDivider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/sidebar/sidebar.css",
+          "outputPath": "styles/components/sidebar.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Tooltip",
+      "description": "Tooltip popup on hover",
+      "registryDependencies": [
+        "tokens"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/indicators/tooltip.css",
+          "outputPath": "styles/components/tooltip.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "menu-button",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "MenuButton",
+      "description": "Button that triggers a dropdown menu",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/buttons/menu-button.css",
+          "outputPath": "styles/components/menu-button.css",
+          "type": "registry:file"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menu-button",
+  "type": "registry:component",
+  "title": "MenuButton",
+  "description": "Button that triggers a dropdown menu",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/menu-button.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Burger Icon\n\n   Three-line icon for use inside IconButton.\n   CSS transition burger ↔ X. GSAP opt-in via [data-menu-button-animate].\n\n   States: [data-menu-button=\"burger\"] (default), [data-menu-button=\"close\"]\n   Parts:  .burger-icon, .burger-icon__line\n   ------------------------------------------------------------------------- */\n\n/* ---- Icon container ---- */\n\n.burger-icon {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.1875em;\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Lines ---- */\n\n.burger-icon__line {\n  width: 1.25em;\n  height: 0.125em;\n  background-color: currentColor;\n  border-radius: var(--radius-full);\n  transform-origin: center;\n  transition:\n    transform var(--duration-300) var(--easing-in-out),\n    opacity var(--duration-200) var(--easing-in-out);\n}\n\n/* ---- CSS-only X state ---- */\n\n[data-menu-button=\"close\"] .burger-icon__line:nth-child(1) {\n  transform: translateY(0.3125em) rotate(135deg);\n}\n\n[data-menu-button=\"close\"] .burger-icon__line:nth-child(2) {\n  opacity: 0;\n  transform: scaleX(0);\n}\n\n[data-menu-button=\"close\"] .burger-icon__line:nth-child(3) {\n  transform: translateY(-0.3125em) rotate(-135deg);\n}\n\n/* ---- GSAP mode: disable CSS transitions ---- */\n\n[data-menu-button-animate] .burger-icon__line {\n  transition: none;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .burger-icon__line {\n    transition-duration: 0ms;\n  }\n}\n"
+    }
+  ]
+}
