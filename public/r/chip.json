@@ -85,7 +85,8 @@
           "required": true
         }
       ],
-      "childrenType": "string"
+      "childrenType": "string",
+      "variantProp": "type"
     },
     "implementation": {
       "baseClass": "chip",

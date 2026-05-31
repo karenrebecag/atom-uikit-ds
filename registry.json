@@ -158,6 +158,11 @@
           "outputPath": "styles/components/button-group.css",
           "type": "registry:file"
         }
+      ],
+      "composable": [
+        "ButtonGroup",
+        "ButtonGroupSeparator",
+        "ButtonGroupText"
       ]
     },
     {
@@ -167,7 +172,10 @@
       "installGroup": "components",
       "title": "Input",
       "description": "Text input with error, disabled, and focus states",
-      "cssClassPrefixes": ["input", "input-group"],
+      "cssClassPrefixes": [
+        "input",
+        "input-group"
+      ],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -231,6 +239,14 @@
           "outputPath": "styles/components/select.css",
           "type": "registry:file"
         }
+      ],
+      "composable": [
+        "Select",
+        "SelectTrigger",
+        "SelectContent",
+        "SelectItem",
+        "SelectGroup",
+        "SelectSeparator"
       ]
     },
     {
@@ -499,7 +515,10 @@
       "installGroup": "components",
       "title": "Table",
       "description": "Data table with sorting and selection",
-      "cssClassPrefixes": ["table", "table-wrapper"],
+      "cssClassPrefixes": [
+        "table",
+        "table-wrapper"
+      ],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -677,7 +696,8 @@
           "outputPath": "styles/components/chip.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "variantProp": "type"
     },
     {
       "name": "combobox",
@@ -830,7 +850,11 @@
       "installGroup": "components",
       "title": "Item",
       "description": "Item",
-      "cssClassPrefixes": ["item", "item-group", "item-separator"],
+      "cssClassPrefixes": [
+        "item",
+        "item-group",
+        "item-separator"
+      ],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1014,6 +1038,10 @@
           "outputPath": "styles/components/slider.css",
           "type": "registry:file"
         }
+      ],
+      "composable": [
+        "Slider",
+        "RangeSlider"
       ]
     },
     {
@@ -1095,7 +1123,10 @@
       "installGroup": "components",
       "title": "Toast",
       "description": "Toast",
-      "cssClassPrefixes": ["toast", "toaster"],
+      "cssClassPrefixes": [
+        "toast",
+        "toaster"
+      ],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1135,6 +1166,10 @@
           "outputPath": "styles/components/toggle-group.css",
           "type": "registry:file"
         }
+      ],
+      "composable": [
+        "ToggleGroup",
+        "ToggleGroupItem"
       ]
     },
     {
@@ -1153,6 +1188,20 @@
           "outputPath": "components/atoms/Typography.tsx",
           "type": "registry:component"
         }
+      ],
+      "composable": [
+        "TypographyH1",
+        "TypographyH2",
+        "TypographyH3",
+        "TypographyH4",
+        "TypographyP",
+        "TypographyLead",
+        "TypographyLarge",
+        "TypographySmall",
+        "TypographyMuted",
+        "TypographyBlockquote",
+        "TypographyInlineCode",
+        "TypographyList"
       ]
     },
     {
@@ -1210,7 +1259,10 @@
       "installGroup": "components",
       "title": "Sidebar",
       "description": "Navigation sidebar with 11 sub-components",
-      "cssClassPrefixes": ["sidebar", "sidebar-collapsible"],
+      "cssClassPrefixes": [
+        "sidebar",
+        "sidebar-collapsible"
+      ],
       "registryDependencies": [
         "tokens",
         "foundation"

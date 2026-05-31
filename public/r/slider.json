@@ -66,6 +66,10 @@
           "type": "boolean",
           "required": false
         }
+      ],
+      "composable": [
+        "Slider",
+        "RangeSlider"
       ]
     },
     "implementation": {

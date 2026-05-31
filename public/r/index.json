@@ -181,7 +181,12 @@
       "sizes": [],
       "defaultVariant": "",
       "defaultSize": "",
-      "hasAnimation": false
+      "hasAnimation": false,
+      "composable": [
+        "ButtonGroup",
+        "ButtonGroupSeparator",
+        "ButtonGroupText"
+      ]
     }
   },
   {
@@ -247,7 +252,15 @@
       "sizes": [],
       "defaultVariant": "",
       "defaultSize": "",
-      "hasAnimation": false
+      "hasAnimation": false,
+      "composable": [
+        "Select",
+        "SelectTrigger",
+        "SelectContent",
+        "SelectItem",
+        "SelectGroup",
+        "SelectSeparator"
+      ]
     }
   },
   {
@@ -698,7 +711,8 @@
       "defaultVariant": "",
       "defaultSize": "s",
       "hasAnimation": false,
-      "childrenType": "string"
+      "childrenType": "string",
+      "variantProp": "type"
     }
   },
   {
@@ -1036,7 +1050,11 @@
       "sizes": [],
       "defaultVariant": "",
       "defaultSize": "",
-      "hasAnimation": false
+      "hasAnimation": false,
+      "composable": [
+        "Slider",
+        "RangeSlider"
+      ]
     }
   },
   {
@@ -1169,7 +1187,11 @@
       ],
       "defaultVariant": "default",
       "defaultSize": "m",
-      "hasAnimation": false
+      "hasAnimation": false,
+      "composable": [
+        "ToggleGroup",
+        "ToggleGroupItem"
+      ]
     }
   },
   {
@@ -1190,7 +1212,21 @@
       "sizes": [],
       "defaultVariant": "",
       "defaultSize": "",
-      "hasAnimation": false
+      "hasAnimation": false,
+      "composable": [
+        "TypographyH1",
+        "TypographyH2",
+        "TypographyH3",
+        "TypographyH4",
+        "TypographyP",
+        "TypographyLead",
+        "TypographyLarge",
+        "TypographySmall",
+        "TypographyMuted",
+        "TypographyBlockquote",
+        "TypographyInlineCode",
+        "TypographyList"
+      ]
     }
   },
   {

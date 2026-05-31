@@ -528,6 +528,8 @@ export function extractMetadataForItem(
     props,
     ...(ariaRequired.length > 0 && { ariaRequired }),
     ...(childrenType && { childrenType }),
+    ...(item.composable && { composable: item.composable }),
+    ...(item.variantProp && { variantProp: item.variantProp }),
   };
 
   const implementation: AtomImplementation = {

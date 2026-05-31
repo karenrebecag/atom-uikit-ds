@@ -30,6 +30,20 @@
           "type": "ReactNode",
           "required": true
         }
+      ],
+      "composable": [
+        "TypographyH1",
+        "TypographyH2",
+        "TypographyH3",
+        "TypographyH4",
+        "TypographyP",
+        "TypographyLead",
+        "TypographyLarge",
+        "TypographySmall",
+        "TypographyMuted",
+        "TypographyBlockquote",
+        "TypographyInlineCode",
+        "TypographyList"
       ]
     },
     "implementation": {

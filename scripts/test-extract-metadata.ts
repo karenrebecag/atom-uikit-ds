@@ -384,6 +384,84 @@ test('button: childrenType is undefined (uses ReactNode)', () => {
   assert.strictEqual(result.discovery.childrenType, undefined);
 });
 
+// --- Wave 4 Phase 2+3 fixtures ---
+
+const BUTTON_GROUP_ITEM: AtomRegistryItem = {
+  name: 'button-group',
+  kind: 'component',
+  framework: 'react',
+  installGroup: 'components',
+  title: 'ButtonGroup',
+  description: 'Group of buttons with separator',
+  composable: ['ButtonGroup', 'ButtonGroupSeparator', 'ButtonGroupText'],
+  files: [
+    { sourcePath: 'packages/components-react/src/atoms/ButtonGroup.tsx', outputPath: 'components/atoms/ButtonGroup.tsx', type: 'registry:component' },
+    { sourcePath: 'packages/css/src/components/buttons/button-group.css', outputPath: 'styles/components/button-group.css', type: 'registry:file' },
+  ],
+};
+
+const SELECT_ITEM: AtomRegistryItem = {
+  name: 'select',
+  kind: 'component',
+  framework: 'react',
+  installGroup: 'components',
+  title: 'Select',
+  description: 'Select dropdown with trigger, content, items',
+  composable: ['Select', 'SelectTrigger', 'SelectContent', 'SelectItem', 'SelectGroup', 'SelectSeparator'],
+  files: [
+    { sourcePath: 'packages/components-react/src/atoms/Select.tsx', outputPath: 'components/atoms/Select.tsx', type: 'registry:component' },
+    { sourcePath: 'packages/css/src/components/forms/select.css', outputPath: 'styles/components/select.css', type: 'registry:file' },
+  ],
+};
+
+const CHIP_ITEM: AtomRegistryItem = {
+  name: 'chip',
+  kind: 'component',
+  framework: 'react',
+  installGroup: 'components',
+  title: 'Chip',
+  description: 'Chip with type prop (not variant)',
+  variantProp: 'type',
+  files: [
+    { sourcePath: 'packages/components-react/src/atoms/Chip.tsx', outputPath: 'components/atoms/Chip.tsx', type: 'registry:component' },
+    { sourcePath: 'packages/css/src/components/indicators/chip.css', outputPath: 'styles/components/chip.css', type: 'registry:file' },
+  ],
+};
+
+// --- Wave 4 Phase 2 tests: composable ---
+
+console.log('\nWave 4 — composable:');
+
+test('button-group: composable has 3 sub-components', () => {
+  const result = extractMetadataForItem(BUTTON_GROUP_ITEM, DS_ROOT)!;
+  assert.deepStrictEqual(result.discovery.composable, ['ButtonGroup', 'ButtonGroupSeparator', 'ButtonGroupText']);
+});
+
+test('select: composable has 6 sub-components', () => {
+  const result = extractMetadataForItem(SELECT_ITEM, DS_ROOT)!;
+  assert.strictEqual(result.discovery.composable!.length, 6);
+  assert.ok(result.discovery.composable!.includes('SelectTrigger'));
+});
+
+test('button: composable is undefined (not composable)', () => {
+  const result = extractMetadataForItem(BUTTON_ITEM, DS_ROOT)!;
+  assert.strictEqual(result.discovery.composable, undefined);
+});
+
+// --- Wave 4 Phase 3 tests: variantProp ---
+
+console.log('\nWave 4 — variantProp:');
+
+test('chip: variantProp is type', () => {
+  const result = extractMetadataForItem(CHIP_ITEM, DS_ROOT)!;
+  assert.strictEqual(result.discovery.variantProp, 'type');
+});
+
+test('button: variantProp is undefined (uses standard variant)', () => {
+  const result = extractMetadataForItem(BUTTON_ITEM, DS_ROOT)!;
+  assert.strictEqual(result.discovery.variantProp, undefined);
+});
+
 // Summary
 console.log(`\n${'='.repeat(40)}`);
 console.log(`  Results: ${passed} passed, ${failed} failed`);

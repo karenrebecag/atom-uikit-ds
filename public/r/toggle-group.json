@@ -83,6 +83,10 @@
           "type": "ReactNode",
           "required": true
         }
+      ],
+      "composable": [
+        "ToggleGroup",
+        "ToggleGroupItem"
       ]
     },
     "implementation": {

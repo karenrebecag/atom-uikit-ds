@@ -46,6 +46,19 @@ export interface AtomRegistryItem {
    */
   cssClassPrefixes?: string[];
 
+  /**
+   * Sub-components this component exports (e.g. ["Select", "SelectTrigger", "SelectContent"]).
+   * Manual list — keep in sync with actual exports in the React source.
+   * Review when adding/removing sub-components.
+   */
+  composable?: string[];
+
+  /**
+   * Override for the variant prop name when it differs from 'variant'.
+   * e.g. Chip uses 'type' instead of 'variant'.
+   */
+  variantProp?: string;
+
   /** Source files to include */
   files: AtomRegistryFile[];
 }
@@ -153,6 +166,12 @@ export interface AtomDiscovery {
 
   /** Type of children content — 'string' if only text, 'ReactNode' if JSX */
   childrenType?: 'string' | 'ReactNode';
+
+  /** Sub-components this composable component exports */
+  composable?: string[];
+
+  /** Override for the variant prop name (e.g. 'type' for Chip) */
+  variantProp?: string;
 }
 
 // ---------------------------------------------------------------------------
