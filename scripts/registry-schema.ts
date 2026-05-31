@@ -35,6 +35,17 @@ export interface AtomRegistryItem {
   /** npm packages to install (e.g. "clsx", "gsap") */
   dependencies?: string[];
 
+  /**
+   * BEM class prefixes that belong to this component.
+   * Used by extract-component-metadata.ts to scope CSS class extraction.
+   * If omitted, defaults to [name] (the slug).
+   *
+   * Example: input component defines ["input", "input-group"] because
+   * both .input and .input-group* classes live in the same CSS file
+   * and represent the same logical component.
+   */
+  cssClassPrefixes?: string[];
+
   /** Source files to include */
   files: AtomRegistryFile[];
 }
@@ -67,4 +78,151 @@ export interface RegistryItemOutput {
     type: 'registry:component' | 'registry:file';
     content: string;
   }>;
+  /** MCP-consumable metadata. Optional for backward compat with old items. */
+  atom?: AtomField;
 }
+
+// ---------------------------------------------------------------------------
+// ATOM FIELD — MCP metadata injected into each {name}.json
+// ---------------------------------------------------------------------------
+
+/**
+ * Valid component categories for discovery and filtering.
+ */
+export type AtomCategory =
+  | 'actions'
+  | 'forms'
+  | 'layout'
+  | 'navigation'
+  | 'indicators'
+  | 'surfaces'
+  | 'data-display'
+  | 'foundation'
+  | 'hook';
+
+/**
+ * Minimal prop descriptor exposed to discovery tools.
+ * Enough for the MCP to answer "what props does this accept?" without
+ * needing to parse source code.
+ */
+export interface AtomPropDescriptor {
+  name: string;
+  type: string;
+  required: boolean;
+  default?: string;
+}
+
+// ---------------------------------------------------------------------------
+// atom.discovery — exposed by context/component tools (lightweight, safe)
+// ---------------------------------------------------------------------------
+
+/**
+ * Fields that discovery tools (atom_uikit_context, atom_uikit_component,
+ * atom_uikit_search) can surface to the LLM. No implementation details.
+ */
+export interface AtomDiscovery {
+  /** Human-readable display name (e.g. "Button") */
+  name: string;
+
+  /** Editorial description for discovery/search */
+  description: string;
+
+  /** Semantic category for filtering */
+  category: AtomCategory;
+
+  /** Available visual variants (e.g. ["primary","secondary","tertiary"]) */
+  variants: string[];
+
+  /** Available size options (e.g. ["xs","s","m","l","xl"]) */
+  sizes: string[];
+
+  /** Default variant when none is specified */
+  defaultVariant: string;
+
+  /** Default size when none is specified */
+  defaultSize: string;
+
+  /** Whether this component ships with GSAP animations */
+  hasAnimation: boolean;
+
+  /** Public prop interface (name, type, required, default) */
+  props: AtomPropDescriptor[];
+
+  /** Required ARIA attributes for accessibility (e.g. ['aria-label']) */
+  ariaRequired?: string[];
+
+  /** Type of children content — 'string' if only text, 'ReactNode' if JSX */
+  childrenType?: 'string' | 'ReactNode';
+}
+
+// ---------------------------------------------------------------------------
+// atom.implementation — only accessible via source/validate/audit/patch-plan
+// ---------------------------------------------------------------------------
+
+/**
+ * Fields that implementation tools (atom_uikit_source, atom_uikit_validate,
+ * atom_uikit_audit, atom_uikit_patch_plan) use for code generation and
+ * validation. Not exposed in general discovery to keep context small.
+ */
+export interface AtomImplementation {
+  /** Root CSS class name (e.g. "btn", "input", "tag") */
+  baseClass: string;
+
+  /** All CSS class names this component uses */
+  cssClasses: string[];
+
+  /** Non-registry npm peer dependencies (e.g. ["gsap", "clsx"]) */
+  peerDeps: string[];
+
+  /** Whether this component requires CSS (always true for components) */
+  hasCss: boolean;
+
+  /** Whether this component has a React implementation */
+  hasReact: boolean;
+}
+
+// ---------------------------------------------------------------------------
+// Combined atom field
+// ---------------------------------------------------------------------------
+
+/**
+ * The complete `atom` field shape injected into each {name}.json.
+ * Split by access level so the MCP registry-adapter can expose only
+ * what each tool tier needs.
+ */
+export interface AtomField {
+  discovery: AtomDiscovery;
+  implementation: AtomImplementation;
+}
+
+// ---------------------------------------------------------------------------
+// Enriched index entry (for MCP bootstrap)
+// ---------------------------------------------------------------------------
+
+/**
+ * Shape of each entry in the enriched index.json.
+ * Contains only discovery-level metadata + slug for fast MCP startup (~50KB).
+ * The MCP loads this once at init and uses it for context/search/component
+ * tools without fetching individual {name}.json files.
+ */
+export interface EnrichedIndexEntry {
+  /** Registry slug (filename without .json) */
+  slug: string;
+
+  /** All discovery fields inlined */
+  discovery: AtomDiscovery;
+}
+
+// ---------------------------------------------------------------------------
+// Full registry item with atom field (what {name}.json looks like after enrichment)
+// ---------------------------------------------------------------------------
+
+/**
+ * The complete enriched registry item — extends the shadcn-compatible
+ * output with the optional atom field.
+ * This is the type that `extract-component-metadata.ts` produces and
+ * that `registry-client.ts` consumes.
+ */
+export type AtomEnrichedRegistryItem = RegistryItemOutput & {
+  atom: AtomField;
+};

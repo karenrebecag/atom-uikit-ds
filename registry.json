@@ -167,6 +167,7 @@
       "installGroup": "components",
       "title": "Input",
       "description": "Text input with error, disabled, and focus states",
+      "cssClassPrefixes": ["input", "input-group"],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -498,6 +499,7 @@
       "installGroup": "components",
       "title": "Table",
       "description": "Data table with sorting and selection",
+      "cssClassPrefixes": ["table", "table-wrapper"],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -828,6 +830,7 @@
       "installGroup": "components",
       "title": "Item",
       "description": "Item",
+      "cssClassPrefixes": ["item", "item-group", "item-separator"],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1092,6 +1095,7 @@
       "installGroup": "components",
       "title": "Toast",
       "description": "Toast",
+      "cssClassPrefixes": ["toast", "toaster"],
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1206,6 +1210,7 @@
       "installGroup": "components",
       "title": "Sidebar",
       "description": "Navigation sidebar with 11 sub-components",
+      "cssClassPrefixes": ["sidebar", "sidebar-collapsible"],
       "registryDependencies": [
         "tokens",
         "foundation"
