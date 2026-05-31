@@ -19,5 +19,49 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Resizable\n\n   Draggable panel layout. Horizontal or vertical.\n   Keyboard accessible (Arrow keys to resize).\n\n   Parts: .resizable, .resizable__panel, .resizable__handle\n   ------------------------------------------------------------------------- */\n\n/* ---- Group ---- */\n\n.resizable {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.resizable--vertical {\n  flex-direction: column;\n}\n\n/* ---- Panel ---- */\n\n.resizable__panel {\n  overflow: auto;\n  min-width: 0;\n  min-height: 0;\n}\n\n/* ---- Handle ---- */\n\n.resizable__handle {\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  background: none;\n  border: none;\n  padding: 0;\n  cursor: col-resize;\n  -webkit-tap-highlight-color: transparent;\n  transition: background-color var(--duration-150) var(--easing-in-out);\n}\n\n.resizable--vertical .resizable__handle {\n  cursor: row-resize;\n}\n\n/* Horizontal handle: thin vertical bar */\n.resizable:not(.resizable--vertical) > .resizable__handle {\n  width: var(--spacing-2, 8px);\n}\n\n/* Vertical handle: thin horizontal bar */\n.resizable--vertical > .resizable__handle {\n  height: var(--spacing-2, 8px);\n}\n\n.resizable__handle:hover {\n  background-color: var(--accent);\n}\n\n.resizable__handle:focus-visible {\n  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* ---- Visible grip ---- */\n\n.resizable__handle-grip {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: var(--radius-sm);\n  background-color: var(--border);\n}\n\n.resizable:not(.resizable--vertical) .resizable__handle-grip {\n  width: var(--spacing-1, 4px);\n  height: var(--spacing-6, 24px);\n}\n\n.resizable--vertical .resizable__handle-grip {\n  width: var(--spacing-6, 24px);\n  height: var(--spacing-1, 4px);\n}\n\n/* ---- Active drag state ---- */\n\n.resizable__handle--dragging {\n  background-color: var(--accent);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .resizable__handle {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Resizable",
+      "description": "Resizable",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "orientation",
+          "type": "'horizontal' | 'vertical'",
+          "required": false,
+          "default": "horizontal"
+        },
+        {
+          "name": "panels",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "resizable",
+      "cssClasses": [
+        "resizable",
+        "resizable__panel",
+        "resizable__handle",
+        "resizable--vertical",
+        "resizable__handle-grip",
+        "resizable__handle--dragging"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

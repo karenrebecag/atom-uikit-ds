@@ -19,5 +19,55 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Drawer\n\n   Touch-dismissible panel. Extends Sheet with drag gesture.\n   Swipe to dismiss. Visual drag indicator.\n\n   Directions: bottom (default), top, left, right\n   Parts: .drawer, .drawer__handle, .drawer__header, .drawer__title,\n          .drawer__description, .drawer__body, .drawer__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.drawer {\n  position: fixed;\n  z-index: var(--z-index-50);\n  display: flex;\n  flex-direction: column;\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-xl);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  touch-action: none;\n}\n\n/* ---- Directions ---- */\n\n.drawer--bottom {\n  bottom: 0; left: 0; right: 0;\n  max-height: 85vh;\n  border-top-left-radius: var(--radius-xl);\n  border-top-right-radius: var(--radius-xl);\n  animation: drawer-bottom-in var(--duration-300) var(--easing-out);\n}\n.drawer--bottom.drawer--exiting {\n  animation: drawer-bottom-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.drawer--top {\n  top: 0; left: 0; right: 0;\n  max-height: 85vh;\n  border-bottom-left-radius: var(--radius-xl);\n  border-bottom-right-radius: var(--radius-xl);\n  animation: drawer-top-in var(--duration-300) var(--easing-out);\n}\n.drawer--top.drawer--exiting {\n  animation: drawer-top-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.drawer--left {\n  top: 0; left: 0; bottom: 0;\n  max-width: 400px;\n  width: 100%;\n  animation: sheet-left-in var(--duration-300) var(--easing-out);\n}\n.drawer--left.drawer--exiting {\n  animation: sheet-left-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.drawer--right {\n  top: 0; right: 0; bottom: 0;\n  max-width: 400px;\n  width: 100%;\n  animation: sheet-right-in var(--duration-300) var(--easing-out);\n}\n.drawer--right.drawer--exiting {\n  animation: sheet-right-out var(--duration-200) var(--easing-in) forwards;\n}\n\n/* Slide animations for top/bottom */\n@keyframes drawer-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }\n@keyframes drawer-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }\n@keyframes drawer-top-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }\n@keyframes drawer-top-out { from { transform: translateY(0); } to { transform: translateY(-100%); } }\n\n/* ---- Drag handle ---- */\n\n.drawer__handle {\n  display: flex;\n  justify-content: center;\n  padding: var(--spacing-3, 12px) 0 var(--spacing-1, 4px);\n  cursor: grab;\n}\n\n.drawer__handle::after {\n  content: \"\";\n  width: var(--spacing-10, 40px);\n  height: var(--spacing-1, 4px);\n  border-radius: var(--radius-full);\n  background-color: var(--muted-foreground);\n  opacity: var(--opacity-30);\n}\n\n.drawer__handle:active {\n  cursor: grabbing;\n}\n\n/* ---- Drag state ---- */\n\n.drawer--dragging {\n  transition: none !important;\n  animation: none !important;\n}\n\n/* ---- Header ---- */\n\n.drawer__header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2, 8px);\n  padding: var(--spacing-4, 16px) var(--spacing-6, 24px);\n  text-align: center;\n}\n\n.drawer__title {\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  color: var(--foreground);\n  margin: 0;\n}\n\n.drawer__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Body ---- */\n\n.drawer__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0 var(--spacing-6, 24px);\n}\n\n/* ---- Footer ---- */\n\n.drawer__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .drawer,\n  .drawer--exiting {\n    animation-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Drawer",
+      "description": "Drawer",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "drawer",
+      "cssClasses": [
+        "drawer",
+        "drawer__handle",
+        "drawer__header",
+        "drawer__title",
+        "drawer__description",
+        "drawer__body",
+        "drawer__footer",
+        "drawer--bottom",
+        "drawer--exiting",
+        "drawer--top",
+        "drawer--left",
+        "drawer--right",
+        "drawer--dragging"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

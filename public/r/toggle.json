@@ -19,5 +19,59 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Toggle (Switch)\n\n   Single size. Track + thumb that slides on checked.\n   Native <input type=\"checkbox\" role=\"switch\"> hidden.\n\n   Off:      zinc-100 track, white thumb with shadow\n   On:       zinc-950 track, white thumb with shadow\n   States:   unchecked, checked, disabled\n   Figma:    Size=s (36x20), Size=m (44x24) — we use s (web standard)\n   ------------------------------------------------------------------------- */\n\n.toggle {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5em;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  position: relative;\n}\n\n.toggle--disabled {\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* Hidden native input with touch target */\n.toggle__input {\n  position: absolute;\n  width: 2.75rem;\n  height: 2.5rem;\n  margin: 0;\n  padding: 0;\n  opacity: 0;\n  cursor: inherit;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n/* Track */\n.toggle__track {\n  position: relative;\n  width: 2.25rem;\n  height: 1.25rem;\n  flex-shrink: 0;\n  border-radius: var(--radius-full);\n  border: var(--stroke-hairline) solid var(--border);\n  background-color: var(--muted);\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);\n  transition:\n    background-color var(--duration-200) var(--easing-out),\n    border-color var(--duration-200) var(--easing-out),\n    box-shadow var(--duration-150) var(--easing-out);\n}\n\n/* Thumb — absolute positioned for pixel-perfect alignment */\n.toggle__thumb {\n  position: absolute;\n  top: 0.125rem;\n  left: 0.125rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: var(--radius-full);\n  background-color: var(--background);\n  box-shadow: var(--shadow-xs);\n  transform: translateX(0) rotate(0.001deg);\n}\n\n/* Animated toggle: smooth slide with bounce overshoot */\n.toggle--animated .toggle__thumb {\n  transition: transform var(--duration-500) cubic-bezier(0.35, 1.5, 0.6, 1);\n}\n\n/* ---- Hover ---- */\n\n.toggle__input:hover:not(:disabled) ~ .toggle__track {\n  background-color: var(--border);\n}\n\n.toggle__input:checked:hover:not(:disabled) ~ .toggle__track {\n  background-color: var(--foreground);\n}\n\n/* ---- Checked ---- */\n\n.toggle__input:checked ~ .toggle__track {\n  background-color: var(--foreground);\n  border-color: var(--foreground);\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);\n}\n\n.toggle__input:checked ~ .toggle__track .toggle__thumb {\n  transform: translateX(calc(2.25rem - 0.25rem - 1rem));\n}\n\n/* ---- Focus ---- */\n\n.toggle__input:focus-visible ~ .toggle__track {\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 var(--stroke-medium) var(--focus-ring-color);\n}\n\n/* ---- Disabled ---- */\n\n.toggle__input:disabled ~ .toggle__track {\n  background-color: var(--muted);\n}\n\n.toggle__input:disabled:checked ~ .toggle__track {\n  background-color: var(--muted);\n}\n\n.toggle__input:disabled ~ .toggle__track .toggle__thumb {\n  background-color: var(--border);\n  box-shadow: none;\n}\n\n/* ---- Label ---- */\n\n.toggle__label {\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  line-height: 1;\n  color: var(--foreground);\n}\n\n.toggle--disabled .toggle__label {\n  color: var(--muted-foreground);\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Toggle",
+      "description": "Boolean switch",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "animated",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onChange",
+          "type": "(checked: boolean) => void",
+          "required": false
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "toggle",
+      "cssClasses": [
+        "toggle",
+        "toggle--disabled",
+        "toggle__input",
+        "toggle__track",
+        "toggle__thumb",
+        "toggle--animated",
+        "toggle__label"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

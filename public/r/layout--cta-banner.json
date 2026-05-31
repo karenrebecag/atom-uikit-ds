@@ -14,5 +14,25 @@
       "type": "registry:file",
       "content": "/**\n * Layout: cta-banner\n *\n * Compact horizontal CTA strip: heading left, buttons right.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const ctaBanner = {\n  slug: 'cta-banner',\n  name: 'CTA Banner',\n  description:\n    'Compact horizontal banner: heading + body left, CTA buttons right. Collapses to stacked on mobile. Structure only.',\n  components: ['button'],\n  html: `<!-- Layout: cta-banner -->\n<section class=\"l-cta-banner\">\n  <div class=\"l-cta-banner__content\">\n    <h2 class=\"l-cta-banner__heading\">{{heading}}</h2>\n    <p class=\"l-cta-banner__body\">{{body}}</p>\n  </div>\n  <div class=\"l-cta-banner__actions\">\n    <a href=\"{{cta_primary_href}}\" class=\"button button--primary button--l\">\n      <span class=\"button__label\">{{cta_primary}}</span>\n    </a>\n    <a href=\"{{cta_secondary_href}}\" class=\"button button--secondary button--m\">\n      <span class=\"button__label\">{{cta_secondary}}</span>\n    </a>\n  </div>\n</section>`,\n\n  css: `/* Layout: cta-banner — structure only */\n.l-cta-banner {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-8);\n  padding: var(--spacing-10) var(--spacing-8);\n  border-radius: var(--radius-lg);\n  border: 1px solid var(--border);\n}\n@media (max-width: 640px) {\n  .l-cta-banner {\n    flex-direction: column;\n    text-align: center;\n  }\n}\n.l-cta-banner__content {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n  max-width: 480px;\n}\n.l-cta-banner__actions {\n  display: flex;\n  gap: var(--spacing-3);\n  flex-shrink: 0;\n  flex-wrap: wrap;\n}`,\n};\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Cta Banner",
+      "description": "Layout template: cta-banner",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
 }

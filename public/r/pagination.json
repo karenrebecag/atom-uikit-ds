@@ -19,5 +19,50 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Pagination\n\n   Page navigation: prev, page links, ellipsis, next.\n   Semantic <nav> + <ul> structure.\n\n   Parts: .pagination, .pagination__list, .pagination__item,\n          .pagination__link, .pagination__ellipsis\n   ------------------------------------------------------------------------- */\n\n/* ---- Nav ---- */\n\n.pagination {\n  display: flex;\n  justify-content: center;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- List ---- */\n\n.pagination__list {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-1, 4px);\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n/* ---- Link ---- */\n\n.pagination__link {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 36px;\n  height: 36px;\n  padding: 0 var(--spacing-2, 8px);\n  border: var(--stroke-hairline) solid transparent;\n  border-radius: var(--radius-md);\n  background: none;\n  color: var(--foreground);\n  font-family: inherit;\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  text-decoration: none;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition:\n    background-color var(--duration-100) var(--easing-in-out),\n    border-color var(--duration-100) var(--easing-in-out);\n}\n\n.pagination__link:hover {\n  background-color: var(--accent);\n  color: var(--accent-foreground);\n}\n\n.pagination__link:focus-visible {\n  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* Active page */\n.pagination__link--active {\n  border-color: var(--border);\n  background-color: var(--background);\n  font-weight: var(--font-weight-semibold);\n}\n\n/* Disabled (prev/next at bounds) */\n.pagination__link--disabled {\n  color: var(--muted-foreground);\n  opacity: var(--opacity-50);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Nav icon ---- */\n\n.pagination__link-icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 1em;\n  height: 1em;\n}\n\n.pagination__link-icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Ellipsis ---- */\n\n.pagination__ellipsis {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 36px;\n  height: 36px;\n  color: var(--muted-foreground);\n  font-size: var(--font-size-sm);\n  letter-spacing: var(--letter-spacing-wide);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .pagination__link {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Pagination",
+      "description": "Pagination",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "pagination",
+      "cssClasses": [
+        "pagination",
+        "pagination__list",
+        "pagination__item",
+        "pagination__link",
+        "pagination__ellipsis",
+        "pagination__link--active",
+        "pagination__link--disabled",
+        "pagination__link-icon"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

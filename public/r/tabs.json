@@ -19,5 +19,67 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Tabs\n\n   Tabbed content switcher. Horizontal or vertical.\n   Variants: default (pill bg), line (underline indicator).\n\n   Parts: .tabs, .tabs__list, .tabs__trigger, .tabs__content\n   ------------------------------------------------------------------------- */\n\n/* ---- Root ---- */\n\n.tabs {\n  display: flex;\n  flex-direction: column;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n}\n\n.tabs--vertical {\n  flex-direction: row;\n  gap: var(--spacing-4, 16px);\n}\n\n/* ---- List ---- */\n\n.tabs__list {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 2px;\n  padding: 3px;\n  background-color: var(--muted);\n  border-radius: var(--radius-lg);\n}\n\n.tabs__list .tabs__trigger {\n  flex: 1;\n  text-align: center;\n}\n\n/* Line variant: no bg, bottom border */\n.tabs__list--line {\n  background: none;\n  border-radius: 0;\n  padding: 0;\n  gap: 0;\n  border-bottom: var(--stroke-hairline) solid var(--border);\n}\n\n/* Vertical list */\n.tabs--vertical .tabs__list {\n  flex-direction: column;\n  align-items: stretch;\n}\n\n.tabs--vertical .tabs__list:not(.tabs__list--line) {\n  border-radius: var(--radius-lg);\n}\n\n.tabs--vertical .tabs__list--line {\n  border-bottom: none;\n  border-right: var(--stroke-hairline) solid var(--border);\n}\n\n/* ---- Animated indicator ---- */\n\n.tabs__list--animated {\n  position: relative;\n}\n\n.tabs__indicator {\n  position: absolute;\n  border-radius: var(--radius-md);\n  background-color: var(--background);\n  box-shadow: var(--shadow-2xs);\n  pointer-events: none;\n  z-index: 0;\n  transition:\n    left 0.5s cubic-bezier(0.16, 1, 0.3, 1),\n    top 0.5s cubic-bezier(0.16, 1, 0.3, 1),\n    width 0.5s cubic-bezier(0.16, 1, 0.3, 1),\n    height 0.5s cubic-bezier(0.16, 1, 0.3, 1),\n    opacity var(--duration-200) var(--easing-in-out);\n}\n\n.tabs__list--animated .tabs__trigger {\n  position: relative;\n  z-index: 1;\n}\n\n.tabs__list--animated .tabs__trigger--active {\n  background: none;\n  box-shadow: none;\n}\n\n/* ---- Trigger ---- */\n\n.tabs__trigger {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-2, 8px);\n  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);\n  border: none;\n  border-radius: var(--radius-md);\n  background: none;\n  color: color-mix(in srgb, var(--foreground) 55%, var(--muted-foreground));\n  font-family: inherit;\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  white-space: nowrap;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition:\n    color var(--duration-150) var(--easing-in-out),\n    background-color var(--duration-150) var(--easing-in-out),\n    box-shadow var(--duration-150) var(--easing-in-out);\n}\n\n.tabs__trigger:hover {\n  color: var(--foreground);\n}\n\n.tabs__trigger:focus-visible {\n  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* Active (default variant) */\n.tabs__trigger--active {\n  background-color: var(--background);\n  color: var(--foreground);\n  box-shadow: var(--shadow-2xs);\n}\n\n/* Disabled */\n.tabs__trigger--disabled {\n  color: var(--muted-foreground);\n  opacity: var(--opacity-50);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Line variant triggers ---- */\n\n.tabs__list--line .tabs__trigger {\n  border-radius: 0;\n  padding: var(--spacing-2, 8px) var(--spacing-4, 16px);\n  position: relative;\n}\n\n.tabs__list--line .tabs__trigger::after {\n  content: \"\";\n  position: absolute;\n  bottom: -1px;\n  left: 0;\n  right: 0;\n  height: var(--stroke-medium);\n  background-color: transparent;\n  transition: background-color var(--duration-150) var(--easing-in-out);\n}\n\n.tabs__list--line .tabs__trigger--active {\n  background: none;\n  box-shadow: none;\n  color: var(--foreground);\n}\n\n.tabs__list--line .tabs__trigger--active::after {\n  background-color: var(--primary);\n}\n\n/* Line vertical */\n.tabs--vertical .tabs__list--line .tabs__trigger::after {\n  bottom: auto;\n  left: auto;\n  right: -1px;\n  top: 0;\n  width: var(--stroke-medium);\n  height: 100%;\n}\n\n/* ---- Trigger icon ---- */\n\n.tabs__trigger-icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 1em;\n  height: 1em;\n}\n\n.tabs__trigger-icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Content ---- */\n\n.tabs__content {\n  padding-top: var(--spacing-4, 16px);\n}\n\n.tabs--vertical .tabs__content {\n  padding-top: 0;\n  flex: 1;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .tabs__trigger,\n  .tabs__list--line .tabs__trigger::after {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Tabs",
+      "description": "Tabbed navigation with animated indicator",
+      "category": "navigation",
+      "variants": [
+        "default",
+        "line"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: string) => void",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "'horizontal' | 'vertical'",
+          "required": false,
+          "default": "horizontal"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "tabs",
+      "cssClasses": [
+        "tabs",
+        "tabs__list",
+        "tabs__trigger",
+        "tabs__content",
+        "tabs--vertical",
+        "tabs__list--line",
+        "tabs__list--animated",
+        "tabs__indicator",
+        "tabs__trigger--active",
+        "tabs__trigger--disabled",
+        "tabs__trigger-icon"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

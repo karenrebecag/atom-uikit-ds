@@ -13,5 +13,25 @@
       "type": "registry:component",
       "content": "export function BurgerIcon() {\n  return (\n    <span className=\"burger-icon\">\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n    </span>\n  );\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "BurgerIcon",
+      "description": "BurgerIcon",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
 }

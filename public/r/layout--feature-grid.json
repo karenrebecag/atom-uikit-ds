@@ -14,5 +14,25 @@
       "type": "registry:file",
       "content": "/**\n * Layout: feature-grid\n *\n * Section heading + 3-column grid of feature cards.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const featureGrid = {\n  slug: 'feature-grid',\n  name: 'Feature Grid',\n  description:\n    'Section heading + 3-column grid of feature cards with icon, title, description. Collapses to 1 column on mobile. Structure only.',\n  components: ['badge'],\n  html: `<!-- Layout: feature-grid -->\n<section class=\"l-feature-grid\">\n  <div class=\"l-feature-grid__header\">\n    <span class=\"badge badge--filled badge--brand badge--s\">{{eyebrow}}</span>\n    <h2 class=\"l-feature-grid__heading\">{{heading}}</h2>\n    <p class=\"l-feature-grid__body\">{{body}}</p>\n  </div>\n  <div class=\"l-feature-grid__grid\">\n    <div class=\"l-feature-grid__card\">\n      <div class=\"l-feature-grid__icon\"><!-- SVG icon --></div>\n      <h3 class=\"l-feature-grid__card-title\">{{feature_1_title}}</h3>\n      <p class=\"l-feature-grid__card-body\">{{feature_1_body}}</p>\n    </div>\n    <div class=\"l-feature-grid__card\">\n      <div class=\"l-feature-grid__icon\"><!-- SVG icon --></div>\n      <h3 class=\"l-feature-grid__card-title\">{{feature_2_title}}</h3>\n      <p class=\"l-feature-grid__card-body\">{{feature_2_body}}</p>\n    </div>\n    <div class=\"l-feature-grid__card\">\n      <div class=\"l-feature-grid__icon\"><!-- SVG icon --></div>\n      <h3 class=\"l-feature-grid__card-title\">{{feature_3_title}}</h3>\n      <p class=\"l-feature-grid__card-body\">{{feature_3_body}}</p>\n    </div>\n  </div>\n</section>`,\n\n  css: `/* Layout: feature-grid — structure only */\n.l-feature-grid {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-12);\n  padding: var(--spacing-20) var(--spacing-8);\n}\n.l-feature-grid__header {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n  gap: var(--spacing-3);\n}\n.l-feature-grid__heading { max-width: 560px; }\n.l-feature-grid__body { max-width: 480px; }\n.l-feature-grid__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-6);\n}\n@media (max-width: 768px) {\n  .l-feature-grid__grid { grid-template-columns: 1fr; }\n}\n.l-feature-grid__card {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-3);\n  padding: var(--spacing-6);\n  border-radius: var(--radius-lg);\n  border: 1px solid var(--border);\n}\n.l-feature-grid__icon {\n  width: 40px;\n  height: 40px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}`,\n};\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Feature Grid",
+      "description": "Layout template: feature-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
 }

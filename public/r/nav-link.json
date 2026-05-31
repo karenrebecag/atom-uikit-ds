@@ -19,5 +19,65 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Nav Link\n\n   Internal navigation link. Child of Navbar.\n   Neutral text, full contrast on hover/active. Underline on active.\n\n   Sizes:    sm, default, lg\n   States:   default, hover, active, disabled\n   ------------------------------------------------------------------------- */\n\n.nav-link {\n  display: inline-flex;\n  align-items: center;\n  padding: 0;\n  background: none;\n  border: none;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  color: var(--nav-link-fg-default);\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  text-decoration: none;\n  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n  position: relative;\n}\n\n.nav-link:hover:not(.nav-link--disabled):not(.nav-link--active) {\n  color: var(--nav-link-fg-hover);\n}\n\n.nav-link:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n  border-radius: 0.125em;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .nav-link {\n    transition-duration: 0ms;\n  }\n}\n\n/* ---- Sizes ---- */\n\n.nav-link--sm      { font-size: var(--font-size-xs); }\n.nav-link--default { font-size: var(--font-size-sm); }\n.nav-link--lg      { font-size: var(--font-size-base); }\n\n/* ---- Active ---- */\n\n.nav-link--active {\n  color: var(--nav-link-fg-active);\n  cursor: default;\n}\n\n.nav-link--active .nav-link__text::before {\n  transform-origin: left;\n  transform: scaleX(1) rotate(0.001deg);\n}\n\n/* ---- Disabled ---- */\n\n.nav-link--disabled {\n  color: var(--nav-link-fg-disabled);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Parts ---- */\n\n.nav-link__text {\n  display: inline;\n  position: relative;\n}\n\n/* ---- Underline ---- */\n\n.nav-link__text::before {\n  content: \"\";\n  position: absolute;\n  bottom: -0.125em;\n  left: 0;\n  width: 100%;\n  height: 0.0625em;\n  background-color: var(--nav-link-indicator-active);\n  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);\n  transform-origin: right;\n  transform: scaleX(0) rotate(0.001deg);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nav-link:hover:not(.nav-link--disabled):not(.nav-link--active) .nav-link__text::before,\n  [data-hover]:hover .nav-link:not(.nav-link--disabled):not(.nav-link--active) .nav-link__text::before {\n    transform-origin: left;\n    transform: scaleX(1) rotate(0.001deg);\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "NavLink",
+      "description": "NavLink",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [
+        "sm",
+        "default",
+        "lg"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "default",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "size",
+          "type": "'sm' | 'default' | 'lg'",
+          "required": false,
+          "default": "default"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "childrenType": "string"
+    },
+    "implementation": {
+      "baseClass": "nav-link",
+      "cssClasses": [
+        "nav-link",
+        "nav-link--disabled",
+        "nav-link--active",
+        "nav-link--sm",
+        "nav-link--default",
+        "nav-link--lg",
+        "nav-link__text"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

@@ -13,5 +13,25 @@
       "type": "registry:file",
       "content": "/**\n * Do not edit directly, this file was auto-generated.\n */\n\n[data-theme=\"dark\"] {\n  --overlay: rgba(0, 0, 0, 0.7); /** Modal backdrop, dim layers (dark, heavier) */\n  --background: var(--color-zinc-950); /** Default page background (dark) */\n  --foreground: var(--color-zinc-50); /** Default text on background (dark) */\n  --card: var(--color-zinc-900); /** Card surface (dark) */\n  --card-foreground: var(--color-zinc-50); /** Text on card (dark) */\n  --popover: var(--color-zinc-900); /** Popover surface (dark) */\n  --popover-foreground: var(--color-zinc-50); /** Text on popover (dark) */\n  --primary: var(--color-zinc-50); /** Primary actions (dark) */\n  --primary-hover: var(--color-zinc-200); /** Primary hover — slightly darker than white (dark) */\n  --primary-foreground: var(--color-zinc-900); /** Text on primary (dark) */\n  --secondary: var(--color-zinc-800); /** Secondary actions (dark) */\n  --secondary-foreground: var(--color-zinc-50); /** Text on secondary (dark) */\n  --muted: var(--color-zinc-800); /** Subtle backgrounds (dark) */\n  --muted-foreground: var(--color-zinc-400); /** Subdued text (dark) */\n  --accent: var(--color-zinc-800); /** Hover/focus highlight (dark) */\n  --accent-foreground: var(--color-zinc-50); /** Text on accent (dark) */\n  --destructive: var(--color-red-600); /** Error, danger (dark) */\n  --destructive-foreground: var(--color-zinc-50); /** Text on destructive (dark) */\n  --brand: var(--color-brand); /** Brand accent (dark) */\n  --brand-foreground: var(--color-white); /** Text on brand (dark) */\n  --success: var(--color-emerald-600); /** Success state (dark) */\n  --success-foreground: var(--color-emerald-50); /** Text on success (dark) */\n  --warning: var(--color-amber-600); /** Warning state (dark) */\n  --warning-foreground: var(--color-amber-50); /** Text on warning (dark) */\n  --info: var(--color-blue-600); /** Info state (dark) */\n  --info-foreground: var(--color-blue-50); /** Text on info (dark) */\n  --border: var(--color-zinc-800); /** Default borders (dark) */\n  --border-input: var(--color-zinc-700); /** Form input borders (dark) */\n  --border-focus: var(--color-zinc-100); /** Input border when focused (dark) */\n  --input: var(--color-zinc-800); /** Form input borders (dark) */\n  --ring: var(--color-zinc-300); /** Focus rings (dark) */\n  --ring-width: var(--stroke-medium); /** Focus ring thickness (dark) */\n  --ring-offset: var(--stroke-thin); /** Gap between element and focus ring (dark) */\n  --sidebar-bg: var(--color-zinc-900); /** Sidebar background (dark) */\n  --sidebar-border: var(--color-zinc-800); /** Sidebar border (dark) */\n  --sidebar-active: var(--color-orange-950); /** Sidebar active item background (dark) */\n  --sidebar-active-foreground: var(--color-orange-400); /** Sidebar active item text (dark) */\n  --placeholder: var(--color-zinc-400); /** Input placeholder text (dark) */\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Dark Theme Tokens",
+      "description": "Dark mode overrides via [data-theme=dark] selector",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
 }

@@ -19,5 +19,79 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Video Player\n\n   Custom video player with glass UI controls. Cloudflare Stream.\n   State driven by data attributes (framework-agnostic).\n\n   Tokens: --surface-glass, --surface-glass-blur, --surface-dark,\n           --surface-dark-overlay, --player-accent, --player-progress-bg,\n           --player-foreground\n\n   Parts: .video-player, .video-player__iframe, .video-player__placeholder,\n          .video-player__dark, .video-player__play, .video-player__pause,\n          .video-player__btn, .video-player__interface,\n          .video-player__timeline, .video-player__mute,\n          .video-player__fullscreen, .video-player__duration,\n          .video-player__loading\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.video-player {\n  pointer-events: auto;\n  color: var(--player-foreground);\n  isolation: isolate;\n  background-color: var(--surface-dark);\n  border-radius: var(--radius-xl);\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  display: flex;\n  position: relative;\n  overflow: hidden;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n}\n\n/* Cover mode */\n.video-player[data-video-update-size=\"cover\"] {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Aspect ratio spacer ---- */\n\n.video-player__before {\n  padding-top: 62.5%;\n}\n\n/* ---- Iframe ---- */\n\n.video-player__iframe {\n  pointer-events: none;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  border: none;\n}\n\n/* ---- Placeholder ---- */\n\n.video-player__placeholder {\n  object-fit: cover;\n  width: 100%;\n  height: 100%;\n  display: block;\n  position: absolute;\n  transition: opacity var(--duration-300) linear;\n}\n\n.video-player[data-video-activated=\"true\"][data-video-loaded=\"true\"] .video-player__placeholder {\n  opacity: 0;\n}\n\n/* ---- Dark overlay ---- */\n\n.video-player__dark {\n  pointer-events: none;\n  background-color: var(--surface-dark);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  transition: opacity var(--duration-300) linear;\n  opacity: var(--opacity-50);\n}\n\n.video-player[data-video-playing=\"false\"] .video-player__dark {\n  opacity: var(--opacity-30);\n}\n\n.video-player[data-video-activated=\"false\"][data-video-playing=\"false\"] .video-player__dark {\n  opacity: 0;\n}\n\n.video-player[data-video-activated=\"true\"][data-video-loaded=\"true\"] .video-player__dark {\n  opacity: 0;\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .video-player[data-video-hover=\"true\"]:hover .video-player__dark {\n    opacity: var(--opacity-30) !important;\n  }\n}\n\n/* ---- Play / Pause buttons ---- */\n\n.video-player__play,\n.video-player__pause {\n  cursor: pointer;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  position: absolute;\n}\n\n/* Glass button */\n.video-player__btn {\n  -webkit-backdrop-filter: blur(var(--surface-glass-blur));\n  backdrop-filter: blur(var(--surface-glass-blur));\n  background-color: var(--surface-glass);\n  border-radius: var(--radius-full);\n  justify-content: center;\n  align-items: center;\n  width: 6em;\n  height: 6em;\n  display: flex;\n  position: relative;\n  transition: opacity var(--duration-300) linear;\n}\n\n.video-player__btn-play-svg { width: 40%; }\n.video-player__btn-pause-svg { width: 50%; }\n\n/* Pause: hidden by default, show when playing */\n.video-player .video-player__pause { display: none; }\n.video-player[data-video-playing=\"true\"] .video-player__pause { display: flex; }\n.video-player .video-player__pause .video-player__btn { opacity: 0; }\n\n.video-player[data-video-activated=\"true\"][data-video-playing=\"false\"] .video-player__pause .video-player__btn,\n.video-player[data-video-activated=\"true\"][data-video-hover=\"true\"]:hover .video-player__pause .video-player__btn {\n  opacity: 1;\n}\n\n@media (hover: none) and (pointer: coarse) {\n  .video-player[data-video-activated=\"true\"][data-video-playing=\"true\"] .video-player__pause .video-player__btn {\n    opacity: 0 !important;\n  }\n}\n\n/* Play: hidden when playing */\n.video-player[data-video-playing=\"true\"] .video-player__play { opacity: 0; }\n\n/* ---- Loading ---- */\n\n.video-player__loading {\n  pointer-events: none;\n  color: var(--player-accent);\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  display: flex;\n  opacity: 0;\n  transition: opacity var(--duration-300) linear;\n}\n\n.video-player__loading-svg { width: 6em; }\n\n.video-player[data-video-playing=\"true\"] .video-player__loading { opacity: 1; }\n.video-player[data-video-playing=\"true\"][data-video-loaded=\"true\"] .video-player__loading { opacity: 0; }\n\n/* ---- Interface (controls bar) ---- */\n\n.video-player .video-player__interface { opacity: 0; }\n\n.video-player[data-video-activated=\"false\"][data-video-playing=\"false\"] .video-player__interface { opacity: 1; }\n\n.video-player[data-video-activated=\"true\"][data-video-playing=\"false\"] .video-player__interface,\n.video-player[data-video-activated=\"true\"][data-video-hover=\"true\"]:hover .video-player__interface {\n  opacity: 1;\n}\n\n@media (hover: none) and (pointer: coarse) {\n  .video-player[data-video-activated=\"true\"][data-video-playing=\"true\"] .video-player__interface {\n    opacity: 0 !important;\n  }\n}\n\n.video-player__interface {\n  pointer-events: none;\n  flex-flow: column;\n  justify-content: flex-end;\n  align-items: stretch;\n  width: 100%;\n  height: 100%;\n  padding: var(--spacing-4, 16px);\n  transition: opacity var(--duration-300) linear;\n  display: flex;\n  position: absolute;\n}\n\n.video-player__interface * { pointer-events: all; }\n\n.video-player__interface-bottom {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-4, 16px);\n}\n\n/* ---- Timeline ---- */\n\n.video-player__timeline {\n  flex-grow: 1;\n  justify-content: center;\n  align-items: center;\n  height: var(--spacing-4, 16px);\n  display: flex;\n  position: relative;\n}\n\n.video-player__timeline-input {\n  pointer-events: auto;\n  cursor: pointer;\n  -webkit-appearance: none;\n  appearance: none;\n  background-color: transparent;\n  width: 100%;\n  height: 100%;\n  display: block;\n  position: relative;\n}\n\n.video-player__timeline-progress {\n  -webkit-appearance: none;\n  appearance: none;\n  height: var(--stroke-medium);\n  border-radius: var(--radius-full);\n  color: var(--player-accent);\n  background-color: transparent;\n  border: none;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  left: 0;\n  overflow: hidden;\n}\n\n.video-player progress::-webkit-progress-bar {\n  border-radius: var(--radius-full);\n  background-color: var(--player-progress-bg);\n}\n\n.video-player progress::-webkit-progress-value {\n  background: var(--player-accent);\n}\n\n.video-player progress::-moz-progress-bar {\n  border-radius: var(--radius-full);\n  background: var(--player-accent);\n}\n\n/* Range thumb */\n.video-player [type=\"range\"]::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  height: var(--spacing-2, 8px);\n  width: var(--spacing-2, 8px);\n  border-radius: var(--radius-full);\n  background-color: var(--player-accent);\n  cursor: pointer;\n  margin-top: calc((var(--stroke-medium) / 2) - (var(--spacing-2, 8px) / 2));\n}\n\n.video-player [type=\"range\"]::-moz-range-thumb {\n  border: 0;\n  height: var(--spacing-2, 8px);\n  width: var(--spacing-2, 8px);\n  border-radius: var(--radius-full);\n  background: var(--player-accent);\n  cursor: pointer;\n}\n\n.video-player [type=\"range\"]::-webkit-slider-runnable-track,\n.video-player [type=\"range\"]:focus::-webkit-slider-runnable-track {\n  background-color: transparent;\n  border-color: transparent;\n  color: transparent;\n}\n\n.video-player [type=\"range\"]::-moz-range-track {\n  height: var(--stroke-medium);\n  border-radius: var(--radius-full);\n  background: var(--player-progress-bg);\n  border: 0;\n}\n\n.video-player [type=\"range\"]:focus { outline: none; }\n\n/* ---- Mute ---- */\n\n.video-player__mute {\n  cursor: pointer;\n  flex-shrink: 0;\n  justify-content: center;\n  align-items: center;\n  width: var(--spacing-4, 16px);\n  height: var(--spacing-4, 16px);\n  display: flex;\n  position: relative;\n}\n\n.video-player__volume-up-svg,\n.video-player__volume-mute-svg {\n  width: 100%;\n  position: absolute;\n}\n\n.video-player .video-player__mute svg:nth-child(2),\n.video-player[data-video-muted=\"true\"] .video-player__mute svg:nth-child(1) { display: none; }\n\n.video-player .video-player__mute svg:nth-child(1),\n.video-player[data-video-muted=\"true\"] .video-player__mute svg:nth-child(2) { display: block; }\n\n/* ---- Fullscreen ---- */\n\n.video-player__fullscreen {\n  cursor: pointer;\n  justify-content: center;\n  align-items: center;\n  width: var(--spacing-4, 16px);\n  height: var(--spacing-4, 16px);\n  display: flex;\n  position: relative;\n}\n\n.video-player__fullscreen-scale-svg,\n.video-player__fullscreen-shrink-svg {\n  width: 100%;\n  position: absolute;\n}\n\n.video-player .video-player__fullscreen svg:nth-child(2),\n.video-player[data-video-fullscreen=\"true\"] .video-player__fullscreen svg:nth-child(1) { display: none; }\n\n.video-player .video-player__fullscreen svg:nth-child(1),\n.video-player[data-video-fullscreen=\"true\"] .video-player__fullscreen svg:nth-child(2) { display: block; }\n\n/* ---- Duration ---- */\n\n.video-player__duration {\n  flex-shrink: 0;\n}\n\n.video-player__duration-span {\n  text-align: center;\n  white-space: nowrap;\n  user-select: none;\n  font-size: var(--font-size-sm);\n  font-variant-numeric: tabular-nums;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .video-player__placeholder,\n  .video-player__dark,\n  .video-player__btn,\n  .video-player__loading,\n  .video-player__interface {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "VideoPlayer",
+      "description": "VideoPlayer",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true,
+      "props": [
+        {
+          "name": "videoId",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "customer",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "autoplay",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "muted",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "video-player",
+      "cssClasses": [
+        "video-player",
+        "video-player__iframe",
+        "video-player__placeholder",
+        "video-player__dark",
+        "video-player__play",
+        "video-player__pause",
+        "video-player__btn",
+        "video-player__interface",
+        "video-player__timeline",
+        "video-player__mute",
+        "video-player__fullscreen",
+        "video-player__duration",
+        "video-player__loading",
+        "video-player__before",
+        "video-player__btn-play-svg",
+        "video-player__btn-pause-svg",
+        "video-player__loading-svg",
+        "video-player__interface-bottom",
+        "video-player__timeline-input",
+        "video-player__timeline-progress",
+        "video-player__volume-up-svg",
+        "video-player__volume-mute-svg",
+        "video-player__fullscreen-scale-svg",
+        "video-player__fullscreen-shrink-svg",
+        "video-player__duration-span"
+      ],
+      "peerDeps": [
+        "gsap"
+      ],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

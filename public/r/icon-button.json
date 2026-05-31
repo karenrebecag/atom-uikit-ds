@@ -19,5 +19,93 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Icon Button\n\n   Square button with icon only, no label.\n   Shares color variants with Button. Own sizing and animation.\n\n   Variants: primary, secondary, tertiary,\n             destructive, destructive-secondary, destructive-tertiary\n   Sizes:    xs, sm, default (default), lg, xl\n   Animation: icon 360deg rotation on hover (opt-in via data-icon-button-animate)\n   ------------------------------------------------------------------------- */\n\n.icon-button {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  aspect-ratio: 1;\n  padding: 0;\n  border-radius: 0.625em;\n  border: 1px solid transparent;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  line-height: 1;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  text-decoration: none;\n  transition:\n    background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);\n  position: relative;\n}\n\n.icon-button:active:not(.icon-button--disabled):not(.icon-button--loading) {\n  scale: 0.925;\n}\n\n.icon-button:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n}\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  .icon-button[data-icon-button-animate]:hover:not(.icon-button--disabled):not(.icon-button--loading) {\n    scale: 1.095;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .icon-button {\n    transition-duration: 0ms;\n  }\n  .icon-button:active:not(.icon-button--disabled) {\n    scale: 1;\n  }\n}\n\n/* ---- Sizes (square: width = height) ---- */\n\n.icon-button--xs      { width: var(--button-height-xs); height: var(--button-height-xs); font-size: var(--button-font-size-all); }\n.icon-button--s      { width: var(--button-height-s); height: var(--button-height-s); font-size: var(--button-font-size-all); }\n.icon-button--m { width: var(--button-height-m); height: var(--button-height-m); font-size: var(--button-font-size-all); }\n.icon-button--l      { width: var(--button-height-l); height: var(--button-height-l); font-size: var(--button-font-size-all); }\n.icon-button--xl      { width: var(--button-height-xl); height: var(--button-height-xl); font-size: var(--button-font-size-all); }\n\n/* ---- Variants (same tokens as Button) ---- */\n\n.icon-button--primary {\n  background-color: var(--button-bg-primary);\n  color: var(--button-fg-primary);\n}\n.icon-button--primary:hover:not(.icon-button--disabled) {\n  background-color: var(--button-hover-bg-primary);\n}\n.icon-button--primary:active:not(.icon-button--disabled) {\n  background-color: var(--button-pressed-bg-primary);\n}\n\n.icon-button--secondary {\n  background-color: var(--button-bg-secondary);\n  color: var(--button-fg-secondary);\n  border-color: var(--button-border-secondary);\n}\n.icon-button--secondary:hover:not(.icon-button--disabled) {\n  background-color: var(--button-hover-bg-secondary);\n}\n.icon-button--secondary:active:not(.icon-button--disabled) {\n  background-color: var(--button-pressed-bg-secondary);\n}\n\n.icon-button--tertiary {\n  background-color: var(--button-bg-tertiary);\n  color: var(--button-fg-tertiary);\n}\n.icon-button--tertiary:hover:not(.icon-button--disabled) {\n  background-color: var(--button-hover-bg-tertiary);\n}\n.icon-button--tertiary:active:not(.icon-button--disabled) {\n  background-color: var(--button-pressed-bg-tertiary);\n}\n\n.icon-button--destructive-primary {\n  background-color: var(--button-bg-destructive-primary);\n  color: var(--button-fg-destructive-primary);\n}\n.icon-button--destructive-primary:hover:not(.icon-button--disabled) {\n  background-color: var(--button-hover-bg-destructive-primary);\n}\n.icon-button--destructive-primary:active:not(.icon-button--disabled) {\n  background-color: var(--button-pressed-bg-destructive-primary);\n}\n\n.icon-button--destructive-secondary {\n  background-color: var(--button-bg-destructive-secondary);\n  color: var(--button-fg-destructive-secondary);\n  border-color: var(--button-border-destructive-secondary);\n}\n.icon-button--destructive-secondary:hover:not(.icon-button--disabled) {\n  background-color: var(--button-hover-bg-destructive-secondary);\n}\n.icon-button--destructive-secondary:active:not(.icon-button--disabled) {\n  background-color: var(--button-pressed-bg-destructive-secondary);\n}\n\n.icon-button--destructive-tertiary {\n  background-color: var(--button-bg-destructive-tertiary);\n  color: var(--button-fg-destructive-tertiary);\n}\n.icon-button--destructive-tertiary:hover:not(.icon-button--disabled) {\n  background-color: var(--button-hover-bg-destructive-tertiary);\n}\n.icon-button--destructive-tertiary:active:not(.icon-button--disabled) {\n  background-color: var(--button-pressed-bg-destructive-tertiary);\n}\n\n/* ---- States ---- */\n\n.icon-button--disabled {\n  color: var(--button-disabled-fg-all);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.icon-button--disabled.icon-button--primary,\n.icon-button--disabled.icon-button--secondary,\n.icon-button--disabled.icon-button--destructive-primary,\n.icon-button--disabled.icon-button--destructive-secondary {\n  background-color: var(--muted);\n  border-color: transparent;\n}\n\n.icon-button--disabled.icon-button--tertiary,\n.icon-button--disabled.icon-button--destructive-tertiary {\n  background-color: transparent;\n  border-color: transparent;\n}\n\n.icon-button--loading {\n  cursor: wait;\n  pointer-events: none;\n}\n\n/* ---- Icon ---- */\n\n.icon-button__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1.25em;\n  height: 1.25em;\n  will-change: transform;\n  transition: rotate 0.5s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.icon-button__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  .icon-button[data-icon-button-animate]:is(:hover, :focus-visible) .icon-button__icon,\n  [data-hover]:is(:hover, :focus-visible) .icon-button[data-icon-button-animate] .icon-button__icon {\n    rotate: 360deg;\n    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);\n  }\n}\n\n/* ---- Spinner ---- */\n\n.icon-button__spinner {\n  display: none;\n}\n\n.icon-button--loading .icon-button__icon {\n  opacity: 0;\n}\n\n.icon-button--loading .icon-button__spinner {\n  display: flex;\n  position: absolute;\n  inset: 0;\n  align-items: center;\n  justify-content: center;\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "IconButton",
+      "description": "Square icon-only button with rotation animation",
+      "category": "actions",
+      "variants": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "destructive-primary",
+        "destructive-secondary",
+        "destructive-tertiary"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "primary",
+      "defaultSize": "m",
+      "hasAnimation": true,
+      "props": [
+        {
+          "name": "variant",
+          "type": "'primary' | 'secondary' | 'tertiary' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary'",
+          "required": false,
+          "default": "primary"
+        },
+        {
+          "name": "size",
+          "type": "'xs' | 's' | 'm' | 'l' | 'xl'",
+          "required": false,
+          "default": "m"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "animated",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "required": true
+        }
+      ],
+      "ariaRequired": [
+        "aria-label"
+      ]
+    },
+    "implementation": {
+      "baseClass": "icon-button",
+      "cssClasses": [
+        "icon-button",
+        "icon-button--disabled",
+        "icon-button--loading",
+        "icon-button--xs",
+        "icon-button--s",
+        "icon-button--m",
+        "icon-button--l",
+        "icon-button--xl",
+        "icon-button--primary",
+        "icon-button--secondary",
+        "icon-button--tertiary",
+        "icon-button--destructive-primary",
+        "icon-button--destructive-secondary",
+        "icon-button--destructive-tertiary",
+        "icon-button__icon",
+        "icon-button__spinner"
+      ],
+      "peerDeps": [
+        "gsap"
+      ],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

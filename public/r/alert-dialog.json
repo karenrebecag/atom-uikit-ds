@@ -19,5 +19,58 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Alert Dialog\n\n   Non-dismissible confirmation modal. No overlay close, no X button.\n   Requires explicit Cancel or Action to close.\n\n   Sizes: default (512px), sm (400px)\n   Parts: .alert-dialog, .alert-dialog__header, .alert-dialog__media,\n          .alert-dialog__title, .alert-dialog__description,\n          .alert-dialog__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.alert-dialog {\n  position: fixed;\n  z-index: var(--z-index-50);\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - var(--spacing-8, 32px));\n  max-width: 512px;\n  display: flex;\n  flex-direction: column;\n  border: var(--stroke-hairline) solid var(--border);\n  border-radius: var(--radius-xl);\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-xl);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  animation: alert-dialog-in var(--duration-300) var(--easing-out);\n}\n\n.alert-dialog--sm {\n  max-width: 400px;\n}\n\n.alert-dialog--exiting {\n  animation: alert-dialog-out var(--duration-200) var(--easing-in) forwards;\n}\n\n@keyframes alert-dialog-in {\n  from {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n  to {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n}\n\n@keyframes alert-dialog-out {\n  from {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n}\n\n/* ---- Header ---- */\n\n.alert-dialog__header {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n  padding-bottom: 0;\n  text-align: center;\n}\n\n/* ---- Media ---- */\n\n.alert-dialog__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: var(--spacing-12, 48px);\n  height: var(--spacing-12, 48px);\n  border-radius: var(--radius-full);\n  background-color: var(--muted);\n  color: var(--muted-foreground);\n  padding: var(--spacing-3, 12px);\n}\n\n.alert-dialog__media--destructive {\n  background-color: var(--destructive);\n  color: var(--destructive-foreground);\n}\n\n.alert-dialog__media svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Title ---- */\n\n.alert-dialog__title {\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  color: var(--foreground);\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.alert-dialog__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Footer ---- */\n\n.alert-dialog__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .alert-dialog,\n  .alert-dialog--exiting {\n    animation-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "AlertDialog",
+      "description": "AlertDialog",
+      "category": "surfaces",
+      "variants": [
+        "default",
+        "destructive"
+      ],
+      "sizes": [
+        "default",
+        "sm"
+      ],
+      "defaultVariant": "primary",
+      "defaultSize": "default",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": "Continue"
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "alert-dialog",
+      "cssClasses": [
+        "alert-dialog",
+        "alert-dialog__header",
+        "alert-dialog__media",
+        "alert-dialog__title",
+        "alert-dialog__description",
+        "alert-dialog__footer",
+        "alert-dialog--sm",
+        "alert-dialog--exiting",
+        "alert-dialog__media--destructive"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

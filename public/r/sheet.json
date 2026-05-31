@@ -19,5 +19,54 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Sheet\n\n   Side panel extending Dialog. Slides from screen edge.\n   Reuses dialog__overlay for backdrop.\n\n   Sides: top, right, bottom, left\n   Parts: .sheet, .sheet__header, .sheet__title,\n          .sheet__description, .sheet__body, .sheet__footer, .sheet__close\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.sheet {\n  position: fixed;\n  z-index: var(--z-index-50);\n  display: flex;\n  flex-direction: column;\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-xl);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  border: var(--stroke-hairline) solid var(--border);\n}\n\n.sheet--exiting {\n  pointer-events: none;\n}\n\n/* ---- Sides ---- */\n\n.sheet--right {\n  top: 0; right: 0; bottom: 0;\n  width: 100%;\n  max-width: 400px;\n  border-left: var(--stroke-hairline) solid var(--border);\n  border-right: none;\n  animation: sheet-right-in var(--duration-300) var(--easing-out);\n}\n.sheet--right.sheet--exiting {\n  animation: sheet-right-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.sheet--left {\n  top: 0; left: 0; bottom: 0;\n  width: 100%;\n  max-width: 400px;\n  border-right: var(--stroke-hairline) solid var(--border);\n  border-left: none;\n  animation: sheet-left-in var(--duration-300) var(--easing-out);\n}\n.sheet--left.sheet--exiting {\n  animation: sheet-left-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.sheet--top {\n  top: 0; left: 0; right: 0;\n  height: auto;\n  max-height: 80vh;\n  border-bottom: var(--stroke-hairline) solid var(--border);\n  border-top: none;\n  animation: sheet-top-in var(--duration-300) var(--easing-out);\n}\n.sheet--top.sheet--exiting {\n  animation: sheet-top-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.sheet--bottom {\n  bottom: 0; left: 0; right: 0;\n  height: auto;\n  max-height: 80vh;\n  border-top: var(--stroke-hairline) solid var(--border);\n  border-bottom: none;\n  animation: sheet-bottom-in var(--duration-300) var(--easing-out);\n}\n.sheet--bottom.sheet--exiting {\n  animation: sheet-bottom-out var(--duration-200) var(--easing-in) forwards;\n}\n\n/* ---- Slide animations ---- */\n\n@keyframes sheet-right-in  { from { transform: translateX(100%); } to { transform: translateX(0); } }\n@keyframes sheet-right-out { from { transform: translateX(0); } to { transform: translateX(100%); } }\n@keyframes sheet-left-in   { from { transform: translateX(-100%); } to { transform: translateX(0); } }\n@keyframes sheet-left-out  { from { transform: translateX(0); } to { transform: translateX(-100%); } }\n@keyframes sheet-top-in    { from { transform: translateY(-100%); } to { transform: translateY(0); } }\n@keyframes sheet-top-out   { from { transform: translateY(0); } to { transform: translateY(-100%); } }\n@keyframes sheet-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }\n@keyframes sheet-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }\n\n/* ---- Header ---- */\n\n.sheet__header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2, 8px);\n  padding: var(--spacing-6, 24px);\n  padding-bottom: 0;\n}\n\n.sheet__title {\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  color: var(--foreground);\n  margin: 0;\n}\n\n.sheet__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Body ---- */\n\n.sheet__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: var(--spacing-6, 24px);\n}\n\n/* ---- Footer ---- */\n\n.sheet__footer {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n  padding-top: 0;\n}\n\n/* ---- Close ---- */\n\n.sheet__close {\n  position: absolute;\n  top: var(--spacing-4, 16px);\n  right: var(--spacing-4, 16px);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .sheet,\n  .sheet--exiting {\n    animation-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Sheet",
+      "description": "Sheet",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "sheet",
+      "cssClasses": [
+        "sheet",
+        "sheet__header",
+        "sheet__title",
+        "sheet__description",
+        "sheet__body",
+        "sheet__footer",
+        "sheet__close",
+        "sheet--exiting",
+        "sheet--right",
+        "sheet--left",
+        "sheet--top",
+        "sheet--bottom"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

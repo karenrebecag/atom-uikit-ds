@@ -19,5 +19,46 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Table\n\n   Semantic HTML table with consistent styling.\n   Thin wrapper: Table, TableHeader, TableBody, TableFooter,\n                 TableRow, TableHead, TableCell, TableCaption\n\n   Parts: .table, .table__header, .table__body, .table__footer,\n          .table__row, .table__head, .table__cell, .table__caption\n   ------------------------------------------------------------------------- */\n\n/* ---- Wrapper ---- */\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: auto;\n}\n\n/* ---- Table ---- */\n\n.table {\n  width: 100%;\n  border-collapse: collapse;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  text-align: left;\n}\n\n/* ---- Caption ---- */\n\n.table__caption {\n  padding-top: var(--spacing-4, 16px);\n  font-size: var(--font-size-sm);\n  color: var(--muted-foreground);\n  caption-side: bottom;\n}\n\n/* ---- Header ---- */\n\n.table__header {\n  border-bottom: var(--stroke-hairline) solid var(--border);\n}\n\n.table__head {\n  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);\n  font-weight: var(--font-weight-medium);\n  color: var(--muted-foreground);\n  white-space: nowrap;\n  vertical-align: middle;\n  height: var(--spacing-10, 40px);\n}\n\n/* ---- Body ---- */\n\n.table__row {\n  border-bottom: var(--stroke-hairline) solid var(--border);\n  transition: background-color var(--duration-100) var(--easing-in-out);\n}\n\n.table__row:hover {\n  background-color: var(--muted);\n}\n\n.table__row--selected {\n  background-color: var(--accent);\n}\n\n.table__cell {\n  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);\n  color: var(--foreground);\n  vertical-align: middle;\n}\n\n/* ---- Footer ---- */\n\n.table__footer {\n  border-top: var(--stroke-hairline) solid var(--border);\n  background-color: var(--muted);\n}\n\n.table__footer .table__cell {\n  font-weight: var(--font-weight-semibold);\n}\n\n/* ---- Alignment helpers ---- */\n\n.table__head--right,\n.table__cell--right {\n  text-align: right;\n}\n\n.table__head--center,\n.table__cell--center {\n  text-align: center;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .table__row {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Table",
+      "description": "Data table with sorting and selection",
+      "category": "data-display",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "selected",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "table",
+      "cssClasses": [
+        "table",
+        "table__header",
+        "table__body",
+        "table__footer",
+        "table__row",
+        "table__head",
+        "table__cell",
+        "table__caption",
+        "table-wrapper",
+        "table__row--selected",
+        "table__head--right",
+        "table__cell--right",
+        "table__head--center",
+        "table__cell--center"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

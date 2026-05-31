@@ -20,5 +20,42 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Button Group\n\n   Joins adjacent buttons into a cohesive unit.\n   Removes inner radius, collapses inner borders.\n\n   Orientation: horizontal (default), vertical\n   Parts: .button-group, .button-group__separator, .button-group__text\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.button-group {\n  display: inline-flex;\n  align-items: stretch;\n}\n\n.button-group--vertical {\n  flex-direction: column;\n}\n\n/* ---- Horizontal: radius + border collapse ---- */\n\n.button-group:not(.button-group--vertical) > .button,\n.button-group:not(.button-group--vertical) > .icon-button {\n  border-radius: 0;\n}\n\n.button-group:not(.button-group--vertical) > .button:first-child,\n.button-group:not(.button-group--vertical) > .icon-button:first-child {\n  border-radius: var(--radius-md) 0 0 var(--radius-md);\n}\n\n.button-group:not(.button-group--vertical) > .button:last-child,\n.button-group:not(.button-group--vertical) > .icon-button:last-child {\n  border-radius: 0 var(--radius-md) var(--radius-md) 0;\n}\n\n.button-group:not(.button-group--vertical) > .button + .button,\n.button-group:not(.button-group--vertical) > .icon-button + .icon-button,\n.button-group:not(.button-group--vertical) > .button + .icon-button,\n.button-group:not(.button-group--vertical) > .icon-button + .button {\n  margin-left: calc(-1 * var(--stroke-hairline));\n}\n\n/* ---- Vertical: radius + border collapse ---- */\n\n.button-group--vertical > .button,\n.button-group--vertical > .icon-button {\n  border-radius: 0;\n  width: 100%;\n}\n\n.button-group--vertical > .button:first-child,\n.button-group--vertical > .icon-button:first-child {\n  border-radius: var(--radius-md) var(--radius-md) 0 0;\n}\n\n.button-group--vertical > .button:last-child,\n.button-group--vertical > .icon-button:last-child {\n  border-radius: 0 0 var(--radius-md) var(--radius-md);\n}\n\n.button-group--vertical > .button + .button,\n.button-group--vertical > .icon-button + .icon-button,\n.button-group--vertical > .button + .icon-button,\n.button-group--vertical > .icon-button + .button {\n  margin-top: calc(-1 * var(--stroke-hairline));\n}\n\n/* ---- Separator ---- */\n\n.button-group__separator {\n  align-self: stretch;\n  background-color: var(--border);\n}\n\n.button-group:not(.button-group--vertical) > .button-group__separator {\n  width: var(--stroke-hairline);\n}\n\n.button-group--vertical > .button-group__separator {\n  height: var(--stroke-hairline);\n}\n\n/* ---- Text ---- */\n\n.button-group__text {\n  display: inline-flex;\n  align-items: center;\n  padding: 0 var(--spacing-3);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  color: var(--muted-foreground);\n  white-space: nowrap;\n  border: var(--stroke-hairline) solid var(--border);\n  background-color: var(--muted);\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "ButtonGroup",
+      "description": "Horizontal/vertical group of buttons",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "orientation",
+          "type": "'horizontal' | 'vertical'",
+          "required": false,
+          "default": "horizontal"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "button-group",
+      "cssClasses": [
+        "button-group",
+        "button-group__separator",
+        "button-group__text",
+        "button-group--vertical"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

@@ -19,5 +19,68 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Field\n\n   Wrapper for form controls: label + input + description + error.\n   Composes with Input, Textarea, Select, Checkbox, etc.\n   Colors matched to Figma atom-text-field.\n\n   Orientation: vertical (default)\n   ------------------------------------------------------------------------- */\n\n.field {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-1);\n  width: 100%;\n}\n\n.field__label {\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  color: var(--foreground);\n}\n\n.field__label--required::after {\n  content: \" *\";\n  color: var(--destructive);\n}\n\n.field__description {\n  margin-top: var(--spacing-1);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  line-height: 1.4;\n  color: var(--placeholder);\n}\n\n.field__error {\n  margin-top: var(--spacing-1);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  line-height: 1.4;\n  color: var(--destructive);\n}\n\n/* Error state — label turns red */\n.field[data-invalid] .field__label {\n  color: var(--destructive);\n}\n\n/* Disabled state — label grays out */\n.field--disabled .field__label {\n  color: var(--muted-foreground);\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Field",
+      "description": "Form field wrapper with label, helper, error",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "htmlFor",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "field",
+      "cssClasses": [
+        "field",
+        "field__label",
+        "field__label--required",
+        "field__description",
+        "field__error",
+        "field--disabled"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

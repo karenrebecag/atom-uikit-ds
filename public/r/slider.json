@@ -19,5 +19,68 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Slider\n\n   Range input. Drag thumb along track to select value.\n   Supports single value and range (two thumbs).\n\n   Parts: .slider, .slider__track, .slider__range, .slider__thumb\n   ------------------------------------------------------------------------- */\n\n/* ---- Root ---- */\n\n.slider {\n  position: relative;\n  display: flex;\n  align-items: center;\n  width: 100%;\n  touch-action: none;\n  user-select: none;\n  cursor: pointer;\n}\n\n/* ---- Track ---- */\n\n.slider__track {\n  position: relative;\n  width: 100%;\n  height: var(--spacing-2);\n  border-radius: var(--radius-full);\n  background-color: var(--muted);\n  overflow: hidden;\n}\n\n/* ---- Range (filled portion) ---- */\n\n.slider__range {\n  position: absolute;\n  height: 100%;\n  background-color: var(--primary);\n  border-radius: var(--radius-full);\n}\n\n/* ---- Thumb ---- */\n\n.slider__thumb {\n  position: absolute;\n  top: 50%;\n  width: var(--spacing-5);\n  height: var(--spacing-5);\n  border-radius: var(--radius-full);\n  border: var(--stroke-medium) solid var(--primary);\n  background-color: var(--background);\n  transform: translate(-50%, -50%);\n  cursor: grab;\n  transition:\n    box-shadow var(--duration-150) var(--easing-in-out),\n    scale var(--duration-150) var(--easing-in-out);\n}\n\n.slider__thumb:hover {\n  box-shadow: 0 0 0 var(--spacing-2) color-mix(in srgb, var(--foreground) 4%, transparent);\n}\n\n.slider__thumb:focus-visible {\n  outline: var(--stroke-medium) solid var(--focus-ring-color);\n  outline-offset: var(--stroke-medium);\n}\n\n.slider__thumb:active,\n.slider__thumb--dragging {\n  cursor: grabbing;\n  scale: 1.1;\n}\n\n/* ---- Disabled ---- */\n\n.slider--disabled {\n  opacity: var(--opacity-50);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .slider__thumb {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Slider",
+      "description": "Slider",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "(value: number) => void",
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "slider",
+      "cssClasses": [
+        "slider",
+        "slider__track",
+        "slider__range",
+        "slider__thumb",
+        "slider__thumb--dragging",
+        "slider--disabled"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

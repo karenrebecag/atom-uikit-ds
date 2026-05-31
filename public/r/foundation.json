@@ -23,5 +23,25 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Focus Ring — single source of truth\n\n   All interactive components use this pattern.\n   Normal: outline via --ring token\n   Error:  red ring via --color-red-300\n   ------------------------------------------------------------------------- */\n\n:root {\n  --focus-ring-color: rgba(161, 161, 161, 0.7);\n  --focus-ring-width: 2px;\n  --focus-ring-error-color: var(--color-red-300);\n}\n\n[data-theme=\"dark\"] {\n  --focus-ring-color: rgba(161, 161, 161, 0.5);\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Typography + Fluid Scaling",
+      "description": "Font stack, fluid type scale, container system, focus styles",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
 }

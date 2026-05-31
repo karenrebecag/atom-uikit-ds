@@ -19,5 +19,71 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Link Button\n\n   Semantic link (<a>) for external navigation. Not a button.\n   Blue text with animated underline on hover. No background, no border.\n\n   Sizes:    xs, sm, default, lg, xl\n   States:   enabled, hover, focus, disabled\n   ------------------------------------------------------------------------- */\n\n.link-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5em;\n  padding: 0;\n  background: none;\n  border: none;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  color: var(--link-button-fg-enabled);\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  text-decoration: none;\n  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.link-button:hover:not(.link-button--disabled) {\n  color: var(--link-button-fg-hover);\n}\n\n.link-button:active:not(.link-button--disabled) {\n  color: var(--link-button-fg-pressed);\n}\n\n.link-button:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n  border-radius: 0.125em;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .link-button {\n    transition-duration: 0ms;\n  }\n}\n\n/* ---- Sizes ---- */\n\n.link-button--xs      { font-size: var(--font-size-xs); }\n.link-button--sm      { font-size: var(--font-size-sm); }\n.link-button--default { font-size: var(--font-size-base); }\n.link-button--lg      { font-size: var(--font-size-lg); }\n.link-button--xl      { font-size: var(--font-size-xl); }\n\n/* ---- States ---- */\n\n.link-button--disabled {\n  color: var(--link-button-fg-disabled);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Parts ---- */\n\n.link-button__text {\n  display: inline;\n  position: relative;\n}\n\n/* ---- Underline animation ---- */\n\n.link-button__text::before {\n  content: \"\";\n  position: absolute;\n  bottom: -0.0625em;\n  left: 0;\n  width: 100%;\n  height: 0.0625em;\n  background-color: currentColor;\n  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);\n  transform-origin: right;\n  transform: scaleX(0) rotate(0.001deg);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .link-button--animated:hover:not(.link-button--disabled) .link-button__text::before,\n  [data-hover]:hover .link-button--animated:not(.link-button--disabled) .link-button__text::before {\n    transform-origin: left;\n    transform: scaleX(1) rotate(0.001deg);\n  }\n}\n\n/* ---- Animated variant: persistent underline + text shimmer ---- */\n\n.link-button--animated:not(.link-button--disabled) .link-button__text::before {\n  transform-origin: left;\n  transform: scaleX(1) rotate(0.001deg);\n}\n\n.link-button--animated:not(.link-button--disabled) .link-button__text {\n  background: linear-gradient(\n    120deg,\n    currentColor 0%,\n    currentColor 35%,\n    color-mix(in srgb, currentColor 40%, white) 50%,\n    currentColor 65%,\n    currentColor 100%\n  );\n  background-size: 200% 100%;\n  background-clip: text;\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  animation: link-button-shimmer 3s ease-in-out infinite;\n}\n\n@keyframes link-button-shimmer {\n  0%, 100% { background-position: 200% center; }\n  50% { background-position: 0% center; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .link-button--animated:not(.link-button--disabled) .link-button__text {\n    animation: none;\n    background: none;\n    -webkit-text-fill-color: currentColor;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "LinkButton",
+      "description": "Inline text link with shimmer animation",
+      "category": "actions",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "sm",
+        "default",
+        "lg",
+        "xl"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "default",
+      "hasAnimation": true,
+      "props": [
+        {
+          "name": "size",
+          "type": "'xs' | 'sm' | 'default' | 'lg' | 'xl'",
+          "required": false,
+          "default": "default"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "animated",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "childrenType": "string"
+    },
+    "implementation": {
+      "baseClass": "link-button",
+      "cssClasses": [
+        "link-button",
+        "link-button--disabled",
+        "link-button--xs",
+        "link-button--sm",
+        "link-button--default",
+        "link-button--lg",
+        "link-button--xl",
+        "link-button__text",
+        "link-button--animated"
+      ],
+      "peerDeps": [
+        "gsap"
+      ],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

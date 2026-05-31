@@ -19,5 +19,95 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Chip\n\n   Interactive tag with optional leading icon and close button.\n   Same sizing discipline as Button: height + padding from tokens,\n   gap/radius/icon em-relative.\n\n   Types:   outlined, filled\n   Sizes:   xs, s, m, l, xl (same naming as Button)\n   States:  enabled, hover, pressed, disabled, error\n   ------------------------------------------------------------------------- */\n\n.chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.375em;\n  border-radius: 0.5em;\n  border: var(--stroke-thin) solid transparent;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  color: var(--foreground);\n  cursor: default;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  white-space: nowrap;\n  transition:\n    background-color var(--duration-150) var(--easing-out),\n    border-color var(--duration-150) var(--easing-out),\n    scale var(--duration-150) var(--easing-in-out);\n}\n\n.chip[data-chip-animate]:active:not(.chip--disabled) {\n  scale: 0.955 0.925;\n}\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  .chip[data-chip-animate]:hover:not(.chip--disabled) {\n    scale: 1.06 1.095;\n    transition:\n      background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),\n      border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),\n      scale var(--duration-500) 0.05s cubic-bezier(0.32, 0.72, 0, 1);\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .chip {\n    transition-duration: 0ms;\n  }\n  .chip:active:not(.chip--disabled) {\n    scale: 1;\n  }\n}\n\n/* ---- Sizes (height + h-padding explicit, font-size uniform) ---- */\n\n.chip--xs {\n  height: 1.25rem;\n  padding: 0 var(--spacing-1);\n}\n\n.chip--s {\n  height: 1.5rem;\n  padding: 0 var(--spacing-2);\n}\n\n.chip--m {\n  height: 2rem;\n  padding: 0 var(--spacing-2);\n}\n\n.chip--l {\n  height: 2.5rem;\n  padding: 0 var(--spacing-3);\n}\n\n.chip--xl {\n  height: 3rem;\n  padding: 0 var(--spacing-4);\n}\n\n/* ---- Types ---- */\n\n.chip--outlined {\n  background-color: var(--background);\n  border-color: var(--border);\n}\n\n.chip--outlined:hover:not(.chip--disabled) {\n  background-color: var(--accent);\n}\n\n.chip--filled {\n  background-color: var(--muted);\n}\n\n.chip--filled:hover:not(.chip--disabled) {\n  background-color: var(--accent);\n}\n\n/* ---- Disabled ---- */\n\n.chip--disabled {\n  color: var(--muted-foreground);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.chip--disabled.chip--outlined {\n  border-color: var(--muted);\n  background-color: var(--muted);\n}\n\n.chip--disabled.chip--filled {\n  background-color: var(--muted);\n}\n\n/* ---- Error ---- */\n\n.chip--error.chip--outlined {\n  border-color: var(--destructive);\n  color: var(--destructive);\n}\n\n.chip--error.chip--outlined:hover:not(.chip--disabled) {\n  background-color: color-mix(in srgb, var(--destructive) 6%, var(--background));\n}\n\n.chip--error.chip--filled {\n  background-color: color-mix(in srgb, var(--destructive) 8%, var(--background));\n  color: var(--destructive);\n}\n\n.chip--error.chip--filled:hover:not(.chip--disabled) {\n  background-color: color-mix(in srgb, var(--destructive) 12%, var(--background));\n}\n\n/* ---- Focus ---- */\n\n.chip:focus-visible,\n.chip--focused {\n  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);\n  outline: none;\n}\n\n/* ---- Parts ---- */\n\n.chip__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1em;\n  height: 1em;\n}\n\n.chip__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n.chip__label {\n  display: inline-flex;\n  align-items: center;\n}\n\n.chip__close {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1.125em;\n  height: 1.125em;\n  padding: 0.125em;\n  border: none;\n  background-color: color-mix(in srgb, var(--foreground) 6%, transparent);\n  color: inherit;\n  cursor: pointer;\n  border-radius: var(--radius-full);\n  transition:\n    background-color var(--duration-150) var(--easing-out),\n    scale var(--duration-500) cubic-bezier(0.32, 0.72, 0, 1);\n}\n\n.chip__close svg {\n  width: 100%;\n  height: 100%;\n}\n\n.chip__close:active {\n  scale: 0.9;\n}\n\n.chip--error .chip__close {\n  background-color: color-mix(in srgb, var(--destructive) 10%, transparent);\n}\n\n.chip--disabled .chip__close {\n  cursor: not-allowed;\n  pointer-events: none;\n  background-color: color-mix(in srgb, var(--foreground) 4%, transparent);\n}\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  .chip__close:hover {\n    background-color: color-mix(in srgb, var(--foreground) 12%, transparent);\n    scale: 1.06 1.095;\n  }\n\n  .chip--error .chip__close:hover {\n    background-color: color-mix(in srgb, var(--destructive) 18%, transparent);\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Chip",
+      "description": "Chip",
+      "category": "indicators",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "s",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "type",
+          "type": "'outlined' | 'filled'",
+          "required": false,
+          "default": "outlined"
+        },
+        {
+          "name": "size",
+          "type": "'xs' | 's' | 'm' | 'l' | 'xl'",
+          "required": false,
+          "default": "s"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "error",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "focused",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "animated",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "iconLeft",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "childrenType": "string"
+    },
+    "implementation": {
+      "baseClass": "chip",
+      "cssClasses": [
+        "chip",
+        "chip--disabled",
+        "chip--xs",
+        "chip--s",
+        "chip--m",
+        "chip--l",
+        "chip--xl",
+        "chip--outlined",
+        "chip--filled",
+        "chip--error",
+        "chip--focused",
+        "chip__icon",
+        "chip__label",
+        "chip__close"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

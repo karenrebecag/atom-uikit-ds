@@ -18,5 +18,40 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Skeleton\n\n   Loading placeholder. Pulse animation on muted background.\n   Consumer sets width/height/border-radius via style or className.\n\n   Parts: .skeleton\n   ------------------------------------------------------------------------- */\n\n.skeleton {\n  display: block;\n  background-color: var(--border);\n  border-radius: var(--radius-md);\n  animation: skeleton-pulse var(--duration-1000) var(--easing-in-out) infinite;\n}\n\n@keyframes skeleton-pulse {\n  0%, 100% { opacity: 1; }\n  50% { opacity: var(--opacity-50); }\n}\n\n/* ---- Shape helpers ---- */\n\n.skeleton--circle {\n  border-radius: var(--radius-full);\n}\n\n.skeleton--text {\n  height: 1em;\n  border-radius: var(--radius-sm);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .skeleton {\n    animation: none;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Skeleton",
+      "description": "Content placeholder with shimmer animation",
+      "category": "indicators",
+      "variants": [
+        "default",
+        "circle",
+        "text"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "variant",
+          "type": "'default' | 'circle' | 'text'",
+          "required": false,
+          "default": "default"
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "skeleton",
+      "cssClasses": [
+        "skeleton",
+        "skeleton--circle",
+        "skeleton--text"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

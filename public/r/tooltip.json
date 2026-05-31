@@ -13,5 +13,25 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Tooltip (CSS Only)\n\n   Small text hint on hover. Attach to any element.\n   Direction: top (default), bottom, left, right\n   Theme: dark (default), light\n\n   Usage: wrap trigger in [data-tooltip] with content as attribute value.\n   <button data-tooltip=\"Save changes\" data-tooltip-dir=\"top\">Save</button>\n   ------------------------------------------------------------------------- */\n\n[data-tooltip] {\n  position: relative;\n}\n\n[data-tooltip]::before,\n[data-tooltip]::after {\n  position: absolute;\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  transition:\n    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1),\n    transform 0.25s cubic-bezier(0.625, 0.05, 0, 1);\n  z-index: var(--z-index-70, 70);\n}\n\n/* Text bubble */\n[data-tooltip]::before {\n  content: attr(data-tooltip);\n  padding: 4px 8px;\n  border-radius: 6px;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  font-weight: var(--font-weight-medium);\n  line-height: 1.4;\n  white-space: nowrap;\n  max-width: 200px;\n}\n\n/* Arrow */\n[data-tooltip]::after {\n  content: '';\n  width: 6px;\n  height: 6px;\n  transform: rotate(45deg);\n}\n\n/* ---- Dark theme (default) ---- */\n\n[data-tooltip]::before {\n  background-color: var(--color-zinc-900);\n  color: var(--color-zinc-50);\n}\n\n[data-tooltip]::after {\n  background-color: var(--color-zinc-900);\n}\n\n/* ---- Light theme ---- */\n\n[data-tooltip-theme=\"light\"]::before {\n  background-color: var(--background);\n  color: var(--foreground);\n  border: 1px solid var(--border);\n  box-shadow: var(--shadow-sm);\n}\n\n[data-tooltip-theme=\"light\"]::after {\n  background-color: var(--background);\n  border: 1px solid var(--border);\n  border-top: none;\n  border-left: none;\n}\n\n/* ---- Show on hover ---- */\n\n[data-tooltip]:hover::before,\n[data-tooltip]:hover::after {\n  opacity: 1;\n  visibility: visible;\n}\n\n/* ---- Top (default) ---- */\n\n[data-tooltip]::before,\n[data-tooltip-dir=\"top\"]::before {\n  bottom: calc(100% + 8px);\n  left: 50%;\n  transform: translateX(-50%) translateY(4px);\n}\n\n[data-tooltip]:hover::before,\n[data-tooltip-dir=\"top\"]:hover::before {\n  transform: translateX(-50%) translateY(0);\n}\n\n[data-tooltip]::after,\n[data-tooltip-dir=\"top\"]::after {\n  bottom: calc(100% + 5px);\n  left: 50%;\n  transform: translateX(-50%) rotate(45deg);\n}\n\n/* ---- Bottom ---- */\n\n[data-tooltip-dir=\"bottom\"]::before {\n  bottom: auto;\n  top: calc(100% + 8px);\n  left: 50%;\n  transform: translateX(-50%) translateY(-4px);\n}\n\n[data-tooltip-dir=\"bottom\"]:hover::before {\n  transform: translateX(-50%) translateY(0);\n}\n\n[data-tooltip-dir=\"bottom\"]::after {\n  bottom: auto;\n  top: calc(100% + 5px);\n  left: 50%;\n  transform: translateX(-50%) rotate(225deg);\n}\n\n/* ---- Left ---- */\n\n[data-tooltip-dir=\"left\"]::before {\n  bottom: auto;\n  top: 50%;\n  right: calc(100% + 8px);\n  left: auto;\n  transform: translateY(-50%) translateX(4px);\n}\n\n[data-tooltip-dir=\"left\"]:hover::before {\n  transform: translateY(-50%) translateX(0);\n}\n\n[data-tooltip-dir=\"left\"]::after {\n  bottom: auto;\n  top: 50%;\n  right: calc(100% + 5px);\n  left: auto;\n  transform: translateY(-50%) rotate(315deg);\n}\n\n/* ---- Right ---- */\n\n[data-tooltip-dir=\"right\"]::before {\n  bottom: auto;\n  top: 50%;\n  left: calc(100% + 8px);\n  transform: translateY(-50%) translateX(-4px);\n}\n\n[data-tooltip-dir=\"right\"]:hover::before {\n  transform: translateY(-50%) translateX(0);\n}\n\n[data-tooltip-dir=\"right\"]::after {\n  bottom: auto;\n  top: 50%;\n  left: calc(100% + 5px);\n  transform: translateY(-50%) rotate(135deg);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  [data-tooltip]::before,\n  [data-tooltip]::after {\n    transition-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Tooltip",
+      "description": "Tooltip popup on hover",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
 }

@@ -5,7 +5,17 @@
     "framework": "css",
     "installGroup": "foundations",
     "title": "Design Tokens",
-    "description": "3-layer tokens (primitives, semantic, component) as CSS custom properties"
+    "description": "3-layer tokens (primitives, semantic, component) as CSS custom properties",
+    "discovery": {
+      "name": "Design Tokens",
+      "description": "3-layer tokens (primitives, semantic, component) as CSS custom properties",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "tokens-dark",
@@ -16,7 +26,17 @@
     "description": "Dark mode overrides via [data-theme=dark] selector",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Dark Theme Tokens",
+      "description": "Dark mode overrides via [data-theme=dark] selector",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "foundation",
@@ -27,7 +47,17 @@
     "description": "Font stack, fluid type scale, container system, focus styles",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Typography + Fluid Scaling",
+      "description": "Font stack, fluid type scale, container system, focus styles",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "button",
@@ -39,7 +69,30 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Button",
+      "description": "6 variantes, 5 tamanos, text-swap animation",
+      "category": "actions",
+      "variants": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "destructive-primary",
+        "destructive-secondary",
+        "destructive-tertiary"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "primary",
+      "defaultSize": "m",
+      "hasAnimation": true
+    }
   },
   {
     "name": "icon-button",
@@ -51,7 +104,33 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "IconButton",
+      "description": "Square icon-only button with rotation animation",
+      "category": "actions",
+      "variants": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "destructive-primary",
+        "destructive-secondary",
+        "destructive-tertiary"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "primary",
+      "defaultSize": "m",
+      "hasAnimation": true,
+      "ariaRequired": [
+        "aria-label"
+      ]
+    }
   },
   {
     "name": "link-button",
@@ -63,7 +142,24 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "LinkButton",
+      "description": "Inline text link with shimmer animation",
+      "category": "actions",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "sm",
+        "default",
+        "lg",
+        "xl"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "default",
+      "hasAnimation": true,
+      "childrenType": "string"
+    }
   },
   {
     "name": "button-group",
@@ -76,7 +172,17 @@
       "tokens",
       "foundation",
       "button"
-    ]
+    ],
+    "discovery": {
+      "name": "ButtonGroup",
+      "description": "Horizontal/vertical group of buttons",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "input",
@@ -88,7 +194,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Input",
+      "description": "Text input with error, disabled, and focus states",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "textarea",
@@ -100,7 +216,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Textarea",
+      "description": "Multi-line text input",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "select",
@@ -112,7 +238,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Select",
+      "description": "Dropdown select with search, groups, keyboard nav",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "checkbox",
@@ -124,7 +260,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Checkbox",
+      "description": "Checkbox with indeterminate state",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "radio",
@@ -136,7 +282,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Radio",
+      "description": "Radio button group",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "toggle",
@@ -148,7 +304,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Toggle",
+      "description": "Boolean switch",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "field",
@@ -160,7 +326,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Field",
+      "description": "Form field wrapper with label, helper, error",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "tabs",
@@ -172,7 +348,20 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Tabs",
+      "description": "Tabbed navigation with animated indicator",
+      "category": "navigation",
+      "variants": [
+        "default",
+        "line"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "divider",
@@ -183,7 +372,17 @@
     "description": "Horizontal or vertical separator",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Divider",
+      "description": "Horizontal or vertical separator",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "avatar",
@@ -194,7 +393,22 @@
     "description": "User avatar with image, initials, or icon",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Avatar",
+      "description": "User avatar with image, initials, or icon",
+      "category": "indicators",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "s",
+      "hasAnimation": false
+    }
   },
   {
     "name": "badge",
@@ -205,7 +419,21 @@
     "description": "Status indicator badge",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Badge",
+      "description": "Status indicator badge",
+      "category": "indicators",
+      "variants": [
+        "neutral",
+        "inbox"
+      ],
+      "sizes": [],
+      "defaultVariant": "neutral",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "childrenType": "string"
+    }
   },
   {
     "name": "spinner",
@@ -216,7 +444,22 @@
     "description": "Loading spinner",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Spinner",
+      "description": "Loading spinner",
+      "category": "indicators",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "m",
+      "hasAnimation": false
+    }
   },
   {
     "name": "skeleton",
@@ -227,7 +470,21 @@
     "description": "Content placeholder with shimmer animation",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Skeleton",
+      "description": "Content placeholder with shimmer animation",
+      "category": "indicators",
+      "variants": [
+        "default",
+        "circle",
+        "text"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "dialog",
@@ -239,7 +496,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Dialog",
+      "description": "Modal dialog with overlay",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "table",
@@ -251,7 +518,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Table",
+      "description": "Data table with sorting and selection",
+      "category": "data-display",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "accordion",
@@ -263,7 +540,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Accordion",
+      "description": "Accordion",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "alert-dialog",
@@ -275,7 +562,23 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "AlertDialog",
+      "description": "AlertDialog",
+      "category": "surfaces",
+      "variants": [
+        "default",
+        "destructive"
+      ],
+      "sizes": [
+        "default",
+        "sm"
+      ],
+      "defaultVariant": "primary",
+      "defaultSize": "default",
+      "hasAnimation": false
+    }
   },
   {
     "name": "avatar-group",
@@ -287,7 +590,22 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "AvatarGroup",
+      "description": "AvatarGroup",
+      "category": "indicators",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "s",
+      "hasAnimation": false
+    }
   },
   {
     "name": "breadcrumb",
@@ -299,7 +617,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Breadcrumb",
+      "description": "Breadcrumb",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "burger-icon",
@@ -310,7 +638,17 @@
     "description": "BurgerIcon",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "BurgerIcon",
+      "description": "BurgerIcon",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "calendar",
@@ -322,7 +660,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Calendar",
+      "description": "Calendar",
+      "category": "data-display",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "chip",
@@ -334,7 +682,24 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Chip",
+      "description": "Chip",
+      "category": "indicators",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "s",
+      "hasAnimation": false,
+      "childrenType": "string"
+    }
   },
   {
     "name": "combobox",
@@ -346,7 +711,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Combobox",
+      "description": "Combobox",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "context-menu",
@@ -358,7 +733,20 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "ContextMenu",
+      "description": "ContextMenu",
+      "category": "navigation",
+      "variants": [
+        "default",
+        "destructive"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "drawer",
@@ -370,7 +758,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Drawer",
+      "description": "Drawer",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "dropdown-menu",
@@ -382,7 +780,20 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "DropdownMenu",
+      "description": "DropdownMenu",
+      "category": "navigation",
+      "variants": [
+        "default",
+        "destructive"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "empty",
@@ -394,7 +805,21 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Empty",
+      "description": "Empty",
+      "category": "layout",
+      "variants": [
+        "default",
+        "outline",
+        "filled"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "image",
@@ -406,7 +831,24 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Image",
+      "description": "Image",
+      "category": "actions",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "hero",
+        "full"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "xs",
+      "hasAnimation": false
+    }
   },
   {
     "name": "item",
@@ -418,7 +860,25 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Item",
+      "description": "Item",
+      "category": "layout",
+      "variants": [
+        "default",
+        "outline",
+        "muted"
+      ],
+      "sizes": [
+        "default",
+        "sm",
+        "xs"
+      ],
+      "defaultVariant": "default",
+      "defaultSize": "default",
+      "hasAnimation": false
+    }
   },
   {
     "name": "marquee",
@@ -430,7 +890,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Marquee",
+      "description": "Marquee",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "nav-link",
@@ -442,7 +912,22 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "NavLink",
+      "description": "NavLink",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [
+        "sm",
+        "default",
+        "lg"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "default",
+      "hasAnimation": false,
+      "childrenType": "string"
+    }
   },
   {
     "name": "pagination",
@@ -454,7 +939,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Pagination",
+      "description": "Pagination",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "progress-nav",
@@ -466,7 +961,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "ProgressNav",
+      "description": "ProgressNav",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "resizable",
@@ -478,7 +983,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Resizable",
+      "description": "Resizable",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "sheet",
@@ -490,7 +1005,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Sheet",
+      "description": "Sheet",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "slider",
@@ -502,7 +1027,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Slider",
+      "description": "Slider",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "stats-card",
@@ -514,7 +1049,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "StatsCard",
+      "description": "StatsCard",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "stepper",
@@ -526,7 +1071,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Stepper",
+      "description": "Stepper",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "tag",
@@ -538,7 +1093,26 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Tag",
+      "description": "Tag",
+      "category": "indicators",
+      "variants": [
+        "ghost",
+        "filled",
+        "outlined"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m"
+      ],
+      "defaultVariant": "filled",
+      "defaultSize": "s",
+      "hasAnimation": false,
+      "childrenType": "string"
+    }
   },
   {
     "name": "toast",
@@ -550,7 +1124,23 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Toast",
+      "description": "Toast",
+      "category": "surfaces",
+      "variants": [
+        "default",
+        "success",
+        "error",
+        "warning",
+        "info"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "toggle-group",
@@ -562,7 +1152,25 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "ToggleGroup",
+      "description": "ToggleGroup",
+      "category": "actions",
+      "variants": [
+        "default",
+        "outline"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l"
+      ],
+      "defaultVariant": "default",
+      "defaultSize": "m",
+      "hasAnimation": false
+    }
   },
   {
     "name": "typography",
@@ -573,7 +1181,17 @@
     "description": "Typography",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Typography",
+      "description": "Typography",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "user-profile",
@@ -585,7 +1203,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "UserProfile",
+      "description": "UserProfile",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "video-player",
@@ -597,7 +1225,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "VideoPlayer",
+      "description": "VideoPlayer",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "sidebar",
@@ -609,7 +1247,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Sidebar",
+      "description": "Navigation sidebar with 11 sub-components",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "tooltip",
@@ -620,7 +1268,17 @@
     "description": "Tooltip popup on hover",
     "registryDependencies": [
       "tokens"
-    ]
+    ],
+    "discovery": {
+      "name": "Tooltip",
+      "description": "Tooltip popup on hover",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "menu-button",
@@ -632,7 +1290,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "MenuButton",
+      "description": "Button that triggers a dropdown menu",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "layout/hero-centered",
@@ -644,7 +1312,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Hero Centered",
+      "description": "Layout template: hero-centered",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "layout/hero-split",
@@ -656,7 +1334,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Hero Split",
+      "description": "Layout template: hero-split",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "layout/feature-grid",
@@ -668,7 +1356,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Feature Grid",
+      "description": "Layout template: feature-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "layout/cta-banner",
@@ -680,7 +1378,17 @@
     "registryDependencies": [
       "tokens",
       "foundation"
-    ]
+    ],
+    "discovery": {
+      "name": "Cta Banner",
+      "description": "Layout template: cta-banner",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   },
   {
     "name": "button-hover",
@@ -688,7 +1396,17 @@
     "framework": "react",
     "installGroup": "components",
     "title": "Button Hover",
-    "description": "Button text-swap hover animation"
+    "description": "Button text-swap hover animation",
+    "discovery": {
+      "name": "Button Hover",
+      "description": "Button text-swap hover animation",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "text-reveal",
@@ -696,7 +1414,17 @@
     "framework": "react",
     "installGroup": "components",
     "title": "Text Reveal",
-    "description": "Scroll-triggered text reveal"
+    "description": "Scroll-triggered text reveal",
+    "discovery": {
+      "name": "Text Reveal",
+      "description": "Scroll-triggered text reveal",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
   },
   {
     "name": "marquee-draggable",
@@ -704,6 +1432,16 @@
     "framework": "react",
     "installGroup": "components",
     "title": "Marquee Draggable",
-    "description": "Infinite marquee with drag-to-accelerate"
+    "description": "Infinite marquee with drag-to-accelerate",
+    "discovery": {
+      "name": "Marquee Draggable",
+      "description": "Infinite marquee with drag-to-accelerate",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   }
 ]

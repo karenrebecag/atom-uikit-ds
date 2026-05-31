@@ -19,5 +19,67 @@
       "type": "registry:file",
       "content": "/* ============================================================\n   StatsCard — metric number + label + optional trend indicator\n   ============================================================ */\n\n.stats-card {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-3);\n  padding: var(--spacing-8);\n  border-radius: var(--radius-xl);\n  background-color: var(--card);\n  border: var(--stroke-hairline) solid var(--border);\n  transition: border-color var(--duration-150) var(--easing-out);\n}\n\n.stats-card--compact {\n  padding: var(--spacing-4);\n  gap: var(--spacing-2);\n  border-radius: var(--radius-lg);\n}\n\n/* ---- Value (big number) ---- */\n.stats-card__value {\n  font-size: var(--font-size-4xl);\n  font-weight: var(--font-weight-bold);\n  line-height: 1;\n  letter-spacing: -0.03em;\n  color: var(--foreground);\n  font-variant-numeric: tabular-nums;\n}\n\n.stats-card--compact .stats-card__value {\n  font-size: var(--font-size-2xl);\n}\n\n.stats-card--gradient .stats-card__value {\n  background: linear-gradient(135deg, var(--color-violet-600) 0%, var(--brand) 100%);\n  -webkit-background-clip: text;\n  background-clip: text;\n  -webkit-text-fill-color: transparent;\n}\n\n/* ---- Label ---- */\n.stats-card__label {\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  color: var(--muted-foreground);\n  line-height: 1.4;\n}\n\n/* ---- Trend indicator ---- */\n.stats-card__trend {\n  display: inline-flex;\n  align-items: center;\n  gap: var(--spacing-1);\n  font-size: var(--font-size-xs);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  margin-top: var(--spacing-1);\n}\n\n.stats-card__trend--up {\n  color: var(--success);\n}\n\n.stats-card__trend--down {\n  color: var(--destructive);\n}\n\n.stats-card__trend--neutral {\n  color: var(--muted-foreground);\n}\n\n.stats-card__trend-icon {\n  display: flex;\n  width: 1em;\n  height: 1em;\n}\n\n.stats-card__trend-icon svg {\n  width: 100%;\n  height: 100%;\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "StatsCard",
+      "description": "StatsCard",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "trend",
+          "type": "'up' | 'down' | 'neutral'",
+          "required": false
+        },
+        {
+          "name": "trendValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "gradient",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "stats-card",
+      "cssClasses": [
+        "stats-card",
+        "stats-card--compact",
+        "stats-card__value",
+        "stats-card--gradient",
+        "stats-card__label",
+        "stats-card__trend",
+        "stats-card__trend--up",
+        "stats-card__trend--down",
+        "stats-card__trend--neutral",
+        "stats-card__trend-icon"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

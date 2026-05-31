@@ -18,5 +18,43 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Spinner\n\n   Loading indicator. Rotating circle with partial stroke.\n   Sizes: xs, s, m, l. Inherits color from parent.\n\n   Parts: .spinner\n   ------------------------------------------------------------------------- */\n\n.spinner {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: currentColor;\n  animation: spinner-rotate var(--duration-700) linear infinite;\n}\n\n/* ---- Sizes ---- */\n\n.spinner--xs { width: 0.875rem; height: 0.875rem; }\n.spinner--s  { width: 1.125rem; height: 1.125rem; }\n.spinner--m  { width: 1.5rem; height: 1.5rem; }\n.spinner--l  { width: 2rem; height: 2rem; }\n\n.spinner svg {\n  width: 100%;\n  height: 100%;\n}\n\n@keyframes spinner-rotate {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .spinner {\n    animation-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Spinner",
+      "description": "Loading spinner",
+      "category": "indicators",
+      "variants": [],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l"
+      ],
+      "defaultVariant": "",
+      "defaultSize": "m",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "size",
+          "type": "'xs' | 's' | 'm' | 'l'",
+          "required": false,
+          "default": "m"
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "spinner",
+      "cssClasses": [
+        "spinner",
+        "spinner--xs",
+        "spinner--s",
+        "spinner--m",
+        "spinner--l"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

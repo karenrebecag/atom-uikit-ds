@@ -19,5 +19,61 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Checkbox\n\n   Single size (16px box, 40px touch target).\n   Native <input type=\"checkbox\"> hidden, visual replacement via label.\n\n   States:  unchecked, checked, indeterminate, disabled, error\n   ------------------------------------------------------------------------- */\n\n.checkbox {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5em;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  position: relative;\n}\n\n.checkbox--disabled {\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* Hidden native input with touch target */\n.checkbox__input {\n  position: absolute;\n  width: 2.5rem;\n  height: 2.5rem;\n  margin: 0;\n  padding: 0;\n  opacity: 0;\n  cursor: inherit;\n  left: -0.75rem;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n/* Visual box */\n.checkbox__box {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 1rem;\n  height: 1rem;\n  flex-shrink: 0;\n  border-radius: var(--radius-sm);\n  border: var(--stroke-thin) solid var(--checkbox-border-default);\n  background-color: var(--checkbox-bg-unchecked);\n  transition:\n    background-color var(--duration-150) var(--easing-out),\n    border-color var(--duration-150) var(--easing-out),\n    box-shadow var(--duration-150) var(--easing-out);\n}\n\n/* Check / minus icon */\n.checkbox__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 0.75rem;\n  height: 0.75rem;\n  color: var(--checkbox-fg-checked);\n}\n\n.checkbox__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Hover ---- */\n\n.checkbox__input:hover:not(:disabled) ~ .checkbox__box {\n  background-color: var(--checkbox-bg-unchecked-hover);\n}\n\n.checkbox__input:checked:hover:not(:disabled) ~ .checkbox__box,\n.checkbox__input[data-indeterminate]:hover:not(:disabled) ~ .checkbox__box {\n  background-color: var(--checkbox-bg-checked-hover);\n}\n\n/* ---- Checked ---- */\n\n.checkbox__input:checked ~ .checkbox__box,\n.checkbox__input[data-indeterminate] ~ .checkbox__box {\n  background-color: var(--checkbox-bg-checked);\n  border-color: var(--checkbox-bg-checked);\n}\n\n\n/* ---- Focus ---- */\n\n.checkbox__input:focus-visible ~ .checkbox__box {\n  box-shadow: 0 0 0 var(--stroke-medium) var(--checkbox-focus-ring-default);\n}\n\n/* ---- Disabled ---- */\n\n.checkbox__input:disabled ~ .checkbox__box {\n  background-color: var(--checkbox-bg-disabled);\n  border-color: var(--checkbox-bg-disabled);\n}\n\n.checkbox__input:disabled ~ .checkbox__box .checkbox__icon {\n  color: var(--checkbox-fg-disabled);\n}\n\n/* ---- Error ---- */\n\n.checkbox--error .checkbox__box {\n  border-color: var(--checkbox-border-error);\n}\n\n/* ---- Label ---- */\n\n.checkbox__label {\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  line-height: 1;\n  color: var(--foreground);\n}\n\n.checkbox--disabled .checkbox__label {\n  color: var(--muted-foreground);\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Checkbox",
+      "description": "Checkbox with indeterminate state",
+      "category": "forms",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true,
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean | 'indeterminate'",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "error",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onChange",
+          "type": "(checked: boolean) => void",
+          "required": false
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "checkbox",
+      "cssClasses": [
+        "checkbox",
+        "checkbox--disabled",
+        "checkbox__input",
+        "checkbox__box",
+        "checkbox__icon",
+        "checkbox--error",
+        "checkbox__label"
+      ],
+      "peerDeps": [
+        "gsap"
+      ],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }

@@ -19,5 +19,38 @@
       "type": "registry:file",
       "content": "/* -------------------------------------------------------------------------\n   Context Menu\n\n   Right-click menu. Same visual as DropdownMenu, different trigger.\n   Positioned at mouse coordinates, not relative to trigger element.\n\n   Parts: .context-menu, .context-menu__trigger, .context-menu__content\n   Item styling reuses dropdown-menu classes for consistency.\n   ------------------------------------------------------------------------- */\n\n/* ---- Trigger zone ---- */\n\n.context-menu__trigger {\n  display: contents;\n}\n\n/* ---- Content (positioned at mouse coords via inline style) ---- */\n\n.context-menu__content {\n  position: fixed;\n  z-index: var(--z-index-20);\n  min-width: 192px;\n  overflow: hidden;\n  border: var(--stroke-hairline) solid var(--border);\n  border-radius: var(--radius-lg);\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-md);\n  padding: var(--spacing-1, 4px);\n  animation: context-menu-in var(--duration-200) var(--easing-out);\n}\n\n@keyframes context-menu-in {\n  from {\n    opacity: 0;\n    transform: scale(0.96);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1);\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .context-menu__content {\n    animation-duration: 0ms;\n  }\n}\n"
     }
-  ]
+  ],
+  "atom": {
+    "discovery": {
+      "name": "ContextMenu",
+      "description": "ContextMenu",
+      "category": "navigation",
+      "variants": [
+        "default",
+        "destructive"
+      ],
+      "sizes": [],
+      "defaultVariant": "default",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ]
+    },
+    "implementation": {
+      "baseClass": "context-menu",
+      "cssClasses": [
+        "context-menu",
+        "context-menu__trigger",
+        "context-menu__content"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
 }
