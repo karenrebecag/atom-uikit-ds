@@ -28,15 +28,41 @@ registry.json (internal schema) → build:registry → public/r/*.json (shadcn-c
 | File | Purpose |
 |------|---------|
 | `registry.json` | Root config with all items (internal `AtomRegistryItem` schema) |
-| `scripts/registry-schema.ts` | TypeScript types: `AtomRegistryItem`, `ItemKind`, `InstallGroup` |
-| `scripts/build-registry.mjs` | Compiles internal → public, writes `public/r/*.json` |
-| `public/r/index.json` | Catalog (no content, for `list` command) |
-| `public/r/{name}.json` | Per-item JSON with `files[].content` (source embebido) |
+| `scripts/registry-schema.ts` | TypeScript types: `AtomRegistryItem`, `AtomField`, `AtomDiscovery`, `AtomImplementation` |
+| `scripts/extract-component-metadata.ts` | Extracts `atom` field (variants, props, cssClasses, etc.) from source files |
+| `scripts/build-registry.mjs` | Compiles internal → public, injects `atom` field, writes `public/r/*.json` |
+| `scripts/validate-registry-vs-manifest.ts` | Validates new output against old MCP MERGED_MANIFEST (regression test) |
+| `scripts/test-extract-metadata.ts` | 27 unit tests for the extractor |
+| `public/r/index.json` | Enriched catalog with `discovery` fields (for MCP warm start, ~38KB) |
+| `public/r/{name}.json` | Per-item JSON with `files[].content` + `atom` field (discovery + implementation) |
+
+### The `atom` field
+
+Each registry item includes an `atom` field with two sections:
+
+- **`atom.discovery`** — Exposed by MCP discovery tools (`context`, `component`). Contains: `name`, `description`, `category`, `variants`, `sizes`, `defaultVariant`, `defaultSize`, `hasAnimation`, `props[]`.
+- **`atom.implementation`** — Only accessible via MCP implementation tools (`source`, `validate`, `audit`, `patch-plan`). Contains: `baseClass`, `cssClasses`, `peerDeps`, `hasCss`, `hasReact`.
+
+This split enforces the anti-hallucination pattern: LLMs see enough to discover components but must call `atom_uikit_source` for actual implementation details.
+
+### `cssClassPrefixes` — multi-block components
+
+Some components define multiple BEM root blocks in a single CSS file (e.g. `.input` + `.input-group`). By default, the extractor auto-discovers root blocks that start with the component slug. For components where this isn't sufficient, declare explicit prefixes:
+
+```json
+{
+  "name": "input",
+  "cssClassPrefixes": ["input", "input-group"],
+  ...
+}
+```
+
+**When to add `cssClassPrefixes`**: only when the component's CSS defines root blocks that don't share a prefix with the slug. Currently annotated: `input`, `table`, `item`, `toast`, `sidebar`.
 
 ### Commands
 
 ```bash
-pnpm build:registry    # Generate public/r/*.json from registry.json
+pnpm build:registry    # Generate enriched public/r/*.json from registry.json
 npx atom-uikit init    # Consumer: create atom-uikit.json + copy foundations
 npx atom-uikit login   # Consumer: authenticate with Clerk
 npx atom-uikit add button  # Consumer: copy component + deps to project
@@ -46,13 +72,36 @@ npx atom-uikit add button  # Consumer: copy component + deps to project
 
 Registry JSONs are served from `UIKitDocumentation_ATOM` at `/api/r/[name].json` with triple auth: Clerk session (browser), JWT (CLI/MCP), API key (CI).
 
+The docs site syncs registry files at build time via `sync-registry.ts` (no committed copies). After `build:registry`, the script triggers a Deploy Hook to rebuild the docs site automatically.
+
+### Deploy Hook
+
+`build-registry.mjs` triggers a Vercel deploy hook at the end of a successful build if `DOCS_DEPLOY_HOOK` env var is set. This ensures the docs site picks up fresh registry data without manual intervention.
+
+```bash
+# Set locally for development
+export DOCS_DEPLOY_HOOK=https://api.vercel.com/v1/integrations/deploy/prj_lG3jXv4lTsSjzD2zJFvQzXFN0hp0/UKsHzKOuFI
+
+# Then build:registry will trigger docs rebuild automatically
+pnpm build:registry
+```
+
+### Deploy order
+
+```
+1. atom-uikit-ds       — pnpm build:registry -> public/r/*.json + trigger deploy hook
+2. UIKitDocumentation   — sync-registry.ts syncs from DS or previous deployment, then next build
+3. atom-uikit-cms-db/mcp — fetches from uikit.atomchat.io/api/r/ at runtime (5min cache)
+```
+
 ## Next Steps
 
+- [x] ~~Migrate MCP to fetch from registry~~ (Wave 1+2 complete)
+- [x] ~~Eliminate embed-source.ts and legacy files from MCP~~ (Wave 3A complete)
+- [x] ~~Build-time sync in docs site~~ (Wave 3C complete)
+- [ ] Migrate component-overrides.ts fields to registry.json (Wave 4)
 - [ ] Implement CLI package (`atom-uikit`): login, init, add, list, diff
-- [ ] Migrate MCP `atom_uikit_source()` to fetch from `/api/r/[name].json`
-- [ ] Update docu: replace npm install snippets with CLI commands
 - [ ] Clerk production keys (currently test keys)
-- [ ] Deprecate `@atom-uikit/*` npm packages
 
 ---
 
