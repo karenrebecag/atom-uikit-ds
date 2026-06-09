@@ -137,6 +137,21 @@ async function main() {
     'utf8'
   );
 
+  // Publish resolved design tokens for the MCP (single source of truth).
+  // Raw nested file (not a registry item, not in index.json). The MCP fetches
+  // /api/r/tokens-nested.json and overlays these values onto its local skeleton.
+  const TOKENS_NESTED = path.join(ROOT, 'packages/tokens/build/json/tokens-nested.json');
+  try {
+    const tokensNested = await fs.readFile(TOKENS_NESTED, 'utf8');
+    JSON.parse(tokensNested); // fail fast if the build output is malformed
+    await fs.writeFile(path.join(OUT_DIR, 'tokens-nested.json'), tokensNested, 'utf8');
+    console.log('  Published: tokens-nested.json');
+  } catch (e) {
+    console.error(`  ERROR: could not publish tokens-nested.json: ${e.message}`);
+    console.error('  Run `pnpm --filter @atom-uikit/tokens build` first (build:registry chains it).');
+    process.exit(1);
+  }
+
   console.log(`\n  Registry built: ${built} items (${enriched} enriched), ${errors} errors`);
   console.log(`  Output: ${OUT_DIR}/\n`);
 
