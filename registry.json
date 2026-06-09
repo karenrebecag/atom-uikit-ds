@@ -1781,6 +1781,25 @@
       ]
     },
     {
+      "name": "layout/steps-numbered",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Steps Numbered",
+      "description": "Layout template: steps-numbered",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/steps-numbered.ts",
+          "outputPath": "layouts/steps-numbered.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "layout/cta-split-image",
       "kind": "foundation",
       "framework": "css",

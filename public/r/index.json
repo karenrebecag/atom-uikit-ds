@@ -1823,6 +1823,28 @@
     }
   },
   {
+    "name": "layout/steps-numbered",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Steps Numbered",
+    "description": "Layout template: steps-numbered",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Steps Numbered",
+      "description": "Layout template: steps-numbered",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "layout/cta-split-image",
     "kind": "foundation",
     "framework": "css",
