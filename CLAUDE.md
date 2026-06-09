@@ -30,11 +30,24 @@ registry.json (internal schema) → build:registry → public/r/*.json (shadcn-c
 | `registry.json` | Root config with all items (internal `AtomRegistryItem` schema) |
 | `scripts/registry-schema.ts` | TypeScript types: `AtomRegistryItem`, `AtomField`, `AtomDiscovery`, `AtomImplementation` |
 | `scripts/extract-component-metadata.ts` | Extracts `atom` field (variants, props, cssClasses, etc.) from source files |
-| `scripts/build-registry.mjs` | Compiles internal → public, injects `atom` field, writes `public/r/*.json` |
+| `scripts/build-registry.mjs` | Compiles internal → public, injects `atom` field, writes `public/r/*.json`, **publishes `public/r/tokens-nested.json`** |
 | `scripts/validate-registry-vs-manifest.ts` | Validates new output against old MCP MERGED_MANIFEST (regression test) |
 | `scripts/test-extract-metadata.ts` | 27 unit tests for the extractor |
+| `scripts/validate-published-tokens.mjs` | Validates `public/r/tokens-nested.json` (categories, semantic palette, no unresolved refs) |
 | `public/r/index.json` | Enriched catalog with `discovery` fields (for MCP warm start, ~38KB) |
 | `public/r/{name}.json` | Per-item JSON with `files[].content` + `atom` field (discovery + implementation) |
+| `public/r/tokens-nested.json` | **Resolved design tokens (Style Dictionary nested) — the token source of truth the MCP consumes** |
+
+### Tokens as source of truth (`tokens-nested.json`)
+
+`build:registry` now runs `pnpm --filter @atom-uikit/tokens build` first, then copies Style
+Dictionary's `packages/tokens/build/json/tokens-nested.json` to `public/r/tokens-nested.json`
+(a raw file, not a registry item, not in `index.json`). The MCP's `getTokens()` fetches it and
+overlays the resolved values onto its local skeleton — so a token change in this repo propagates
+to the MCP (and any generated `DESIGN.md`) without touching MCP code.
+
+CI: `.github/workflows/validate-tokens.yml` runs `build:registry` + `validate-published-tokens.mjs`
+on PRs touching `packages/tokens/**`, `registry.json`, or `scripts/**`.
 
 ### The `atom` field
 
@@ -72,7 +85,14 @@ npx atom-uikit add button  # Consumer: copy component + deps to project
 
 Registry JSONs are served from `UIKitDocumentation_ATOM` at `/api/r/[name].json` with triple auth: Clerk session (browser), JWT (CLI/MCP), API key (CI).
 
-The docs site syncs registry files at build time via `sync-registry.ts` (no committed copies). After `build:registry`, the script triggers a Deploy Hook to rebuild the docs site automatically.
+The docs site (`atom-uikit-docs`) syncs registry files at build time via `sync-registry.ts` (no committed copies), then serves them at `/api/r/[name]`. After `build:registry`, this repo triggers a Deploy Hook to rebuild the docs site.
+
+**Sync source — GitHub Contents API.** The docs build reads the registry directly from THIS repo's
+`public/r/` on `main` via `https://api.github.com/repos/karenrebecag/atom-uikit-ds/contents/public/r`
+(env `REGISTRY_SYNC_URL`), authenticated with `REGISTRY_SYNC_TOKEN` (a GitHub PAT, `contents:read`).
+This replaced the old circular self-sync (docs pulling from its own previous deployment), so new
+artifacts like `tokens-nested.json` propagate without a manual seed. So: **commit `public/r/` to
+`main`** for it to reach production.
 
 ### Deploy Hook
 
@@ -89,10 +109,13 @@ pnpm build:registry
 ### Deploy order
 
 ```
-1. atom-uikit-ds       — pnpm build:registry -> public/r/*.json + trigger deploy hook
-2. UIKitDocumentation   — sync-registry.ts syncs from DS or previous deployment, then next build
-3. atom-uikit-cms-db/mcp — fetches from uikit.atomchat.io/api/r/ at runtime (5min cache)
+1. atom-uikit-ds   — pnpm build:registry -> public/r/*.json + tokens-nested.json; commit to main; trigger deploy hook
+2. atom-uikit-docs — sync-registry.ts pulls public/r from this repo via GitHub Contents API, then builds + serves /api/r
+3. uikit-atom-mcp  — fetches uikit.atomchat.io/api/r at runtime (index, components, tokens-nested.json; 5min cache)
 ```
+
+`ATOM_REGISTRY_KEY` is the `/api/r` serving/API key — it must be identical across `uikit-atom-mcp`,
+`atom-uikit-docs`, and `atom-uikit-cms-db`. Keep it separate from `REGISTRY_SYNC_TOKEN` (the GitHub PAT).
 
 ## Next Steps
 
