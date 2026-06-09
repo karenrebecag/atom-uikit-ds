@@ -1496,6 +1496,424 @@
       ]
     },
     {
+      "name": "layout/pricing-tiers",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Pricing Tiers",
+      "description": "Layout template: pricing-tiers",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/pricing-tiers.ts",
+          "outputPath": "layouts/pricing-tiers.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/faq-accordion",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "FAQ Accordion",
+      "description": "Layout template: faq-accordion",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/faq-accordion.ts",
+          "outputPath": "layouts/faq-accordion.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/testimonial-row",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Testimonial Row",
+      "description": "Layout template: testimonial-row",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/testimonial-row.ts",
+          "outputPath": "layouts/testimonial-row.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/logo-marquee",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Logo Marquee",
+      "description": "Layout template: logo-marquee",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/logo-marquee.ts",
+          "outputPath": "layouts/logo-marquee.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/hero-fullbleed",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Hero Fullbleed",
+      "description": "Layout template: hero-fullbleed",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/hero-fullbleed.ts",
+          "outputPath": "layouts/hero-fullbleed.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/stats-band",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Stats Band",
+      "description": "Layout template: stats-band",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/stats-band.ts",
+          "outputPath": "layouts/stats-band.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/logo-grid",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Logo Grid",
+      "description": "Layout template: logo-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/logo-grid.ts",
+          "outputPath": "layouts/logo-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/navbar-dropdown",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Navbar con dropdowns",
+      "description": "Layout template: navbar-dropdown",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/navbar-dropdown.ts",
+          "outputPath": "layouts/navbar-dropdown.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/footer-simple",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Footer Simple",
+      "description": "Layout template: footer-simple",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/footer-simple.ts",
+          "outputPath": "layouts/footer-simple.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/footer-newsletter",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Footer con newsletter",
+      "description": "Layout template: footer-newsletter",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/footer-newsletter.ts",
+          "outputPath": "layouts/footer-newsletter.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/page-header-centered",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Page Header Centered",
+      "description": "Layout template: page-header-centered",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/page-header-centered.ts",
+          "outputPath": "layouts/page-header-centered.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/page-header-split",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Page Header Split",
+      "description": "Layout template: page-header-split",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/page-header-split.ts",
+          "outputPath": "layouts/page-header-split.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/feature-alternating",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Feature Alternating",
+      "description": "Layout template: feature-alternating",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/feature-alternating.ts",
+          "outputPath": "layouts/feature-alternating.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/feature-icon-list",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Feature Icon List",
+      "description": "Layout template: feature-icon-list",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/feature-icon-list.ts",
+          "outputPath": "layouts/feature-icon-list.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/feature-tabs",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Feature Tabs",
+      "description": "Layout template: feature-tabs",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/feature-tabs.ts",
+          "outputPath": "layouts/feature-tabs.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/cta-split-image",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "CTA Split con Imagen",
+      "description": "Layout template: cta-split-image",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/cta-split-image.ts",
+          "outputPath": "layouts/cta-split-image.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/cta-newsletter",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "CTA Newsletter",
+      "description": "Layout template: cta-newsletter",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/cta-newsletter.ts",
+          "outputPath": "layouts/cta-newsletter.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/contact-form",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Contacto con formulario",
+      "description": "Layout template: contact-form",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/contact-form.ts",
+          "outputPath": "layouts/contact-form.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/contact-cards",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Contacto en cards",
+      "description": "Layout template: contact-cards",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/contact-cards.ts",
+          "outputPath": "layouts/contact-cards.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/pricing-comparison",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Pricing Comparativo",
+      "description": "Layout template: pricing-comparison",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/pricing-comparison.ts",
+          "outputPath": "layouts/pricing-comparison.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/faq-two-col",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "FAQ dos columnas",
+      "description": "Layout template: faq-two-col",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/faq-two-col.ts",
+          "outputPath": "layouts/faq-two-col.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/testimonial-spotlight",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Testimonio Spotlight",
+      "description": "Layout template: testimonial-spotlight",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/testimonial-spotlight.ts",
+          "outputPath": "layouts/testimonial-spotlight.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "button-hover",
       "kind": "hook",
       "framework": "react",

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/contact-cards",
+  "type": "registry:file",
+  "title": "Contacto en cards",
+  "description": "Layout template: contact-cards",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/contact-cards.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: contact-cards\n *\n * Grid de 2-4 cards de canal (ventas, soporte, oficinas) con icono, texto y link.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const contactCards = {\n  slug: 'contact-cards',\n  name: 'Contacto en cards',\n  description:\n    'Grid de 2-4 cards de canal (ventas, soporte, oficinas) con icono, texto y link. Structure only.',\n  components: ['item', 'link-button', 'typography'],\n  html: `<!-- Layout: contact-cards -->\n<section class=\"l-contact-cards\">\n  <div class=\"l-contact-cards__header\">\n    <h2 class=\"l-contact-cards__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-contact-cards__grid\">\n    <div class=\"item l-contact-cards__card\">\n      <div class=\"l-contact-cards__icon\"><!-- icon --></div>\n      <h3 class=\"l-contact-cards__title\">{{card1_title}}</h3>\n      <p class=\"l-contact-cards__body\">{{card1_body}}</p>\n      <a href=\"{{card1_url}}\" class=\"link-button\">{{card1_linkLabel}}</a>\n    </div>\n    <div class=\"item l-contact-cards__card\">\n      <div class=\"l-contact-cards__icon\"><!-- icon --></div>\n      <h3 class=\"l-contact-cards__title\">{{card2_title}}</h3>\n      <p class=\"l-contact-cards__body\">{{card2_body}}</p>\n      <a href=\"{{card2_url}}\" class=\"link-button\">{{card2_linkLabel}}</a>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: contact-cards — structure only */\n.l-contact-cards {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-contact-cards__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-contact-cards__grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: var(--spacing-6);\n}\n@media (max-width: 600px) {\n  .l-contact-cards__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-contact-cards__card {\n  padding: var(--spacing-6);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n}\n.l-contact-cards__icon {\n  width: 32px;\n  height: 32px;\n  background: var(--muted);\n  border-radius: 50%;\n  margin-bottom: var(--spacing-3);\n}\n.l-contact-cards__title {\n  font-size: var(--text-lg);\n  font-weight: 600;\n}\n.l-contact-cards__body {\n  color: var(--muted-foreground);\n  margin: var(--spacing-2) 0;\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Contacto en cards",
+      "description": "Layout template: contact-cards",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

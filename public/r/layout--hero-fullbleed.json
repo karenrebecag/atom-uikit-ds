@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/hero-fullbleed",
+  "type": "registry:file",
+  "title": "Hero Fullbleed",
+  "description": "Layout template: hero-fullbleed",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/hero-fullbleed.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: hero-fullbleed\n *\n * Imagen a sangre completa con overlay oscuro y contenido blanco encima. Impacto maximo.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const heroFullbleed = {\n  slug: 'hero-fullbleed',\n  name: 'Hero Fullbleed',\n  description:\n    'Imagen a sangre completa con overlay oscuro y contenido blanco encima. Impacto maximo. Structure only.',\n  components: ['chip', 'button', 'typography'],\n  html: `<!-- Layout: hero-fullbleed -->\n<section class=\"l-hero-fullbleed\" style=\"background-image: url('{{background}}')\">\n  <div class=\"l-hero-fullbleed__overlay\"></div>\n  <div class=\"l-hero-fullbleed__content\">\n    <span class=\"chip chip--outlined chip--s\">\n      <span class=\"chip__dot\"></span>\n      <span class=\"chip__label\">{{eyebrow}}</span>\n    </span>\n    <h1 class=\"l-hero-fullbleed__headline\">{{headline}}</h1>\n    <p class=\"l-hero-fullbleed__subtitle\">{{subtitle}}</p>\n    <div class=\"l-hero-fullbleed__actions\">\n      <a href=\"{{cta_primary_href}}\" class=\"button button--primary button--l\">\n        <span class=\"button__label\">{{primaryCta}}</span>\n      </a>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: hero-fullbleed — structure only */\n.l-hero-fullbleed {\n  position: relative;\n  min-height: 80vh;\n  display: flex;\n  align-items: center;\n  background-size: cover;\n  background-position: center;\n  color: white;\n  padding: var(--spacing-20) var(--spacing-8);\n}\n.l-hero-fullbleed__overlay {\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65));\n}\n.l-hero-fullbleed__content {\n  position: relative;\n  z-index: 1;\n  max-width: 640px;\n}\n.l-hero-fullbleed__headline {\n  font-size: var(--text-5xl);\n  line-height: 1.1;\n  margin: var(--spacing-4) 0;\n}\n.l-hero-fullbleed__subtitle {\n  max-width: 520px;\n  margin-bottom: var(--spacing-6);\n}\n.l-hero-fullbleed__actions {\n  display: flex;\n  gap: var(--spacing-3);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Hero Fullbleed",
+      "description": "Layout template: hero-fullbleed",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

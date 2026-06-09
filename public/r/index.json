@@ -1493,6 +1493,490 @@
     }
   },
   {
+    "name": "layout/pricing-tiers",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Pricing Tiers",
+    "description": "Layout template: pricing-tiers",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Pricing Tiers",
+      "description": "Layout template: pricing-tiers",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/faq-accordion",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "FAQ Accordion",
+    "description": "Layout template: faq-accordion",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "FAQ Accordion",
+      "description": "Layout template: faq-accordion",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/testimonial-row",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Testimonial Row",
+    "description": "Layout template: testimonial-row",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Testimonial Row",
+      "description": "Layout template: testimonial-row",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/logo-marquee",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Logo Marquee",
+    "description": "Layout template: logo-marquee",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Logo Marquee",
+      "description": "Layout template: logo-marquee",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/hero-fullbleed",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Hero Fullbleed",
+    "description": "Layout template: hero-fullbleed",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Hero Fullbleed",
+      "description": "Layout template: hero-fullbleed",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/stats-band",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Stats Band",
+    "description": "Layout template: stats-band",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Stats Band",
+      "description": "Layout template: stats-band",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/logo-grid",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Logo Grid",
+    "description": "Layout template: logo-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Logo Grid",
+      "description": "Layout template: logo-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/navbar-dropdown",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Navbar con dropdowns",
+    "description": "Layout template: navbar-dropdown",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Navbar con dropdowns",
+      "description": "Layout template: navbar-dropdown",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/footer-simple",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Footer Simple",
+    "description": "Layout template: footer-simple",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Footer Simple",
+      "description": "Layout template: footer-simple",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/footer-newsletter",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Footer con newsletter",
+    "description": "Layout template: footer-newsletter",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Footer con newsletter",
+      "description": "Layout template: footer-newsletter",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/page-header-centered",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Page Header Centered",
+    "description": "Layout template: page-header-centered",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Page Header Centered",
+      "description": "Layout template: page-header-centered",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/page-header-split",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Page Header Split",
+    "description": "Layout template: page-header-split",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Page Header Split",
+      "description": "Layout template: page-header-split",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/feature-alternating",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Feature Alternating",
+    "description": "Layout template: feature-alternating",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Feature Alternating",
+      "description": "Layout template: feature-alternating",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/feature-icon-list",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Feature Icon List",
+    "description": "Layout template: feature-icon-list",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Feature Icon List",
+      "description": "Layout template: feature-icon-list",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/feature-tabs",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Feature Tabs",
+    "description": "Layout template: feature-tabs",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Feature Tabs",
+      "description": "Layout template: feature-tabs",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/cta-split-image",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "CTA Split con Imagen",
+    "description": "Layout template: cta-split-image",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "CTA Split con Imagen",
+      "description": "Layout template: cta-split-image",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/cta-newsletter",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "CTA Newsletter",
+    "description": "Layout template: cta-newsletter",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "CTA Newsletter",
+      "description": "Layout template: cta-newsletter",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/contact-form",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Contacto con formulario",
+    "description": "Layout template: contact-form",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Contacto con formulario",
+      "description": "Layout template: contact-form",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/contact-cards",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Contacto en cards",
+    "description": "Layout template: contact-cards",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Contacto en cards",
+      "description": "Layout template: contact-cards",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/pricing-comparison",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Pricing Comparativo",
+    "description": "Layout template: pricing-comparison",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Pricing Comparativo",
+      "description": "Layout template: pricing-comparison",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/faq-two-col",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "FAQ dos columnas",
+    "description": "Layout template: faq-two-col",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "FAQ dos columnas",
+      "description": "Layout template: faq-two-col",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/testimonial-spotlight",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Testimonio Spotlight",
+    "description": "Layout template: testimonial-spotlight",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Testimonio Spotlight",
+      "description": "Layout template: testimonial-spotlight",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "button-hover",
     "kind": "hook",
     "framework": "react",

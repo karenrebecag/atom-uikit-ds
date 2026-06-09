@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/logo-grid",
+  "type": "registry:file",
+  "title": "Logo Grid",
+  "description": "Layout template: logo-grid",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/logo-grid.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: logo-grid\n *\n * Grid estatico de logos (2 filas max). Para cuando el marquee distrae.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const logoGrid = {\n  slug: 'logo-grid',\n  name: 'Logo Grid',\n  description:\n    'Grid estatico de logos (2 filas max). Para cuando el marquee distrae. Structure only.',\n  components: ['image', 'typography', 'divider'],\n  html: `<!-- Layout: logo-grid -->\n<section class=\"l-logo-grid\">\n  <div class=\"l-logo-grid__header\">\n    <h3 class=\"l-logo-grid__headline\">{{headline}}</h3>\n  </div>\n  <div class=\"l-logo-grid__grid\">\n    <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n    <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n    <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n    <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n    <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n    <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n    <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n    <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n  </div>\n</section>`,\n  css: `/* Layout: logo-grid — structure only */\n.l-logo-grid {\n  padding: var(--spacing-8) var(--spacing-8);\n}\n.l-logo-grid__header {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n}\n.l-logo-grid__grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: var(--spacing-8);\n  align-items: center;\n}\n@media (max-width: 768px) {\n  .l-logo-grid__grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n.l-logo-grid__grid img {\n  height: 40px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n  justify-self: center;\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Logo Grid",
+      "description": "Layout template: logo-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

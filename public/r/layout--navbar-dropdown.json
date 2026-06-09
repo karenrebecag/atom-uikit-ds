@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/navbar-dropdown",
+  "type": "registry:file",
+  "title": "Navbar con dropdowns",
+  "description": "Layout template: navbar-dropdown",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/navbar-dropdown.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: navbar-dropdown\n *\n * Navbar con menus desplegables por grupo (Producto, Recursos...). Para sitios con muchas paginas.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const navbarDropdown = {\n  slug: 'navbar-dropdown',\n  name: 'Navbar con dropdowns',\n  description:\n    'Navbar con menus desplegables por grupo (Producto, Recursos...). Para sitios con muchas paginas. Structure only.',\n  components: ['nav-link', 'dropdown-menu', 'menu-button', 'button', 'burger-icon', 'image'],\n  html: `<!-- Layout: navbar-dropdown -->\n<nav class=\"l-navbar-dropdown\">\n  <div class=\"l-navbar-dropdown__logo\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n  </div>\n  <div class=\"l-navbar-dropdown__menu\">\n    <div class=\"dropdown-menu\">\n      <button class=\"menu-button\">Producto</button>\n      <div class=\"dropdown-menu__content\">\n        <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n        <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n      </div>\n    </div>\n    <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n    <div class=\"dropdown-menu\">\n      <button class=\"menu-button\">Recursos</button>\n      <div class=\"dropdown-menu__content\">\n        <a href=\"{{link4_url}}\" class=\"nav-link\">{{link4_label}}</a>\n      </div>\n    </div>\n  </div>\n  <div class=\"l-navbar-dropdown__cta\">\n    <a href=\"{{cta_url}}\" class=\"button button--primary button--m\">\n      <span class=\"button__label\">{{cta}}</span>\n    </a>\n  </div>\n  <button class=\"l-navbar-dropdown__burger burger-icon\" aria-label=\"Menu\">\n    <span class=\"burger-icon__bar\"></span>\n    <span class=\"burger-icon__bar\"></span>\n    <span class=\"burger-icon__bar\"></span>\n  </button>\n</nav>`,\n  css: `/* Layout: navbar-dropdown — structure only */\n.l-navbar-dropdown {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-4);\n  padding: var(--spacing-4) var(--spacing-8);\n  border-bottom: 1px solid var(--border);\n}\n.l-navbar-dropdown__logo {\n  flex-shrink: 0;\n}\n.l-navbar-dropdown__menu {\n  display: flex;\n  gap: var(--spacing-6);\n  align-items: center;\n}\n.l-navbar-dropdown__cta {\n  flex-shrink: 0;\n}\n.l-navbar-dropdown__burger {\n  display: none;\n}\n@media (max-width: 768px) {\n  .l-navbar-dropdown__menu,\n  .l-navbar-dropdown__cta {\n    display: none;\n  }\n  .l-navbar-dropdown__burger {\n    display: block;\n  }\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Navbar con dropdowns",
+      "description": "Layout template: navbar-dropdown",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/testimonial-row",
+  "type": "registry:file",
+  "title": "Testimonial Row",
+  "description": "Layout template: testimonial-row",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/testimonial-row.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: testimonial-row\n *\n * 2-3 quotes en cards horizontales con avatar, nombre y rol.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const testimonialRow = {\n  slug: 'testimonial-row',\n  name: 'Testimonial Row',\n  description:\n    '2-3 quotes en cards horizontales con avatar, nombre y rol. Structure only.',\n  components: ['avatar', 'typography', 'item'],\n  html: `<!-- Layout: testimonial-row -->\n<section class=\"l-testimonial-row\">\n  <div class=\"l-testimonial-row__header\">\n    <h2 class=\"l-testimonial-row__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-testimonial-row__grid\">\n    <figure class=\"l-testimonial-row__card\">\n      <blockquote class=\"l-testimonial-row__quote\">{{quote1}}</blockquote>\n      <figcaption class=\"l-testimonial-row__author\">\n        <img src=\"{{avatar1}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div class=\"l-testimonial-row__name\">{{name1}}</div>\n          <div class=\"l-testimonial-row__role\">{{role1}}</div>\n        </div>\n      </figcaption>\n    </figure>\n    <figure class=\"l-testimonial-row__card\">\n      <blockquote class=\"l-testimonial-row__quote\">{{quote2}}</blockquote>\n      <figcaption class=\"l-testimonial-row__author\">\n        <img src=\"{{avatar2}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div class=\"l-testimonial-row__name\">{{name2}}</div>\n          <div class=\"l-testimonial-row__role\">{{role2}}</div>\n        </div>\n      </figcaption>\n    </figure>\n    <figure class=\"l-testimonial-row__card\">\n      <blockquote class=\"l-testimonial-row__quote\">{{quote3}}</blockquote>\n      <figcaption class=\"l-testimonial-row__author\">\n        <img src=\"{{avatar3}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div class=\"l-testimonial-row__name\">{{name3}}</div>\n          <div class=\"l-testimonial-row__role\">{{role3}}</div>\n        </div>\n      </figcaption>\n    </figure>\n  </div>\n</section>`,\n  css: `/* Layout: testimonial-row — structure only */\n.l-testimonial-row {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-testimonial-row__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-testimonial-row__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-6);\n}\n@media (max-width: 768px) {\n  .l-testimonial-row__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-testimonial-row__card {\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  padding: var(--spacing-6);\n}\n.l-testimonial-row__quote {\n  font-style: italic;\n  margin: 0 0 var(--spacing-4);\n}\n.l-testimonial-row__author {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-3);\n}\n.l-testimonial-row__name {\n  font-weight: 600;\n}\n.l-testimonial-row__role {\n  font-size: var(--text-sm);\n  color: var(--muted-foreground);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Testimonial Row",
+      "description": "Layout template: testimonial-row",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

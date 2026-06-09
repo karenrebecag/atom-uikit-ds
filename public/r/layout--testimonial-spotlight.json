@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/testimonial-spotlight",
+  "type": "registry:file",
+  "title": "Testimonio Spotlight",
+  "description": "Layout template: testimonial-spotlight",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/testimonial-spotlight.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: testimonial-spotlight\n *\n * Una sola cita grande centrada con avatar, nombre, rol y logo del cliente. Maximo peso.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const testimonialSpotlight = {\n  slug: 'testimonial-spotlight',\n  name: 'Testimonio Spotlight',\n  description:\n    'Una sola cita grande centrada con avatar, nombre, rol y logo del cliente. Maximo peso. Structure only.',\n  components: ['avatar', 'typography', 'image'],\n  html: `<!-- Layout: testimonial-spotlight -->\n<section class=\"l-testimonial-spotlight\">\n  <blockquote class=\"l-testimonial-spotlight__quote\">{{quote}}</blockquote>\n  <div class=\"l-testimonial-spotlight__author\">\n    <img src=\"{{avatar}}\" alt=\"\" class=\"avatar avatar--s\" />\n    <div>\n      <div class=\"l-testimonial-spotlight__name\">{{name}}</div>\n      <div class=\"l-testimonial-spotlight__role\">{{role}}</div>\n    </div>\n    <img src=\"{{companyLogo}}\" alt=\"\" class=\"image l-testimonial-spotlight__logo\" />\n  </div>\n</section>`,\n  css: `/* Layout: testimonial-spotlight — structure only */\n.l-testimonial-spotlight {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-testimonial-spotlight__quote {\n  font-size: var(--text-2xl);\n  font-style: italic;\n  margin-bottom: var(--spacing-6);\n}\n.l-testimonial-spotlight__author {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-3);\n}\n.l-testimonial-spotlight__name {\n  font-weight: 600;\n}\n.l-testimonial-spotlight__role {\n  font-size: var(--text-sm);\n  color: var(--muted-foreground);\n}\n.l-testimonial-spotlight__logo {\n  height: 24px;\n  margin-left: var(--spacing-4);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Testimonio Spotlight",
+      "description": "Layout template: testimonial-spotlight",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

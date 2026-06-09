@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/feature-alternating",
+  "type": "registry:file",
+  "title": "Feature Alternating",
+  "description": "Layout template: feature-alternating",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/feature-alternating.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: feature-alternating\n *\n * Bloques imagen + texto alternando lados. Para explicar 2-4 capacidades en profundidad.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const featureAlternating = {\n  slug: 'feature-alternating',\n  name: 'Features Alternados',\n  description:\n    'Bloques imagen + texto alternando lados. Para explicar 2-4 capacidades en profundidad. Structure only.',\n  components: ['chip', 'button', 'typography', 'image'],\n  html: `<!-- Layout: feature-alternating -->\n<section class=\"l-feature-alternating\">\n  <div class=\"l-feature-alternating__header\">\n    <h2 class=\"l-feature-alternating__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-feature-alternating__block\">\n    <div class=\"l-feature-alternating__content\">\n      <span class=\"chip chip--outlined chip--s\">{{block1_eyebrow}}</span>\n      <h3 class=\"l-feature-alternating__title\">{{block1_title}}</h3>\n      <p class=\"l-feature-alternating__body\">{{block1_body}}</p>\n      <a href=\"#\" class=\"link-button\">{{block1_ctaLabel}}</a>\n    </div>\n    <div class=\"l-feature-alternating__media\">\n      <img src=\"{{block1_image}}\" alt=\"\" class=\"image\" />\n    </div>\n  </div>\n  <div class=\"l-feature-alternating__block l-feature-alternating__block--reverse\">\n    <div class=\"l-feature-alternating__content\">\n      <span class=\"chip chip--outlined chip--s\">{{block2_eyebrow}}</span>\n      <h3 class=\"l-feature-alternating__title\">{{block2_title}}</h3>\n      <p class=\"l-feature-alternating__body\">{{block2_body}}</p>\n      <a href=\"#\" class=\"link-button\">{{block2_ctaLabel}}</a>\n    </div>\n    <div class=\"l-feature-alternating__media\">\n      <img src=\"{{block2_image}}\" alt=\"\" class=\"image\" />\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: feature-alternating — structure only */\n.l-feature-alternating {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-feature-alternating__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-feature-alternating__block {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-8);\n  align-items: center;\n  margin-bottom: var(--spacing-8);\n}\n@media (max-width: 768px) {\n  .l-feature-alternating__block {\n    grid-template-columns: 1fr;\n  }\n}\n.l-feature-alternating__block--reverse {\n  direction: rtl;\n}\n.l-feature-alternating__block--reverse > * {\n  direction: ltr;\n}\n.l-feature-alternating__content {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-3);\n}\n.l-feature-alternating__title {\n  font-size: var(--text-2xl);\n}\n.l-feature-alternating__body {\n  color: var(--muted-foreground);\n}\n.l-feature-alternating__media img {\n  width: 100%;\n  border-radius: var(--radius-lg);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Feature Alternating",
+      "description": "Layout template: feature-alternating",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}
