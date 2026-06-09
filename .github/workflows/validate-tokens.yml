@@ -1,0 +1,32 @@
+name: Validate Tokens
+
+on:
+  pull_request:
+    paths:
+      - 'packages/tokens/**'
+      - 'registry.json'
+      - 'scripts/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate published tokens
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Builds tokens (Style Dictionary) + emits public/r/tokens-nested.json
+      - run: pnpm build:registry
+      # Validates the artifact the MCP consumes: required categories, semantic
+      # palette, no unresolved references. Self-contained (no MCP, no network).
+      - run: pnpm validate:published
