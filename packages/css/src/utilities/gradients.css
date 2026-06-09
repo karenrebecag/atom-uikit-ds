@@ -2,8 +2,12 @@
  * Brand gradients — composed from color tokens (no raw hex).
  * Source of truth: ATOM Brand System "Colores" — the Violet→Orange gradient is
  * the most expressive brand element: AI (Violet) producing tangible results
- * (Orange). Allowed on hero headlines (keywords) and section backgrounds.
- * Forbidden on small elements and icons.
+ * (Orange).
+ *
+ * ALLOWED: hero headline keywords (.text-gradient) and section backgrounds (.bg-*).
+ * FORBIDDEN: buttons and CTAs (use .button--primary/--secondary from the button
+ * component — buttons are NEVER gradient), icons, chips, and any small element.
+ * White stays the page base (humanity); dark backgrounds are AI-themed sections only.
  */
 
 :root {

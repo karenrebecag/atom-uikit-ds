@@ -2,6 +2,10 @@
  * Section background variants for layouts (bgStyle slot in the MCP catalog).
  * Dark variants set a light foreground so sections meet WCAG AA out of the box.
  * Never pure black (brand rule) — dark base is zinc-900/950.
+ *
+ * USAGE RULE: white is the page base (humanity). .bg-dark / .bg-dark-glow are
+ * EXCLUSIVELY for sections about AI (agents, automation) — 0-2 per page, never
+ * the whole page. These classes go on <section>, never on body or buttons.
  */
 
 .bg-gradient-brand {
