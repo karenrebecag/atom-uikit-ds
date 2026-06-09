@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/navbar-simple",
+  "type": "registry:file",
+  "title": "Navbar Simple",
+  "description": "Layout template: navbar-simple",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/navbar-simple.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: navbar-simple\n *\n * Barra de navegacion: logo izquierda, links centro, CTA derecha. Colapsa a burger en mobile.\n * Structure-only. References DS components by BEM class.\n * Slots from catalog: logo (image), links (item-list max6: label, url), cta.\n */\n\nexport const navbarSimple = {\n  slug: 'navbar-simple',\n  name: 'Navbar Simple',\n  description:\n    'Barra de navegacion: logo izquierda, links centro, CTA derecha. Colapsa a burger en mobile. Structure only.',\n  components: ['nav-link', 'button', 'burger-icon', 'image'],\n  html: `<!-- Layout: navbar-simple -->\n<nav class=\"l-navbar-simple\">\n  <div class=\"l-navbar-simple__logo\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n  </div>\n  <div class=\"l-navbar-simple__links\">\n    <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n    <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n    <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n    <a href=\"{{link4_url}}\" class=\"nav-link\">{{link4_label}}</a>\n  </div>\n  <div class=\"l-navbar-simple__cta\">\n    <a href=\"{{cta_url}}\" class=\"button button--primary button--m\">\n      <span class=\"button__label\">{{cta}}</span>\n    </a>\n  </div>\n  <button class=\"l-navbar-simple__burger burger-icon\" aria-label=\"Menu\">\n    <span class=\"burger-icon__bar\"></span>\n    <span class=\"burger-icon__bar\"></span>\n    <span class=\"burger-icon__bar\"></span>\n  </button>\n</nav>`,\n  css: `/* Layout: navbar-simple — structure only */\n.l-navbar-simple {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-4);\n  padding: var(--spacing-4) var(--spacing-8);\n  border-bottom: 1px solid var(--border);\n}\n.l-navbar-simple__logo {\n  flex-shrink: 0;\n}\n.l-navbar-simple__links {\n  display: flex;\n  gap: var(--spacing-6);\n  align-items: center;\n}\n.l-navbar-simple__cta {\n  flex-shrink: 0;\n}\n.l-navbar-simple__burger {\n  display: none;\n}\n@media (max-width: 768px) {\n  .l-navbar-simple__links,\n  .l-navbar-simple__cta {\n    display: none;\n  }\n  .l-navbar-simple__burger {\n    display: block;\n  }\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Navbar Simple",
+      "description": "Layout template: navbar-simple",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

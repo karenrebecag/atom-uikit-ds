@@ -1439,6 +1439,63 @@
       ]
     },
     {
+      "name": "layout/navbar-simple",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Navbar Simple",
+      "description": "Layout template: navbar-simple",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/navbar-simple.ts",
+          "outputPath": "layouts/navbar-simple.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/footer-columns",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Footer Columns",
+      "description": "Layout template: footer-columns",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/footer-columns.ts",
+          "outputPath": "layouts/footer-columns.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/blog-listing-3col",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Blog Listing 3col",
+      "description": "Layout template: blog-listing-3col",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/blog-listing-3col.ts",
+          "outputPath": "layouts/blog-listing-3col.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "button-hover",
       "kind": "hook",
       "framework": "react",

@@ -1427,6 +1427,72 @@
     }
   },
   {
+    "name": "layout/navbar-simple",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Navbar Simple",
+    "description": "Layout template: navbar-simple",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Navbar Simple",
+      "description": "Layout template: navbar-simple",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/footer-columns",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Footer Columns",
+    "description": "Layout template: footer-columns",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Footer Columns",
+      "description": "Layout template: footer-columns",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/blog-listing-3col",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Blog Listing 3col",
+    "description": "Layout template: blog-listing-3col",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Blog Listing 3col",
+      "description": "Layout template: blog-listing-3col",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "button-hover",
     "kind": "hook",
     "framework": "react",

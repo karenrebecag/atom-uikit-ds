@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/footer-columns",
+  "type": "registry:file",
+  "title": "Footer Columns",
+  "description": "Layout template: footer-columns",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/footer-columns.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: footer-columns\n *\n * Footer completo: logo + tagline izquierda, columnas de links agrupados, fila legal abajo.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const footerColumns = {\n  slug: 'footer-columns',\n  name: 'Footer Columns',\n  description:\n    'Footer completo: logo + tagline izquierda, columnas de links agrupados, fila legal abajo. Structure only.',\n  components: ['nav-link', 'typography', 'divider', 'image'],\n  html: `<!-- Layout: footer-columns -->\n<footer class=\"l-footer-columns\">\n  <div class=\"l-footer-columns__brand\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n    <p class=\"l-footer-columns__tagline\">{{tagline}}</p>\n  </div>\n  <div class=\"l-footer-columns__cols\">\n    <div class=\"l-footer-columns__col\">\n      <h4 class=\"l-footer-columns__col-title\">{{col1_title}}</h4>\n      <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n      <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n    </div>\n    <div class=\"l-footer-columns__col\">\n      <h4 class=\"l-footer-columns__col-title\">{{col2_title}}</h4>\n      <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n      <a href=\"{{link4_url}}\" class=\"nav-link\">{{link4_label}}</a>\n    </div>\n    <div class=\"l-footer-columns__col\">\n      <h4 class=\"l-footer-columns__col-title\">{{col3_title}}</h4>\n      <a href=\"{{link5_url}}\" class=\"nav-link\">{{link5_label}}</a>\n      <a href=\"{{link6_url}}\" class=\"nav-link\">{{link6_label}}</a>\n    </div>\n  </div>\n  <div class=\"l-footer-columns__legal\">\n    <hr class=\"divider\" />\n    <p>{{legal}}</p>\n  </div>\n</footer>`,\n  css: `/* Layout: footer-columns — structure only */\n.l-footer-columns {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n  border-top: 1px solid var(--border);\n}\n.l-footer-columns__brand {\n  max-width: 200px;\n}\n.l-footer-columns__cols {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-8);\n}\n@media (max-width: 768px) {\n  .l-footer-columns__cols {\n    grid-template-columns: 1fr;\n  }\n}\n.l-footer-columns__col-title {\n  font-weight: 600;\n  margin-bottom: var(--spacing-2);\n}\n.l-footer-columns__legal {\n  margin-top: var(--spacing-4);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Footer Columns",
+      "description": "Layout template: footer-columns",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}
