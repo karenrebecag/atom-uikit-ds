@@ -34,7 +34,8 @@
 }
 
 .stats-card--gradient .stats-card__value {
-  background: linear-gradient(135deg, var(--color-violet-600) 0%, var(--brand) 100%);
+  /* fallback keeps standalone installs working without the utilities item */
+  background: var(--gradient-brand, linear-gradient(135deg, var(--color-violet-600) 0%, var(--brand) 100%));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -1,1 +1,3 @@
-/* Utility classes: glass, helpers, motion, transitions */
+/* Utility classes: gradients, backgrounds (glass, helpers, motion pending) */
+@import './gradients.css';
+@import './backgrounds.css';

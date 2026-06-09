@@ -60,6 +60,27 @@
     }
   },
   {
+    "name": "utilities",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Brand Utilities",
+    "description": "Brand gradients (gradient-brand custom properties, .text-gradient) and section background variants (.bg-*)",
+    "registryDependencies": [
+      "tokens"
+    ],
+    "discovery": {
+      "name": "Brand Utilities",
+      "description": "Brand gradients (gradient-brand custom properties, .text-gradient) and section background variants (.bg-*)",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "button",
     "kind": "component",
     "framework": "react",

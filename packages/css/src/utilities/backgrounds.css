@@ -1,0 +1,28 @@
+/**
+ * Section background variants for layouts (bgStyle slot in the MCP catalog).
+ * Dark variants set a light foreground so sections meet WCAG AA out of the box.
+ * Never pure black (brand rule) — dark base is zinc-900/950.
+ */
+
+.bg-gradient-brand {
+  background: var(--gradient-brand);
+  color: var(--color-zinc-50);
+}
+
+.bg-gradient-soft {
+  background: var(--gradient-brand-soft);
+}
+
+.bg-dark {
+  background-color: var(--color-zinc-900);
+  color: var(--color-zinc-50);
+}
+
+.bg-dark-glow {
+  background: var(--gradient-dark-glow);
+  color: var(--color-zinc-50);
+}
+
+.bg-violet-soft {
+  background-color: var(--color-violet-50);
+}

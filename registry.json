@@ -64,6 +64,29 @@
       ]
     },
     {
+      "name": "utilities",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Brand Utilities",
+      "description": "Brand gradients (gradient-brand custom properties, .text-gradient) and section background variants (.bg-*)",
+      "registryDependencies": [
+        "tokens"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/utilities/gradients.css",
+          "outputPath": "styles/utilities/gradients.css",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/utilities/backgrounds.css",
+          "outputPath": "styles/utilities/backgrounds.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "button",
       "kind": "component",
       "framework": "react",
