@@ -1,0 +1,229 @@
+/* -------------------------------------------------------------------------
+   WhatsApp Button — static stylesheet
+
+   Atom converts via WhatsApp, never via forms. This is the contact CTA for
+   ANY "talk to us / book a demo / sales / support" action.
+
+   Source of truth: @atom-uikit/whatsapp render.ts buildCSS() — that package is
+   the JS widget (float mode, click tracking, webhook, chat-id) for app/npm
+   consumers. THIS file is the static stylesheet for HTML artifacts and
+   landings: same BEM classes, no JS required — render an <a href="wa.me/...">.
+
+   Variants: --inline (static, in flow) | --pill (fixed floating) | --icon
+             (fixed floating, circle, icon-only). Sizes: xs s m l xl.
+   --animated adds the icon-slide hover (button-009 pattern).
+
+   Static usage (inline, the landing CTA):
+     <a class="atom-wa-btn atom-wa-btn--inline atom-wa-btn--m atom-wa-btn--animated"
+        href="https://wa.me/<PHONE>?text=<MESSAGE_URL_ENCODED>"
+        aria-label="Hablar por WhatsApp">
+       <span class="atom-wa-btn__inner">
+         <span class="atom-wa-btn__icon is--left"><svg>...</svg></span>
+         <span class="atom-wa-btn__label">Hablar por WhatsApp</span>
+         <span class="atom-wa-btn__icon is--right"><svg>...</svg></span>
+       </span>
+       <span class="atom-wa-btn__bg"></span>
+     </a>
+   The WhatsApp icon SVG is the official glyph (viewBox 0 0 24 24, fill
+   currentColor) — get it from @atom-uikit/whatsapp or the brand assets.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --whatsapp: #25d366; /* WhatsApp brand green — the button color */
+  --whatsapp-foreground: #ffffff;
+}
+
+/* -- Base: grid layout for bg layer -- */
+.atom-wa-btn {
+  color: var(--whatsapp-foreground);
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  outline-style: none;
+  padding: 0;
+  border: none;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-grid;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-sans, 'Inter'), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* -- Focus ring (pseudo, outside bg) -- */
+.atom-wa-btn::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: -2px;
+  border-radius: 0.75em;
+  transition: box-shadow 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+.atom-wa-btn:focus-visible::after {
+  box-shadow: 0 0 0 2px var(--whatsapp);
+}
+
+/* -- Background layer -- */
+.atom-wa-btn__bg {
+  background-color: var(--whatsapp);
+  border-radius: 0.625em;
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+.atom-wa-btn:hover .atom-wa-btn__bg {
+  background-color: color-mix(in srgb, var(--whatsapp) 88%, #000);
+}
+.atom-wa-btn:active:not([aria-busy='true']) .atom-wa-btn__bg {
+  background-color: color-mix(in srgb, var(--whatsapp) 78%, #000);
+}
+
+/* -- Inner: content container with overflow clip -- */
+.atom-wa-btn__inner {
+  pointer-events: none;
+  gap: 0.375em;
+  padding: 0.75em 0.75em 0.75em 1em;
+  z-index: 1;
+  border-radius: 0.625em;
+  overflow: clip;
+  grid-area: 1 / 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+/* -- Icon -- */
+.atom-wa-btn__icon {
+  width: 0.875em;
+  height: 0.875em;
+  flex: none;
+}
+.atom-wa-btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* -- Label -- */
+.atom-wa-btn__label {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* -- Sizes (em-based, scales with font-size) -- */
+.atom-wa-btn--xs { font-size: 11px; }
+.atom-wa-btn--s  { font-size: 13px; }
+.atom-wa-btn--m  { font-size: 14px; }
+.atom-wa-btn--l  { font-size: 16px; }
+.atom-wa-btn--xl { font-size: 18px; }
+
+/* -- Variant: pill (fixed, floating) -- */
+.atom-wa-btn--pill {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+}
+.atom-wa-btn--pill .atom-wa-btn__bg {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+.atom-wa-btn--pill:hover .atom-wa-btn__bg {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* -- Variant: icon (fixed, floating, circle, icon-only) -- */
+.atom-wa-btn--icon {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+}
+.atom-wa-btn--icon .atom-wa-btn__bg {
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+.atom-wa-btn--icon:hover .atom-wa-btn__bg {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+.atom-wa-btn--icon .atom-wa-btn__inner {
+  border-radius: 999px;
+  padding: 0.75em;
+}
+.atom-wa-btn--icon .atom-wa-btn__label,
+.atom-wa-btn--icon .atom-wa-btn__icon.is--left {
+  display: none;
+}
+
+/* -- Variant: inline (static, in document flow — the landing CTA) -- */
+.atom-wa-btn--inline {
+  position: static;
+  z-index: auto;
+}
+
+/* ================================================================
+   ANIMATED — icon slide (button-009 pattern)
+   Default: [text] [icon-right visible]; Hover: [icon-left slides in] [text shifts]
+   ================================================================ */
+
+/* Not animated: hide the left icon */
+.atom-wa-btn:not(.atom-wa-btn--animated) .atom-wa-btn__icon.is--left {
+  display: none;
+}
+
+.atom-wa-btn--animated {
+  transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.atom-wa-btn--animated:active:not([aria-busy='true']) {
+  scale: 0.955 0.925;
+}
+.atom-wa-btn--animated .atom-wa-btn__icon {
+  transition: translate 0.5s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s ease-out;
+}
+.atom-wa-btn--animated .atom-wa-btn__label {
+  transition: translate 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.atom-wa-btn--animated .atom-wa-btn__icon.is--left {
+  position: absolute;
+  left: 1em;
+  opacity: 0;
+  translate: -1.5em 0 0;
+}
+.atom-wa-btn--animated .atom-wa-btn__icon.is--right {
+  opacity: 1;
+  translate: 0 0 0;
+}
+.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__label {
+  translate: calc(0.875em + 0.375em + 0.75em - 1em) 0 0;
+  transition: translate 0.5s 0.075s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__icon.is--left {
+  translate: 0 0 0;
+  opacity: 1;
+  transition: translate 0.5s 0.075s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s 0.075s ease-out;
+}
+.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__icon.is--right {
+  translate: 1.5em 0 0;
+  opacity: 0;
+  transition: translate 0.5s 0.05s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s 0.075s ease-out;
+}
+
+/* -- Responsive: floating pill collapses to icon on mobile -- */
+@media (max-width: 480px) {
+  .atom-wa-btn--pill .atom-wa-btn__label { display: none; }
+  .atom-wa-btn--pill .atom-wa-btn__icon.is--left { display: none; }
+  .atom-wa-btn--pill .atom-wa-btn__inner { padding: 0.75em; }
+  .atom-wa-btn--pill .atom-wa-btn__bg { border-radius: 999px; }
+}
+
+/* -- Reduced motion -- */
+@media (prefers-reduced-motion: reduce) {
+  .atom-wa-btn,
+  .atom-wa-btn .atom-wa-btn__icon,
+  .atom-wa-btn .atom-wa-btn__label { transition-duration: 0ms !important; }
+  .atom-wa-btn--animated:active { scale: 1; }
+}

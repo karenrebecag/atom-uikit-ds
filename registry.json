@@ -189,6 +189,32 @@
       ]
     },
     {
+      "name": "whatsapp-button",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "components",
+      "title": "WhatsApp Button",
+      "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+      "registryDependencies": [
+        "tokens"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/buttons/whatsapp-button.css",
+          "outputPath": "styles/components/whatsapp-button.css",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/whatsapp/src/config.ts",
+          "outputPath": "whatsapp/config.ts",
+          "type": "registry:file"
+        }
+      ],
+      "cssClassPrefixes": [
+        "atom-wa-btn"
+      ]
+    },
+    {
       "name": "input",
       "kind": "component",
       "framework": "react",

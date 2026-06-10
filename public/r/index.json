@@ -211,6 +211,37 @@
     }
   },
   {
+    "name": "whatsapp-button",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "components",
+    "title": "WhatsApp Button",
+    "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+    "registryDependencies": [
+      "tokens"
+    ],
+    "discovery": {
+      "name": "WhatsApp Button",
+      "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+      "category": "actions",
+      "variants": [
+        "inline",
+        "pill",
+        "icon"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "inline",
+      "defaultSize": "xs",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "input",
     "kind": "component",
     "framework": "react",

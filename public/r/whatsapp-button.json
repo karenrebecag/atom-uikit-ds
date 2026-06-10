@@ -1,0 +1,67 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "whatsapp-button",
+  "type": "registry:component",
+  "title": "WhatsApp Button",
+  "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+  "registryDependencies": [
+    "tokens"
+  ],
+  "files": [
+    {
+      "path": "styles/components/whatsapp-button.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   WhatsApp Button — static stylesheet\n\n   Atom converts via WhatsApp, never via forms. This is the contact CTA for\n   ANY \"talk to us / book a demo / sales / support\" action.\n\n   Source of truth: @atom-uikit/whatsapp render.ts buildCSS() — that package is\n   the JS widget (float mode, click tracking, webhook, chat-id) for app/npm\n   consumers. THIS file is the static stylesheet for HTML artifacts and\n   landings: same BEM classes, no JS required — render an <a href=\"wa.me/...\">.\n\n   Variants: --inline (static, in flow) | --pill (fixed floating) | --icon\n             (fixed floating, circle, icon-only). Sizes: xs s m l xl.\n   --animated adds the icon-slide hover (button-009 pattern).\n\n   Static usage (inline, the landing CTA):\n     <a class=\"atom-wa-btn atom-wa-btn--inline atom-wa-btn--m atom-wa-btn--animated\"\n        href=\"https://wa.me/<PHONE>?text=<MESSAGE_URL_ENCODED>\"\n        aria-label=\"Hablar por WhatsApp\">\n       <span class=\"atom-wa-btn__inner\">\n         <span class=\"atom-wa-btn__icon is--left\"><svg>...</svg></span>\n         <span class=\"atom-wa-btn__label\">Hablar por WhatsApp</span>\n         <span class=\"atom-wa-btn__icon is--right\"><svg>...</svg></span>\n       </span>\n       <span class=\"atom-wa-btn__bg\"></span>\n     </a>\n   The WhatsApp icon SVG is the official glyph (viewBox 0 0 24 24, fill\n   currentColor) — get it from @atom-uikit/whatsapp or the brand assets.\n   ------------------------------------------------------------------------- */\n\n:root {\n  --whatsapp: #25d366; /* WhatsApp brand green — the button color */\n  --whatsapp-foreground: #ffffff;\n}\n\n/* -- Base: grid layout for bg layer -- */\n.atom-wa-btn {\n  color: var(--whatsapp-foreground);\n  -webkit-user-select: none;\n  user-select: none;\n  background-color: transparent;\n  outline-style: none;\n  padding: 0;\n  border: none;\n  line-height: 1;\n  text-decoration: none;\n  display: inline-grid;\n  position: relative;\n  -webkit-tap-highlight-color: transparent;\n  cursor: pointer;\n  font-family: var(--font-family-sans, 'Inter'), ui-sans-serif, system-ui, sans-serif;\n  font-weight: var(--font-weight-medium, 500);\n}\n\n/* -- Focus ring (pseudo, outside bg) -- */\n.atom-wa-btn::after {\n  content: '';\n  display: block;\n  position: absolute;\n  inset: -2px;\n  border-radius: 0.75em;\n  transition: box-shadow 0.3s cubic-bezier(0.32, 0.72, 0, 1);\n  pointer-events: none;\n  z-index: 1;\n}\n.atom-wa-btn:focus-visible::after {\n  box-shadow: 0 0 0 2px var(--whatsapp);\n}\n\n/* -- Background layer -- */\n.atom-wa-btn__bg {\n  background-color: var(--whatsapp);\n  border-radius: 0.625em;\n  grid-area: 1 / 1;\n  width: 100%;\n  height: 100%;\n  transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1);\n}\n.atom-wa-btn:hover .atom-wa-btn__bg {\n  background-color: color-mix(in srgb, var(--whatsapp) 88%, #000);\n}\n.atom-wa-btn:active:not([aria-busy='true']) .atom-wa-btn__bg {\n  background-color: color-mix(in srgb, var(--whatsapp) 78%, #000);\n}\n\n/* -- Inner: content container with overflow clip -- */\n.atom-wa-btn__inner {\n  pointer-events: none;\n  gap: 0.375em;\n  padding: 0.75em 0.75em 0.75em 1em;\n  z-index: 1;\n  border-radius: 0.625em;\n  overflow: clip;\n  grid-area: 1 / 1;\n  justify-content: center;\n  align-items: center;\n  display: flex;\n  position: relative;\n}\n\n/* -- Icon -- */\n.atom-wa-btn__icon {\n  width: 0.875em;\n  height: 0.875em;\n  flex: none;\n}\n.atom-wa-btn__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* -- Label -- */\n.atom-wa-btn__label {\n  flex: none;\n  white-space: nowrap;\n}\n\n/* -- Sizes (em-based, scales with font-size) -- */\n.atom-wa-btn--xs { font-size: 11px; }\n.atom-wa-btn--s  { font-size: 13px; }\n.atom-wa-btn--m  { font-size: 14px; }\n.atom-wa-btn--l  { font-size: 16px; }\n.atom-wa-btn--xl { font-size: 18px; }\n\n/* -- Variant: pill (fixed, floating) -- */\n.atom-wa-btn--pill {\n  position: fixed;\n  right: 20px;\n  bottom: 20px;\n  z-index: 9999;\n}\n.atom-wa-btn--pill .atom-wa-btn__bg {\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);\n}\n.atom-wa-btn--pill:hover .atom-wa-btn__bg {\n  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);\n}\n\n/* -- Variant: icon (fixed, floating, circle, icon-only) -- */\n.atom-wa-btn--icon {\n  position: fixed;\n  right: 20px;\n  bottom: 20px;\n  z-index: 9999;\n}\n.atom-wa-btn--icon .atom-wa-btn__bg {\n  border-radius: 999px;\n  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);\n}\n.atom-wa-btn--icon:hover .atom-wa-btn__bg {\n  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);\n}\n.atom-wa-btn--icon .atom-wa-btn__inner {\n  border-radius: 999px;\n  padding: 0.75em;\n}\n.atom-wa-btn--icon .atom-wa-btn__label,\n.atom-wa-btn--icon .atom-wa-btn__icon.is--left {\n  display: none;\n}\n\n/* -- Variant: inline (static, in document flow — the landing CTA) -- */\n.atom-wa-btn--inline {\n  position: static;\n  z-index: auto;\n}\n\n/* ================================================================\n   ANIMATED — icon slide (button-009 pattern)\n   Default: [text] [icon-right visible]; Hover: [icon-left slides in] [text shifts]\n   ================================================================ */\n\n/* Not animated: hide the left icon */\n.atom-wa-btn:not(.atom-wa-btn--animated) .atom-wa-btn__icon.is--left {\n  display: none;\n}\n\n.atom-wa-btn--animated {\n  transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);\n}\n.atom-wa-btn--animated:active:not([aria-busy='true']) {\n  scale: 0.955 0.925;\n}\n.atom-wa-btn--animated .atom-wa-btn__icon {\n  transition: translate 0.5s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s ease-out;\n}\n.atom-wa-btn--animated .atom-wa-btn__label {\n  transition: translate 0.5s cubic-bezier(0.32, 0.72, 0, 1);\n}\n.atom-wa-btn--animated .atom-wa-btn__icon.is--left {\n  position: absolute;\n  left: 1em;\n  opacity: 0;\n  translate: -1.5em 0 0;\n}\n.atom-wa-btn--animated .atom-wa-btn__icon.is--right {\n  opacity: 1;\n  translate: 0 0 0;\n}\n.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__label {\n  translate: calc(0.875em + 0.375em + 0.75em - 1em) 0 0;\n  transition: translate 0.5s 0.075s cubic-bezier(0.32, 0.72, 0, 1);\n}\n.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__icon.is--left {\n  translate: 0 0 0;\n  opacity: 1;\n  transition: translate 0.5s 0.075s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s 0.075s ease-out;\n}\n.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__icon.is--right {\n  translate: 1.5em 0 0;\n  opacity: 0;\n  transition: translate 0.5s 0.05s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s 0.075s ease-out;\n}\n\n/* -- Responsive: floating pill collapses to icon on mobile -- */\n@media (max-width: 480px) {\n  .atom-wa-btn--pill .atom-wa-btn__label { display: none; }\n  .atom-wa-btn--pill .atom-wa-btn__icon.is--left { display: none; }\n  .atom-wa-btn--pill .atom-wa-btn__inner { padding: 0.75em; }\n  .atom-wa-btn--pill .atom-wa-btn__bg { border-radius: 999px; }\n}\n\n/* -- Reduced motion -- */\n@media (prefers-reduced-motion: reduce) {\n  .atom-wa-btn,\n  .atom-wa-btn .atom-wa-btn__icon,\n  .atom-wa-btn .atom-wa-btn__label { transition-duration: 0ms !important; }\n  .atom-wa-btn--animated:active { scale: 1; }\n}\n"
+    },
+    {
+      "path": "whatsapp/config.ts",
+      "type": "registry:file",
+      "content": "export type ButtonVariant = 'inline' | 'pill' | 'icon';\nexport type ButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl';\nexport type CTA = 'agendar_demo' | 'hablar_asesor' | 'demo_5min' | 'consultar_precio' | 'default';\n\nexport interface WhatsAppButtonConfig {\n  companyToken: string;\n  phone: string;\n  label?: string;\n  color?: string;\n  textColor?: string;\n  position?: 'bottom-right' | 'bottom-left';\n  message?: string;\n  lang?: 'es' | 'en' | 'pt';\n  chatIdStrategy?: 'url' | 'referenceCode';\n  mode?: 'float' | 'attach';\n  variant?: ButtonVariant;\n  size?: ButtonSize;\n  cta?: CTA;\n  animated?: boolean;\n  webhookUrl?: string;\n  openInNewTab?: boolean;\n  /** DOM scope for querySelectorAll('[data-atom-button]'). Only used in 'attach' mode or combined with 'float'. Not configurable via data-attributes. */\n  scope?: HTMLElement | Document;\n  /** Optional error callback for webhook failures. Useful for custom observability. */\n  onError?: (error: unknown) => void;\n}\n\nexport interface TrackingData {\n  chatId: string;\n  url: string;\n  device: string;\n  gclid?: string;\n  [key: string]: string | undefined;\n}\n\nexport const DEFAULTS: Required<Omit<WhatsAppButtonConfig, 'companyToken' | 'phone' | 'scope' | 'onError'>> = {\n  label: 'Contactanos',\n  color: '#25D366',\n  textColor: '#FFFFFF',\n  position: 'bottom-right',\n  message: 'Hola, quiero mas informacion',\n  lang: 'es',\n  chatIdStrategy: 'url',\n  mode: 'float',\n  variant: 'inline',\n  size: 'm',\n  cta: 'default',\n  animated: true,\n  webhookUrl: 'https://api.atomchat.io/wci',\n  openInNewTab: true,\n};\n\nexport function parseDataAttributes(el: HTMLElement): Partial<WhatsAppButtonConfig> {\n  const d = el.dataset;\n  return {\n    companyToken: d.companyToken,\n    phone: d.phone,\n    label: d.label,\n    color: d.color,\n    textColor: d.textColor,\n    position: d.position as WhatsAppButtonConfig['position'],\n    message: d.message,\n    lang: d.lang as WhatsAppButtonConfig['lang'],\n    chatIdStrategy: d.strategy as WhatsAppButtonConfig['chatIdStrategy'],\n    mode: d.mode as WhatsAppButtonConfig['mode'],\n    variant: d.variant as WhatsAppButtonConfig['variant'],\n    size: d.size as WhatsAppButtonConfig['size'],\n    cta: d.cta as WhatsAppButtonConfig['cta'],\n    animated: d.animated === undefined ? undefined : d.animated !== 'false',\n  };\n}\n\nexport function mergeConfig(\n  overrides: Partial<WhatsAppButtonConfig>\n): WhatsAppButtonConfig {\n  return { ...DEFAULTS, ...strip(overrides) } as WhatsAppButtonConfig;\n}\n\nfunction strip<T extends Record<string, unknown>>(obj: T): Partial<T> {\n  const result: Partial<T> = {};\n  for (const key in obj) {\n    if (obj[key] !== undefined) {\n      result[key] = obj[key];\n    }\n  }\n  return result;\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "WhatsApp Button",
+      "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+      "category": "actions",
+      "variants": [
+        "inline",
+        "pill",
+        "icon"
+      ],
+      "sizes": [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "defaultVariant": "inline",
+      "defaultSize": "xs",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "atom-wa-btn",
+      "cssClasses": [
+        "atom-wa-btn",
+        "atom-wa-btn__bg",
+        "atom-wa-btn__inner",
+        "atom-wa-btn__icon",
+        "atom-wa-btn__label",
+        "atom-wa-btn--xs",
+        "atom-wa-btn--s",
+        "atom-wa-btn--m",
+        "atom-wa-btn--l",
+        "atom-wa-btn--xl",
+        "atom-wa-btn--pill",
+        "atom-wa-btn--icon",
+        "atom-wa-btn--inline",
+        "atom-wa-btn--animated"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": true
+    }
+  }
+}
