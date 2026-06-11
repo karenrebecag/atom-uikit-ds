@@ -1,5 +1,6 @@
 {
   "name": "@atom-uikit/whatsapp",
+  "private": true,
   "version": "0.1.0",
   "type": "module",
   "description": "WhatsApp CTA widget with inline WCI tracking. One script tag, zero external dependencies.",

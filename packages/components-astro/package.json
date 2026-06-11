@@ -1,5 +1,6 @@
 {
   "name": "@atom-uikit/components-astro",
+  "private": true,
   "version": "3.0.0",
   "type": "module",
   "description": "Astro components for the ATOM UIKit design system",

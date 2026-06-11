@@ -1,5 +1,6 @@
 {
   "name": "atom-uikit",
+  "private": true,
   "version": "0.1.0",
   "description": "CLI for ATOM UIKit — copy component source to your project",
   "type": "module",

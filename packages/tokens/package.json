@@ -1,5 +1,6 @@
 {
   "name": "@atom-uikit/tokens",
+  "private": true,
   "version": "0.1.1",
   "type": "module",
   "description": "Design tokens for the ATOM UIKit design system",
