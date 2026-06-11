@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/gallery-carousel",
+  "type": "registry:file",
+  "title": "Gallery Carousel",
+  "description": "Layout template: gallery-carousel",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/gallery-carousel.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: gallery-carousel\n *\n * Carrusel horizontal arrastrable de imagenes grandes. Usa el hook marquee-draggable.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const galleryCarousel = {\n  slug: 'gallery-carousel',\n  name: 'Gallery Carousel',\n  description:\n    'Carrusel horizontal arrastrable de imagenes grandes. Usa el hook marquee-draggable. Structure only.',\n  components: ['image', 'typography', 'icon-button'],\n  html: `<!-- Layout: gallery-carousel -->\n<section class=\"l-gallery-carousel\">\n  <div class=\"l-gallery-carousel__header\">\n    <h2 class=\"l-gallery-carousel__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"marquee l-gallery-carousel__track\" data-marquee-draggable>\n    <div class=\"l-gallery-carousel__slides\">\n      <div class=\"l-gallery-carousel__slide\">\n        <img src=\"{{image1}}\" alt=\"\" class=\"image\" />\n        <p class=\"l-gallery-carousel__caption\">{{caption1}}</p>\n      </div>\n      <div class=\"l-gallery-carousel__slide\">\n        <img src=\"{{image2}}\" alt=\"\" class=\"image\" />\n        <p class=\"l-gallery-carousel__caption\">{{caption2}}</p>\n      </div>\n      <div class=\"l-gallery-carousel__slide\">\n        <img src=\"{{image3}}\" alt=\"\" class=\"image\" />\n        <p class=\"l-gallery-carousel__caption\">{{caption3}}</p>\n      </div>\n      <div class=\"l-gallery-carousel__slide\">\n        <img src=\"{{image4}}\" alt=\"\" class=\"image\" />\n        <p class=\"l-gallery-carousel__caption\">{{caption4}}</p>\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: gallery-carousel — structure only */\n.l-gallery-carousel {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-gallery-carousel__header {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n}\n.l-gallery-carousel__track {\n  display: flex;\n  overflow: hidden;\n}\n.l-gallery-carousel__slides {\n  display: flex;\n  gap: var(--spacing-4);\n  flex-shrink: 0;\n}\n.l-gallery-carousel__slide {\n  min-width: 80%;\n  position: relative;\n}\n.l-gallery-carousel__slide img {\n  width: 100%;\n  aspect-ratio: 16 / 9;\n  object-fit: cover;\n  border-radius: var(--radius-lg);\n}\n.l-gallery-carousel__caption {\n  position: absolute;\n  bottom: var(--spacing-4);\n  left: var(--spacing-4);\n  background: rgba(0,0,0,0.6);\n  color: white;\n  padding: 4px 8px;\n  border-radius: var(--radius-sm);\n  font-size: var(--text-sm);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Gallery Carousel",
+      "description": "Layout template: gallery-carousel",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

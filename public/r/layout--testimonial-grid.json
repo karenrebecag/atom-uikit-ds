@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/testimonial-grid",
+  "type": "registry:file",
+  "title": "Testimonial Grid",
+  "description": "Layout template: testimonial-grid",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/testimonial-grid.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: testimonial-grid\n *\n * Grid masonry de 4-9 quotes cortas. Volumen de prueba social.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const testimonialGrid = {\n  slug: 'testimonial-grid',\n  name: 'Testimonios en grid',\n  description:\n    'Grid masonry de 4-9 quotes cortas. Volumen de prueba social. Structure only.',\n  components: ['avatar', 'typography', 'item'],\n  html: `<!-- Layout: testimonial-grid -->\n<section class=\"l-testimonial-grid\">\n  <div class=\"l-testimonial-grid__header\">\n    <h2 class=\"l-testimonial-grid__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-testimonial-grid__grid\">\n    <div class=\"l-testimonial-grid__card\">\n      <blockquote class=\"l-testimonial-grid__quote\">{{quote1}}</blockquote>\n      <div class=\"l-testimonial-grid__author\">\n        <img src=\"{{avatar1}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div>{{name1}}</div>\n          <div class=\"l-testimonial-grid__role\">{{role1}}</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"l-testimonial-grid__card\">\n      <blockquote class=\"l-testimonial-grid__quote\">{{quote2}}</blockquote>\n      <div class=\"l-testimonial-grid__author\">\n        <img src=\"{{avatar2}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div>{{name2}}</div>\n          <div class=\"l-testimonial-grid__role\">{{role2}}</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"l-testimonial-grid__card\">\n      <blockquote class=\"l-testimonial-grid__quote\">{{quote3}}</blockquote>\n      <div class=\"l-testimonial-grid__author\">\n        <img src=\"{{avatar3}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div>{{name3}}</div>\n          <div class=\"l-testimonial-grid__role\">{{role3}}</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"l-testimonial-grid__card\">\n      <blockquote class=\"l-testimonial-grid__quote\">{{quote4}}</blockquote>\n      <div class=\"l-testimonial-grid__author\">\n        <img src=\"{{avatar4}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <div>\n          <div>{{name4}}</div>\n          <div class=\"l-testimonial-grid__role\">{{role4}}</div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: testimonial-grid — structure only */\n.l-testimonial-grid {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-testimonial-grid__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-testimonial-grid__grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: var(--spacing-6);\n}\n@media (max-width: 600px) {\n  .l-testimonial-grid__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-testimonial-grid__card {\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  padding: var(--spacing-4);\n}\n.l-testimonial-grid__quote {\n  font-style: italic;\n  margin-bottom: var(--spacing-3);\n}\n.l-testimonial-grid__author {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-2);\n  font-size: var(--text-sm);\n}\n.l-testimonial-grid__role {\n  color: var(--muted-foreground);\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Testimonial Grid",
+      "description": "Layout template: testimonial-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

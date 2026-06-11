@@ -2103,5 +2103,357 @@
       "defaultSize": "",
       "hasAnimation": false
     }
+  },
+  {
+    "name": "layout/banner-marquee",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Banner Marquee",
+    "description": "Layout template: banner-marquee",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Banner Marquee",
+      "description": "Layout template: banner-marquee",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/feature-split-image",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Feature Split Image",
+    "description": "Layout template: feature-split-image",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Feature Split Image",
+      "description": "Layout template: feature-split-image",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/feature-stats-video",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Feature Stats Video",
+    "description": "Layout template: feature-stats-video",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Feature Stats Video",
+      "description": "Layout template: feature-stats-video",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/gallery-carousel",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Gallery Carousel",
+    "description": "Layout template: gallery-carousel",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Gallery Carousel",
+      "description": "Layout template: gallery-carousel",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/gallery-grid",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Gallery Grid",
+    "description": "Layout template: gallery-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Gallery Grid",
+      "description": "Layout template: gallery-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/testimonial-grid",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Testimonial Grid",
+    "description": "Layout template: testimonial-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Testimonial Grid",
+      "description": "Layout template: testimonial-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/team-grid",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Team Grid",
+    "description": "Layout template: team-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Team Grid",
+      "description": "Layout template: team-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/blog-listing",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Blog Listing",
+    "description": "Layout template: blog-listing",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Blog Listing",
+      "description": "Layout template: blog-listing",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/comparison-table",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Comparison Table",
+    "description": "Layout template: comparison-table",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Comparison Table",
+      "description": "Layout template: comparison-table",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/data-table",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Data Table",
+    "description": "Layout template: data-table",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Data Table",
+      "description": "Layout template: data-table",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/events-list",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Events List",
+    "description": "Layout template: events-list",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Events List",
+      "description": "Layout template: events-list",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/footer-extended",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Footer Extended",
+    "description": "Layout template: footer-extended",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Footer Extended",
+      "description": "Layout template: footer-extended",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/footer-minimal",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Footer Minimal",
+    "description": "Layout template: footer-minimal",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Footer Minimal",
+      "description": "Layout template: footer-minimal",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/jobs-grid",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Jobs Grid",
+    "description": "Layout template: jobs-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Jobs Grid",
+      "description": "Layout template: jobs-grid",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/loader",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Loader",
+    "description": "Layout template: loader",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Loader",
+      "description": "Layout template: loader",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/timeline-vertical",
+    "kind": "foundation",
+    "framework": "css",
+    "installGroup": "foundations",
+    "title": "Timeline Vertical",
+    "description": "Layout template: timeline-vertical",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Timeline Vertical",
+      "description": "Layout template: timeline-vertical",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
   }
 ]

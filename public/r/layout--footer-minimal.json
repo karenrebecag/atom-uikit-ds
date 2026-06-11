@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/footer-minimal",
+  "type": "registry:file",
+  "title": "Footer Minimal",
+  "description": "Layout template: footer-minimal",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/footer-minimal.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: footer-minimal\n *\n * Footer simple con logo centrado, fila de links de navegación, divisor, y fila inferior con copyright + links legales.\n *\n * Structure-only, pure DS: BEM classes + DS tokens, no utility framework.\n * Staged for publishing in the DS registry (layout/footer-minimal).\n */\n\nexport const footerMinimal = {\n  slug: 'footer-minimal',\n  name: 'Footer Minimal',\n  description:\n    'Footer centrado con logo, navegación horizontal, divisor y copyright + enlaces legales. Versión simple y limpia.',\n  components: ['typography', 'image'],\n  html: `<!-- Layout: footer-minimal -->\n<footer class=\"l-footer-minimal\" id=\"{{section_id}}\">\n  <div class=\"l-footer-minimal__container\">\n    <div class=\"l-footer-minimal__top\">\n      <a href=\"{{logo_href}}\" class=\"l-footer-minimal__logo\">\n        <img src=\"{{logo_src}}\" alt=\"{{logo_alt}}\" />\n      </a>\n      <ul class=\"l-footer-minimal__nav\">\n        <li class=\"l-footer-minimal__nav-item\"><a href=\"{{nav1_href}}\">{{nav1}}</a></li>\n        <li class=\"l-footer-minimal__nav-item\"><a href=\"{{nav2_href}}\">{{nav2}}</a></li>\n        <li class=\"l-footer-minimal__nav-item\"><a href=\"{{nav3_href}}\">{{nav3}}</a></li>\n        <li class=\"l-footer-minimal__nav-item\"><a href=\"{{nav4_href}}\">{{nav4}}</a></li>\n        <li class=\"l-footer-minimal__nav-item\"><a href=\"{{nav5_href}}\">{{nav5}}</a></li>\n      </ul>\n    </div>\n    <div class=\"l-footer-minimal__divider\"></div>\n    <div class=\"l-footer-minimal__bottom\">\n      <p class=\"l-footer-minimal__copyright\">{{copyright}}</p>\n      <ul class=\"l-footer-minimal__legal\">\n        <li class=\"l-footer-minimal__legal-item\"><a href=\"{{legal1_href}}\">{{legal1}}</a></li>\n        <li class=\"l-footer-minimal__legal-item\"><a href=\"{{legal2_href}}\">{{legal2}}</a></li>\n        <li class=\"l-footer-minimal__legal-item\"><a href=\"{{legal3_href}}\">{{legal3}}</a></li>\n      </ul>\n    </div>\n  </div>\n</footer>`,\n  css: `/* Layout: footer-minimal — structure only, pure DS tokens */\n.l-footer-minimal {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n\n@media (min-width: 768px) {\n  .l-footer-minimal {\n    padding: var(--spacing-18) var(--spacing-8);\n  }\n}\n\n@media (min-width: 1024px) {\n  .l-footer-minimal {\n    padding: var(--spacing-20) var(--spacing-8);\n  }\n}\n\n.l-footer-minimal__container {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\n.l-footer-minimal__top {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding-bottom: var(--spacing-12);\n}\n\n@media (min-width: 768px) {\n  .l-footer-minimal__top {\n    padding-bottom: var(--spacing-18);\n  }\n}\n\n@media (min-width: 1024px) {\n  .l-footer-minimal__top {\n    padding-bottom: var(--spacing-20);\n  }\n}\n\n.l-footer-minimal__logo {\n  display: inline-block;\n  margin-bottom: var(--spacing-8);\n}\n\n.l-footer-minimal__nav {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: var(--spacing-6);\n  justify-items: center;\n}\n\n@media (min-width: 768px) {\n  .l-footer-minimal__nav {\n    grid-template-columns: repeat(5, max-content);\n    grid-auto-flow: column;\n    gap: var(--spacing-6);\n    justify-content: center;\n    justify-items: start;\n  }\n}\n\n.l-footer-minimal__nav-item {\n  font-weight: var(--font-weight-semibold);\n}\n\n.l-footer-minimal__divider {\n  height: 1px;\n  width: 100%;\n  background-color: var(--border);\n}\n\n.l-footer-minimal__bottom {\n  display: flex;\n  flex-direction: column-reverse;\n  align-items: center;\n  justify-content: space-between;\n  padding-top: var(--spacing-6);\n  padding-bottom: var(--spacing-4);\n  text-align: center;\n  font-size: var(--font-size-sm);\n}\n\n@media (min-width: 768px) {\n  .l-footer-minimal__bottom {\n    flex-direction: row;\n    padding-top: var(--spacing-8);\n    padding-bottom: 0;\n    text-align: left;\n  }\n}\n\n.l-footer-minimal__copyright {\n  margin-top: var(--spacing-8);\n}\n\n@media (min-width: 768px) {\n  .l-footer-minimal__copyright {\n    margin-top: 0;\n  }\n}\n\n.l-footer-minimal__legal {\n  display: grid;\n  grid-template-columns: max-content;\n  justify-content: center;\n  gap: var(--spacing-4);\n  font-size: var(--font-size-sm);\n}\n\n@media (min-width: 768px) {\n  .l-footer-minimal__legal {\n    grid-auto-flow: column;\n    gap: var(--spacing-6);\n  }\n}\n\n.l-footer-minimal__legal-item a {\n  text-decoration: underline;\n  text-underline-offset: 1px;\n  color: inherit;\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Footer Minimal",
+      "description": "Layout template: footer-minimal",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

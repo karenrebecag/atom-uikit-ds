@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/loader",
+  "type": "registry:file",
+  "title": "Loader",
+  "description": "Layout template: loader",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "layouts/loader.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: loader\n *\n * Overlay de pantalla completa con fondo negro y spinner animado centrado. Representa el estado de carga antes de la transición de salida.\n *\n * Structure-only, pure DS: BEM classes + DS tokens, no utility framework.\n * Staged for publishing in the DS registry (layout/loader).\n */\n\nexport const loader = {\n  slug: 'loader',\n  name: 'Loader',\n  description:\n    'Cargador de pantalla completa con overlay negro y spinner giratorio centrado. Incluye transición para salida.',\n  components: [],\n  html: `<!-- Layout: loader -->\n<div class=\"l-loader\">\n  <div class=\"l-loader__overlay\">\n    <div class=\"l-loader__content\">\n      <svg\n        class=\"l-loader__spinner\"\n        stroke=\"currentColor\"\n        fill=\"none\"\n        stroke-width=\"0\"\n        viewBox=\"0 0 24 24\"\n        height=\"4rem\"\n        width=\"4rem\"\n        xmlns=\"http://www.w3.org/2000/svg\"\n      >\n        <path\n          opacity=\"0.2\"\n          fill-rule=\"evenodd\"\n          clip-rule=\"evenodd\"\n          d=\"M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z\"\n          fill=\"currentColor\"\n        ></path>\n        <path\n          d=\"M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z\"\n          fill=\"currentColor\"\n        ></path>\n      </svg>\n    </div>\n  </div>\n</div>`,\n  css: `/* Layout: loader — structure only, pure DS tokens */\n.l-loader {\n  position: relative;\n  height: 100vh;\n  overflow: hidden;\n}\n\n.l-loader__overlay {\n  position: fixed;\n  inset: 0;\n  z-index: var(--z-index-70);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: var(--color-black);\n  color: var(--color-white);\n  transition: transform var(--duration-700) var(--easing-in-out);\n  transform: translateY(0);\n}\n\n.l-loader__content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n.l-loader__spinner {\n  width: 4rem;\n  height: 4rem;\n  animation: l-loader-spin var(--duration-1000) var(--easing-linear) infinite;\n}\n\n@keyframes l-loader-spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}`,\n};"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Loader",
+      "description": "Layout template: loader",
+      "category": "foundation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

@@ -2034,6 +2034,310 @@
           "type": "registry:file"
         }
       ]
+    },
+    {
+      "name": "layout/banner-marquee",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Banner Marquee",
+      "description": "Layout template: banner-marquee",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/banner-marquee.ts",
+          "outputPath": "layouts/banner-marquee.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/feature-split-image",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Feature Split Image",
+      "description": "Layout template: feature-split-image",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/feature-split-image.ts",
+          "outputPath": "layouts/feature-split-image.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/feature-stats-video",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Feature Stats Video",
+      "description": "Layout template: feature-stats-video",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/feature-stats-video.ts",
+          "outputPath": "layouts/feature-stats-video.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/gallery-carousel",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Gallery Carousel",
+      "description": "Layout template: gallery-carousel",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/gallery-carousel.ts",
+          "outputPath": "layouts/gallery-carousel.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/gallery-grid",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Gallery Grid",
+      "description": "Layout template: gallery-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/gallery-grid.ts",
+          "outputPath": "layouts/gallery-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/testimonial-grid",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Testimonial Grid",
+      "description": "Layout template: testimonial-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/testimonial-grid.ts",
+          "outputPath": "layouts/testimonial-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/team-grid",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Team Grid",
+      "description": "Layout template: team-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/team-grid.ts",
+          "outputPath": "layouts/team-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/blog-listing",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Blog Listing",
+      "description": "Layout template: blog-listing",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/blog-listing.ts",
+          "outputPath": "layouts/blog-listing.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/comparison-table",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Comparison Table",
+      "description": "Layout template: comparison-table",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/comparison-table.ts",
+          "outputPath": "layouts/comparison-table.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/data-table",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Data Table",
+      "description": "Layout template: data-table",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/data-table.ts",
+          "outputPath": "layouts/data-table.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/events-list",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Events List",
+      "description": "Layout template: events-list",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/events-list.ts",
+          "outputPath": "layouts/events-list.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/footer-extended",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Footer Extended",
+      "description": "Layout template: footer-extended",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/footer-extended.ts",
+          "outputPath": "layouts/footer-extended.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/footer-minimal",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Footer Minimal",
+      "description": "Layout template: footer-minimal",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/footer-minimal.ts",
+          "outputPath": "layouts/footer-minimal.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/jobs-grid",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Jobs Grid",
+      "description": "Layout template: jobs-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/jobs-grid.ts",
+          "outputPath": "layouts/jobs-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/loader",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Loader",
+      "description": "Layout template: loader",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/loader.ts",
+          "outputPath": "layouts/loader.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/timeline-vertical",
+      "kind": "foundation",
+      "framework": "css",
+      "installGroup": "foundations",
+      "title": "Timeline Vertical",
+      "description": "Layout template: timeline-vertical",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/timeline-vertical.ts",
+          "outputPath": "layouts/timeline-vertical.ts",
+          "type": "registry:file"
+        }
+      ]
     }
   ]
 }
