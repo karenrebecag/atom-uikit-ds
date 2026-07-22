@@ -2,6 +2,14 @@
 
 WhatsApp CTA widget with inline WCI tracking. One script tag, zero external dependencies, immune to adblockers.
 
+## DEPRECADO Y CONGELADO 2026-07-22 — el núcleo vive en `atom-whatsapp-buttons`
+
+**Este paquete no recibe cambios.** Toda evolución del widget (JS y CSS) ocurre en el repo
+standalone; el CSS del DS (`packages/css/.../whatsapp-button.css`) es un archivo GENERADO que se
+sincroniza con `pnpm --filter @atom-uikit/css sync:whatsapp`. El consumidor React documentado usa
+el `Button` del DS con override de colores — no el runtime de este paquete. El resto de este
+documento se conserva como referencia histórica y contexto del port.
+
 ## ESTADO 2026-07-22 — distribución reemplazada por `atom-whatsapp-buttons`
 
 La distribución pública de este widget vive ahora en un repo standalone:

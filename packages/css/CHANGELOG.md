@@ -77,3 +77,9 @@
   conserva su lógica y el colapso móvil del pill recupera el icono.
 - Nuevo modificador .atom-wa-btn--left para flotantes anclados a la izquierda.
 - Sincronizado con la hoja desplegada del repo atom-whatsapp-buttons (v1.1.x).
+
+## 2026-07-22 — whatsapp-button.css es ahora GENERADO
+
+Fuente única: atom-whatsapp-buttons.vercel.app/v1/styles.css (repo AtomGrowth/atom_whatsapp_buttons).
+No editar a mano — `pnpm --filter @atom-uikit/css sync:whatsapp` lo regenera. Cierra la deuda de
+las dos hojas divergentes.

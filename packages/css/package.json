@@ -18,7 +18,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
-    "clean": "rm -rf dist/"
+    "clean": "rm -rf dist/",
+    "sync:whatsapp": "node scripts/sync-whatsapp-css.mjs"
   },
   "peerDependencies": {
     "@atom-uikit/tokens": ">=0.0.0"
