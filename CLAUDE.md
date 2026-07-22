@@ -15,7 +15,7 @@ Web development components for landing pages, web apps, and marketing sites. Thi
 | `packages/animations` | GSAP animation modules |
 | `packages/components-react` | React 19 components |
 | `packages/components-astro` | Astro components |
-| `packages/whatsapp` | WhatsApp WCI widget (IIFE, autocontenido) |
+| `packages/whatsapp` | [DEPRECADO 2026-07-22] Reemplazado por AtomGrowth/atom_whatsapp_buttons; congelado como referencia. El CSS del botón (`packages/css/.../whatsapp-button.css`) es GENERADO desde ese repo: `pnpm --filter @atom-uikit/css sync:whatsapp` |
 
 ## Distribution (Registry)
 
