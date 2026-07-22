@@ -68,3 +68,12 @@
 
 - Updated dependencies
   - @atom-uikit/tokens@0.1.0
+
+## 2026-07-22 — whatsapp-button.css
+
+- Blindaje contra site kits (Elementor `.elementor-kit-N a:hover`): clase doblada + tipo
+  recupera color/text-decoration en todos los estados, sin !important.
+- Sin animación, el icono va a la IZQUIERDA del label (padding reflejado); la variante --icon
+  conserva su lógica y el colapso móvil del pill recupera el icono.
+- Nuevo modificador .atom-wa-btn--left para flotantes anclados a la izquierda.
+- Sincronizado con la hoja desplegada del repo atom-whatsapp-buttons (v1.1.x).

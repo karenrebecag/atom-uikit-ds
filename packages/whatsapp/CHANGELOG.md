@@ -33,3 +33,12 @@ Initial release. Replaces the external `wci.min.js` script with an inline, self-
 - Fallback timeout/onerror logic (no external script to fail)
 - Sentry error monitoring (no failure mode to monitor)
 - Slater snippet (~300 lines, replaced by one `<script>` tag)
+
+## 2026-07-22
+
+- Docs: la distribución pública pasa al repo standalone AtomGrowth/atom_whatsapp_buttons
+  (loader evergreen /v1/, cascada de números, telemetría AE). Este paquete queda para
+  consumidores npm/React del monorepo.
+- Docs: endpoint del webhook verificado (api.atomchat.io/wci = proxy Worker al Cloud Function);
+  CSP sin unsafe-inline; guías de integración Elementor y Webflow (data-cfasync obligatorio con
+  Rocket Loader); orden de migración desde el legacy.

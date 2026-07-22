@@ -33,6 +33,21 @@
   --whatsapp-foreground: #ffffff;
 }
 
+/* -- Theme-kit shield --
+   Site kits (Elementor: `.elementor-kit-N a:hover`) style every <a> at (0,2,1), beating
+   `.atom-wa-btn` (0,1,0) and repainting the label with the theme color. Doubled class + type
+   recovers inheritable props at (0,3,x) in every state. No !important on purpose: a host that
+   truly needs to win, can. Ported from the deployed widget (atom-whatsapp-buttons) after the
+   first real Elementor collision, 2026-07-22. */
+a.atom-wa-btn.atom-wa-btn,
+a.atom-wa-btn.atom-wa-btn:hover,
+a.atom-wa-btn.atom-wa-btn:focus,
+a.atom-wa-btn.atom-wa-btn:active,
+a.atom-wa-btn.atom-wa-btn:visited {
+  color: var(--whatsapp-foreground);
+  text-decoration: none;
+}
+
 /* -- Base: grid layout for bg layer -- */
 .atom-wa-btn {
   color: var(--whatsapp-foreground);
@@ -165,14 +180,24 @@
   z-index: auto;
 }
 
+/* -- Modifier: floating variants anchored to the left -- */
+.atom-wa-btn--left {
+  right: auto;
+  left: 20px;
+}
+
 /* ================================================================
    ANIMATED — icon slide (button-009 pattern)
    Default: [text] [icon-right visible]; Hover: [icon-left slides in] [text shifts]
    ================================================================ */
 
-/* Not animated: hide the left icon */
-.atom-wa-btn:not(.atom-wa-btn--animated) .atom-wa-btn__icon.is--left {
+/* Not animated: icon sits LEFT of the label (the right one is redundant). --icon keeps its own
+   single-icon logic, hence the exclusion. Mirrored padding: the base is tuned for [text][icon]. */
+.atom-wa-btn:not(.atom-wa-btn--animated):not(.atom-wa-btn--icon) .atom-wa-btn__icon.is--right {
   display: none;
+}
+.atom-wa-btn:not(.atom-wa-btn--animated):not(.atom-wa-btn--icon) .atom-wa-btn__inner {
+  padding: 0.75em 1em 0.75em 0.75em;
 }
 
 .atom-wa-btn--animated {
@@ -218,6 +243,9 @@
   .atom-wa-btn--pill .atom-wa-btn__icon.is--left { display: none; }
   .atom-wa-btn--pill .atom-wa-btn__inner { padding: 0.75em; }
   .atom-wa-btn--pill .atom-wa-btn__bg { border-radius: 999px; }
+  /* Non-animated pill shows the LEFT icon (rule above); the mobile collapse must recover it or
+     the pill becomes an empty circle. */
+  .atom-wa-btn--pill:not(.atom-wa-btn--animated) .atom-wa-btn__icon.is--left { display: flex; }
 }
 
 /* -- Reduced motion -- */

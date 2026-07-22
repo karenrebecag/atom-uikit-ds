@@ -2,6 +2,81 @@
 
 WhatsApp CTA widget with inline WCI tracking. One script tag, zero external dependencies, immune to adblockers.
 
+## ESTADO 2026-07-22 — distribución reemplazada por `atom-whatsapp-buttons`
+
+La distribución pública de este widget vive ahora en un repo standalone:
+**[AtomGrowth/atom_whatsapp_buttons](https://github.com/AtomGrowth/atom_whatsapp_buttons)**,
+desplegado en `https://atom-whatsapp-buttons.vercel.app/v1/loader.js` (major en la URL, loader
+evergreen, assets inmutables). Ese repo es un **port evolucionado** de este paquete: misma
+arquitectura WCI, más cascada de números por idioma/región, telemetría a Cloudflare Analytics
+Engine, espejo de leads en el edge y dashboard de marketing. Su carpeta `spec/` es la fuente de
+verdad de las decisiones.
+
+Este paquete queda para **consumidores npm/React del monorepo** (componente `Button` del DS con
+override de colores) y como referencia MCP. La duplicación de lógica WCI entre ambos es deuda
+conocida (D1 del repo standalone). **Para instalar el widget en cualquier sitio, usar siempre el
+loader del repo standalone — no el IIFE de este paquete.**
+
+Correcciones a este documento verificadas en producción:
+
+- **Endpoint del webhook:** `https://api.atomchat.io/wci` y
+  `https://us-central1-atom-ai.cloudfunctions.net/api/webhook/wci` son el MISMO backend — la
+  primera es un Worker de Cloudflare (`atom-wci-proxy`) que proxea a la segunda. Verificado con
+  POSTs el 2026-07-22. Usar siempre la primera: pasa por el espejo de analítica.
+- **CSP:** ya no se necesita `unsafe-inline` en `style-src` — los estilos dinámicos van por CSSOM,
+  que CSP no restringe. CSP actual del widget desplegado:
+  `script-src/style-src atom-whatsapp-buttons.vercel.app · connect-src api.atomchat.io atom-whatsapp-buttons.vercel.app`.
+- **El bloqueante de backend (validación de Origin) sigue abierto** y se resolverá con reglas WAF
+  desde el panel de Cloudflare (fase F3 del repo standalone), no con un ticket de backend.
+
+## Integraciones verificadas en producción
+
+### WordPress / Elementor (atomchat.io)
+
+Plugin oficial: `atom-whatsapp-buttons/integrations/wordpress/atom-whatsapp-buttons-wp/` (zip
+instalable). Config global en Ajustes → WhatsApp Atom (token, cascada de números, flotante,
+override de idioma para WP con locale distinto del contenido). Botones puntuales con el widget
+**Shortcode** de Elementor:
+
+    [atom_wa_button cta="hablar_asesor" size="l" label="Hablar con un asesor" animated="false"]
+
+Atributos: `cta` (agendar_demo | hablar_asesor | demo_5min | consultar_precio), `variant`
+(inline | pill | icon), `size` (xs–xl), `phone` (gana sobre toda la cascada), `label`, `message`,
+`lang`, `animated="false"` (además mueve el icono a la izquierda). En el editor de Elementor el
+botón NO renderiza (iframe sin loader) — se ve en la página publicada. Botones dentro de Popups
+necesitan `AtomWaButtons.refresh()` en el evento `elementor/popup/show`.
+
+### Webflow (new.atomchat.io)
+
+Snippet global en Site Settings → Custom Code → Footer:
+
+    <script
+      src="https://atom-whatsapp-buttons.vercel.app/v1/loader.js"
+      data-company-token="..."
+      data-phone="573142616335"
+      data-phone-es="5493364344757"
+      data-mode="attach"
+      data-cfasync="false"></script>
+
+- **`data-cfasync="false"` es OBLIGATORIO**: el zone corre Rocket Loader, que sin la marca
+  reescribe el script (`type="hash-text/javascript"`) y mata la telemetría. Lección de la primera
+  instalación real.
+- **Sin `data-lang`**: Webflow Localization declara el idioma por página (URL `/en` + `<html
+  lang>`); un `data-lang` fijo rompería el ruteo multi-locale.
+- Botones: componentes nativos de Webflow (Link Block con custom attributes `data-atom-button` +
+  `data-cta`, href de fallback a `wa.me`) — visibles en el Designer, estilados por el sitio, el
+  SDK solo aporta comportamiento. También funcionan mounts `data-aa-mount="wa-button"` en Embeds
+  (invisibles en el Designer).
+
+### Migración desde el sistema legacy — orden OBLIGATORIO
+
+Activar nuevo → verificar el par `click`+`wci_lead` con el mismo chatId → retirar el viejo.
+**Nunca convivencia**: el SDK legacy también engancha `[data-atom-button]` y la convivencia
+produce secuestro de botones y leads duplicados con chatIds distintos (verificado en producción).
+El legacy del apex vivía en el Slater JS del sitio (archivado en
+`atom-whatsapp-buttons/legacy/slater-wci/`), no solo en el plugin. Quedan consumidores legacy:
+`n.atomchat.io` y `brazil.atomchat.io` (sirven `/vendor/wci.min.js` propio).
+
 ## Why this exists
 
 AtomChat's original WCI integration required loading an external script (~19KB) from a third-party CDN. Adblockers block that domain, breaking the button for ~15-20% of users. This package inlines the essential WCI logic (~4KB) so there is nothing external to block.
