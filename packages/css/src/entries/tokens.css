@@ -1,0 +1,7 @@
+/**
+ * Public channel: CSS custom properties only.
+ * Light (:root) + dark ([data-theme="dark"]).
+ * No component selectors.
+ */
+@import '../../../tokens/build/css/tokens.css';
+@import '../../../tokens/build/css/dark.css';

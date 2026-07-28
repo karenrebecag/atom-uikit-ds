@@ -1,7 +1,7 @@
 /**
  * Section background variants for layouts (bgStyle slot in the MCP catalog).
  * Dark variants set a light foreground so sections meet WCAG AA out of the box.
- * Never pure black (brand rule) — dark base is zinc-900/950.
+ * Never pure black (brand rule) — dark base is neutral-900/950.
  *
  * USAGE RULE: white is the page base (humanity). .bg-dark / .bg-dark-glow are
  * EXCLUSIVELY for sections about AI (agents, automation) — 0-2 per page, never
@@ -10,7 +10,7 @@
 
 .bg-gradient-brand {
   background: var(--gradient-brand);
-  color: var(--color-zinc-50);
+  color: var(--primary-foreground);
 }
 
 .bg-gradient-soft {
@@ -18,15 +18,20 @@
 }
 
 .bg-dark {
-  background-color: var(--color-zinc-900);
-  color: var(--color-zinc-50);
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-50);
 }
 
 .bg-dark-glow {
   background: var(--gradient-dark-glow);
-  color: var(--color-zinc-50);
+  color: var(--color-neutral-50);
 }
 
-.bg-violet-soft {
-  background-color: var(--color-violet-50);
+/* Soft brand wash (replaces removed violet-soft) */
+.bg-brand-soft {
+  background-color: var(--color-orange-50);
+}
+
+.bg-forest-soft {
+  background-color: color-mix(in srgb, var(--color-forest) 8%, var(--background));
 }

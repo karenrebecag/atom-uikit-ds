@@ -1,0 +1,6 @@
+/**
+ * Full DS CSS: foundation channel + layout + components.
+ */
+@import './foundation.css';
+@import '../layout/index.css';
+@import '../components/index.css';

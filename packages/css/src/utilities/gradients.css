@@ -1,26 +1,28 @@
 /**
- * Brand gradients — composed from color tokens (no raw hex).
- * Source of truth: ATOM Brand System "Colores" — the Violet→Orange gradient is
- * the most expressive brand element: AI (Violet) producing tangible results
- * (Orange).
+ * Brand gradients — composed from OSMO color tokens (no raw hex, no dead ramps).
+ * Violet ramp was removed with Tailwind palette; gradient now uses forest → brand
+ * (deep green into Atom orange) for the AI→results story.
  *
  * ALLOWED: hero headline keywords (.text-gradient) and section backgrounds (.bg-*).
- * FORBIDDEN: buttons and CTAs (use .button--primary/--secondary from the button
- * component — buttons are NEVER gradient), icons, chips, and any small element.
- * White stays the page base (humanity); dark backgrounds are AI-themed sections only.
+ * FORBIDDEN: buttons and CTAs (use .button--primary/--secondary), icons, chips.
  */
 
 :root {
-  --gradient-brand: linear-gradient(135deg, var(--color-violet-600) 0%, var(--brand) 100%);
-  --gradient-brand-soft: linear-gradient(135deg, var(--color-violet-50) 0%, #ffffff 60%, var(--color-orange-50) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--color-forest) 0%, var(--brand) 100%);
+  --gradient-brand-soft: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-green-electric) 12%, var(--background)) 0%,
+    var(--background) 55%,
+    var(--color-orange-50) 100%
+  );
   --gradient-dark-glow:
-    radial-gradient(60% 80% at 85% 20%, color-mix(in srgb, var(--color-violet-600) 18%, transparent) 0%, transparent 70%),
+    radial-gradient(60% 80% at 85% 20%, color-mix(in srgb, var(--color-green-electric) 18%, transparent) 0%, transparent 70%),
     radial-gradient(50% 70% at 10% 90%, color-mix(in srgb, var(--brand) 14%, transparent) 0%, transparent 70%),
-    linear-gradient(135deg, var(--color-zinc-950) 0%, var(--color-zinc-900) 100%);
+    linear-gradient(135deg, var(--color-neutral-950) 0%, var(--color-neutral-900) 100%);
 }
 
 /* Keyword/headline emphasis. Brand rules: hero headlines only, max 2 highlight
-   colors per title, "Atom" stays orange (never let the violet end land on it). */
+   colors per title, "Atom" stays orange. */
 .text-gradient {
   background: var(--gradient-brand);
   -webkit-background-clip: text;

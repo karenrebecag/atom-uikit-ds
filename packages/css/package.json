@@ -9,7 +9,9 @@
   "style": "./dist/atom.css",
   "exports": {
     ".": "./dist/atom.css",
-    "./atom.css": "./dist/atom.css"
+    "./atom.css": "./dist/atom.css",
+    "./foundation.css": "./dist/foundation.css",
+    "./tokens.css": "./dist/tokens.css"
   },
   "files": [
     "dist/",

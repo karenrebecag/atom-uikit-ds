@@ -1,0 +1,8 @@
+/**
+ * Public channel (no-code): tokens + fonts + foundation + utilities.
+ * For Webflow head / Relume without component BEM.
+ */
+@import './tokens.css';
+@import '../foundation/fonts.css';
+@import '../foundation/index.css';
+@import '../utilities/index.css';

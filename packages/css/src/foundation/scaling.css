@@ -17,7 +17,7 @@
      .container-md { max-width: calc(var(--size-container) * 0.85); }
      .container-sm { max-width: calc(var(--size-container) * 0.7); }
 
-   Type scale: Major Third (1.25) — see tokens/primitives/typography.json
+   Type scale: see tokens/primitives/typography.json (OSMO rem scale)
    ------------------------------------------------------------------------- */
 
 
@@ -37,14 +37,19 @@
   --size-container-max: 1920px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+  /* Optional content max (academy often uses ~1280) — evaluate vs ideal in PR */
+  --size-container-content: 80rem;
 }
 
-/* Tablet */
+/* Tablet — tighten section padding (OSMO media overrides) */
 @media screen and (max-width: 991px) {
   :root {
     --size-container-ideal: 834;
     --size-container-min: 768px;
     --size-container-max: 991px;
+    --section-padding-xxl: 5rem;
+    --section-padding-xl: 4rem;
+    --section-padding-l: 3rem;
   }
 }
 
@@ -54,6 +59,10 @@
     --size-container-ideal: 550;
     --size-container-min: 480px;
     --size-container-max: 767px;
+    --section-padding-xxl: 4rem;
+    --section-padding-xl: 3rem;
+    --section-padding-l: 2rem;
+    --section-padding-m: 1.5rem;
   }
 }
 
@@ -63,5 +72,26 @@
     --size-container-ideal: 390;
     --size-container-min: 320px;
     --size-container-max: 479px;
+    --section-padding-xxl: 3rem;
+    --section-padding-xl: 2.5rem;
+    --section-padding-l: 1.5rem;
+    --section-padding-m: 1.25rem;
+    --section-padding-s: 1rem;
   }
+}
+
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: var(--size-container-content, var(--size-container));
+  margin-inline: auto;
+  padding-inline: var(--section-padding-s, 1.5rem);
+}
+
+.container-md {
+  max-width: calc(var(--size-container-content, var(--size-container)) * 0.85);
+}
+
+.container-sm {
+  max-width: calc(var(--size-container-content, var(--size-container)) * 0.7);
 }

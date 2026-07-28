@@ -1,4 +1,5 @@
 /* Foundation styles */
+@import './fonts.css';
 @import './scaling.css';
 @import './typography.css';
 @import './focus.css';
