@@ -1,6 +1,9 @@
 import type { TestRunnerConfig } from '@storybook/test-runner';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
-import { expect } from '@jest/globals';
+
+// El config corre dentro del entorno Jest del test-runner, que inyecta `expect`
+// como global; importarlo de @jest/globals aquí revienta (se carga fuera de Jest).
+declare const expect: any;
 
 const customSnapshotsDir = `${process.cwd()}/__image_snapshots__`;
 
@@ -14,6 +17,14 @@ const config: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async preVisit(page) {
+    // Assets remotos (logos en R2/CDN) cargan o fallan según la red → snapshots
+    // no deterministas. Todo lo que el snapshot necesita es local al build de
+    // Storybook; se aborta el resto para que el fallo sea idéntico siempre.
+    await page.route('**/*', (route) => {
+      const url = route.request().url();
+      if (/^https?:\/\/(127\.0\.0\.1|localhost)[:/]/.test(url)) return route.continue();
+      return route.abort();
+    });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.addStyleTag({
       content: `
@@ -29,6 +40,14 @@ const config: TestRunnerConfig = {
   },
   async postVisit(page, context) {
     await page.evaluate(() => document.fonts.ready);
+    // Esperar a que toda <img> resuelva (load o error) antes de capturar
+    await page.evaluate(() =>
+      Promise.all(
+        Array.from(document.images)
+          .filter((img) => !img.complete)
+          .map((img) => new Promise((r) => { img.onload = img.onerror = r; }))
+      )
+    );
 
     for (const theme of ['light', 'dark'] as const) {
       await page.evaluate((t) => {
