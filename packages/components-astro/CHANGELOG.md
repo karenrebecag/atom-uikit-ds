@@ -1,5 +1,13 @@
 # @atom-uikit/components-astro
 
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [e5f84fc]
+- Updated dependencies [3324cf1]
+  - @atom-uikit/css@2.0.0
+
 ## 3.0.0
 
 ### Patch Changes

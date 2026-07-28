@@ -1,5 +1,22 @@
 # @atom-uikit/css
 
+## 2.0.0
+
+### Minor Changes
+
+- e5f84fc: Ship OSMO/academy foundation for the no-code channel: three dist artifacts (tokens/foundation/atom), self-hosted Inter Tight/Grift/Interval/Gantol, responsive section-padding overrides, and dead Tailwind color var refs remapped to semantic/OSMO tokens.
+
+### Patch Changes
+
+- 3324cf1: whatsapp-button.css es ahora un archivo GENERADO desde su fuente única de verdad
+  (atom-whatsapp-buttons.vercel.app/v1/styles.css, repo AtomGrowth/atom_whatsapp_buttons) vía
+  `sync:whatsapp`. Incluye los fixes desplegados: blindaje contra site kits de Elementor
+  (especificidad sobre `.elementor-kit-N a:hover`), icono a la izquierda en botones sin animación
+  con padding reflejado, y el modificador `.atom-wa-btn--left` para flotantes anclados a la
+  izquierda.
+- Updated dependencies [a05f592]
+  - @atom-uikit/tokens@0.2.0
+
 ## 1.2.0
 
 ### Minor Changes
