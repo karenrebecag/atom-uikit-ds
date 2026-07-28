@@ -4,6 +4,7 @@ Monorepo for the ATOM UIKit component library. Distributes via private registry 
 
 **Operación (release, deploy /v1, Webflow, registry, accesos):** seguir
 [`docs/RUNBOOK.md`](docs/RUNBOOK.md). Decisiones vigentes: [`docs/decisions/`](docs/decisions/).
+**Guía para agentes (consumir el DS o modificarlo):** [`docs/AGENTS.md`](docs/AGENTS.md).
 
 ## Scope
 
