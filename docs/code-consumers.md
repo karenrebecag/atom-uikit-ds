@@ -8,8 +8,11 @@ without contract changes.
 | Channel | URL / package | Updates when |
 |---|---|---|
 | **Registry + MCP** | `uikit.atomchat.io/api/r/*` incl. `tokens-nested.json` | Commit `public/r/` → deploy docs hook. MCP caches **5 min**. |
-| **npm** (internal) | `@atom-uikit/tokens`, `@atom-uikit/css`, components | After `changeset version` + `pnpm release` (coordinate F4 pins). |
-| **Public fetch (no npm)** | `https://<atom-web-ds>/v1/tokens.css` · `/v1/foundation.css` · `/v1/atom.css` · `/v1/tokens.json` · `/v1/tokens-nested.json` | W3 Vercel project; CORS `*`; CSS max-age 300. |
+| **Public fetch** | `https://atom-web-ds.vercel.app/v1/tokens.css` · `/v1/foundation.css` · `/v1/atom.css` · `/v1/tokens.json` · `/v1/tokens-nested.json` | W3 Vercel project; CORS `*`; CSS max-age 300. |
+
+**npm NO es canal** (decisión 2026-07-28, sin autorización de consumo público). Paquetes
+`private: true`; `pnpm release` bloqueado. Apps que antes instalaban `@atom-uikit/*` de
+npm migran a: copiar via registry/CLI, o fetch de `/v1/tokens.{css,json}` en build.
 
 Prefer semantic CSS variables (`--background`, `--primary`, `--brand`) over primitive ramps.
 Primitives that remain: `neutral`, `orange`, `amber`, `coral`, `green-electric`, `forest`, `sky`.
@@ -54,7 +57,8 @@ Record contrast/focus regressions as issues — do not redesign components in W5
 - [ ] F4: pin any product that must **not** reskin yet
 - [ ] `pnpm changeset version` (applies W1/W2 minors)
 - [ ] Review CHANGELOGs
-- [ ] `pnpm release` only with Karen approval
+- [ ] `pnpm build:registry` + commit `public/r/` (dispara deploy hook docs)
+- [ ] Redeploy canal `/v1` si cambió tokens/css (`public-dist/README.md`)
 - [ ] Confirm `uikit.atomchat.io` after deploy hook
 
 ## Related
