@@ -2,6 +2,9 @@
 
 Monorepo for the ATOM UIKit component library. Distributes via private registry (shadcn model) — source copied to consumer projects, not installed as npm dependencies. Documented at `uikit.atomchat.io`.
 
+**Operación (release, deploy /v1, Webflow, registry, accesos):** seguir
+[`docs/RUNBOOK.md`](docs/RUNBOOK.md). Decisiones vigentes: [`docs/decisions/`](docs/decisions/).
+
 ## Scope
 
 Web development components for landing pages, web apps, and marketing sites. This is NOT the brand/visual design system (that lives in `ATOM_DS` under `@atomchat.io/`).
