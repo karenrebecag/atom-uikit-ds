@@ -11,7 +11,9 @@
     "validate:published": "node scripts/validate-published-tokens.mjs",
     "build:registry": "pnpm --filter @atom-uikit/tokens build && node scripts/build-registry.mjs",
     "release": "echo 'npm publishing DESHABILITADO — canales privados only (CLAUDE.md > Canales de distribucion)' && exit 1",
-    "sync:webflow": "node scripts/sync-webflow.mjs"
+    "sync:webflow": "node scripts/sync-webflow.mjs",
+    "test": "pnpm --filter @atom-uikit/components-react test",
+    "test:components": "pnpm --filter @atom-uikit/components-react test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
