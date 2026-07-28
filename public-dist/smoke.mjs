@@ -18,9 +18,14 @@ const paths = [
   '/v1/tokens-nested.json',
 ];
 
+// CDN cache-buster: right after a deploy the edge can serve entries up to
+// max-age (300s) old; without this, smoke can validate the PREVIOUS deploy.
+const bust = `smoke=${Date.now()}`;
+const busted = (href) => `${href}${href.includes('?') ? '&' : '?'}${bust}`;
+
 let failed = 0;
 for (const p of paths) {
-  const url = new URL(p, base).href;
+  const url = busted(new URL(p, base).href);
   const res = await fetch(url, { method: 'HEAD' });
   const acao = res.headers.get('access-control-allow-origin');
   const cache = res.headers.get('cache-control') || '';
@@ -35,7 +40,7 @@ for (const p of paths) {
 }
 
 // Body checks on tokens.css (OSMO markers + AA link token when present)
-const cssUrl = new URL('/v1/tokens.css', base).href;
+const cssUrl = busted(new URL('/v1/tokens.css', base).href);
 const css = await fetch(cssUrl).then((r) => r.text());
 for (const marker of ['green-electric', 'neutral-150', 'Inter Tight', 'easing-osmo']) {
   if (!css.includes(marker)) {
