@@ -10,3 +10,4 @@ storybook-static/
 .DS_Store
 tokensExport/
 public-dist/out/
+public-dist/deploy/
