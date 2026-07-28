@@ -5,6 +5,14 @@
       "dependsOn": ["^build"],
       "outputs": ["build/**", "dist/**"]
     },
+    "@atom-uikit/public-dist#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["out/**"]
+    },
+    "@atom-uikit/storybook#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
