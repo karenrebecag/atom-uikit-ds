@@ -116,13 +116,18 @@
   },
   "info": {
     "$type": "color",
-    "$value": "{color.sky}",
+    "$value": "{color.sky.500}",
     "$description": "Info state (dark) — hue preserved"
   },
   "info-foreground": {
     "$type": "color",
     "$value": "{color.neutral.950}",
     "$description": "Text on info (dark)"
+  },
+  "link": {
+    "$type": "color",
+    "$value": "{color.sky.500}",
+    "$description": "Link text on dark background — bright sky, 10.9:1"
   },
   "border": {
     "$type": "color",

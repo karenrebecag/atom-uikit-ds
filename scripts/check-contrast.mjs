@@ -28,6 +28,8 @@ const PAIRS = [
   ['success', 'success-foreground'],
   ['warning', 'warning-foreground'],
   ['info', 'info-foreground'],
+  // Text-on-background tokens (not a surface pair, same AA rule applies)
+  ['background', 'link'],
 ];
 
 const AA_NORMAL = 4.5;

@@ -116,13 +116,18 @@
   },
   "info": {
     "$type": "color",
-    "$value": "{color.sky}",
+    "$value": "{color.sky.500}",
     "$description": "Informational state background"
   },
   "info-foreground": {
     "$type": "color",
     "$value": "{color.neutral.950}",
     "$description": "Text on info"
+  },
+  "link": {
+    "$type": "color",
+    "$value": "{color.sky.700}",
+    "$description": "Link text on default background — dark sky, AA on neutral-50"
   },
   "border": {
     "$type": "color",

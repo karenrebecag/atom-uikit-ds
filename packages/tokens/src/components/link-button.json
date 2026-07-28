@@ -2,7 +2,7 @@
   "link-button": {
     "fg": {
       "$type": "color",
-      "enabled": { "$value": "{info}", "$description": "Sky link text (OSMO info)" },
+      "enabled": { "$value": "{link}", "$description": "Link text — AA-safe sky per theme" },
       "hover": { "$value": "{foreground}", "$description": "Full contrast on hover" },
       "pressed": { "$value": "{primary}", "$description": "Stronger on press" },
       "disabled": { "$value": "{muted-foreground}", "$description": "Muted when disabled" }

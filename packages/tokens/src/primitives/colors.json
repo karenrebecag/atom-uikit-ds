@@ -152,9 +152,16 @@
       }
     },
     "sky": {
-      "$type": "color",
-      "$value": "#22d3ee",
-      "$description": "OSMO sky accent — info"
+      "500": {
+        "$type": "color",
+        "$value": "#22d3ee",
+        "$description": "OSMO sky accent — info surfaces, link text on dark"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#0e7490",
+        "$description": "Dark sky — link text on light backgrounds (5.1:1 on neutral-50)"
+      }
     },
     "amber": {
       "50": {

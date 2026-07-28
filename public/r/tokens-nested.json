@@ -40,7 +40,10 @@
       "500": "#f84131",
       "700": "#c21e12"
     },
-    "sky": "#22d3ee",
+    "sky": {
+      "500": "#22d3ee",
+      "700": "#0e7490"
+    },
     "amber": {
       "50": "#fffbea",
       "100": "#fff4c6",
@@ -233,6 +236,7 @@
   "warning-foreground": "#471901",
   "info": "#22d3ee",
   "info-foreground": "#0a0a0a",
+  "link": "#0e7490",
   "border": "#e5e5e5",
   "border-input": "#d4d4d4",
   "border-focus": "#171717",
@@ -342,7 +346,7 @@
   },
   "link-button": {
     "fg": {
-      "enabled": "#22d3ee",
+      "enabled": "#0e7490",
       "hover": "#0a0a0a",
       "pressed": "#0a0a0a",
       "disabled": "#525252"
