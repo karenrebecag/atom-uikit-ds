@@ -10,7 +10,8 @@
     "validate:contrast": "node scripts/check-contrast.mjs",
     "validate:published": "node scripts/validate-published-tokens.mjs",
     "build:registry": "pnpm --filter @atom-uikit/tokens build && node scripts/build-registry.mjs",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "sync:webflow": "node scripts/sync-webflow.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
