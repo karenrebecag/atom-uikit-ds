@@ -7,7 +7,7 @@
     },
     "@atom-uikit/public-dist#build": {
       "dependsOn": ["^build"],
-      "outputs": ["out/**"]
+      "cache": false
     },
     "@atom-uikit/storybook#build": {
       "dependsOn": ["^build"],
