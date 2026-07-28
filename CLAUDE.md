@@ -6,6 +6,59 @@ Monorepo for the ATOM UIKit component library. Distributes via private registry 
 
 Web development components for landing pages, web apps, and marketing sites. This is NOT the brand/visual design system (that lives in `ATOM_DS` under `@atomchat.io/`).
 
+## Lenguaje visual y flujo end-to-end (LEER ANTES DE CUALQUIER CAMBIO DE ESTILO)
+
+El lenguaje visual oficial web es **OSMO/academy** (aprobado por marketing 2026-07-28):
+neutral ramp de 13 pasos (con 150/850), acentos `green-electric`/`forest`/`coral`/`sky`,
+brand `#ff6600`, tipografías Inter Tight (sans), Grift (display), Interval (mono),
+Gantol (scribble), ease firma `cubic-bezier(0.625, 0.05, 0, 1)`.
+
+Flujo canónico — TODO cambio visual entra por aquí, sin excepciones:
+
+```
+packages/tokens/src/*.json          ← EDITAR AQUÍ (única fuente de verdad)
+  → pnpm --filter @atom-uikit/tokens build
+  → packages/css (consume vars semánticas)
+  → Storybook local (QA visual, pre-merge)
+  → merge → canales de distribución (abajo)
+```
+
+Reglas duras para agentes de styling/flow/motion:
+
+1. **Nunca editar outputs**: `packages/tokens/build/`, `packages/css/dist/`,
+   `public/r/`, `public-dist/out/` son generados. Se regeneran, no se editan.
+2. **Capas estrictas**: component tokens → semantic → primitives. CSS de componentes
+   consume SOLO variables semánticas (`--primary`, `--muted`), jamás primitives ni hex.
+3. **Nuevo color de texto = nuevo par en `scripts/check-contrast.mjs`**. El gate WCAG AA
+   corre en CI; texto sobre superficie debe pasar 4.5:1 en light Y dark. Precedente:
+   `link` (sky.700 light / sky.500 dark) existe porque sky.500 sobre claro da 1.73:1.
+4. **brand/destructive llevan foreground oscuro** (neutral-950) por WCAG — blanco sobre
+   `#ff6600` da 2.9:1. No "corregirlo" a blanco.
+5. **Motion (W6, diferida)**: los TOKENS de motion ya existen (`easing-osmo`,
+   `duration-1200/1800`); los COMPORTAMIENTOS van en `packages/animations` como módulos
+   `init*(): CleanupFn` que consumen esos tokens — cero cubic-bezier/ms hardcodeados en
+   GSAP. Siempre `prefers-reduced-motion` + `data-motion-exempt`. No iniciar sin spec
+   aprobado (ver ~/Desktop/atom-web-ds-specs/waves/wave-6-motion-DEFERRED.md).
+6. **Webflow**: las Variables NO tienen REST Data API. El sync es
+   `node scripts/sync-webflow.mjs --plan` + sesión con el MCP oficial de Webflow
+   (protocolo en `docs/webflow-playbook.md`). No escribir clientes REST para variables.
+7. **Fuentes**: las 4 familias tienen licencia comercial Envato. No agregar familias
+   nuevas sin licencia verificada; woff2 viven en `packages/css/src/fonts/`.
+
+## Canales de distribución (privados/controlados — NO npm)
+
+| Canal | Superficie | Auth |
+|---|---|---|
+| Registry shadcn `/api/r` (docs site) | MCP UIKit, CLI `atom-uikit add` | Clerk / JWT / API key |
+| CSS+JSON público versionado | `https://atom-web-ds.vercel.app/v1/*` (tokens/foundation/atom.css, tokens.json, fonts) | Sin auth: son artefactos browser-facing, inherentemente públicos; el REPO y el registry siguen privados |
+| Webflow Variables nativas | plan compiler + MCP de Webflow | Conexión MCP autorizada por site |
+
+**npm está DESCONECTADO como canal** (decisión 2026-07-28: sin autorización para consumo
+público). Todos los paquetes son `private: true`; `pnpm release` está bloqueado a
+propósito. Changesets se sigue usando SOLO para versionado interno y CHANGELOGs.
+Versiones `@atom-uikit/*` publicadas en npm en el pasado: no publicar encima; si se
+requiere retirarlas (deprecate/unpublish), es decisión de Karen con acceso npm.
+
 ## Packages
 
 | Package | Purpose |
@@ -146,8 +199,8 @@ Raw design values. No semantic meaning. Updated manually.
 {
   "color": {
     "$type": "color",
-    "zinc-950": { "$value": "#09090b" },
-    "zinc-50": { "$value": "#fafafa" }
+    "neutral-950": { "$value": "#0a0a0a" },
+    "neutral-50": { "$value": "#fafafa" }
   }
 }
 ```
@@ -163,8 +216,8 @@ Intent-based aliases following shadcn/ui pairing convention. Every surface token
 
 ```json
 {
-  "primary": { "$type": "color", "$value": "{Primitive.Zinc.900}" },
-  "primary-foreground": { "$type": "color", "$value": "{Primitive.Zinc.50}" }
+  "primary": { "$type": "color", "$value": "{color.neutral.950}" },
+  "primary-foreground": { "$type": "color", "$value": "{color.neutral.50}" }
 }
 ```
 
@@ -252,10 +305,17 @@ Base-4 geometric scale. 13 steps, each visually distinct.
 | `spacing-10` | 40 | Section gap |
 | `spacing-12` | 48 | Large section gap |
 | `spacing-16` | 64 | Section padding |
+| `spacing-14` | 56 | OSMO gap-xl |
 | `spacing-20` | 80 | Hero spacing, page margin |
 | `spacing-24` | 96 | Max spacing, hero padding |
+| `spacing-32` | 128 | OSMO section-padding-xxl |
 
 **Rule:** Token number x 4 = pixel value. No exceptions.
+
+**Aliases semánticos** (`src/semantic/spacing.json`): `section-padding-{xxl..s}` y
+`gap-{xl..xs}` referencian estas primitives; son los que consumen secciones y Webflow.
+Overrides responsivos de estos aliases viven en `packages/css/foundation/scaling.css`,
+no en tokens.
 
 ---
 
@@ -359,38 +419,40 @@ Base-4 geometric scale. 13 steps, each visually distinct.
 | `duration-700` | 700ms | Entrance animations, stagger |
 | `duration-1000` | 1000ms | Skeleton shimmer, loaders |
 
-### Easing
-
-5 curves based on Tailwind + Material Design conventions.
+### Easing (sistema OSMO)
 
 | Token | Value | Usage |
 |-------|-------|-------|
 | `easing-linear` | `linear` | Progress bars |
 | `easing-in` | `cubic-bezier(0.4, 0, 1, 1)` | Elements exiting view |
-| `easing-out` | `cubic-bezier(0, 0, 0.2, 1)` | Elements entering view |
-| `easing-in-out` | `cubic-bezier(0.4, 0, 0.2, 1)` | Default — most transitions |
+| `easing-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | OSMO expo-out — elements entering view |
+| `easing-in-out` | `cubic-bezier(0.4, 0, 0.2, 1)` | Neutral transitions |
 | `easing-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Bouncy, playful interactions |
+| `easing-osmo` | `cubic-bezier(0.625, 0.05, 0, 1)` | Ease firma — motion de marca (W6) |
+
+Duraciones largas para motion: `duration-1200`, `duration-1800` (reservadas W6).
 
 ---
 
 ## Typography & Scaling
 
-### Type Scale: Major Third (1.25)
+### Type Scale (OSMO, en rem — pendiente calibración F3 en Storybook)
 
-Base: 16px. Each step multiplies by 1.25.
+Base: 1rem. Familias: sans = Inter Tight (UI/body), display = Grift (heros),
+mono = Interval, scribble = Gantol. Weights 400-800.
 
-| Token | px | rem | Line-height | Usage |
+| Token | rem | px | Line-height | Usage |
 |-------|-----|-----|-------------|-------|
-| `font-size-xs` | 10 | 0.625 | 16px | Labels, uppercase micro text |
-| `font-size-sm` | 13 | 0.8125 | 20px | Captions, secondary text |
-| `font-size-base` | 16 | 1 | 24px | Body text (default) |
-| `font-size-lg` | 20 | 1.25 | 28px | Body large, h5 |
-| `font-size-xl` | 25 | 1.5625 | 34px | h4 |
-| `font-size-2xl` | 31 | 1.9375 | 40px | h3 |
-| `font-size-3xl` | 39 | 2.4375 | 48px | h2 |
-| `font-size-4xl` | 49 | 3.0625 | 57px | h1 |
-| `font-size-5xl` | 61 | 3.8125 | 68px | Display large |
-| `font-size-6xl` | 76 | 4.75 | 82px | Display XL |
+| `font-size-xs` | 0.75 | 12 | 1.35 | Labels, micro text |
+| `font-size-sm` | 0.875 | 14 | 1.45 | Captions, secondary |
+| `font-size-base` | 1 | 16 | 1.5 | Body (default) |
+| `font-size-lg` | 1.25 | 20 | 1.4 | Body large |
+| `font-size-xl` | 1.5 | 24 | 1.3 | h4 |
+| `font-size-2xl` | 1.75 | 28 | 1.25 | h3 |
+| `font-size-3xl` | 2.25 | 36 | 1.2 | h2 |
+| `font-size-4xl` | 2.75 | 44 | 1.15 | h1 |
+| `font-size-5xl` | 3.5 | 56 | 1.1 | Display large |
+| `font-size-6xl` | 4.5 | 72 | 1.05 | Hero |
 
 ### Fluid Scaling System
 
@@ -549,16 +611,18 @@ Enforced by Turborepo. Never build components before tokens + css.
 
 ---
 
-## Publishing
+## Releasing (sin npm)
 
 ```bash
-pnpm changeset          # create changeset
+pnpm changeset          # create changeset (versionado interno + CHANGELOG)
 pnpm changeset version  # bump versions
 pnpm build              # build all
-pnpm release            # publish to npm
+pnpm build:registry     # regenera public/r → commit a main → deploy hook docs
+# deploy del canal público: ver public-dist/README.md (proyecto Vercel atom-web-ds)
 ```
 
-Scope: `@atom-uikit/`. Access: public. Managed by Changesets.
+`pnpm release` está deshabilitado — npm no es canal de distribución (ver "Canales de
+distribución"). Un release = registry regenerado + canal /v1 redeployado.
 
 ---
 
@@ -807,9 +871,9 @@ git commit -m "feat({component}): tokenize CSS, interactive story with {features
 git push origin main
 ```
 
-Solo Storybook (privado) no necesita npm release. Si CSS o React cambiaron:
+Solo Storybook (privado) no necesita release. Si CSS o React cambiaron:
 
-### Paso 7: Publicar npm (solo si cambiaron packages)
+### Paso 7: Release interno (sin npm)
 
 ```bash
 # Crear changeset manual (CLI interactivo no funciona)
@@ -822,13 +886,13 @@ Solo Storybook (privado) no necesita npm release. Si CSS o React cambiaron:
 
 pnpm changeset version
 git add .changeset/ packages/*/CHANGELOG.md packages/*/package.json
-git commit -m "chore(release): @atom-uikit/components-react@X.Y.Z, @atom-uikit/css@X.Y.Z"
-git push origin main
-pnpm release
-git push origin main --tags
+git commit -m "chore(release): version interna X.Y.Z"
+git push origin main            # dispara registry → docs deploy hook
+# si cambió tokens/css: redeploy del canal /v1 (public-dist/README.md)
 ```
 
 Usar `patch` para fixes, `minor` para breaking changes (eliminacion de componentes).
+NO correr `pnpm release` — npm está desconectado como canal.
 
 ### Componentes ya revisados
 

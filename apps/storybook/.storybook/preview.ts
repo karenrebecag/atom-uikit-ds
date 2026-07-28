@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react';
-import './tokens.css';
+// Live token build (OSMO language) — do not snapshot into this app
+import '../../../packages/tokens/build/css/tokens.css';
+import '../../../packages/tokens/build/css/dark.css';
 import '../../../packages/css/src/index.css';
 
 const preview: Preview = {
@@ -23,7 +25,11 @@ const preview: Preview = {
       const theme = context.globals.theme || 'light';
       document.documentElement.setAttribute('data-theme', theme);
       document.documentElement.style.colorScheme = theme;
-      document.body.style.backgroundColor = theme === 'dark' ? '#151313' : '#eaeaea';
+      // Canvas chrome uses semantic tokens so QA sees the real language
+      document.body.style.backgroundColor =
+        theme === 'dark' ? 'var(--background, #0a0a0a)' : 'var(--muted, #f5f5f5)';
+      document.body.style.color = 'var(--foreground)';
+      document.body.style.fontFamily = 'var(--font-family-sans)';
       return Story();
     },
   ],

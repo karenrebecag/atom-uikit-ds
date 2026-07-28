@@ -10,7 +10,7 @@
     "validate:contrast": "node scripts/check-contrast.mjs",
     "validate:published": "node scripts/validate-published-tokens.mjs",
     "build:registry": "pnpm --filter @atom-uikit/tokens build && node scripts/build-registry.mjs",
-    "release": "pnpm build && changeset publish",
+    "release": "echo 'npm publishing DESHABILITADO — canales privados only (CLAUDE.md > Canales de distribucion)' && exit 1",
     "sync:webflow": "node scripts/sync-webflow.mjs"
   },
   "devDependencies": {
