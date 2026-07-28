@@ -4,8 +4,8 @@
    Single size. Track + thumb that slides on checked.
    Native <input type="checkbox" role="switch"> hidden.
 
-   Off:      zinc-100 track, white thumb with shadow
-   On:       zinc-950 track, white thumb with shadow
+   Off:      muted track, white thumb with shadow
+   On:       primary track, white thumb with shadow
    States:   unchecked, checked, disabled
    Figma:    Size=s (36x20), Size=m (44x24) — we use s (web standard)
    ------------------------------------------------------------------------- */
