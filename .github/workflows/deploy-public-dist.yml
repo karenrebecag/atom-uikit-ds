@@ -1,0 +1,52 @@
+name: deploy-public-dist
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/tokens/**'
+      - 'packages/css/**'
+      - 'public-dist/**'
+      - '.github/workflows/deploy-public-dist.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-public-dist
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build + deploy /v1 to Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm --filter @atom-uikit/tokens build
+
+      - name: Build CSS artifacts
+        run: pnpm --filter @atom-uikit/css build
+
+      - name: Assemble public-dist (out/ + deploy/)
+        run: pnpm --filter @atom-uikit/public-dist build
+
+      - name: Deploy static dir to Vercel production
+        run: npx vercel deploy public-dist/deploy --prod --yes --token=$VERCEL_TOKEN
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Smoke production /v1
+        run: node public-dist/smoke.mjs https://atom-web-ds.vercel.app

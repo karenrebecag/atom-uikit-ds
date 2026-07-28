@@ -1,0 +1,49 @@
+name: public-dist PR check
+
+on:
+  pull_request:
+    paths:
+      - 'packages/tokens/**'
+      - 'packages/css/**'
+      - 'public-dist/**'
+      - '.github/workflows/public-dist-pr.yml'
+
+concurrency:
+  group: public-dist-pr-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-smoke-local:
+    name: Build artifacts + local smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @atom-uikit/tokens build
+      - run: pnpm --filter @atom-uikit/css build
+      - run: pnpm --filter @atom-uikit/public-dist build
+
+      - name: Assert deploy/ layout
+        run: |
+          test -f public-dist/deploy/v1/tokens.css
+          test -f public-dist/deploy/v1/foundation.css
+          test -f public-dist/deploy/v1/atom.css
+          test -f public-dist/deploy/vercel.json
+          # headers-only — must NOT require monorepo build at deploy time
+          ! grep -q buildCommand public-dist/deploy/vercel.json
+
+      - name: Serve out/ and smoke
+        run: |
+          npx --yes serve public-dist/out -l 4173 &
+          sleep 2
+          node public-dist/smoke.mjs http://127.0.0.1:4173

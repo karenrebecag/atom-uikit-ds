@@ -2,13 +2,28 @@
 /**
  * Assemble the public /v1/ channel from package build outputs.
  * Major version is a folder name — never break /v1/ in place with renames.
+ *
+ * Outputs:
+ *   out/v1/*     — artifacts for inspection / local smoke
+ *   deploy/      — self-contained static dir for `vercel deploy --prebuilt` / CLI
+ *                  (out tree + headers-only vercel.json)
  */
-import { cpSync, mkdirSync, rmSync, existsSync, writeFileSync, readdirSync } from 'node:fs';
+import {
+  cpSync,
+  mkdirSync,
+  rmSync,
+  existsSync,
+  writeFileSync,
+  readdirSync,
+  readFileSync,
+} from 'node:fs';
 import { resolve, join } from 'node:path';
 
 const MAJOR = 'v1';
 const ROOT = resolve(import.meta.dirname, '..');
-const OUT = resolve(import.meta.dirname, 'out', MAJOR);
+const PKG = import.meta.dirname;
+const OUT = resolve(PKG, 'out', MAJOR);
+const DEPLOY = resolve(PKG, 'deploy');
 
 const cssDist = resolve(ROOT, 'packages/css/dist');
 const tokensJson = resolve(ROOT, 'packages/tokens/build/json');
@@ -29,7 +44,8 @@ requireFile(join(cssDist, 'atom.css'), 'Run: pnpm --filter @atom-uikit/css build
 requireFile(join(tokensJson, 'tokens.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
 requireFile(join(tokensJson, 'tokens-nested.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
 
-rmSync(resolve(import.meta.dirname, 'out'), { recursive: true, force: true });
+rmSync(resolve(PKG, 'out'), { recursive: true, force: true });
+rmSync(DEPLOY, { recursive: true, force: true });
 mkdirSync(join(OUT, 'fonts'), { recursive: true });
 
 cpSync(join(cssDist, 'tokens.css'), join(OUT, 'tokens.css'));
@@ -46,7 +62,6 @@ if (existsSync(fontsDist)) {
     }
   }
 } else {
-  // Flatten src/fonts/**/*.woff2
   const walk = (dir) => {
     for (const ent of readdirSync(dir, { withFileTypes: true })) {
       const p = join(dir, ent.name);
@@ -57,7 +72,6 @@ if (existsSync(fontsDist)) {
   walk(fontsSrc);
 }
 
-// Manifest for operators (not a secret)
 writeFileSync(
   join(OUT, 'manifest.json'),
   JSON.stringify(
@@ -72,4 +86,17 @@ writeFileSync(
   )
 );
 
-console.log(`public-dist: wrote out/${MAJOR}/ (${readdirSync(join(OUT, 'fonts')).length} fonts)`);
+// deploy/ = out/ + headers-only vercel.json (no buildCommand — static only)
+mkdirSync(DEPLOY, { recursive: true });
+cpSync(resolve(PKG, 'out'), join(DEPLOY), { recursive: true });
+
+const fullVercel = JSON.parse(readFileSync(join(PKG, 'vercel.json'), 'utf8'));
+const headersOnly = {
+  $schema: fullVercel.$schema,
+  headers: fullVercel.headers,
+};
+writeFileSync(join(DEPLOY, 'vercel.json'), JSON.stringify(headersOnly, null, 2) + '\n');
+
+console.log(
+  `public-dist: wrote out/${MAJOR}/ (${readdirSync(join(OUT, 'fonts')).length} fonts) + deploy/`
+);
