@@ -2,27 +2,27 @@
   "checkbox": {
     "bg": {
       "$type": "color",
-      "unchecked": { "$value": "{background}", "$description": "White" },
-      "unchecked-hover": { "$value": "{color.zinc.50}", "$description": "Subtle highlight" },
-      "checked": { "$value": "{color.zinc.950}", "$description": "Dark fill" },
-      "checked-hover": { "$value": "{color.zinc.800}", "$description": "Lighter on hover" },
-      "disabled": { "$value": "{muted}", "$description": "Zinc-100 for all disabled" }
+      "unchecked": { "$value": "{background}", "$description": "Surface" },
+      "unchecked-hover": { "$value": "{accent}", "$description": "Subtle highlight" },
+      "checked": { "$value": "{primary}", "$description": "Dark fill" },
+      "checked-hover": { "$value": "{primary-hover}", "$description": "Lighter on hover" },
+      "disabled": { "$value": "{muted}", "$description": "Muted for all disabled" }
     },
     "fg": {
       "$type": "color",
-      "checked": { "$value": "{color.zinc.50}", "$description": "White check/minus icon" },
-      "disabled": { "$value": "{color.zinc.300}", "$description": "Faded icon when disabled" }
+      "checked": { "$value": "{primary-foreground}", "$description": "Check/minus icon on primary" },
+      "disabled": { "$value": "{muted-foreground}", "$description": "Faded icon when disabled" }
     },
     "border": {
       "$type": "color",
-      "default": { "$value": "{color.zinc.500}", "$description": "Unchecked border" },
-      "hover": { "$value": "{color.zinc.500}", "$description": "Same on hover" },
+      "default": { "$value": "{muted-foreground}", "$description": "Unchecked border" },
+      "hover": { "$value": "{muted-foreground}", "$description": "Same on hover" },
       "disabled": { "$value": "{muted}", "$description": "Faded border" },
-      "error": { "$value": "{destructive}", "$description": "Red border on error" }
+      "error": { "$value": "{destructive}", "$description": "Coral border on error" }
     },
     "focus-ring": {
       "$type": "color",
-      "default": { "$value": "rgba(161, 161, 161, 0.7)", "$description": "Stone-50 alpha ring" }
+      "default": { "$value": "rgba(161, 161, 161, 0.7)", "$description": "Neutral alpha ring" }
     }
   }
 }

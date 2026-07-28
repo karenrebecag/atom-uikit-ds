@@ -1,88 +1,88 @@
 {
   "background": {
     "$type": "color",
-    "$value": "{color.zinc.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Default page background (dark)"
   },
   "foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Default text on background (dark)"
   },
   "card": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.900}",
     "$description": "Card surface (dark)"
   },
   "card-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Text on card (dark)"
   },
   "popover": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.900}",
     "$description": "Popover surface (dark)"
   },
   "popover-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Text on popover (dark)"
   },
   "primary": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Primary actions (dark)"
   },
   "primary-hover": {
     "$type": "color",
-    "$value": "{color.zinc.200}",
-    "$description": "Primary hover — slightly darker than white (dark)"
+    "$value": "{color.neutral.200}",
+    "$description": "Primary hover (dark)"
   },
   "primary-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on primary (dark)"
   },
   "secondary": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.800}",
     "$description": "Secondary actions (dark)"
   },
   "secondary-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Text on secondary (dark)"
   },
   "muted": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.850}",
     "$description": "Subtle backgrounds (dark)"
   },
   "muted-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.400}",
+    "$value": "{color.neutral.400}",
     "$description": "Subdued text (dark)"
   },
   "accent": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.800}",
     "$description": "Hover/focus highlight (dark)"
   },
   "accent-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Text on accent (dark)"
   },
   "destructive": {
     "$type": "color",
-    "$value": "{color.red.600}",
-    "$description": "Error, danger (dark)"
+    "$value": "{color.coral.500}",
+    "$description": "Error, danger (dark) — hue preserved"
   },
   "destructive-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
-    "$description": "Text on destructive (dark)"
+    "$value": "{color.neutral.950}",
+    "$description": "Text on destructive (dark) — dark for WCAG AA"
   },
   "brand": {
     "$type": "color",
@@ -91,62 +91,67 @@
   },
   "brand-foreground": {
     "$type": "color",
-    "$value": "{color.white}",
-    "$description": "Text on brand (dark)"
+    "$value": "{color.neutral.950}",
+    "$description": "Text on brand (dark) — dark for WCAG AA"
   },
   "success": {
     "$type": "color",
-    "$value": "{color.emerald.600}",
-    "$description": "Success state (dark)"
+    "$value": "{color.green-electric}",
+    "$description": "Success state (dark) — hue preserved"
   },
   "success-foreground": {
     "$type": "color",
-    "$value": "{color.emerald.50}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on success (dark)"
   },
   "warning": {
     "$type": "color",
-    "$value": "{color.amber.600}",
-    "$description": "Warning state (dark)"
+    "$value": "{color.amber.500}",
+    "$description": "Warning state (dark) — hue preserved"
   },
   "warning-foreground": {
     "$type": "color",
-    "$value": "{color.amber.50}",
+    "$value": "{color.amber.950}",
     "$description": "Text on warning (dark)"
   },
   "info": {
     "$type": "color",
-    "$value": "{color.blue.600}",
-    "$description": "Info state (dark)"
+    "$value": "{color.sky.500}",
+    "$description": "Info state (dark) — hue preserved"
   },
   "info-foreground": {
     "$type": "color",
-    "$value": "{color.blue.50}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on info (dark)"
+  },
+  "link": {
+    "$type": "color",
+    "$value": "{color.sky.500}",
+    "$description": "Link text on dark background — bright sky, 10.9:1"
   },
   "border": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.800}",
     "$description": "Default borders (dark)"
   },
   "border-input": {
     "$type": "color",
-    "$value": "{color.zinc.700}",
+    "$value": "{color.neutral.700}",
     "$description": "Form input borders (dark)"
   },
   "border-focus": {
     "$type": "color",
-    "$value": "{color.zinc.100}",
+    "$value": "{color.neutral.100}",
     "$description": "Input border when focused (dark)"
   },
   "input": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.800}",
     "$description": "Form input borders (dark)"
   },
   "ring": {
     "$type": "color",
-    "$value": "{color.zinc.300}",
+    "$value": "{color.neutral.300}",
     "$description": "Focus rings (dark)"
   },
   "ring-width": {
@@ -166,12 +171,12 @@
   },
   "sidebar-bg": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.900}",
     "$description": "Sidebar background (dark)"
   },
   "sidebar-border": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.800}",
     "$description": "Sidebar border (dark)"
   },
   "sidebar-active": {
@@ -186,7 +191,7 @@
   },
   "placeholder": {
     "$type": "color",
-    "$value": "{color.zinc.400}",
+    "$value": "{color.neutral.400}",
     "$description": "Input placeholder text (dark)"
   }
 }

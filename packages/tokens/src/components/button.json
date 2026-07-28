@@ -32,7 +32,7 @@
       "primary": { "$value": "{primary-hover}", "$description": "Theme-aware primary hover" },
       "secondary": { "$value": "{accent}", "$description": "Subtle highlight" },
       "tertiary": { "$value": "{accent}", "$description": "Subtle highlight" },
-      "destructive-primary": { "$value": "{color.red.600}", "$description": "Darker red" },
+      "destructive-primary": { "$value": "{color.coral.700}", "$description": "Darker coral on hover" },
       "destructive-secondary": { "$value": "{accent}", "$description": "Subtle highlight" },
       "destructive-tertiary": { "$value": "{accent}", "$description": "Subtle highlight" }
     },
@@ -41,7 +41,7 @@
       "primary": { "$value": "{muted}", "$description": "Pressed feedback" },
       "secondary": { "$value": "{muted}", "$description": "Pressed feedback" },
       "tertiary": { "$value": "{muted}", "$description": "Pressed feedback" },
-      "destructive-primary": { "$value": "{color.red.700}", "$description": "Darkest red" },
+      "destructive-primary": { "$value": "{color.coral.700}", "$description": "Dark coral on press" },
       "destructive-secondary": { "$value": "{muted}", "$description": "Pressed feedback" },
       "destructive-tertiary": { "$value": "{muted}", "$description": "Pressed feedback" }
     },

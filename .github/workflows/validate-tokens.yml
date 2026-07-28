@@ -27,6 +27,10 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # Builds tokens (Style Dictionary) + emits public/r/tokens-nested.json
       - run: pnpm build:registry
+      # Layer rules (primitives literal / semantic refs / component refs)
+      - run: pnpm validate
+      # WCAG AA surface/foreground contrast (light + dark)
+      - run: node scripts/check-contrast.mjs
       # Validates the artifact the MCP consumes: required categories, semantic
       # palette, no unresolved references. Self-contained (no MCP, no network).
       - run: pnpm validate:published
