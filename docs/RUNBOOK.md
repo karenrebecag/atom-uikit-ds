@@ -45,6 +45,7 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
    ```bash
    pnpm validate
    pnpm validate:contrast
+   pnpm validate:embed        # scoping de embed.css (falla = reestilizaría hosts)
    pnpm build
    pnpm build:registry && pnpm validate:published
    ```
@@ -70,8 +71,12 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
    gh pr merge --merge        # SIEMPRE merge commit; nunca squash en branches apiladas
    ```
    Aprueba Karen (o su OK explícito en el chat de trabajo). Cambio visual intencional:
-   regenerar baselines (`pnpm test:visual:update`) y commitear los PNG en el mismo PR —
-   ese diff de imágenes es el registro de la decisión de diseño.
+   los baselines van POR PLATAFORMA (`__darwin` local, `__linux` CI — patrón Playwright):
+   1) `pnpm test:visual:update` regenera los darwin y se commitean en el PR;
+   2) el job `visual-regression` del PR detecta el cambio, y sus linux se toman del
+      artifact `linux-baselines` del run (`gh run download <id> -n linux-baselines
+      -D apps/storybook/__image_snapshots__/`) y se commitean también.
+   Ese diff de imágenes es el registro de la decisión de diseño.
 8. Automático (con secrets del §0): Action `deploy-public-dist` redeploya `/v1` + smoke.
    Seguirlo: `gh run watch $(gh run list --workflow deploy-public-dist --limit 1 --json databaseId -q '.[0].databaseId')`.
 9. **Deliberado** — re-skinear docs/MCP. "Deliberado" = NO ocurre con el merge; el push a
@@ -187,6 +192,7 @@ Ver `docs/decisions/`:
 
 | ADR | Tema |
 |---|---|
+| 006 | `embed.css`: variante scopeada para hosts ajenos |
 | 001 | OSMO/academy es el lenguaje web oficial |
 | 002 | npm desconectado; canales privados + /v1 browser-facing |
 | 003 | Webflow Variables vía plan + MCP, no REST |

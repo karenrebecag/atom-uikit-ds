@@ -12,7 +12,8 @@ Nunca copies valores a mano ni inventes componentes. Consume por canal:
 | Contexto | Canal | Cómo |
 |---|---|---|
 | Proyecto con MCP "UIKIT atom" conectado | MCP (canal preferido) | `atom_uikit_context` para bootstrap → `atom_uikit_search`/`component` para descubrir → `atom_uikit_source` para el código real → `atom_uikit_validate`/`audit` antes de entregar. El MCP es anti-alucinación: si no llamaste `source`, no conoces la implementación |
-| Proyecto vanilla / Mount Point / HTML | CSS público | `<link rel="stylesheet" href="https://atom-web-ds.vercel.app/v1/foundation.css">` (tokens+tipografía+utilities) o `/v1/atom.css` (todo, con componentes BEM). Versionado: `/v1/` nunca rompe |
+| Proyecto vanilla / Mount Point / HTML (documento propio) | CSS público | `<link rel="stylesheet" href="https://atom-web-ds.vercel.app/v1/foundation.css">` (tokens+tipografía+utilities) o `/v1/atom.css` (todo, con componentes BEM). Versionado: `/v1/` nunca rompe |
+| **Embed dentro de página host ajena** (Webflow embed code, shortcode de WordPress) | **`/v1/embed.css`** | `<link rel="stylesheet" href="https://atom-web-ds.vercel.app/v1/embed.css">` y montar dentro de `<div class="atom-embed" data-theme="light">`. Es el DS completo con TODOS los selectores scopeados. **Nunca uses foundation.css ni atom.css en un host ajeno**: llevan una regla `body { … }` global que reestiliza la página del host |
 | Necesitas valores programáticos | JSON público | `fetch('https://atom-web-ds.vercel.app/v1/tokens.json')` (flat) o `/v1/tokens-nested.json` (jerárquico, resuelto) |
 | Webflow | Variables nativas | Ya sincronizadas por el protocolo de `docs/webflow-playbook.md`. Estiliza SOLO con variables de la collection "Atom DS v1"; cero hex en el panel |
 
@@ -69,3 +70,9 @@ Lee en este orden: `CLAUDE.md` (reglas duras y flujo), `docs/RUNBOOK.md` (operac
 - Tokens de Vercel creados en la cuenta equivocada (hay dos; ver RUNBOOK §0).
 - `{info}` (sky claro) como color de TEXTO sobre fondo claro: 1.73:1. Para links existe
   `{link}`.
+- Cargar `foundation.css`/`atom.css` en una página host ajena: su regla `body { … }`
+  reestiliza al host. Para eso existe `embed.css`.
+- Post-procesar con regex el CSS ya compilado del DS para scopearlo: frágil y se rompe con
+  cada cambio upstream. El scoping se genera desde el source con el visitor AST de
+  LightningCSS (`packages/css/scripts/scope-embed.mjs`); si necesitas otra variante, agrega
+  una entrada al build del DS, no un post-proceso en el consumidor.

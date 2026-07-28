@@ -34,25 +34,55 @@ jobs:
           pnpm --filter @atom-uikit/tokens build
           pnpm --filter @atom-uikit/css build
 
+      # playwright arrives as a transitive dep of @storybook/test-runner, so it has
+      # no bin entry to `pnpm exec`. Drive its CLI from the store at the exact
+      # installed version instead of npx-ing whatever is latest.
       - name: Install Playwright browser
-        run: pnpm --filter @atom-uikit/storybook exec playwright install chromium --with-deps
+        run: |
+          PW=$(ls -d node_modules/.pnpm/playwright@*/node_modules/playwright | head -1)
+          node "$PW/cli.js" install chromium --with-deps
+
+      # Reuses the chromium installed above: proves embed.css neither leaks into
+      # a hostile host page nor absorbs its global CSS.
+      - name: Embed style-leak test
+        run: pnpm test:embed-leak
 
       - name: Build Storybook static
         run: pnpm --filter @atom-uikit/storybook build
 
+      # Baselines are platform-suffixed (__darwin / __linux), the same pattern
+      # Playwright's toHaveScreenshot uses by default: font rasterization differs
+      # across OSes, so each platform verifies against its own set.
+      #
+      # Bootstrap: linux baselines can only be born on linux. When none exist for
+      # this platform yet, generate them (-u), upload them as an artifact to be
+      # committed, and pass with a notice instead of failing on every story.
       - name: Serve + run test-runner
         working-directory: apps/storybook
         run: |
+          if ls __image_snapshots__/*__linux.png >/dev/null 2>&1; then
+            MODE=""
+            echo "linux baselines found — verify mode"
+          else
+            MODE="-u"
+            echo "::warning::No linux baselines yet — BOOTSTRAP: generating them; download the 'linux-baselines' artifact and commit it"
+          fi
           npx concurrently -k -s first -n server,test \
             "npx http-server storybook-static -p 6006 -s" \
-            "npx wait-on tcp:6006 && npx test-storybook --url http://127.0.0.1:6006"
+            "npx wait-on tcp:6006 && npx test-storybook --url http://127.0.0.1:6006 $MODE"
+
+      - name: Upload linux baselines (bootstrap or intentional update)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-baselines
+          path: apps/storybook/__image_snapshots__/*__linux.png
+          if-no-files-found: ignore
 
       - name: Upload diff artifacts on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: visual-diffs
-          path: |
-            apps/storybook/__image_snapshots__/__diff_output__
-            apps/storybook/__image_snapshots__
+          path: apps/storybook/__image_snapshots__/__diff_output__
           if-no-files-found: ignore

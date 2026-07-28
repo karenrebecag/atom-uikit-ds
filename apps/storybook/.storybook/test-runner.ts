@@ -61,7 +61,11 @@ const config: TestRunnerConfig = {
         caret: 'hide',
       });
 
-      const id = `${context.id}__${theme}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+      // Platform-suffixed baselines, the pattern Playwright's own toHaveScreenshot
+      // uses by default ("you will need different snapshots" per platform — font
+      // rasterization differs): darwin baselines serve the local styling loop,
+      // linux baselines are what CI verifies. Both live in __image_snapshots__.
+      const id = `${context.id}__${theme}__${process.platform}`.replace(/[^a-zA-Z0-9_-]/g, '_');
       expect(image).toMatchImageSnapshot({
         customSnapshotsDir,
         customSnapshotIdentifier: id,

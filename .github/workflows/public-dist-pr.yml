@@ -31,11 +31,15 @@ jobs:
       - run: pnpm --filter @atom-uikit/css build
       - run: pnpm --filter @atom-uikit/public-dist build
 
+      - name: Validate embed scoping
+        run: pnpm validate:embed
+
       - name: Assert deploy/ layout
         run: |
           test -f public-dist/deploy/v1/tokens.css
           test -f public-dist/deploy/v1/foundation.css
           test -f public-dist/deploy/v1/atom.css
+          test -f public-dist/deploy/v1/embed.css
           test -f public-dist/deploy/vercel.json
           # headers-only — must NOT require monorepo build at deploy time
           ! grep -q buildCommand public-dist/deploy/vercel.json
@@ -43,5 +47,6 @@ jobs:
       - name: Serve out/ and smoke
         run: |
           npx --yes serve public-dist/out -l 4173 &
-          sleep 2
+          # `sleep 2` raced the server on cold runners and smoke got ECONNREFUSED
+          npx --yes wait-on tcp:4173 -t 30000
           node public-dist/smoke.mjs http://127.0.0.1:4173

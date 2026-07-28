@@ -1,0 +1,23 @@
+/**
+ * Embed channel: the SAME content as atom.css (tokens + foundation + layout +
+ * components), but every selector is scoped under `.atom-embed` at build time
+ * (see scripts/scope-embed.mjs).
+ *
+ * For marketing sections mounted inside host pages we do not own (Webflow
+ * embed codes, WordPress shortcodes). atom.css cannot be used there: it carries
+ * a global `body { … }` rule that would restyle the host page.
+ *
+ * Components are included on purpose. An embed is a self-contained island: it
+ * ships its own markup and cannot assume the host provides anything, so a
+ * foundation-only build would force every consumer to re-declare button, card
+ * and form styles — exactly the duplication this channel exists to prevent.
+ *
+ * The host mounts:  <div class="atom-embed" data-theme="light"> … </div>
+ */
+@import './tokens.css';
+@import '../foundation/fonts.css';
+@import '../foundation/embed-reset.css';
+@import '../foundation/index.css';
+@import '../utilities/index.css';
+@import '../layout/index.css';
+@import '../components/index.css';

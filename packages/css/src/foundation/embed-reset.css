@@ -1,0 +1,59 @@
+/* -------------------------------------------------------------------------
+   Embed reset — ONLY loaded by src/entries/embed.css
+
+   Protects embedded content from what the HOST page injects inward: WordPress
+   themes and Webflow's normalize routinely ship `* { margin: 0; padding: 0 }`
+   or set line-height globally. Their universal selector scores 0,0,0; ours
+   scores 0,1,0, so these rules win inside the embed without !important.
+
+   Deliberately NOT here:
+   - `all: initial` / `all: revert` — they reset custom properties too, and
+     inherited custom properties ARE the design system's delivery mechanism.
+   - `isolation: isolate` or `position: relative` on the scope root — either
+     one creates a stacking context and a containing block, which is exactly
+     what breaks `position: fixed` descendants (modals, tooltips). We refuse
+     to cause the problem we are trying to avoid.
+   ------------------------------------------------------------------------- */
+
+.atom-embed {
+  box-sizing: border-box;
+
+  /* The embed paints its own surface. The DS never sets background-color on
+     `body` (a normal page owns its own), but an embed cannot inherit the
+     host's: with data-theme="dark" the foreground turns light, and over a
+     light host background the text would be invisible. */
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.atom-embed *,
+.atom-embed *::before,
+.atom-embed *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Media must not overflow the host's column. */
+.atom-embed img,
+.atom-embed video,
+.atom-embed svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hosts often restyle these; the DS owns them inside the embed. */
+.atom-embed a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.atom-embed button,
+.atom-embed input,
+.atom-embed select,
+.atom-embed textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+}
