@@ -8,6 +8,28 @@ archivo de planeación; la verdad operativa es este runbook + `docs/decisions/`.
 
 ---
 
+## 0. Prerrequisitos y secrets (setup una sola vez)
+
+Herramientas locales: node >=22, pnpm 10 (lo fija `packageManager`), `gh` CLI autenticado
+(`gh auth status`), Vercel CLI vía `npx vercel` (login con la cuenta correcta, ver abajo).
+
+**CUIDADO — dos cuentas Vercel.** Existen `karenrebecag` (dueña del proyecto `atom-web-ds`
+y del CLI local) y `karenortiz-6632` (su team personal usa el slug "atomchatio"). Todo
+token para CI debe crearse LOGUEADA COMO `karenrebecag`; un token de la otra cuenta
+produce `Could not retrieve Project Settings` en el deploy.
+
+| Secret (GitHub → repo → Settings → Secrets → Actions) | Cómo obtenerlo |
+|---|---|
+| `VERCEL_TOKEN` | vercel.com como **karenrebecag** → Account Settings → Tokens → scope **"karenrebecag's projects"** (mínimo privilegio). Si expira o se filtra: revocar y repetir |
+| `VERCEL_ORG_ID` | `team_2Kekf45ShrgrZsPfBqfnZrMG` (cambia solo si el proyecto se transfiere de scope) |
+| `VERCEL_PROJECT_ID` | `prj_Wt5ufLZsBBJCTrhuQ1Ici7PyIM88` (proyecto `atom-web-ds`) |
+| `DOCS_DEPLOY_HOOK` | Vercel → proyecto docs (`atom-uikit-docs`) → Settings → Git → Deploy Hooks → crear (branch `main`) y copiar URL. Si se expone: borrar y regenerar |
+
+Los IDs no son secretos estrictos (inservibles sin token) pero se guardan como secrets
+por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag/atom-uikit-ds`.
+
+---
+
 ## 1. Release de tokens / CSS (cambio de lenguaje visual)
 
 ### Precondiciones
@@ -29,16 +51,39 @@ archivo de planeación; la verdad operativa es este runbook + `docs/decisions/`.
 4. Si cambió CSS foundation/utilities: `pnpm --filter @atom-uikit/css build`.
 5. QA visual: `pnpm --filter @atom-uikit/storybook dev` (checklist en
    `docs/qa-storybook-osmo.md`).
-6. Changeset interno (minor/patch) si cambian paquetes versionados:
-   `pnpm changeset` → commit.
-7. PR → merge a `main` (**merge commit**, no squash en stacks).
-8. Automático (con secrets): Action `deploy-public-dist` redeploya `/v1` + smoke.
-9. **Deliberado** — re-skinear docs/MCP:
+6. Changeset interno si cambian paquetes versionados. El CLI interactivo no funciona en
+   este entorno: crear el archivo A MANO en `.changeset/<slug>.md`:
+   ```md
+   ---
+   "@atom-uikit/tokens": patch
+   ---
+   Qué cambió y POR QUÉ (una línea).
+   ```
+   `patch` = ajuste de valores/fixes; `minor` = tokens nuevos o cambio de lenguaje;
+   los renames de tokens están prohibidos (serían major = nueva carpeta `/v2`).
+   Commitear el changeset junto con el cambio.
+7. PR y merge — flujo completo:
    ```bash
-   export DOCS_DEPLOY_HOOK=<url del hook de docs>
+   git push -u origin <branch>
+   gh pr create --fill --base main
+   # esperar CI verde (validate-tokens + visual-regression + component-tests según paths)
+   gh pr merge --merge        # SIEMPRE merge commit; nunca squash en branches apiladas
+   ```
+   Aprueba Karen (o su OK explícito en el chat de trabajo). Cambio visual intencional:
+   regenerar baselines (`pnpm test:visual:update`) y commitear los PNG en el mismo PR —
+   ese diff de imágenes es el registro de la decisión de diseño.
+8. Automático (con secrets del §0): Action `deploy-public-dist` redeploya `/v1` + smoke.
+   Seguirlo: `gh run watch $(gh run list --workflow deploy-public-dist --limit 1 --json databaseId -q '.[0].databaseId')`.
+9. **Deliberado** — re-skinear docs/MCP. "Deliberado" = NO ocurre con el merge; el push a
+   main solo actualiza `/v1`. Este paso propaga el cambio a `uikit.atomchat.io` y al MCP
+   (lo que ven diseñadores y agentes), y se dispara a mano cuando el cambio visual ya está
+   aprobado:
+   ```bash
+   export DOCS_DEPLOY_HOOK=<url del hook, ver §0>
    pnpm build:registry
    ```
-   Confirmar F4 (productos que no deben cambiar look) **antes** del hook.
+   Antes del hook, confirmar **F4**: ¿algún producto consumidor NO debe cambiar de look
+   todavía? (Si sí: pinnearlo/actualizarlo primero; la lista vive con Karen.)
 10. Esperar ≥5 min → validar MCP tokens (OSMO, sin zinc, `--link` presente).
 
 ### Verificación
@@ -46,9 +91,14 @@ archivo de planeación; la verdad operativa es este runbook + `docs/decisions/`.
 - `node public-dist/smoke.mjs https://atom-web-ds.vercel.app`.
 - MCP / `tokens-nested` con `background #fafafa`, `green-electric`, Inter Tight.
 
-### Rollback
-- `/v1`: ver §2.  
-- Docs: redeploy commit anterior del site docs o revert merge en `atom-uikit-ds` + hook.
+### Rollback coordinado (orden importa)
+1. `git revert -m 1 <merge-commit>` en `main` + push → el Action redeploya `/v1` con el
+   estado anterior automáticamente.
+2. Si `/v1` urge antes de que corra CI: `npx vercel rollback` (§2) como puente.
+3. Docs/MCP solo si el hook ya se disparó: correr `pnpm build:registry` con hook otra vez
+   (ya con el revert en main) y esperar el caché de 5 min del MCP.
+4. Validar: `node public-dist/smoke.mjs https://atom-web-ds.vercel.app` + MCP sin el
+   cambio revertido.
 
 ---
 
