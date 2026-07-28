@@ -47,5 +47,6 @@ jobs:
       - name: Serve out/ and smoke
         run: |
           npx --yes serve public-dist/out -l 4173 &
-          sleep 2
+          # `sleep 2` raced the server on cold runners and smoke got ECONNREFUSED
+          npx --yes wait-on tcp:4173 -t 30000
           node public-dist/smoke.mjs http://127.0.0.1:4173

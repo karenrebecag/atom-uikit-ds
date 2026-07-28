@@ -34,8 +34,13 @@ jobs:
           pnpm --filter @atom-uikit/tokens build
           pnpm --filter @atom-uikit/css build
 
+      # playwright arrives as a transitive dep of @storybook/test-runner, so it has
+      # no bin entry to `pnpm exec`. Drive its CLI from the store at the exact
+      # installed version instead of npx-ing whatever is latest.
       - name: Install Playwright browser
-        run: pnpm --filter @atom-uikit/storybook exec playwright install chromium --with-deps
+        run: |
+          PW=$(ls -d node_modules/.pnpm/playwright@*/node_modules/playwright | head -1)
+          node "$PW/cli.js" install chromium --with-deps
 
       # Reuses the chromium installed above: proves embed.css neither leaks into
       # a hostile host page nor absorbs its global CSS.
