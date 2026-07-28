@@ -1,0 +1,11 @@
+{
+  "name": "@atom-uikit/public-dist",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Public static channel for Atom web DS (Vercel /v1/*)",
+  "scripts": {
+    "build": "node build.mjs",
+    "smoke": "node smoke.mjs"
+  }
+}

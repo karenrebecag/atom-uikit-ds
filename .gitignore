@@ -9,3 +9,4 @@ storybook-static/
 .env.local
 .DS_Store
 tokensExport/
+public-dist/out/
