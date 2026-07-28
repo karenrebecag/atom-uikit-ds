@@ -2,6 +2,9 @@
 
 Monorepo for the ATOM UIKit component library. Distributes via private registry (shadcn model) — source copied to consumer projects, not installed as npm dependencies. Documented at `uikit.atomchat.io`.
 
+**Operación (release, deploy /v1, Webflow, registry, accesos):** seguir
+[`docs/RUNBOOK.md`](docs/RUNBOOK.md). Decisiones vigentes: [`docs/decisions/`](docs/decisions/).
+
 ## Scope
 
 Web development components for landing pages, web apps, and marketing sites. This is NOT the brand/visual design system (that lives in `ATOM_DS` under `@atomchat.io/`).
@@ -152,8 +155,12 @@ artifacts like `tokens-nested.json` propagate without a manual seed. So: **commi
 `build-registry.mjs` triggers a Vercel deploy hook at the end of a successful build if `DOCS_DEPLOY_HOOK` env var is set. This ensures the docs site picks up fresh registry data without manual intervention.
 
 ```bash
-# Set locally for development
-export DOCS_DEPLOY_HOOK=https://api.vercel.com/v1/integrations/deploy/prj_lG3jXv4lTsSjzD2zJFvQzXFN0hp0/UKsHzKOuFI
+# La URL del hook es cuasi-secreto (quien la tenga puede disparar builds de docs).
+# NUNCA commitearla: vive en GitHub Secrets (DOCS_DEPLOY_HOOK) y en el gestor de
+# secretos local de Karen. La URL que vivió aquí hasta 2026-07-28 quedó en el
+# historial de git y fue ROTADA — regenerar en: Vercel > proyecto docs > Settings
+# > Git > Deploy Hooks si vuelve a exponerse.
+export DOCS_DEPLOY_HOOK=<url-del-hook>
 
 # Then build:registry will trigger docs rebuild automatically
 pnpm build:registry
