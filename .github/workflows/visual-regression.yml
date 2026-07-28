@@ -1,0 +1,60 @@
+name: visual-regression
+
+on:
+  pull_request:
+    paths:
+      - 'packages/tokens/**'
+      - 'packages/css/**'
+      - 'apps/storybook/**'
+      - '.github/workflows/visual-regression.yml'
+
+concurrency:
+  group: visual-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  snapshots:
+    name: Storybook image snapshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build tokens + CSS (Storybook imports live tokens)
+        run: |
+          pnpm --filter @atom-uikit/tokens build
+          pnpm --filter @atom-uikit/css build
+
+      - name: Install Playwright browser
+        run: pnpm --filter @atom-uikit/storybook exec playwright install chromium --with-deps
+
+      - name: Build Storybook static
+        run: pnpm --filter @atom-uikit/storybook build
+
+      - name: Serve + run test-runner
+        working-directory: apps/storybook
+        run: |
+          npx concurrently -k -s first -n server,test \
+            "npx http-server storybook-static -p 6006 -s" \
+            "npx wait-on tcp:6006 && npx test-storybook --url http://127.0.0.1:6006"
+
+      - name: Upload diff artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diffs
+          path: |
+            apps/storybook/__image_snapshots__/__diff_output__
+            apps/storybook/__image_snapshots__
+          if-no-files-found: ignore

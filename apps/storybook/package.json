@@ -4,17 +4,24 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build"
+    "build": "storybook build",
+    "test:visual": "storybook build && npx concurrently -k -s first -n server,test \"npx http-server storybook-static -p 6006 -s\" \"npx wait-on tcp:6006 && test-storybook --url http://127.0.0.1:6006\"",
+    "test:visual:update": "UPDATE_SNAPSHOTS=true storybook build && npx concurrently -k -s first -n server,test \"npx http-server storybook-static -p 6006 -s\" \"npx wait-on tcp:6006 && test-storybook --url http://127.0.0.1:6006\""
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.18",
     "@storybook/blocks": "^8.6.18",
     "@storybook/react": "^8.6.18",
     "@storybook/react-vite": "^8.6.18",
+    "@storybook/test-runner": "0.22",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "9",
+    "http-server": "14",
+    "jest-image-snapshot": "6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "storybook": "^8.6.18"
+    "storybook": "^8.6.18",
+    "wait-on": "8"
   }
 }
