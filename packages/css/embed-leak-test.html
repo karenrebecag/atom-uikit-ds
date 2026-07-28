@@ -1,0 +1,64 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>embed.css — leak test</title>
+
+<!--
+  Manual gate for the embed artifact. Open with:
+    npx serve packages/css/dist -l 4174   (then open ../embed-leak-test.html)
+  or simply: open packages/css/embed-leak-test.html
+
+  PASS means BOTH directions hold:
+    1. Host content below keeps ITS OWN look (Times serif, red button, wide
+       spacing). If it turns into Inter Tight, embed.css leaked outward.
+    2. Embed content looks OSMO (Inter Tight, dark neutral, tight reset)
+       despite the host's aggressive `*` rules. If it inherits the host's
+       serif/line-height, the scoped reset is too weak.
+-->
+
+<style>
+  /* A deliberately hostile host page: the kind of global CSS WordPress themes
+     and Webflow's normalize ship. */
+  * {
+    margin: 0;
+    padding: 0;
+    line-height: 3;
+    box-sizing: content-box;
+  }
+  body {
+    font-family: "Times New Roman", serif;
+    font-size: 22px;
+    color: #7a0000;
+    background: #fffdf5;
+    padding: 24px;
+  }
+  h1, h2 { font-weight: 400; letter-spacing: 0.1em; }
+  button { background: #c00; color: #fff; border: 3px dashed #000; padding: 12px; }
+  a { color: #0000ee; text-decoration: underline; }
+  .frame { border: 2px solid #999; margin: 24px 0; padding: 16px; }
+</style>
+
+<link rel="stylesheet" href="./dist/embed.css" />
+
+<h1>Host heading — must stay Times, red, line-height 3</h1>
+<p>Host paragraph. <a href="#">Host link, blue underlined.</a></p>
+<button>Host button — red, dashed border</button>
+
+<div class="frame">
+  <p><strong>Below is the embed.</strong> It must look OSMO regardless of the host CSS above.</p>
+
+  <div class="atom-embed" data-theme="light">
+    <h1 class="h1">Embed heading — Inter Tight</h1>
+    <p class="body">Embed body copy. Should be neutral-950 on neutral-50, tight line-height.</p>
+    <a href="#" class="body">Embed link</a>
+    <button class="button button--primary button--m">Embed button</button>
+  </div>
+</div>
+
+<div class="frame">
+  <div class="atom-embed" data-theme="dark" style="padding: 16px">
+    <h1 class="h1">Dark mode embed — per-embed theming</h1>
+    <p class="body">Background/foreground must invert here only, not on the page.</p>
+  </div>
+</div>
+
+<h2>Host footer — still Times, still red</h2>

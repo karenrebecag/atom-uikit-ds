@@ -14,6 +14,7 @@ const paths = [
   '/v1/tokens.css',
   '/v1/foundation.css',
   '/v1/atom.css',
+  '/v1/embed.css',
   '/v1/tokens.json',
   '/v1/tokens-nested.json',
 ];
@@ -54,6 +55,19 @@ if (css.includes('--link:') || css.includes('--link ')) {
   console.log('OK  --link present (AA link token)');
 } else {
   console.log('WARN --link not found (redeploy after W1 link fix if unexpected)');
+}
+
+// embed.css must never restyle a host page: a bare `body{` or `:root{` here is
+// the exact failure this artifact exists to prevent.
+const embed = await fetch(busted(new URL('/v1/embed.css', base).href)).then((r) => r.text());
+if (!embed.includes('.atom-embed')) {
+  console.log('FAIL embed.css is not scoped (.atom-embed absent)');
+  failed++;
+} else if (/(^|})(body|:root|html)\s*\{/.test(embed)) {
+  console.log('FAIL embed.css leaks a global body/:root/html rule');
+  failed++;
+} else {
+  console.log('OK  embed.css scoped to .atom-embed, no global rules');
 }
 
 const mapRes = await fetch(new URL('/v1/tokens.css.map', base).href, { method: 'HEAD' });

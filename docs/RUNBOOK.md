@@ -45,6 +45,7 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
    ```bash
    pnpm validate
    pnpm validate:contrast
+   pnpm validate:embed        # scoping de embed.css (falla = reestilizaría hosts)
    pnpm build
    pnpm build:registry && pnpm validate:published
    ```
@@ -187,6 +188,7 @@ Ver `docs/decisions/`:
 
 | ADR | Tema |
 |---|---|
+| 006 | `embed.css`: variante scopeada para hosts ajenos |
 | 001 | OSMO/academy es el lenguaje web oficial |
 | 002 | npm desconectado; canales privados + /v1 browser-facing |
 | 003 | Webflow Variables vía plan + MCP, no REST |

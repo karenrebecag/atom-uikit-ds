@@ -8,12 +8,14 @@ import {
   readFileSync,
   writeFileSync,
 } from 'node:fs';
+import { scopeEmbedCss, findUnscopedSelectors } from './scripts/scope-embed.mjs';
 
 /**
- * Three public artifacts from one package:
+ * Four public artifacts from one package:
  *   dist/tokens.css     — CSS variables only (:root + [data-theme])
  *   dist/foundation.css — tokens + fonts + foundation + utilities
  *   dist/atom.css       — foundation + layout + components
+ *   dist/embed.css      — foundation, every selector scoped under .atom-embed
  *
  * Vite emits a JS stub per CSS entry; we drop those stubs after build and
  * rename hashed CSS assets to stable names.
@@ -29,6 +31,7 @@ export default defineConfig({
         tokens: resolve(__dirname, 'src/entries/tokens.css'),
         foundation: resolve(__dirname, 'src/entries/foundation.css'),
         atom: resolve(__dirname, 'src/entries/atom.css'),
+        embed: resolve(__dirname, 'src/entries/embed.css'),
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -69,7 +72,7 @@ export default defineConfig({
         const cssFiles = files.filter((f) => f.endsWith('.css'));
 
         // Map entry-ish names: vite names CSS after the entry chunk (tokens, foundation, atom)
-        for (const key of ['tokens', 'foundation', 'atom'] as const) {
+        for (const key of ['tokens', 'foundation', 'atom', 'embed'] as const) {
           const match = cssFiles.find(
             (f) => f === `${key}.css` || f.startsWith(`${key}-`) || f.includes(`${key}-`)
           );
@@ -109,6 +112,32 @@ export default defineConfig({
         for (const f of readdirSync(assetsDir)) {
           if (f.endsWith('.css')) unlinkSync(resolve(assetsDir, f));
         }
+      },
+    },
+    {
+      // Runs after atom-css-artifacts (plugin order = closeBundle order), so
+      // dist/embed.css already exists with stable name and rewritten font urls.
+      name: 'atom-embed-scope',
+      closeBundle() {
+        const target = resolve(__dirname, 'dist/embed.css');
+        if (!existsSync(target)) {
+          console.warn('[atom-embed-scope] dist/embed.css not found — skipped');
+          return;
+        }
+        const scoped = scopeEmbedCss(readFileSync(target, 'utf8'));
+        writeFileSync(target, scoped);
+
+        const offenders = findUnscopedSelectors(scoped);
+        if (offenders.length > 0) {
+          // Fail the build: an unscoped selector here restyles the host page,
+          // and no existing gate would catch it.
+          throw new Error(
+            `[atom-embed-scope] ${offenders.length} unscoped selector(s): ${offenders
+              .slice(0, 10)
+              .join(', ')}`
+          );
+        }
+        console.log('[atom-embed-scope] dist/embed.css scoped under .atom-embed');
       },
     },
   ],

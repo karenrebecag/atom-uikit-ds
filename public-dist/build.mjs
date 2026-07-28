@@ -41,6 +41,7 @@ function requireFile(path, hint) {
 requireFile(join(cssDist, 'tokens.css'), 'Run: pnpm --filter @atom-uikit/css build');
 requireFile(join(cssDist, 'foundation.css'), 'Run: pnpm --filter @atom-uikit/css build');
 requireFile(join(cssDist, 'atom.css'), 'Run: pnpm --filter @atom-uikit/css build');
+requireFile(join(cssDist, 'embed.css'), 'Run: pnpm --filter @atom-uikit/css build');
 requireFile(join(tokensJson, 'tokens.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
 requireFile(join(tokensJson, 'tokens-nested.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
 
@@ -51,6 +52,7 @@ mkdirSync(join(OUT, 'fonts'), { recursive: true });
 cpSync(join(cssDist, 'tokens.css'), join(OUT, 'tokens.css'));
 cpSync(join(cssDist, 'foundation.css'), join(OUT, 'foundation.css'));
 cpSync(join(cssDist, 'atom.css'), join(OUT, 'atom.css'));
+cpSync(join(cssDist, 'embed.css'), join(OUT, 'embed.css'));
 cpSync(join(tokensJson, 'tokens.json'), join(OUT, 'tokens.json'));
 cpSync(join(tokensJson, 'tokens-nested.json'), join(OUT, 'tokens-nested.json'));
 

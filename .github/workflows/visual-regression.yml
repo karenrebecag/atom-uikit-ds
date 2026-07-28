@@ -37,6 +37,11 @@ jobs:
       - name: Install Playwright browser
         run: pnpm --filter @atom-uikit/storybook exec playwright install chromium --with-deps
 
+      # Reuses the chromium installed above: proves embed.css neither leaks into
+      # a hostile host page nor absorbs its global CSS.
+      - name: Embed style-leak test
+        run: pnpm test:embed-leak
+
       - name: Build Storybook static
         run: pnpm --filter @atom-uikit/storybook build
 
