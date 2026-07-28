@@ -1,9 +1,10 @@
-/* ATOM UIKit CSS
- * Import token CSS before this file:
- *   @import '@atom-uikit/tokens/css';
+/* ATOM UIKit CSS — full bundle entry (legacy path).
+ * Prefer src/entries/{tokens,foundation,atom}.css for multi-artifact builds.
+ * Tokens are bundled in entries; consumers of this file alone still need
+ *   @import '@atom-uikit/tokens/css' if using index.css directly without entries.
  */
 
-/* Foundation */
+/* Foundation (includes @font-face) */
 @import './foundation/index.css';
 
 /* Layout */

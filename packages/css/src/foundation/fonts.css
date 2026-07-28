@@ -1,0 +1,85 @@
+/* -------------------------------------------------------------------------
+   Self-hosted OSMO/academy webfonts
+
+   Paths are relative to this file; Vite rewrites them into dist/assets.
+   F1: Grift / Interval / Gantol licenses must cover atomchat.* + Webflow
+   before W3 makes these public. Inter Tight is OFL (Google Fonts).
+   ------------------------------------------------------------------------- */
+
+/* Inter Tight — UI / body (OFL) */
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('../fonts/inter-tight/InterTight-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('../fonts/inter-tight/InterTight-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('../fonts/inter-tight/InterTight-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('../fonts/inter-tight/InterTight-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Grift — display */
+@font-face {
+  font-family: 'Grift';
+  src: url('../fonts/grift/Grift-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('../fonts/grift/Grift-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('../fonts/grift/Grift-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Interval — mono */
+@font-face {
+  font-family: 'Interval';
+  src: url('../fonts/interval/TBJInterval-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Interval';
+  src: url('../fonts/interval/TBJInterval-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gantol — scribble accent */
+@font-face {
+  font-family: 'Gantol';
+  src: url('../fonts/gantol/Gantol.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

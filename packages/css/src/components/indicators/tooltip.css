@@ -49,12 +49,12 @@
 /* ---- Dark theme (default) ---- */
 
 [data-tooltip]::before {
-  background-color: var(--color-zinc-900);
-  color: var(--color-zinc-50);
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-50);
 }
 
 [data-tooltip]::after {
-  background-color: var(--color-zinc-900);
+  background-color: var(--color-neutral-900);
 }
 
 /* ---- Light theme ---- */

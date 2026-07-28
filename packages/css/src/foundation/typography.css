@@ -1,36 +1,32 @@
 /* -------------------------------------------------------------------------
-   Typography
+   Typography — OSMO/academy language
 
-   Applies the Major Third (1.25) type scale via token CSS custom properties.
-   Fluid sizing is handled by the scaling system (scaling.css) — all rem
-   values scale proportionally through the root font-size.
+   Type scale lives in token CSS custom properties (packages/tokens).
+   Fluid sizing is handled by scaling.css via root --size-font; rem values
+   scale proportionally.
 
-   Font size tokens (primitives):
-     --font-size-xs   10px / 0.625rem
-     --font-size-sm   13px / 0.8125rem
-     --font-size-base 16px / 1rem
-     --font-size-lg   20px / 1.25rem
-     --font-size-xl   25px / 1.5625rem
-     --font-size-2xl  31px / 1.9375rem
-     --font-size-3xl  39px / 2.4375rem
-     --font-size-4xl  49px / 3.0625rem
-     --font-size-5xl  61px / 3.8125rem
-     --font-size-6xl  76px / 4.75rem
+   Families:
+     --font-family-sans     Inter Tight (UI / headings)
+     --font-family-display  Grift (hero / display)
+     --font-family-mono     Interval
+     --font-family-scribble Gantol
    ------------------------------------------------------------------------- */
 
 body {
-  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-family-sans);
   font-size: var(--size-font);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-base);
-  color: var(--fg-primary, currentColor);
+  color: var(--foreground, currentColor);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Display --- */
+/* --- Display (Grift) --- */
 
+.display,
 .display-xl {
+  font-family: var(--font-family-display);
   font-size: var(--font-size-6xl);
   line-height: var(--line-height-6xl);
   font-weight: var(--font-weight-bold);
@@ -38,26 +34,35 @@ body {
 }
 
 .display-lg {
+  font-family: var(--font-family-display);
   font-size: var(--font-size-5xl);
   line-height: var(--line-height-5xl);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-tight);
 }
 
-/* --- Headings --- */
+/* --- Headings (Inter Tight / sans) --- */
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: var(--font-family-sans);
+  letter-spacing: var(--letter-spacing-tight);
+}
 
 .h1 {
   font-size: var(--font-size-4xl);
   line-height: var(--line-height-4xl);
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-tight);
 }
 
 .h2 {
   font-size: var(--font-size-3xl);
   line-height: var(--line-height-3xl);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-tight);
 }
 
 .h3 {
@@ -78,6 +83,13 @@ body {
   font-size: var(--font-size-lg);
   line-height: var(--line-height-lg);
   font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.h6 {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-normal);
 }
 
@@ -103,7 +115,7 @@ body {
 .caption {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
-  color: var(--fg-muted, currentColor);
+  color: var(--muted-foreground, currentColor);
 }
 
 .label {
@@ -112,6 +124,16 @@ body {
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
+}
+
+/* --- Family utilities --- */
+
+.mono {
+  font-family: var(--font-family-mono);
+}
+
+.scribble {
+  font-family: var(--font-family-scribble);
 }
 
 /* --- Semantic variants --- */
@@ -165,12 +187,12 @@ body {
 /* --- Code --- */
 
 .code {
-  font-family: var(--font-family-mono), ui-monospace, monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.875em;
 }
 
 .code-inline {
-  font-family: var(--font-family-mono), ui-monospace, monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.875em;
   font-weight: var(--font-weight-semibold);
   background-color: var(--muted);
