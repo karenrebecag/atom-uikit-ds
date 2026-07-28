@@ -5,7 +5,7 @@
       "default": { "$value": "{muted-foreground}", "$description": "Inactive nav item" },
       "hover": { "$value": "{foreground}", "$description": "Full contrast on hover" },
       "active": { "$value": "{foreground}", "$description": "Current page" },
-      "disabled": { "$value": "{color.zinc.300}", "$description": "Unavailable" }
+      "disabled": { "$value": "{muted-foreground}", "$description": "Unavailable" }
     },
     "indicator": {
       "$type": "color",

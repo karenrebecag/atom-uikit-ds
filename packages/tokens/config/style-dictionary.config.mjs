@@ -25,7 +25,9 @@ StyleDictionary.registerTransformGroup({
 export default {
   source: [
     'src/primitives/**/*.json',
+    // Explicit list — not a glob (see 04-contexto-inicial.md quirk)
     'src/semantic/light.json',
+    'src/semantic/spacing.json',
     'src/components/**/*.json',
   ],
   platforms: {

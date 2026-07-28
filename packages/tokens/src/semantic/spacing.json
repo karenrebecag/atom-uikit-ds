@@ -1,0 +1,52 @@
+{
+  "section-padding-xxl": {
+    "$type": "dimension",
+    "$value": "{spacing.32}",
+    "$description": "OSMO section padding XXL — 128px"
+  },
+  "section-padding-xl": {
+    "$type": "dimension",
+    "$value": "{spacing.24}",
+    "$description": "OSMO section padding XL — 96px"
+  },
+  "section-padding-l": {
+    "$type": "dimension",
+    "$value": "{spacing.16}",
+    "$description": "OSMO section padding L — 64px"
+  },
+  "section-padding-m": {
+    "$type": "dimension",
+    "$value": "{spacing.10}",
+    "$description": "OSMO section padding M — 40px"
+  },
+  "section-padding-s": {
+    "$type": "dimension",
+    "$value": "{spacing.6}",
+    "$description": "OSMO section padding S — 24px"
+  },
+  "gap-xl": {
+    "$type": "dimension",
+    "$value": "{spacing.14}",
+    "$description": "OSMO component gap XL — 56px"
+  },
+  "gap-l": {
+    "$type": "dimension",
+    "$value": "{spacing.10}",
+    "$description": "OSMO component gap L — 40px"
+  },
+  "gap-m": {
+    "$type": "dimension",
+    "$value": "{spacing.6}",
+    "$description": "OSMO component gap M — 24px"
+  },
+  "gap-s": {
+    "$type": "dimension",
+    "$value": "{spacing.4}",
+    "$description": "OSMO component gap S — 16px"
+  },
+  "gap-xs": {
+    "$type": "dimension",
+    "$value": "{spacing.3}",
+    "$description": "OSMO component gap XS — 12px"
+  }
+}

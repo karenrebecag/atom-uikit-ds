@@ -2,9 +2,9 @@
   "link-button": {
     "fg": {
       "$type": "color",
-      "enabled": { "$value": "{color.blue.500}", "$description": "Blue link text" },
-      "hover": { "$value": "{color.blue.600}", "$description": "Darker on hover" },
-      "pressed": { "$value": "{color.blue.700}", "$description": "Darkest on press" },
+      "enabled": { "$value": "{info}", "$description": "Sky link text (OSMO info)" },
+      "hover": { "$value": "{foreground}", "$description": "Full contrast on hover" },
+      "pressed": { "$value": "{primary}", "$description": "Stronger on press" },
       "disabled": { "$value": "{muted-foreground}", "$description": "Muted when disabled" }
     }
   }

@@ -11,8 +11,10 @@
     "8": { "$value": "32px", "$description": "Card padding large, group gap" },
     "10": { "$value": "40px", "$description": "Section gap" },
     "12": { "$value": "48px", "$description": "Large section gap" },
+    "14": { "$value": "56px", "$description": "OSMO gap-xl (3.5rem)" },
     "16": { "$value": "64px", "$description": "Section padding" },
     "20": { "$value": "80px", "$description": "Hero spacing, page margin" },
-    "24": { "$value": "96px", "$description": "Max spacing, hero padding" }
+    "24": { "$value": "96px", "$description": "Max spacing, hero padding" },
+    "32": { "$value": "128px", "$description": "OSMO section-padding-xxl (8rem)" }
   }
 }

@@ -1,41 +1,56 @@
 {
   "font-family": {
     "$type": "fontFamilies",
-    "sans": { "$value": "Inter", "$description": "Primary — UI and body text" },
-    "mono": { "$value": "JetBrains Mono", "$description": "Code blocks, technical content" }
+    "sans": {
+      "$value": "'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      "$description": "Primary UI and body — Inter Tight (OSMO/academy)"
+    },
+    "display": {
+      "$value": "'Grift', 'Inter Tight', Georgia, serif",
+      "$description": "Display / hero — Grift"
+    },
+    "mono": {
+      "$value": "'Interval', ui-monospace, 'Cascadia Code', monospace",
+      "$description": "Code and technical — Interval"
+    },
+    "scribble": {
+      "$value": "'Gantol', 'Brush Script MT', cursive",
+      "$description": "Accent scribble — Gantol"
+    }
   },
   "font-weight": {
     "$type": "fontWeights",
     "regular": { "$value": "400", "$description": "Body text, paragraphs" },
     "medium": { "$value": "500", "$description": "Labels, emphasis, nav items" },
     "semibold": { "$value": "600", "$description": "Subheadings, buttons" },
-    "bold": { "$value": "700", "$description": "Headings, display text" }
+    "bold": { "$value": "700", "$description": "Headings, display text" },
+    "extrabold": { "$value": "800", "$description": "Hero display emphasis" }
   },
   "font-size": {
     "$type": "dimension",
-    "xs": { "$value": "10px", "$description": "Labels, uppercase micro text" },
-    "sm": { "$value": "13px", "$description": "Captions, secondary text" },
-    "base": { "$value": "16px", "$description": "Body text (default)" },
-    "lg": { "$value": "20px", "$description": "Body large, h5" },
-    "xl": { "$value": "25px", "$description": "h4" },
-    "2xl": { "$value": "31px", "$description": "h3" },
-    "3xl": { "$value": "39px", "$description": "h2" },
-    "4xl": { "$value": "49px", "$description": "h1" },
-    "5xl": { "$value": "61px", "$description": "Display large" },
-    "6xl": { "$value": "76px", "$description": "Display XL, hero headlines" }
+    "xs": { "$value": "0.75rem", "$description": "12px — labels, micro text" },
+    "sm": { "$value": "0.875rem", "$description": "14px — captions, secondary" },
+    "base": { "$value": "1rem", "$description": "16px — body default" },
+    "lg": { "$value": "1.25rem", "$description": "20px — body large" },
+    "xl": { "$value": "1.5rem", "$description": "24px — h4" },
+    "2xl": { "$value": "1.75rem", "$description": "28px — h3" },
+    "3xl": { "$value": "2.25rem", "$description": "36px — h2" },
+    "4xl": { "$value": "2.75rem", "$description": "44px — h1" },
+    "5xl": { "$value": "3.5rem", "$description": "56px — display large" },
+    "6xl": { "$value": "4.5rem", "$description": "72px — hero (F3: calibrate in Storybook)" }
   },
   "line-height": {
-    "$type": "dimension",
-    "xs": { "$value": "16px", "$description": "Paired with font-size-xs" },
-    "sm": { "$value": "20px", "$description": "Paired with font-size-sm" },
-    "base": { "$value": "24px", "$description": "Paired with font-size-base" },
-    "lg": { "$value": "28px", "$description": "Paired with font-size-lg" },
-    "xl": { "$value": "34px", "$description": "Paired with font-size-xl" },
-    "2xl": { "$value": "40px", "$description": "Paired with font-size-2xl" },
-    "3xl": { "$value": "48px", "$description": "Paired with font-size-3xl" },
-    "4xl": { "$value": "57px", "$description": "Paired with font-size-4xl" },
-    "5xl": { "$value": "68px", "$description": "Paired with font-size-5xl" },
-    "6xl": { "$value": "82px", "$description": "Paired with font-size-6xl" }
+    "$type": "number",
+    "xs": { "$value": "1.35", "$description": "Paired with font-size-xs" },
+    "sm": { "$value": "1.45", "$description": "Paired with font-size-sm" },
+    "base": { "$value": "1.5", "$description": "Paired with font-size-base" },
+    "lg": { "$value": "1.4", "$description": "Paired with font-size-lg" },
+    "xl": { "$value": "1.3", "$description": "Paired with font-size-xl" },
+    "2xl": { "$value": "1.25", "$description": "Paired with font-size-2xl" },
+    "3xl": { "$value": "1.2", "$description": "Paired with font-size-3xl" },
+    "4xl": { "$value": "1.15", "$description": "Paired with font-size-4xl" },
+    "5xl": { "$value": "1.1", "$description": "Paired with font-size-5xl" },
+    "6xl": { "$value": "1.05", "$description": "Paired with font-size-6xl" }
   },
   "letter-spacing": {
     "$type": "dimension",

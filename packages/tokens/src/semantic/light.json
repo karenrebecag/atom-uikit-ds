@@ -1,12 +1,12 @@
 {
   "background": {
     "$type": "color",
-    "$value": "{color.white}",
+    "$value": "{color.neutral.50}",
     "$description": "Default page background"
   },
   "foreground": {
     "$type": "color",
-    "$value": "{color.zinc.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Default text on background"
   },
   "card": {
@@ -16,7 +16,7 @@
   },
   "card-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on card"
   },
   "popover": {
@@ -26,63 +26,63 @@
   },
   "popover-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on popover"
   },
   "primary": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.950}",
     "$description": "Primary actions, high emphasis"
   },
   "primary-hover": {
     "$type": "color",
-    "$value": "{color.zinc.800}",
+    "$value": "{color.neutral.800}",
     "$description": "Primary hover — slightly lighter"
   },
   "primary-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.50}",
     "$description": "Text on primary"
   },
   "secondary": {
     "$type": "color",
-    "$value": "{color.zinc.100}",
+    "$value": "{color.neutral.150}",
     "$description": "Secondary actions, lower emphasis"
   },
   "secondary-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.900}",
     "$description": "Text on secondary"
   },
   "muted": {
     "$type": "color",
-    "$value": "{color.zinc.100}",
+    "$value": "{color.neutral.100}",
     "$description": "Subtle backgrounds, disabled surfaces"
   },
   "muted-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.500}",
+    "$value": "{color.neutral.600}",
     "$description": "Subdued text, placeholders"
   },
   "accent": {
     "$type": "color",
-    "$value": "{color.zinc.100}",
+    "$value": "{color.neutral.100}",
     "$description": "Hover/focus highlight"
   },
   "accent-foreground": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.900}",
     "$description": "Text on accent"
   },
   "destructive": {
     "$type": "color",
-    "$value": "{color.red.500}",
+    "$value": "{color.coral.500}",
     "$description": "Error, danger, destructive actions"
   },
   "destructive-foreground": {
     "$type": "color",
-    "$value": "{color.white}",
-    "$description": "Text on destructive"
+    "$value": "{color.neutral.950}",
+    "$description": "Text on destructive — dark for WCAG AA (white on coral.500 is 3.63:1)"
   },
   "brand": {
     "$type": "color",
@@ -91,17 +91,17 @@
   },
   "brand-foreground": {
     "$type": "color",
-    "$value": "{color.white}",
-    "$description": "Text on brand"
+    "$value": "{color.neutral.950}",
+    "$description": "Text on brand — dark for WCAG AA (white on #ff6600 is 2.94:1)"
   },
   "success": {
     "$type": "color",
-    "$value": "{color.emerald.500}",
+    "$value": "{color.green-electric}",
     "$description": "Success state background"
   },
   "success-foreground": {
     "$type": "color",
-    "$value": "{color.emerald.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on success"
   },
   "warning": {
@@ -116,37 +116,37 @@
   },
   "info": {
     "$type": "color",
-    "$value": "{color.blue.500}",
+    "$value": "{color.sky}",
     "$description": "Informational state background"
   },
   "info-foreground": {
     "$type": "color",
-    "$value": "{color.blue.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Text on info"
   },
   "border": {
     "$type": "color",
-    "$value": "{color.zinc.200}",
+    "$value": "{color.neutral.200}",
     "$description": "Default borders, dividers, separators"
   },
   "border-input": {
     "$type": "color",
-    "$value": "{color.zinc.300}",
+    "$value": "{color.neutral.300}",
     "$description": "Form input borders (slightly darker)"
   },
   "border-focus": {
     "$type": "color",
-    "$value": "{color.zinc.900}",
+    "$value": "{color.neutral.900}",
     "$description": "Input border when focused"
   },
   "input": {
     "$type": "color",
-    "$value": "{color.zinc.200}",
+    "$value": "{color.neutral.200}",
     "$description": "Form input borders (legacy, use border-input)"
   },
   "ring": {
     "$type": "color",
-    "$value": "{color.zinc.950}",
+    "$value": "{color.neutral.950}",
     "$description": "Focus rings and outlines"
   },
   "ring-width": {
@@ -166,12 +166,12 @@
   },
   "sidebar-bg": {
     "$type": "color",
-    "$value": "{color.zinc.50}",
+    "$value": "{color.neutral.100}",
     "$description": "Sidebar background"
   },
   "sidebar-border": {
     "$type": "color",
-    "$value": "{color.zinc.100}",
+    "$value": "{color.neutral.150}",
     "$description": "Sidebar border"
   },
   "sidebar-active": {
@@ -186,7 +186,7 @@
   },
   "placeholder": {
     "$type": "color",
-    "$value": "{color.zinc.600}",
+    "$value": "{color.neutral.600}",
     "$description": "Input placeholder text"
   }
 }
