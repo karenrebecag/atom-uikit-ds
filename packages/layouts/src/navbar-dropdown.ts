@@ -18,7 +18,7 @@ export const navbarDropdown = {
   </div>
   <div class="l-navbar-dropdown__menu">
     <div class="dropdown-menu">
-      <button class="menu-button">Producto</button>
+      <button class="nav-link">Producto</button>
       <div class="dropdown-menu__content">
         <a href="{{link1_url}}" class="nav-link">{{link1_label}}</a>
         <a href="{{link2_url}}" class="nav-link">{{link2_label}}</a>
@@ -26,7 +26,7 @@ export const navbarDropdown = {
     </div>
     <a href="{{link3_url}}" class="nav-link">{{link3_label}}</a>
     <div class="dropdown-menu">
-      <button class="menu-button">Recursos</button>
+      <button class="nav-link">Recursos</button>
       <div class="dropdown-menu__content">
         <a href="{{link4_url}}" class="nav-link">{{link4_label}}</a>
       </div>
@@ -72,7 +72,8 @@ export const navbarDropdown = {
     display: none;
   }
   .l-navbar-dropdown__burger {
-    display: block;
+    /* flex = display propio del atomo burger-icon; con block sus lineas colapsan a 0x0 */
+    display: flex;
   }
 }`,
 };

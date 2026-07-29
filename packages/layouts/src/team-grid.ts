@@ -307,7 +307,6 @@ export const teamGrid = {
 
 .l-team-grid__social {
   color: var(--foreground);
-  transition: color 0.2s var(--easing-out);
   display: inline-flex;
 }
 

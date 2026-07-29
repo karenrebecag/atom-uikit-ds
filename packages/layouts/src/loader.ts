@@ -12,13 +12,13 @@ export const loader = {
   name: 'Loader',
   description:
     'Cargador de pantalla completa con overlay negro y spinner giratorio centrado. Incluye transición para salida.',
-  components: [],
+  components: ['spinner'],
   html: `<!-- Layout: loader -->
 <div class="l-loader">
   <div class="l-loader__overlay">
     <div class="l-loader__content">
       <svg
-        class="l-loader__spinner"
+        class="spinner l-loader__spinner"
         stroke="currentColor"
         fill="none"
         stroke-width="0"
@@ -58,7 +58,6 @@ export const loader = {
   justify-content: center;
   background-color: var(--color-black);
   color: var(--color-white);
-  transition: transform var(--duration-700) var(--easing-in-out);
   transform: translateY(0);
 }
 
@@ -70,17 +69,9 @@ export const loader = {
 }
 
 .l-loader__spinner {
+  /* El giro lo pone el componente spinner (con su reduced-motion); el layout
+     solo dimensiona el slot. Ley: layouts sin motion — maquetan, no animan. */
   width: 4rem;
   height: 4rem;
-  animation: l-loader-spin var(--duration-1000) var(--easing-linear) infinite;
-}
-
-@keyframes l-loader-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }`,
 };
