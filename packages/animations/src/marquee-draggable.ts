@@ -32,10 +32,17 @@ export function initDraggableMarquee(): CleanupFn {
 
   gsap.registerPlugin(Observer, ScrollTrigger);
 
+  // Contrato de motion del DS: un marquee infinito corriendo es exactamente lo
+  // que reduced-motion pide evitar. Sin init, el marquee queda estatico (CSS).
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return () => {};
+  }
+
   const wrappers = document.querySelectorAll<HTMLElement>('[data-draggable-marquee]');
   const cleanups: CleanupFn[] = [];
 
   wrappers.forEach((wrapper) => {
+    if (wrapper.dataset.motionExempt !== undefined) return;
     if (wrapper.dataset.draggableMarquee === 'initialized') return;
 
     const collection = wrapper.querySelector<HTMLElement>('[data-draggable-marquee-collection]');

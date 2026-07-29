@@ -10,5 +10,6 @@ export { initTextReveal } from './text-reveal';
 export { initSidebarAnimation } from './sidebar';
 export { initProgressNav } from './progress-nav';
 export { initMenuButton } from './menu-button';
+export { initNavAutohide } from './nav-autohide';
 export { initDraggableMarquee } from './marquee-draggable';
 export { initVideoPlayer } from './video-player';

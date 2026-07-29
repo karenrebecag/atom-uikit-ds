@@ -76,7 +76,10 @@ export function initVideoPlayer(): CleanupFn {
     });
 
     player.addEventListener('ended', () => {
-      const isAutoplay = el.getAttribute('data-video-autoplay') === 'true';
+      // mismo criterio que el autoplay inicial: bajo reduced-motion no re-loopea
+      const isAutoplay =
+        el.getAttribute('data-video-autoplay') === 'true' &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!isAutoplay) {
         el.setAttribute('data-video-activated', 'false');
         el.setAttribute('data-video-playing', 'false');
@@ -86,8 +89,11 @@ export function initVideoPlayer(): CleanupFn {
       }
     });
 
-    // Autoplay
-    const isAutoplay = el.getAttribute('data-video-autoplay') === 'true';
+    // Autoplay — anulado bajo prefers-reduced-motion: video auto-reproduciendo
+    // es movimiento no solicitado. El play/pause manual (funcion) queda intacto;
+    // las transiciones de UI ya las apaga video-player.css.
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isAutoplay = el.getAttribute('data-video-autoplay') === 'true' && !reducedMotion;
     let checkVisibility: (() => void) | null = null;
 
     if (!isAutoplay) {
