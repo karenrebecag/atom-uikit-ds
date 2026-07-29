@@ -1,0 +1,35 @@
+name: sync-docs
+
+# El build del docs site corre sync-registry.ts (jala public/r via GitHub
+# Contents API) antes de next build; el MCP refresca su cache en <=5 min.
+# El gate editorial (F4: consumidores que no deben cambiar de look) vive en
+# el PR review, antes del merge — igual que para /v1.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/r/**'
+      - 'registry.json'
+      - '.github/workflows/sync-docs.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-docs
+  cancel-in-progress: true
+
+jobs:
+  redeploy-docs:
+    name: Rebuild docs (registry sync -> MCP)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fire docs deploy hook
+        run: |
+          if [ -z "$DOCS_DEPLOY_HOOK" ]; then
+            echo "::error::DOCS_DEPLOY_HOOK secret missing (RUNBOOK section 0)"
+            exit 1
+          fi
+          curl -fsS -X POST "$DOCS_DEPLOY_HOOK" >/dev/null
+          echo "Docs rebuild triggered; MCP fresh in <=5 min"
+        env:
+          DOCS_DEPLOY_HOOK: ${{ secrets.DOCS_DEPLOY_HOOK }}

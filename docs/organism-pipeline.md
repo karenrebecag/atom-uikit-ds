@@ -90,7 +90,7 @@ el inicio sin que ningún test lo viera.
 
 ```bash
 pnpm build:registry          # regenera public/r/*.json (incluye el layout y sus componentes)
-# commit de public/r/ a main → el docs site sincroniza vía GitHub Contents API → MCP (5 min)
+# merge de public/r/ a main → Action sync-docs rebuilda docs → MCP (5 min), sin pasos manuales
 # merge de packages/css a main → /v1/embed.css con el CSS nuevo
 ```
 

@@ -49,6 +49,16 @@
   height: auto;
 }
 
+/* Guardas anti-FOUC del host: sitios con su propio text-reveal (patron OSMO)
+   esconden [data-split] via visibility y confian en SU js para revelar — que
+   nunca procesa nodos montados despues por un embed async. Dentro del embed
+   la visibilidad la gobierna NUESTRO behavior (yPercent en mascaras), asi que
+   se neutraliza la guarda ajena. (0,2,0) le gana al [data-split] (0,1,0) del
+   host sin !important. Cazado en new.atomchat.io 2026-07-30. */
+.atom-embed [data-split='heading'] {
+  visibility: visible;
+}
+
 /* Hosts often restyle these; the DS owns them inside the embed. */
 .atom-embed a {
   color: inherit;

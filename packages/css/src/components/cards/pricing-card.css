@@ -14,8 +14,9 @@
                                     todos los semantics flipan solo dentro
 
    Parts: __inner, __tag-row, __title, __price-row, __price, __price-unit,
-          __price-note, __cta, __divider, __benefits, __benefit,
-          __benefit-value, __scribble
+          __price-note, __channels (fila de iconos de canal), __cta, __divider,
+          __benefits, __benefit, __benefit-value, __logos (franja de partners),
+          __scribble
    ------------------------------------------------------------------------- */
 
 .pricing-card {
@@ -99,6 +100,52 @@
 .pricing-card--brand .pricing-card__price-unit,
 .pricing-card--brand .pricing-card__price-note {
   color: color-mix(in srgb, var(--brand-foreground) 72%, transparent);
+}
+
+/* ---- Canales (fila de iconos bajo el precio) ---- */
+
+.pricing-card__channels {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  color: var(--foreground);
+}
+
+.pricing-card__channels .icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* ---- Integraciones CRM: label estilo feature + logos debajo ---- */
+
+.pricing-card__crm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding-block-start: var(--spacing-5);
+}
+
+.pricing-card__logos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-3) var(--spacing-5);
+  /* alineado con el texto del label (icono 1em + gap spacing-3) */
+  padding-inline-start: calc(1em + var(--spacing-3));
+}
+
+.pricing-card__logos svg {
+  /* SVG monocromos en currentColor: voltean con el tema de la card solos.
+     ALTO CONTRASTE (foreground, no muted). Alturas dispares: se normalizan
+     por altura; salesforce (nube compacta) va un paso mas alto. */
+  height: 1.25em;
+  width: auto;
+  max-width: 8em;
+  color: var(--foreground);
+}
+
+.pricing-card__logos svg[aria-label='salesforce'] {
+  height: 1.75em;
 }
 
 /* ---- CTA ---- */

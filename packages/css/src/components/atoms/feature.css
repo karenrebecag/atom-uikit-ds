@@ -65,6 +65,8 @@
 
 .feature__value {
   flex-shrink: 0;
+  /* pedido de Karen 2026-07-31: los chips numericos +40% sobre el paso del tag */
+  font-size: calc(var(--font-size-xs) * 1.4);
 }
 
 /* ---- Ritmo ---- */

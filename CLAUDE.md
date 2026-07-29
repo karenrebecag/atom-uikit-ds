@@ -13,7 +13,7 @@ aceptación. Un organismo sin layout publicado NO está distribuido.
 
 ## Scope
 
-Web development components for landing pages, web apps, and marketing sites. This is NOT the brand/visual design system (that lives in `ATOM_DS` under `@atomchat.io/`).
+Web development components for landing pages, web apps, and marketing sites. Este es EL ÚNICO design system de Atom (ADR 007): el antiguo `ATOM_DS` (`@atomchat.io/*`, pre-OSMO) está deprecado y archivado en GitHub como referencia histórica.
 
 ## Lenguaje visual y flujo end-to-end (LEER ANTES DE CUALQUIER CAMBIO DE ESTILO)
 
