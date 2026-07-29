@@ -37,6 +37,10 @@
   --size-container-max: 1920px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+  /* 1 "design pixel", fluido: la unidad que consumen spacing/font-size/radius
+     (emitidos como calc(N * var(--u)) desde tokens). Absoluta -> inmune al
+     font-size local, a diferencia de em. */
+  --u: calc(var(--size-font) / 16);
   /* Optional content max (academy often uses ~1280) — evaluate vs ideal in PR */
   --size-container-content: 80rem;
 }
