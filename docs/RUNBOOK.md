@@ -79,16 +79,12 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
    Ese diff de imágenes es el registro de la decisión de diseño.
 8. Automático (con secrets del §0): Action `deploy-public-dist` redeploya `/v1` + smoke.
    Seguirlo: `gh run watch $(gh run list --workflow deploy-public-dist --limit 1 --json databaseId -q '.[0].databaseId')`.
-9. **Deliberado** — re-skinear docs/MCP. "Deliberado" = NO ocurre con el merge; el push a
-   main solo actualiza `/v1`. Este paso propaga el cambio a `uikit.atomchat.io` y al MCP
-   (lo que ven diseñadores y agentes), y se dispara a mano cuando el cambio visual ya está
-   aprobado:
-   ```bash
-   export DOCS_DEPLOY_HOOK=<url del hook, ver §0>
-   pnpm build:registry
-   ```
-   Antes del hook, confirmar **F4**: ¿algún producto consumidor NO debe cambiar de look
-   todavía? (Si sí: pinnearlo/actualizarlo primero; la lista vive con Karen.)
+9. Automático desde 2026-07-29: Action `sync-docs` dispara el deploy hook de docs cuando
+   el merge toca `public/r/**` o `registry.json` → `uikit.atomchat.io` rebuilda (su build
+   corre `sync-registry.ts` contra `public/r` de main) y el MCP refresca en ≤5 min. El
+   gate **F4** (¿algún producto consumidor NO debe cambiar de look todavía?) se confirma
+   EN EL PR REVIEW, antes del merge — main ya propaga a `/v1` automáticamente, así que el
+   merge ES la aprobación. Re-disparo manual si hace falta: `gh workflow run sync-docs`.
 10. Esperar ≥5 min → validar MCP tokens (OSMO, sin zinc, `--link` presente).
 
 ### Verificación
@@ -100,8 +96,8 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
 1. `git revert -m 1 <merge-commit>` en `main` + push → el Action redeploya `/v1` con el
    estado anterior automáticamente.
 2. Si `/v1` urge antes de que corra CI: `npx vercel rollback` (§2) como puente.
-3. Docs/MCP solo si el hook ya se disparó: correr `pnpm build:registry` con hook otra vez
-   (ya con el revert en main) y esperar el caché de 5 min del MCP.
+3. Docs/MCP: el revert en main (si toca `public/r`) re-dispara `sync-docs` solo; si no,
+   `gh workflow run sync-docs`. Esperar el caché de 5 min del MCP.
 4. Validar: `node public-dist/smoke.mjs https://atom-web-ds.vercel.app` + MCP sin el
    cambio revertido.
 
