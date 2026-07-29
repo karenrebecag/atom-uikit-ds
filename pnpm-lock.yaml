@@ -136,6 +136,9 @@ importers:
 
   packages/css:
     devDependencies:
+      '@atom-uikit/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       lightningcss:
         specifier: ^1.25.0
         version: 1.32.0
