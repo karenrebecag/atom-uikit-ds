@@ -1,20 +1,77 @@
 {
   "spacing": {
     "$type": "dimension",
-    "0": { "$value": "0px", "$description": "None" },
-    "1": { "$value": "4px", "$description": "Hairline gaps, icon-to-text" },
-    "2": { "$value": "8px", "$description": "Tight spacing, inline elements" },
-    "3": { "$value": "12px", "$description": "Compact groups, form fields" },
-    "4": { "$value": "16px", "$description": "Base unit, default gap" },
-    "5": { "$value": "20px", "$description": "Comfortable spacing" },
-    "6": { "$value": "24px", "$description": "Card padding, section inner" },
-    "8": { "$value": "32px", "$description": "Card padding large, group gap" },
-    "10": { "$value": "40px", "$description": "Section gap" },
-    "12": { "$value": "48px", "$description": "Large section gap" },
-    "14": { "$value": "56px", "$description": "OSMO gap-xl (3.5rem)" },
-    "16": { "$value": "64px", "$description": "Section padding" },
-    "20": { "$value": "80px", "$description": "Hero spacing, page margin" },
-    "24": { "$value": "96px", "$description": "Max spacing, hero padding" },
-    "32": { "$value": "128px", "$description": "OSMO section-padding-xxl (8rem)" }
+    "0": {
+      "$value": "0px",
+      "$description": "None"
+    },
+    "1": {
+      "$value": "4px",
+      "$description": "Hairline gaps, icon-to-text"
+    },
+    "2": {
+      "$value": "8px",
+      "$description": "Tight spacing, inline elements"
+    },
+    "3": {
+      "$value": "12px",
+      "$description": "Compact groups, form fields"
+    },
+    "4": {
+      "$value": "16px",
+      "$description": "Base unit, default gap"
+    },
+    "5": {
+      "$value": "20px",
+      "$description": "Comfortable spacing"
+    },
+    "6": {
+      "$value": "24px",
+      "$description": "Card padding, section inner"
+    },
+    "8": {
+      "$value": "32px",
+      "$description": "Card padding large, group gap"
+    },
+    "10": {
+      "$value": "40px",
+      "$description": "Section gap"
+    },
+    "12": {
+      "$value": "48px",
+      "$description": "Large section gap"
+    },
+    "14": {
+      "$value": "56px",
+      "$description": "OSMO gap-xl (3.5rem)"
+    },
+    "16": {
+      "$value": "64px",
+      "$description": "Section padding"
+    },
+    "20": {
+      "$value": "80px",
+      "$description": "Hero spacing, page margin"
+    },
+    "24": {
+      "$value": "96px",
+      "$description": "Max spacing, hero padding"
+    },
+    "30": {
+      "$value": "120px",
+      "$description": "OSMO section m (7.5rem)"
+    },
+    "32": {
+      "$value": "128px",
+      "$description": "Section rhythm (8rem)"
+    },
+    "40": {
+      "$value": "160px",
+      "$description": "OSMO section l (10rem)"
+    },
+    "50": {
+      "$value": "200px",
+      "$description": "OSMO section xl (12.5rem)"
+    }
   }
 }

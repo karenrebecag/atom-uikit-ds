@@ -1,0 +1,39 @@
+/* -------------------------------------------------------------------------
+   Section rhythm — the USAGE layer of the section-padding scale.
+
+   The tokens define WHICH steps exist; this file defines WHERE each step
+   goes, so nobody (human or agent) picks values by eye again. The rule,
+   mirrored from how OSMO applies its own scale:
+
+     hero / statement piece  → .section--hero     (xl top, l bottom)
+     standard section        → .section           (l top and bottom)
+     compact section         → .section--compact  (m)
+     dense block / band      → .section--dense    (s)
+
+   Asymmetry on the hero is deliberate: OSMO consistently pairs a larger
+   top with one step less at the bottom, which pulls the next section up.
+
+   The values already shrink per breakpoint via the ladder in scaling.css —
+   these classes never need their own media queries.
+   ------------------------------------------------------------------------- */
+
+.section {
+  padding-block: var(--section-padding-l);
+}
+
+.section--hero {
+  padding-block: var(--section-padding-xl) var(--section-padding-l);
+}
+
+.section--compact {
+  padding-block: var(--section-padding-m);
+}
+
+.section--dense {
+  padding-block: var(--section-padding-s);
+}
+
+/* Horizontal breathing for sections that don't sit inside a .container */
+.section--inset {
+  padding-inline: var(--section-padding-s);
+}
