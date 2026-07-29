@@ -41,7 +41,7 @@ function cardHtml(prefix, theme) {
           <div class="pricing-card__tag-row">
             <span class="tag tag--mono tag--inverse tag--s pricing-card__eyebrow">{{${prefix}_eyebrow}}</span>
           </div>
-          <h3 class="pricing-card__title">{{${prefix}_name}}</h3>
+          <h3 class="pricing-card__title" data-split="heading">{{${prefix}_name}}</h3>
           <div class="pricing-card__price-row">
             <span class="pricing-card__price">
               <span>{{${prefix}_price}}</span>
@@ -91,8 +91,8 @@ export const pricingPlans = {
   <div class="container">
     <header class="section-header section-header--center">
       <span class="eyebrow section-header__eyebrow">{{eyebrow}}</span>
-      <h2 class="h2 section-header__title">{{headline}}</h2>
-      <p class="section-header__subtitle">{{subtitle}}</p>
+      <h2 class="h2 section-header__title" data-split="heading">{{headline}}</h2>
+      <p class="section-header__subtitle" data-split="heading">{{subtitle}}</p>
     </header>
 
     <div class="l-pricing-plans__grid">
