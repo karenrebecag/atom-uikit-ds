@@ -100,6 +100,7 @@ const CATEGORY_OVERRIDES: Record<string, AtomCategory> = {
 
 function inferCategory(item: AtomRegistryItem): AtomCategory {
   if (item.kind === 'foundation') return 'foundation';
+  if (item.kind === 'layout') return 'layout';
   if (item.kind === 'hook') return 'hook';
 
   // Check explicit overrides first

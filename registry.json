@@ -442,6 +442,25 @@
       ]
     },
     {
+      "name": "section-header",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "SectionHeader",
+      "description": "Eyebrow + titulo + subtitulo con medida de lectura: la entrada de una seccion",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/layout/section-header.css",
+          "outputPath": "styles/components/section-header.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "avatar",
       "kind": "component",
       "framework": "react",
@@ -864,6 +883,63 @@
         {
           "sourcePath": "packages/css/src/components/layout/empty.css",
           "outputPath": "styles/components/empty.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Icon",
+      "description": "Escala y color para SVG inline: el DS envia el tamano, no los paths",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/atoms/icon.css",
+          "outputPath": "styles/components/icon.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "logo",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Logo",
+      "description": "Marca oficial de Atom theme-aware: dual light/dark que voltea con data-theme. Assets oficiales en R2, documentados en el CSS.",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/atoms/logo.css",
+          "outputPath": "styles/components/logo.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "feature",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Feature",
+      "description": "Fila icono + texto (+ valor): listas de beneficios, specs, checklists",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/atoms/feature.css",
+          "outputPath": "styles/components/feature.css",
           "type": "registry:file"
         }
       ]
@@ -1412,15 +1488,40 @@
       ]
     },
     {
-      "name": "layout/hero-centered",
-      "kind": "foundation",
+      "name": "pricing-card",
+      "kind": "component",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "styles",
+      "title": "PricingCard",
+      "description": "Tarjeta de plan estilo OSMO: superficie cromatica (clara/brand/dark via data-theme), eyebrow mono, titulo display, divider con tags, benefits con hairlines y scribble decorativo",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "button"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/cards/pricing-card.css",
+          "outputPath": "styles/components/pricing-card.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/hero-centered",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
       "title": "Hero Centered",
       "description": "Layout template: hero-centered",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "chip",
+        "button",
+        "avatar",
+        "avatar-group",
+        "tag"
       ],
       "files": [
         {
@@ -1432,14 +1533,16 @@
     },
     {
       "name": "layout/hero-split",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Hero Split",
       "description": "Layout template: hero-split",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "chip",
+        "button"
       ],
       "files": [
         {
@@ -1451,14 +1554,15 @@
     },
     {
       "name": "layout/feature-grid",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Feature Grid",
       "description": "Layout template: feature-grid",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "badge"
       ],
       "files": [
         {
@@ -1470,14 +1574,15 @@
     },
     {
       "name": "layout/cta-banner",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Cta Banner",
       "description": "Layout template: cta-banner",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button"
       ],
       "files": [
         {
@@ -1489,14 +1594,18 @@
     },
     {
       "name": "layout/navbar-simple",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Navbar Simple",
       "description": "Layout template: navbar-simple",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "nav-link",
+        "button",
+        "burger-icon",
+        "logo"
       ],
       "files": [
         {
@@ -1508,14 +1617,17 @@
     },
     {
       "name": "layout/footer-columns",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Footer Columns",
-      "description": "Layout template: footer-columns",
+      "description": "Footer completo: logo + tagline izquierda, columnas repetibles de links, fila legal. Superficie clara u oscura via data-theme. Structure only.",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "logo",
+        "nav-link",
+        "divider"
       ],
       "files": [
         {
@@ -1527,14 +1639,21 @@
     },
     {
       "name": "layout/blog-listing-3col",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Blog Listing 3col",
       "description": "Layout template: blog-listing-3col",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "typography",
+        "image",
+        "tag",
+        "avatar",
+        "link-button",
+        "button",
+        "item"
       ],
       "files": [
         {
@@ -1546,14 +1665,19 @@
     },
     {
       "name": "layout/pricing-tiers",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
-      "title": "Pricing Tiers",
-      "description": "Layout template: pricing-tiers",
+      "installGroup": "layouts",
+      "title": "Pricing Tiers (deprecado)",
+      "description": "DEPRECADO — usa layout/pricing-plans. Definia su propia anatomia de card (l-pricing-tiers__card) en vez de consumir el componente pricing-card, y referencia tokens que ya no existen.",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "badge",
+        "divider",
+        "typography",
+        "item"
       ],
       "files": [
         {
@@ -1564,15 +1688,43 @@
       ]
     },
     {
-      "name": "layout/faq-accordion",
-      "kind": "foundation",
+      "name": "layout/pricing-plans",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
+      "title": "Pricing Plans",
+      "description": "Sección de planes con la card de Atom: eyebrow mono, título display, precio, CTA, divider etiquetado y beneficios. Misma card, superficie clara + oscura.",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "section-header",
+        "pricing-card",
+        "feature",
+        "divider",
+        "tag",
+        "button"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/pricing-plans.ts",
+          "outputPath": "layouts/pricing-plans.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/faq-accordion",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
       "title": "FAQ Accordion",
       "description": "Layout template: faq-accordion",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "accordion",
+        "button",
+        "typography"
       ],
       "files": [
         {
@@ -1584,14 +1736,17 @@
     },
     {
       "name": "layout/testimonial-row",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Testimonial Row",
       "description": "Layout template: testimonial-row",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "avatar",
+        "typography",
+        "item"
       ],
       "files": [
         {
@@ -1603,14 +1758,17 @@
     },
     {
       "name": "layout/logo-marquee",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Logo Marquee",
       "description": "Layout template: logo-marquee",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "marquee",
+        "image",
+        "typography"
       ],
       "files": [
         {
@@ -1622,14 +1780,17 @@
     },
     {
       "name": "layout/hero-fullbleed",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Hero Fullbleed",
       "description": "Layout template: hero-fullbleed",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "chip",
+        "button",
+        "typography"
       ],
       "files": [
         {
@@ -1641,14 +1802,16 @@
     },
     {
       "name": "layout/stats-band",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Stats Band",
       "description": "Layout template: stats-band",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "stats-card",
+        "typography"
       ],
       "files": [
         {
@@ -1660,14 +1823,17 @@
     },
     {
       "name": "layout/logo-grid",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Logo Grid",
       "description": "Layout template: logo-grid",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "image",
+        "typography",
+        "divider"
       ],
       "files": [
         {
@@ -1679,14 +1845,20 @@
     },
     {
       "name": "layout/navbar-dropdown",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Navbar con dropdowns",
       "description": "Layout template: navbar-dropdown",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "nav-link",
+        "dropdown-menu",
+        "menu-button",
+        "button",
+        "burger-icon",
+        "image"
       ],
       "files": [
         {
@@ -1698,14 +1870,18 @@
     },
     {
       "name": "layout/footer-simple",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Footer Simple",
       "description": "Layout template: footer-simple",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "nav-link",
+        "typography",
+        "divider",
+        "image"
       ],
       "files": [
         {
@@ -1717,14 +1893,20 @@
     },
     {
       "name": "layout/footer-newsletter",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Footer con newsletter",
       "description": "Layout template: footer-newsletter",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "nav-link",
+        "input",
+        "button",
+        "typography",
+        "divider",
+        "image"
       ],
       "files": [
         {
@@ -1736,14 +1918,17 @@
     },
     {
       "name": "layout/page-header-centered",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Page Header Centered",
       "description": "Layout template: page-header-centered",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "breadcrumb",
+        "typography",
+        "tag"
       ],
       "files": [
         {
@@ -1755,14 +1940,16 @@
     },
     {
       "name": "layout/page-header-split",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Page Header Split",
       "description": "Layout template: page-header-split",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "breadcrumb",
+        "typography"
       ],
       "files": [
         {
@@ -1774,14 +1961,18 @@
     },
     {
       "name": "layout/feature-alternating",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Feature Alternating",
       "description": "Layout template: feature-alternating",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "chip",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -1793,14 +1984,16 @@
     },
     {
       "name": "layout/feature-icon-list",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Feature Icon List",
       "description": "Layout template: feature-icon-list",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "item",
+        "typography"
       ],
       "files": [
         {
@@ -1812,14 +2005,18 @@
     },
     {
       "name": "layout/feature-tabs",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Feature Tabs",
       "description": "Layout template: feature-tabs",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "tabs",
+        "typography",
+        "image",
+        "button"
       ],
       "files": [
         {
@@ -1831,14 +2028,17 @@
     },
     {
       "name": "layout/steps-numbered",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Steps Numbered",
       "description": "Layout template: steps-numbered",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "stepper",
+        "typography",
+        "button"
       ],
       "files": [
         {
@@ -1850,14 +2050,17 @@
     },
     {
       "name": "layout/cta-split-image",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "CTA Split con Imagen",
       "description": "Layout template: cta-split-image",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -1869,14 +2072,17 @@
     },
     {
       "name": "layout/cta-newsletter",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "CTA Newsletter",
       "description": "Layout template: cta-newsletter",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "input",
+        "button",
+        "typography"
       ],
       "files": [
         {
@@ -1888,14 +2094,20 @@
     },
     {
       "name": "layout/contact-form",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Contacto con formulario",
       "description": "Layout template: contact-form",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "field",
+        "input",
+        "textarea",
+        "button",
+        "item",
+        "typography"
       ],
       "files": [
         {
@@ -1907,14 +2119,17 @@
     },
     {
       "name": "layout/contact-cards",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Contacto en cards",
       "description": "Layout template: contact-cards",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "item",
+        "link-button",
+        "typography"
       ],
       "files": [
         {
@@ -1926,14 +2141,18 @@
     },
     {
       "name": "layout/pricing-comparison",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Pricing Comparativo",
       "description": "Layout template: pricing-comparison",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "table",
+        "button",
+        "badge",
+        "typography"
       ],
       "files": [
         {
@@ -1945,14 +2164,16 @@
     },
     {
       "name": "layout/faq-two-col",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "FAQ dos columnas",
       "description": "Layout template: faq-two-col",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "typography",
+        "divider"
       ],
       "files": [
         {
@@ -1964,14 +2185,17 @@
     },
     {
       "name": "layout/testimonial-spotlight",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Testimonio Spotlight",
       "description": "Layout template: testimonial-spotlight",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "avatar",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2036,15 +2260,101 @@
       ]
     },
     {
+      "name": "menu-button-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Menu Button Animation",
+      "description": "Burger-X con GSAP opt-in leyendo motion tokens del DOM (nivel 1 del contrato; el nivel 0 es CSS puro)",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/menu-button.ts",
+          "outputPath": "animations/menu-button.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "nav-autohide",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Nav Autohide",
+      "description": "Navbar que se oculta al hacer scroll-down y reaparece al subir o en top 0. Vanilla (sin GSAP), transicion desde motion tokens; reduced-motion = corte sin transicion.",
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/nav-autohide.ts",
+          "outputPath": "animations/nav-autohide.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Sidebar Animation",
+      "description": "Coreografia de entrada del contenido al expandir el sidebar (stagger); CSS es dueno del layout",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/sidebar.ts",
+          "outputPath": "animations/sidebar.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "progress-nav-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Progress Nav",
+      "description": "Indicador de seccion activa por scroll (ScrollTrigger); funcional — sin guarda reduced-motion a proposito, el CSS apaga el deslizamiento",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/progress-nav.ts",
+          "outputPath": "animations/progress-nav.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "video-player-controller",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Video Player Controller",
+      "description": "Controlador Cloudflare Stream (play/pause/timeline/fullscreen); autoplay anulado bajo prefers-reduced-motion",
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/video-player.ts",
+          "outputPath": "animations/video-player.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "layout/banner-marquee",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Banner Marquee",
       "description": "Layout template: banner-marquee",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "marquee",
+        "typography"
       ],
       "files": [
         {
@@ -2056,14 +2366,17 @@
     },
     {
       "name": "layout/feature-split-image",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Feature Split Image",
       "description": "Layout template: feature-split-image",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2075,14 +2388,17 @@
     },
     {
       "name": "layout/feature-stats-video",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Feature Stats Video",
       "description": "Layout template: feature-stats-video",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2094,14 +2410,17 @@
     },
     {
       "name": "layout/gallery-carousel",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Gallery Carousel",
       "description": "Layout template: gallery-carousel",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "image",
+        "typography",
+        "icon-button"
       ],
       "files": [
         {
@@ -2113,14 +2432,16 @@
     },
     {
       "name": "layout/gallery-grid",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Gallery Grid",
       "description": "Layout template: gallery-grid",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "image",
+        "typography"
       ],
       "files": [
         {
@@ -2132,14 +2453,17 @@
     },
     {
       "name": "layout/testimonial-grid",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Testimonial Grid",
       "description": "Layout template: testimonial-grid",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "avatar",
+        "typography",
+        "item"
       ],
       "files": [
         {
@@ -2151,14 +2475,17 @@
     },
     {
       "name": "layout/team-grid",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Team Grid",
       "description": "Layout template: team-grid",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2170,14 +2497,18 @@
     },
     {
       "name": "layout/blog-listing",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Blog Listing",
       "description": "Layout template: blog-listing",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image",
+        "link-button"
       ],
       "files": [
         {
@@ -2189,14 +2520,17 @@
     },
     {
       "name": "layout/comparison-table",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Comparison Table",
       "description": "Layout template: comparison-table",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2208,14 +2542,18 @@
     },
     {
       "name": "layout/data-table",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Data Table",
       "description": "Layout template: data-table",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image",
+        "link-button"
       ],
       "files": [
         {
@@ -2227,14 +2565,16 @@
     },
     {
       "name": "layout/events-list",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Events List",
       "description": "Layout template: events-list",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography"
       ],
       "files": [
         {
@@ -2246,14 +2586,17 @@
     },
     {
       "name": "layout/footer-extended",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Footer Extended",
       "description": "Layout template: footer-extended",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2265,14 +2608,16 @@
     },
     {
       "name": "layout/footer-minimal",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Footer Minimal",
       "description": "Layout template: footer-minimal",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2284,14 +2629,17 @@
     },
     {
       "name": "layout/jobs-grid",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Jobs Grid",
       "description": "Layout template: jobs-grid",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography",
+        "image"
       ],
       "files": [
         {
@@ -2303,14 +2651,15 @@
     },
     {
       "name": "layout/loader",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Loader",
       "description": "Layout template: loader",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "spinner"
       ],
       "files": [
         {
@@ -2322,14 +2671,16 @@
     },
     {
       "name": "layout/timeline-vertical",
-      "kind": "foundation",
+      "kind": "layout",
       "framework": "css",
-      "installGroup": "foundations",
+      "installGroup": "layouts",
       "title": "Timeline Vertical",
       "description": "Layout template: timeline-vertical",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "button",
+        "typography"
       ],
       "files": [
         {

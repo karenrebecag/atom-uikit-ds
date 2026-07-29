@@ -4,11 +4,19 @@
  * to shadcn-compatible registry-item.json for public consumption.
  */
 
-export type ItemKind = 'component' | 'foundation' | 'hook';
+/**
+ * - component:  átomo/molécula con CSS (y a veces React)
+ * - foundation: tokens, tipografía, utilidades — la base que todo asume instalada
+ * - layout:     organismo/composición: HTML estructural con slots + su rejilla.
+ *               Equivale al `registry:block` de shadcn: transporta el PLANO,
+ *               mientras los components transportan la pintura.
+ * - hook:       lógica reutilizable sin superficie visual
+ */
+export type ItemKind = 'component' | 'foundation' | 'layout' | 'hook';
 
 export type Framework = 'react' | 'astro' | 'css';
 
-export type InstallGroup = 'components' | 'styles' | 'foundations';
+export type InstallGroup = 'components' | 'styles' | 'foundations' | 'layouts';
 
 export interface AtomRegistryItem {
   /** Unique identifier, used as filename: public/r/{name}.json */
@@ -204,6 +212,34 @@ export interface AtomImplementation {
 // Combined atom field
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// atom.layout — contract of a layout item (kind: 'layout')
+// ---------------------------------------------------------------------------
+
+/**
+ * Machine-readable contract of a layout's `html`: which slots to fill and
+ * which rows repeat. Extracted by build-registry.mjs from the module source —
+ * a consumer (or the MCP) can build the full content map WITHOUT parsing HTML.
+ *
+ * Conventions (see docs/organism-pipeline.md):
+ * - `{{slot}}` placeholders in text and attributes
+ * - `data-repeat="key"` on a list container whose first child is the row template
+ */
+export interface AtomLayout {
+  /** Top-level slot names (excludes slots that live inside repeat rows) */
+  slots: string[];
+
+  /** For each data-repeat key, the slot names of one row */
+  repeats: Record<string, string[]>;
+
+  /** DS component slugs the html references (mirror of registryDependencies minus tokens/foundation) */
+  components: string[];
+}
+
+// ---------------------------------------------------------------------------
+// Combined atom field
+// ---------------------------------------------------------------------------
+
 /**
  * The complete `atom` field shape injected into each {name}.json.
  * Split by access level so the MCP registry-adapter can expose only
@@ -212,6 +248,8 @@ export interface AtomImplementation {
 export interface AtomField {
   discovery: AtomDiscovery;
   implementation: AtomImplementation;
+  /** Only present on kind: 'layout' items */
+  layout?: AtomLayout;
 }
 
 // ---------------------------------------------------------------------------

@@ -13,6 +13,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const REGISTRY_PATH = path.join(ROOT, 'registry.json');
@@ -23,8 +24,77 @@ const SCHEMA_URL = 'https://ui.shadcn.com/schema/registry-item.json';
 const KIND_TO_TYPE = {
   component: 'registry:component',
   foundation: 'registry:file',
+  layout: 'registry:block', // composiciones, igual que los blocks de shadcn
   hook: 'registry:file',
 };
+
+// ---------------------------------------------------------------------------
+// Layout enrichment — un layout se publica AUTODESCRIPTIVO:
+//   files:  el módulo .ts + su html y css PLANOS (para consumidores no-code
+//           que nunca van a abrir un template literal de TypeScript)
+//   atom.layout: contrato de slots/repeats extraído del html, para que un
+//           consumidor (o el MCP) arme el mapa de contenido sin parsear HTML
+// ---------------------------------------------------------------------------
+
+const SLOT_RE = /\{\{([\w-]+)\}\}/g;
+const REPEAT_RE = /<(\w+)[^>]*data-repeat="([\w-]+)"[^>]*>([\s\S]*?)<\/\1>/g;
+
+function extractSlots(html) {
+  const repeats = {};
+  let stripped = html;
+  for (const [, , key, inner] of html.matchAll(REPEAT_RE)) {
+    repeats[key] = [...new Set([...inner.matchAll(SLOT_RE)].map((m) => m[1]))];
+  }
+  stripped = html.replace(REPEAT_RE, '');
+  const slots = [...new Set([...stripped.matchAll(SLOT_RE)].map((m) => m[1]))];
+  return { slots, repeats };
+}
+
+/**
+ * Evalúa el módulo del layout (son JS plano sin imports, la extensión .ts es
+ * cosmética) para leer su { html, css, components }. Import por archivo
+ * temporal: la única forma de ejecutar ESM desde un string en Node sin loader.
+ */
+async function evalLayoutModule(source) {
+  const tmpDir = path.join(ROOT, 'node_modules', '.registry-tmp');
+  await fs.mkdir(tmpDir, { recursive: true });
+  const tmp = path.join(tmpDir, `layout-${process.pid}-${Math.random().toString(36).slice(2)}.mjs`);
+  await fs.writeFile(tmp, source, 'utf8');
+  try {
+    const mod = await import(pathToFileURL(tmp).href);
+    return Object.values(mod)[0];
+  } finally {
+    await fs.rm(tmp, { force: true });
+  }
+}
+
+async function enrichLayout(item, output) {
+  const moduleFile = output.files.find((f) => f.path.endsWith('.ts'));
+  if (!moduleFile) return;
+
+  const mod = await evalLayoutModule(moduleFile.content);
+  if (!mod?.html) {
+    console.warn(`  [WARN] ${item.name}: module has no html — skipping layout enrichment`);
+    return;
+  }
+
+  const slug = item.name.split('/').pop();
+  output.files.push({
+    path: `layouts/${slug}.html`,
+    type: 'registry:file',
+    content: mod.html.trim() + '\n',
+  });
+  if (mod.css) {
+    output.files.push({
+      path: `layouts/${slug}.css`,
+      type: 'registry:file',
+      content: mod.css.trim() + '\n',
+    });
+  }
+
+  output.atom ??= {};
+  output.atom.layout = { ...extractSlots(mod.html), components: mod.components ?? [] };
+}
 
 // Dynamic import of the extraction module (TypeScript via tsx)
 let extractAllMetadata;
@@ -96,6 +166,11 @@ async function main() {
         enriched++;
       }
 
+      // Layouts se publican autodescriptivos: html/css planos + contrato de slots
+      if (item.kind === 'layout') {
+        await enrichLayout(item, output);
+      }
+
       // Flatten slashes in name for output filename (layout/hero-centered → layout--hero-centered)
       const safeName = item.name.replace(/\//g, '--');
       const outPath = path.join(OUT_DIR, `${safeName}.json`);
@@ -136,6 +211,24 @@ async function main() {
     JSON.stringify(index, null, 2),
     'utf8'
   );
+
+  // Anti-drift: public/r/ es un ESPEJO de registry.json, no un acumulador.
+  // Sin esto los items borrados del registry siguen sirviéndose para siempre
+  // (pasó: 60 huérfanos comp-N vivieron meses en el canal).
+  const expected = new Set([
+    ...registry.items.map((i) => `${i.name.replace(/\//g, '--')}.json`),
+    'index.json',
+    'tokens-nested.json',
+  ]);
+  let removed = 0;
+  for (const file of await fs.readdir(OUT_DIR)) {
+    if (file.endsWith('.json') && !expected.has(file)) {
+      await fs.rm(path.join(OUT_DIR, file));
+      console.log(`  Removed orphan: ${file}`);
+      removed++;
+    }
+  }
+  if (removed) console.log(`  Orphans removed: ${removed}`);
 
   // Publish resolved design tokens for the MCP (single source of truth).
   // Raw nested file (not a registry item, not in index.json). The MCP fetches
