@@ -1711,7 +1711,7 @@
     "framework": "css",
     "installGroup": "layouts",
     "title": "Pricing Plans",
-    "description": "Sección de planes con la card de Atom: eyebrow mono, título display, precio, CTA, divider etiquetado y beneficios. Misma card, superficie clara + oscura.",
+    "description": "Dos planes espejo del pricing de Atom: Profesional destacado (oscuro) + Enterprise. Card con eyebrow, título display, precio, iconos de canal, CTA, beneficios y logos de integraciones.",
     "registryDependencies": [
       "tokens",
       "foundation",
@@ -1720,11 +1720,12 @@
       "feature",
       "divider",
       "tag",
-      "button"
+      "button",
+      "icon"
     ],
     "discovery": {
       "name": "Pricing Plans",
-      "description": "Sección de planes con la card de Atom: eyebrow mono, título display, precio, CTA, divider etiquetado y beneficios. Misma card, superficie clara + oscura.",
+      "description": "Dos planes espejo del pricing de Atom: Profesional destacado (oscuro) + Enterprise. Card con eyebrow, título display, precio, iconos de canal, CTA, beneficios y logos de integraciones.",
       "category": "layout",
       "variants": [],
       "sizes": [],

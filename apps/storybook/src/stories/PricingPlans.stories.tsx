@@ -29,39 +29,40 @@ const CONTENT: Record<string, string> = {
   eyebrow: 'Planes',
   headline: 'Elige cómo quieres crecer con Atom',
   subtitle:
-    'Ambos planes incluyen AI Agents, usuarios ilimitados y las integraciones que ya usas. La diferencia está en el volumen.',
+    'Ambos planes incluyen usuarios ilimitados, componentes IA y las integraciones que ya usas.',
   footnote: '*El onboarding está sujeto a las condiciones de Atom y de sus partners.',
   plan1_eyebrow: 'Plan más elegido',
   plan1_name: 'Profesional',
   plan1_price: '$1,100',
-  plan1_priceUnit: 'USD',
-  plan1_priceNote: 'Por mes · 3 números de WhatsApp',
-  plan1_ctaLabel: 'Empezar ahora',
+  plan1_priceUnit: 'USD/MES',
+  plan1_channelsLabel: 'Canales: WhatsApp, Instagram y Messenger',
+  plan1_ctaLabel: 'Hablar por WhatsApp',
   plan1_ctaHref: '#',
   plan1_ctaId: 'story_profesional',
   plan1_benefitsLabel: 'Incluye',
-  plan2_eyebrow: 'Min 5 números',
   plan2_name: 'Enterprise',
   plan2_price: 'Custom',
-  plan2_priceNote: 'Precio a la medida de tu operación',
+  plan2_channelsLabel: 'Canales: WhatsApp, Instagram, Messenger y Telegram',
   plan2_ctaLabel: 'Hablar con ventas',
   plan2_ctaHref: '#',
   plan2_ctaId: 'story_enterprise',
-  plan2_benefitsLabel: 'Todo lo de Profesional, más',
+  plan2_benefitsLabel: 'Incluye',
 };
 
 const ROWS = {
   plan1_feature: [
-    { feature_label: 'WhatsApp, Instagram y Messenger', feature_value: '3 canales' },
-    { feature_label: 'Conversaciones incluidas', feature_value: '5,500' },
+    { feature_label: 'Números de WhatsApp', feature_value: '3' },
     { feature_label: 'Usuarios ilimitados', feature_value: '' },
-    { feature_label: 'HubSpot, Salesforce y Zapier', feature_value: '' },
+    { feature_label: 'Componentes IA', feature_value: '' },
+    { feature_label: 'Conversaciones incluidas', feature_value: '5,500' },
+    { feature_label: 'Integración vía REST API', feature_value: '3 puntos' },
     { feature_label: 'Soporte de plataforma', feature_value: '12×5' },
   ],
   plan2_feature: [
-    { feature_label: '+ Telegram', feature_value: '4 canales' },
+    { feature_label: 'Números de WhatsApp', feature_value: '5' },
     { feature_label: 'Conversaciones incluidas', feature_value: '20,000+' },
-    { feature_label: 'Integraciones custom', feature_value: '' },
+    { feature_label: 'Integraciones Custom', feature_value: '' },
+    { feature_label: 'Soporte de plataforma', feature_value: '12×5*' },
   ],
 };
 
@@ -100,7 +101,7 @@ export const SinDecoracion: Story = {
             plan1_feature: ROWS.plan1_feature.map((r) => ({ ...r, feature_value: '' })),
             plan2_feature: ROWS.plan2_feature.map((r) => ({ ...r, feature_value: '' })),
           }),
-          { ...CONTENT, plan1_priceUnit: '' },
+          { ...CONTENT, plan1_priceUnit: '', plan1_eyebrow: '' },
         ),
       }}
     />
