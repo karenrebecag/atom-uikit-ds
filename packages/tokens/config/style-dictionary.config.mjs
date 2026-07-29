@@ -1,5 +1,34 @@
 import StyleDictionary from 'style-dictionary';
 
+/**
+ * Fluid design unit: spacing, font-size and radius emit as multiples of --u
+ * (1 "design pixel", declared in foundation/scaling.css as
+ * `calc(var(--size-font) / 16)` — an absolute length that follows the fluid
+ * scale). This is what makes the whole system breathe with the viewport, like
+ * OSMO — WITHOUT the em trap: em resolves against the local font-size (a
+ * padding token used inside an h1 would triple), --u is immune to it.
+ *
+ * Deliberately NOT fluid: stroke (1px hairlines blur at 1.33px — OSMO keeps
+ * theirs fixed too), z-index/opacity/duration (not lengths), radius-full.
+ */
+const FLUID_CATEGORIES = new Set(['spacing', 'font-size', 'radius']);
+
+StyleDictionary.registerTransform({
+  name: 'size/fluid-u',
+  type: 'value',
+  filter: (token) => {
+    const v = token.$value ?? token.value;
+    return FLUID_CATEGORIES.has(token.path[0]) && /^-?[\d.]+(px|rem)$/.test(String(v));
+  },
+  transform: (token) => {
+    const raw = String(token.$value ?? token.value);
+    const px = raw.endsWith('rem') ? parseFloat(raw) * 16 : parseFloat(raw);
+    if (px === 0) return '0';
+    if (px >= 9999) return `${px}px`; // radius-full stays a pill, not a length
+    return `calc(${px} * var(--u, 1px))`;
+  },
+});
+
 // Custom transform: kebab-case naming
 StyleDictionary.registerTransformGroup({
   name: 'atom/css',
@@ -8,6 +37,7 @@ StyleDictionary.registerTransformGroup({
     'name/kebab',
     'time/seconds',
     'html/icon',
+    'size/fluid-u',
     'size/rem',
     'color/css',
   ],
