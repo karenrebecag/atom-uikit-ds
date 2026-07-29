@@ -1,25 +1,38 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/page-header-centered",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Page Header Centered",
   "description": "Layout template: page-header-centered",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "breadcrumb",
+    "typography",
+    "tag"
   ],
   "files": [
     {
       "path": "layouts/page-header-centered.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: page-header-centered\n *\n * Cabecera de pagina interior: breadcrumb + titulo + descripcion, centrado. Para blog, docs, pricing.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pageHeaderCentered = {\n  slug: 'page-header-centered',\n  name: 'Page Header Centered',\n  description:\n    'Cabecera de pagina interior: breadcrumb + titulo + descripcion, centrado. Para blog, docs, pricing. Structure only.',\n  components: ['breadcrumb', 'typography', 'tag'],\n  html: `<!-- Layout: page-header-centered -->\n<header class=\"l-page-header-centered\">\n  <nav class=\"breadcrumb\">\n    <a href=\"{{breadcrumb1_url}}\" class=\"nav-link\">{{breadcrumb1_label}}</a>\n    <span>/</span>\n    <a href=\"{{breadcrumb2_url}}\" class=\"nav-link\">{{breadcrumb2_label}}</a>\n  </nav>\n  <span class=\"tag tag--s\">{{eyebrow}}</span>\n  <h1 class=\"l-page-header-centered__headline\">{{headline}}</h1>\n  <p class=\"l-page-header-centered__description\">{{description}}</p>\n</header>`,\n  css: `/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--text-4xl);\n  margin: var(--spacing-4) 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}`,\n};"
+    },
+    {
+      "path": "layouts/page-header-centered.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: page-header-centered -->\n<header class=\"l-page-header-centered\">\n  <nav class=\"breadcrumb\">\n    <a href=\"{{breadcrumb1_url}}\" class=\"nav-link\">{{breadcrumb1_label}}</a>\n    <span>/</span>\n    <a href=\"{{breadcrumb2_url}}\" class=\"nav-link\">{{breadcrumb2_label}}</a>\n  </nav>\n  <span class=\"tag tag--s\">{{eyebrow}}</span>\n  <h1 class=\"l-page-header-centered__headline\">{{headline}}</h1>\n  <p class=\"l-page-header-centered__description\">{{description}}</p>\n</header>\n"
+    },
+    {
+      "path": "layouts/page-header-centered.css",
+      "type": "registry:file",
+      "content": "/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--text-4xl);\n  margin: var(--spacing-4) 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Page Header Centered",
       "description": "Layout template: page-header-centered",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +46,23 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "breadcrumb1_url",
+        "breadcrumb1_label",
+        "breadcrumb2_url",
+        "breadcrumb2_label",
+        "eyebrow",
+        "headline",
+        "description"
+      ],
+      "repeats": {},
+      "components": [
+        "breadcrumb",
+        "typography",
+        "tag"
+      ]
     }
   }
 }

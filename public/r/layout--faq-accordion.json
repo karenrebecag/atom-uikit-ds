@@ -1,25 +1,38 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/faq-accordion",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "FAQ Accordion",
   "description": "Layout template: faq-accordion",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "accordion",
+    "button",
+    "typography"
   ],
   "files": [
     {
       "path": "layouts/faq-accordion.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: faq-accordion\n *\n * Preguntas frecuentes en accordion de una columna, con CTA de contacto al final.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const faqAccordion = {\n  slug: 'faq-accordion',\n  name: 'FAQ Accordion',\n  description:\n    'Preguntas frecuentes en accordion de una columna, con CTA de contacto al final. Structure only.',\n  components: ['accordion', 'button', 'typography'],\n  html: `<!-- Layout: faq-accordion -->\n<section class=\"l-faq-accordion\">\n  <div class=\"l-faq-accordion__header\">\n    <h2 class=\"l-faq-accordion__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-faq-accordion__list\">\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq1_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq1_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq2_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq2_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq3_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq3_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq4_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq4_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq5_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq5_answer}}</div>\n    </details>\n  </div>\n  <div class=\"l-faq-accordion__cta\">\n    <a href=\"#\" class=\"button button--secondary button--m\">\n      <span class=\"button__label\">{{contactCta}}</span>\n    </a>\n  </div>\n</section>`,\n  css: `/* Layout: faq-accordion — structure only */\n.l-faq-accordion {\n  max-width: 720px;\n  margin: 0 auto;\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-faq-accordion__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-faq-accordion__list {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n}\n.l-faq-accordion__item {\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  padding: var(--spacing-4);\n}\n.l-faq-accordion__item summary {\n  cursor: pointer;\n  font-weight: 600;\n  list-style: none;\n}\n.l-faq-accordion__item summary::-webkit-details-marker {\n  display: none;\n}\n.l-faq-accordion__answer {\n  margin-top: var(--spacing-2);\n  padding-top: var(--spacing-2);\n  border-top: 1px solid var(--border);\n  color: var(--muted-foreground);\n}\n.l-faq-accordion__cta {\n  text-align: center;\n  margin-top: var(--spacing-8);\n}`,\n};"
+    },
+    {
+      "path": "layouts/faq-accordion.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: faq-accordion -->\n<section class=\"l-faq-accordion\">\n  <div class=\"l-faq-accordion__header\">\n    <h2 class=\"l-faq-accordion__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-faq-accordion__list\">\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq1_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq1_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq2_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq2_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq3_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq3_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq4_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq4_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq5_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq5_answer}}</div>\n    </details>\n  </div>\n  <div class=\"l-faq-accordion__cta\">\n    <a href=\"#\" class=\"button button--secondary button--m\">\n      <span class=\"button__label\">{{contactCta}}</span>\n    </a>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/faq-accordion.css",
+      "type": "registry:file",
+      "content": "/* Layout: faq-accordion — structure only */\n.l-faq-accordion {\n  max-width: 720px;\n  margin: 0 auto;\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-faq-accordion__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-faq-accordion__list {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n}\n.l-faq-accordion__item {\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  padding: var(--spacing-4);\n}\n.l-faq-accordion__item summary {\n  cursor: pointer;\n  font-weight: 600;\n  list-style: none;\n}\n.l-faq-accordion__item summary::-webkit-details-marker {\n  display: none;\n}\n.l-faq-accordion__answer {\n  margin-top: var(--spacing-2);\n  padding-top: var(--spacing-2);\n  border-top: 1px solid var(--border);\n  color: var(--muted-foreground);\n}\n.l-faq-accordion__cta {\n  text-align: center;\n  margin-top: var(--spacing-8);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "FAQ Accordion",
       "description": "Layout template: faq-accordion",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +46,28 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "faq1_question",
+        "faq1_answer",
+        "faq2_question",
+        "faq2_answer",
+        "faq3_question",
+        "faq3_answer",
+        "faq4_question",
+        "faq4_answer",
+        "faq5_question",
+        "faq5_answer",
+        "contactCta"
+      ],
+      "repeats": {},
+      "components": [
+        "accordion",
+        "button",
+        "typography"
+      ]
     }
   }
 }

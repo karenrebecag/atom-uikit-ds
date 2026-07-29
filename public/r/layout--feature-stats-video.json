@@ -1,25 +1,38 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/feature-stats-video",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Feature Stats Video",
   "description": "Layout template: feature-stats-video",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "button",
+    "typography",
+    "image"
   ],
   "files": [
     {
       "path": "layouts/feature-stats-video.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: feature-stats-video\n *\n * Features section: left column with tagline, headline, description, 2 large stats,\n * and CTAs. Right side: video thumbnail (play button) that opens a modal player.\n * \n * Structure-only. Uses DS tokens and components.\n */\n\nexport const featureStatsVideo = {\n  slug: 'feature-stats-video',\n  name: 'Feature Stats Video',\n  description:\n    'Seccion de features con 2 metricas grandes (stats) a la izquierda y thumbnail de video con play a la derecha que abre modal. Ideal para mostrar resultados + prueba visual.',\n  components: ['button', 'typography', 'image'],\n  html: `<!-- Layout: feature-stats-video -->\n<!-- Get component CSS: atom_uikit_source(\"button\", [\"css\"]) -->\n<!-- Get tokens: atom_uikit_source(\"tokens\") -->\n<!-- Video modal: the trigger below opens a Dialog (atom_uikit_source(\"dialog\")). The iframe src is supplied at render time. -->\n\n<section class=\"l-feature-stats-video\" id=\"{{section_id}}\">\n  <div class=\"container\">\n    <div class=\"grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20\">\n      <div>\n        <p class=\"l-feature-stats-video__eyebrow mb-3 font-semibold md:mb-4\">{{tagline}}</p>\n        <h2 class=\"l-feature-stats-video__heading mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl\">\n          {{heading}}\n        </h2>\n        <p class=\"l-feature-stats-video__description mb-6 md:mb-8 md:text-md\">\n          {{description}}\n        </p>\n        <div class=\"l-feature-stats-video__stats grid grid-cols-1 gap-6 py-2 sm:grid-cols-2\">\n          <div class=\"l-feature-stats-video__stat\">\n            <h3 class=\"l-feature-stats-video__stat-value mb-2 text-5xl font-bold md:text-7xl lg:text-8xl\">{{stat1_value}}</h3>\n            <p class=\"l-feature-stats-video__stat-desc\">{{stat1_description}}</p>\n          </div>\n          <div class=\"l-feature-stats-video__stat\">\n            <h3 class=\"l-feature-stats-video__stat-value mb-2 text-5xl font-bold md:text-7xl lg:text-8xl\">{{stat2_value}}</h3>\n            <p class=\"l-feature-stats-video__stat-desc\">{{stat2_description}}</p>\n          </div>\n        </div>\n        <div class=\"l-feature-stats-video__actions mt-6 flex flex-wrap items-center gap-4 md:mt-8\">\n          <a href=\"{{cta_primary_href}}\" class=\"button button--secondary button--l\">\n            <span class=\"button__label\">{{cta_primary}}</span>\n          </a>\n          <a href=\"{{cta_secondary_href}}\" class=\"link-button\">\n            {{cta_secondary}}\n            <span class=\"link-button__icon\">→</span>\n          </a>\n        </div>\n      </div>\n      <button class=\"l-feature-stats-video__media relative flex w-full items-center justify-center\" type=\"button\">\n        <img \n          src=\"{{image}}\" \n          class=\"size-full object-cover\" \n          alt=\"{{image_alt}}\" \n        />\n        <span class=\"l-feature-stats-video__overlay absolute inset-0 z-10\"></span>\n        <span class=\"l-feature-stats-video__play absolute z-20 flex size-16 items-center justify-center text-white\">▶</span>\n      </button>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: feature-stats-video — structure only */\n.l-feature-stats-video {\n  padding: var(--spacing-20) var(--spacing-8);\n}\n\n.l-feature-stats-video__eyebrow {\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-semibold);\n  color: var(--muted-foreground);\n}\n\n.l-feature-stats-video__heading {\n  font-size: var(--font-size-3xl);\n  line-height: var(--line-height-3xl);\n  font-weight: var(--font-weight-bold);\n  color: var(--foreground);\n}\n\n@media (min-width: 768px) {\n  .l-feature-stats-video__heading {\n    font-size: var(--font-size-4xl);\n    line-height: var(--line-height-4xl);\n  }\n}\n\n.l-feature-stats-video__description {\n  font-size: var(--font-size-base);\n  line-height: var(--line-height-base);\n  color: var(--muted-foreground);\n}\n\n.l-feature-stats-video__stats {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: var(--spacing-6);\n  padding-block: var(--spacing-2);\n}\n\n@media (min-width: 640px) {\n  .l-feature-stats-video__stats {\n    grid-template-columns: 1fr 1fr;\n  }\n}\n\n.l-feature-stats-video__stat {\n  display: flex;\n  flex-direction: column;\n}\n\n.l-feature-stats-video__stat-value {\n  font-size: var(--font-size-5xl);\n  line-height: 1;\n  font-weight: var(--font-weight-bold);\n  color: var(--foreground);\n}\n\n@media (min-width: 768px) {\n  .l-feature-stats-video__stat-value {\n    font-size: var(--font-size-7xl);\n  }\n}\n\n@media (min-width: 1024px) {\n  .l-feature-stats-video__stat-value {\n    font-size: var(--font-size-8xl);\n  }\n}\n\n.l-feature-stats-video__stat-desc {\n  font-size: var(--font-size-sm);\n  color: var(--muted-foreground);\n  line-height: 1.6;\n}\n\n.l-feature-stats-video__actions {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: var(--spacing-4);\n  margin-top: var(--spacing-6);\n}\n\n@media (min-width: 768px) {\n  .l-feature-stats-video__actions {\n    margin-top: var(--spacing-8);\n  }\n}\n\n.l-feature-stats-video__media {\n  position: relative;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: center;\n}\n\n.l-feature-stats-video__overlay {\n  position: absolute;\n  inset: 0;\n  z-index: 10;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.l-feature-stats-video__play {\n  position: absolute;\n  z-index: 20;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 2.5rem;\n  color: white;\n  line-height: 1;\n}`,\n};"
+    },
+    {
+      "path": "layouts/feature-stats-video.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: feature-stats-video -->\n<!-- Get component CSS: atom_uikit_source(\"button\", [\"css\"]) -->\n<!-- Get tokens: atom_uikit_source(\"tokens\") -->\n<!-- Video modal: the trigger below opens a Dialog (atom_uikit_source(\"dialog\")). The iframe src is supplied at render time. -->\n\n<section class=\"l-feature-stats-video\" id=\"{{section_id}}\">\n  <div class=\"container\">\n    <div class=\"grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20\">\n      <div>\n        <p class=\"l-feature-stats-video__eyebrow mb-3 font-semibold md:mb-4\">{{tagline}}</p>\n        <h2 class=\"l-feature-stats-video__heading mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl\">\n          {{heading}}\n        </h2>\n        <p class=\"l-feature-stats-video__description mb-6 md:mb-8 md:text-md\">\n          {{description}}\n        </p>\n        <div class=\"l-feature-stats-video__stats grid grid-cols-1 gap-6 py-2 sm:grid-cols-2\">\n          <div class=\"l-feature-stats-video__stat\">\n            <h3 class=\"l-feature-stats-video__stat-value mb-2 text-5xl font-bold md:text-7xl lg:text-8xl\">{{stat1_value}}</h3>\n            <p class=\"l-feature-stats-video__stat-desc\">{{stat1_description}}</p>\n          </div>\n          <div class=\"l-feature-stats-video__stat\">\n            <h3 class=\"l-feature-stats-video__stat-value mb-2 text-5xl font-bold md:text-7xl lg:text-8xl\">{{stat2_value}}</h3>\n            <p class=\"l-feature-stats-video__stat-desc\">{{stat2_description}}</p>\n          </div>\n        </div>\n        <div class=\"l-feature-stats-video__actions mt-6 flex flex-wrap items-center gap-4 md:mt-8\">\n          <a href=\"{{cta_primary_href}}\" class=\"button button--secondary button--l\">\n            <span class=\"button__label\">{{cta_primary}}</span>\n          </a>\n          <a href=\"{{cta_secondary_href}}\" class=\"link-button\">\n            {{cta_secondary}}\n            <span class=\"link-button__icon\">→</span>\n          </a>\n        </div>\n      </div>\n      <button class=\"l-feature-stats-video__media relative flex w-full items-center justify-center\" type=\"button\">\n        <img \n          src=\"{{image}}\" \n          class=\"size-full object-cover\" \n          alt=\"{{image_alt}}\" \n        />\n        <span class=\"l-feature-stats-video__overlay absolute inset-0 z-10\"></span>\n        <span class=\"l-feature-stats-video__play absolute z-20 flex size-16 items-center justify-center text-white\">▶</span>\n      </button>\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/feature-stats-video.css",
+      "type": "registry:file",
+      "content": "/* Layout: feature-stats-video — structure only */\n.l-feature-stats-video {\n  padding: var(--spacing-20) var(--spacing-8);\n}\n\n.l-feature-stats-video__eyebrow {\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-semibold);\n  color: var(--muted-foreground);\n}\n\n.l-feature-stats-video__heading {\n  font-size: var(--font-size-3xl);\n  line-height: var(--line-height-3xl);\n  font-weight: var(--font-weight-bold);\n  color: var(--foreground);\n}\n\n@media (min-width: 768px) {\n  .l-feature-stats-video__heading {\n    font-size: var(--font-size-4xl);\n    line-height: var(--line-height-4xl);\n  }\n}\n\n.l-feature-stats-video__description {\n  font-size: var(--font-size-base);\n  line-height: var(--line-height-base);\n  color: var(--muted-foreground);\n}\n\n.l-feature-stats-video__stats {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: var(--spacing-6);\n  padding-block: var(--spacing-2);\n}\n\n@media (min-width: 640px) {\n  .l-feature-stats-video__stats {\n    grid-template-columns: 1fr 1fr;\n  }\n}\n\n.l-feature-stats-video__stat {\n  display: flex;\n  flex-direction: column;\n}\n\n.l-feature-stats-video__stat-value {\n  font-size: var(--font-size-5xl);\n  line-height: 1;\n  font-weight: var(--font-weight-bold);\n  color: var(--foreground);\n}\n\n@media (min-width: 768px) {\n  .l-feature-stats-video__stat-value {\n    font-size: var(--font-size-7xl);\n  }\n}\n\n@media (min-width: 1024px) {\n  .l-feature-stats-video__stat-value {\n    font-size: var(--font-size-8xl);\n  }\n}\n\n.l-feature-stats-video__stat-desc {\n  font-size: var(--font-size-sm);\n  color: var(--muted-foreground);\n  line-height: 1.6;\n}\n\n.l-feature-stats-video__actions {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: var(--spacing-4);\n  margin-top: var(--spacing-6);\n}\n\n@media (min-width: 768px) {\n  .l-feature-stats-video__actions {\n    margin-top: var(--spacing-8);\n  }\n}\n\n.l-feature-stats-video__media {\n  position: relative;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: center;\n}\n\n.l-feature-stats-video__overlay {\n  position: absolute;\n  inset: 0;\n  z-index: 10;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.l-feature-stats-video__play {\n  position: absolute;\n  z-index: 20;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 2.5rem;\n  color: white;\n  line-height: 1;\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Feature Stats Video",
       "description": "Layout template: feature-stats-video",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +46,30 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "section_id",
+        "tagline",
+        "heading",
+        "description",
+        "stat1_value",
+        "stat1_description",
+        "stat2_value",
+        "stat2_description",
+        "cta_primary_href",
+        "cta_primary",
+        "cta_secondary_href",
+        "cta_secondary",
+        "image",
+        "image_alt"
+      ],
+      "repeats": {},
+      "components": [
+        "button",
+        "typography",
+        "image"
+      ]
     }
   }
 }

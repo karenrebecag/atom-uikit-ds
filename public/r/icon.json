@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "type": "registry:component",
+  "title": "Icon",
+  "description": "Escala y color para SVG inline: el DS envia el tamano, no los paths",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/icon.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Icon\n\n   Contenedor de tamano para SVG inline. El DS no envia paths (los iconos son\n   contenido, no estilo): envia la ESCALA y el color, para que ningun consumidor\n   vuelva a dimensionar SVGs a mano.\n\n   Uso:  <svg class=\"icon icon--m icon--success\" viewBox=\"0 0 24 24\">…</svg>\n   Sizes:  xs 1em · s 1.25em · m 1.5em · l 2em · xl 2.5em  (relativos al\n           font-size del contexto: el icono acompana al texto y escala con el)\n   Intents: currentColor por defecto; success/brand/muted como atajos.\n   ------------------------------------------------------------------------- */\n\n.icon {\n  display: inline-block;\n  flex-shrink: 0;\n  width: var(--icon-size, 1.25em);\n  height: var(--icon-size, 1.25em);\n  color: currentcolor;\n  fill: currentcolor;\n  vertical-align: middle;\n}\n\n.icon--xs { --icon-size: 1em; }\n.icon--s  { --icon-size: 1.25em; }\n.icon--m  { --icon-size: 1.5em; }\n.icon--l  { --icon-size: 2em; }\n.icon--xl { --icon-size: 2.5em; }\n\n.icon--success { color: var(--success); }\n.icon--brand   { color: var(--brand); }\n.icon--muted   { color: var(--muted-foreground); }\n\n/* Alineacion optica con la primera linea cuando acompana texto multilinea */\n.icon--leading { margin-block-start: 0.2em; }\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Icon",
+      "description": "Escala y color para SVG inline: el DS envia el tamano, no los paths",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "icon",
+      "cssClasses": [
+        "icon",
+        "icon--xs",
+        "icon--s",
+        "icon--m",
+        "icon--l",
+        "icon--xl",
+        "icon--success",
+        "icon--brand",
+        "icon--muted",
+        "icon--leading"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
+}

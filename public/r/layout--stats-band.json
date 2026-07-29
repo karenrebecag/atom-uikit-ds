@@ -1,25 +1,37 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/stats-band",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Stats Band",
   "description": "Layout template: stats-band",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "stats-card",
+    "typography"
   ],
   "files": [
     {
       "path": "layouts/stats-band.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: stats-band\n *\n * Banda horizontal de 3-4 metricas grandes con label. Reusa stats-card.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const statsBand = {\n  slug: 'stats-band',\n  name: 'Stats Band',\n  description:\n    'Banda horizontal de 3-4 metricas grandes con label. Reusa stats-card. Structure only.',\n  components: ['stats-card', 'typography'],\n  html: `<!-- Layout: stats-band -->\n<section class=\"l-stats-band\">\n  <div class=\"l-stats-band__header\">\n    <h3 class=\"l-stats-band__headline\">{{headline}}</h3>\n  </div>\n  <div class=\"l-stats-band__stats\">\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat1_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat1_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat2_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat2_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat3_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat3_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat4_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat4_label}}</div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: stats-band — structure only */\n.l-stats-band {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-6);\n  padding: var(--spacing-8);\n  background: var(--background);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n}\n.l-stats-band__header {\n  text-align: center;\n}\n.l-stats-band__stats {\n  display: flex;\n  justify-content: space-around;\n  gap: var(--spacing-4);\n}\n@media (max-width: 768px) {\n  .l-stats-band__stats {\n    flex-direction: column;\n    align-items: center;\n  }\n}\n.l-stats-band__value {\n  font-size: var(--text-3xl);\n  font-weight: 700;\n  line-height: 1;\n}\n.l-stats-band__label {\n  font-size: var(--text-sm);\n  color: var(--muted-foreground);\n}`,\n};"
+    },
+    {
+      "path": "layouts/stats-band.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: stats-band -->\n<section class=\"l-stats-band\">\n  <div class=\"l-stats-band__header\">\n    <h3 class=\"l-stats-band__headline\">{{headline}}</h3>\n  </div>\n  <div class=\"l-stats-band__stats\">\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat1_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat1_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat2_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat2_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat3_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat3_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat4_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat4_label}}</div>\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/stats-band.css",
+      "type": "registry:file",
+      "content": "/* Layout: stats-band — structure only */\n.l-stats-band {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-6);\n  padding: var(--spacing-8);\n  background: var(--background);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n}\n.l-stats-band__header {\n  text-align: center;\n}\n.l-stats-band__stats {\n  display: flex;\n  justify-content: space-around;\n  gap: var(--spacing-4);\n}\n@media (max-width: 768px) {\n  .l-stats-band__stats {\n    flex-direction: column;\n    align-items: center;\n  }\n}\n.l-stats-band__value {\n  font-size: var(--text-3xl);\n  font-weight: 700;\n  line-height: 1;\n}\n.l-stats-band__label {\n  font-size: var(--text-sm);\n  color: var(--muted-foreground);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Stats Band",
       "description": "Layout template: stats-band",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +45,24 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "stat1_value",
+        "stat1_label",
+        "stat2_value",
+        "stat2_label",
+        "stat3_value",
+        "stat3_label",
+        "stat4_value",
+        "stat4_label"
+      ],
+      "repeats": {},
+      "components": [
+        "stats-card",
+        "typography"
+      ]
     }
   }
 }

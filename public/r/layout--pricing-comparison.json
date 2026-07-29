@@ -1,25 +1,39 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/pricing-comparison",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Pricing Comparativo",
   "description": "Layout template: pricing-comparison",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "table",
+    "button",
+    "badge",
+    "typography"
   ],
   "files": [
     {
       "path": "layouts/pricing-comparison.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: pricing-comparison\n *\n * Tabla de comparacion de planes por feature. Para productos con matrices de capacidades.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pricingComparison = {\n  slug: 'pricing-comparison',\n  name: 'Pricing Comparativo',\n  description:\n    'Tabla de comparacion de planes por feature. Para productos con matrices de capacidades. Structure only.',\n  components: ['table', 'button', 'badge', 'typography'],\n  html: `<!-- Layout: pricing-comparison -->\n<section class=\"l-pricing-comparison\">\n  <div class=\"l-pricing-comparison__header\">\n    <h2 class=\"l-pricing-comparison__headline\">{{headline}}</h2>\n  </div>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th></th>\n        <th>{{plan1_name}}<br />{{plan1_price}}</th>\n        <th>{{plan2_name}}<br />{{plan2_price}}</th>\n        <th>{{plan3_name}}<br />{{plan3_price}}</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>{{row1_feature}}</td>\n        <td>{{row1_value1}}</td>\n        <td>{{row1_value2}}</td>\n        <td>{{row1_value3}}</td>\n      </tr>\n      <tr>\n        <td>{{row2_feature}}</td>\n        <td>{{row2_value1}}</td>\n        <td>{{row2_value2}}</td>\n        <td>{{row2_value3}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"l-pricing-comparison__ctas\">\n    <a href=\"#\" class=\"button button--secondary button--m\">{{plan1_ctaLabel}}</a>\n    <a href=\"#\" class=\"button button--primary button--m\">{{plan2_ctaLabel}}</a>\n    <a href=\"#\" class=\"button button--secondary button--m\">{{plan3_ctaLabel}}</a>\n  </div>\n</section>`,\n  css: `/* Layout: pricing-comparison — structure only */\n.l-pricing-comparison {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-pricing-comparison__header {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n}\n.l-pricing-comparison__ctas {\n  display: flex;\n  justify-content: center;\n  gap: var(--spacing-4);\n  margin-top: var(--spacing-4);\n}`,\n};"
+    },
+    {
+      "path": "layouts/pricing-comparison.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: pricing-comparison -->\n<section class=\"l-pricing-comparison\">\n  <div class=\"l-pricing-comparison__header\">\n    <h2 class=\"l-pricing-comparison__headline\">{{headline}}</h2>\n  </div>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th></th>\n        <th>{{plan1_name}}<br />{{plan1_price}}</th>\n        <th>{{plan2_name}}<br />{{plan2_price}}</th>\n        <th>{{plan3_name}}<br />{{plan3_price}}</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>{{row1_feature}}</td>\n        <td>{{row1_value1}}</td>\n        <td>{{row1_value2}}</td>\n        <td>{{row1_value3}}</td>\n      </tr>\n      <tr>\n        <td>{{row2_feature}}</td>\n        <td>{{row2_value1}}</td>\n        <td>{{row2_value2}}</td>\n        <td>{{row2_value3}}</td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"l-pricing-comparison__ctas\">\n    <a href=\"#\" class=\"button button--secondary button--m\">{{plan1_ctaLabel}}</a>\n    <a href=\"#\" class=\"button button--primary button--m\">{{plan2_ctaLabel}}</a>\n    <a href=\"#\" class=\"button button--secondary button--m\">{{plan3_ctaLabel}}</a>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/pricing-comparison.css",
+      "type": "registry:file",
+      "content": "/* Layout: pricing-comparison — structure only */\n.l-pricing-comparison {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-pricing-comparison__header {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n}\n.l-pricing-comparison__ctas {\n  display: flex;\n  justify-content: center;\n  gap: var(--spacing-4);\n  margin-top: var(--spacing-4);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Pricing Comparativo",
       "description": "Layout template: pricing-comparison",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +47,35 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "plan1_name",
+        "plan1_price",
+        "plan2_name",
+        "plan2_price",
+        "plan3_name",
+        "plan3_price",
+        "row1_feature",
+        "row1_value1",
+        "row1_value2",
+        "row1_value3",
+        "row2_feature",
+        "row2_value1",
+        "row2_value2",
+        "row2_value3",
+        "plan1_ctaLabel",
+        "plan2_ctaLabel",
+        "plan3_ctaLabel"
+      ],
+      "repeats": {},
+      "components": [
+        "table",
+        "button",
+        "badge",
+        "typography"
+      ]
     }
   }
 }

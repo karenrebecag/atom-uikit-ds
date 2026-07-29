@@ -1,25 +1,38 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/footer-columns",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Footer Columns",
-  "description": "Layout template: footer-columns",
+  "description": "Footer completo: logo + tagline izquierda, columnas repetibles de links, fila legal. Superficie clara u oscura via data-theme. Structure only.",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "logo",
+    "nav-link",
+    "divider"
   ],
   "files": [
     {
       "path": "layouts/footer-columns.ts",
       "type": "registry:file",
-      "content": "/**\n * Layout: footer-columns\n *\n * Footer completo: logo + tagline izquierda, columnas de links agrupados, fila legal abajo.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const footerColumns = {\n  slug: 'footer-columns',\n  name: 'Footer Columns',\n  description:\n    'Footer completo: logo + tagline izquierda, columnas de links agrupados, fila legal abajo. Structure only.',\n  components: ['nav-link', 'typography', 'divider', 'image'],\n  html: `<!-- Layout: footer-columns -->\n<footer class=\"l-footer-columns\">\n  <div class=\"l-footer-columns__brand\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n    <p class=\"l-footer-columns__tagline\">{{tagline}}</p>\n  </div>\n  <div class=\"l-footer-columns__cols\">\n    <div class=\"l-footer-columns__col\">\n      <h4 class=\"l-footer-columns__col-title\">{{col1_title}}</h4>\n      <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n      <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n    </div>\n    <div class=\"l-footer-columns__col\">\n      <h4 class=\"l-footer-columns__col-title\">{{col2_title}}</h4>\n      <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n      <a href=\"{{link4_url}}\" class=\"nav-link\">{{link4_label}}</a>\n    </div>\n    <div class=\"l-footer-columns__col\">\n      <h4 class=\"l-footer-columns__col-title\">{{col3_title}}</h4>\n      <a href=\"{{link5_url}}\" class=\"nav-link\">{{link5_label}}</a>\n      <a href=\"{{link6_url}}\" class=\"nav-link\">{{link6_label}}</a>\n    </div>\n  </div>\n  <div class=\"l-footer-columns__legal\">\n    <hr class=\"divider\" />\n    <p>{{legal}}</p>\n  </div>\n</footer>`,\n  css: `/* Layout: footer-columns — structure only */\n.l-footer-columns {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n  border-top: 1px solid var(--border);\n}\n.l-footer-columns__brand {\n  max-width: 200px;\n}\n.l-footer-columns__cols {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-8);\n}\n@media (max-width: 768px) {\n  .l-footer-columns__cols {\n    grid-template-columns: 1fr;\n  }\n}\n.l-footer-columns__col-title {\n  font-weight: 600;\n  margin-bottom: var(--spacing-2);\n}\n.l-footer-columns__legal {\n  margin-top: var(--spacing-4);\n}`,\n};"
+      "content": "/**\n * Layout: footer-columns\n *\n * Footer completo: marca + tagline a la izquierda, columnas de links\n * agrupados, fila legal abajo. Structure-only: cero color/tipografia/motion —\n * los atomos (logo, nav-link, eyebrow, divider) ponen la personalidad.\n *\n * Modernizado 2026-07-30 (pipeline de organismos):\n *   - logo atom dual light/dark (antes un <img class=\"image\"> con un solo src)\n *   - nav-links con el part __text (sin el, el subrayado animado del atomo no dispara)\n *   - columnas repetibles via data-repeat (antes 3 columnas x 2 links fijos)\n *   - titulos de columna con .eyebrow (antes h4 con font-weight literal)\n *   - theming opcional: {{footer_theme}} = \"dark\" voltea los semantics del footer\n *\n * Contrato de edicion (decision de Karen 2026-07-30): EDITABLE -> tagline,\n * titulos de columna, links (repetibles 0..N por columna) y legal. FIJO -> el\n * logo (sin slots). Columna sin titulo ni links desaparece sola (prune).\n */\n\nexport const footerColumns = {\n  slug: 'footer-columns',\n  name: 'Footer Columns',\n  description:\n    'Footer completo: logo + tagline izquierda, columnas repetibles de links agrupados, fila legal abajo. Superficie clara u oscura via data-theme. Structure only.',\n  components: ['logo', 'nav-link', 'divider'],\n  html: `<!-- Layout: footer-columns -->\n<footer class=\"l-footer-columns\" data-theme=\"{{footer_theme}}\">\n  <div class=\"container\">\n    <div class=\"l-footer-columns__top\">\n      <div class=\"l-footer-columns__brand\">\n        <!-- LOGO FIJO de marca (sin slots a proposito): assets oficiales R2,\n             el atomo voltea light/dark con data-theme -->\n        <a class=\"logo logo--m\" href=\"https://atomchat.io\" aria-label=\"Atom\">\n          <img class=\"logo__light\" src=\"https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-light.svg\" alt=\"Atom\" />\n          <img class=\"logo__dark\" src=\"https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-dark.svg\" alt=\"Atom\" />\n        </a>\n        <p class=\"l-footer-columns__tagline body-sm\">{{tagline}}</p>\n      </div>\n      <!-- 3 columnas fijas (data-repeat no anida): columna sin titulo ni links\n           queda vacia e invisible. Cada lista de links si es repetible. -->\n      <div class=\"l-footer-columns__cols\">\n        <div class=\"l-footer-columns__col\">\n          <span class=\"eyebrow l-footer-columns__col-title\">{{col1_title}}</span>\n          <nav class=\"l-footer-columns__col-links\" aria-label=\"{{col1_title}}\" data-repeat=\"col1_link\">\n            <a href=\"{{link_url}}\" class=\"nav-link\"><span class=\"nav-link__text\">{{link_label}}</span></a>\n          </nav>\n        </div>\n        <div class=\"l-footer-columns__col\">\n          <span class=\"eyebrow l-footer-columns__col-title\">{{col2_title}}</span>\n          <nav class=\"l-footer-columns__col-links\" aria-label=\"{{col2_title}}\" data-repeat=\"col2_link\">\n            <a href=\"{{link_url}}\" class=\"nav-link\"><span class=\"nav-link__text\">{{link_label}}</span></a>\n          </nav>\n        </div>\n        <div class=\"l-footer-columns__col\">\n          <span class=\"eyebrow l-footer-columns__col-title\">{{col3_title}}</span>\n          <nav class=\"l-footer-columns__col-links\" aria-label=\"{{col3_title}}\" data-repeat=\"col3_link\">\n            <a href=\"{{link_url}}\" class=\"nav-link\"><span class=\"nav-link__text\">{{link_label}}</span></a>\n          </nav>\n        </div>\n      </div>\n    </div>\n    <div class=\"l-footer-columns__legal\">\n      <hr class=\"divider\" />\n      <p class=\"l-footer-columns__legal-text body-sm\">{{legal}}</p>\n    </div>\n  </div>\n</footer>`,\n  css: `/* Layout: footer-columns — structure only.\n   Distribucion citada del footer de OSMO: marca separada de las columnas por\n   un vacio grande (8.5em entre bloques), columnas cap a 13.375em con listas\n   APRETADAS (0.3125em entre links — la densidad es parte del look), y fila\n   legal en grid de 3 columnas. El lateral lo gobierna .container. */\n.l-footer-columns {\n  padding-block: var(--section-padding-m) var(--spacing-8);\n  background-color: var(--background);\n  color: var(--foreground);\n  border-top: var(--stroke-hairline) solid var(--border);\n}\n\n.l-footer-columns__top {\n  display: flex;\n  justify-content: space-between;\n  /* separacion marca <-> columnas del footer-top__links de OSMO */\n  gap: 8.5em;\n}\n\n.l-footer-columns__brand {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-4);\n  max-width: 22rem;\n}\n\n.l-footer-columns__tagline {\n  color: var(--muted-foreground);\n}\n\n.l-footer-columns__cols {\n  display: flex;\n  /* gap-sm de OSMO entre columnas; cada una cap a su 13.375em */\n  gap: var(--spacing-5);\n  flex-wrap: wrap;\n}\n\n.l-footer-columns__col {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  max-width: 13.375em;\n  min-width: 9em;\n  flex: 1;\n}\n\n.l-footer-columns__col-title {\n  color: var(--muted-foreground);\n  /* footer-link__col-top de OSMO: aire grande titulo -> lista */\n  margin-block-end: var(--spacing-6);\n}\n\n.l-footer-columns__col-links {\n  display: flex;\n  flex-direction: column;\n  /* lista apretada de OSMO (footer-link__col-ul: 0.3125em) */\n  gap: 0.3125em;\n  align-items: flex-start;\n}\n\n.l-footer-columns__legal {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-6);\n  margin-block-start: var(--section-padding-s);\n}\n\n.l-footer-columns__legal-text {\n  color: var(--muted-foreground);\n}\n\n@media (max-width: 991px) {\n  .l-footer-columns__top {\n    flex-direction: column;\n    gap: var(--spacing-12);\n  }\n}\n\n@media (max-width: 767px) {\n  .l-footer-columns__cols {\n    gap: var(--spacing-10);\n  }\n  .l-footer-columns__col {\n    max-width: none;\n    min-width: 12em;\n  }\n  .l-footer-columns__legal {\n    margin-block-start: var(--spacing-12);\n  }\n}`,\n};\n"
+    },
+    {
+      "path": "layouts/footer-columns.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: footer-columns -->\n<footer class=\"l-footer-columns\" data-theme=\"{{footer_theme}}\">\n  <div class=\"container\">\n    <div class=\"l-footer-columns__top\">\n      <div class=\"l-footer-columns__brand\">\n        <!-- LOGO FIJO de marca (sin slots a proposito): assets oficiales R2,\n             el atomo voltea light/dark con data-theme -->\n        <a class=\"logo logo--m\" href=\"https://atomchat.io\" aria-label=\"Atom\">\n          <img class=\"logo__light\" src=\"https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-light.svg\" alt=\"Atom\" />\n          <img class=\"logo__dark\" src=\"https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-dark.svg\" alt=\"Atom\" />\n        </a>\n        <p class=\"l-footer-columns__tagline body-sm\">{{tagline}}</p>\n      </div>\n      <!-- 3 columnas fijas (data-repeat no anida): columna sin titulo ni links\n           queda vacia e invisible. Cada lista de links si es repetible. -->\n      <div class=\"l-footer-columns__cols\">\n        <div class=\"l-footer-columns__col\">\n          <span class=\"eyebrow l-footer-columns__col-title\">{{col1_title}}</span>\n          <nav class=\"l-footer-columns__col-links\" aria-label=\"{{col1_title}}\" data-repeat=\"col1_link\">\n            <a href=\"{{link_url}}\" class=\"nav-link\"><span class=\"nav-link__text\">{{link_label}}</span></a>\n          </nav>\n        </div>\n        <div class=\"l-footer-columns__col\">\n          <span class=\"eyebrow l-footer-columns__col-title\">{{col2_title}}</span>\n          <nav class=\"l-footer-columns__col-links\" aria-label=\"{{col2_title}}\" data-repeat=\"col2_link\">\n            <a href=\"{{link_url}}\" class=\"nav-link\"><span class=\"nav-link__text\">{{link_label}}</span></a>\n          </nav>\n        </div>\n        <div class=\"l-footer-columns__col\">\n          <span class=\"eyebrow l-footer-columns__col-title\">{{col3_title}}</span>\n          <nav class=\"l-footer-columns__col-links\" aria-label=\"{{col3_title}}\" data-repeat=\"col3_link\">\n            <a href=\"{{link_url}}\" class=\"nav-link\"><span class=\"nav-link__text\">{{link_label}}</span></a>\n          </nav>\n        </div>\n      </div>\n    </div>\n    <div class=\"l-footer-columns__legal\">\n      <hr class=\"divider\" />\n      <p class=\"l-footer-columns__legal-text body-sm\">{{legal}}</p>\n    </div>\n  </div>\n</footer>\n"
+    },
+    {
+      "path": "layouts/footer-columns.css",
+      "type": "registry:file",
+      "content": "/* Layout: footer-columns — structure only.\n   Distribucion citada del footer de OSMO: marca separada de las columnas por\n   un vacio grande (8.5em entre bloques), columnas cap a 13.375em con listas\n   APRETADAS (0.3125em entre links — la densidad es parte del look), y fila\n   legal en grid de 3 columnas. El lateral lo gobierna .container. */\n.l-footer-columns {\n  padding-block: var(--section-padding-m) var(--spacing-8);\n  background-color: var(--background);\n  color: var(--foreground);\n  border-top: var(--stroke-hairline) solid var(--border);\n}\n\n.l-footer-columns__top {\n  display: flex;\n  justify-content: space-between;\n  /* separacion marca <-> columnas del footer-top__links de OSMO */\n  gap: 8.5em;\n}\n\n.l-footer-columns__brand {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-4);\n  max-width: 22rem;\n}\n\n.l-footer-columns__tagline {\n  color: var(--muted-foreground);\n}\n\n.l-footer-columns__cols {\n  display: flex;\n  /* gap-sm de OSMO entre columnas; cada una cap a su 13.375em */\n  gap: var(--spacing-5);\n  flex-wrap: wrap;\n}\n\n.l-footer-columns__col {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  max-width: 13.375em;\n  min-width: 9em;\n  flex: 1;\n}\n\n.l-footer-columns__col-title {\n  color: var(--muted-foreground);\n  /* footer-link__col-top de OSMO: aire grande titulo -> lista */\n  margin-block-end: var(--spacing-6);\n}\n\n.l-footer-columns__col-links {\n  display: flex;\n  flex-direction: column;\n  /* lista apretada de OSMO (footer-link__col-ul: 0.3125em) */\n  gap: 0.3125em;\n  align-items: flex-start;\n}\n\n.l-footer-columns__legal {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-6);\n  margin-block-start: var(--section-padding-s);\n}\n\n.l-footer-columns__legal-text {\n  color: var(--muted-foreground);\n}\n\n@media (max-width: 991px) {\n  .l-footer-columns__top {\n    flex-direction: column;\n    gap: var(--spacing-12);\n  }\n}\n\n@media (max-width: 767px) {\n  .l-footer-columns__cols {\n    gap: var(--spacing-10);\n  }\n  .l-footer-columns__col {\n    max-width: none;\n    min-width: 12em;\n  }\n  .l-footer-columns__legal {\n    margin-block-start: var(--spacing-12);\n  }\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Footer Columns",
-      "description": "Layout template: footer-columns",
-      "category": "foundation",
+      "description": "Footer completo: logo + tagline izquierda, columnas repetibles de links, fila legal. Superficie clara u oscura via data-theme. Structure only.",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +46,35 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "footer_theme",
+        "tagline",
+        "col1_title",
+        "col2_title",
+        "col3_title",
+        "legal"
+      ],
+      "repeats": {
+        "col1_link": [
+          "link_url",
+          "link_label"
+        ],
+        "col2_link": [
+          "link_url",
+          "link_label"
+        ],
+        "col3_link": [
+          "link_url",
+          "link_label"
+        ]
+      },
+      "components": [
+        "logo",
+        "nav-link",
+        "divider"
+      ]
     }
   }
 }

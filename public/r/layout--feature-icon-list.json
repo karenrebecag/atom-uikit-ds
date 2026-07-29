@@ -1,25 +1,37 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/feature-icon-list",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Feature Icon List",
   "description": "Layout template: feature-icon-list",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "item",
+    "typography"
   ],
   "files": [
     {
       "path": "layouts/feature-icon-list.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: feature-icon-list\n *\n * Lista compacta de features en 2 columnas, icono + texto. Densidad alta, para paginas de producto.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const featureIconList = {\n  slug: 'feature-icon-list',\n  name: 'Feature Icon List',\n  description:\n    'Lista compacta de features en 2 columnas, icono + texto. Densidad alta, para paginas de producto. Structure only.',\n  components: ['item', 'typography'],\n  html: `<!-- Layout: feature-icon-list -->\n<section class=\"l-feature-icon-list\">\n  <div class=\"l-feature-icon-list__header\">\n    <h2 class=\"l-feature-icon-list__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-feature-icon-list__grid\">\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item1_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item1_body}}</p>\n    </div>\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item2_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item2_body}}</p>\n    </div>\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item3_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item3_body}}</p>\n    </div>\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item4_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item4_body}}</p>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: feature-icon-list — structure only */\n.l-feature-icon-list {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-feature-icon-list__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-feature-icon-list__grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: var(--spacing-6);\n}\n@media (max-width: 600px) {\n  .l-feature-icon-list__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-feature-icon-list__item {\n  display: flex;\n  gap: var(--spacing-3);\n}\n.l-feature-icon-list__icon {\n  width: 24px;\n  height: 24px;\n  flex-shrink: 0;\n  background: var(--muted);\n  border-radius: 50%;\n}\n.l-feature-icon-list__title {\n  font-size: var(--text-base);\n  font-weight: 600;\n  margin: 0;\n}\n.l-feature-icon-list__body {\n  font-size: var(--text-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}`,\n};"
+    },
+    {
+      "path": "layouts/feature-icon-list.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: feature-icon-list -->\n<section class=\"l-feature-icon-list\">\n  <div class=\"l-feature-icon-list__header\">\n    <h2 class=\"l-feature-icon-list__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-feature-icon-list__grid\">\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item1_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item1_body}}</p>\n    </div>\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item2_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item2_body}}</p>\n    </div>\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item3_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item3_body}}</p>\n    </div>\n    <div class=\"l-feature-icon-list__item\">\n      <div class=\"l-feature-icon-list__icon\"><!-- icon placeholder --></div>\n      <h3 class=\"l-feature-icon-list__title\">{{item4_title}}</h3>\n      <p class=\"l-feature-icon-list__body\">{{item4_body}}</p>\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/feature-icon-list.css",
+      "type": "registry:file",
+      "content": "/* Layout: feature-icon-list — structure only */\n.l-feature-icon-list {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-feature-icon-list__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-feature-icon-list__grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: var(--spacing-6);\n}\n@media (max-width: 600px) {\n  .l-feature-icon-list__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-feature-icon-list__item {\n  display: flex;\n  gap: var(--spacing-3);\n}\n.l-feature-icon-list__icon {\n  width: 24px;\n  height: 24px;\n  flex-shrink: 0;\n  background: var(--muted);\n  border-radius: 50%;\n}\n.l-feature-icon-list__title {\n  font-size: var(--text-base);\n  font-weight: 600;\n  margin: 0;\n}\n.l-feature-icon-list__body {\n  font-size: var(--text-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Feature Icon List",
       "description": "Layout template: feature-icon-list",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +45,24 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "item1_title",
+        "item1_body",
+        "item2_title",
+        "item2_body",
+        "item3_title",
+        "item3_body",
+        "item4_title",
+        "item4_body"
+      ],
+      "repeats": {},
+      "components": [
+        "item",
+        "typography"
+      ]
     }
   }
 }
