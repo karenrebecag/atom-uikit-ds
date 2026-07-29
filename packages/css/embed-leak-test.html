@@ -51,6 +51,14 @@
     <p class="body">Embed body copy. Should be neutral-950 on neutral-50, tight line-height.</p>
     <a href="#" class="body">Embed link</a>
     <button class="button button--primary button--m">Embed button</button>
+
+    <!-- State attr on an INNER element: regression for the attr-first scoping
+         rule. With compound-only scoping this X-state never applied. -->
+    <button class="burger-icon" data-menu-button="close" aria-label="Menú">
+      <span class="burger-icon__line"></span>
+      <span class="burger-icon__line"></span>
+      <span class="burger-icon__line"></span>
+    </button>
   </div>
 </div>
 

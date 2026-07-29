@@ -6,7 +6,8 @@
  *   already scoped      → untouched (idempotent; the reset is authored scoped)
  *   :root | html | body → REPLACED by .atom-embed   (they mean "the root", and
  *                         inside an embed the root is the mount element)
- *   [attr] first        → COMPOUNDED: .atom-embed[data-theme=dark]
+ *   [attr] first        → BOTH forms: .atom-embed[data-x], .atom-embed [data-x]
+ *                         (root qualifier and inner-element state respectively)
  *   anything else       → DESCENDANT: .atom-embed .h1
  *
  * At-rules without selectors (@font-face, @keyframes) pass through untouched,
@@ -37,9 +38,18 @@ export function scopeSelector(selector) {
   const first = selector[0];
   if (!first || isAlreadyScoped(first)) return selector;
   if (isRootSelector(first)) return [SCOPE, ...selector.slice(1)];
-  // An attribute in first position qualifies the root itself (e.g. dark mode),
-  // so it must compound — a descendant combinator here would never match.
-  if (first.type === 'attribute') return [SCOPE, ...selector];
+  // An attribute in first position is ambiguous: it can qualify the scope root
+  // ([data-theme=dark] — per-embed theming) or sit on an inner element
+  // ([data-menu-button=close] on a burger button). Compound-only broke the
+  // latter in production: the burger never morphed because the rule demanded
+  // the attribute on .atom-embed itself. Emit BOTH forms; the impossible one
+  // simply never matches.
+  if (first.type === 'attribute') {
+    return [
+      [SCOPE, ...selector],
+      [SCOPE, DESCENDANT, ...selector],
+    ];
+  }
   return [SCOPE, DESCENDANT, ...selector];
 }
 

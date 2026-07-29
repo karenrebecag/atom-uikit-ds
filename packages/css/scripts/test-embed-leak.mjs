@@ -102,6 +102,11 @@ const checks = [
     actual: await style('.atom-embed[data-theme="dark"]', 'backgroundColor'),
     ok: (v) => v === 'rgb(10, 10, 10)',
   },
+  {
+    name: 'state attr on inner element still styles (burger X morph)',
+    actual: await style('[data-menu-button="close"] .burger-icon__line', 'transform'),
+    ok: (v) => v !== null && v !== 'none',
+  },
 ];
 
 let failed = 0;
