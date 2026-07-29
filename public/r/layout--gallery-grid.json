@@ -1,25 +1,37 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/gallery-grid",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Gallery Grid",
   "description": "Layout template: gallery-grid",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "image",
+    "typography"
   ],
   "files": [
     {
       "path": "layouts/gallery-grid.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: gallery-grid\n *\n * Grid de imagenes 2-3 columnas con caption opcional. Para casos, producto o equipo.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const galleryGrid = {\n  slug: 'gallery-grid',\n  name: 'Gallery Grid',\n  description:\n    'Grid de imagenes 2-3 columnas con caption opcional. Para casos, producto o equipo. Structure only.',\n  components: ['image', 'typography'],\n  html: `<!-- Layout: gallery-grid -->\n<section class=\"l-gallery-grid\">\n  <div class=\"l-gallery-grid__header\">\n    <h2 class=\"l-gallery-grid__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-gallery-grid__grid\">\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image1}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption1}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image2}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption2}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image3}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption3}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image4}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption4}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image5}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption5}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image6}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption6}}</p>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: gallery-grid — structure only */\n.l-gallery-grid {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-gallery-grid__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-gallery-grid__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-4);\n}\n@media (max-width: 768px) {\n  .l-gallery-grid__grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n@media (max-width: 480px) {\n  .l-gallery-grid__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-gallery-grid__item {\n  position: relative;\n}\n.l-gallery-grid__item img {\n  width: 100%;\n  aspect-ratio: 4 / 3;\n  object-fit: cover;\n  border-radius: var(--radius-lg);\n}\n.l-gallery-grid__caption {\n  position: absolute;\n  bottom: var(--spacing-2);\n  left: var(--spacing-2);\n  background: rgba(0,0,0,0.6);\n  color: white;\n  padding: 2px 6px;\n  border-radius: var(--radius-sm);\n  font-size: var(--text-xs);\n}`,\n};"
+    },
+    {
+      "path": "layouts/gallery-grid.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: gallery-grid -->\n<section class=\"l-gallery-grid\">\n  <div class=\"l-gallery-grid__header\">\n    <h2 class=\"l-gallery-grid__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-gallery-grid__grid\">\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image1}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption1}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image2}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption2}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image3}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption3}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image4}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption4}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image5}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption5}}</p>\n    </div>\n    <div class=\"l-gallery-grid__item\">\n      <img src=\"{{image6}}\" alt=\"\" class=\"image\" />\n      <p class=\"l-gallery-grid__caption\">{{caption6}}</p>\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/gallery-grid.css",
+      "type": "registry:file",
+      "content": "/* Layout: gallery-grid — structure only */\n.l-gallery-grid {\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-gallery-grid__header {\n  text-align: center;\n  margin-bottom: var(--spacing-8);\n}\n.l-gallery-grid__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-4);\n}\n@media (max-width: 768px) {\n  .l-gallery-grid__grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n@media (max-width: 480px) {\n  .l-gallery-grid__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-gallery-grid__item {\n  position: relative;\n}\n.l-gallery-grid__item img {\n  width: 100%;\n  aspect-ratio: 4 / 3;\n  object-fit: cover;\n  border-radius: var(--radius-lg);\n}\n.l-gallery-grid__caption {\n  position: absolute;\n  bottom: var(--spacing-2);\n  left: var(--spacing-2);\n  background: rgba(0,0,0,0.6);\n  color: white;\n  padding: 2px 6px;\n  border-radius: var(--radius-sm);\n  font-size: var(--text-xs);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Gallery Grid",
       "description": "Layout template: gallery-grid",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +45,28 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "image1",
+        "caption1",
+        "image2",
+        "caption2",
+        "image3",
+        "caption3",
+        "image4",
+        "caption4",
+        "image5",
+        "caption5",
+        "image6",
+        "caption6"
+      ],
+      "repeats": {},
+      "components": [
+        "image",
+        "typography"
+      ]
     }
   }
 }

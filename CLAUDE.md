@@ -5,6 +5,11 @@ Monorepo for the ATOM UIKit component library. Distributes via private registry 
 **Operación (release, deploy /v1, Webflow, registry, accesos):** seguir
 [`docs/RUNBOOK.md`](docs/RUNBOOK.md). Decisiones vigentes: [`docs/decisions/`](docs/decisions/).
 **Guía para agentes (consumir el DS o modificarlo):** [`docs/AGENTS.md`](docs/AGENTS.md).
+**Publicar un organismo (card, hero, tabla…) de forma replicable:**
+[`docs/organism-pipeline.md`](docs/organism-pipeline.md) — proceso canónico y prueba de
+aceptación. Un organismo sin layout publicado NO está distribuido.
+**Mapa del modelo de distribución (flujo de datos + comparación con estándares):**
+[`docs/distribution-model.md`](docs/distribution-model.md).
 
 ## Scope
 
@@ -27,6 +32,21 @@ packages/tokens/src/*.json          ← EDITAR AQUÍ (única fuente de verdad)
   → merge → canales de distribución (abajo)
 ```
 
+### Contrato de conformance (agentes: OBLIGATORIO)
+
+Las reglas de abajo son prosa; el contrato ejecutable vive en `conformance/*.json`
+(ver `conformance/README.md`). Protocolo para CUALQUIER cambio visual/estructural:
+
+1. **Antes de tocar nada**: `pnpm conformance` — debe estar verde. Es tu punto de partida.
+2. **Criterio de éxito** de tu cambio: `pnpm conformance && pnpm build && pnpm validate &&
+   pnpm validate:contrast && pnpm test:visual` verdes. Si tocaste embed: `pnpm validate:embed`
+   y `pnpm test:embed-leak`.
+3. **Nunca** edites `conformance/*.json` (excepciones, baselines, budgets, legacy) para que
+   pase tu propio cambio sin declararlo explícitamente en tu resumen a Karen. El contrato
+   se cambia a la vista, no por conveniencia.
+4. Un "stylish" bien hecho = editar tokens (nivel 0) y dejar todo el contrato verde. Si para
+   estilizar necesitas hardcodear en CSS, el diseño te está pidiendo un token nuevo.
+
 Reglas duras para agentes de styling/flow/motion:
 
 1. **Nunca editar outputs**: `packages/tokens/build/`, `packages/css/dist/`,
@@ -41,14 +61,28 @@ Reglas duras para agentes de styling/flow/motion:
 5. **Motion (W6, diferida)**: los TOKENS de motion ya existen (`easing-osmo`,
    `duration-1200/1800`); los COMPORTAMIENTOS van en `packages/animations` como módulos
    `init*(): CleanupFn` que consumen esos tokens — cero cubic-bezier/ms hardcodeados en
-   GSAP. Siempre `prefers-reduced-motion` + `data-motion-exempt`. No iniciar sin spec
-   aprobado (ver ~/Desktop/atom-web-ds-specs/waves/wave-6-motion-DEFERRED.md).
+   GSAP (referencia: `menu-button.ts` con `readMotionTokens`; los demás módulos tienen
+   literales pre-regla protegidos por el ratchet de conformance hasta W6 — NO mapearlos
+   a tokens sin spec: 0.8s ≠ duration-700 y `expo.out` de GSAP ≠ `easing-out`, sería
+   cambiar el motion de Karen). Siempre `prefers-reduced-motion` + `data-motion-exempt`
+   en módulos DECORATIVOS; los funcionales (progress-nav, video-player) documentan por
+   qué no llevan guarda. **Layouts NO animan** (decisión Karen 2026-07-30): el motion
+   vive en componentes inner o en behaviors — gate en conformance/layout-contract.json.
+   Licencia: GSAP y TODOS sus plugins (incl. SplitText, Observer, ScrollTrigger,
+   CustomEase) son gratuitos desde GSAP 3.13 (adquisición por Webflow) — sin bloqueo de
+   licencia para la capa de text-swap. No iniciar W6 sin spec aprobado
+   (ver ~/Desktop/atom-web-ds-specs/waves/wave-6-motion-DEFERRED.md).
 6. **Webflow**: las Variables NO tienen REST Data API. El sync es
    `node scripts/sync-webflow.mjs --plan` + sesión con el MCP oficial de Webflow
    (protocolo en `docs/webflow-playbook.md`). No escribir clientes REST para variables.
 7. **Fuentes**: las 4 familias tienen licencia comercial Envato. No agregar familias
    nuevas sin licencia verificada; woff2 viven en `packages/css/src/fonts/`.
-8. **Si un paquete consume el build-output de otro, lo declara como `workspace:*`**,
+8. **Un componente CSS-only publica pintura, no plano**: su item de registry lleva el
+   `.css` y nada más. La anatomía (qué etiquetas, en qué orden, con qué átomos) se
+   publica como `layout/<slug>` en `packages/layouts`. Sin layout, cada consumidor
+   reescribe el markup a mano y a la tercera vez ya son tres diseños. Proceso completo
+   y prueba de aceptación: `docs/organism-pipeline.md`.
+9. **Si un paquete consume el build-output de otro, lo declara como `workspace:*`**,
    aunque no importe su JS. Sin la declaración turbo no conoce el orden y en máquinas
    frías los builds corren en paralelo y explotan (pasó dos veces el 2026-07-28:
    storybook→tokens/css y css→tokens; el proyecto Vercel del Storybook estuvo roto
@@ -301,9 +335,20 @@ Scoped to a specific UI component. References semantic tokens.
 
 ---
 
+## Leyes de escala (constitución, decisión de Karen 2026-07-28)
+
+| Dominio | Ley | Razón |
+|---|---|---|
+| Tipografía (`font-size-*`) | **Tercera mayor exacta** 16·1.25ⁿ, fluida sobre `--u` | Los tamaños se comparan perceptualmente |
+| Ritmo de sección (`rhythm-*` → `section-padding-*`) | **Tercera mayor exacta** 64·1.25ⁿ, fluida sobre `--u`; responsive = bajar pasos exactos (÷1.25 por breakpoint) | La misma razón armónica gobierna texto y página |
+| Composición de componente (`spacing-*`, `gap-*`) | **Retícula base-4** aritmética | Los espacios se SUMAN; deben caer en retícula |
+
+Capa de uso obligatoria: `.section*` para ritmo (foundation/section.css) y el mapeo de
+pasos tipográficos por rol. Nadie elige pasos a ojo.
+
 ## Spacing
 
-Base-4 geometric scale. 13 steps, each visually distinct.
+Base-4 geometric scale (composición de componente).
 
 | Token | px | Usage |
 |-------|-----|-------|

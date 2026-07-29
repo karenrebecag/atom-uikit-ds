@@ -8,7 +8,9 @@
     "200": { "$value": "200ms", "$description": "Default transition: most UI interactions" },
     "300": { "$value": "300ms", "$description": "Medium transitions: dropdowns, panels" },
     "500": { "$value": "500ms", "$description": "Slow transitions: modals, page elements" },
+    "600": { "$value": "600ms", "$description": "OSMO duration-default — el paso base de su escala de motion (0.15/0.3/0.6/0.9/1.2s); con easing-osmo es el smoothness firma" },
     "700": { "$value": "700ms", "$description": "Entrance animations: hero, stagger" },
+    "900": { "$value": "900ms", "$description": "OSMO duration-onehalf — transiciones largas de layout (ej. el shrink de su navbar)" },
     "1000": { "$value": "1000ms", "$description": "Long animations: skeleton shimmer, loaders" },
     "1200": { "$value": "1200ms", "$description": "OSMO duration-l — long motion (W6)" },
     "1800": { "$value": "1800ms", "$description": "OSMO duration-xl — extended motion (W6)" }

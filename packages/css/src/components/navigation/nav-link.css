@@ -22,7 +22,9 @@
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
-  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  /* OSMO --animation-ease (0.2s ease) para color; tracking de su nav-menu__label */
+  letter-spacing: var(--letter-spacing-tight);
+  transition: color var(--duration-200) ease;
   position: relative;
 }
 
@@ -38,6 +40,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
+    transition-duration: 0ms;
+  }
+  .nav-link__caret {
     transition-duration: 0ms;
   }
 }
@@ -75,19 +80,95 @@
   position: relative;
 }
 
+/* ---- Dropdown variant ----
+   Trigger de menu dentro de un navbar: caret que rota al abrir y el mismo
+   subrayado del estado activo mientras el menu esta abierto. El estado lo
+   lleva aria-expanded (accesibilidad = fuente de verdad del estilo). El panel
+   es el componente dropdown-menu; aqui solo vive el trigger. */
+
+.nav-link--dropdown {
+  gap: 0.375em;
+}
+
+.nav-link__caret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  transition: rotate var(--duration-300) var(--easing-out);
+}
+
+.nav-link__caret svg {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-link--dropdown[aria-expanded='true'] {
+  color: var(--nav-link-fg-active);
+}
+
+.nav-link--dropdown[aria-expanded='true'] .nav-link__caret {
+  rotate: 180deg;
+}
+
+.nav-link--dropdown[aria-expanded='true'] .nav-link__text::before {
+  transform-origin: left;
+  transform: scaleX(1) rotate(0.001deg);
+}
+
 /* ---- Underline ---- */
 
+/* Contrato citado de OSMO [data-underline-link]: offset -0.0625em, alto
+   0.0625em, transform 0.6s con la cubica firma, origen right->left. */
 .nav-link__text::before {
   content: "";
   position: absolute;
-  bottom: -0.125em;
+  bottom: -0.0625em;
   left: 0;
   width: 100%;
   height: 0.0625em;
   background-color: var(--nav-link-indicator-active);
-  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transition: transform var(--duration-600) var(--easing-osmo);
   transform-origin: right;
   transform: scaleX(0) rotate(0.001deg);
+}
+
+/* ---- Underline alt (OSMO [data-underline-link="alt"]) ----
+   Para links que YA estan subrayados (footers, listas): al hover la linea sale
+   por la derecha y una segunda reentra por la izquierda con 0.3s de delay. */
+
+.nav-link--underline-alt .nav-link__text::before {
+  transform-origin: left;
+  transform: scaleX(1) rotate(0.001deg);
+  transition-delay: var(--duration-300);
+}
+
+.nav-link--underline-alt .nav-link__text::after {
+  content: "";
+  position: absolute;
+  bottom: -0.0625em;
+  left: 0;
+  width: 100%;
+  height: 0.0625em;
+  background-color: var(--nav-link-indicator-active);
+  transition: transform var(--duration-600) var(--easing-osmo);
+  transform-origin: right;
+  transform: scaleX(0) rotate(0.001deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link--underline-alt:hover:not(.nav-link--disabled) .nav-link__text::before {
+    transform-origin: right;
+    transform: scaleX(0) rotate(0.001deg);
+    transition-delay: 0s;
+  }
+  .nav-link--underline-alt:hover:not(.nav-link--disabled) .nav-link__text::after {
+    transform-origin: left;
+    transform: scaleX(1) rotate(0.001deg);
+    transition-delay: var(--duration-300);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

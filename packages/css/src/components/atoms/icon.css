@@ -1,0 +1,35 @@
+/* -------------------------------------------------------------------------
+   Icon
+
+   Contenedor de tamano para SVG inline. El DS no envia paths (los iconos son
+   contenido, no estilo): envia la ESCALA y el color, para que ningun consumidor
+   vuelva a dimensionar SVGs a mano.
+
+   Uso:  <svg class="icon icon--m icon--success" viewBox="0 0 24 24">…</svg>
+   Sizes:  xs 1em · s 1.25em · m 1.5em · l 2em · xl 2.5em  (relativos al
+           font-size del contexto: el icono acompana al texto y escala con el)
+   Intents: currentColor por defecto; success/brand/muted como atajos.
+   ------------------------------------------------------------------------- */
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--icon-size, 1.25em);
+  height: var(--icon-size, 1.25em);
+  color: currentcolor;
+  fill: currentcolor;
+  vertical-align: middle;
+}
+
+.icon--xs { --icon-size: 1em; }
+.icon--s  { --icon-size: 1.25em; }
+.icon--m  { --icon-size: 1.5em; }
+.icon--l  { --icon-size: 2em; }
+.icon--xl { --icon-size: 2.5em; }
+
+.icon--success { color: var(--success); }
+.icon--brand   { color: var(--brand); }
+.icon--muted   { color: var(--muted-foreground); }
+
+/* Alineacion optica con la primera linea cuando acompana texto multilinea */
+.icon--leading { margin-block-start: 0.2em; }

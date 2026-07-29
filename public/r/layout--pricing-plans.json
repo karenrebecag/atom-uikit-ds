@@ -1,0 +1,100 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/pricing-plans",
+  "type": "registry:block",
+  "title": "Pricing Plans",
+  "description": "Sección de planes con la card de Atom: eyebrow mono, título display, precio, CTA, divider etiquetado y beneficios. Misma card, superficie clara + oscura.",
+  "registryDependencies": [
+    "tokens",
+    "foundation",
+    "section-header",
+    "pricing-card",
+    "feature",
+    "divider",
+    "tag",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "layouts/pricing-plans.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: pricing-plans\n *\n * Seccion de planes con la anatomia real de la card de Atom (lenguaje OSMO):\n * eyebrow mono, titulo display, precio, CTA, divider etiquetado y beneficios\n * con hairlines.\n *\n * Structure-only, pure DS: cada clase de aqui existe como componente publicado\n * (pricing-card, feature, divider, tag, section-header, button). Este archivo\n * NO define color, tipografia ni espaciado de componente: solo la rejilla de\n * la seccion. Todo lo demas llega por /v1/embed.css o por los CSS instalados\n * desde el registry.\n *\n * UNA sola anatomia de card (cardHtml), compuesta dos veces — no dos bloques\n * HTML escritos a mano. Antes de esto el layout declaraba dos <article> con\n * markup distinto (plan1 con el boton animado de WhatsApp, plan2 con boton\n * plano), lo que ataba el TIPO DE CTA a la POSICION del plan en vez de dejarlo\n * como decision de contenido. Corregido 2026-07-29 (Karen: \"en principio\n * deberian ser exactamente la misma\"). El CTA de WhatsApp con tracking WCI no\n * es parte de la anatomia de pricing-card — vive en su propio componente\n * (whatsapp-button) para usarse donde corresponda, fuera de esta card.\n *\n * Unica diferencia entre las dos posiciones: data-theme=\"dark\" en la segunda,\n * que voltea los semantics del MISMO componente (mismo HTML, mismo CSS) — es\n * el mecanismo de theming del DS, no una card distinta.\n *\n * Slots repetibles: los elementos marcados con data-repeat contienen UNA fila\n * de ejemplo. En no-code se duplica la fila a mano; en codigo se clona el nodo\n * por cada item de datos. El atributo es solo una marca — no lo lee ningun CSS.\n */\n\nconst CHECK_PATH = 'M9.55 17.6 4.2 12.25l1.42-1.42 3.93 3.93 8.83-8.83 1.42 1.42z';\n\n/** Unica fuente de la anatomia de la card. `theme` solo agrega data-theme —\n *  todo lo demas (clases, orden, slots) es identico entre instancias.\n *  JS plano a proposito (dynamic import sin paso de compilacion, ver\n *  build-registry.mjs) — el consumidor lo instala como .js, no .ts. */\nfunction cardHtml(prefix, theme) {\n  return `<article class=\"pricing-card\"${theme ? ` data-theme=\"${theme}\"` : ''}>\n        <div class=\"pricing-card__inner\">\n          <div class=\"pricing-card__tag-row\">\n            <span class=\"tag tag--mono tag--inverse tag--s pricing-card__eyebrow\">{{${prefix}_eyebrow}}</span>\n          </div>\n          <h3 class=\"pricing-card__title\" data-split=\"heading\">{{${prefix}_name}}</h3>\n          <div class=\"pricing-card__price-row\">\n            <span class=\"pricing-card__price\">\n              <span>{{${prefix}_price}}</span>\n              <span class=\"pricing-card__price-unit\">{{${prefix}_priceUnit}}</span>\n            </span>\n            <p class=\"pricing-card__price-note body-sm\">{{${prefix}_priceNote}}</p>\n          </div>\n          <div class=\"pricing-card__cta\">\n            <!-- CTA animado (anatomia de Button.tsx animated): data-button-animate\n                 activa el hover-scale por CSS; el doble texto es el contrato del\n                 text-swap — initButtonHover (hook button-hover del registry) lo\n                 divide en caracteres con GSAP SplitText cargados como globales.\n                 Sin JS degrada limpio: los dos textos identicos se superponen. -->\n            <a class=\"button button--primary button--l\" href=\"{{${prefix}_ctaHref}}\" data-cta=\"{{${prefix}_ctaId}}\" data-button-animate>\n              <span class=\"button__label\">\n                <span class=\"button__label-inner\">\n                  <span class=\"button__text is--default\" data-button-text>{{${prefix}_ctaLabel}}</span>\n                  <span class=\"button__text is--hover\" data-button-text aria-hidden=\"true\">{{${prefix}_ctaLabel}}</span>\n                </span>\n              </span>\n            </a>\n          </div>\n          <div class=\"divider divider--labeled pricing-card__divider\">\n            <span class=\"eyebrow\">{{${prefix}_benefitsLabel}}</span>\n          </div>\n          <ul class=\"feature-list feature-list--divided\" data-repeat=\"${prefix}_feature\">\n            <li class=\"feature\">\n              <span class=\"feature__label\">\n                <span class=\"feature__icon\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"${CHECK_PATH}\"/></svg></span>\n                <span class=\"feature__text\">{{feature_label}}</span>\n              </span>\n              <span class=\"tag tag--mono tag--inverse tag--s feature__value\">{{feature_value}}</span>\n            </li>\n          </ul>\n        </div>\n      </article>`;\n}\n\nexport const pricingPlans = {\n  slug: 'pricing-plans',\n  name: 'Pricing Plans',\n  description:\n    'Dos planes con la card de Atom: eyebrow, titulo display, precio, CTA, divider etiquetado y lista de beneficios. Misma card, superficie clara + oscura via data-theme. Structure only.',\n  components: ['section-header', 'pricing-card', 'feature', 'divider', 'tag', 'button'],\n  html: `<!-- Layout: pricing-plans -->\n<section class=\"section l-pricing-plans\">\n  <div class=\"container\">\n    <header class=\"section-header section-header--center\">\n      <span class=\"eyebrow section-header__eyebrow\">{{eyebrow}}</span>\n      <h2 class=\"h2 section-header__title\" data-split=\"heading\">{{headline}}</h2>\n      <p class=\"section-header__subtitle\" data-split=\"heading\">{{subtitle}}</p>\n    </header>\n\n    <div class=\"l-pricing-plans__grid\">\n      ${cardHtml('plan1')}\n      ${cardHtml('plan2', 'dark')}\n    </div>\n\n    <p class=\"l-pricing-plans__footnote body-sm\">{{footnote}}</p>\n  </div>\n</section>`,\n  css: `/* Layout: pricing-plans — solo la rejilla de la seccion.\n   El lateral lo gobierna .container con --container-padding; la card, su padding. */\n.l-pricing-plans {\n  padding-inline: 0;\n}\n\n.l-pricing-plans__grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));\n  gap: var(--spacing-4);\n  align-items: stretch;\n}\n\n.l-pricing-plans__footnote {\n  max-width: 48rem;\n  margin-block-start: var(--spacing-10);\n  margin-inline: auto;\n  color: var(--muted-foreground);\n  text-align: center;\n}\n\n@media (max-width: 767px) {\n  .l-pricing-plans__grid {\n    grid-template-columns: 1fr;\n  }\n}`,\n};\n"
+    },
+    {
+      "path": "layouts/pricing-plans.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: pricing-plans -->\n<section class=\"section l-pricing-plans\">\n  <div class=\"container\">\n    <header class=\"section-header section-header--center\">\n      <span class=\"eyebrow section-header__eyebrow\">{{eyebrow}}</span>\n      <h2 class=\"h2 section-header__title\" data-split=\"heading\">{{headline}}</h2>\n      <p class=\"section-header__subtitle\" data-split=\"heading\">{{subtitle}}</p>\n    </header>\n\n    <div class=\"l-pricing-plans__grid\">\n      <article class=\"pricing-card\">\n        <div class=\"pricing-card__inner\">\n          <div class=\"pricing-card__tag-row\">\n            <span class=\"tag tag--mono tag--inverse tag--s pricing-card__eyebrow\">{{plan1_eyebrow}}</span>\n          </div>\n          <h3 class=\"pricing-card__title\" data-split=\"heading\">{{plan1_name}}</h3>\n          <div class=\"pricing-card__price-row\">\n            <span class=\"pricing-card__price\">\n              <span>{{plan1_price}}</span>\n              <span class=\"pricing-card__price-unit\">{{plan1_priceUnit}}</span>\n            </span>\n            <p class=\"pricing-card__price-note body-sm\">{{plan1_priceNote}}</p>\n          </div>\n          <div class=\"pricing-card__cta\">\n            <!-- CTA animado (anatomia de Button.tsx animated): data-button-animate\n                 activa el hover-scale por CSS; el doble texto es el contrato del\n                 text-swap — initButtonHover (hook button-hover del registry) lo\n                 divide en caracteres con GSAP SplitText cargados como globales.\n                 Sin JS degrada limpio: los dos textos identicos se superponen. -->\n            <a class=\"button button--primary button--l\" href=\"{{plan1_ctaHref}}\" data-cta=\"{{plan1_ctaId}}\" data-button-animate>\n              <span class=\"button__label\">\n                <span class=\"button__label-inner\">\n                  <span class=\"button__text is--default\" data-button-text>{{plan1_ctaLabel}}</span>\n                  <span class=\"button__text is--hover\" data-button-text aria-hidden=\"true\">{{plan1_ctaLabel}}</span>\n                </span>\n              </span>\n            </a>\n          </div>\n          <div class=\"divider divider--labeled pricing-card__divider\">\n            <span class=\"eyebrow\">{{plan1_benefitsLabel}}</span>\n          </div>\n          <ul class=\"feature-list feature-list--divided\" data-repeat=\"plan1_feature\">\n            <li class=\"feature\">\n              <span class=\"feature__label\">\n                <span class=\"feature__icon\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M9.55 17.6 4.2 12.25l1.42-1.42 3.93 3.93 8.83-8.83 1.42 1.42z\"/></svg></span>\n                <span class=\"feature__text\">{{feature_label}}</span>\n              </span>\n              <span class=\"tag tag--mono tag--inverse tag--s feature__value\">{{feature_value}}</span>\n            </li>\n          </ul>\n        </div>\n      </article>\n      <article class=\"pricing-card\" data-theme=\"dark\">\n        <div class=\"pricing-card__inner\">\n          <div class=\"pricing-card__tag-row\">\n            <span class=\"tag tag--mono tag--inverse tag--s pricing-card__eyebrow\">{{plan2_eyebrow}}</span>\n          </div>\n          <h3 class=\"pricing-card__title\" data-split=\"heading\">{{plan2_name}}</h3>\n          <div class=\"pricing-card__price-row\">\n            <span class=\"pricing-card__price\">\n              <span>{{plan2_price}}</span>\n              <span class=\"pricing-card__price-unit\">{{plan2_priceUnit}}</span>\n            </span>\n            <p class=\"pricing-card__price-note body-sm\">{{plan2_priceNote}}</p>\n          </div>\n          <div class=\"pricing-card__cta\">\n            <!-- CTA animado (anatomia de Button.tsx animated): data-button-animate\n                 activa el hover-scale por CSS; el doble texto es el contrato del\n                 text-swap — initButtonHover (hook button-hover del registry) lo\n                 divide en caracteres con GSAP SplitText cargados como globales.\n                 Sin JS degrada limpio: los dos textos identicos se superponen. -->\n            <a class=\"button button--primary button--l\" href=\"{{plan2_ctaHref}}\" data-cta=\"{{plan2_ctaId}}\" data-button-animate>\n              <span class=\"button__label\">\n                <span class=\"button__label-inner\">\n                  <span class=\"button__text is--default\" data-button-text>{{plan2_ctaLabel}}</span>\n                  <span class=\"button__text is--hover\" data-button-text aria-hidden=\"true\">{{plan2_ctaLabel}}</span>\n                </span>\n              </span>\n            </a>\n          </div>\n          <div class=\"divider divider--labeled pricing-card__divider\">\n            <span class=\"eyebrow\">{{plan2_benefitsLabel}}</span>\n          </div>\n          <ul class=\"feature-list feature-list--divided\" data-repeat=\"plan2_feature\">\n            <li class=\"feature\">\n              <span class=\"feature__label\">\n                <span class=\"feature__icon\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M9.55 17.6 4.2 12.25l1.42-1.42 3.93 3.93 8.83-8.83 1.42 1.42z\"/></svg></span>\n                <span class=\"feature__text\">{{feature_label}}</span>\n              </span>\n              <span class=\"tag tag--mono tag--inverse tag--s feature__value\">{{feature_value}}</span>\n            </li>\n          </ul>\n        </div>\n      </article>\n    </div>\n\n    <p class=\"l-pricing-plans__footnote body-sm\">{{footnote}}</p>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/pricing-plans.css",
+      "type": "registry:file",
+      "content": "/* Layout: pricing-plans — solo la rejilla de la seccion.\n   El lateral lo gobierna .container con --container-padding; la card, su padding. */\n.l-pricing-plans {\n  padding-inline: 0;\n}\n\n.l-pricing-plans__grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));\n  gap: var(--spacing-4);\n  align-items: stretch;\n}\n\n.l-pricing-plans__footnote {\n  max-width: 48rem;\n  margin-block-start: var(--spacing-10);\n  margin-inline: auto;\n  color: var(--muted-foreground);\n  text-align: center;\n}\n\n@media (max-width: 767px) {\n  .l-pricing-plans__grid {\n    grid-template-columns: 1fr;\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Pricing Plans",
+      "description": "Sección de planes con la card de Atom: eyebrow mono, título display, precio, CTA, divider etiquetado y beneficios. Misma card, superficie clara + oscura.",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [
+        "gsap"
+      ],
+      "hasCss": false,
+      "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "eyebrow",
+        "headline",
+        "subtitle",
+        "plan1_eyebrow",
+        "plan1_name",
+        "plan1_price",
+        "plan1_priceUnit",
+        "plan1_priceNote",
+        "plan1_ctaHref",
+        "plan1_ctaId",
+        "plan1_ctaLabel",
+        "plan1_benefitsLabel",
+        "plan2_eyebrow",
+        "plan2_name",
+        "plan2_price",
+        "plan2_priceUnit",
+        "plan2_priceNote",
+        "plan2_ctaHref",
+        "plan2_ctaId",
+        "plan2_ctaLabel",
+        "plan2_benefitsLabel",
+        "footnote"
+      ],
+      "repeats": {
+        "plan1_feature": [
+          "feature_label",
+          "feature_value"
+        ],
+        "plan2_feature": [
+          "feature_label",
+          "feature_value"
+        ]
+      },
+      "components": [
+        "section-header",
+        "pricing-card",
+        "feature",
+        "divider",
+        "tag",
+        "button"
+      ]
+    }
+  }
+}

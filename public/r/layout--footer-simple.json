@@ -1,25 +1,39 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/footer-simple",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Footer Simple",
   "description": "Layout template: footer-simple",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "nav-link",
+    "typography",
+    "divider",
+    "image"
   ],
   "files": [
     {
       "path": "layouts/footer-simple.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: footer-simple\n *\n * Una fila: logo, links horizontales, legal. Para landings de una pagina.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const footerSimple = {\n  slug: 'footer-simple',\n  name: 'Footer Simple',\n  description:\n    'Una fila: logo, links horizontales, legal. Para landings de una pagina. Structure only.',\n  components: ['nav-link', 'typography', 'divider', 'image'],\n  html: `<!-- Layout: footer-simple -->\n<footer class=\"l-footer-simple\">\n  <div class=\"l-footer-simple__brand\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n  </div>\n  <div class=\"l-footer-simple__links\">\n    <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n    <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n    <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n  </div>\n  <div class=\"l-footer-simple__legal\">\n    <p>{{legal}}</p>\n  </div>\n</footer>`,\n  css: `/* Layout: footer-simple — structure only */\n.l-footer-simple {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-6);\n  padding: var(--spacing-6) var(--spacing-8);\n  border-top: 1px solid var(--border);\n  font-size: var(--text-sm);\n}\n.l-footer-simple__brand {\n  flex-shrink: 0;\n}\n.l-footer-simple__links {\n  display: flex;\n  gap: var(--spacing-4);\n}\n.l-footer-simple__legal {\n  flex-shrink: 0;\n  color: var(--muted-foreground);\n}`,\n};"
+    },
+    {
+      "path": "layouts/footer-simple.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: footer-simple -->\n<footer class=\"l-footer-simple\">\n  <div class=\"l-footer-simple__brand\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n  </div>\n  <div class=\"l-footer-simple__links\">\n    <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n    <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n    <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n  </div>\n  <div class=\"l-footer-simple__legal\">\n    <p>{{legal}}</p>\n  </div>\n</footer>\n"
+    },
+    {
+      "path": "layouts/footer-simple.css",
+      "type": "registry:file",
+      "content": "/* Layout: footer-simple — structure only */\n.l-footer-simple {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-6);\n  padding: var(--spacing-6) var(--spacing-8);\n  border-top: 1px solid var(--border);\n  font-size: var(--text-sm);\n}\n.l-footer-simple__brand {\n  flex-shrink: 0;\n}\n.l-footer-simple__links {\n  display: flex;\n  gap: var(--spacing-4);\n}\n.l-footer-simple__legal {\n  flex-shrink: 0;\n  color: var(--muted-foreground);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Footer Simple",
       "description": "Layout template: footer-simple",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +47,25 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "logo",
+        "link1_url",
+        "link1_label",
+        "link2_url",
+        "link2_label",
+        "link3_url",
+        "link3_label",
+        "legal"
+      ],
+      "repeats": {},
+      "components": [
+        "nav-link",
+        "typography",
+        "divider",
+        "image"
+      ]
     }
   }
 }

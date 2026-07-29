@@ -1,25 +1,38 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/cta-split-image",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "CTA Split con Imagen",
   "description": "Layout template: cta-split-image",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "button",
+    "typography",
+    "image"
   ],
   "files": [
     {
       "path": "layouts/cta-split-image.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: cta-split-image\n *\n * CTA de dos columnas: titular + CTAs izquierda, imagen derecha. Mas calido que el banner.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const ctaSplitImage = {\n  slug: 'cta-split-image',\n  name: 'CTA Split con Imagen',\n  description:\n    'CTA de dos columnas: titular + CTAs izquierda, imagen derecha. Mas calido que el banner. Structure only.',\n  components: ['button', 'typography', 'image'],\n  html: `<!-- Layout: cta-split-image -->\n<section class=\"l-cta-split-image\">\n  <div class=\"l-cta-split-image__content\">\n    <h2 class=\"l-cta-split-image__headline\">{{headline}}</h2>\n    <p class=\"l-cta-split-image__subtitle\">{{subtitle}}</p>\n    <div class=\"l-cta-split-image__actions\">\n      <a href=\"#\" class=\"button button--primary button--l\">\n        <span class=\"button__label\">{{primaryCta}}</span>\n      </a>\n      <a href=\"#\" class=\"button button--secondary button--m\">\n        <span class=\"button__label\">{{secondaryCta}}</span>\n      </a>\n    </div>\n  </div>\n  <div class=\"l-cta-split-image__media\">\n    <img src=\"{{media}}\" alt=\"\" class=\"image\" />\n  </div>\n</section>`,\n  css: `/* Layout: cta-split-image — structure only */\n.l-cta-split-image {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n  align-items: center;\n}\n@media (max-width: 768px) {\n  .l-cta-split-image {\n    grid-template-columns: 1fr;\n  }\n}\n.l-cta-split-image__headline {\n  font-size: var(--text-2xl);\n}\n.l-cta-split-image__subtitle {\n  color: var(--muted-foreground);\n}\n.l-cta-split-image__actions {\n  display: flex;\n  gap: var(--spacing-3);\n  margin-top: var(--spacing-4);\n}\n.l-cta-split-image__media img {\n  width: 100%;\n  border-radius: var(--radius-lg);\n}`,\n};"
+    },
+    {
+      "path": "layouts/cta-split-image.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: cta-split-image -->\n<section class=\"l-cta-split-image\">\n  <div class=\"l-cta-split-image__content\">\n    <h2 class=\"l-cta-split-image__headline\">{{headline}}</h2>\n    <p class=\"l-cta-split-image__subtitle\">{{subtitle}}</p>\n    <div class=\"l-cta-split-image__actions\">\n      <a href=\"#\" class=\"button button--primary button--l\">\n        <span class=\"button__label\">{{primaryCta}}</span>\n      </a>\n      <a href=\"#\" class=\"button button--secondary button--m\">\n        <span class=\"button__label\">{{secondaryCta}}</span>\n      </a>\n    </div>\n  </div>\n  <div class=\"l-cta-split-image__media\">\n    <img src=\"{{media}}\" alt=\"\" class=\"image\" />\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/cta-split-image.css",
+      "type": "registry:file",
+      "content": "/* Layout: cta-split-image — structure only */\n.l-cta-split-image {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n  align-items: center;\n}\n@media (max-width: 768px) {\n  .l-cta-split-image {\n    grid-template-columns: 1fr;\n  }\n}\n.l-cta-split-image__headline {\n  font-size: var(--text-2xl);\n}\n.l-cta-split-image__subtitle {\n  color: var(--muted-foreground);\n}\n.l-cta-split-image__actions {\n  display: flex;\n  gap: var(--spacing-3);\n  margin-top: var(--spacing-4);\n}\n.l-cta-split-image__media img {\n  width: 100%;\n  border-radius: var(--radius-lg);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "CTA Split con Imagen",
       "description": "Layout template: cta-split-image",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +46,21 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "subtitle",
+        "primaryCta",
+        "secondaryCta",
+        "media"
+      ],
+      "repeats": {},
+      "components": [
+        "button",
+        "typography",
+        "image"
+      ]
     }
   }
 }

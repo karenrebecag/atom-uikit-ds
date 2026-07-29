@@ -41,8 +41,11 @@
      (emitidos como calc(N * var(--u)) desde tokens). Absoluta -> inmune al
      font-size local, a diferencia de em. */
   --u: calc(var(--size-font) / 16);
+  /* Margen LATERAL del contenido — eje distinto al ritmo vertical de seccion.
+     Patron OSMO: 30px desktop, 10px bajo 991 (casi full-bleed en movil). */
+  --container-padding: calc(30 * var(--u));
   /* Optional content max (academy often uses ~1280) — evaluate vs ideal in PR */
-  --size-container-content: 80rem;
+  --size-container-content: calc(1280 * var(--u)); /* fluido: crece con el sistema */
 }
 
 /* Tablet — tighten section padding (OSMO media overrides) */
@@ -51,10 +54,13 @@
     --size-container-ideal: 834;
     --size-container-min: 768px;
     --size-container-max: 991px;
-    --section-padding-xxl: 10rem;
-    --section-padding-xl: 7.5rem;
-    --section-padding-l: 5rem;
-    --section-padding-m: 4rem;
+    --container-padding: calc(10 * var(--u));
+    /* Tablet: cada alias baja UN paso exacto de la escala (÷1.25) */
+    --section-padding-xxl: calc(156.25 * var(--u));
+    --section-padding-xl: calc(125 * var(--u));
+    --section-padding-l: calc(100 * var(--u));
+    --section-padding-m: calc(80 * var(--u));
+    --section-padding-s: calc(64 * var(--u));
   }
 }
 
@@ -64,10 +70,12 @@
     --size-container-ideal: 550;
     --size-container-min: 480px;
     --size-container-max: 767px;
-    --section-padding-xxl: 7.5rem;
-    --section-padding-xl: 5rem;
-    --section-padding-l: 4rem;
-    --section-padding-m: 3rem;
+    /* Mobile landscape: dos pasos */
+    --section-padding-xxl: calc(125 * var(--u));
+    --section-padding-xl: calc(100 * var(--u));
+    --section-padding-l: calc(80 * var(--u));
+    --section-padding-m: calc(64 * var(--u));
+    --section-padding-s: calc(51.2 * var(--u));
   }
 }
 
@@ -77,11 +85,12 @@
     --size-container-ideal: 390;
     --size-container-min: 320px;
     --size-container-max: 479px;
-    --section-padding-xxl: 5rem;
-    --section-padding-xl: 4rem;
-    --section-padding-l: 3rem;
-    --section-padding-m: 2.5rem;
-    --section-padding-s: 1.5rem;
+    /* Mobile portrait: tres pasos */
+    --section-padding-xxl: calc(100 * var(--u));
+    --section-padding-xl: calc(80 * var(--u));
+    --section-padding-l: calc(64 * var(--u));
+    --section-padding-m: calc(51.2 * var(--u));
+    --section-padding-s: calc(40.96 * var(--u));
   }
 }
 
@@ -90,7 +99,7 @@
   width: 100%;
   max-width: var(--size-container-content, var(--size-container));
   margin-inline: auto;
-  padding-inline: var(--section-padding-s, 1.5rem);
+  padding-inline: var(--container-padding, 1.875rem);
 }
 
 .container-md {

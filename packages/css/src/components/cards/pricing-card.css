@@ -1,0 +1,175 @@
+/* -------------------------------------------------------------------------
+   Pricing Card
+
+   Anatomía espejo de las cards de OSMO /plans (docs/osmo-reference: padding
+   60px, radio contenedor, título enorme en peso regular, divider con tags,
+   benefits con hairlines translúcidas, scribble decorativo), con los valores
+   del sistema Atom.
+
+   Superficies:
+     (default)                    — var(--card), tarjeta clara
+     .pricing-card--brand         — superficie naranja de marca, texto oscuro
+                                    (WCAG: brand-foreground es neutral-950)
+     data-theme="dark" en la card — tarjeta oscura via theming del sistema:
+                                    todos los semantics flipan solo dentro
+
+   Parts: __inner, __tag-row, __title, __price-row, __price, __price-unit,
+          __price-note, __cta, __divider, __benefits, __benefit,
+          __benefit-value, __scribble
+   ------------------------------------------------------------------------- */
+
+.pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-12) var(--spacing-10);
+  color: var(--foreground);
+  background-color: var(--card);
+  border-radius: var(--radius-xl);
+  /* Motion: pendiente de diseno de Karen (W3 de evolution). No inventar. */
+}
+
+.pricing-card--brand {
+  color: var(--brand-foreground);
+  background-color: var(--brand);
+}
+
+/* En dark la card usa --card (carbon, neutral-900), NO --background
+   (neutral-950, casi negro puro): una tarjeta es superficie ELEVADA sobre el
+   fondo, y el negro absoluto aplana y encandila en pantallas OLED. */
+
+.pricing-card__inner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--spacing-8);
+}
+
+/* ---- Eyebrow / tags ---- */
+
+.pricing-card__tag-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+
+/* El look del eyebrow lo da el atomo (.tag--mono.tag--inverse); la card solo
+   corrige el relleno inverso sobre su superficie brand (no es un theme). */
+:where(.pricing-card--brand) :where(.pricing-card__eyebrow.tag--inverse) {
+  color: var(--brand);
+  background-color: var(--brand-foreground);
+}
+
+/* ---- Título y precio ---- */
+
+.pricing-card__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.02;
+  letter-spacing: var(--letter-spacing-tighter);
+}
+
+.pricing-card__price-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: 1.08;
+}
+
+.pricing-card__price-unit {
+  font-weight: var(--font-weight-regular);
+  color: var(--muted-foreground);
+}
+
+.pricing-card__price-note {
+  color: var(--muted-foreground);
+}
+
+.pricing-card--brand .pricing-card__price-unit,
+.pricing-card--brand .pricing-card__price-note {
+  color: color-mix(in srgb, var(--brand-foreground) 72%, transparent);
+}
+
+/* ---- CTA ---- */
+
+.pricing-card__cta {
+  /* Los botones conservan su ancho intrinseco: el paquete atom-wa-btn posiciona
+     iconos en absoluto asumiendo esa geometria — estirarlos los desmaqueta. */
+  display: flex;
+}
+
+/* La card de marca invierte el CTA por DEFECTO para contrastar sobre el naranja.
+   Va envuelto en :where() (especificidad 0) y re-tematiza custom properties en
+   vez de pisar background-color: asi cualquier intent del atomo
+   (.button--whatsapp, .button--brand) lo gana sin pelear especificidad. Un
+   organismo propone, no impone. */
+:where(.pricing-card--brand) :where(.pricing-card__cta .button--primary) {
+  --button-bg-primary: var(--foreground);
+  --button-hover-bg-primary: var(--primary-hover);
+  --button-fg-primary: var(--background);
+}
+
+/* ---- Divider con etiquetas (patrón tag-row de OSMO) ---- */
+
+/* ---- Benefits ---- */
+
+.pricing-card--brand .icon { color: var(--brand-foreground); }
+
+:where(.pricing-card--brand) :where(.feature__value.tag--inverse) {
+  color: var(--brand);
+  background-color: var(--brand-foreground);
+}
+
+/* ---- Scribble decorativo ---- */
+
+.pricing-card__scribble {
+  position: absolute;
+  font-weight: var(--font-weight-regular);
+  top: var(--spacing-10);
+  right: var(--spacing-10);
+  max-width: 10em;
+  font-family: var(--font-family-scribble);
+  font-size: var(--font-size-lg);
+  line-height: 0.9;
+  text-align: center;
+  color: var(--success);
+  rotate: -4deg;
+  pointer-events: none;
+}
+
+.pricing-card--brand .pricing-card__scribble {
+  color: var(--brand-foreground);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 767px) {
+  .pricing-card {
+    padding: var(--spacing-8) var(--spacing-5);
+  }
+
+  .pricing-card__inner {
+    gap: var(--spacing-6);
+  }
+
+    .pricing-card__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .pricing-card__scribble {
+    position: static;
+    align-self: flex-end;
+    rotate: 0deg;
+  }
+}

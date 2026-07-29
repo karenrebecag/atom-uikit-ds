@@ -1,0 +1,12 @@
+{
+  "rhythm": {
+    "$type": "dimension",
+    "$description": "Ritmo de seccion en tercera mayor EXACTA (64·1.25^n), fluido sobre --u. Ley: la misma razon que gobierna la tipografia gobierna el ritmo de pagina. La reticula base-4 (spacing-*) queda para COMPONER a nivel componente.",
+    "xs":  { "$value": "64px",     "$description": "64 — banda densa" },
+    "s":   { "$value": "80px",     "$description": "64·1.25 — seccion compacta" },
+    "m":   { "$value": "100px",    "$description": "64·1.25² — seccion media" },
+    "l":   { "$value": "125px",    "$description": "64·1.25³ — seccion estandar" },
+    "xl":  { "$value": "156.25px", "$description": "64·1.25⁴ — hero" },
+    "xxl": { "$value": "195.31px", "$description": "64·1.25⁵ — statement" }
+  }
+}

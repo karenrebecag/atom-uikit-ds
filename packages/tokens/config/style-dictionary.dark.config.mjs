@@ -16,6 +16,9 @@ export default {
   source: [
     'src/primitives/**/*.json',
     'src/semantic/dark.json',
+    // Necesarios para RESOLVER referencias de component tokens (no se emiten):
+    'src/semantic/spacing.json',
+    'src/components/**/*.json',
   ],
   platforms: {
     css: {
@@ -28,7 +31,13 @@ export default {
         {
           destination: 'dark.css',
           format: 'css/variables',
-          filter: (token) => token.filePath.includes('semantic/dark'),
+          // Component tokens TAMBIEN se re-declaran bajo [data-theme=dark]:
+          // las custom properties resuelven var() donde se DEFINEN, asi que
+          // sin re-declararlas heredan la cadena ya resuelta en claro y los
+          // componentes no rethemean en superficies dark (bug pricing-card CTA).
+          filter: (token) =>
+            token.filePath.includes('semantic/dark') ||
+            token.filePath.includes('/components/'),
           options: { selector: '[data-theme="dark"]' },
         },
       ],

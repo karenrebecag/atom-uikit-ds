@@ -6,6 +6,12 @@
 //   .progress-nav__indicator inside the list (auto-created if missing)
 //
 // Requires: gsap, ScrollTrigger (global)
+//
+// prefers-reduced-motion: SIN guarda aqui, a proposito. Este modulo es
+// FUNCIONAL (marca la seccion activa al hacer scroll) — saltarselo romperia la
+// navegacion. El movimiento visible (el deslizamiento del indicador) es una
+// transicion CSS que progress-nav.css ya pone a 0ms bajo reduced-motion: el
+// indicador salta en vez de deslizar. No "arreglar" agregando un early-return.
 
 type CleanupFn = () => void;
 

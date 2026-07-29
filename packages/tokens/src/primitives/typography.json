@@ -20,42 +20,126 @@
   },
   "font-weight": {
     "$type": "fontWeights",
-    "regular": { "$value": "400", "$description": "Body text, paragraphs" },
-    "medium": { "$value": "500", "$description": "Labels, emphasis, nav items" },
-    "semibold": { "$value": "600", "$description": "Subheadings, buttons" },
-    "bold": { "$value": "700", "$description": "Headings, display text" },
-    "extrabold": { "$value": "800", "$description": "Hero display emphasis" }
+    "regular": {
+      "$value": "400",
+      "$description": "Body text, paragraphs"
+    },
+    "medium": {
+      "$value": "500",
+      "$description": "Labels, emphasis, nav items"
+    },
+    "semibold": {
+      "$value": "600",
+      "$description": "Subheadings, buttons"
+    },
+    "bold": {
+      "$value": "700",
+      "$description": "Headings, display text"
+    },
+    "extrabold": {
+      "$value": "800",
+      "$description": "Hero display emphasis"
+    }
   },
   "font-size": {
     "$type": "dimension",
-    "xs": { "$value": "0.75rem", "$description": "12px — labels, micro text" },
-    "sm": { "$value": "0.875rem", "$description": "14px — captions, secondary" },
-    "base": { "$value": "1rem", "$description": "16px — body default" },
-    "lg": { "$value": "1.25rem", "$description": "20px — body large" },
-    "xl": { "$value": "1.5rem", "$description": "24px — h4" },
-    "2xl": { "$value": "1.75rem", "$description": "28px — h3" },
-    "3xl": { "$value": "2.25rem", "$description": "36px — h2" },
-    "4xl": { "$value": "2.75rem", "$description": "44px — h1" },
-    "5xl": { "$value": "3.5rem", "$description": "56px — display large" },
-    "6xl": { "$value": "4.5rem", "$description": "72px — hero (F3: calibrate in Storybook)" }
+    "xs": {
+      "$value": "10.24px",
+      "$description": "Major Third 16·1.25^n — 10.24px"
+    },
+    "sm": {
+      "$value": "12.8px",
+      "$description": "Major Third 16·1.25^n — 12.8px"
+    },
+    "base": {
+      "$value": "16px",
+      "$description": "Major Third 16·1.25^n — 16px"
+    },
+    "lg": {
+      "$value": "20px",
+      "$description": "Major Third 16·1.25^n — 20px"
+    },
+    "xl": {
+      "$value": "25px",
+      "$description": "Major Third 16·1.25^n — 25px"
+    },
+    "2xl": {
+      "$value": "31.25px",
+      "$description": "Major Third 16·1.25^n — 31.25px"
+    },
+    "3xl": {
+      "$value": "39.06px",
+      "$description": "Major Third 16·1.25^n — 39.06px"
+    },
+    "4xl": {
+      "$value": "48.83px",
+      "$description": "Major Third 16·1.25^n — 48.83px"
+    },
+    "5xl": {
+      "$value": "61.04px",
+      "$description": "Major Third 16·1.25^n — 61.04px"
+    },
+    "6xl": {
+      "$value": "76.29px",
+      "$description": "Major Third 16·1.25^n — 76.29px"
+    }
   },
   "line-height": {
     "$type": "number",
-    "xs": { "$value": "1.35", "$description": "Paired with font-size-xs" },
-    "sm": { "$value": "1.45", "$description": "Paired with font-size-sm" },
-    "base": { "$value": "1.5", "$description": "Paired with font-size-base" },
-    "lg": { "$value": "1.4", "$description": "Paired with font-size-lg" },
-    "xl": { "$value": "1.3", "$description": "Paired with font-size-xl" },
-    "2xl": { "$value": "1.25", "$description": "Paired with font-size-2xl" },
-    "3xl": { "$value": "1.2", "$description": "Paired with font-size-3xl" },
-    "4xl": { "$value": "1.15", "$description": "Paired with font-size-4xl" },
-    "5xl": { "$value": "1.1", "$description": "Paired with font-size-5xl" },
-    "6xl": { "$value": "1.05", "$description": "Paired with font-size-6xl" }
+    "xs": {
+      "$value": "1.4",
+      "$description": "Paired with font-size-xs"
+    },
+    "sm": {
+      "$value": "1.45",
+      "$description": "Paired with font-size-sm"
+    },
+    "base": {
+      "$value": "1.5",
+      "$description": "Paired with font-size-base"
+    },
+    "lg": {
+      "$value": "1.45",
+      "$description": "Paired with font-size-lg"
+    },
+    "xl": {
+      "$value": "1.3",
+      "$description": "Paired with font-size-xl"
+    },
+    "2xl": {
+      "$value": "1.25",
+      "$description": "Paired with font-size-2xl"
+    },
+    "3xl": {
+      "$value": "1.2",
+      "$description": "Paired with font-size-3xl"
+    },
+    "4xl": {
+      "$value": "1.15",
+      "$description": "Paired with font-size-4xl"
+    },
+    "5xl": {
+      "$value": "1.1",
+      "$description": "Paired with font-size-5xl"
+    },
+    "6xl": {
+      "$value": "1.05",
+      "$description": "Paired with font-size-6xl"
+    }
   },
   "letter-spacing": {
     "$type": "dimension",
-    "tight": { "$value": "-0.02em", "$description": "Headings, display text" },
-    "normal": { "$value": "0em", "$description": "Body text (default)" },
-    "wide": { "$value": "0.04em", "$description": "Labels, uppercase text" }
+    "tight": {
+      "$value": "-0.02em",
+      "$description": "Headings, display text"
+    },
+    "normal": {
+      "$value": "0em",
+      "$description": "Body text (default)"
+    },
+    "wide": {
+      "$value": "0.04em",
+      "$description": "Labels, uppercase text"
+    }
   }
 }

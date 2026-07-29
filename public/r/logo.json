@@ -1,0 +1,45 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo",
+  "type": "registry:component",
+  "title": "Logo",
+  "description": "Marca oficial de Atom theme-aware: dual light/dark que voltea con data-theme. Assets oficiales en R2, documentados en el CSS.",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/logo.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Logo\n\n   Marca oficial de Atom, theme-aware: el consumidor pone las DOS versiones y\n   el sistema muestra la correcta segun data-theme — el mismo mecanismo que\n   voltea el resto de los semantics. Nada de recolorear SVGs: son los archivos\n   oficiales tal cual.\n\n   Assets oficiales (R2, no re-hostear ni modificar):\n     light (logo oscuro, para fondos claros):\n       https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-light.svg\n     dark (logo blanco, para fondos oscuros):\n       https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-dark.svg\n\n   Uso:\n     <a class=\"logo logo--m\" href=\"/\" aria-label=\"Atom\">\n       <img class=\"logo__light\" src=\".../ATOM-horizontal-light.svg\" alt=\"Atom\" />\n       <img class=\"logo__dark\"  src=\".../ATOM-horizontal-dark.svg\"  alt=\"Atom\" />\n     </a>\n\n   Sizes: s, m (default), l — el logo se dimensiona por ALTURA; el ancho lo da\n   la proporcion del SVG.\n   ------------------------------------------------------------------------- */\n\n.logo {\n  display: inline-flex;\n  align-items: center;\n  height: var(--logo-height, 1.5rem);\n  flex-shrink: 0;\n}\n\n.logo img,\n.logo svg {\n  display: block;\n  height: 100%;\n  width: auto;\n}\n\n/* ---- Sizes ---- */\n\n.logo--s { --logo-height: 1.25rem; }\n.logo--m { --logo-height: 1.5rem; }\n.logo--l { --logo-height: 2rem; }\n\n/* ---- Theming: una version visible a la vez ----\n   Ancladas a .logo (0,2,0+): la regla generica `.logo img` (0,1,1) las\n   ganaria a un selector de una sola clase. */\n\n.logo .logo__dark {\n  display: none;\n}\n\n[data-theme='dark'] .logo .logo__light {\n  display: none;\n}\n\n[data-theme='dark'] .logo .logo__dark {\n  display: block;\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Logo",
+      "description": "Marca oficial de Atom theme-aware: dual light/dark que voltea con data-theme. Assets oficiales en R2, documentados en el CSS.",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "logo",
+      "cssClasses": [
+        "logo",
+        "logo--s",
+        "logo--m",
+        "logo--l",
+        "logo__dark",
+        "logo__light"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
+}

@@ -1,4 +1,11 @@
-import type { CleanupFn, AnimationConfig } from './index';
+// Tipos locales (no importar de './index'): este archivo se distribuye SOLO
+// como artefacto del registry y debe ser auto-contenido en el consumidor.
+// Mismo patron que marquee-draggable/progress-nav/video-player.
+export type CleanupFn = () => void;
+export interface AnimationConfig {
+  scope?: HTMLElement | string;
+  debug?: boolean;
+}
 
 /**
  * Sidebar expand reveal — stagger content entrance on expand.
@@ -38,6 +45,11 @@ export function initSidebarAnimation(config: AnimationConfig = {}): CleanupFn {
 
   const sidebar = (scope as Element).querySelector?.('[data-sidebar]');
   if (!sidebar) return () => {};
+
+  // CSS es dueño del layout (width/visibility): sin coreografia el contenido
+  // simplemente aparece — saltarse el init es seguro y honra el contrato.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => {};
+  if ((sidebar as HTMLElement).dataset.motionExempt !== undefined) return () => {};
 
   const ease = CustomEase ? 'sidebar-reveal' : 'power3.out';
   let prevCollapsed = sidebar.classList.contains('sidebar--collapsed');

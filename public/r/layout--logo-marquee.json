@@ -1,25 +1,38 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/logo-marquee",
-  "type": "registry:file",
+  "type": "registry:block",
   "title": "Logo Marquee",
   "description": "Layout template: logo-marquee",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "marquee",
+    "image",
+    "typography"
   ],
   "files": [
     {
       "path": "layouts/logo-marquee.ts",
       "type": "registry:file",
       "content": "/**\n * Layout: logo-marquee\n *\n * Logos de clientes en marquee infinito con titular corto. Reusa el componente marquee.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const logoMarquee = {\n  slug: 'logo-marquee',\n  name: 'Logo Marquee',\n  description:\n    'Logos de clientes en marquee infinito con titular corto. Reusa el componente marquee. Structure only.',\n  components: ['marquee', 'image', 'typography'],\n  html: `<!-- Layout: logo-marquee -->\n<section class=\"l-logo-marquee\">\n  <h3 class=\"l-logo-marquee__headline\">{{headline}}</h3>\n  <div class=\"marquee l-logo-marquee__track\" data-marquee>\n    <div class=\"l-logo-marquee__logos\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n    <!-- duplicate for seamless loop -->\n    <div class=\"l-logo-marquee__logos\" aria-hidden=\"true\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: logo-marquee — structure only */\n.l-logo-marquee {\n  padding: var(--spacing-8) var(--spacing-8);\n  overflow: hidden;\n}\n.l-logo-marquee__headline {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n  font-size: var(--text-lg);\n}\n.l-logo-marquee__track {\n  display: flex;\n  gap: var(--spacing-12);\n}\n.l-logo-marquee__logos {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n  flex-shrink: 0;\n}\n.l-logo-marquee__logos img {\n  height: 32px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n}`,\n};"
+    },
+    {
+      "path": "layouts/logo-marquee.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: logo-marquee -->\n<section class=\"l-logo-marquee\">\n  <h3 class=\"l-logo-marquee__headline\">{{headline}}</h3>\n  <div class=\"marquee l-logo-marquee__track\" data-marquee>\n    <div class=\"l-logo-marquee__logos\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n    <!-- duplicate for seamless loop -->\n    <div class=\"l-logo-marquee__logos\" aria-hidden=\"true\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/logo-marquee.css",
+      "type": "registry:file",
+      "content": "/* Layout: logo-marquee — structure only */\n.l-logo-marquee {\n  padding: var(--spacing-8) var(--spacing-8);\n  overflow: hidden;\n}\n.l-logo-marquee__headline {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n  font-size: var(--text-lg);\n}\n.l-logo-marquee__track {\n  display: flex;\n  gap: var(--spacing-12);\n}\n.l-logo-marquee__logos {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n  flex-shrink: 0;\n}\n.l-logo-marquee__logos img {\n  height: 32px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n}\n"
     }
   ],
   "atom": {
     "discovery": {
       "name": "Logo Marquee",
       "description": "Layout template: logo-marquee",
-      "category": "foundation",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +46,33 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "logo1",
+        "logo1_name",
+        "logo2",
+        "logo2_name",
+        "logo3",
+        "logo3_name",
+        "logo4",
+        "logo4_name",
+        "logo5",
+        "logo5_name",
+        "logo6",
+        "logo6_name",
+        "logo7",
+        "logo7_name",
+        "logo8",
+        "logo8_name"
+      ],
+      "repeats": {},
+      "components": [
+        "marquee",
+        "image",
+        "typography"
+      ]
     }
   }
 }

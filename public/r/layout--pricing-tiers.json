@@ -1,25 +1,40 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/pricing-tiers",
-  "type": "registry:file",
-  "title": "Pricing Tiers",
-  "description": "Layout template: pricing-tiers",
+  "type": "registry:block",
+  "title": "Pricing Tiers (deprecado)",
+  "description": "DEPRECADO — usa layout/pricing-plans. Definia su propia anatomia de card (l-pricing-tiers__card) en vez de consumir el componente pricing-card, y referencia tokens que ya no existen.",
   "registryDependencies": [
     "tokens",
-    "foundation"
+    "foundation",
+    "button",
+    "badge",
+    "divider",
+    "typography",
+    "item"
   ],
   "files": [
     {
       "path": "layouts/pricing-tiers.ts",
       "type": "registry:file",
-      "content": "/**\n * Layout: pricing-tiers\n *\n * 2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pricingTiers = {\n  slug: 'pricing-tiers',\n  name: 'Pricing Tiers',\n  description:\n    '2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional. Structure only.',\n  components: ['button', 'badge', 'divider', 'typography', 'item'],\n  html: `<!-- Layout: pricing-tiers -->\n<section class=\"l-pricing-tiers\">\n  <div class=\"l-pricing-tiers__header\">\n    <h2 class=\"l-pricing-tiers__headline\">{{headline}}</h2>\n    <p class=\"l-pricing-tiers__subtitle\">{{subtitle}}</p>\n  </div>\n  <div class=\"l-pricing-tiers__grid\">\n    <!-- Tier 1 -->\n    <div class=\"l-pricing-tiers__card {{tier1_highlight === 'featured' ? 'l-pricing-tiers__card--featured' : ''}}\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier1_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier1_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier1_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier1_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier1_feature1}}</div>\n        <div class=\"item\">{{tier1_feature2}}</div>\n        <div class=\"item\">{{tier1_feature3}}</div>\n        <div class=\"item\">{{tier1_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier1_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n    <!-- Tier 2 (middle, often featured) -->\n    <div class=\"l-pricing-tiers__card l-pricing-tiers__card--featured\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <div class=\"badge badge--brand\">Más popular</div>\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier2_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier2_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier2_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier2_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier2_feature1}}</div>\n        <div class=\"item\">{{tier2_feature2}}</div>\n        <div class=\"item\">{{tier2_feature3}}</div>\n        <div class=\"item\">{{tier2_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier2_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n    <!-- Tier 3 -->\n    <div class=\"l-pricing-tiers__card\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier3_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier3_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier3_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier3_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier3_feature1}}</div>\n        <div class=\"item\">{{tier3_feature2}}</div>\n        <div class=\"item\">{{tier3_feature3}}</div>\n        <div class=\"item\">{{tier3_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier3_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: pricing-tiers — structure only */\n.l-pricing-tiers {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-pricing-tiers__header {\n  text-align: center;\n  max-width: 640px;\n  margin: 0 auto;\n}\n.l-pricing-tiers__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-6);\n  align-items: start;\n}\n@media (max-width: 900px) {\n  .l-pricing-tiers__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-pricing-tiers__card {\n  display: flex;\n  flex-direction: column;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  padding: var(--spacing-6);\n  background: var(--background);\n}\n.l-pricing-tiers__card--featured {\n  border-color: var(--accent);\n  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);\n  transform: scale(1.02);\n}\n.l-pricing-tiers__card-header {\n  text-align: center;\n  margin-bottom: var(--spacing-4);\n}\n.l-pricing-tiers__tier-name {\n  font-size: var(--text-xl);\n  font-weight: 600;\n}\n.l-pricing-tiers__price {\n  margin: var(--spacing-2) 0;\n}\n.l-pricing-tiers__price-value {\n  font-size: var(--text-3xl);\n  font-weight: 700;\n}\n.l-pricing-tiers__features {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n  margin: var(--spacing-4) 0;\n  flex: 1;\n}\n.l-pricing-tiers__cta {\n  margin-top: auto;\n  text-align: center;\n}`,\n};"
+      "content": "/**\n * Layout: pricing-tiers — DEPRECADO, usa `pricing-plans`.\n *\n * Motivo: define su propia anatomia de card (`l-pricing-tiers__card`) en vez de\n * consumir el componente `pricing-card` del DS, y su CSS referencia tokens que\n * ya no existen (--text-xl, --accent). Se conserva por si algun sitio lo pego\n * antes de la migracion; no recibe mantenimiento.\n *\n * 2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pricingTiers = {\n  slug: 'pricing-tiers',\n  name: 'Pricing Tiers',\n  description:\n    'DEPRECADO — usa pricing-plans. 2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional. Structure only.',\n  components: ['button', 'badge', 'divider', 'typography', 'item'],\n  html: `<!-- Layout: pricing-tiers -->\n<section class=\"l-pricing-tiers\">\n  <div class=\"l-pricing-tiers__header\">\n    <h2 class=\"l-pricing-tiers__headline\">{{headline}}</h2>\n    <p class=\"l-pricing-tiers__subtitle\">{{subtitle}}</p>\n  </div>\n  <div class=\"l-pricing-tiers__grid\">\n    <!-- Tier 1 -->\n    <div class=\"l-pricing-tiers__card {{tier1_highlight === 'featured' ? 'l-pricing-tiers__card--featured' : ''}}\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier1_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier1_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier1_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier1_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier1_feature1}}</div>\n        <div class=\"item\">{{tier1_feature2}}</div>\n        <div class=\"item\">{{tier1_feature3}}</div>\n        <div class=\"item\">{{tier1_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier1_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n    <!-- Tier 2 (middle, often featured) -->\n    <div class=\"l-pricing-tiers__card l-pricing-tiers__card--featured\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <div class=\"badge badge--brand\">Más popular</div>\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier2_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier2_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier2_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier2_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier2_feature1}}</div>\n        <div class=\"item\">{{tier2_feature2}}</div>\n        <div class=\"item\">{{tier2_feature3}}</div>\n        <div class=\"item\">{{tier2_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier2_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n    <!-- Tier 3 -->\n    <div class=\"l-pricing-tiers__card\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier3_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier3_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier3_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier3_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier3_feature1}}</div>\n        <div class=\"item\">{{tier3_feature2}}</div>\n        <div class=\"item\">{{tier3_feature3}}</div>\n        <div class=\"item\">{{tier3_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier3_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: pricing-tiers — structure only */\n.l-pricing-tiers {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-pricing-tiers__header {\n  text-align: center;\n  max-width: 640px;\n  margin: 0 auto;\n}\n.l-pricing-tiers__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-6);\n  align-items: start;\n}\n@media (max-width: 900px) {\n  .l-pricing-tiers__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-pricing-tiers__card {\n  display: flex;\n  flex-direction: column;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  padding: var(--spacing-6);\n  background: var(--background);\n}\n.l-pricing-tiers__card--featured {\n  border-color: var(--accent);\n  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);\n  transform: scale(1.02);\n}\n.l-pricing-tiers__card-header {\n  text-align: center;\n  margin-bottom: var(--spacing-4);\n}\n.l-pricing-tiers__tier-name {\n  font-size: var(--text-xl);\n  font-weight: 600;\n}\n.l-pricing-tiers__price {\n  margin: var(--spacing-2) 0;\n}\n.l-pricing-tiers__price-value {\n  font-size: var(--text-3xl);\n  font-weight: 700;\n}\n.l-pricing-tiers__features {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n  margin: var(--spacing-4) 0;\n  flex: 1;\n}\n.l-pricing-tiers__cta {\n  margin-top: auto;\n  text-align: center;\n}`,\n};"
+    },
+    {
+      "path": "layouts/pricing-tiers.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: pricing-tiers -->\n<section class=\"l-pricing-tiers\">\n  <div class=\"l-pricing-tiers__header\">\n    <h2 class=\"l-pricing-tiers__headline\">{{headline}}</h2>\n    <p class=\"l-pricing-tiers__subtitle\">{{subtitle}}</p>\n  </div>\n  <div class=\"l-pricing-tiers__grid\">\n    <!-- Tier 1 -->\n    <div class=\"l-pricing-tiers__card {{tier1_highlight === 'featured' ? 'l-pricing-tiers__card--featured' : ''}}\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier1_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier1_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier1_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier1_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier1_feature1}}</div>\n        <div class=\"item\">{{tier1_feature2}}</div>\n        <div class=\"item\">{{tier1_feature3}}</div>\n        <div class=\"item\">{{tier1_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier1_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n    <!-- Tier 2 (middle, often featured) -->\n    <div class=\"l-pricing-tiers__card l-pricing-tiers__card--featured\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <div class=\"badge badge--brand\">Más popular</div>\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier2_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier2_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier2_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier2_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier2_feature1}}</div>\n        <div class=\"item\">{{tier2_feature2}}</div>\n        <div class=\"item\">{{tier2_feature3}}</div>\n        <div class=\"item\">{{tier2_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier2_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n    <!-- Tier 3 -->\n    <div class=\"l-pricing-tiers__card\">\n      <div class=\"l-pricing-tiers__card-header\">\n        <h3 class=\"l-pricing-tiers__tier-name\">{{tier3_name}}</h3>\n        <div class=\"l-pricing-tiers__price\">\n          <span class=\"l-pricing-tiers__price-value\">{{tier3_price}}</span>\n          <span class=\"l-pricing-tiers__price-period\">{{tier3_period}}</span>\n        </div>\n        <p class=\"l-pricing-tiers__tier-desc\">{{tier3_description}}</p>\n      </div>\n      <div class=\"l-pricing-tiers__features\">\n        <div class=\"item\">{{tier3_feature1}}</div>\n        <div class=\"item\">{{tier3_feature2}}</div>\n        <div class=\"item\">{{tier3_feature3}}</div>\n        <div class=\"item\">{{tier3_feature4}}</div>\n      </div>\n      <div class=\"l-pricing-tiers__cta\">\n        <a href=\"#\" class=\"button button--primary button--m\">\n          <span class=\"button__label\">{{tier3_ctaLabel}}</span>\n        </a>\n      </div>\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/pricing-tiers.css",
+      "type": "registry:file",
+      "content": "/* Layout: pricing-tiers — structure only */\n.l-pricing-tiers {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-8);\n  padding: var(--spacing-12) var(--spacing-8);\n}\n.l-pricing-tiers__header {\n  text-align: center;\n  max-width: 640px;\n  margin: 0 auto;\n}\n.l-pricing-tiers__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: var(--spacing-6);\n  align-items: start;\n}\n@media (max-width: 900px) {\n  .l-pricing-tiers__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-pricing-tiers__card {\n  display: flex;\n  flex-direction: column;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  padding: var(--spacing-6);\n  background: var(--background);\n}\n.l-pricing-tiers__card--featured {\n  border-color: var(--accent);\n  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);\n  transform: scale(1.02);\n}\n.l-pricing-tiers__card-header {\n  text-align: center;\n  margin-bottom: var(--spacing-4);\n}\n.l-pricing-tiers__tier-name {\n  font-size: var(--text-xl);\n  font-weight: 600;\n}\n.l-pricing-tiers__price {\n  margin: var(--spacing-2) 0;\n}\n.l-pricing-tiers__price-value {\n  font-size: var(--text-3xl);\n  font-weight: 700;\n}\n.l-pricing-tiers__features {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n  margin: var(--spacing-4) 0;\n  flex: 1;\n}\n.l-pricing-tiers__cta {\n  margin-top: auto;\n  text-align: center;\n}\n"
     }
   ],
   "atom": {
     "discovery": {
-      "name": "Pricing Tiers",
-      "description": "Layout template: pricing-tiers",
-      "category": "foundation",
+      "name": "Pricing Tiers (deprecado)",
+      "description": "DEPRECADO — usa layout/pricing-plans. Definia su propia anatomia de card (l-pricing-tiers__card) en vez de consumir el componente pricing-card, y referencia tokens que ya no existen.",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -33,6 +48,47 @@
       "peerDeps": [],
       "hasCss": false,
       "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "headline",
+        "subtitle",
+        "tier1_name",
+        "tier1_price",
+        "tier1_period",
+        "tier1_description",
+        "tier1_feature1",
+        "tier1_feature2",
+        "tier1_feature3",
+        "tier1_feature4",
+        "tier1_ctaLabel",
+        "tier2_name",
+        "tier2_price",
+        "tier2_period",
+        "tier2_description",
+        "tier2_feature1",
+        "tier2_feature2",
+        "tier2_feature3",
+        "tier2_feature4",
+        "tier2_ctaLabel",
+        "tier3_name",
+        "tier3_price",
+        "tier3_period",
+        "tier3_description",
+        "tier3_feature1",
+        "tier3_feature2",
+        "tier3_feature3",
+        "tier3_feature4",
+        "tier3_ctaLabel"
+      ],
+      "repeats": {},
+      "components": [
+        "button",
+        "badge",
+        "divider",
+        "typography",
+        "item"
+      ]
     }
   }
 }

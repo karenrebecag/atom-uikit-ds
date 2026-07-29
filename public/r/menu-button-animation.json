@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menu-button-animation",
+  "type": "registry:file",
+  "title": "Menu Button Animation",
+  "description": "Burger-X con GSAP opt-in leyendo motion tokens del DOM (nivel 1 del contrato; el nivel 0 es CSS puro)",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "animations/menu-button.ts",
+      "type": "registry:file",
+      "content": "// Burger Icon (Burger ↔ X) Animation\n// DOM contract: [data-menu-button-animate] on button (IconButton)\n// Children: 3x .burger-icon__line inside .burger-icon\n// State: data-menu-button=\"burger\" | \"close\"\n//\n// Requires: gsap, CustomEase (global)\n\ntype CleanupFn = () => void;\n\ndeclare const gsap: any;\ndeclare const CustomEase: any;\n\n/**\n * Motion values come from the DS tokens at runtime, so a token change re-tunes\n * every consumer without touching this module. Fallbacks mirror the current\n * token values for DOMs where the DS stylesheet has not loaded yet.\n */\nfunction readMotionTokens(scope: Element): { ease: string; duration: number } {\n  const styles = getComputedStyle(scope);\n  const easeRaw = styles.getPropertyValue('--easing-osmo').trim();\n  const bezier = /cubic-bezier\\(([^)]+)\\)/.exec(easeRaw)?.[1] ?? '0.625, 0.05, 0, 1';\n  const durRaw = styles.getPropertyValue('--duration-300').trim();\n  const duration = durRaw ? parseFloat(durRaw) / (durRaw.endsWith('ms') ? 1000 : 1) : 0.3;\n  return { ease: bezier, duration };\n}\n\nexport function initMenuButton(): CleanupFn {\n  if (typeof gsap === 'undefined' || typeof CustomEase === 'undefined') {\n    return () => {};\n  }\n  // The CSS level-0 transition already honors reduced motion; the GSAP layer\n  // must not re-animate what the user asked to keep still.\n  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {\n    return () => {};\n  }\n\n  gsap.registerPlugin(CustomEase);\n\n  const buttons = document.querySelectorAll<HTMLElement>('[data-menu-button-animate]');\n  const cleanups: CleanupFn[] = [];\n\n  buttons.forEach((button) => {\n    const lines = button.querySelectorAll<HTMLElement>('.burger-icon__line');\n    if (lines.length < 3) return;\n\n    const [line1, line2, line3] = Array.from(lines);\n    const motion = readMotionTokens(button);\n    CustomEase.create('menu-button-ease', motion.ease);\n\n    let tl = gsap.timeline({\n      defaults: {\n        overwrite: 'auto',\n        ease: 'menu-button-ease',\n        duration: motion.duration,\n      },\n    });\n\n    const menuOpen = () => {\n      tl.clear()\n        .to(line2, { scaleX: 0, opacity: 0 })\n        .to(line1, { x: '-1.3em', opacity: 0 }, '<')\n        .to(line3, { x: '1.3em', opacity: 0 }, '<')\n        .to([line1, line3], { opacity: 0, duration: 0.1 }, '<+=0.2')\n        .set(line1, { rotate: -135, y: '-1.3em', scaleX: 0.9 })\n        .set(line3, { rotate: 135, y: '-1.4em', scaleX: 0.9 })\n        .to(line1, { opacity: 1, x: '0em', y: '0.5em' })\n        .to(line3, { opacity: 1, x: '0em', y: '-0.25em' }, '<+=0.1');\n    };\n\n    const menuClose = () => {\n      tl.clear()\n        .to([line1, line2, line3], {\n          scaleX: 1,\n          rotate: 0,\n          x: '0em',\n          y: '0em',\n          opacity: 1,\n          duration: motion.duration * 1.5,\n          overwrite: 'auto',\n        });\n    };\n\n    const handleClick = () => {\n      const state = button.getAttribute('data-menu-button') || 'burger';\n      if (state === 'burger') {\n        menuOpen();\n        button.setAttribute('data-menu-button', 'close');\n      } else {\n        menuClose();\n        button.setAttribute('data-menu-button', 'burger');\n      }\n    };\n\n    button.addEventListener('click', handleClick);\n\n    cleanups.push(() => {\n      button.removeEventListener('click', handleClick);\n      tl.kill();\n      gsap.set([line1, line2, line3], {\n        clearProps: 'all',\n      });\n    });\n  });\n\n  return () => cleanups.forEach((fn) => fn());\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Menu Button Animation",
+      "description": "Burger-X con GSAP opt-in leyendo motion tokens del DOM (nivel 1 del contrato; el nivel 0 es CSS puro)",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  }
+}

@@ -24,6 +24,7 @@
 @import './forms/context-menu.css';
 @import './indicators/chip.css';
 @import './indicators/tag.css';
+@import './cards/pricing-card.css';
 @import './indicators/badge.css';
 @import './indicators/avatar.css';
 @import './indicators/avatar-group.css';
@@ -31,6 +32,7 @@
 @import './indicators/skeleton.css';
 @import './indicators/spinner.css';
 @import './layout/divider.css';
+@import './layout/section-header.css';
 @import './layout/accordion.css';
 @import './layout/table.css';
 @import './layout/empty.css';
@@ -45,7 +47,10 @@
 @import './molecules/marquee.css';
 @import './molecules/video-player.css';
 @import './sidebar/sidebar.css';
+@import './atoms/feature.css';
+@import './atoms/icon.css';
 @import './atoms/image.css';
+@import './atoms/logo.css';
 @import './atoms/stepper.css';
 @import './molecules/stats-card.css';
 @import './molecules/progress-nav.css';

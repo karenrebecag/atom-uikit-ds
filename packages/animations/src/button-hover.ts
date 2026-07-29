@@ -1,4 +1,11 @@
-import type { CleanupFn, AnimationConfig } from './index';
+// Tipos locales (no importar de './index'): este archivo se distribuye SOLO
+// como artefacto del registry y debe ser auto-contenido en el consumidor.
+// Mismo patron que marquee-draggable/progress-nav/video-player.
+export type CleanupFn = () => void;
+export interface AnimationConfig {
+  scope?: HTMLElement | string;
+  debug?: boolean;
+}
 
 /**
  * Button hover animation — text swap with per-character blur/slide.

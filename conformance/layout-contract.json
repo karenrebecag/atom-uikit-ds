@@ -1,0 +1,60 @@
+{
+  "$comment": "Contrato de layouts (docs/organism-pipeline.md, ahora ejecutable). Un layout es PLANO: estructura y rejilla. No pinta, no tipografía, no redefine componentes.",
+  "rules": {
+    "structureOnly": {
+      "why": "un layout transporta anatomía; la pintura viene de los componentes",
+      "forbidInCss": {
+        "color-literal": "#[0-9a-fA-F]{3,8}\\b|\\brgba?\\(|\\bhsla?\\(|\\boklch\\(",
+        "font-family": "font-family\\s*:",
+        "motion": "\\b(?:transition|animation)[\\w-]*\\s*:|@keyframes|cubic-bezier\\("
+      },
+      "$motion": "decisión de Karen 2026-07-30: los layouts maquetan, no animan. El motion vive en los componentes inner (spinner, item, nav-link…) o en behaviors de packages/animations enganchados por data-attrs. Referenciar behaviors en COMENTARIOS del html sí es legítimo."
+    },
+    "classesExist": {
+      "why": "toda clase del html debe existir: en el DS (componentes) o ser del propio layout (l-<slug>*). Una clase fantasma = anatomía que se verá sin estilos",
+      "extraAllowed": {
+        "$comment": "clases que existen fuera de packages/css/src (estados de paquetes externos, hooks de animación)",
+        "classes": []
+      }
+    },
+    "slots": {
+      "why": "el contrato {{slot}}/data-repeat debe ser parseable por renderLayout y por el MCP",
+      "slotPattern": "^[\\w-]+$"
+    },
+    "depsConsistent": {
+      "why": "components[] del módulo debe estar cubierto por registryDependencies: es lo que el installer verifica contra embed.css"
+    },
+    "componentDisplay": {
+      "why": "un layout muestra/oculta componentes pero no les cambia su display propio (precedente: burger invisible por display:block sobre átomo flex)",
+      "map": {
+        "burger-icon": "flex",
+        "button": "inline-flex",
+        "atom-wa-btn": "inline-flex",
+        "nav-link": "inline-flex",
+        "tag": "inline-flex",
+        "badge": "inline-flex"
+      }
+    }
+  },
+  "deprecated": {
+    "$comment": "layouts sustituidos: exentos, se conservan solo por consumidores viejos",
+    "layouts": ["layout/pricing-tiers"]
+  },
+  "legacy": {
+    "$comment": "catálogo pre-OSMO: exento del contrato hasta modernizarse BAJO DEMANDA (cuando un layout se vaya a usar de verdad, se moderniza como pricing-tiers → pricing-plans y se saca de aquí). Un layout NUEVO jamás entra a esta lista. Motivos registrados al auditar 2026-07-29.",
+    "layouts": [
+      "layout/feature-split-image",
+      "layout/feature-stats-video",
+      "layout/gallery-carousel",
+      "layout/gallery-grid",
+      "layout/hero-fullbleed"
+    ],
+    "reasons": {
+      "layout/feature-split-image": "HTML con clases Tailwind sin adaptar (md:grid-cols-2, font-bold…) — nunca pudo renderizar bien sobre el DS; requiere reescritura completa",
+      "layout/feature-stats-video": "clase fantasma + literal de color en css (overlay)",
+      "layout/gallery-carousel": "literal de color en css (overlay)",
+      "layout/gallery-grid": "literal de color en css (overlay)",
+      "layout/hero-fullbleed": "2 literales de color en css (overlay sobre imagen) — tokenizar como --overlay al modernizar"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-card",
+  "type": "registry:component",
+  "title": "PricingCard",
+  "description": "Tarjeta de plan estilo OSMO: superficie cromatica (clara/brand/dark via data-theme), eyebrow mono, titulo display, divider con tags, benefits con hairlines y scribble decorativo",
+  "registryDependencies": [
+    "tokens",
+    "foundation",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "styles/components/pricing-card.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Pricing Card\n\n   Anatomía espejo de las cards de OSMO /plans (docs/osmo-reference: padding\n   60px, radio contenedor, título enorme en peso regular, divider con tags,\n   benefits con hairlines translúcidas, scribble decorativo), con los valores\n   del sistema Atom.\n\n   Superficies:\n     (default)                    — var(--card), tarjeta clara\n     .pricing-card--brand         — superficie naranja de marca, texto oscuro\n                                    (WCAG: brand-foreground es neutral-950)\n     data-theme=\"dark\" en la card — tarjeta oscura via theming del sistema:\n                                    todos los semantics flipan solo dentro\n\n   Parts: __inner, __tag-row, __title, __price-row, __price, __price-unit,\n          __price-note, __cta, __divider, __benefits, __benefit,\n          __benefit-value, __scribble\n   ------------------------------------------------------------------------- */\n\n.pricing-card {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  padding: var(--spacing-12) var(--spacing-10);\n  color: var(--foreground);\n  background-color: var(--card);\n  border-radius: var(--radius-xl);\n  /* Motion: pendiente de diseno de Karen (W3 de evolution). No inventar. */\n}\n\n.pricing-card--brand {\n  color: var(--brand-foreground);\n  background-color: var(--brand);\n}\n\n/* En dark la card usa --card (carbon, neutral-900), NO --background\n   (neutral-950, casi negro puro): una tarjeta es superficie ELEVADA sobre el\n   fondo, y el negro absoluto aplana y encandila en pantallas OLED. */\n\n.pricing-card__inner {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  gap: var(--spacing-8);\n}\n\n/* ---- Eyebrow / tags ---- */\n\n.pricing-card__tag-row {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: var(--spacing-4);\n}\n\n/* El look del eyebrow lo da el atomo (.tag--mono.tag--inverse); la card solo\n   corrige el relleno inverso sobre su superficie brand (no es un theme). */\n:where(.pricing-card--brand) :where(.pricing-card__eyebrow.tag--inverse) {\n  color: var(--brand);\n  background-color: var(--brand-foreground);\n}\n\n/* ---- Título y precio ---- */\n\n.pricing-card__title {\n  font-family: var(--font-family-display);\n  font-size: var(--font-size-4xl);\n  font-weight: var(--font-weight-regular);\n  line-height: 1.02;\n  letter-spacing: var(--letter-spacing-tighter);\n}\n\n.pricing-card__price-row {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n}\n\n.pricing-card__price {\n  display: flex;\n  align-items: baseline;\n  gap: var(--spacing-2);\n  font-size: var(--font-size-xl);\n  font-weight: var(--font-weight-medium);\n  letter-spacing: var(--letter-spacing-tight);\n  line-height: 1.08;\n}\n\n.pricing-card__price-unit {\n  font-weight: var(--font-weight-regular);\n  color: var(--muted-foreground);\n}\n\n.pricing-card__price-note {\n  color: var(--muted-foreground);\n}\n\n.pricing-card--brand .pricing-card__price-unit,\n.pricing-card--brand .pricing-card__price-note {\n  color: color-mix(in srgb, var(--brand-foreground) 72%, transparent);\n}\n\n/* ---- CTA ---- */\n\n.pricing-card__cta {\n  /* Los botones conservan su ancho intrinseco: el paquete atom-wa-btn posiciona\n     iconos en absoluto asumiendo esa geometria — estirarlos los desmaqueta. */\n  display: flex;\n}\n\n/* La card de marca invierte el CTA por DEFECTO para contrastar sobre el naranja.\n   Va envuelto en :where() (especificidad 0) y re-tematiza custom properties en\n   vez de pisar background-color: asi cualquier intent del atomo\n   (.button--whatsapp, .button--brand) lo gana sin pelear especificidad. Un\n   organismo propone, no impone. */\n:where(.pricing-card--brand) :where(.pricing-card__cta .button--primary) {\n  --button-bg-primary: var(--foreground);\n  --button-hover-bg-primary: var(--primary-hover);\n  --button-fg-primary: var(--background);\n}\n\n/* ---- Divider con etiquetas (patrón tag-row de OSMO) ---- */\n\n/* ---- Benefits ---- */\n\n.pricing-card--brand .icon { color: var(--brand-foreground); }\n\n:where(.pricing-card--brand) :where(.feature__value.tag--inverse) {\n  color: var(--brand);\n  background-color: var(--brand-foreground);\n}\n\n/* ---- Scribble decorativo ---- */\n\n.pricing-card__scribble {\n  position: absolute;\n  font-weight: var(--font-weight-regular);\n  top: var(--spacing-10);\n  right: var(--spacing-10);\n  max-width: 10em;\n  font-family: var(--font-family-scribble);\n  font-size: var(--font-size-lg);\n  line-height: 0.9;\n  text-align: center;\n  color: var(--success);\n  rotate: -4deg;\n  pointer-events: none;\n}\n\n.pricing-card--brand .pricing-card__scribble {\n  color: var(--brand-foreground);\n}\n\n/* ---- Responsive ---- */\n\n@media (max-width: 767px) {\n  .pricing-card {\n    padding: var(--spacing-8) var(--spacing-5);\n  }\n\n  .pricing-card__inner {\n    gap: var(--spacing-6);\n  }\n\n    .pricing-card__title {\n    font-size: var(--font-size-3xl);\n  }\n\n  .pricing-card__scribble {\n    position: static;\n    align-self: flex-end;\n    rotate: 0deg;\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "PricingCard",
+      "description": "Tarjeta de plan estilo OSMO: superficie cromatica (clara/brand/dark via data-theme), eyebrow mono, titulo display, divider con tags, benefits con hairlines y scribble decorativo",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "pricing-card",
+      "cssClasses": [
+        "pricing-card--brand",
+        "pricing-card",
+        "pricing-card__inner",
+        "pricing-card__tag-row",
+        "pricing-card__eyebrow",
+        "pricing-card__title",
+        "pricing-card__price-row",
+        "pricing-card__price",
+        "pricing-card__price-unit",
+        "pricing-card__price-note",
+        "pricing-card__cta",
+        "pricing-card__scribble"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
+}

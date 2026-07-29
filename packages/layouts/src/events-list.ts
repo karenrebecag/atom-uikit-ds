@@ -190,7 +190,6 @@ export const eventsList = {
   color: var(--foreground);
   padding: 0.5rem 1rem;
   font-size: var(--font-size-base);
-  transition: all 0.2s var(--easing-out);
   cursor: pointer;
 }
 

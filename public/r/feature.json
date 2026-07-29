@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature",
+  "type": "registry:component",
+  "title": "Feature",
+  "description": "Fila icono + texto (+ valor): listas de beneficios, specs, checklists",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/feature.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Feature\n\n   Fila de \"icono + texto (+ valor)\". El patron mas repetido de una landing:\n   listas de beneficios, specs, checklists, comparativas. Vivia hardcodeado\n   dentro de pricing-card; es un atomo por derecho propio.\n\n   Estructura:  .feature-list > .feature > .feature__label > [icon] + texto\n                                        > .feature__value (opcional)\n   Variantes:   .feature-list--divided  hairlines entre filas\n                .feature--compact       ritmo denso\n   ------------------------------------------------------------------------- */\n\n.feature-list {\n  display: flex;\n  flex-direction: column;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.feature {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-4);\n  /* Tipografia propia: cuerpo legible, no el medium por defecto de todo el\n     sistema. Una lista larga se lee mejor en regular. */\n  font-family: var(--font-family-sans);\n  font-size: var(--font-size-base);\n  font-weight: var(--font-weight-regular);\n  line-height: 1.4;\n  letter-spacing: var(--letter-spacing-normal);\n}\n\n.feature__label {\n  display: inline-flex;\n  align-items: center;\n  gap: var(--spacing-3);\n}\n\n/* Slot de icono del feature — mismo patron que button__icon / atom-wa-btn__icon:\n   el atomo define el wrapper, el consumidor solo mete el SVG. */\n.feature__icon {\n  display: flex;\n  flex: none;\n  align-items: center;\n  justify-content: center;\n  width: 1em;\n  height: 1em;\n  color: var(--success);\n}\n\n.feature__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* Texto del label — parte explicita, no un span anonimo */\n.feature__text {\n  min-width: 0;\n  color: inherit;\n  text-wrap: pretty;\n}\n\n.feature__value {\n  flex-shrink: 0;\n}\n\n/* ---- Ritmo ---- */\n\n.feature-list--divided .feature {\n  padding-block: var(--spacing-5);\n  border-bottom: var(--stroke-hairline) solid\n    color-mix(in srgb, currentcolor 18%, transparent);\n}\n\n.feature-list--divided .feature:last-child {\n  border-bottom: 0;\n}\n\n.feature--compact {\n  padding-block: var(--spacing-3);\n}\n\n@media (max-width: 767px) {\n  .feature-list--divided .feature {\n    padding-block: var(--spacing-4);\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Feature",
+      "description": "Fila icono + texto (+ valor): listas de beneficios, specs, checklists",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "feature",
+      "cssClasses": [
+        "feature-list",
+        "feature",
+        "feature__label",
+        "feature__value",
+        "feature-list--divided",
+        "feature--compact",
+        "feature__icon",
+        "feature__text"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
+}

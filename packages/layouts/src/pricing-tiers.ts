@@ -1,5 +1,10 @@
 /**
- * Layout: pricing-tiers
+ * Layout: pricing-tiers — DEPRECADO, usa `pricing-plans`.
+ *
+ * Motivo: define su propia anatomia de card (`l-pricing-tiers__card`) en vez de
+ * consumir el componente `pricing-card` del DS, y su CSS referencia tokens que
+ * ya no existen (--text-xl, --accent). Se conserva por si algun sitio lo pego
+ * antes de la migracion; no recibe mantenimiento.
  *
  * 2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional.
  * Structure-only. References DS components by BEM class.
@@ -9,7 +14,7 @@ export const pricingTiers = {
   slug: 'pricing-tiers',
   name: 'Pricing Tiers',
   description:
-    '2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional. Structure only.',
+    'DEPRECADO — usa pricing-plans. 2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional. Structure only.',
   components: ['button', 'badge', 'divider', 'typography', 'item'],
   html: `<!-- Layout: pricing-tiers -->
 <section class="l-pricing-tiers">

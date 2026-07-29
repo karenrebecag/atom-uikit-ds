@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "section-header",
+  "type": "registry:component",
+  "title": "SectionHeader",
+  "description": "Eyebrow + titulo + subtitulo con medida de lectura: la entrada de una seccion",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/section-header.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Section Header\n\n   Eyebrow + titulo + subtitulo: la entrada de cualquier seccion. Fija la\n   medida de lectura del subtitulo (~60ch) para que no se estire a todo el\n   ancho del container.\n\n   Variantes: --center (centrado), --wide (sin limite de medida)\n   ------------------------------------------------------------------------- */\n\n.section-header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-4);\n  margin-block-end: var(--rhythm-s);\n}\n\n.section-header--center {\n  align-items: center;\n  text-align: center;\n  margin-inline: auto;\n}\n\n.section-header__eyebrow {\n  color: var(--muted-foreground);\n}\n\n.section-header__subtitle {\n  max-width: 60ch;\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-regular);\n  line-height: 1.5;\n  color: var(--muted-foreground);\n  text-wrap: pretty;\n}\n\n.section-header--wide .section-header__subtitle {\n  max-width: none;\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "SectionHeader",
+      "description": "Eyebrow + titulo + subtitulo con medida de lectura: la entrada de una seccion",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "section-header",
+      "cssClasses": [
+        "section-header",
+        "section-header--center",
+        "section-header__eyebrow",
+        "section-header__subtitle",
+        "section-header--wide"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
+}

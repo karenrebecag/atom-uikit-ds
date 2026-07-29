@@ -1,0 +1,90 @@
+/* -------------------------------------------------------------------------
+   Feature
+
+   Fila de "icono + texto (+ valor)". El patron mas repetido de una landing:
+   listas de beneficios, specs, checklists, comparativas. Vivia hardcodeado
+   dentro de pricing-card; es un atomo por derecho propio.
+
+   Estructura:  .feature-list > .feature > .feature__label > [icon] + texto
+                                        > .feature__value (opcional)
+   Variantes:   .feature-list--divided  hairlines entre filas
+                .feature--compact       ritmo denso
+   ------------------------------------------------------------------------- */
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  /* Tipografia propia: cuerpo legible, no el medium por defecto de todo el
+     sistema. Una lista larga se lee mejor en regular. */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.feature__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+/* Slot de icono del feature — mismo patron que button__icon / atom-wa-btn__icon:
+   el atomo define el wrapper, el consumidor solo mete el SVG. */
+.feature__icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  color: var(--success);
+}
+
+.feature__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Texto del label — parte explicita, no un span anonimo */
+.feature__text {
+  min-width: 0;
+  color: inherit;
+  text-wrap: pretty;
+}
+
+.feature__value {
+  flex-shrink: 0;
+}
+
+/* ---- Ritmo ---- */
+
+.feature-list--divided .feature {
+  padding-block: var(--spacing-5);
+  border-bottom: var(--stroke-hairline) solid
+    color-mix(in srgb, currentcolor 18%, transparent);
+}
+
+.feature-list--divided .feature:last-child {
+  border-bottom: 0;
+}
+
+.feature--compact {
+  padding-block: var(--spacing-3);
+}
+
+@media (max-width: 767px) {
+  .feature-list--divided .feature {
+    padding-block: var(--spacing-4);
+  }
+}

@@ -1,28 +1,33 @@
 {
   "section-padding-xxl": {
     "$type": "dimension",
-    "$value": "{spacing.50}",
-    "$description": "OSMO section padding XXL — 200px (escala OSMO real, recalibrada 2026-07-28)"
+    "$value": "{rhythm.xxl}",
+    "$description": "Tercera mayor exacta via rhythm — {rhythm.xxl}"
   },
   "section-padding-xl": {
     "$type": "dimension",
-    "$value": "{spacing.40}",
-    "$description": "OSMO section padding XL — 160px"
+    "$value": "{rhythm.xl}",
+    "$description": "Tercera mayor exacta via rhythm — {rhythm.xl}"
   },
   "section-padding-l": {
     "$type": "dimension",
-    "$value": "{spacing.30}",
-    "$description": "OSMO section padding L — 120px"
+    "$value": "{rhythm.l}",
+    "$description": "Tercera mayor exacta via rhythm — {rhythm.l}"
   },
   "section-padding-m": {
     "$type": "dimension",
-    "$value": "{spacing.20}",
-    "$description": "OSMO section padding M — 80px"
+    "$value": "{rhythm.m}",
+    "$description": "Tercera mayor exacta via rhythm — {rhythm.m}"
   },
   "section-padding-s": {
     "$type": "dimension",
-    "$value": "{spacing.12}",
-    "$description": "OSMO section padding S — 48px"
+    "$value": "{rhythm.s}",
+    "$description": "Tercera mayor exacta via rhythm — {rhythm.s}"
+  },
+  "section-padding-xs": {
+    "$type": "dimension",
+    "$value": "{rhythm.xs}",
+    "$description": "Tercera mayor exacta via rhythm — {rhythm.xs}"
   },
   "gap-xl": {
     "$type": "dimension",

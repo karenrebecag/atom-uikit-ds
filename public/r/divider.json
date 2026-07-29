@@ -16,7 +16,7 @@
     {
       "path": "styles/components/divider.css",
       "type": "registry:file",
-      "content": "/* -------------------------------------------------------------------------\n   Divider\n\n   Horizontal or vertical separator line.\n   Figma: atom-horizontal-divider. We add vertical variant.\n\n   Orientation: horizontal (default), vertical\n   ------------------------------------------------------------------------- */\n\n.divider {\n  border: none;\n  margin: 0;\n  flex-shrink: 0;\n}\n\n.divider--horizontal {\n  width: 100%;\n  height: 0;\n  border-top: 1px solid var(--border);\n}\n\n.divider--vertical {\n  height: 100%;\n  width: 0;\n  border-left: 1px solid var(--border);\n  align-self: stretch;\n}\n"
+      "content": "/* -------------------------------------------------------------------------\n   Divider\n\n   Horizontal or vertical separator line.\n   Figma: atom-horizontal-divider. We add vertical variant.\n\n   Orientation: horizontal (default), vertical\n   ------------------------------------------------------------------------- */\n\n.divider {\n  border: none;\n  margin: 0;\n  flex-shrink: 0;\n}\n\n.divider--horizontal {\n  width: 100%;\n  height: 0;\n  border-top: var(--stroke-hairline) solid var(--border);\n}\n\n.divider--vertical {\n  height: 100%;\n  width: 0;\n  border-left: var(--stroke-hairline) solid var(--border);\n  align-self: stretch;\n}\n\n/* ---- Labeled: etiqueta + linea que ocupa el resto (patron de seccion) ---- */\n\n.divider--labeled {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-3);\n  width: 100%;\n  height: auto;\n  border: none;\n  color: var(--muted-foreground);\n}\n\n.divider--labeled::after {\n  flex: 1;\n  height: var(--stroke-hairline);\n  content: '';\n  background-color: currentcolor;\n  opacity: 0.15;\n}\n"
     }
   ],
   "atom": {
@@ -43,7 +43,8 @@
       "cssClasses": [
         "divider",
         "divider--horizontal",
-        "divider--vertical"
+        "divider--vertical",
+        "divider--labeled"
       ],
       "peerDeps": [],
       "hasCss": true,
