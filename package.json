@@ -9,6 +9,7 @@
     "validate": "node scripts/validate-tokens.js",
     "validate:contrast": "node scripts/check-contrast.mjs",
     "validate:published": "node scripts/validate-published-tokens.mjs",
+    "conformance": "node scripts/conformance.mjs",
     "validate:embed": "node packages/css/scripts/validate-embed-scope.mjs",
     "test:embed-leak": "node packages/css/scripts/test-embed-leak.mjs",
     "build:registry": "pnpm --filter @atom-uikit/tokens build && node scripts/build-registry.mjs",

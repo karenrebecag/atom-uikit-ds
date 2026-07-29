@@ -1,0 +1,24 @@
+# Conformance suite: el contrato ejecutable del DS (conformance/*.json).
+# Corre en TODO PR: es rápido (solo node builtins, sin install) y cubre lo que
+# los demás gates no ven — leyes de escala, contrato de CSS/layouts, espejo del
+# registry, budgets del index. Los budgets de dist se saltan aquí (sin build);
+# los verifica el workflow de public-dist, que sí construye.
+name: Conformance
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  conformance:
+    name: Contract suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/conformance.mjs

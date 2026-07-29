@@ -1,0 +1,94 @@
+{
+  "$comment": "Contrato del CSS de componentes (CLAUDE.md > Prohibited, ahora ejecutable): cero literales de color, cero !important, font-family solo var()/inherit. 'baseline' es RATCHET de deuda pre-contrato (medida 2026-07-29 con comentarios excluidos): si un archivo empeora, falla; si mejora, el runner pide bajar el número. Añadir deuda nueva aquí para hacer pasar un cambio propio requiere decírselo a Karen.",
+  "scanDirs": [
+    "packages/css/src/components"
+  ],
+  "rules": {
+    "color": {
+      "why": "los colores entran por tokens semánticos; un literal no re-tematiza en dark ni en otra marca",
+      "pattern": "#[0-9a-fA-F]{3,8}\\b|\\brgba?\\(|\\bhsla?\\(|\\boklch\\("
+    },
+    "important": {
+      "why": "rompe la cascada del consumidor; el patrón del DS es especificidad baja (:where) y variables",
+      "pattern": "!important"
+    },
+    "font-family": {
+      "why": "la personalidad tipográfica es del sistema: var(--font-family-*) o inherit",
+      "declaration": "font-family"
+    },
+    "easing-literal": {
+      "why": "las curvas son lenguaje de marca: cubic-bezier()/linear() literales nuevos = motion inventado (precedente 2026-07-28: un agente invento hovers/shadows que Karen tuvo que revertir). Las curvas firmadas existentes quedan en baseline hasta su tokenizacion en W6",
+      "pattern": "cubic-bezier\\(|[^-\\w]linear\\("
+    },
+    "duration-literal": {
+      "why": "duraciones en transition/animation salen de var(--duration-*); un literal nuevo no respeta la escala de motion. 0s/0ms queda EXCLUIDO: apagar motion (reduced-motion) siempre es legitimo. Existentes en baseline hasta W6",
+      "pattern": "(?:transition|animation)[^;{}]*?[\\s,(](?!0+(?:\\.0+)?m?s\\b)\\d+(?:\\.\\d+)?m?s\\b"
+    }
+  },
+  "exemptFiles": {
+    "buttons/whatsapp-button.css": "GENERADO desde atom-whatsapp-buttons (sync:whatsapp) — se audita en su repo de origen"
+  },
+  "baseline": {
+    "buttons/button.css": {
+      "easing-literal": 9,
+      "duration-literal": 4
+    },
+    "buttons/icon-button.css": {
+      "easing-literal": 6,
+      "duration-literal": 3
+    },
+    "buttons/link-button.css": {
+      "easing-literal": 2,
+      "duration-literal": 3
+    },
+    "buttons/toggle-group.css": {
+      "easing-literal": 2,
+      "duration-literal": 1
+    },
+    "forms/toggle.css": {
+      "color": 3,
+      "easing-literal": 1
+    },
+    "indicators/avatar.css": {
+      "duration-literal": 1
+    },
+    "indicators/chip.css": {
+      "easing-literal": 4,
+      "duration-literal": 1
+    },
+    "indicators/tooltip.css": {
+      "easing-literal": 2,
+      "duration-literal": 1
+    },
+    "layout/accordion.css": {
+      "easing-literal": 2,
+      "duration-literal": 3
+    },
+    "layout/drawer.css": {
+      "important": 2
+    },
+    "molecules/marquee.css": {
+      "duration-literal": 1
+    },
+    "molecules/progress-nav.css": {
+      "easing-literal": 2
+    },
+    "molecules/user-profile.css": {
+      "easing-literal": 1,
+      "duration-literal": 2
+    },
+    "molecules/video-player.css": {
+      "important": 3
+    },
+    "navigation/tabs.css": {
+      "easing-literal": 4,
+      "duration-literal": 1
+    },
+    "sidebar/sidebar.css": {
+      "color": 1,
+      "important": 20,
+      "easing-literal": 7,
+      "duration-literal": 8
+    }
+  }
+}

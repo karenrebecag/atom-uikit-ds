@@ -1,0 +1,29 @@
+{
+  "$comment": "Leyes de escala del DS (decisión de Karen 2026-07-28, CLAUDE.md > Leyes de escala). Cambiar una ley = cambiar ESTE archivo, conscientemente. Otra identidad de marca puede usar otra razón: se edita aquí, el runner no cambia.",
+  "typography": {
+    "law": "tercera mayor exacta: base * ratio^n",
+    "base": 16,
+    "ratio": 1.25,
+    "precision": 2,
+    "file": "packages/tokens/src/primitives/typography.json",
+    "category": "font-size"
+  },
+  "rhythm": {
+    "law": "tercera mayor exacta sobre base de sección",
+    "base": 64,
+    "ratio": 1.25,
+    "precision": 2,
+    "file": "packages/tokens/src/primitives/rhythm.json",
+    "category": "rhythm"
+  },
+  "spacing": {
+    "law": "retícula aritmética base-4 (los espacios se SUMAN: deben caer en retícula)",
+    "multipleOf": 4,
+    "file": "packages/tokens/src/primitives/spacing.json",
+    "category": "spacing"
+  },
+  "exceptions": {
+    "$comment": "token → razón. Vacío hoy: no hay tokens fuera de ley.",
+    "tokens": {}
+  }
+}
