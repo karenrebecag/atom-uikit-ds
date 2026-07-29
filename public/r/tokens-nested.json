@@ -149,7 +149,10 @@
     "16": "64px",
     "20": "80px",
     "24": "96px",
-    "32": "128px"
+    "30": "120px",
+    "32": "128px",
+    "40": "160px",
+    "50": "200px"
   },
   "stroke": {
     "none": "0px",
@@ -250,11 +253,11 @@
   "sidebar-active": "#fff4ed",
   "sidebar-active-foreground": "#a44200",
   "placeholder": "#525252",
-  "section-padding-xxl": "128px",
-  "section-padding-xl": "96px",
-  "section-padding-l": "64px",
-  "section-padding-m": "40px",
-  "section-padding-s": "24px",
+  "section-padding-xxl": "200px",
+  "section-padding-xl": "160px",
+  "section-padding-l": "120px",
+  "section-padding-m": "80px",
+  "section-padding-s": "48px",
   "gap-xl": "56px",
   "gap-l": "40px",
   "gap-m": "24px",

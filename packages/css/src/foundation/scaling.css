@@ -47,9 +47,10 @@
     --size-container-ideal: 834;
     --size-container-min: 768px;
     --size-container-max: 991px;
-    --section-padding-xxl: 5rem;
-    --section-padding-xl: 4rem;
-    --section-padding-l: 3rem;
+    --section-padding-xxl: 10rem;
+    --section-padding-xl: 7.5rem;
+    --section-padding-l: 5rem;
+    --section-padding-m: 4rem;
   }
 }
 
@@ -59,10 +60,10 @@
     --size-container-ideal: 550;
     --size-container-min: 480px;
     --size-container-max: 767px;
-    --section-padding-xxl: 4rem;
-    --section-padding-xl: 3rem;
-    --section-padding-l: 2rem;
-    --section-padding-m: 1.5rem;
+    --section-padding-xxl: 7.5rem;
+    --section-padding-xl: 5rem;
+    --section-padding-l: 4rem;
+    --section-padding-m: 3rem;
   }
 }
 
@@ -72,11 +73,11 @@
     --size-container-ideal: 390;
     --size-container-min: 320px;
     --size-container-max: 479px;
-    --section-padding-xxl: 3rem;
-    --section-padding-xl: 2.5rem;
-    --section-padding-l: 1.5rem;
-    --section-padding-m: 1.25rem;
-    --section-padding-s: 1rem;
+    --section-padding-xxl: 5rem;
+    --section-padding-xl: 4rem;
+    --section-padding-l: 3rem;
+    --section-padding-m: 2.5rem;
+    --section-padding-s: 1.5rem;
   }
 }
 

@@ -314,16 +314,23 @@ Base-4 geometric scale. 13 steps, each visually distinct.
 | `spacing-12` | 48 | Large section gap |
 | `spacing-16` | 64 | Section padding |
 | `spacing-14` | 56 | OSMO gap-xl |
-| `spacing-20` | 80 | Hero spacing, page margin |
-| `spacing-24` | 96 | Max spacing, hero padding |
-| `spacing-32` | 128 | OSMO section-padding-xxl |
+| `spacing-20` | 80 | OSMO section m |
+| `spacing-24` | 96 | Intermedio |
+| `spacing-30` | 120 | OSMO section l |
+| `spacing-32` | 128 | Intermedio |
+| `spacing-40` | 160 | OSMO section xl |
+| `spacing-50` | 200 | OSMO section xxl |
 
 **Rule:** Token number x 4 = pixel value. No exceptions.
 
-**Aliases semánticos** (`src/semantic/spacing.json`): `section-padding-{xxl..s}` y
-`gap-{xl..xs}` referencian estas primitives; son los que consumen secciones y Webflow.
-Overrides responsivos de estos aliases viven en `packages/css/foundation/scaling.css`,
-no en tokens.
+**Aliases semánticos** (`src/semantic/spacing.json`): `section-padding-{xxl..s}` =
+200/160/120/80/48px (escala OSMO real, recalibrada 2026-07-28 — la original venía de la
+campaña calc y era 1-2 pasos más apretada) y `gap-{xl..xs}` para ritmo de componente.
+Overrides responsivos viven en `packages/css/foundation/scaling.css`, no en tokens.
+
+**Capa de USO** (`foundation/section.css`) — no elegir pasos a ojo: hero=`.section--hero`
+(xl/l asimétrico), sección estándar=`.section` (l), compacta=`.section--compact` (m),
+banda densa=`.section--dense` (s).
 
 ---
 
