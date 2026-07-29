@@ -1,0 +1,39 @@
+/* -------------------------------------------------------------------------
+   Section Header
+
+   Eyebrow + titulo + subtitulo: la entrada de cualquier seccion. Fija la
+   medida de lectura del subtitulo (~60ch) para que no se estire a todo el
+   ancho del container.
+
+   Variantes: --center (centrado), --wide (sin limite de medida)
+   ------------------------------------------------------------------------- */
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-block-end: var(--rhythm-s);
+}
+
+.section-header--center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.section-header__eyebrow {
+  color: var(--muted-foreground);
+}
+
+.section-header__subtitle {
+  max-width: 60ch;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+
+.section-header--wide .section-header__subtitle {
+  max-width: none;
+}

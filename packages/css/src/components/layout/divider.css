@@ -16,12 +16,32 @@
 .divider--horizontal {
   width: 100%;
   height: 0;
-  border-top: 1px solid var(--border);
+  border-top: var(--stroke-hairline) solid var(--border);
 }
 
 .divider--vertical {
   height: 100%;
   width: 0;
-  border-left: 1px solid var(--border);
+  border-left: var(--stroke-hairline) solid var(--border);
   align-self: stretch;
+}
+
+/* ---- Labeled: etiqueta + linea que ocupa el resto (patron de seccion) ---- */
+
+.divider--labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  height: auto;
+  border: none;
+  color: var(--muted-foreground);
+}
+
+.divider--labeled::after {
+  flex: 1;
+  height: var(--stroke-hairline);
+  content: '';
+  background-color: currentcolor;
+  opacity: 0.15;
 }

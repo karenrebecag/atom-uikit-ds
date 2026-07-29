@@ -32,6 +32,25 @@
 .tag--s  { height: 1.25rem; padding: 0 var(--spacing-2); font-size: var(--font-size-xs); }
 .tag--m  { height: 1.5rem; padding: 0 var(--spacing-2); font-size: var(--font-size-sm); }
 
+/* ---- Mono (patron OSMO: etiqueta tecnica) ---- */
+/* Tipografia mono en caja recta. Combina con --inverse o cualquier intent. */
+
+.tag--mono {
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Inverse (relleno con los semantics del contexto: flipa en dark) ---- */
+
+.tag--inverse {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
 /* ---- Ghost (text only, no bg) ---- */
 
 .tag--ghost.tag--success   { color: var(--color-forest); }

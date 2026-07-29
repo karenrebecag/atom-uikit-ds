@@ -33,6 +33,12 @@
   margin: 0;
   padding: 0;
   border: 0;
+  /* Un host con `* { line-height: N }` pega DIRECTO sobre cada elemento y
+     rompe la cadena de herencia del embed (cazado 2026-07-30: los links del
+     footer heredaban 2.4 del testigo del preview). `inherit` restaura la
+     cadena; los componentes que declaran su propio line-height no se ven
+     afectados (misma especificidad, orden posterior). */
+  line-height: inherit;
 }
 
 /* Media must not overflow the host's column. */
