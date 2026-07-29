@@ -10,13 +10,31 @@ type CleanupFn = () => void;
 declare const gsap: any;
 declare const CustomEase: any;
 
+/**
+ * Motion values come from the DS tokens at runtime, so a token change re-tunes
+ * every consumer without touching this module. Fallbacks mirror the current
+ * token values for DOMs where the DS stylesheet has not loaded yet.
+ */
+function readMotionTokens(scope: Element): { ease: string; duration: number } {
+  const styles = getComputedStyle(scope);
+  const easeRaw = styles.getPropertyValue('--easing-osmo').trim();
+  const bezier = /cubic-bezier\(([^)]+)\)/.exec(easeRaw)?.[1] ?? '0.625, 0.05, 0, 1';
+  const durRaw = styles.getPropertyValue('--duration-300').trim();
+  const duration = durRaw ? parseFloat(durRaw) / (durRaw.endsWith('ms') ? 1000 : 1) : 0.3;
+  return { ease: bezier, duration };
+}
+
 export function initMenuButton(): CleanupFn {
   if (typeof gsap === 'undefined' || typeof CustomEase === 'undefined') {
     return () => {};
   }
+  // The CSS level-0 transition already honors reduced motion; the GSAP layer
+  // must not re-animate what the user asked to keep still.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return () => {};
+  }
 
   gsap.registerPlugin(CustomEase);
-  CustomEase.create('menu-button-ease', '0.5, 0.05, 0.05, 0.99');
 
   const buttons = document.querySelectorAll<HTMLElement>('[data-menu-button-animate]');
   const cleanups: CleanupFn[] = [];
@@ -26,12 +44,14 @@ export function initMenuButton(): CleanupFn {
     if (lines.length < 3) return;
 
     const [line1, line2, line3] = Array.from(lines);
+    const motion = readMotionTokens(button);
+    CustomEase.create('menu-button-ease', motion.ease);
 
     let tl = gsap.timeline({
       defaults: {
         overwrite: 'auto',
         ease: 'menu-button-ease',
-        duration: 0.3,
+        duration: motion.duration,
       },
     });
 
@@ -55,7 +75,7 @@ export function initMenuButton(): CleanupFn {
           x: '0em',
           y: '0em',
           opacity: 1,
-          duration: 0.45,
+          duration: motion.duration * 1.5,
           overwrite: 'auto',
         });
     };
