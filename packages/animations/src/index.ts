@@ -9,3 +9,6 @@ export { initButtonHover } from './button-hover';
 export { initTextReveal } from './text-reveal';
 export { initSidebarAnimation } from './sidebar';
 export { initProgressNav } from './progress-nav';
+export { initMenuButton } from './menu-button';
+export { initDraggableMarquee } from './marquee-draggable';
+export { initVideoPlayer } from './video-player';

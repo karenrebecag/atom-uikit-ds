@@ -29,10 +29,10 @@ export const navbarBanner = {
       <span class="button__label">{{cta}}</span>
     </a>
   </div>
-  <button class="l-navbar-banner__burger burger-icon" aria-label="Menu">
-    <span class="burger-icon__bar"></span>
-    <span class="burger-icon__bar"></span>
-    <span class="burger-icon__bar"></span>
+  <button class="l-navbar-banner__burger burger-icon" data-menu-button="burger" aria-label="Menu" aria-expanded="false">
+    <span class="burger-icon__line"></span>
+    <span class="burger-icon__line"></span>
+    <span class="burger-icon__line"></span>
   </button>
 </nav>`,
   css: `/* Layout: navbar-banner — structure only */
