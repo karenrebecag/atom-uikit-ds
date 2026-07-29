@@ -17,6 +17,12 @@ importers:
 
   apps/storybook:
     devDependencies:
+      '@atom-uikit/css':
+        specifier: workspace:*
+        version: link:../../packages/css
+      '@atom-uikit/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       '@storybook/addon-essentials':
         specifier: ^8.6.18
         version: 8.6.18(@types/react@19.2.14)(storybook@8.6.18(prettier@3.8.3))
@@ -130,6 +136,9 @@ importers:
 
   packages/css:
     devDependencies:
+      '@atom-uikit/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       lightningcss:
         specifier: ^1.25.0
         version: 1.32.0
