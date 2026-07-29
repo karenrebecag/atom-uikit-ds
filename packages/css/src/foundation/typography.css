@@ -29,7 +29,8 @@ body {
   font-family: var(--font-family-display);
   font-size: var(--font-size-6xl);
   line-height: var(--line-height-6xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-tighter);
   letter-spacing: var(--letter-spacing-tight);
 }
 
@@ -37,20 +38,27 @@ body {
   font-family: var(--font-family-display);
   font-size: var(--font-size-5xl);
   line-height: var(--line-height-5xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-tighter);
   letter-spacing: var(--letter-spacing-tight);
 }
 
 /* --- Headings (Inter Tight / sans) --- */
 
 .h1,
-.h2,
+.h2 {
+  /* Grift: la voz de la marca vive en los titulos mayores. h3-h6 quedan en
+     sans porque son estructura densa, donde la legibilidad manda. */
+  font-family: var(--font-family-display);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
 .h3,
 .h4,
 .h5,
 .h6 {
   font-family: var(--font-family-sans);
-  letter-spacing: var(--letter-spacing-tight);
+  letter-spacing: var(--letter-spacing-snug);
 }
 
 .h1 {
@@ -198,4 +206,13 @@ body {
   background-color: var(--muted);
   border-radius: var(--radius-sm);
   padding: 0.2em 0.4em;
+}
+
+/* Eyebrow / overline — etiqueta tecnica de seccion (patron OSMO) */
+.eyebrow {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
 }

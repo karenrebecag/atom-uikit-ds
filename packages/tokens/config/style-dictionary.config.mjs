@@ -11,7 +11,7 @@ import StyleDictionary from 'style-dictionary';
  * Deliberately NOT fluid: stroke (1px hairlines blur at 1.33px — OSMO keeps
  * theirs fixed too), z-index/opacity/duration (not lengths), radius-full.
  */
-const FLUID_CATEGORIES = new Set(['spacing', 'font-size', 'radius']);
+const FLUID_CATEGORIES = new Set(['spacing', 'font-size', 'radius', 'rhythm']);
 
 StyleDictionary.registerTransform({
   name: 'size/fluid-u',

@@ -1,0 +1,12 @@
+{
+  "letter-spacing": {
+    "$type": "dimension",
+    "$description": "Ajuste optico. En em: escala con el tamano de fuente por definicion, por eso NO entra al sistema fluido --u.",
+    "tighter": { "$value": "-0.03em", "$description": "Display grande — el tamano abre el tracking, hay que cerrarlo" },
+    "tight":   { "$value": "-0.02em", "$description": "Titulos" },
+    "snug":    { "$value": "-0.01em", "$description": "Subtitulos y texto grande" },
+    "normal":  { "$value": "0em",     "$description": "Cuerpo" },
+    "wide":    { "$value": "0.06em",  "$description": "Etiquetas mono en caja" },
+    "wider":   { "$value": "0.08em",  "$description": "Eyebrow/overline en mayusculas" }
+  }
+}

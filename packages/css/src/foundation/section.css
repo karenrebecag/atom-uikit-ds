@@ -33,7 +33,8 @@
   padding-block: var(--section-padding-s);
 }
 
-/* Horizontal breathing for sections that don't sit inside a .container */
+/* Horizontal breathing for sections that don't sit inside a .container.
+   Lateral axis — uses container-padding, never the vertical rhythm scale. */
 .section--inset {
-  padding-inline: var(--section-padding-s);
+  padding-inline: var(--container-padding);
 }
