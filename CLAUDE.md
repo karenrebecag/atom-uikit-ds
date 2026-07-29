@@ -48,6 +48,11 @@ Reglas duras para agentes de styling/flow/motion:
    (protocolo en `docs/webflow-playbook.md`). No escribir clientes REST para variables.
 7. **Fuentes**: las 4 familias tienen licencia comercial Envato. No agregar familias
    nuevas sin licencia verificada; woff2 viven en `packages/css/src/fonts/`.
+8. **Si un paquete consume el build-output de otro, lo declara como `workspace:*`**,
+   aunque no importe su JS. Sin la declaración turbo no conoce el orden y en máquinas
+   frías los builds corren en paralelo y explotan (pasó dos veces el 2026-07-28:
+   storybook→tokens/css y css→tokens; el proyecto Vercel del Storybook estuvo roto
+   días por esto). Importar por ruta relativa NO crea dependencia.
 
 ## Canales de distribución (privados/controlados — NO npm)
 
