@@ -7,5 +7,10 @@
   "scripts": {
     "build": "node build.mjs",
     "smoke": "node smoke.mjs"
+  },
+  "devDependencies": {
+    "@atom-uikit/animations": "workspace:*",
+    "@atom-uikit/css": "workspace:*",
+    "@atom-uikit/tokens": "workspace:*"
   }
 }
