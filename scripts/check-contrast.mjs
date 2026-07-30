@@ -30,6 +30,9 @@ const PAIRS = [
   ['info', 'info-foreground'],
   // Text-on-background tokens (not a surface pair, same AA rule applies)
   ['background', 'link'],
+  // prose pone `code` a contraste pleno sobre la superficie muted (el par
+  // muted/muted-foreground se ve apagado dentro de un parrafo de texto normal).
+  ['muted', 'foreground'],
 ];
 
 const AA_NORMAL = 4.5;

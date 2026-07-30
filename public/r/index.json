@@ -472,6 +472,50 @@
     }
   },
   {
+    "name": "prose",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "Prose",
+    "description": "Contenido largo estilizado por elemento (articulos, documentacion, legales): una clase en el contenedor y sus h2-h6, p, listas, cita, codigo y tabla heredan el sistema",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Prose",
+      "description": "Contenido largo estilizado por elemento (articulos, documentacion, legales): una clase en el contenedor y sus h2-h6, p, listas, cita, codigo y tabla heredan el sistema",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "toc",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "Table of Contents",
+    "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Table of Contents",
+      "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "avatar",
     "kind": "component",
     "framework": "react",
@@ -1760,6 +1804,31 @@
     }
   },
   {
+    "name": "layout/article-toc",
+    "kind": "layout",
+    "framework": "css",
+    "installGroup": "layouts",
+    "title": "Article with Table of Contents",
+    "description": "Documento largo con indice lateral sticky generado desde sus headings: legales, documentacion y articulos de fondo. El cuerpo lo aporta el consumidor dentro de [data-toc-content].",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "section-header",
+      "toc",
+      "prose"
+    ],
+    "discovery": {
+      "name": "Article with Table of Contents",
+      "description": "Documento largo con indice lateral sticky generado desde sus headings: legales, documentacion y articulos de fondo. El cuerpo lo aporta el consumidor dentro de [data-toc-content].",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "layout/testimonial-row",
     "kind": "layout",
     "framework": "css",
@@ -2417,6 +2486,24 @@
       "defaultVariant": "",
       "defaultSize": "",
       "hasAnimation": true
+    }
+  },
+  {
+    "name": "toc-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Table of Contents",
+    "description": "Genera el indice desde los headings del contenido y marca la seccion visible por scroll (ScrollTrigger); funcional — sin guarda reduced-motion a proposito, solo el scroll del click salta en vez de deslizar",
+    "discovery": {
+      "name": "Table of Contents",
+      "description": "Genera el indice desde los headings del contenido y marca la seccion visible por scroll (ScrollTrigger); funcional — sin guarda reduced-motion a proposito, solo el scroll del click salta en vez de deslizar",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
     }
   },
   {

@@ -10,6 +10,7 @@
 @import './navigation/breadcrumb.css';
 @import './navigation/pagination.css';
 @import './navigation/tabs.css';
+@import './navigation/toc.css';
 @import './forms/checkbox.css';
 @import './forms/radio.css';
 @import './forms/toggle.css';
@@ -33,6 +34,7 @@
 @import './indicators/spinner.css';
 @import './layout/divider.css';
 @import './layout/section-header.css';
+@import './layout/prose.css';
 @import './layout/accordion.css';
 @import './layout/table.css';
 @import './layout/empty.css';
