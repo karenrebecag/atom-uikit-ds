@@ -87,8 +87,22 @@ export const articleToc = {
 
 @media (min-width: 992px) {
   .l-article-toc__grid {
-    grid-template-columns: 15rem minmax(0, 1fr);
+    /* La columna del cuerpo se capa a la medida de lectura y la rejilla se
+       centra: con 1fr, en pantallas anchas el sobrante caia entero a la
+       derecha del prose y el documento se veia cargado hacia el rail.
+       El knob --prose-measure debe fijarse en la seccion (no en el prose)
+       para que rejilla y cabecera lo hereden juntos. */
+    grid-template-columns: 15rem minmax(0, var(--prose-measure, 68ch));
+    justify-content: center;
     gap: var(--spacing-16);
+  }
+
+  /* La cabecera comparte caja con la rejilla centrada: sin esto el titulo
+     quedaria anclado al borde del container mientras el documento flota. */
+  .l-article-toc__header {
+    width: 100%;
+    max-width: calc(15rem + var(--spacing-16) + var(--prose-measure, 68ch));
+    margin-inline: auto;
   }
 
   .l-article-toc__sidebar {
