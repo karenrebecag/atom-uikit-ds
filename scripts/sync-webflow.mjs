@@ -142,6 +142,15 @@ function buildDesired(nested, darkSrc) {
     desired.push({ name: `space/${key}`, type: 'size', light: size });
   }
 
+  // Spacing primitives — retícula base-4. Webflow no tiene capa de component tokens,
+  // así que la retícula ES ahí la escala de composición (ver la ley en rhythm.$description).
+  const spacing = nested.spacing || {};
+  for (const [k, v] of Object.entries(spacing)) {
+    const size = parseSize(v);
+    if (!size) continue;
+    desired.push({ name: `space/spacing-${k}`, type: 'size', light: size });
+  }
+
   // Radius
   const radius = nested.radius || {};
   for (const [k, v] of Object.entries(radius)) {
