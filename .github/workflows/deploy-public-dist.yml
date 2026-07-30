@@ -8,6 +8,7 @@ on:
       - 'packages/css/**'
       - 'packages/animations/**'
       - 'public-dist/**'
+      - 'pnpm-lock.yaml'
       - '.github/workflows/deploy-public-dist.yml'
   workflow_dispatch:
 
