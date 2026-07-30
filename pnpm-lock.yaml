@@ -161,7 +161,17 @@ importers:
         specifier: ^5.8.0
         version: 5.9.3
 
-  public-dist: {}
+  public-dist:
+    devDependencies:
+      '@atom-uikit/animations':
+        specifier: workspace:*
+        version: link:../packages/animations
+      '@atom-uikit/css':
+        specifier: workspace:*
+        version: link:../packages/css
+      '@atom-uikit/tokens':
+        specifier: workspace:*
+        version: link:../packages/tokens
 
 packages:
 
