@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toc",
+  "type": "registry:component",
+  "title": "Table of Contents",
+  "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/toc.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Table of Contents\n\n   Indice de un documento largo: rail de links generados desde los headings del\n   contenido. A diferencia de `progress-nav` (secciones declaradas a mano, con\n   indicador deslizante), aqui los links NO se escriben: el behavior\n   `table-of-contents` de packages/animations los clona desde un template y\n   marca el activo al hacer scroll.\n\n   Contrato de estado (lo escribe el behavior, no el consumidor):\n     [data-toc-status=\"active\"]  link de la seccion visible\n     [data-toc-depth=\"2|3|4\"]    nivel del heading, para la indentacion\n\n   El scroll-spy es el behavior; este archivo solo pinta el estado.\n   ------------------------------------------------------------------------- */\n\n.toc {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-4);\n}\n\n.toc__label {\n  color: var(--muted-foreground);\n}\n\n.toc__list {\n  display: flex;\n  flex-direction: column;\n}\n\n.toc__link {\n  display: block;\n  padding-block: var(--spacing-2);\n  padding-inline: var(--spacing-4) var(--spacing-2);\n  /* El rail es un borde por link, no un borde en la lista: asi el tramo activo\n     se pinta sin que un pseudo-elemento tenga que medir posiciones. */\n  border-inline-start: var(--stroke-thin) solid var(--border);\n  color: var(--muted-foreground);\n  font-family: var(--font-family-sans);\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  text-decoration: none;\n  text-wrap: pretty;\n  /* Un heading legal puede traer una palabra larguisima o una URL: en un rail de\n     15rem tiene que partir, no sobresalir. */\n  overflow-wrap: break-word;\n  transition:\n    color var(--duration-200) var(--easing-out),\n    border-color var(--duration-200) var(--easing-out);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .toc__link:hover {\n    color: var(--foreground);\n    border-inline-start-color: var(--muted-foreground);\n  }\n}\n\n.toc__link[data-toc-status='active'] {\n  color: var(--foreground);\n  font-weight: var(--font-weight-medium);\n  /* Naranja de marca como acento fino: 1.5px de rail, jamas relleno ni texto. */\n  border-inline-start-color: var(--brand);\n}\n\n.toc__link:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n  border-radius: var(--radius-sm);\n}\n\n/* ---- Profundidad ----\n   Se indenta el padding, no el margen: el rail (borde) debe quedar alineado en\n   todos los niveles, si no la linea se rompe en cada sub-seccion. */\n\n.toc__link[data-toc-depth='3'] {\n  padding-inline-start: calc(var(--spacing-4) + var(--spacing-4));\n}\n\n.toc__link[data-toc-depth='4'] {\n  padding-inline-start: calc(var(--spacing-4) + var(--spacing-8));\n}\n\n/* ---- Colapsado (movil) ----\n   En pantallas angostas el indice no puede ocupar media pantalla antes del\n   texto. `<details class=\"toc toc--collapsible\">` lo cierra sin JS.  */\n\n.toc--collapsible > summary {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--spacing-2);\n  cursor: pointer;\n  list-style: none;\n  color: var(--muted-foreground);\n}\n\n.toc--collapsible > summary::-webkit-details-marker {\n  display: none;\n}\n\n.toc--collapsible > summary::after {\n  content: '';\n  width: 0.5em;\n  height: 0.5em;\n  border-inline-end: var(--stroke-thin) solid currentColor;\n  border-block-end: var(--stroke-thin) solid currentColor;\n  rotate: 45deg;\n  transition: rotate var(--duration-200) var(--easing-out);\n}\n\n.toc--collapsible[open] > summary::after {\n  rotate: 225deg;\n}\n\n.toc--collapsible > summary:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .toc__link,\n  .toc--collapsible > summary::after {\n    transition-duration: 0ms;\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Table of Contents",
+      "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+      "category": "navigation",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "toc",
+      "cssClasses": [
+        "toc",
+        "toc__label",
+        "toc__list",
+        "toc__link",
+        "toc--collapsible"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  }
+}

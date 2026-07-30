@@ -237,6 +237,99 @@ describe('video-player (funcional: reduced-motion solo anula autoplay)', () => {
   });
 });
 
+describe('table-of-contents (funcional: genera el indice, el motion es solo el scroll)', () => {
+  function mountArticle(extra = '') {
+    document.body.innerHTML = `
+      <section data-toc-wrap data-toc-levels="h2,h3" data-toc-offset="80">
+        <nav>
+          <div data-toc-list>
+            <a class="toc__link" data-toc-link href="#"><span data-toc-text></span></a>
+          </div>
+        </nav>
+        <div data-toc-content>
+          <h2>Identidad del responsable</h2>
+          <h3>Información de contacto</h3>
+          <h2 data-toc-ignore>Fuera del indice</h2>
+          <h2>Colofón {skip}</h2>
+          ${extra}
+        </div>
+      </section>`;
+    return document.querySelector<HTMLElement>('[data-toc-list]')!;
+  }
+
+  function mountGlobals() {
+    g.gsap = gsapMock();
+    g.ScrollTrigger = { create: vi.fn(() => ({ kill: vi.fn() })) };
+  }
+
+  it('sin gsap/ScrollTrigger: cleanup inerte y cero links', async () => {
+    const { initTableOfContents } = await import('../../../animations/src/table-of-contents');
+    const list = mountArticle();
+    const cleanup = initTableOfContents();
+    expect(list.querySelectorAll('[data-toc-item]')).toHaveLength(0);
+    expect(() => cleanup()).not.toThrow();
+  });
+
+  it('un link por heading incluido, con id slugificado y profundidad', async () => {
+    mountGlobals();
+    const { initTableOfContents } = await import('../../../animations/src/table-of-contents');
+    const list = mountArticle();
+    const cleanup = initTableOfContents();
+
+    const links = Array.from(list.querySelectorAll<HTMLAnchorElement>('[data-toc-item]'));
+    // data-toc-ignore y {skip} quedan fuera: 4 headings -> 2 links
+    expect(links).toHaveLength(2);
+    expect(links.map((l) => l.getAttribute('href'))).toEqual([
+      '#identidad-del-responsable',
+      '#informacion-de-contacto', // el acento no parte el slug
+    ]);
+    expect(links.map((l) => l.getAttribute('data-toc-depth'))).toEqual(['2', '3']);
+    // el template sale del DOM: es un plano, no un item
+    expect(list.querySelector('[data-toc-link]')).toBeNull();
+    // {skip} desaparece del heading visible
+    expect(document.body.textContent).not.toContain('{skip}');
+
+    cleanup();
+  });
+
+  it('cleanup: quita los links, devuelve el template y borra los ids inyectados', async () => {
+    mountGlobals();
+    const { initTableOfContents } = await import('../../../animations/src/table-of-contents');
+    const list = mountArticle();
+    const cleanup = initTableOfContents();
+    cleanup();
+
+    expect(list.querySelectorAll('[data-toc-item]')).toHaveLength(0);
+    expect(list.querySelector('[data-toc-link]')).not.toBeNull();
+    expect(document.querySelector('[data-toc-content] h2')?.id).toBe('');
+  });
+
+  it('id ya presente en el heading: se respeta y el cleanup no lo borra', async () => {
+    mountGlobals();
+    const { initTableOfContents } = await import('../../../animations/src/table-of-contents');
+    const list = mountArticle('<h2 id="clausula-legal">Cláusula</h2>');
+    const cleanup = initTableOfContents();
+
+    const links = Array.from(list.querySelectorAll<HTMLAnchorElement>('[data-toc-item]'));
+    expect(links.at(-1)?.getAttribute('href')).toBe('#clausula-legal');
+
+    cleanup();
+    expect(document.getElementById('clausula-legal')).not.toBeNull();
+  });
+
+  it('reduced-motion: el indice se genera igual (es funcion, no adorno)', async () => {
+    setReducedMotion(true);
+    mountGlobals();
+    const { initTableOfContents } = await import('../../../animations/src/table-of-contents');
+    const list = mountArticle();
+    const cleanup = initTableOfContents();
+
+    expect(list.querySelectorAll('[data-toc-item]')).toHaveLength(2);
+    expect(g.ScrollTrigger.create).toHaveBeenCalledTimes(2);
+    cleanup();
+  });
+});
+
 describe('nav-autohide (funcional con motion opcional)', () => {
   async function scrollTo(y: number) {
     Object.defineProperty(window, 'scrollY', { value: y, configurable: true });

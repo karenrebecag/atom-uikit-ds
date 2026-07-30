@@ -461,6 +461,44 @@
       ]
     },
     {
+      "name": "prose",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Prose",
+      "description": "Contenido largo estilizado por elemento (articulos, documentacion, legales): una clase en el contenedor y sus h2-h6, p, listas, cita, codigo y tabla heredan el sistema",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/layout/prose.css",
+          "outputPath": "styles/components/prose.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "toc",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Table of Contents",
+      "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/navigation/toc.css",
+          "outputPath": "styles/components/toc.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "avatar",
       "kind": "component",
       "framework": "react",
@@ -1736,6 +1774,28 @@
       ]
     },
     {
+      "name": "layout/article-toc",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
+      "title": "Article with Table of Contents",
+      "description": "Documento largo con indice lateral sticky generado desde sus headings: legales, documentacion y articulos de fondo. El cuerpo lo aporta el consumidor dentro de [data-toc-content].",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "section-header",
+        "toc",
+        "prose"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/article-toc.ts",
+          "outputPath": "layouts/article-toc.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "layout/testimonial-row",
       "kind": "layout",
       "framework": "css",
@@ -2325,6 +2385,24 @@
         {
           "sourcePath": "packages/animations/src/progress-nav.ts",
           "outputPath": "animations/progress-nav.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "toc-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Table of Contents",
+      "description": "Genera el indice desde los headings del contenido y marca la seccion visible por scroll (ScrollTrigger); funcional — sin guarda reduced-motion a proposito, solo el scroll del click salta en vez de deslizar",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/table-of-contents.ts",
+          "outputPath": "animations/table-of-contents.ts",
           "type": "registry:file"
         }
       ]

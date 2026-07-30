@@ -1,0 +1,279 @@
+/* -------------------------------------------------------------------------
+   Prose
+
+   Contenido largo estilizado POR ELEMENTO: articulos, documentacion y legales.
+   El resto del DS tipografia por clase (.h2, .body, .lead), lo cual exige una
+   clase por nodo — imposible cuando el cuerpo viene de un CMS, de un rich text
+   de Webflow o de un modelo de bloques. `.prose` cubre ese hueco: se pone UNA
+   vez en el contenedor y sus hijos semanticos heredan el sistema.
+
+   API:
+     --prose-measure         medida de lectura (default 68ch)
+     --prose-anchor-offset   scroll-margin de los headings, para que un salto a
+                             #id no quede debajo de una barra sticky del host
+
+   Variantes: --narrow (medida corta, 56ch), --wide (sin limite)
+   ------------------------------------------------------------------------- */
+
+.prose {
+  max-width: var(--prose-measure, 68ch);
+  color: var(--foreground);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-regular);
+  text-wrap: pretty;
+  /* El minimo automatico de un item de grid/flex es su contenido, y una tabla
+     ancha o una URL larga lo inflan hasta desbordar el viewport arrastrando toda
+     la pagina. Con min-width:0 el componente se defiende solo, sin depender de que
+     su contenedor declare minmax(0, ...). */
+  min-width: 0;
+  /* Un legal esta lleno de URLs, correos y numeros de registro sin espacios:
+     sin esto no parten y sobresalen de su columna en pantallas angostas. */
+  overflow-wrap: break-word;
+}
+
+.prose--narrow {
+  --prose-measure: 56ch;
+}
+
+.prose--wide {
+  --prose-measure: none;
+}
+
+/* ---- Headings ----
+   En sans, no en display. typography.css manda h1/h2 a Grift porque son la voz
+   de la marca; aqui los headings son ESTRUCTURA densa (un legal puede traer 36)
+   y aplica el mismo criterio que el DS ya usa para h3-h6: legibilidad sobre
+   voz. El titulo del documento lo pone el layout, fuera de .prose. */
+
+.prose :is(h2, h3, h4, h5, h6) {
+  font-family: var(--font-family-sans);
+  color: var(--foreground);
+  letter-spacing: var(--letter-spacing-snug);
+  /* em: el ritmo del texto escala con su propio tamano, no con la reticula de
+     composicion de componente (misma razon que gap/radius en em). */
+  margin-block: 2em 0.75em;
+  text-wrap: balance;
+  /* Los ids los inyecta el behavior toc; sin esto un salto a #id aterriza
+     debajo del navbar sticky de la pagina anfitriona. */
+  scroll-margin-block-start: var(--prose-anchor-offset, var(--spacing-20));
+}
+
+.prose h2 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.prose h3 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.prose h4 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.prose :is(h5, h6) {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.prose > :first-child {
+  margin-block-start: 0;
+}
+
+/* ---- Bloques de texto ---- */
+
+.prose p {
+  margin-block: 0 1.5em;
+}
+
+.prose :is(strong, b) {
+  font-weight: var(--font-weight-semibold);
+  color: var(--foreground);
+}
+
+.prose small {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--muted-foreground);
+}
+
+/* ---- Links ----
+   `--link` es el token de texto-sobre-fondo del DS (existe porque sky.500 sobre
+   claro daba 1.73:1). Subrayado siempre presente: en un legal, distinguir un
+   link por color es insuficiente (WCAG 1.4.1, uso del color). */
+
+.prose a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: var(--stroke-hairline);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--duration-150) var(--easing-out);
+}
+
+.prose a:hover {
+  text-decoration-color: transparent;
+}
+
+.prose a:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Listas ---- */
+
+.prose :is(ul, ol) {
+  margin-block: 0 1.5em;
+  padding-inline-start: 1.5em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin-block-end: 0.5em;
+}
+
+.prose li::marker {
+  color: var(--muted-foreground);
+}
+
+/* Listas anidadas: sin doble margen ni salto de ritmo. */
+.prose :is(ul, ol) :is(ul, ol) {
+  margin-block: 0.5em 0;
+}
+
+/* ---- Cita ---- */
+
+.prose blockquote {
+  margin-block: 0 1.5em;
+  margin-inline: 0;
+  padding-inline-start: 1.25em;
+  /* Naranja de marca como acento fino, nunca como relleno ni como texto. */
+  border-inline-start: var(--stroke-medium) solid var(--brand);
+  color: var(--muted-foreground);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+}
+
+.prose blockquote > :last-child {
+  margin-block-end: 0;
+}
+
+/* ---- Codigo ---- */
+
+.prose code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background-color: var(--muted);
+  color: var(--foreground);
+  border-radius: var(--radius-sm);
+  padding: 0.15em 0.4em;
+}
+
+.prose pre {
+  margin-block: 0 1.5em;
+  padding: var(--spacing-4);
+  background-color: var(--muted);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+/* ---- Tabla ----
+   Los legales traen tablas (el de suscripcion trae una de suspension por plan).
+   El componente `table` del DS es para data-tables con su propio markup; aqui
+   basta la version de lectura, sobre etiquetas desnudas. */
+
+.prose table {
+  margin-block: 0 1.5em;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  /* Una tabla ancha no puede desbordar el ancho del host ni forzar scroll
+     horizontal a la pagina: scrollea ella misma. width max-content + max-width
+     100% para que no se estire cuando cabe (display:block la saca del algoritmo
+     de tabla para el ancho, las filas siguen siendo filas).
+     OJO: max-content hace que el minimo de contenido de la tabla sea su ancho
+     completo. Si el contenedor no acota ese minimo (min-width:0 en .prose, o
+     minmax(0,1fr) en la rejilla), la pagina entera se ensancha. */
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Las celdas parten palabras largas en vez de estirar la tabla; con max-content
+   arriba, una celda que no parte hace que ninguna columna se ajuste. */
+.prose :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.prose :is(th, td) {
+  padding: var(--spacing-3);
+  border-block-end: var(--stroke-hairline) solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--foreground);
+}
+
+.prose td {
+  color: var(--muted-foreground);
+}
+
+/* ---- Otros ---- */
+
+.prose hr {
+  margin-block: 2em;
+  border: none;
+  border-block-start: var(--stroke-hairline) solid var(--border);
+}
+
+.prose :is(img, video) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+.prose dt {
+  font-weight: var(--font-weight-semibold);
+}
+
+.prose dd {
+  margin-inline-start: 0;
+  margin-block-end: 1em;
+  color: var(--muted-foreground);
+}
+
+.prose > :last-child {
+  margin-block-end: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prose a {
+    transition-duration: 0ms;
+  }
+}

@@ -7,6 +7,15 @@ on:
       - 'packages/css/**'
       - 'apps/storybook/**'
       - '.github/workflows/visual-regression.yml'
+  # Regeneracion deliberada de baselines linux (stories nuevas o cambio visual
+  # intencional): correr con update=true sobre la branch, descargar el artifact
+  # linux-baselines y commitearlo. En PR los snapshots nuevos FALLAN a proposito.
+  workflow_dispatch:
+    inputs:
+      update:
+        description: 'Regenerate linux baselines (-u); commit the artifact after'
+        type: boolean
+        default: false
 
 concurrency:
   group: visual-${{ github.workflow }}-${{ github.ref }}
@@ -60,7 +69,10 @@ jobs:
       - name: Serve + run test-runner
         working-directory: apps/storybook
         run: |
-          if ls __image_snapshots__/*__linux.png >/dev/null 2>&1; then
+          if [ "${{ inputs.update }}" = "true" ]; then
+            MODE="-u"
+            echo "::warning::UPDATE mode — regenerating linux baselines; download the 'linux-baselines' artifact and commit it"
+          elif ls __image_snapshots__/*__linux.png >/dev/null 2>&1; then
             MODE=""
             echo "linux baselines found — verify mode"
           else
