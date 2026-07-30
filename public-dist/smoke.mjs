@@ -17,6 +17,7 @@ const paths = [
   '/v1/embed.css',
   '/v1/tokens.json',
   '/v1/tokens-nested.json',
+  '/v1/animations.js',
 ];
 
 // CDN cache-buster: right after a deploy the edge can serve entries up to
@@ -55,6 +56,22 @@ if (css.includes('--link:') || css.includes('--link ')) {
   console.log('OK  --link present (AA link token)');
 } else {
   console.log('WARN --link not found (redeploy after W1 link fix if unexpected)');
+}
+
+// animations.js: the global must exist, GSAP must NOT be inlined (it is a peer),
+// and motion values must still come from the tokens at runtime.
+const anim = await fetch(busted(new URL('/v1/animations.js', base).href)).then((r) => r.text());
+if (!anim.includes('root.AtomMotion = api')) {
+  console.log('FAIL animations.js does not expose the AtomMotion global');
+  failed++;
+} else if (/gsap\.registerPlugin\s*=|function gsap\s*\(/.test(anim)) {
+  console.log('FAIL animations.js inlines GSAP (must stay a peer dependency)');
+  failed++;
+} else if (!anim.includes('--easing-osmo')) {
+  console.log('FAIL animations.js no longer reads motion tokens at runtime');
+  failed++;
+} else {
+  console.log('OK  animations.js exposes AtomMotion, GSAP stays external, reads tokens');
 }
 
 // embed.css must never restyle a host page: a bare `body{` or `:root{` here is

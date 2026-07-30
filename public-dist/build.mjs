@@ -26,6 +26,7 @@ const OUT = resolve(PKG, 'out', MAJOR);
 const DEPLOY = resolve(PKG, 'deploy');
 
 const cssDist = resolve(ROOT, 'packages/css/dist');
+const animationsDist = resolve(ROOT, 'packages/animations/dist');
 const tokensJson = resolve(ROOT, 'packages/tokens/build/json');
 const fontsSrc = resolve(ROOT, 'packages/css/src/fonts');
 const fontsDist = resolve(cssDist, 'fonts');
@@ -44,6 +45,10 @@ requireFile(join(cssDist, 'atom.css'), 'Run: pnpm --filter @atom-uikit/css build
 requireFile(join(cssDist, 'embed.css'), 'Run: pnpm --filter @atom-uikit/css build');
 requireFile(join(tokensJson, 'tokens.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
 requireFile(join(tokensJson, 'tokens-nested.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
+requireFile(
+  join(animationsDist, 'atom-animations.js'),
+  'Run: pnpm --filter @atom-uikit/animations build'
+);
 
 rmSync(resolve(PKG, 'out'), { recursive: true, force: true });
 rmSync(DEPLOY, { recursive: true, force: true });
@@ -55,6 +60,9 @@ cpSync(join(cssDist, 'atom.css'), join(OUT, 'atom.css'));
 cpSync(join(cssDist, 'embed.css'), join(OUT, 'embed.css'));
 cpSync(join(tokensJson, 'tokens.json'), join(OUT, 'tokens.json'));
 cpSync(join(tokensJson, 'tokens-nested.json'), join(OUT, 'tokens-nested.json'));
+
+// Comportamientos de motion. GSAP queda fuera: es peer y se carga aparte.
+cpSync(join(animationsDist, 'atom-animations.js'), join(OUT, 'animations.js'));
 
 // Prefer hashed dist fonts (what foundation.css urls reference); fallback to src tree
 if (existsSync(fontsDist)) {

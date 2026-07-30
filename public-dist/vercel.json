@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd .. && pnpm --filter @atom-uikit/tokens build && pnpm --filter @atom-uikit/css build && pnpm --filter @atom-uikit/public-dist build",
+  "buildCommand": "cd .. && pnpm --filter @atom-uikit/tokens build && pnpm --filter @atom-uikit/css build && pnpm --filter @atom-uikit/animations build && pnpm --filter @atom-uikit/public-dist build",
   "outputDirectory": "out",
   "installCommand": "cd .. && pnpm install --frozen-lockfile",
   "headers": [
@@ -17,6 +17,14 @@
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/v1/(.*).js",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
       ]
     },
     {

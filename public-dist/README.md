@@ -13,6 +13,7 @@ Host: **https://atom-web-ds.vercel.app** (scope personal `karenrebecags-projects
 | `/v1/atom.css` | full DS | 5 min |
 | `/v1/tokens.json` | flat tokens | 5 min |
 | `/v1/tokens-nested.json` | nested tokens | 5 min |
+| `/v1/animations.js` | motion behaviours, IIFE, global `AtomMotion` | 5 min |
 | `/v1/fonts/*.woff2` | self-hosted webfonts | 1 year immutable |
 
 CORS: `Access-Control-Allow-Origin: *` on all of the above.
@@ -22,10 +23,39 @@ CORS: `Access-Control-Allow-Origin: *` on all of the above.
 ```bash
 pnpm --filter @atom-uikit/tokens build
 pnpm --filter @atom-uikit/css build
+pnpm --filter @atom-uikit/animations build
 pnpm --filter @atom-uikit/public-dist build
 # → public-dist/out/v1/
 # → public-dist/deploy/   (out + headers-only vercel.json)
 ```
+
+## `animations.js` — comportamientos de motion
+
+Bundle IIFE de `packages/animations` que expone el global **`AtomMotion`** con los
+9 `init*` del DS más `initAll()`. Se arma sin bundler externo
+(`packages/animations/scripts/build-browser.mjs`): los módulos son auto-contenidos, así
+que basta con aislar cada uno en su propio scope — obligatorio, porque hay helpers
+homónimos con firmas distintas entre módulos (`readMotionTokens`).
+
+**GSAP no viaja en el bundle**: es peer dependency y se carga aparte. Sin él, cada
+`init*` avisa por consola y hace no-op en lugar de romper la página.
+
+Los valores de motion NO están hardcodeados: los módulos leen `--easing-osmo` y
+`--duration-*` del DOM en runtime, así que **hay que cargar `tokens.css`** para que la
+animación use los tokens. Un cambio de token re-afina el motion sin tocar este archivo.
+
+Consumo mínimo (sirve en Webflow, WordPress o cualquier host):
+
+```html
+<link rel="stylesheet" href="https://atom-web-ds.vercel.app/v1/tokens.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+<script src="https://atom-web-ds.vercel.app/v1/animations.js"></script>
+<script>AtomMotion.initAll();</script>
+```
+
+`initAll()` es seguro en cualquier página: cada `init*` hace no-op si no encuentra sus
+`data-*`. Devuelve un cleanup que revierte todo lo que se haya inicializado.
 
 ## Deploy
 

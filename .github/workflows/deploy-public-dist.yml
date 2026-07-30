@@ -6,6 +6,7 @@ on:
     paths:
       - 'packages/tokens/**'
       - 'packages/css/**'
+      - 'packages/animations/**'
       - 'public-dist/**'
       - '.github/workflows/deploy-public-dist.yml'
   workflow_dispatch:
@@ -35,6 +36,9 @@ jobs:
 
       - name: Build CSS artifacts
         run: pnpm --filter @atom-uikit/css build
+
+      - name: Build animation behaviours (browser bundle)
+        run: pnpm --filter @atom-uikit/animations build
 
       - name: Assemble public-dist (out/ + deploy/)
         run: pnpm --filter @atom-uikit/public-dist build
