@@ -22,7 +22,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node scripts/build-browser.mjs",
     "dev": "tsc --watch",
     "clean": "rm -rf dist/"
   },
