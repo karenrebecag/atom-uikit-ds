@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, Fragment } from 'react';
 
 export type StepState = 'completed' | 'active' | 'upcoming';
 
@@ -49,9 +49,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
           const isLast = index === steps.length - 1;
 
           return (
-            <>
+            <Fragment key={`step-${index}`}>
               <div
-                key={`step-${index}`}
                 className={cn('stepper__step', `stepper__step--${state}`)}
                 role="listitem"
                 aria-current={state === 'active' ? 'step' : undefined}
@@ -68,7 +67,6 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
               </div>
               {!isLast && (
                 <div
-                  key={`conn-${index}`}
                   className={cn(
                     'stepper__connector',
                     state === 'completed' && 'stepper__connector--completed',
@@ -76,7 +74,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                   aria-hidden="true"
                 />
               )}
-            </>
+            </Fragment>
           );
         })}
       </div>

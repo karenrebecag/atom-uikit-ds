@@ -10,7 +10,8 @@
   "files": ["dist/"],
   "scripts": {
     "build": "tsup",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "test": "tsx --test src/__tests__/*.test.ts"
   },
   "devDependencies": {
     "tsup": "^8.4.0",
