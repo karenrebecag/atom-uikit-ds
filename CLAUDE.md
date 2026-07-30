@@ -110,7 +110,7 @@ requiere retirarlas (deprecate/unpublish), es decisión de Karen con acceso npm.
 | `packages/css` | Pure CSS components + utilities |
 | `packages/animations` | GSAP animation modules |
 | `packages/components-react` | React 19 components |
-| `packages/components-astro` | Astro components |
+| `packages/components-astro` | Astro components — CONGELADO (ADR 008): no sincronizar ni testear hasta que exista un consumidor Astro real |
 | `packages/whatsapp` | [DEPRECADO 2026-07-22] Reemplazado por AtomGrowth/atom_whatsapp_buttons; congelado como referencia. El CSS del botón (`packages/css/.../whatsapp-button.css`) es GENERADO desde ese repo: `pnpm --filter @atom-uikit/css sync:whatsapp` |
 
 ## Distribution (Registry)

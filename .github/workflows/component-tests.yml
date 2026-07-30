@@ -4,11 +4,15 @@ on:
   pull_request:
     paths:
       - 'packages/components-react/**'
+      - 'packages/cli/**'
+      - 'public/r/**'
       - '.github/workflows/component-tests.yml'
   push:
     branches: [main]
     paths:
       - 'packages/components-react/**'
+      - 'packages/cli/**'
+      - 'public/r/**'
 
 concurrency:
   group: component-tests-${{ github.workflow }}-${{ github.ref }}
@@ -29,3 +33,18 @@ jobs:
       - run: pnpm --filter @atom-uikit/components-react test
       - name: Coverage (informational)
         run: pnpm --filter @atom-uikit/components-react exec vitest run --coverage || true
+
+  # El CLI consume el espejo public/r igual que un consumidor real; si el
+  # contrato del registry o el resolver de aliases driftean, esto lo detiene.
+  cli-smoke:
+    name: CLI add against public/r mirror
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter atom-uikit test
