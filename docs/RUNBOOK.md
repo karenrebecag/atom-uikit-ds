@@ -144,8 +144,10 @@ Resumen:
 4. **No** hay REST Data API para variables — no inventar clientes HTTP.
 5. Segundo apply ≈ 100% unchanged (idempotencia).
 6. Huérfanas: listar, no borrar auto.
+7. El apply va **solo contra el site maestro** "Atom UIKit | Library" (ADR 009); los
+   sites consumidores reciben todo vía la Shared Library "Atom UIKit", nunca por MCP.
 
-Bloqueo actual: designar site staging + autorizar MCP en ese site.
+Bloqueo actual: crear el site maestro + autorizar MCP en él (Karen, dashboard).
 
 ---
 
@@ -176,7 +178,7 @@ DOCS_DEPLOY_HOOK=... pnpm build:registry
 | Registry sync | `REGISTRY_SYNC_TOKEN` (PAT) | Karen |
 | Registry consumer key | `ATOM_REGISTRY_KEY` | Apps / MCP |
 | Clerk (registry auth) | Dashboard Clerk del proyecto docs | Karen |
-| Webflow sites | MCP connection + site auth | Karen designa staging |
+| Webflow sites | MCP connection + site auth (solo maestro) | Karen crea "Atom UIKit \| Library" |
 | Fonts Envato | Licencia comercial 4 familias (Grift, Interval, Gantol, Inter Tight OFL) | Karen guarda comprobantes |
 | npm | **Desconectado** — no publicar | — |
 
@@ -194,6 +196,9 @@ Ver `docs/decisions/`:
 | 003 | Webflow Variables vía plan + MCP, no REST |
 | 004 | Foregrounds oscuros en brand/destructive (WCAG) |
 | 005 | Motion comportamental diferido (W6) |
+| 007 | `atom-ds` legacy deprecado y archivado |
+| 008 | Canal Astro congelado |
+| 009 | Webflow: site maestro + Shared Library (supersede sync por site) |
 
 ---
 
