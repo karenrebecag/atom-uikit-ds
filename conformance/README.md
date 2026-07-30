@@ -36,6 +36,29 @@ pnpm conformance tokens     # una sección: tokens | css | layouts | registry | 
 | `css-contract.json` | CSS de componentes: sin literales de color, sin `!important`, font-family vía var, y **sin motion inventado** — `cubic-bezier()`/`linear()`/duraciones literales NUEVOS fallan (las curvas firmadas existentes viven en baseline hasta su tokenización W6). Baseline ratchet de deuda existente |
 | `layout-contract.json` | layouts structure-only: sin literales de color ni font-family; toda clase del html existe en el DS; slots bien formados; `components[]` ⊆ `registryDependencies`; display sobre componentes solo `none` o el display propio del átomo (mapa `componentDisplay`) |
 | `budgets.json` | performance: peso raw/gzip de los artefactos `/v1` y de las fuentes. Subir un budget es un cambio consciente de ESTE archivo |
+| `../public-dist/channel.json` | **pipeline de distribución**: qué artefactos publica `/v1` y de qué paquete sale cada uno. Lo verifica `scripts/check-distribution.mjs` (sección `distribution`) |
+
+### La sección `distribution`
+
+Los budgets vigilan el PESO de lo que se publica; esta sección vigila que la MAQUINARIA
+que lo publica sea coherente. Todo se deriva de `public-dist/channel.json`: agregar un
+artefacto al canal es editar ese archivo, y el gate dice qué falta ajustar en el resto.
+
+Cada check existe porque el fallo que previene ya ocurrió (todos el 2026-07-30, en una
+sola sesión):
+
+| Check | Fallo real que previene |
+|---|---|
+| Quien consume build-output ajeno lo declara `workspace:*` | `public-dist` no declaraba NINGUNA dep pese a consumir tokens y css (regla 9 de CLAUDE.md) |
+| El lockfile conoce esas deps | declarar una dep sin `pnpm install --lockfile-only` revienta el CI, que instala con `--frozen-lockfile` |
+| `vercel.json` buildCommand compila cada paquete origen | el deploy moría en el `requireFile` del artefacto nuevo |
+| El workflow compila cada paquete origen | idem |
+| El workflow se dispara con las rutas de cada paquete origen + `pnpm-lock.yaml` | el commit que arreglaba el lockfile no disparó deploy y el canal quedó sin publicar |
+| Los artefactos declarados llegan a `out/v1` | `/v1` sirvió solo CSS durante meses; nadie lo notó hasta que Webflow necesitó el JS |
+
+**Prueba de aceptación:** un gate que no falla con un bug conocido no es un gate. Al
+escribirlo se revirtió cada uno de esos seis fixes por separado y el gate los cazó 7/7
+(el séptimo es el artefacto ausente del canal ensamblado).
 
 ## Contrato con los agentes
 

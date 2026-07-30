@@ -12,6 +12,7 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSy
 import { join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
+import { checkDistribution } from './check-distribution.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const CONF = join(ROOT, 'conformance');
@@ -356,6 +357,7 @@ const SECTIONS = {
   layouts: sectionLayouts,
   registry: sectionRegistry,
   budgets: sectionBudgets,
+  distribution: () => checkDistribution({ fail, ok, note }),
 };
 
 const pick = process.argv[2];

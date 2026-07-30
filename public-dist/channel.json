@@ -1,0 +1,46 @@
+{
+  "$comment": "FUENTE DE VERDAD de los inputs del canal /v1. build.mjs copia desde aquí y scripts/check-distribution.mjs verifica que TODO el pipeline esté de acuerdo con esta lista: los workspace deps de quien consume, el buildCommand de Vercel, los steps del workflow y sus triggers. Agregar un artefacto = agregarlo aquí y nada más; el gate dirá qué falta ajustar. Nunca duplicar esta lista en otro archivo.",
+  "major": "v1",
+  "consumer": "public-dist",
+  "artifacts": [
+    { "out": "tokens.css", "from": "@atom-uikit/css", "path": "packages/css/dist/tokens.css" },
+    { "out": "foundation.css", "from": "@atom-uikit/css", "path": "packages/css/dist/foundation.css" },
+    { "out": "atom.css", "from": "@atom-uikit/css", "path": "packages/css/dist/atom.css" },
+    { "out": "embed.css", "from": "@atom-uikit/css", "path": "packages/css/dist/embed.css" },
+    {
+      "out": "tokens.json",
+      "from": "@atom-uikit/tokens",
+      "path": "packages/tokens/build/json/tokens.json"
+    },
+    {
+      "out": "tokens-nested.json",
+      "from": "@atom-uikit/tokens",
+      "path": "packages/tokens/build/json/tokens-nested.json"
+    },
+    {
+      "out": "animations.js",
+      "from": "@atom-uikit/animations",
+      "path": "packages/animations/dist/atom-animations.js"
+    }
+  ],
+  "fonts": {
+    "from": "@atom-uikit/css",
+    "dist": "packages/css/dist/fonts",
+    "src": "packages/css/src/fonts"
+  },
+  "packageDirs": {
+    "@atom-uikit/css": "packages/css",
+    "@atom-uikit/tokens": "packages/tokens",
+    "@atom-uikit/animations": "packages/animations"
+  },
+  "pipeline": {
+    "workflow": ".github/workflows/deploy-public-dist.yml",
+    "vercelConfig": "public-dist/vercel.json",
+    "$extraTriggerPaths": "Rutas que deben disparar el deploy además de las de cada paquete origen. pnpm-lock.yaml está porque un lockfile distinto puede compilar artefactos distintos (falló así el 2026-07-30).",
+    "extraTriggerPaths": [
+      "public-dist/**",
+      "pnpm-lock.yaml",
+      ".github/workflows/deploy-public-dist.yml"
+    ]
+  }
+}

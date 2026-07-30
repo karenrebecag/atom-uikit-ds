@@ -26,8 +26,6 @@ const OUT = resolve(PKG, 'out', MAJOR);
 const DEPLOY = resolve(PKG, 'deploy');
 
 const cssDist = resolve(ROOT, 'packages/css/dist');
-const animationsDist = resolve(ROOT, 'packages/animations/dist');
-const tokensJson = resolve(ROOT, 'packages/tokens/build/json');
 const fontsSrc = resolve(ROOT, 'packages/css/src/fonts');
 const fontsDist = resolve(cssDist, 'fonts');
 
@@ -39,30 +37,22 @@ function requireFile(path, hint) {
   }
 }
 
-requireFile(join(cssDist, 'tokens.css'), 'Run: pnpm --filter @atom-uikit/css build');
-requireFile(join(cssDist, 'foundation.css'), 'Run: pnpm --filter @atom-uikit/css build');
-requireFile(join(cssDist, 'atom.css'), 'Run: pnpm --filter @atom-uikit/css build');
-requireFile(join(cssDist, 'embed.css'), 'Run: pnpm --filter @atom-uikit/css build');
-requireFile(join(tokensJson, 'tokens.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
-requireFile(join(tokensJson, 'tokens-nested.json'), 'Run: pnpm --filter @atom-uikit/tokens build');
-requireFile(
-  join(animationsDist, 'atom-animations.js'),
-  'Run: pnpm --filter @atom-uikit/animations build'
-);
+// channel.json es la fuente de verdad de los inputs: scripts/check-distribution.mjs
+// verifica contra ella que deps, buildCommand, workflow y triggers estén de acuerdo.
+// Agregar un artefacto aquí = editar channel.json, no esta lista.
+const channel = JSON.parse(readFileSync(resolve(PKG, 'channel.json'), 'utf8'));
+
+for (const artifact of channel.artifacts) {
+  requireFile(resolve(ROOT, artifact.path), `Run: pnpm --filter ${artifact.from} build`);
+}
 
 rmSync(resolve(PKG, 'out'), { recursive: true, force: true });
 rmSync(DEPLOY, { recursive: true, force: true });
 mkdirSync(join(OUT, 'fonts'), { recursive: true });
 
-cpSync(join(cssDist, 'tokens.css'), join(OUT, 'tokens.css'));
-cpSync(join(cssDist, 'foundation.css'), join(OUT, 'foundation.css'));
-cpSync(join(cssDist, 'atom.css'), join(OUT, 'atom.css'));
-cpSync(join(cssDist, 'embed.css'), join(OUT, 'embed.css'));
-cpSync(join(tokensJson, 'tokens.json'), join(OUT, 'tokens.json'));
-cpSync(join(tokensJson, 'tokens-nested.json'), join(OUT, 'tokens-nested.json'));
-
-// Comportamientos de motion. GSAP queda fuera: es peer y se carga aparte.
-cpSync(join(animationsDist, 'atom-animations.js'), join(OUT, 'animations.js'));
+for (const artifact of channel.artifacts) {
+  cpSync(resolve(ROOT, artifact.path), join(OUT, artifact.out));
+}
 
 // Prefer hashed dist fonts (what foundation.css urls reference); fallback to src tree
 if (existsSync(fontsDist)) {
