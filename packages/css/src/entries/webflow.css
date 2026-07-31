@@ -7,11 +7,17 @@
  * `linear()`, delays `calc()` por índice de carácter y transiciones de varias
  * propiedades con retardos distintos.
  *
- * Este artefacto publica exactamente eso, y nada más. No trae tokens, ni reset,
- * ni componentes: cargarlo NO puede reestilizar el sitio anfitrión. Todos sus
- * selectores van bajo el namespace `ds-` (scripts/prefix-webflow.mjs), porque
- * cuatro nombres del DS ya están tomados en atomchat.io con otra semántica.
+ * Lleva dos cosas y nada más:
+ *   - las interacciones que el panel no puede declarar (button-text-swap)
+ *   - la neutralización de guardas anti-FOUC ajenas (webflow-reset), porque el
+ *     host puede esconder `[data-split]` esperando a SU js
+ *
+ * No trae tokens ni componentes, y cada regla exige una clase del DS: cargarlo
+ * NO puede reestilizar el sitio anfitrión. Todos los selectores van bajo el
+ * namespace `ds-` (scripts/prefix-webflow.mjs), porque cuatro nombres del DS ya
+ * están tomados en atomchat.io con otra semántica.
  *
  * Se carga junto a tokens.css, que es de donde salen las variables en runtime.
  */
+@import '../foundation/webflow-reset.css';
 @import '../components/buttons/button-text-swap.css';

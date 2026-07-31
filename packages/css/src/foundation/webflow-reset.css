@@ -1,0 +1,23 @@
+/**
+ * Neutraliza guardas anti-FOUC ajenas en el canal de Webflow.
+ *
+ * Mismo problema que resuelve embed-reset.css para el canal embed, distinto
+ * host: atomchat.io carga su propio sistema de split-text (loader.js de
+ * AtomWebflow_2026Site) que declara
+ *
+ *     [data-split="heading"] { visibility: hidden }
+ *
+ * y confía en SU js para revelar. Los módulos del DS usan el mismo atributo:
+ * parten el texto y lo animan a su posición final, pero nadie toca visibility,
+ * así que el titular queda invisible con la animación ya terminada.
+ *
+ * Se limita a elementos que llevan una clase de tipografía del DS: la guarda
+ * del host sigue viva para SUS titulares, que dependen de ella. Especificidad
+ * (0,2,0) contra el (0,1,0) del atributo suelto.
+ *
+ * Sin `!important` a propósito: si el host sube su propia especificidad hay que
+ * enterarse, no ganarle a ciegas.
+ */
+:is(.h1, .h2, .h3, .h4, .h5, .h6, .lead, .body)[data-split='heading'] {
+  visibility: visible;
+}
