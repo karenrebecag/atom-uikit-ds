@@ -122,7 +122,8 @@ export async function emitWebflowChannel(outDir, opts = {}) {
       continue;
     }
     if (result.artifact.unsupported?.some((u) => u.prop === 'motion')) {
-      log(`  [webflow] ${slug}: motion OMITTED — module lacks REQUIRED_HOOKS (emitted static)`);
+      const why = result.artifact.unsupported.find((u) => u.prop === 'motion')?.reason ?? '';
+      log(`  [webflow] ${slug}: motion OMITTED — ${why}`);
     }
 
     await fs.writeFile(

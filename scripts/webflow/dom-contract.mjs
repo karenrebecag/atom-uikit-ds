@@ -73,6 +73,7 @@ export async function loadDomContracts() {
     }
     byModule[file] = {
       hooks: [...mod.REQUIRED_HOOKS],
+      triggers: [...(mod.TRIGGER_HOOKS ?? [])],
       anatomy: [...(mod.REQUIRED_ANATOMY ?? [])],
       statesWrittenAsClasses: !!mod.STATES_WRITTEN_AS_CLASSES,
       gsapPlugins: [...(mod.GSAP_PLUGINS ?? [])],
@@ -110,6 +111,7 @@ function loadContractFromFile(file) {
   if (!hooks?.length) return null;
   return {
     hooks,
+    triggers: extractStringArray(src, 'TRIGGER_HOOKS') ?? [],
     anatomy: extractStringArray(src, 'REQUIRED_ANATOMY') ?? [],
     statesWrittenAsClasses: /STATES_WRITTEN_AS_CLASSES\s*=\s*!?0\s*,?\s*true|STATES_WRITTEN_AS_CLASSES\s*=\s*true/.test(
       src,
@@ -179,7 +181,8 @@ export function buildConsumeCss(item) {
  */
 export function countContractHooks(html, contract) {
   const src = String(html ?? '');
-  return contract.hooks.filter((h) =>
+  const pool = contract.triggers?.length ? contract.triggers : contract.hooks;
+  return pool.filter((h) =>
     new RegExp(`\\b${escapeRegExp(h)}(?=[\\s=/>])`).test(src),
   ).length;
 }
@@ -188,7 +191,16 @@ export function validateHtmlAgainstContract(html, contract) {
   const missing = [];
   const src = String(html ?? '');
 
+  const triggers = contract.triggers ?? [];
+  if (triggers.length) {
+    // Triggers alternativos: basta UNO presente (familias que comparten módulo)
+    const anyTrigger = triggers.some((h) =>
+      new RegExp(`\\b${escapeRegExp(h)}(?=[\\s=/>])`).test(src),
+    );
+    if (!anyTrigger) missing.push(`trigger:any-of(${triggers.join('|')})`);
+  }
   for (const hook of contract.hooks) {
+    if (triggers.includes(hook)) continue; // any-of ya evaluado
     const re = new RegExp(`\\b${escapeRegExp(hook)}(?=[\\s=/>])`);
     if (!re.test(src)) missing.push(`hook:${hook}`);
   }

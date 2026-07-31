@@ -6,9 +6,109 @@
     "payload": {
       "nodes": [
         {
-          "_id": "43b27471-0007-4ef3-8391-ef3391d243b2",
+          "_id": "43b27471-000c-46e1-8f99-6e1f991643b2",
           "text": true,
           "v": "Atom"
+        },
+        {
+          "_id": "43b27471-0009-4f13-8394-f13394f843b2",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "43b27471-000a-46c1-8f95-6c1f95f043b2",
+            "43b27471-000b-46d1-8f97-6d1f978343b2"
+          ],
+          "children": [
+            "43b27471-000c-46e1-8f99-6e1f991643b2"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-button-text",
+                "value": ""
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "43b27471-000f-4711-8f9d-711f9dcf43b2",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "43b27471-000d-46f1-8f9a-6f1f9aa943b2",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "43b27471-000a-46c1-8f95-6c1f95f043b2",
+            "43b27471-000e-4701-8f9c-701f9c3c43b2"
+          ],
+          "children": [
+            "43b27471-000f-4711-8f9d-711f9dcf43b2"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-button-text",
+                "value": ""
+              },
+              {
+                "name": "aria-hidden",
+                "value": "true"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "43b27471-0007-4ef3-8391-ef3391d243b2",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "43b27471-0008-4f23-8396-f233968b43b2"
+          ],
+          "children": [
+            "43b27471-0009-4f13-8394-f13394f843b2",
+            "43b27471-000d-46f1-8f9a-6f1f9aa943b2"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
         },
         {
           "_id": "43b27471-0005-4ed3-838e-ed338eac43b2",
@@ -57,6 +157,10 @@
               {
                 "name": "aria-busy",
                 "value": "false"
+              },
+              {
+                "name": "data-button-animate",
+                "value": ""
               },
               {
                 "name": "role",
@@ -130,6 +234,58 @@
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
+        },
+        {
+          "_id": "43b27471-0008-4f23-8396-f233968b43b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-button__inner",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: grid;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "43b27471-000a-46c1-8f95-6c1f95f043b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-button__text",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "grid-area: 1 / 1; will-change: transform;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "43b27471-000b-46d1-8f97-6d1f978343b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-is-default",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "43b27471-000e-4701-8f9c-701f9c3c43b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-is-hover",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
         }
       ],
       "assets": [],
@@ -188,7 +344,12 @@
       "https://atom-web-ds.vercel.app/v1/components.css",
       "https://atom-web-ds.vercel.app/v1/webflow.css"
     ],
-    "js": [],
+    "js": [
+      "https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js",
+      "https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js",
+      "https://atom-web-ds.vercel.app/v1/animations.js"
+    ],
+    "init": "window.__atomMotionCleanup = AtomMotion.initAll();",
     "tokens": [
       "background",
       "button-bg-primary",
@@ -219,7 +380,19 @@
       "ring-width",
       "shadow-none",
       "stroke-medium"
-    ]
+    ],
+    "domContract": {
+      "hooks": [
+        "data-button-animate",
+        "data-link-button-animate",
+        "data-toggle-group-animate",
+        "data-button-text"
+      ],
+      "anatomy": [
+        "[data-button-text]"
+      ],
+      "statesWrittenAsClasses": false
+    }
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
@@ -372,11 +545,6 @@
       "prop": "--char",
       "selector": ":root",
       "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
-    },
-    {
-      "prop": "motion",
-      "selector": "button",
-      "reason": "motion opt-in hooks not present in canonical render (e.g. animated=false default) — emitted static; set meta.webflow.previewProps to enable"
     }
   ]
 }

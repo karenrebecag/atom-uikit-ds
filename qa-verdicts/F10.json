@@ -30,8 +30,8 @@
     },
     {
       "id": "F10-C6",
-      "status": "pending",
-      "evidence": "PENDIENTE decisión Karen: previewProps animated:true para familia button. Mientras: pegan estáticos (opt-in no activado) — correcto por política."
+      "status": "pass",
+      "evidence": "Decisión Karen: animaciones ON por default en paste, off por valor de atributo (mecanismo DS existente). Implementado: previewProps animated:true en familia; TRIGGER_HOOKS any-of vs anatomía all-of (fix: exigir los 3 triggers alternos excluía la familia); GSAP_PLUGINS de button-hover corregido (+SplitText — sin él el swap moría en connected frescos). Resultado: button ANIMADO en canal (gsap+SplitText+contrato); icon-button/link-button/toggle-group estáticos honestos (icon: behavior no lo targetea; link: su React no emite el hook; toggle-group: children React → wave 2 previewChildren). E2E paste animado pendiente de Karen."
     },
     {
       "id": "F10-C7",

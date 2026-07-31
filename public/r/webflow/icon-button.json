@@ -52,6 +52,10 @@
                 "value": "false"
               },
               {
+                "name": "data-icon-button-animate",
+                "value": ""
+              },
+              {
                 "name": "role",
                 "value": "button"
               }

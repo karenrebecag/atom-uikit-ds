@@ -256,7 +256,13 @@ Reglas duras del modo connected (paste-only desde 2026-07-31):
    mismo build deduplica sin rename. Nota: los modificadores `--` (ds-badge--neutral)
    entran por paste programático — verificado que publican y pintan; no se
    tipean en el panel (los STATE_RENAMES del canal master no aplican aquí).
-7. **Componentizar siempre** (gobernanza, no aislamiento): el paste va a un
+7. **Motion en paste: ON por default, off por atributo** (decisión Karen
+   2026-07-31): los componentes con behavior contratado pegan con su hook de
+   animación presente (`data-button-animate=""` = activado). Desactivar por
+   instancia: en el panel del Designer, poner el VALOR del atributo en `false`
+   (el DS apaga por valor, no solo por ausencia — mecanismo ya existente).
+   Triggers de familia son any-of (TRIGGER_HOOKS); anatomía all-of.
+8. **Componentizar siempre** (gobernanza, no aislamiento): el paste va a un
    sitio/página master, se convierte en Webflow Component (`Atom / <Nombre>`)
    y se distribuye como instancias — vía Library del workspace (mismo modelo
    master + Shared Library del ADR 009). Nunca pegar directo en páginas de

@@ -6,19 +6,19 @@
     "payload": {
       "nodes": [
         {
-          "_id": "f44765c8-0006-4b9c-81cf-b9c1cf40f447",
+          "_id": "f44765c8-0007-4bac-81d0-bac1d0d3f447",
           "text": true,
           "v": "Atom"
         },
         {
-          "_id": "f44765c8-0004-4bbc-81d2-bbc1d266f447",
+          "_id": "f44765c8-0005-4bcc-81d3-bcc1d3f9f447",
           "type": "Block",
           "tag": "span",
           "classes": [
-            "f44765c8-0005-4bcc-81d3-bcc1d3f9f447"
+            "f44765c8-0006-4b9c-81cf-b9c1cf40f447"
           ],
           "children": [
-            "f44765c8-0006-4b9c-81cf-b9c1cf40f447"
+            "f44765c8-0007-4bac-81d0-bac1d0d3f447"
           ],
           "data": {
             "tag": "span",
@@ -42,10 +42,11 @@
           "tag": "a",
           "classes": [
             "f44765c8-0002-4bdc-81d5-bdc1d58cf447",
-            "f44765c8-0003-4bec-81d7-bec1d71ff447"
+            "f44765c8-0003-4bec-81d7-bec1d71ff447",
+            "f44765c8-0004-4bbc-81d2-bbc1d266f447"
           ],
           "children": [
-            "f44765c8-0004-4bbc-81d2-bbc1d266f447"
+            "f44765c8-0005-4bcc-81d3-bcc1d3f9f447"
           ],
           "data": {
             "displayName": "",
@@ -96,7 +97,20 @@
           "selector": null
         },
         {
-          "_id": "f44765c8-0005-4bcc-81d3-bcc1d3f9f447",
+          "_id": "f44765c8-0004-4bbc-81d2-bbc1d266f447",
+          "fake": false,
+          "type": "class",
+          "name": "ds-link-button--animated",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "f44765c8-0006-4b9c-81cf-b9c1cf40f447",
           "fake": false,
           "type": "class",
           "name": "ds-link-button__text",

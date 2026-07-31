@@ -173,6 +173,11 @@
         }
       ],
       "usage": "import { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton variant=\"ghost\" size=\"m\" aria-label=\"Close\" />"
+    },
+    "webflow": {
+      "previewProps": {
+        "animated": true
+      }
     }
   }
 }

@@ -10,11 +10,27 @@ export const REQUIRED_HOOKS = [
   "data-button-text"
 ] as const;
 
+/**
+ * Triggers ALTERNATIVOS (any-of): cada componente de la familia usa solo el
+ * suyo (button vs link-button vs toggle-group). Sin esta distinción, el
+ * validador exigía los tres en un mismo componente y excluía a toda la
+ * familia (regresión C6, auditoría 2026-07-31). La anatomía all-of queda en
+ * REQUIRED_HOOKS ∖ TRIGGER_HOOKS (data-button-text).
+ */
+export const TRIGGER_HOOKS = [
+  "data-button-animate",
+  "data-link-button-animate",
+  "data-toggle-group-animate"
+] as const;
+
 export const REQUIRED_ANATOMY = [
   "[data-button-text]"
 ] as const;
 
-export const GSAP_PLUGINS = [] as const;
+// SplitText es REQUERIDO: el módulo lee globalThis.SplitText y hace no-op con
+// warning si falta (verificado en source). Sin declararlo, el manifest del
+// canal Webflow omitía el script y el swap moría en sitios connected frescos.
+export const GSAP_PLUGINS = ['SplitText'] as const;
 
 export const STATES_WRITTEN_AS_CLASSES = false;
 

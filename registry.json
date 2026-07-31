@@ -188,6 +188,11 @@
             }
           ],
           "usage": "import { Button } from '@/components/atoms/Button';\n\n<Button variant=\"primary\" size=\"m\" animated>\n  Save\n</Button>"
+        },
+        "webflow": {
+          "previewProps": {
+            "animated": true
+          }
         }
       }
     },
@@ -279,6 +284,11 @@
             }
           ],
           "usage": "import { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton variant=\"ghost\" size=\"m\" aria-label=\"Close\" />"
+        },
+        "webflow": {
+          "previewProps": {
+            "animated": true
+          }
         }
       }
     },
@@ -348,6 +358,11 @@
             }
           ],
           "usage": "import { LinkButton } from '@/components/atoms/LinkButton';\n\n<LinkButton href=\"/docs\" size=\"default\" animated>\n  Read the docs\n</LinkButton>"
+        },
+        "webflow": {
+          "previewProps": {
+            "animated": true
+          }
         }
       }
     },
@@ -1866,7 +1881,8 @@
       "composable": [
         "ToggleGroup",
         "ToggleGroupItem"
-      ]
+      ],
+      "meta": {}
     },
     {
       "name": "typography",

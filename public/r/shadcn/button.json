@@ -105,6 +105,11 @@
         }
       ],
       "usage": "import { Button } from '@/components/atoms/Button';\n\n<Button variant=\"primary\" size=\"m\" animated>\n  Save\n</Button>"
+    },
+    "webflow": {
+      "previewProps": {
+        "animated": true
+      }
     }
   }
 }

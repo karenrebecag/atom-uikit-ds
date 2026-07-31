@@ -85,6 +85,11 @@
             }
           ],
           "usage": "import { Button } from '@/components/atoms/Button';\n\n<Button variant=\"primary\" size=\"m\" animated>\n  Save\n</Button>"
+        },
+        "webflow": {
+          "previewProps": {
+            "animated": true
+          }
         }
       },
       "files": [
@@ -187,6 +192,11 @@
             }
           ],
           "usage": "import { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton variant=\"ghost\" size=\"m\" aria-label=\"Close\" />"
+        },
+        "webflow": {
+          "previewProps": {
+            "animated": true
+          }
         }
       },
       "files": [
@@ -257,6 +267,11 @@
             }
           ],
           "usage": "import { LinkButton } from '@/components/atoms/LinkButton';\n\n<LinkButton href=\"/docs\" size=\"default\" animated>\n  Read the docs\n</LinkButton>"
+        },
+        "webflow": {
+          "previewProps": {
+            "animated": true
+          }
         }
       },
       "files": [
@@ -1530,6 +1545,7 @@
         "actions"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {},
       "files": [
         {
           "path": "components/atoms/ToggleGroup.tsx",
