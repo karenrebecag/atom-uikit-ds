@@ -210,3 +210,43 @@ Ver `docs/decisions/`:
 - [ ] Storybook OK para componentes tocados  
 - [ ] Changeset si aplica  
 - [ ] No secretos en el diff  
+
+---
+
+## Release de componente (checklist de 1 página) — F9c
+
+Después de **crear** el componente (CSS + React + `registry.json`):
+
+### 1. Empaquetar
+```bash
+pnpm --filter @atom-uikit/components-react build   # si cambió React
+pnpm --filter @atom-uikit/css build               # si cambió CSS
+pnpm build:registry                               # public/r + shadcn/ + webflow/
+```
+Commit: `registry.json` + `public/r/**` (+ sources). Merge a `main`.
+
+### 2. Qué se dispara solo
+| Path en el push | Workflow / efecto |
+|-----------------|-------------------|
+| `public/r/**` | `sync-docs` → deploy hook docs → sync registry → `/api/r` fresco |
+| `packages/css|tokens|animations/**` | `deploy-public-dist` → `/v1/*` en CDN |
+| Solo MCP server | deploy Vercel del MCP (otro repo) |
+
+MCP datos: cache **≤5 min** tras docs live. No hace falta redeploy MCP.
+
+### 3. Smoke
+```bash
+ATOM_REGISTRY_KEY=… pnpm smoke:publish chip
+```
+Tabla esperada: `/api/r/{slug}.json` ✓, `/v1/components.css` ✓; webflow ✓ si el emit no lo excluyó.
+
+### 4. Qué NO esperar
+- Página CMS nueva (si no hay doc editorial, F9 sirve **registry-first** en `/docs/components/{category}/{slug}`).
+- Storybook preview sin story existente (aviso; no bloquea).
+- Paste en Webflow sin acción humana.
+- `/v1` actualizado si solo cambió TSX sin CSS.
+
+### 5. Consumo
+- MCP: `atom_uikit_component` / `source` / `format: "webflow"`
+- Docs: tab Webflow si hay artefacto
+- shadcn: `npx shadcn add @atom/{slug}` (auth en components.json)

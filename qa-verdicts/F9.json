@@ -1,0 +1,24 @@
+{
+  "feature": "F9",
+  "date": "2026-07-31",
+  "commit": "wt-pending",
+  "checks": [
+    {
+      "id": "F9-C7",
+      "status": "pass",
+      "evidence": "pnpm smoke:publish + docs/RUNBOOK.md release section"
+    },
+    {
+      "id": "F9-C5",
+      "status": "pending",
+      "evidence": "editorial export not run"
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": [
+    "F9-C5"
+  ],
+  "notes": [
+    "Auditoría 2026-07-31: (1) smoke parcheado — el tramo webflow ahora es REQUERIDO si el slug figura como emitido en el índice del canal (excluido-por-diseño ≠ falta-propagar; además el primer parche referenciaba una variable inexistente y el try lo silenciaba — corregido y probado contra prod: input n/a, marquee requerido ✓). (2) HALLAZGO MAYOR: cobertura de meta.agent 2/59 (solo pilotos F3) — la condición STOP del spec estaba activada; la plantilla degrada honesta (páginas con descripción F1 + props del discovery + source + WebflowTab) pero sin usage/tooltips/gotchas. La OLA DE MANIFESTS (57 componentes) es ahora la tarea de mayor palanca del programa."
+  ]
+}

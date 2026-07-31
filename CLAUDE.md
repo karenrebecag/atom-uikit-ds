@@ -1014,3 +1014,6 @@ Radio, Chip, Tag, Slider, Divider, Skeleton, Spinner, Field, Accordion, Avatar, 
 - Skipping the semantic layer (component tokens must NOT reference primitives directly)
 - Publishing without a changeset
 - Modifying build output manually
+
+## Release
+Operación y smoke post-merge: [docs/RUNBOOK.md](docs/RUNBOOK.md) (sección *Release de componente*). `pnpm smoke:publish <slug>`.

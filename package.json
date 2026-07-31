@@ -17,7 +17,8 @@
     "sync:webflow": "node scripts/sync-webflow.mjs",
     "test": "pnpm --filter @atom-uikit/components-react test",
     "test:components": "pnpm --filter @atom-uikit/components-react test",
-    "test:visual": "pnpm --filter @atom-uikit/storybook test:visual"
+    "test:visual": "pnpm --filter @atom-uikit/storybook test:visual",
+    "smoke:publish": "node scripts/smoke-publish.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
