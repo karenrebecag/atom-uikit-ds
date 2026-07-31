@@ -1,7 +1,7 @@
 {
   "feature": "F6",
   "date": "2026-07-31",
-  "commit": "wt-pending (rev 2 — real-dump corrections + artifact channel)",
+  "commit": "deployed (rev 2 — real-dump corrections + artifact channel)",
   "checks": [
     {
       "id": "F6-C1",
@@ -12,8 +12,8 @@
     {
       "id": "F6-C2",
       "desc": "Real Designer paste of 3 pilots.",
-      "status": "pending",
-      "evidence": "Requires Karen: paste badge/divider/spinner clipboard into Webflow test site; screenshots desktop+tablet+mobile. Artifacts ready under public/r/webflow/."
+      "status": "pass",
+      "evidence": "Karen 2026-07-31: paste connected en ds-lab (atomchat-staging) con ds- namespace + canal /v1 desplegado — pinta correcto; flujo paste→Component→publish validado. Rename resuelto por namespace + regla paste-once/componentizar."
     },
     {
       "id": "F6-C3",
@@ -46,8 +46,8 @@
       "evidence": "DS webflow tests 9/9; MCP pnpm test 212 passed, 0 failed; tsc clean"
     }
   ],
-  "verdict": "conditional",
-  "blocking": ["F6-C2 manual Designer paste — Karen"],
+  "verdict": "approved",
+  "blocking": [],
   "notes": [
     "Audit fixes applied: (1) twin generator+pilots deleted from MCP — DS emits public/r/webflow/{slug}.json in build:registry, MCP serves via fetchWebflowArtifact; (2) C1 now validated against a real Designer dump, not algorithm fixtures; (3) media-query coverage added (breakpoint variants tested + reduced-motion to head).",
     "Docs sync generalized to shadcn/ + webflow/ channels; /api/r/[...name] already serves nested.",
