@@ -1,0 +1,56 @@
+{
+  "feature": "F6",
+  "date": "2026-07-31",
+  "commit": "wt-pending (rev 2 — real-dump corrections + artifact channel)",
+  "checks": [
+    {
+      "id": "F6-C1",
+      "desc": "Generator matches REAL Designer dump key-for-key (no longer circular).",
+      "status": "pass",
+      "evidence": "fixtures/designer/testimonial-copy-json.json (real dump, copy-json.webflow.io) + test 'F6-C1 designer contract': payload/style/node/text keys exact, classes→style _ids, UUID-shaped ids, breakpoint naming (small). node --test 9/9."
+    },
+    {
+      "id": "F6-C2",
+      "desc": "Real Designer paste of 3 pilots.",
+      "status": "pending",
+      "evidence": "Requires Karen: paste badge/divider/spinner clipboard into Webflow test site; screenshots desktop+tablet+mobile. Artifacts ready under public/r/webflow/."
+    },
+    {
+      "id": "F6-C3",
+      "desc": "Keyframes AND non-breakpoint @media in head block.",
+      "status": "pass",
+      "evidence": "spinner artifact headCss carries @keyframes + prefers-reduced-motion (real registry CSS); tests F6-C3 + F6-C4b + MCP webflow-source"
+    },
+    {
+      "id": "F6-C4",
+      "desc": "Unsupported props reported, no throw; unmapped media moved to head, not dropped.",
+      "status": "pass",
+      "evidence": "container-type → unsupported[]; @media no-breakpoint → headCss + unsupported reason 'moved to head Custom Code'"
+    },
+    {
+      "id": "F6-C5",
+      "desc": "MCP payload risk + steps + schema.",
+      "status": "pass",
+      "evidence": "tests/webflow-source.test.ts F6-C5 (artifact-served)"
+    },
+    {
+      "id": "F6-C6",
+      "desc": "Security review of generator.",
+      "status": "pass",
+      "evidence": "Generator DS-only (twin deleted from MCP); clipboard always JSON.stringify(structured); MCP serves registry artifact verbatim, validates shape via isWebflowArtifact before formatting."
+    },
+    {
+      "id": "F6-C7",
+      "desc": "Full suites green.",
+      "status": "pass",
+      "evidence": "DS webflow tests 9/9; MCP pnpm test 212 passed, 0 failed; tsc clean"
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": ["F6-C2 manual Designer paste — Karen"],
+  "notes": [
+    "Audit fixes applied: (1) twin generator+pilots deleted from MCP — DS emits public/r/webflow/{slug}.json in build:registry, MCP serves via fetchWebflowArtifact; (2) C1 now validated against a real Designer dump, not algorithm fixtures; (3) media-query coverage added (breakpoint variants tested + reduced-motion to head).",
+    "Docs sync generalized to shadcn/ + webflow/ channels; /api/r/[...name] already serves nested.",
+    "Karen's own hover/nested captures remain welcome as a second designer fixture source (CAPTURE.md)."
+  ]
+}

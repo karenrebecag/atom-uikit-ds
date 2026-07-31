@@ -208,3 +208,57 @@ same collection — never a separate collection. Modes travel with the Library.
 - ADR 003 — variables via plan + MCP, no REST
 - ADR 009 — master + Shared Library model (supersedes per-site sync)
 - W6 — motion / interactions (deferred)
+
+---
+
+## Modos de distribución del paste XscpData (decisión de negocio 2026-07-31)
+
+El modo NO lo decide qué tan técnico es el usuario: lo decide **dónde vive el
+loop de iteración**. Donde una AI (o un dev) puede iterar conversacionalmente
+("cambia el color de los botones"), necesita OWNERSHIP del código. Donde nadie
+itera (Webflow es consumo no-code), la dependencia viva gana: se ve Atom siempre
+y se actualiza sola.
+
+| Canal | ¿Quién itera? | Modo |
+|---|---|---|
+| MCP (Claude Code / Cursor / claude.ai) | La AI, conversacionalmente | Ownership — `atom_uikit_source` entrega código copiado editable |
+| CLI `atom-uikit add` / canal shadcn | Dev o AI en el repo | Ownership |
+| Paste Webflow (`format: "webflow"`) | Nadie | **`mode: "connected"` (DEFAULT)** — el sitio linkea `/v1/tokens.css` una vez; lo pegado consume tokens VIVOS |
+| Paste Webflow en sitio ajeno (sin acceso a custom code global) | Nadie | `mode: "standalone"` — head autocontenido, tokens congelados al build |
+| Botón "Copy for Webflow" en la docu (wave 2) | Nadie | connected |
+
+Reglas duras del modo connected (paste-only desde 2026-07-31):
+
+1. Setup por sitio (UNA vez): dos links en el head —
+   `/v1/tokens.css` (valores vivos) + `/v1/components.css` (pintura completa
+   sin scope: keyframes, selectores compuestos de variante, hijos svg, custom
+   props — todo lo que el panel del Designer no puede expresar).
+   Tras el setup, TODO componente es copy → paste → publicar. Cero CSS por
+   componente, para siempre; un release del DS re-afina lo ya pegado.
+2. **NUNCA pegar bloques `:root` ni CSS por componente en un sitio connected** —
+   el canal lo cubre; pegarlo congela valores y pisa la escala fluida `--u`
+   (verificado en ds-lab 2026-07-31).
+3. Los styles nativos del clipboard son el PREVIEW del canvas (el custom code
+   no renderiza dentro del Designer); la verdad publicada es el canal. Por eso
+   las ediciones del panel sobre propiedades que el canal también declara no se
+   ven al publicar — correcto por decisión de negocio: en Webflow nadie itera.
+4. `embed.css` es OTRO modo (zona `.atom-embed` para migraciones parciales con
+   CSS legacy). No combinar con paste nativo dentro del wrapper.
+5. El artefacto (`public/r/webflow/{slug}.json`) trae `headCss` y `tokensCss`
+   separados — solo el modo standalone los pega (autocontenido, sitios ajenos);
+   connected no pega ninguno.
+6. **Aislamiento por namespace (`ds-`), 2026-07-31**: las clases del clipboard
+   y `components.css` viajan con el MISMO prefijo `ds-` que ya usa webflow.css
+   (transform AST `prefix-webflow.mjs`, ADR 006 — una sola fuente del naming).
+   Un sitio sucio no puede colisionar con `ds-badge` → el rename ("divider 2")
+   que rompía el contrato con el canal queda imposible por diseño, y el canal
+   no puede reestilizar al host. La emisión además es determinista: re-pegar el
+   mismo build deduplica sin rename. Nota: los modificadores `--` (ds-badge--neutral)
+   entran por paste programático — verificado que publican y pintan; no se
+   tipean en el panel (los STATE_RENAMES del canal master no aplican aquí).
+7. **Componentizar siempre** (gobernanza, no aislamiento): el paste va a un
+   sitio/página master, se convierte en Webflow Component (`Atom / <Nombre>`)
+   y se distribuye como instancias — vía Library del workspace (mismo modelo
+   master + Shared Library del ADR 009). Nunca pegar directo en páginas de
+   producción: un cambio de anatomía del DS = re-pegar UNA vez en el main
+   component y todas las instancias siguen.
