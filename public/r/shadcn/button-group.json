@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "type": "registry:component",
+  "title": "ButtonGroup",
+  "description": "Buttons sit flush so related actions read as one control. Use for aligned toolbars, not free-floating CTAs.",
+  "categories": [
+    "actions"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/ButtonGroup.tsx",
+      "type": "registry:component",
+      "content": "import { forwardRef, type ReactNode } from 'react';\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\n/* ---- Group ---- */\n\nexport type ButtonGroupProps = {\n  orientation?: 'horizontal' | 'vertical';\n  'aria-label'?: string;\n  children: ReactNode;\n  className?: string;\n};\n\nexport const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(\n  ({ orientation = 'horizontal', children, className, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        role=\"group\"\n        className={cn('button-group', orientation === 'vertical' && 'button-group--vertical', className)}\n        {...props}\n      >\n        {children}\n      </div>\n    );\n  },\n);\n\nButtonGroup.displayName = 'ButtonGroup';\n\n/* ---- Separator ---- */\n\nexport type ButtonGroupSeparatorProps = {\n  className?: string;\n};\n\nexport function ButtonGroupSeparator({ className }: ButtonGroupSeparatorProps) {\n  return <div aria-hidden=\"true\" className={cn('button-group__separator', className)} />;\n}\n\n/* ---- Text ---- */\n\nexport type ButtonGroupTextProps = {\n  children: ReactNode;\n  className?: string;\n};\n\nexport function ButtonGroupText({ children, className }: ButtonGroupTextProps) {\n  return <span className={cn('button-group__text', className)}>{children}</span>;\n}\n"
+    },
+    {
+      "path": "styles/components/button-group.css",
+      "type": "registry:file",
+      "target": "styles/atom-uikit/button-group.css",
+      "content": "/* -------------------------------------------------------------------------\n   Button Group\n\n   Joins adjacent buttons into a cohesive unit.\n   Removes inner radius, collapses inner borders.\n\n   Orientation: horizontal (default), vertical\n   Parts: .button-group, .button-group__separator, .button-group__text\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.button-group {\n  display: inline-flex;\n  align-items: stretch;\n}\n\n.button-group--vertical {\n  flex-direction: column;\n}\n\n/* ---- Horizontal: radius + border collapse ---- */\n\n.button-group:not(.button-group--vertical) > .button,\n.button-group:not(.button-group--vertical) > .icon-button {\n  border-radius: 0;\n}\n\n.button-group:not(.button-group--vertical) > .button:first-child,\n.button-group:not(.button-group--vertical) > .icon-button:first-child {\n  border-radius: var(--radius-md) 0 0 var(--radius-md);\n}\n\n.button-group:not(.button-group--vertical) > .button:last-child,\n.button-group:not(.button-group--vertical) > .icon-button:last-child {\n  border-radius: 0 var(--radius-md) var(--radius-md) 0;\n}\n\n.button-group:not(.button-group--vertical) > .button + .button,\n.button-group:not(.button-group--vertical) > .icon-button + .icon-button,\n.button-group:not(.button-group--vertical) > .button + .icon-button,\n.button-group:not(.button-group--vertical) > .icon-button + .button {\n  margin-left: calc(-1 * var(--stroke-hairline));\n}\n\n/* ---- Vertical: radius + border collapse ---- */\n\n.button-group--vertical > .button,\n.button-group--vertical > .icon-button {\n  border-radius: 0;\n  width: 100%;\n}\n\n.button-group--vertical > .button:first-child,\n.button-group--vertical > .icon-button:first-child {\n  border-radius: var(--radius-md) var(--radius-md) 0 0;\n}\n\n.button-group--vertical > .button:last-child,\n.button-group--vertical > .icon-button:last-child {\n  border-radius: 0 0 var(--radius-md) var(--radius-md);\n}\n\n.button-group--vertical > .button + .button,\n.button-group--vertical > .icon-button + .icon-button,\n.button-group--vertical > .button + .icon-button,\n.button-group--vertical > .icon-button + .button {\n  margin-top: calc(-1 * var(--stroke-hairline));\n}\n\n/* ---- Separator ---- */\n\n.button-group__separator {\n  align-self: stretch;\n  background-color: var(--border);\n}\n\n.button-group:not(.button-group--vertical) > .button-group__separator {\n  width: var(--stroke-hairline);\n}\n\n.button-group--vertical > .button-group__separator {\n  height: var(--stroke-hairline);\n}\n\n/* ---- Text ---- */\n\n.button-group__text {\n  display: inline-flex;\n  align-items: center;\n  padding: 0 var(--spacing-3);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  color: var(--muted-foreground);\n  white-space: nowrap;\n  border: var(--stroke-hairline) solid var(--border);\n  background-color: var(--muted);\n}\n"
+    }
+  ],
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+}

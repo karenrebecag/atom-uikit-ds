@@ -7,13 +7,50 @@ How to add, update, and maintain components in the ATOM UIKit registry.
 Components are distributed via a private shadcn-style registry, not npm. The pipeline:
 
 ```
-registry.json (internal) -> build:registry -> public/r/*.json (shadcn-compatible)
+registry.json (internal) -> build:registry -> public/r/*.json (canónico Atom)
                                 |
                     extract-component-metadata.ts
-                    (auto-extracts atom.discovery + atom.implementation)
+                    + emit-shadcn-registry.mjs
+                                |
+                    public/r/shadcn/{registry.json, <item>.json}
 ```
 
-After `build:registry`, the deploy hook triggers the docs site rebuild, which syncs the JSONs and serves them via API. The MCP server fetches from that API.
+After `build:registry`, the deploy hook triggers the docs site rebuild, which syncs the JSONs (including `shadcn/`) and serves them via API. The MCP server fetches from that API.
+
+## shadcn CLI channel (F5)
+
+Derived channel for `npx shadcn add` (official schema). **Not** a second authoring
+source — never edit `public/r/shadcn/*` by hand.
+
+### components.json (consumer)
+
+Point a private registry at the served path (same Bearer as the Atom registry):
+
+```json
+{
+  "registries": {
+    "@atom": {
+      "url": "https://uikit.atomchat.io/api/r/shadcn/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${ATOM_REGISTRY_KEY}"
+      }
+    }
+  }
+}
+```
+
+Local filesystem (dev only):
+
+```json
+"url": "file:///absolute/path/to/atom-uikit-ds/public/r/shadcn/{name}.json"
+```
+
+```bash
+npx shadcn add @atom/button
+```
+
+CSS lands under `styles/atom-uikit/*.css` with `target` set for **global** import
+(BEM — do not convert to CSS Modules). Import those sheets from `app/globals.css`.
 
 ## Adding a new component
 

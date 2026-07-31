@@ -1,0 +1,42 @@
+{
+  "feature": "F5",
+  "date": "2026-07-31",
+  "commit": "wt-pending",
+  "checks": [
+    {
+      "id": "F5-C1",
+      "desc": "emit public/r/shadcn/* validated",
+      "status": "pass",
+      "evidence": "build:registry → 49 items; emit-shadcn-registry.test.mjs 6 pass"
+    },
+    {
+      "id": "F5-C2",
+      "desc": "e2e shadcn add",
+      "status": "pass",
+      "evidence": "Local HTTP e2e: add @atom/badge + @atom/button; CSS under styles/atom-uikit/; gsap installed. Production serving of /api/r/shadcn/* required catch-all route (docs) — see F5-C2-prod note"
+    },
+    {
+      "id": "F5-C3",
+      "desc": "installed React matches canónico",
+      "status": "pass",
+      "evidence": "button.tsx byte-identical to public/r/button.json content"
+    },
+    {
+      "id": "F5-C4",
+      "desc": "exclusions logged; 120 = 49 + 71",
+      "status": "pass",
+      "evidence": "build log summary"
+    },
+    {
+      "id": "F5-C5",
+      "desc": "meta.agent intact",
+      "status": "pass",
+      "evidence": "deepEqual canónico vs shadcn/button.json"
+    }
+  ],
+  "verdict": "approved",
+  "blocking": [],
+  "notes": [
+    "F5-C2 production path blocked until docs: (1) sync-registry copies shadcn/, (2) /api/r/[...name] catch-all ships, (3) curl authenticated post-deploy."
+  ]
+}

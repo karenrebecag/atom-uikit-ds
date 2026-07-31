@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:component",
+  "title": "Skeleton",
+  "description": "Grey shapes shimmer where content will land. First paint placeholders for cards, text, and avatars.",
+  "categories": [
+    "indicators"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Skeleton.tsx",
+      "type": "registry:component",
+      "content": "import { type HTMLAttributes } from 'react';\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport type SkeletonProps = {\n  variant?: 'default' | 'circle' | 'text';\n  className?: string;\n} & HTMLAttributes<HTMLDivElement>;\n\nexport function Skeleton({ variant = 'default', className, ...props }: SkeletonProps) {\n  return (\n    <div\n      aria-hidden=\"true\"\n      className={cn(\n        'skeleton',\n        variant !== 'default' && `skeleton--${variant}`,\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    },
+    {
+      "path": "styles/components/skeleton.css",
+      "type": "registry:file",
+      "target": "styles/atom-uikit/skeleton.css",
+      "content": "/* -------------------------------------------------------------------------\n   Skeleton\n\n   Loading placeholder. Pulse animation on muted background.\n   Consumer sets width/height/border-radius via style or className.\n\n   Parts: .skeleton\n   ------------------------------------------------------------------------- */\n\n.skeleton {\n  display: block;\n  background-color: var(--border);\n  border-radius: var(--radius-md);\n  animation: skeleton-pulse var(--duration-1000) var(--easing-in-out) infinite;\n}\n\n@keyframes skeleton-pulse {\n  0%, 100% { opacity: 1; }\n  50% { opacity: var(--opacity-50); }\n}\n\n/* ---- Shape helpers ---- */\n\n.skeleton--circle {\n  border-radius: var(--radius-full);\n}\n\n.skeleton--text {\n  height: 1em;\n  border-radius: var(--radius-sm);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .skeleton {\n    animation: none;\n  }\n}\n"
+    }
+  ],
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+}

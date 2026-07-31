@@ -108,6 +108,7 @@ try {
 }
 
 import { validateAgentMeta } from './validate-agent-meta.mjs';
+import { emitShadcnChannel } from './emit-shadcn-registry.mjs';
 
 async function main() {
   const registry = JSON.parse(await fs.readFile(REGISTRY_PATH, 'utf8'));
@@ -272,7 +273,17 @@ async function main() {
   }
 
   console.log(`\n  Registry built: ${built} items (${enriched} enriched), ${errors} errors`);
-  console.log(`  Output: ${OUT_DIR}/\n`);
+  console.log(`  Output: ${OUT_DIR}/`);
+
+  // F5: derive official shadcn channel from canónico (no second source of truth)
+  try {
+    await emitShadcnChannel(OUT_DIR, { log: console.log });
+  } catch (err) {
+    console.error(`  [ERROR] shadcn channel: ${err.message}`);
+    process.exit(1);
+  }
+
+  console.log('');
 
   if (errors > 0) process.exit(1);
 

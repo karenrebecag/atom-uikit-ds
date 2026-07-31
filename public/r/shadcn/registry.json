@@ -1,0 +1,1259 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "@atom-uikit",
+  "homepage": "https://uikit.atomchat.io",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "Press and the label swaps with a short lift; six intents from primary to destructive. One primary action per section.",
+      "categories": [
+        "actions"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "primary",
+              "options": [
+                "primary",
+                "secondary",
+                "tertiary",
+                "destructive-primary",
+                "destructive-secondary",
+                "destructive-tertiary"
+              ],
+              "what": "Visual intent of the button surface and text.",
+              "how": "One primary per section. Use destructive-* only for irreversible actions. Default: primary."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "m",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l",
+                "xl"
+              ],
+              "what": "Hit target and type scale of the control.",
+              "how": "m for forms and content; s/xs for dense toolbars; l/xl for hero CTAs. Default: m."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "false",
+              "what": "Whether the label text-swap animation runs on hover/press.",
+              "how": "false in dense tables or reduced-motion; true for marketing CTAs when motion is wanted. Default matches source: false."
+            },
+            {
+              "prop": "loading",
+              "type": "boolean",
+              "default": "false",
+              "what": "Shows a busy state and blocks re-clicks while work is in flight.",
+              "how": "true only during async submit; pair with disabled if the form must not resubmit."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Prevents interaction and dims the control.",
+              "how": "true when prerequisites are unmet; prefer explaining why nearby, not only a dead button."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Text-swap animation needs the real label as children string/node; do not replace children with a custom spinner while loading — use the loading prop."
+            },
+            {
+              "context": "a11y",
+              "note": "Keep a clear accessible name; icon-only usage belongs on icon-button, not button with empty children."
+            },
+            {
+              "context": "css-modules",
+              "note": "Button CSS is global BEM (.btn*). Import the published stylesheet globally; CSS Modules will scope classes and break styles."
+            }
+          ],
+          "usage": "import { Button } from '@/components/atoms/Button';\n\n<Button variant=\"primary\" size=\"m\" animated>\n  Save\n</Button>"
+        }
+      },
+      "files": [
+        {
+          "path": "components/atoms/Button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/button.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/button.css"
+        },
+        {
+          "path": "styles/components/button-text-swap.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/button-text-swap.css"
+        },
+        {
+          "path": "styles/components/button-focus-ring.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/button-focus-ring.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "icon-button",
+      "type": "registry:component",
+      "title": "IconButton",
+      "description": "A square control that holds only an icon and rotates slightly on press. Toolbars, close, and dense actions.",
+      "categories": [
+        "actions"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/IconButton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/icon-button.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/icon-button.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "link-button",
+      "type": "registry:component",
+      "title": "LinkButton",
+      "description": "Inline text that shimmers as you hover, then navigates like a link. Secondary CTAs inside paragraphs or cards.",
+      "categories": [
+        "actions"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/LinkButton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/link-button.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/link-button.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button-group",
+      "type": "registry:component",
+      "title": "ButtonGroup",
+      "description": "Buttons sit flush so related actions read as one control. Use for aligned toolbars, not free-floating CTAs.",
+      "categories": [
+        "actions"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/ButtonGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/button-group.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/button-group.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input",
+      "type": "registry:component",
+      "title": "Input",
+      "description": "A single-line field that shows focus, error, and disabled states as you type. Pair with field for label and helper.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/input.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/input.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "textarea",
+      "type": "registry:component",
+      "title": "Textarea",
+      "description": "A multi-line box that grows with longer answers. Bios, messages, and free-form notes.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Textarea.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/textarea.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/textarea.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "select",
+      "type": "registry:component",
+      "title": "Select",
+      "description": "Opens a searchable list; pick one option with keyboard or click. Groups long option sets cleanly.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/select.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/select.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "checkbox",
+      "type": "registry:component",
+      "title": "Checkbox",
+      "description": "Ticks on or off; supports indeterminate when some children are selected. Multi-select lists and filters.",
+      "categories": [
+        "forms"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Checkbox.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/checkbox.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/checkbox.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "radio",
+      "type": "registry:component",
+      "title": "Radio",
+      "description": "Picks exactly one option in a group; the previous choice clears. Mutually exclusive settings.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Radio.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/radio.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/radio.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle",
+      "type": "registry:component",
+      "title": "Toggle",
+      "description": "A switch that slides between on and off without a form submit. Instant preferences and feature flags.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Toggle.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/toggle.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/toggle.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "field",
+      "type": "registry:component",
+      "title": "Field",
+      "description": "Wraps a control with label, helper, and error so the whole row stays aligned. Required around every form input.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/field.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/field.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tabs",
+      "type": "registry:component",
+      "title": "Tabs",
+      "description": "Click a tab and the indicator slides under it while the panel swaps. Sectioned content without page jumps.",
+      "categories": [
+        "navigation"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Tabs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/tabs.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/tabs.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "divider",
+      "type": "registry:component",
+      "title": "Divider",
+      "description": "A thin line that separates blocks horizontally or vertically. Visual rhythm between groups of content.",
+      "categories": [
+        "layout"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Divider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/divider.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/divider.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "avatar",
+      "type": "registry:component",
+      "title": "Avatar",
+      "description": "Shows a face, initials, or fallback icon at a fixed size. People in lists, comments, and headers.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/avatar.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/avatar.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "badge",
+      "type": "registry:component",
+      "title": "Badge",
+      "description": "A small status chip that sits on an edge or next to a label. Counts, inbox state, and quiet flags.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "neutral",
+              "options": [
+                "neutral",
+                "inbox"
+              ],
+              "what": "Surface style of the status chip.",
+              "how": "neutral for quiet metadata; inbox for count/attention chips. Default: neutral."
+            },
+            {
+              "prop": "state",
+              "type": "select",
+              "default": "enabled",
+              "options": [
+                "enabled",
+                "focused",
+                "subtle"
+              ],
+              "what": "Emphasis of the badge relative to surrounding UI.",
+              "how": "enabled default; focused when the related control is active; subtle for de-emphasized counts."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "If the badge is a live count, expose the meaning in accessible text (e.g. aria-label on the parent control), not only the digit."
+            },
+            {
+              "context": "layout",
+              "note": "Badges are inline; do not stretch them as block-level status banners — use toast or alert patterns for that."
+            }
+          ],
+          "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
+        }
+      },
+      "files": [
+        {
+          "path": "components/atoms/Badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/badge.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/badge.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "description": "A spinning mark that says “still working” without blocking the page. Inline loads and button pending states.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Spinner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/spinner.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/spinner.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skeleton",
+      "type": "registry:component",
+      "title": "Skeleton",
+      "description": "Grey shapes shimmer where content will land. First paint placeholders for cards, text, and avatars.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/skeleton.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/skeleton.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dialog",
+      "type": "registry:component",
+      "title": "Dialog",
+      "description": "Dims the page and centers a modal you must dismiss. Confirmations and short focused tasks.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/dialog.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/dialog.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "table",
+      "type": "registry:component",
+      "title": "Table",
+      "description": "Rows of data you can sort and select. Dense records, not marketing layouts.",
+      "categories": [
+        "data-display"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/table.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/table.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "accordion",
+      "type": "registry:component",
+      "title": "Accordion",
+      "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
+      "categories": [
+        "layout"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Accordion.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/accordion.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/accordion.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "alert-dialog",
+      "type": "registry:component",
+      "title": "AlertDialog",
+      "description": "A blocking prompt with a clear decision — continue or cancel, including destructive. Irreversible actions.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/AlertDialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/alert-dialog.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/alert-dialog.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "avatar-group",
+      "type": "registry:component",
+      "title": "AvatarGroup",
+      "description": "Faces stack with a +N overflow when the list grows. Team members and multi-assignee fields.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/AvatarGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/avatar-group.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/avatar-group.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "breadcrumb",
+      "type": "registry:component",
+      "title": "Breadcrumb",
+      "description": "A path of links that shows where you are and lets you jump up. Nested pages and deep product trees.",
+      "categories": [
+        "navigation"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Breadcrumb.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/breadcrumb.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/breadcrumb.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "burger-icon",
+      "type": "registry:component",
+      "title": "BurgerIcon",
+      "description": "Three lines that morph into a close mark when the menu opens. Mobile nav toggles only.",
+      "categories": [
+        "actions"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/BurgerIcon.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "calendar",
+      "type": "registry:component",
+      "title": "Calendar",
+      "description": "A month grid to pick a date (or range) with keyboard support. Scheduling and date filters.",
+      "categories": [
+        "data-display"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Calendar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/calendar.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/calendar.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chip",
+      "type": "registry:component",
+      "title": "Chip",
+      "description": "A compact pill for a filter or selection you can remove. Multi-select tags and active filters.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Chip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/chip.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/chip.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "combobox",
+      "type": "registry:component",
+      "title": "Combobox",
+      "description": "Type to filter options, then pick one like a select. Large catalogs where search beats scrolling.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Combobox.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/combobox.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/combobox.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "context-menu",
+      "type": "registry:component",
+      "title": "ContextMenu",
+      "description": "Right-click (or long-press) and a menu appears at the pointer. Row actions without cluttering the UI.",
+      "categories": [
+        "navigation"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/ContextMenu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/context-menu.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/context-menu.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "drawer",
+      "type": "registry:component",
+      "title": "Drawer",
+      "description": "A panel slides in from the edge over the page. Filters, mobile nav, and secondary flows.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Drawer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/drawer.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/drawer.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dropdown-menu",
+      "type": "registry:component",
+      "title": "DropdownMenu",
+      "description": "Click a trigger and a menu drops with actions or nested groups. App chrome and overflow menus.",
+      "categories": [
+        "navigation"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/DropdownMenu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/dropdown-menu.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/dropdown-menu.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "empty",
+      "type": "registry:component",
+      "title": "Empty",
+      "description": "A calm blank state with icon, message, and optional CTA. Zero results and first-run screens.",
+      "categories": [
+        "layout"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Empty.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/empty.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/empty.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "image",
+      "type": "registry:component",
+      "title": "Image",
+      "description": "A responsive frame for media from thumb to hero. Product shots and section visuals.",
+      "categories": [
+        "actions"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Image.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/image.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/image.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "item",
+      "type": "registry:component",
+      "title": "Item",
+      "description": "A single selectable row with optional leading/trailing slots. Lists, menus, and pickers.",
+      "categories": [
+        "layout"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/item.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/item.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "marquee",
+      "type": "registry:component",
+      "title": "Marquee",
+      "description": "Content scrolls continuously along a track without interaction. Logo strips and social proof.",
+      "categories": [
+        "surfaces"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Marquee.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/marquee.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/marquee.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "nav-link",
+      "type": "registry:component",
+      "title": "NavLink",
+      "description": "A navigation link that shows active state as you move through the app. Sidebars and top nav.",
+      "categories": [
+        "navigation"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/NavLink.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/nav-link.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/nav-link.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pagination",
+      "type": "registry:component",
+      "title": "Pagination",
+      "description": "Pages of results with prev/next and numbered jumps. Large tables and search hits.",
+      "categories": [
+        "navigation"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Pagination.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/pagination.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/pagination.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "progress-nav",
+      "type": "registry:component",
+      "title": "ProgressNav",
+      "description": "A stepped rail that fills as you advance through a flow. Wizards and multi-step forms.",
+      "categories": [
+        "surfaces"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/ProgressNav.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/progress-nav.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/progress-nav.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "resizable",
+      "type": "registry:component",
+      "title": "Resizable",
+      "description": "Drag a handle to grow or shrink adjacent panes. Split views and customizable workspaces.",
+      "categories": [
+        "layout"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Resizable.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/resizable.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/resizable.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sheet",
+      "type": "registry:component",
+      "title": "Sheet",
+      "description": "A surface rises from the bottom (or side) for a short task. Mobile-friendly alternatives to dialogs.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Sheet.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/sheet.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/sheet.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "slider",
+      "type": "registry:component",
+      "title": "Slider",
+      "description": "Drag a thumb along a track to set a value. Ranges, volume, and continuous settings.",
+      "categories": [
+        "forms"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Slider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/slider.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/slider.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stats-card",
+      "type": "registry:component",
+      "title": "StatsCard",
+      "description": "A metric with label and optional delta in a compact card. Dashboards and KPI strips.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/StatsCard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/stats-card.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/stats-card.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stepper",
+      "type": "registry:component",
+      "title": "Stepper",
+      "description": "Numbered steps show progress through a sequence. Checkouts and multi-stage onboarding.",
+      "categories": [
+        "actions"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Stepper.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/stepper.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/stepper.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tag",
+      "type": "registry:component",
+      "title": "Tag",
+      "description": "A small label for category or status — ghost, filled, or outlined. Metadata, not interactive filters.",
+      "categories": [
+        "indicators"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Tag.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/tag.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/tag.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toast",
+      "type": "registry:component",
+      "title": "Toast",
+      "description": "A brief message slides in and dismisses itself. Success, error, warning, and info feedback.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Toast.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/toast.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/toast.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle-group",
+      "type": "registry:component",
+      "title": "ToggleGroup",
+      "description": "Segmented options where one (or more) stay pressed. View switches and compact filters.",
+      "categories": [
+        "actions"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/ToggleGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/toggle-group.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/toggle-group.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "typography",
+      "type": "registry:component",
+      "title": "Typography",
+      "description": "Display, title, body, and mono styles from the type scale. Any text that must match the DS.",
+      "categories": [
+        "actions"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/Typography.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "user-profile",
+      "type": "registry:component",
+      "title": "UserProfile",
+      "description": "Avatar plus name and optional meta in one block. Account headers and people cards.",
+      "categories": [
+        "surfaces"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/UserProfile.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/user-profile.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/user-profile.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "video-player",
+      "type": "registry:component",
+      "title": "VideoPlayer",
+      "description": "Play, pause, and scrub branded video with DS chrome. Product demos and embedded media.",
+      "categories": [
+        "surfaces"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/atoms/VideoPlayer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/video-player.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/video-player.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sidebar",
+      "type": "registry:component",
+      "title": "Sidebar",
+      "description": "Collapsible app navigation with nested items and sections. Primary product shell chrome.",
+      "categories": [
+        "navigation"
+      ],
+      "dependencies": [
+        "gsap"
+      ],
+      "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "files": [
+        {
+          "path": "components/molecules/sidebar/Sidebar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarContext.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarHeader.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarContent.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarFooter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarItem.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarCollapsible.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarTrigger.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/molecules/sidebar/SidebarDivider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "styles/components/sidebar.css",
+          "type": "registry:file",
+          "target": "styles/atom-uikit/sidebar.css"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:component",
+  "title": "Field",
+  "description": "Wraps a control with label, helper, and error so the whole row stays aligned. Required around every form input.",
+  "categories": [
+    "forms"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Field.tsx",
+      "type": "registry:component",
+      "content": "import { type ReactNode } from 'react';\n\nexport type FieldProps = {\n  label?: string;\n  description?: string;\n  error?: string;\n  required?: boolean;\n  disabled?: boolean;\n  htmlFor?: string;\n  children: ReactNode;\n  className?: string;\n};\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\nexport function Field({\n  label,\n  description,\n  error,\n  required = false,\n  disabled = false,\n  htmlFor,\n  children,\n  className,\n}: FieldProps) {\n  return (\n    <div\n      className={cn('field', disabled && 'field--disabled', className)}\n      role=\"group\"\n      {...(error ? { 'data-invalid': '' } : {})}\n    >\n      {label && (\n        <label\n          className={cn('field__label', required && 'field__label--required')}\n          htmlFor={htmlFor}\n        >\n          {label}\n        </label>\n      )}\n      {children}\n      {description && !error && (\n        <p className=\"field__description\">{description}</p>\n      )}\n      {error && (\n        <p className=\"field__error\" role=\"alert\">{error}</p>\n      )}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "styles/components/field.css",
+      "type": "registry:file",
+      "target": "styles/atom-uikit/field.css",
+      "content": "/* -------------------------------------------------------------------------\n   Field\n\n   Wrapper for form controls: label + input + description + error.\n   Composes with Input, Textarea, Select, Checkbox, etc.\n   Colors matched to Figma atom-text-field.\n\n   Orientation: vertical (default)\n   ------------------------------------------------------------------------- */\n\n.field {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-1);\n  width: 100%;\n}\n\n.field__label {\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  color: var(--foreground);\n}\n\n.field__label--required::after {\n  content: \" *\";\n  color: var(--destructive);\n}\n\n.field__description {\n  margin-top: var(--spacing-1);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  line-height: 1.4;\n  color: var(--placeholder);\n}\n\n.field__error {\n  margin-top: var(--spacing-1);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-xs);\n  line-height: 1.4;\n  color: var(--destructive);\n}\n\n/* Error state — label turns red */\n.field[data-invalid] .field__label {\n  color: var(--destructive);\n}\n\n/* Disabled state — label grays out */\n.field--disabled .field__label {\n  color: var(--muted-foreground);\n}\n"
+    }
+  ],
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+}

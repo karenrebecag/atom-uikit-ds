@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "type": "registry:component",
+  "title": "Empty",
+  "description": "A calm blank state with icon, message, and optional CTA. Zero results and first-run screens.",
+  "categories": [
+    "layout"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/Empty.tsx",
+      "type": "registry:component",
+      "content": "import { type ReactNode } from 'react';\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\n/* ---- Root ---- */\n\nexport type EmptyProps = {\n  variant?: 'default' | 'outline' | 'filled';\n  children: ReactNode;\n  className?: string;\n};\n\nexport function Empty({ variant = 'default', children, className }: EmptyProps) {\n  return (\n    <div\n      className={cn(\n        'empty',\n        variant !== 'default' && `empty--${variant}`,\n        className,\n      )}\n    >\n      {children}\n    </div>\n  );\n}\n\n/* ---- Header ---- */\n\nexport function EmptyHeader({ children, className }: { children: ReactNode; className?: string }) {\n  return <div className={cn('empty__header', className)}>{children}</div>;\n}\n\n/* ---- Media ---- */\n\nexport type EmptyMediaProps = {\n  variant?: 'default' | 'icon';\n  children: ReactNode;\n  className?: string;\n};\n\nexport function EmptyMedia({ variant = 'default', children, className }: EmptyMediaProps) {\n  return (\n    <div className={cn('empty__media', variant === 'icon' && 'empty__media--icon', className)}>\n      {children}\n    </div>\n  );\n}\n\n/* ---- Title ---- */\n\nexport function EmptyTitle({ children, className }: { children: ReactNode; className?: string }) {\n  return <h3 className={cn('empty__title', className)}>{children}</h3>;\n}\n\n/* ---- Description ---- */\n\nexport function EmptyDescription({ children, className }: { children: ReactNode; className?: string }) {\n  return <p className={cn('empty__description', className)}>{children}</p>;\n}\n\n/* ---- Content (actions) ---- */\n\nexport function EmptyContent({ children, className }: { children: ReactNode; className?: string }) {\n  return <div className={cn('empty__content', className)}>{children}</div>;\n}\n"
+    },
+    {
+      "path": "styles/components/empty.css",
+      "type": "registry:file",
+      "target": "styles/atom-uikit/empty.css",
+      "content": "/* -------------------------------------------------------------------------\n   Empty\n\n   Empty state placeholder. Centered layout with media, title,\n   description, and action slot.\n\n   Variants: outline (border), filled (bg)\n   Parts:    .empty, .empty__header, .empty__media, .empty__title,\n             .empty__description, .empty__content\n   ------------------------------------------------------------------------- */\n\n.empty {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-6, 24px);\n  width: 100%;\n  padding: var(--spacing-12, 48px) var(--spacing-6, 24px);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  text-align: center;\n}\n\n/* ---- Variants ---- */\n\n.empty--outline {\n  border: var(--stroke-hairline) dashed var(--border);\n  border-radius: var(--radius-lg);\n}\n\n.empty--filled {\n  background-color: var(--muted);\n  border-radius: var(--radius-lg);\n}\n\n/* ---- Header ---- */\n\n.empty__header {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: var(--spacing-3, 12px);\n  max-width: 420px;\n}\n\n/* ---- Media ---- */\n\n.empty__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: var(--muted-foreground);\n}\n\n.empty__media--icon {\n  width: var(--spacing-12, 48px);\n  height: var(--spacing-12, 48px);\n  border-radius: var(--radius-lg);\n  background-color: var(--muted);\n  padding: var(--spacing-3, 12px);\n}\n\n.empty--filled .empty__media--icon {\n  background-color: var(--background);\n}\n\n.empty__media svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Title ---- */\n\n.empty__title {\n  font-size: var(--font-size-base);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-base);\n  color: var(--foreground);\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.empty__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Content (actions slot) ---- */\n\n.empty__content {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-3, 12px);\n}\n"
+    }
+  ],
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+}

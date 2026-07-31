@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "burger-icon",
+  "type": "registry:component",
+  "title": "BurgerIcon",
+  "description": "Three lines that morph into a close mark when the menu opens. Mobile nav toggles only.",
+  "categories": [
+    "actions"
+  ],
+  "files": [
+    {
+      "path": "components/atoms/BurgerIcon.tsx",
+      "type": "registry:component",
+      "content": "export function BurgerIcon() {\n  return (\n    <span className=\"burger-icon\">\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n    </span>\n  );\n}\n"
+    }
+  ],
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+}
