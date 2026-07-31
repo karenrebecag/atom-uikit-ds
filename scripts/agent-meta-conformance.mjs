@@ -15,10 +15,15 @@
  * @param {string} reactSource
  * @returns {Map<string, string | undefined> | null}
  */
-export function parseReactProps(reactSource) {
+/**
+ * @param {string} reactSource
+ * @param {string} [componentHint] — registry slug or PascalCase name; prefers that export in multi-export files
+ * @returns {Map<string, string | undefined> | null}
+ */
+export function parseReactProps(reactSource, componentHint) {
   if (typeof reactSource !== 'string' || !reactSource.trim()) return null;
 
-  const body = extractDestructureBody(reactSource);
+  const body = extractDestructureBody(reactSource, componentHint);
   if (body == null) return null;
 
   const props = new Map();
@@ -39,13 +44,45 @@ export function parseReactProps(reactSource) {
   return props.size > 0 ? props : null;
 }
 
+/** @param {string} slug */
+function slugToPascal(slug) {
+  return String(slug)
+    .split(/[-_/]/)
+    .filter(Boolean)
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+    .join('');
+}
+
 /**
  * @param {string} src
+ * @param {string} [componentHint]
  * @returns {string | null}
  */
-function extractDestructureBody(src) {
+function extractDestructureBody(src, componentHint) {
   // After `}` allow optional TS type annotation (`}: Props`) before `,` or `)`.
   const afterBrace = String.raw`\}\s*(?::\s*[^=,{()]+)?\s*`;
+  const pascal = componentHint ? slugToPascal(componentHint) : null;
+
+  // Prefer the named primary export (button-group → ButtonGroup) so multi-export
+  // files (Group + Separator + Text) do not yield the first helper's props only.
+  if (pascal) {
+    const named = [
+      new RegExp(
+        String.raw`(?:export\s+)?(?:default\s+)?function\s+${pascal}\s*\(\s*\{([\s\S]*?)${afterBrace}[,)]`,
+      ),
+      new RegExp(
+        String.raw`(?:export\s+)?const\s+${pascal}\s*=\s*forwardRef\s*(?:<[^>]*>)?\s*\(\s*\(\s*\{([\s\S]*?)\}\s*,`,
+      ),
+      new RegExp(
+        String.raw`(?:export\s+)?const\s+${pascal}\s*=\s*\(\s*\{([\s\S]*?)${afterBrace}\)\s*=>`,
+      ),
+    ];
+    for (const re of named) {
+      const m = src.match(re);
+      if (m?.[1] != null) return m[1];
+    }
+  }
+
   const patterns = [
     // function Component({ ... }) / function Component({ ... }: Props)
     new RegExp(
@@ -103,7 +140,7 @@ export function normalizeDefault(raw) {
  * @returns {ConformanceReport}
  */
 export function checkConformance(slug, configurables, reactSource) {
-  const props = parseReactProps(reactSource);
+  const props = parseReactProps(reactSource, slug);
   if (props === null) {
     return { slug, missing: [], mismatched: [], unparseable: true };
   }

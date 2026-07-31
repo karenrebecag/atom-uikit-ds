@@ -1,7 +1,6 @@
 /**
- * F7/F8b — DOM contracts for Webflow motion.
- * F8b: contracts are loaded from behavior module exports (REQUIRED_HOOKS, …),
- * not hand-written duplicates. Map slug → animations dist module.
+ * F7/F8b/F10b — DOM contracts for Webflow motion.
+ * Loaded from behavior module exports (REQUIRED_HOOKS, …).
  */
 
 import fs from 'node:fs';
@@ -12,15 +11,43 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const ANIM_DIST = path.join(ROOT, 'packages/animations/dist');
 
 /**
- * Registry slug → animations dist module (only components with motion contracts).
- * hasAnimation alone is not enough — only modules that export REQUIRED_HOOKS.
+ * Component slug → animations dist module.
+ * Multiple components can share one behavior (button family → button-hover).
  */
 const SLUG_TO_MODULE = {
   marquee: 'marquee-draggable.js',
+  button: 'button-hover.js',
+  'icon-button': 'button-hover.js',
+  'link-button': 'button-hover.js',
+  'toggle-group': 'button-hover.js',
+  'menu-button': 'menu-button.js',
+  'burger-icon': 'menu-button.js',
+  // layout-ish hooks (no single registry component, but modules exist)
+  sidebar: 'sidebar.js',
+  'progress-nav': 'progress-nav.js',
+  toc: 'table-of-contents.js',
+  'video-player': 'video-player.js',
+  // text-reveal is attribute-driven on headings, not a component slug
+  // nav-autohide similarly layout-level
 };
 
-/** @type {Record<string, import('./dom-contract-types').DomContract> | null} */
+/** Modules that must export contracts (F10-C5) — all behavior files */
+export const ALL_BEHAVIOR_MODULES = [
+  'button-hover.js',
+  'marquee-draggable.js',
+  'menu-button.js',
+  'nav-autohide.js',
+  'progress-nav.js',
+  'sidebar.js',
+  'table-of-contents.js',
+  'text-reveal.js',
+  'video-player.js',
+];
+
+/** @type {Record<string, DomContract> | null} */
 let _cache = null;
+/** @type {Record<string, DomContract> | null} */
+let _byModule = null;
 
 /**
  * @typedef {{
@@ -32,13 +59,10 @@ let _cache = null;
  * }} DomContract
  */
 
-/**
- * Load contracts from behavior dist exports. Call once before emit/conformance.
- */
 export async function loadDomContracts() {
   /** @type {Record<string, DomContract>} */
-  const contracts = {};
-  for (const [slug, file] of Object.entries(SLUG_TO_MODULE)) {
+  const byModule = {};
+  for (const file of ALL_BEHAVIOR_MODULES) {
     const abs = path.join(ANIM_DIST, file);
     if (!fs.existsSync(abs)) {
       throw new Error(`dom-contract: missing ${abs} — build @atom-uikit/animations first`);
@@ -47,7 +71,7 @@ export async function loadDomContracts() {
     if (!mod.REQUIRED_HOOKS || !Array.isArray(mod.REQUIRED_HOOKS)) {
       throw new Error(`dom-contract: ${file} must export REQUIRED_HOOKS[]`);
     }
-    contracts[slug] = {
+    byModule[file] = {
       hooks: [...mod.REQUIRED_HOOKS],
       anatomy: [...(mod.REQUIRED_ANATOMY ?? [])],
       statesWrittenAsClasses: !!mod.STATES_WRITTEN_AS_CLASSES,
@@ -55,31 +79,30 @@ export async function loadDomContracts() {
       moduleFile: file,
     };
   }
+  _byModule = byModule;
+
+  /** @type {Record<string, DomContract>} */
+  const contracts = {};
+  for (const [slug, file] of Object.entries(SLUG_TO_MODULE)) {
+    if (byModule[file]) contracts[slug] = { ...byModule[file] };
+  }
   _cache = contracts;
   return contracts;
 }
 
-/**
- * @param {string} slug
- * @returns {DomContract | null}
- */
 export function getDomContract(slug) {
-  if (!_cache) {
-    // Sync fallback for tests that only read marquee from source constants file
-    // Prefer loadDomContracts() in emit path.
-    return null;
-  }
+  if (!_cache) return getDomContractSync(slug);
   return _cache[slug] ?? null;
 }
 
-/**
- * Sync load from dist via createRequire-like: read and regex REQUIRED_HOOKS if cache empty.
- * Used by tests before async load.
- */
 export function getDomContractSync(slug) {
   if (_cache?.[slug]) return _cache[slug];
   const file = SLUG_TO_MODULE[slug];
   if (!file) return null;
+  return loadContractFromFile(file);
+}
+
+function loadContractFromFile(file) {
   const abs = path.join(ANIM_DIST, file);
   if (!fs.existsSync(abs)) return null;
   const src = fs.readFileSync(abs, 'utf8');
@@ -88,25 +111,22 @@ export function getDomContractSync(slug) {
   return {
     hooks,
     anatomy: extractStringArray(src, 'REQUIRED_ANATOMY') ?? [],
-    statesWrittenAsClasses: /STATES_WRITTEN_AS_CLASSES\s*=\s*true/.test(src),
+    statesWrittenAsClasses: /STATES_WRITTEN_AS_CLASSES\s*=\s*!?0\s*,?\s*true|STATES_WRITTEN_AS_CLASSES\s*=\s*true/.test(
+      src,
+    ),
     gsapPlugins: extractStringArray(src, 'GSAP_PLUGINS') ?? [],
     moduleFile: file,
   };
 }
 
 function extractStringArray(src, name) {
-  const re = new RegExp(
-    `(?:exports\\.)?${name}\\s*=\\s*\\[([\\s\\S]*?)\\]`,
-  );
+  const re = new RegExp(`(?:exports\\.)?${name}\\s*=\\s*\\[([\\s\\S]*?)\\]`);
   const m = src.match(re);
   if (!m) return null;
   const items = [...m[1].matchAll(/["']([^"']+)["']/g)].map((x) => x[1]);
   return items.length ? items : null;
 }
 
-/**
- * Build motion js/init from registry flags + optional domContract plugins.
- */
 export function buildMotionScripts(item, slug) {
   const hasAnim = !!item?.atom?.discovery?.hasAnimation;
   const peers = item?.atom?.implementation?.peerDeps ?? [];
@@ -117,10 +137,13 @@ export function buildMotionScripts(item, slug) {
 
   const contract = getDomContract(slug) ?? getDomContractSync(slug);
 
-  // Motion SOLO con contrato verificable (auditoría F8): un animado sin
-  // REQUIRED_HOOKS en su módulo se emite ESTÁTICO — pintura útil, cero JS
-  // no-verificado. motionOmitted permite al emitter loguearlo ruidoso.
+  // Motion SOLO con contrato verificable (F7/F8/F10): animado sin REQUIRED_HOOKS
+  // → estático. motionOmitted permite al emitter loguearlo ruidoso.
   if (!contract) {
+    return { js: [], init: '', motionOmitted: true };
+  }
+  // Policy F7/F10: behavior writes BEM/state classes → stay static on paste channel
+  if (contract.statesWrittenAsClasses) {
     return { js: [], init: '', motionOmitted: true };
   }
 
@@ -147,6 +170,20 @@ export function buildConsumeCss(item) {
   return consume;
 }
 
+/**
+ * ¿Cuántos hooks del contrato están presentes en el HTML?
+ * Semántica de opt-in (auditoría F10): 0 presentes = el componente NO activa el
+ * behavior (emitir ESTÁTICO, no excluir — la exclusión de button/icon-button/
+ * link-button/toggle-group por hooks opt-in ausentes fue una regresión);
+ * algunos presentes pero no todos = anatomía rota de verdad (excluir).
+ */
+export function countContractHooks(html, contract) {
+  const src = String(html ?? '');
+  return contract.hooks.filter((h) =>
+    new RegExp(`\\b${escapeRegExp(h)}(?=[\\s=/>])`).test(src),
+  ).length;
+}
+
 export function validateHtmlAgainstContract(html, contract) {
   const missing = [];
   const src = String(html ?? '');
@@ -167,7 +204,7 @@ export function validateHtmlAgainstContract(html, contract) {
         missing.push(`anatomy:${sel}`);
       }
     } else if (sel.startsWith('[')) {
-      const attr = sel.replace(/^\[|\]$/g, '').split('=')[0];
+      const attr = sel.replace(/^\[|\]$/g, '').split('=')[0].replace(/"/g, '');
       if (!src.includes(attr)) missing.push(`anatomy:${sel}`);
     } else if (!src.includes(sel)) {
       missing.push(`anatomy:${sel}`);
@@ -181,31 +218,25 @@ export function validateHtmlAgainstContract(html, contract) {
   return missing.length ? { ok: false, missing } : { ok: true };
 }
 
-/**
- * F8-C4 invariant: every data-* selector in module source appears in REQUIRED_HOOKS.
- * @param {string} moduleSource
- * @param {string[]} hooks
- */
 export function validateHooksCoverSelectors(moduleSource, hooks) {
   const found = new Set();
-  // querySelectorAll('[data-foo]') — con o sin genérico TS (<HTMLElement>) y
-  // cualquier comilla. Sin el genérico opcional, la invariante era VACUA
-  // (0 selectores extraídos → validaba contra nada; detectado en auditoría F8).
+  // querySelector(All)?('…') — con o sin genérico TS; captura TODOS los data-*
+  // del literal (incl. listas: '[data-a], [data-b]').
   for (const m of moduleSource.matchAll(
-    /querySelector(?:All)?\s*(?:<[^>]*>)?\s*\(\s*['"`]\[(data-[a-z0-9-]+)/gi,
+    /querySelector(?:All)?\s*(?:<[^>]*>)?\s*\(\s*['"`]([^'"`]+)['"`]/gi,
   )) {
-    found.add(m[1]);
+    for (const attr of m[1].matchAll(/\[(data-[a-z0-9-]+)/gi)) {
+      found.add(attr[1]);
+    }
   }
-  // also getAttribute('data-...') is config not structure — skip
   const missing = [...found].filter((h) => !hooks.includes(h));
-  return missing.length ? { ok: false, missing } : { ok: true, found: [...found] };
+  return missing.length ? { ok: false, missing, found: [...found] } : { ok: true, found: [...found] };
 }
 
 function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-/** @deprecated use loadDomContracts — kept for tests expecting DOM_CONTRACTS */
 export const DOM_CONTRACTS = new Proxy(
   {},
   {

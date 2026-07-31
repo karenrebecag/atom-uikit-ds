@@ -13,6 +13,22 @@
 // transicion CSS que progress-nav.css ya pone a 0ms bajo reduced-motion: el
 // indicador salta en vez de deslizar. No "arreglar" agregando un early-return.
 
+
+/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
+export const REQUIRED_HOOKS = [
+  "data-progress-nav-list",
+  "data-progress-nav-target",
+  "data-progress-nav-anchor"
+] as const;
+
+export const REQUIRED_ANATOMY = [
+  ".progress-nav__indicator"
+] as const;
+
+export const GSAP_PLUGINS = [] as const;
+
+export const STATES_WRITTEN_AS_CLASSES = true;
+
 type CleanupFn = () => void;
 
 declare const gsap: any;

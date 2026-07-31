@@ -1,6 +1,23 @@
 // Tipos locales (no importar de './index'): este archivo se distribuye SOLO
 // como artefacto del registry y debe ser auto-contenido en el consumidor.
 // Mismo patron que marquee-draggable/progress-nav/video-player.
+
+/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
+export const REQUIRED_HOOKS = [
+  "data-button-animate",
+  "data-link-button-animate",
+  "data-toggle-group-animate",
+  "data-button-text"
+] as const;
+
+export const REQUIRED_ANATOMY = [
+  "[data-button-text]"
+] as const;
+
+export const GSAP_PLUGINS = [] as const;
+
+export const STATES_WRITTEN_AS_CLASSES = false;
+
 export type CleanupFn = () => void;
 export interface AnimationConfig {
   scope?: HTMLElement | string;

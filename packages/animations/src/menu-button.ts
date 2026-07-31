@@ -5,6 +5,20 @@
 //
 // Requires: gsap, CustomEase (global)
 
+
+/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
+export const REQUIRED_HOOKS = [
+  "data-menu-button-animate"
+] as const;
+
+export const REQUIRED_ANATOMY = [
+  ".burger-icon__line"
+] as const;
+
+export const GSAP_PLUGINS = [] as const;
+
+export const STATES_WRITTEN_AS_CLASSES = false;
+
 type CleanupFn = () => void;
 
 declare const gsap: any;

@@ -32,6 +32,25 @@
 // suave del click: bajo reduced-motion salta en vez de deslizar. La transicion
 // del estado activo la apaga toc.css. No "arreglar" con un early-return.
 
+
+/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
+export const REQUIRED_HOOKS = [
+  "data-toc-wrap",
+  "data-toc-content",
+  "data-toc-list",
+  "data-toc-link",
+  "data-toc-text"
+] as const;
+
+export const REQUIRED_ANATOMY = [
+  "[data-toc-text]",
+  "[data-toc-item]"
+] as const;
+
+export const GSAP_PLUGINS = [] as const;
+
+export const STATES_WRITTEN_AS_CLASSES = false;
+
 type CleanupFn = () => void;
 
 declare const gsap: any;

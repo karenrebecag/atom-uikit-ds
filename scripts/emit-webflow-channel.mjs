@@ -16,6 +16,7 @@ import {
   buildMotionScripts,
   buildConsumeCss,
   validateHtmlAgainstContract,
+  countContractHooks,
 } from './webflow/dom-contract.mjs';
 import { renderAnatomy } from './webflow/render-anatomy.mjs';
 
@@ -209,24 +210,39 @@ async function buildArtifact({ slug, html, css, item, nestedTokens }) {
       });
     }
 
-    const motion = buildMotionScripts(item, slug);
+    let motion = buildMotionScripts(item, slug);
     if (motion.motionOmitted) {
       // Ruidoso, nunca silencioso: pintura sí, JS no-verificado no. Queda en
       // unsupported (visible en artefacto/docs) y el caller lo loguea.
       pkg.unsupported.push({
         prop: 'motion',
         selector: slug,
-        reason: 'animated component without REQUIRED_HOOKS in its behavior module — emitted static (add the export to enable motion)',
+        reason: 'animated component without a verifiable behavior contract — emitted static',
       });
     }
-    const domContract = getDomContract(slug) ?? getDomContractSync(slug);
+
+    // Semántica opt-in (auditoría F10): 0 hooks del contrato en el render =
+    // el componente NO activa el behavior → estático (no excluir); hooks
+    // parciales = anatomía rota de verdad → excluir.
+    let domContract = getDomContract(slug) ?? getDomContractSync(slug);
     if (domContract) {
-      const check = validateHtmlAgainstContract(html, domContract);
-      if (!check.ok) {
-        return {
-          ok: false,
-          reason: `domContract fail: missing ${check.missing.join(', ')}`,
-        };
+      const present = countContractHooks(html, domContract);
+      if (present === 0) {
+        motion = { js: [], init: '', motionOmitted: true };
+        domContract = null;
+        pkg.unsupported.push({
+          prop: 'motion',
+          selector: slug,
+          reason: 'motion opt-in hooks not present in canonical render (e.g. animated=false default) — emitted static; set meta.webflow.previewProps to enable',
+        });
+      } else {
+        const check = validateHtmlAgainstContract(html, domContract);
+        if (!check.ok) {
+          return {
+            ok: false,
+            reason: `domContract fail: missing ${check.missing.join(', ')}`,
+          };
+        }
       }
     }
 

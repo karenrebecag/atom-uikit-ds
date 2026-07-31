@@ -13,6 +13,23 @@
 // Requires: Cloudflare Stream SDK (global Stream function)
 //   <script src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
 
+
+/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
+export const REQUIRED_HOOKS = [
+  "data-video-player-init",
+  "data-video-control",
+  "data-video-duration"
+] as const;
+
+export const REQUIRED_ANATOMY = [
+  "iframe",
+  "[data-video-duration]"
+] as const;
+
+export const GSAP_PLUGINS = [] as const;
+
+export const STATES_WRITTEN_AS_CLASSES = false;
+
 type CleanupFn = () => void;
 
 declare const Stream: any;

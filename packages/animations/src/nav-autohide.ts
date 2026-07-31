@@ -15,6 +15,18 @@
 
 // Tipos locales: este archivo se distribuye como artefacto del registry y debe
 // ser auto-contenido en el consumidor.
+
+/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
+export const REQUIRED_HOOKS = [
+  "data-nav-autohide"
+] as const;
+
+export const REQUIRED_ANATOMY = [] as const;
+
+export const GSAP_PLUGINS = [] as const;
+
+export const STATES_WRITTEN_AS_CLASSES = false;
+
 export type CleanupFn = () => void;
 
 const TOLERANCE = 8; // px de scroll antes de reaccionar: evita jitter en trackpads

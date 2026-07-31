@@ -1,0 +1,64 @@
+# F10c — post-merge smoke: registry + webflow channel + /v1 reachable after docs sync.
+# Fails the job if required checks fail (visible red on main).
+name: Smoke publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/r/**'
+      - 'registry.json'
+      - 'scripts/smoke-publish.mjs'
+      - '.github/workflows/smoke-publish.yml'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Canary slug to smoke'
+        required: false
+        default: 'chip'
+
+concurrency:
+  group: smoke-publish-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: smoke:publish canary
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Docs rebuild + registry sync takes minutes after public/r lands on main.
+      - name: Wait for docs/registry propagation
+        run: sleep 120
+
+      - name: Smoke publish (with retries)
+        env:
+          ATOM_REGISTRY_KEY: ${{ secrets.ATOM_REGISTRY_KEY }}
+          DOCS_BASE: ${{ vars.DOCS_BASE || 'https://uikit.atomchat.io' }}
+          V1_BASE: ${{ vars.V1_BASE || 'https://atom-web-ds.vercel.app' }}
+          SLUG: ${{ github.event.inputs.slug || 'chip' }}
+        run: |
+          set +e
+          for i in 1 2 3 4 5; do
+            echo "Attempt $i/5 — smoke:publish $SLUG"
+            node scripts/smoke-publish.mjs "$SLUG"
+            code=$?
+            if [ $code -eq 0 ]; then
+              exit 0
+            fi
+            echo "not green yet; sleeping 60s…"
+            sleep 60
+          done
+          echo "::error::smoke:publish failed after retries (docs sync lag or missing secret ATOM_REGISTRY_KEY)"
+          exit 1

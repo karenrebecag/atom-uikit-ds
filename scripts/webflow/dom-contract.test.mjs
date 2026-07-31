@@ -15,6 +15,7 @@ import {
   buildConsumeCss,
   validateHtmlAgainstContract,
   validateHooksCoverSelectors,
+  ALL_BEHAVIOR_MODULES,
 } from './dom-contract.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -61,7 +62,8 @@ describe('dom-contract marquee', () => {
     const animatedNoContract = {
       atom: { discovery: { hasAnimation: true }, implementation: { peerDeps: ['gsap'] } },
     };
-    const m = buildMotionScripts(animatedNoContract, 'button');
+    // slug not in SLUG_TO_MODULE (button now has a contract under F10b)
+    const m = buildMotionScripts(animatedNoContract, 'no-contract-animated');
     assert.deepEqual(m.js, []);
     assert.equal(m.init, '');
     assert.equal(m.motionOmitted, true);
@@ -118,5 +120,38 @@ describe('dom-contract marquee', () => {
     const r = validateHtmlAgainstContract('<div data-x=""></div>', bad);
     assert.equal(r.ok, false);
     assert.ok(r.missing.some((m) => m.includes('statesWrittenAsClasses')));
+  });
+
+  it('F10-C5: every behavior module exports REQUIRED_HOOKS; invariant covers all', async () => {
+    const contracts = await loadDomContracts();
+    assert.ok(contracts.button, 'button family mapped to button-hover');
+    assert.ok(contracts.marquee);
+    const srcRoot = join(here, '../../packages/animations/src');
+    for (const file of ALL_BEHAVIOR_MODULES) {
+      const base = file.replace(/\.js$/, '');
+      const srcPath = join(srcRoot, `${base}.ts`);
+      const src = readFileSync(srcPath, 'utf8');
+      assert.match(src, /export const REQUIRED_HOOKS/, `${file} must export REQUIRED_HOOKS`);
+      assert.match(
+        src,
+        /export const STATES_WRITTEN_AS_CLASSES/,
+        `${file} must declare STATES_WRITTEN_AS_CLASSES`,
+      );
+      const hooksMatch = src.match(/REQUIRED_HOOKS\s*=\s*\[([\s\S]*?)\]/);
+      assert.ok(hooksMatch, `${file} REQUIRED_HOOKS array`);
+      const hooks = [...hooksMatch[1].matchAll(/["']([^"']+)["']/g)].map((x) => x[1]);
+      const inv = validateHooksCoverSelectors(src, hooks);
+      assert.equal(inv.ok, true, `${file}: ${JSON.stringify(inv)}`);
+    }
+  });
+
+  it('F10b: button with contract emits motion js (not omitted)', () => {
+    const animated = {
+      atom: { discovery: { hasAnimation: true }, implementation: { peerDeps: ['gsap'] } },
+    };
+    const m = buildMotionScripts(animated, 'button');
+    assert.ok(m.js.some((u) => u.includes('gsap.min.js')));
+    assert.ok(m.js.some((u) => u.includes('animations.js')));
+    assert.equal(m.motionOmitted, undefined);
   });
 });
