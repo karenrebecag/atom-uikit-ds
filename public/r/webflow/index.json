@@ -10,7 +10,6 @@
     "button",
     "button-group",
     "calendar",
-    "checkbox",
     "chip",
     "combobox",
     "context-menu",
@@ -22,13 +21,11 @@
     "field",
     "icon-button",
     "image",
-    "input",
     "item",
     "link-button",
     "marquee",
     "nav-link",
     "pagination",
-    "radio",
     "select",
     "sheet",
     "skeleton",
@@ -38,8 +35,6 @@
     "table",
     "tabs",
     "tag",
-    "textarea",
-    "toggle",
     "toggle-group"
   ],
   "emitted": [
@@ -52,7 +47,6 @@
     "button",
     "button-group",
     "calendar",
-    "checkbox",
     "chip",
     "combobox",
     "context-menu",
@@ -64,13 +58,11 @@
     "field",
     "icon-button",
     "image",
-    "input",
     "item",
     "link-button",
     "marquee",
     "nav-link",
     "pagination",
-    "radio",
     "select",
     "sheet",
     "skeleton",
@@ -80,14 +72,32 @@
     "table",
     "tabs",
     "tag",
-    "textarea",
-    "toggle",
     "toggle-group"
   ],
   "excluded": [
     {
       "name": "whatsapp-button",
       "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "input",
+      "reason": "generate failed: form control <input> not representable as generic Block — Designer-native Form* types required (wave 2)"
+    },
+    {
+      "name": "textarea",
+      "reason": "generate failed: form control <textarea> not representable as generic Block — Designer-native Form* types required (wave 2)"
+    },
+    {
+      "name": "checkbox",
+      "reason": "generate failed: form control <input> not representable as generic Block — Designer-native Form* types required (wave 2)"
+    },
+    {
+      "name": "radio",
+      "reason": "generate failed: form control <input> not representable as generic Block — Designer-native Form* types required (wave 2)"
+    },
+    {
+      "name": "toggle",
+      "reason": "generate failed: form control <input> not representable as generic Block — Designer-native Form* types required (wave 2)"
     },
     {
       "name": "section-header",
@@ -143,7 +153,7 @@
     },
     {
       "name": "video-player",
-      "reason": "generate failed: Invalid token in pseudo element: WhiteSpace(\" \")"
+      "reason": "generate failed: form control <input> not representable as generic Block — Designer-native Form* types required (wave 2)"
     },
     {
       "name": "sidebar",

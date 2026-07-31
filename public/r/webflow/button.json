@@ -39,7 +39,7 @@
         {
           "_id": "43b27471-0001-4e93-8388-e933886043b2",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "43b27471-0002-4ec3-838d-ec338d1943b2",
             "43b27471-0003-4eb3-838b-eb338b8643b2",
@@ -49,7 +49,7 @@
             "43b27471-0005-4ed3-838e-ed338eac43b2"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
@@ -59,6 +59,10 @@
               {
                 "name": "aria-busy",
                 "value": "false"
+              },
+              {
+                "name": "role",
+                "value": "button"
               }
             ],
             "search": {

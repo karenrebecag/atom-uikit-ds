@@ -48,6 +48,9 @@ const TAG_TYPE = {
   li: 'ListItem',
 };
 
+/** Tags que el Designer solo representa con tipos Form* nativos (wave 2). */
+const FORM_CONTROL_TAGS = new Set(['input', 'textarea', 'select', 'option', 'form', 'optgroup']);
+
 const PSEUDO_VARIANT = {
   hover: 'main_hover',
   focus: 'main_focus',
@@ -132,6 +135,21 @@ export function generateXscp(html, css, opts = {}) {
       return id;
     }
 
+    // Controles de formulario nativos: el Designer los modela con tipos
+    // propios (FormTextInput/FormWrapper…, fixture header-3) y como Block
+    // genérico CRASHEAN Webflow al pegar (verificado 2026-07-31 con input/
+    // textarea/checkbox — no era tamaño: button 3K vs hero-2 real 16K).
+    // Wave 1: el componente se excluye; wave 2 mapeará los tipos Form* reales.
+    if (FORM_CONTROL_TAGS.has(tag)) {
+      throw new Error(
+        `form control <${tag}> not representable as generic Block — Designer-native Form* types required (wave 2)`,
+      );
+    }
+
+    // <button> no es nodo válido del Designer: se emite como Link Button
+    // legítimo (tag a, type Link, data.button) + role="button" — misma clase
+    // de desviación documentada que el divider (hr → div + role).
+    const effectiveTag = tag === 'button' ? 'a' : tag;
     const type = TAG_TYPE[tag] ?? 'Block';
     const id = nextId(idState);
     // Real Designer dumps: node.classes referencia style _ids, no nombres de clase.
@@ -148,10 +166,13 @@ export function generateXscp(html, css, opts = {}) {
     const xattr = Object.entries(dataAttrs)
       .filter(([k]) => k.startsWith('data-') || k === 'role' || k.startsWith('aria-'))
       .map(([name, value]) => ({ name, value: value ?? '' }));
+    if (tag === 'button' && !xattr.some((x) => x.name === 'role')) {
+      xattr.push({ name: 'role', value: 'button' });
+    }
 
     /** @type {Record<string, unknown>} */
     const data = {
-      tag,
+      tag: effectiveTag,
       text: false,
       displayName: '',
       attr: { id: dataAttrs.id ?? '' },
@@ -184,7 +205,7 @@ export function generateXscp(html, css, opts = {}) {
     nodes.push({
       _id: id,
       type,
-      tag,
+      tag: effectiveTag,
       classes: classList,
       children: childIds,
       data,

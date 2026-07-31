@@ -66,7 +66,7 @@
         {
           "_id": "a4810d1f-0005-45c7-8bb2-5c7bb2bea481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0006-45b7-8bb1-5b7bb12ba481",
             "a4810d1f-0007-45a7-8baf-5a7baf98a481",
@@ -76,7 +76,7 @@
             "a4810d1f-0009-4587-8bac-587bac72a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
@@ -90,6 +90,10 @@
               {
                 "name": "aria-label",
                 "value": "Previous month"
+              },
+              {
+                "name": "role",
+                "value": "button"
               }
             ],
             "search": {
@@ -198,7 +202,7 @@
         {
           "_id": "a4810d1f-000f-421c-849e-21c49e2da481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0006-45b7-8bb1-5b7bb12ba481",
             "a4810d1f-0007-45a7-8baf-5a7baf98a481",
@@ -208,7 +212,7 @@
             "a4810d1f-0010-41ec-8499-1ec49974a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
@@ -222,6 +226,10 @@
               {
                 "name": "aria-label",
                 "value": "Next month"
+              },
+              {
+                "name": "role",
+                "value": "button"
               }
             ],
             "search": {
@@ -545,7 +553,7 @@
         {
           "_id": "a4810d1f-0028-48ab-8cf4-8abcf4b3a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -554,13 +562,18 @@
             "a4810d1f-002b-48bb-8cf6-8bbcf646a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -607,7 +620,7 @@
         {
           "_id": "a4810d1f-002d-48db-8cf9-8dbcf96ca481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -616,13 +629,18 @@
             "a4810d1f-002e-490b-8cfe-90bcfe25a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -669,7 +687,7 @@
         {
           "_id": "a4810d1f-0030-492b-8d01-92bd014ba481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -678,13 +696,18 @@
             "a4810d1f-0031-491b-8cff-91bcffb8a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -731,7 +754,7 @@
         {
           "_id": "a4810d1f-0033-425b-8a17-25ba171da481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -739,13 +762,18 @@
             "a4810d1f-0034-422b-8a12-22ba1264a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -792,7 +820,7 @@
         {
           "_id": "a4810d1f-0036-420b-8a0f-20ba0f3ea481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -800,13 +828,18 @@
             "a4810d1f-0037-421b-8a10-21ba10d1a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -853,7 +886,7 @@
         {
           "_id": "a4810d1f-0039-41fb-8a0d-1fba0daba481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -861,13 +894,18 @@
             "a4810d1f-003a-41cb-8a08-1cba08f2a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -914,7 +952,7 @@
         {
           "_id": "a4810d1f-003c-41eb-87cd-1eb7cd81a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -922,13 +960,18 @@
             "a4810d1f-003d-41db-87cb-1db7cbeea481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1005,7 +1048,7 @@
         {
           "_id": "a4810d1f-0040-422b-87d3-22b7d3cda481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1013,13 +1056,18 @@
             "a4810d1f-0041-421b-87d2-21b7d23aa481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1066,7 +1114,7 @@
         {
           "_id": "a4810d1f-0043-41fb-87cf-1fb7cf14a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1074,13 +1122,18 @@
             "a4810d1f-0044-416b-87c0-16b7c0e9a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1127,7 +1180,7 @@
         {
           "_id": "a4810d1f-0046-418b-8585-18b58578a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1135,13 +1188,18 @@
             "a4810d1f-0047-419b-8587-19b5870ba481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1188,7 +1246,7 @@
         {
           "_id": "a4810d1f-0049-41bb-858a-1bb58a31a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1196,13 +1254,18 @@
             "a4810d1f-004a-41cb-858b-1cb58bc4a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1249,7 +1312,7 @@
         {
           "_id": "a4810d1f-004c-41eb-858e-1eb58eeaa481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1257,13 +1320,18 @@
             "a4810d1f-004d-41fb-8590-1fb5907da481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1310,7 +1378,7 @@
         {
           "_id": "a4810d1f-004f-411b-857a-11b57a73a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1318,13 +1386,18 @@
             "a4810d1f-0050-412b-833d-12b33d6fa481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1371,7 +1444,7 @@
         {
           "_id": "a4810d1f-0052-414b-8340-14b34095a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1379,13 +1452,18 @@
             "a4810d1f-0053-413b-833f-13b33f02a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1462,7 +1540,7 @@
         {
           "_id": "a4810d1f-0056-410b-833a-10b33a49a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1470,13 +1548,18 @@
             "a4810d1f-0057-40fb-8338-0fb338b6a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1523,7 +1606,7 @@
         {
           "_id": "a4810d1f-0059-419b-8348-19b34874a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1531,13 +1614,18 @@
             "a4810d1f-005a-48cb-802b-8cb02be6a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1584,7 +1672,7 @@
         {
           "_id": "a4810d1f-005c-48ab-8028-8ab028c0a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1592,13 +1680,18 @@
             "a4810d1f-005d-48bb-802a-8bb02a53a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1645,7 +1738,7 @@
         {
           "_id": "a4810d1f-005f-491b-8033-91b033c5a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1653,13 +1746,18 @@
             "a4810d1f-0060-48eb-802f-8eb02f0ca481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1706,7 +1804,7 @@
         {
           "_id": "a4810d1f-0062-494b-8038-94b0387ea481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1714,13 +1812,18 @@
             "a4810d1f-0063-495b-803a-95b03a11a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1767,7 +1870,7 @@
         {
           "_id": "a4810d1f-0065-4c87-88e9-c878e9eda481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1775,13 +1878,18 @@
             "a4810d1f-0066-4c57-88e5-c578e534a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1828,7 +1936,7 @@
         {
           "_id": "a4810d1f-0068-4c37-88e2-c378e20ea481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1836,13 +1944,18 @@
             "a4810d1f-0069-4c47-88e3-c478e3a1a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1919,7 +2032,7 @@
         {
           "_id": "a4810d1f-006c-4bf7-88db-bf78dbc2a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1927,13 +2040,18 @@
             "a4810d1f-006d-4c07-88dd-c078dd55a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1980,7 +2098,7 @@
         {
           "_id": "a4810d1f-006f-4ac7-8afc-ac7afc70a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -1988,13 +2106,18 @@
             "a4810d1f-0070-4af7-8b01-af7b0129a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2041,7 +2164,7 @@
         {
           "_id": "a4810d1f-0072-4b17-8b04-b17b044fa481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2049,13 +2172,18 @@
             "a4810d1f-0073-4b07-8b02-b07b02bca481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2102,7 +2230,7 @@
         {
           "_id": "a4810d1f-0075-4b27-8b05-b27b05e2a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2110,13 +2238,18 @@
             "a4810d1f-0076-4b57-8b0a-b57b0a9ba481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2163,7 +2296,7 @@
         {
           "_id": "a4810d1f-0078-43b7-838e-3b738ec8a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2171,13 +2304,18 @@
             "a4810d1f-0079-43c7-8390-3c73905ba481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2224,7 +2362,7 @@
         {
           "_id": "a4810d1f-007b-43e7-8393-3e739381a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2232,13 +2370,18 @@
             "a4810d1f-007c-43f7-8395-3f739514a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2285,7 +2428,7 @@
         {
           "_id": "a4810d1f-007e-4417-8398-4173983aa481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2293,13 +2436,18 @@
             "a4810d1f-007f-4427-8399-427399cda481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2376,7 +2524,7 @@
         {
           "_id": "a4810d1f-0082-4417-85d6-4175d6d1a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2384,13 +2532,18 @@
             "a4810d1f-0083-4407-85d5-4075d53ea481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2437,7 +2590,7 @@
         {
           "_id": "a4810d1f-0085-43e7-85d2-3e75d218a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2445,13 +2598,18 @@
             "a4810d1f-0086-4457-85dd-4575dd1da481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2498,7 +2656,7 @@
         {
           "_id": "a4810d1f-0088-4437-85d9-4375d9f7a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2506,13 +2664,18 @@
             "a4810d1f-0089-4427-85d8-4275d864a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2559,7 +2722,7 @@
         {
           "_id": "a4810d1f-008b-4387-85c8-3875c8a6a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2567,13 +2730,18 @@
             "a4810d1f-008c-43f8-829f-3f829f9ea481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2620,7 +2788,7 @@
         {
           "_id": "a4810d1f-008e-43d8-829c-3d829c78a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481"
           ],
@@ -2628,13 +2796,18 @@
             "a4810d1f-008f-43e8-829e-3e829e0ba481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2681,7 +2854,7 @@
         {
           "_id": "a4810d1f-0091-4448-82a7-4482a77da481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-0092-4418-82a2-4182a2c4a481"
@@ -2690,13 +2863,18 @@
             "a4810d1f-0093-4428-82a4-4282a457a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2743,7 +2921,7 @@
         {
           "_id": "a4810d1f-0095-4388-8294-38829499a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -2752,13 +2930,18 @@
             "a4810d1f-0096-4458-84e7-4584e7a7a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2835,7 +3018,7 @@
         {
           "_id": "a4810d1f-0099-4468-84e9-4684e93aa481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -2844,13 +3027,18 @@
             "a4810d1f-009a-4418-84e1-4184e15ba481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2897,7 +3085,7 @@
         {
           "_id": "a4810d1f-009c-4438-84e4-4384e481a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -2906,13 +3094,18 @@
             "a4810d1f-009d-4428-84e2-4284e2eea481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -2959,7 +3152,7 @@
         {
           "_id": "a4810d1f-009f-43c8-84d9-3c84d97ca481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -2968,13 +3161,18 @@
             "a4810d1f-00a0-4b37-8d46-b37d460ca481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -3021,7 +3219,7 @@
         {
           "_id": "a4810d1f-00a2-4b57-8d49-b57d4932a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -3030,13 +3228,18 @@
             "a4810d1f-00a3-4b67-8d4a-b67d4ac5a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -3083,7 +3286,7 @@
         {
           "_id": "a4810d1f-00a5-4b07-8d41-b07d4153a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -3092,13 +3295,18 @@
             "a4810d1f-00a6-4b17-8d42-b17d42e6a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -3145,7 +3353,7 @@
         {
           "_id": "a4810d1f-00a8-4bb7-8d52-bb7d52a4a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -3154,13 +3362,18 @@
             "a4810d1f-00a9-4bc7-8d54-bc7d5437a481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -3207,7 +3420,7 @@
         {
           "_id": "a4810d1f-00ab-4388-8056-38805602a481",
           "type": "Link",
-          "tag": "button",
+          "tag": "a",
           "classes": [
             "a4810d1f-0029-489b-8cf3-89bcf320a481",
             "a4810d1f-002a-48cb-8cf7-8cbcf7d9a481"
@@ -3216,13 +3429,18 @@
             "a4810d1f-00ac-4378-8054-3780546fa481"
           ],
           "data": {
-            "tag": "button",
+            "tag": "a",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
             "search": {
               "exclude": false
             },

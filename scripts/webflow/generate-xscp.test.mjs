@@ -142,6 +142,33 @@ describe('generateXscp', () => {
     assert.ok(node.data.xattr.some((x) => x.name === 'data-atom-badge'));
   });
 
+  it('crash-fix: <button> becomes Designer-legit Link Button (tag a, data.button, role)', () => {
+    const pkg = generateXscp(
+      `<button class="button" data-atom-button="" type="button">Go</button>`,
+      `.button { display: inline-flex; }`,
+      { slug: 'button' },
+    );
+    const node = pkg.clipboard.payload.nodes.find((n) => n.type === 'Link');
+    assert.ok(node, 'Link node emitted');
+    assert.equal(node.tag, 'a', 'tag button rewritten to a (Block/button crashes Designer)');
+    assert.equal(node.data.tag, 'a');
+    assert.equal(node.data.button, true);
+    assert.ok(node.data.xattr.some((x) => x.name === 'role' && x.value === 'button'));
+  });
+
+  it('crash-fix: native form controls throw (excluded from channel, wave 2 = Form* types)', () => {
+    for (const html of [
+      `<input class="input" type="text">`,
+      `<textarea class="textarea"></textarea>`,
+      `<label class="checkbox"><input type="checkbox"><span class="checkbox__box"></span></label>`,
+    ]) {
+      assert.throws(
+        () => generateXscp(html, `.x { display: block; }`, { slug: 'x' }),
+        /form control <(input|textarea)> not representable/,
+      );
+    }
+  });
+
   it('pilot HTML files parse', () => {
     for (const slug of ['badge', 'divider', 'spinner']) {
       const html = readFileSync(join(here, 'pilots', `${slug}.html`), 'utf8');
