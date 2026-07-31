@@ -46,15 +46,14 @@
   ],
   "verdict": "in_progress",
   "blocking": [
-    "F10-C2 Karen firma tabla lote1",
-    "F10-C6 previewProps.animated decision",
-    "F10-C7 smoke CI en merge real"
+    "F10-C4 — lotes 2-6 de la ola de meta.agent (review de Karen por lote)"
   ],
   "notes": [
     "Orden ejecutado: F10c workflow → F10b contratos → F10a lote1 meta.agent.",
     "Sample hows anti-genérico (F10-C2): (1) button.variant: One primary per section. Use destructive-* only for irreversible actions. (2) button.animated: false in dense tables or reduced-motion; true for marketing CTAs. (3) chip.type: outlined for filters at rest; filled when selected. (4) tag.intent: neutral for meta; success/warning/danger for state; brand/ai sparingly. (5) badge.state: enabled default; focused when related control active; subtle for de-emphasized counts.",
     "Parser F4 mejorado: multi-export (ButtonGroup) resuelve por PascalCase del slug.",
     "Webflow button/icon-button/link-button/toggle-group removidos del canal hasta previewProps con hooks — política F7 honesta (no motion no-verificado).",
-    "Auditoría 2026-07-31 (fix aplicado): F10b introdujo una regresión — la familia button quedó EXCLUIDA del canal porque el validador trataba los hooks opt-in del behavior como obligatorios (0 hooks en render con animated=false → domContract fail). Semántica corregida (countContractHooks): 0 hooks = componente opta por estático (emitir sin motion, nota visible); hooks parciales = anatomía rota (excluir). Canal restaurado a 35; marquee intacto; 48/48 + conformance verdes."
+    "Auditoría 2026-07-31 (fix aplicado): F10b introdujo una regresión — la familia button quedó EXCLUIDA del canal porque el validador trataba los hooks opt-in del behavior como obligatorios (0 hooks en render con animated=false → domContract fail). Semántica corregida (countContractHooks): 0 hooks = componente opta por estático (emitir sin motion, nota visible); hooks parciales = anatomía rota (excluir). Canal restaurado a 35; marquee intacto; 48/48 + conformance verdes.",
+    "Fix de auditoría F11: el array blocking listaba gates ya cerrados (C2/C6/C7 pass desde commits previos) — descuido al actualizar checks sin sincronizar blocking."
   ]
 }

@@ -1,0 +1,65 @@
+# F11b — Gate: Storybook must compile on every PR/push that can break stories.
+# A broken story → red job (the compile gate that was missing).
+name: Storybook build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/storybook/**'
+      - 'packages/components-react/**'
+      - 'packages/css/**'
+      - 'packages/tokens/**'
+      - 'packages/animations/**'
+      - '.github/workflows/storybook-build.yml'
+      - 'scripts/smoke-storybook-previews.mjs'
+  pull_request:
+    paths:
+      - 'apps/storybook/**'
+      - 'packages/components-react/**'
+      - 'packages/css/**'
+      - 'packages/tokens/**'
+      - 'packages/animations/**'
+      - '.github/workflows/storybook-build.yml'
+      - 'scripts/smoke-storybook-previews.mjs'
+  workflow_dispatch:
+
+concurrency:
+  group: storybook-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  storybook-build:
+    name: storybook build + preview smoke (static)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build tokens + CSS (Storybook imports live tokens)
+        run: |
+          pnpm --filter @atom-uikit/tokens build
+          pnpm --filter @atom-uikit/css build
+
+      - name: Build Storybook
+        run: pnpm --filter @atom-uikit/storybook build
+
+      - name: Serve static + smoke previews
+        working-directory: apps/storybook
+        run: |
+          pnpm exec http-server storybook-static -p 6006 -s &
+          SERVER_PID=$!
+          pnpm exec wait-on tcp:6006 -t 60000
+          node ../../scripts/smoke-storybook-previews.mjs http://127.0.0.1:6006
+          # prove F11-C6 detection path
+          node ../../scripts/smoke-storybook-previews.mjs http://127.0.0.1:6006 --self-test-missing
+          kill $SERVER_PID || true
