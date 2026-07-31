@@ -1,0 +1,236 @@
+{
+  "slug": "avatar-group",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "0b024302-0004-4626-862f-62662f140b02",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "0b024302-0001-45f6-862a-5f662a5b0b02",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "0b024302-0002-4606-862b-60662bee0b02",
+            "0b024302-0003-4616-862d-61662d810b02"
+          ],
+          "children": [
+            "0b024302-0004-4626-862f-62662f140b02"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "0b024302-0002-4606-862b-60662bee0b02",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar-group",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "0b024302-0003-4616-862d-61662d810b02",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar-group--s",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-avatar-group--xs>.ds-avatar{margin-left:-.375rem}.ds-avatar-group--s>.ds-avatar{margin-left:-.5rem}.ds-avatar-group--m>.ds-avatar{margin-left:-.625rem}.ds-avatar-group--l>.ds-avatar{margin-left:-.75rem}.ds-avatar-group>.ds-avatar:first-child{margin-left:0}.ds-avatar-group>.ds-avatar,.ds-avatar-group>.ds-avatar-group__count{position:relative}.ds-avatar-group>:first-child{z-index:10}.ds-avatar-group>:nth-child(2){z-index:9}.ds-avatar-group>:nth-child(3){z-index:8}.ds-avatar-group>:nth-child(4){z-index:7}.ds-avatar-group>:nth-child(5){z-index:6}.ds-avatar-group>:nth-child(6){z-index:5}.ds-avatar-group>:nth-child(7){z-index:4}.ds-avatar-group>:nth-child(8){z-index:3}.ds-avatar-group>:nth-child(9){z-index:2}.ds-avatar-group>:nth-child(10){z-index:1}.ds-avatar-group>.ds-avatar{box-shadow:0 0 0 var(--stroke-medium) var(--background)}.ds-avatar-group--square .ds-avatar-group__count{border-radius:var(--radius-md)}.ds-avatar-group--square.ds-avatar-group--m .ds-avatar-group__count{border-radius:var(--radius-lg)}.ds-avatar-group--square.ds-avatar-group--l .ds-avatar-group__count{border-radius:var(--radius-xl)}.ds-avatar-group--xs .ds-avatar-group__count{width:1.5rem;height:1.5rem;font-size:var(--font-size-xs);margin-left:-.375rem}.ds-avatar-group--s .ds-avatar-group__count{width:2rem;height:2rem;font-size:var(--font-size-xs);margin-left:-.5rem}.ds-avatar-group--m .ds-avatar-group__count{width:2.5rem;height:2.5rem;font-size:var(--font-size-sm);margin-left:-.625rem}.ds-avatar-group--l .ds-avatar-group__count{width:3rem;height:3rem;font-size:var(--font-size-sm);margin-left:-.75rem}",
+  "tokensCss": ":root {\n  --background: #fafafa;\n  --font-size-sm: 12.8px;\n  --font-size-xs: 10.24px;\n  --radius-lg: 12px;\n  --radius-md: 8px;\n  --radius-xl: 16px;\n  --stroke-medium: 2px;\n}",
+  "tokensResolved": [
+    "background",
+    "font-size-sm",
+    "font-size-xs",
+    "radius-lg",
+    "radius-md",
+    "radius-xl",
+    "stroke-medium"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "background",
+      "font-size-sm",
+      "font-size-xs",
+      "radius-lg",
+      "radius-md",
+      "radius-xl",
+      "stroke-medium"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--xs > .avatar",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--s  > .avatar",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--m  > .avatar",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--l  > .avatar",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > .avatar:first-child",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > .avatar,\n.avatar-group > .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(1)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(2)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(3)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(4)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(5)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(6)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(7)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(8)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(9)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > :nth-child(10)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group > .avatar",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--square .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--square.avatar-group--m .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--square.avatar-group--l .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--xs .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--s  .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--m  .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar-group--l  .avatar-group__count",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    }
+  ]
+}

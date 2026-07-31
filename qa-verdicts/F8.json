@@ -1,0 +1,65 @@
+{
+  "feature": "F8",
+  "date": "2026-07-31",
+  "commit": "wt-pending",
+  "checks": [
+    {
+      "id": "F8-C1",
+      "desc": "render-anatomy produces HTML for pilots; fixture regression path in emit",
+      "status": "pass",
+      "evidence": "render-anatomy.test.mjs badge/marquee; emit uses render as truth; pilots in fixtures/pilots + legacy pilots/"
+    },
+    {
+      "id": "F8-C2",
+      "desc": "New eligible without manual pilot (chip) appears in public/r/webflow/",
+      "status": "pass",
+      "evidence": "public/r/webflow/chip.json + tag.json exist after emit; no pilots/chip.html"
+    },
+    {
+      "id": "F8-C3",
+      "desc": "Noisy exclusions: elegibles=emitidos+excluidos",
+      "status": "pass",
+      "evidence": "emit log: elegibles=59 emitidos=40 excluidos=19 with per-slug reasons"
+    },
+    {
+      "id": "F8-C4",
+      "desc": "DOM_CONTRACTS from behavior REQUIRED_HOOKS; querySelector invariant",
+      "status": "pass",
+      "evidence": "marquee-draggable exports REQUIRED_HOOKS; loadDomContracts; validateHooksCoverSelectors test"
+    },
+    {
+      "id": "F8-C5",
+      "desc": "WebflowTab on docs for emitted slugs only",
+      "status": "pass",
+      "evidence": "WebflowSection reads public/r/webflow/{slug}.json; returns null if missing; wired in docs page"
+    },
+    {
+      "id": "F8-C6",
+      "desc": "Copier v3 verified pattern",
+      "status": "pass",
+      "evidence": "WebflowTab.tsx: execCommand + application/json listener + feedback first class + manual fallback textarea"
+    },
+    {
+      "id": "F8-C7",
+      "desc": "E2E copy from docs → ds-lab paste",
+      "status": "pending",
+      "evidence": "Manual Karen after deploy"
+    },
+    {
+      "id": "F8-C8",
+      "desc": "Suites green",
+      "status": "pass",
+      "evidence": "DS webflow tests 10+; MCP 216 passed; emit accounting green"
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": [
+    "F8-C7 manual E2E from docs"
+  ],
+  "notes": [
+    "40 components auto-emitted including chip/tag without hand HTML.",
+    "meta.webflow.previewProps on marquee for draggable anatomy.",
+    "Gate 0: 88% of TSX components render cleanly.",
+    "Auditoría 2026-07-31 (2 fixes aplicados): (1) validateHooksCoverSelectors era VACUA — la regex no contemplaba genéricos TS (querySelectorAll<HTMLElement>) y extraía 0 selectores; corregida + test endurecido (found>=3 y detección de hook faltante probada). (2) 4 animados sin REQUIRED_HOOKS (button/checkbox/icon-button/link-button) se emitían CON js sin contrato — ahora salen estáticos con aviso en log y unsupported (motion solo con contrato verificable)."
+  ]
+}

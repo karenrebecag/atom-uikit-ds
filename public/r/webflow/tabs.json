@@ -1,0 +1,180 @@
+{
+  "slug": "tabs",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "0c1dcd2d-0003-4012-83ca-0123ca720c1d",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "0c1dcd2d-0001-4ff2-83c7-ff23c74c0c1d",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "0c1dcd2d-0002-4022-83cc-0223cc050c1d"
+          ],
+          "children": [
+            "0c1dcd2d-0003-4012-83ca-0123ca720c1d"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "0c1dcd2d-0002-4022-83cc-0223cc050c1d",
+          "fake": false,
+          "type": "class",
+          "name": "ds-tabs",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; flex-direction: column; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-tabs__list .ds-tabs__trigger{text-align:center;flex:1}.ds-tabs--vertical .ds-tabs__list{flex-direction:column;align-items:stretch}.ds-tabs--vertical .ds-tabs__list:not(.ds-tabs__list--line){border-radius:var(--radius-lg)}.ds-tabs--vertical .ds-tabs__list--line{border-bottom:none;border-right:var(--stroke-hairline) solid var(--border)}.ds-tabs__list--animated .ds-tabs__trigger{z-index:1;position:relative}.ds-tabs__list--animated .ds-tabs__trigger--active{box-shadow:none;background:0 0}.ds-tabs__list--line .ds-tabs__trigger{padding:var(--spacing-2,8px) var(--spacing-4,16px);border-radius:0;position:relative}.ds-tabs__list--line .ds-tabs__trigger:after{content:\"\";height:var(--stroke-medium);transition:background-color var(--duration-150) var(--easing-in-out);background-color:#0000;position:absolute;bottom:-1px;left:0;right:0}.ds-tabs__list--line .ds-tabs__trigger--active{box-shadow:none;color:var(--foreground);background:0 0}.ds-tabs__list--line .ds-tabs__trigger--active:after{background-color:var(--primary)}.ds-tabs--vertical .ds-tabs__list--line .ds-tabs__trigger:after{width:var(--stroke-medium);height:100%;top:0;bottom:auto;left:auto;right:-1px}.ds-tabs__trigger-icon svg{width:100%;height:100%}.ds-tabs--vertical .ds-tabs__content{flex:1;padding-top:0}@media (prefers-reduced-motion:reduce){.ds-tabs__trigger,.ds-tabs__list--line .ds-tabs__trigger:after{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --border: #e5e5e5;\n  --duration-150: 150ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --foreground: #0a0a0a;\n  --primary: #0a0a0a;\n  --radius-lg: 12px;\n  --spacing-2: 8px;\n  --spacing-4: 16px;\n  --stroke-hairline: 1px;\n  --stroke-medium: 2px;\n}",
+  "tokensResolved": [
+    "border",
+    "duration-150",
+    "easing-in-out",
+    "font-family-sans",
+    "foreground",
+    "primary",
+    "radius-lg",
+    "spacing-2",
+    "spacing-4",
+    "stroke-hairline",
+    "stroke-medium"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "border",
+      "duration-150",
+      "easing-in-out",
+      "font-family-sans",
+      "foreground",
+      "primary",
+      "radius-lg",
+      "spacing-2",
+      "spacing-4",
+      "stroke-hairline",
+      "stroke-medium"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".tabs__list .tabs__trigger",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs--vertical .tabs__list",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs--vertical .tabs__list:not(.tabs__list--line)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs--vertical .tabs__list--line",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__list--animated .tabs__trigger",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__list--animated .tabs__trigger--active",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__list--line .tabs__trigger",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__list--line .tabs__trigger::after",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__list--line .tabs__trigger--active",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__list--line .tabs__trigger--active::after",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs--vertical .tabs__list--line .tabs__trigger::after",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs__trigger-icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tabs--vertical .tabs__content",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

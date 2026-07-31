@@ -1178,7 +1178,22 @@
           "outputPath": "styles/components/marquee.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "webflow": {
+          "previewProps": {
+            "draggable": true,
+            "fade": true,
+            "duration": 20
+          },
+          "previewChildren": [
+            "Atom",
+            "UIKit",
+            "Motion",
+            "Webflow"
+          ]
+        }
+      }
     },
     {
       "name": "nav-link",

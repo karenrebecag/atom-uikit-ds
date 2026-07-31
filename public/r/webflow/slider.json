@@ -1,0 +1,256 @@
+{
+  "slug": "slider",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "6eac67fc-0005-496b-86a8-96b6a8856eac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "6eac67fc-0006-493b-86a3-93b6a3cc6eac"
+          ],
+          "children": [],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "6eac67fc-0003-490b-869f-90b69f136eac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "6eac67fc-0004-495b-86a6-95b6a6f26eac"
+          ],
+          "children": [
+            "6eac67fc-0005-496b-86a8-96b6a8856eac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "6eac67fc-0007-494b-86a5-94b6a55f6eac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "6eac67fc-0008-499b-86ad-99b6ad3e6eac"
+          ],
+          "children": [],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "role",
+                "value": "slider"
+              },
+              {
+                "name": "aria-valuemin",
+                "value": "0"
+              },
+              {
+                "name": "aria-valuemax",
+                "value": "100"
+              },
+              {
+                "name": "aria-valuenow",
+                "value": "0"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "6eac67fc-0001-492b-86a2-92b6a2396eac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "6eac67fc-0002-48fb-869d-8fb69d806eac"
+          ],
+          "children": [
+            "6eac67fc-0003-490b-869f-90b69f136eac",
+            "6eac67fc-0007-494b-86a5-94b6a55f6eac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "6eac67fc-0002-48fb-869d-8fb69d806eac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-slider",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: relative; display: flex; align-items: center; width: 100%; touch-action: none; user-select: none; cursor: pointer;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "6eac67fc-0004-495b-86a6-95b6a6f26eac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-slider__track",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: relative; width: 100%; height: var(--spacing-2); border-radius: var(--radius-full); background-color: var(--muted); overflow: hidden;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "6eac67fc-0006-493b-86a3-93b6a3cc6eac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-slider__range",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: absolute; height: 100%; background-color: var(--primary); border-radius: var(--radius-full);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "6eac67fc-0008-499b-86ad-99b6ad3e6eac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-slider__thumb",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: absolute; top: 50%; width: var(--spacing-5); height: var(--spacing-5); border-radius: var(--radius-full); border: var(--stroke-medium) solid var(--primary); background-color: var(--background); transform: translate(-50%, -50%); cursor: grab; transition: box-shadow var(--duration-150) var(--easing-in-out),\n    scale var(--duration-150) var(--easing-in-out);",
+          "variants": {
+            "main_hover": {
+              "styleLess": "box-shadow: 0 0 0 var(--spacing-2) color-mix(in srgb, var(--foreground) 4%, transparent);"
+            },
+            "main_focus": {
+              "styleLess": "outline: var(--stroke-medium) solid var(--focus-ring-color); outline-offset: var(--stroke-medium);"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-slider__thumb:active,.ds-slider__thumb--dragging{cursor:grabbing;scale:1.1}@media (prefers-reduced-motion:reduce){.ds-slider__thumb{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --background: #fafafa;\n  --duration-150: 150ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --foreground: #0a0a0a;\n  --muted: #f5f5f5;\n  --primary: #0a0a0a;\n  --radius-full: 9999px;\n  --spacing-2: 8px;\n  --spacing-5: 20px;\n  --stroke-medium: 2px;\n}",
+  "tokensResolved": [
+    "background",
+    "duration-150",
+    "easing-in-out",
+    "foreground",
+    "muted",
+    "primary",
+    "radius-full",
+    "spacing-2",
+    "spacing-5",
+    "stroke-medium"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "background",
+      "duration-150",
+      "easing-in-out",
+      "foreground",
+      "muted",
+      "primary",
+      "radius-full",
+      "spacing-2",
+      "spacing-5",
+      "stroke-medium"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".slider__thumb:active,\n.slider__thumb--dragging",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    }
+  ]
+}

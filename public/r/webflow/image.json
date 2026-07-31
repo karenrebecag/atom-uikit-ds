@@ -1,25 +1,30 @@
 {
-  "slug": "divider",
+  "slug": "image",
   "format": "webflow-xscp",
   "clipboard": {
     "type": "@webflow/XscpData",
     "payload": {
       "nodes": [
         {
-          "_id": "36b04926-0001-43c5-8d6f-3c5d6f3f36b0",
-          "type": "Block",
-          "tag": "hr",
+          "_id": "b35135fa-0001-45c6-8cd8-5c6cd8e3b351",
+          "type": "Image",
+          "tag": "img",
           "classes": [
-            "36b04926-0002-43d5-8d70-3d5d70d236b0",
-            "36b04926-0003-43e5-8d72-3e5d726536b0"
+            "b35135fa-0002-45d6-8cda-5d6cda76b351",
+            "b35135fa-0003-45e6-8cdc-5e6cdc09b351",
+            "b35135fa-0004-45f6-8cdd-5f6cdd9cb351"
           ],
           "children": [],
           "data": {
-            "tag": "hr",
+            "tag": "img",
             "text": false,
             "displayName": "",
             "attr": {
-              "id": ""
+              "src": "",
+              "alt": "",
+              "loading": "lazy",
+              "width": "auto",
+              "height": "auto"
             },
             "xattr": [],
             "search": {
@@ -33,26 +38,39 @@
       ],
       "styles": [
         {
-          "_id": "36b04926-0002-43d5-8d70-3d5d70d236b0",
+          "_id": "b35135fa-0002-45d6-8cda-5d6cda76b351",
           "fake": false,
           "type": "class",
-          "name": "ds-divider",
+          "name": "ds-image",
           "namespace": "",
           "comb": "",
-          "styleLess": "border: none; margin: 0; flex-shrink: 0;",
+          "styleLess": "display: block; width: 100%; max-width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-md); background-color: var(--muted); transition: opacity var(--duration-300) var(--easing-out);",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
         },
         {
-          "_id": "36b04926-0003-43e5-8d72-3e5d726536b0",
+          "_id": "b35135fa-0003-45e6-8cdc-5e6cdc09b351",
           "fake": false,
           "type": "class",
-          "name": "ds-divider--horizontal",
+          "name": "ds-image--xs",
           "namespace": "",
           "comb": "",
-          "styleLess": "width: 100%; height: 0; border-top: var(--stroke-hairline) solid var(--border);",
+          "styleLess": "width: 3rem; height: 3rem; border-radius: var(--radius-sm);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "b35135fa-0004-45f6-8cdd-5f6cdd9cb351",
+          "fake": false,
+          "type": "class",
+          "name": "ds-image--loading",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "opacity: 0;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -75,11 +93,14 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-divider--labeled:after{height:var(--stroke-hairline);content:\"\";opacity:.15;background-color:currentColor;flex:1}",
-  "tokensCss": ":root {\n  --border: #e5e5e5;\n  --stroke-hairline: 1px;\n}",
+  "headCss": "@media (prefers-reduced-motion:reduce){.ds-image{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --duration-300: 300ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --muted: #f5f5f5;\n  --radius-md: 8px;\n  --radius-sm: 4px;\n}",
   "tokensResolved": [
-    "border",
-    "stroke-hairline"
+    "duration-300",
+    "easing-out",
+    "muted",
+    "radius-md",
+    "radius-sm"
   ],
   "manifest": {
     "channelVersion": "v1",
@@ -89,16 +110,19 @@
     ],
     "js": [],
     "tokens": [
-      "border",
-      "stroke-hairline"
+      "duration-300",
+      "easing-out",
+      "muted",
+      "radius-md",
+      "radius-sm"
     ]
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
-      "prop": "selector",
-      "selector": ".divider--labeled::after",
-      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
     }
   ]
 }

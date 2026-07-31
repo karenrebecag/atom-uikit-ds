@@ -1,0 +1,77 @@
+{
+  "slug": "sheet",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "03cc1fa8-0001-4d1e-88a1-d1e8a1a503cc",
+          "text": true,
+          "v": "Atom"
+        }
+      ],
+      "styles": [],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes sheet-right-in{0%{transform:translate(100%)}to{transform:translate(0)}}@keyframes sheet-right-out{0%{transform:translate(0)}to{transform:translate(100%)}}@keyframes sheet-left-in{0%{transform:translate(-100%)}to{transform:translate(0)}}@keyframes sheet-left-out{0%{transform:translate(0)}to{transform:translate(-100%)}}@keyframes sheet-top-in{0%{transform:translateY(-100%)}to{transform:translateY(0)}}@keyframes sheet-top-out{0%{transform:translateY(0)}to{transform:translateY(-100%)}}@keyframes sheet-bottom-in{0%{transform:translateY(100%)}to{transform:translateY(0)}}@keyframes sheet-bottom-out{0%{transform:translateY(0)}to{transform:translateY(100%)}}.ds-sheet--right.ds-sheet--exiting{animation:sheet-right-out var(--duration-200) var(--easing-in) forwards}.ds-sheet--left.ds-sheet--exiting{animation:sheet-left-out var(--duration-200) var(--easing-in) forwards}.ds-sheet--top.ds-sheet--exiting{animation:sheet-top-out var(--duration-200) var(--easing-in) forwards}.ds-sheet--bottom.ds-sheet--exiting{animation:sheet-bottom-out var(--duration-200) var(--easing-in) forwards}@media (prefers-reduced-motion:reduce){.ds-sheet,.ds-sheet--exiting{animation-duration:0s}}",
+  "tokensCss": ":root {\n  --duration-200: 200ms;\n  --easing-in: cubic-bezier(0.4, 0, 1, 1);\n}",
+  "tokensResolved": [
+    "duration-200",
+    "easing-in"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "duration-200",
+      "easing-in"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".sheet--right.sheet--exiting",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".sheet--left.sheet--exiting",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".sheet--top.sheet--exiting",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".sheet--bottom.sheet--exiting",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

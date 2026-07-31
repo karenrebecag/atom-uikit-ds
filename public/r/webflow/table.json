@@ -1,29 +1,22 @@
 {
-  "slug": "spinner",
+  "slug": "table",
   "format": "webflow-xscp",
   "clipboard": {
     "type": "@webflow/XscpData",
     "payload": {
       "nodes": [
         {
-          "_id": "5d056fc6-0004-4d29-80b4-d290b4805d05",
-          "type": "HtmlEmbed",
-          "tag": "div",
-          "classes": [],
+          "_id": "4a9c9bdf-0003-43f5-80c2-3f50c2a44a9c",
+          "type": "Block",
+          "tag": "table",
+          "classes": [
+            "4a9c9bdf-0004-43e5-80c1-3e50c1114a9c"
+          ],
           "children": [],
-          "v": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 0 1 10 10\"></path></svg>",
           "data": {
-            "embed": {
-              "type": "html",
-              "meta": {
-                "html": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 0 1 10 10\"></path></svg>",
-                "div": false,
-                "iframe": false,
-                "script": false,
-                "compilable": false
-              }
-            },
-            "insideRTE": false,
+            "tag": "table",
+            "text": false,
+            "displayName": "",
             "attr": {
               "id": ""
             },
@@ -33,38 +26,27 @@
             },
             "visibility": {
               "conditions": []
-            },
-            "displayName": ""
+            }
           }
         },
         {
-          "_id": "5d056fc6-0001-4d79-80bc-d790bc5f5d05",
+          "_id": "4a9c9bdf-0001-4415-80c5-4150c5ca4a9c",
           "type": "Block",
-          "tag": "span",
+          "tag": "div",
           "classes": [
-            "5d056fc6-0002-4d89-80bd-d890bdf25d05",
-            "5d056fc6-0003-4d99-80bf-d990bf855d05"
+            "4a9c9bdf-0002-4405-80c4-4050c4374a9c"
           ],
           "children": [
-            "5d056fc6-0004-4d29-80b4-d290b4805d05"
+            "4a9c9bdf-0003-43f5-80c2-3f50c2a44a9c"
           ],
           "data": {
-            "tag": "span",
+            "tag": "div",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [
-              {
-                "name": "role",
-                "value": "status"
-              },
-              {
-                "name": "aria-label",
-                "value": "Loading"
-              }
-            ],
+            "xattr": [],
             "search": {
               "exclude": false
             },
@@ -76,26 +58,26 @@
       ],
       "styles": [
         {
-          "_id": "5d056fc6-0002-4d89-80bd-d890bdf25d05",
+          "_id": "4a9c9bdf-0002-4405-80c4-4050c4374a9c",
           "fake": false,
           "type": "class",
-          "name": "ds-spinner",
+          "name": "ds-table-wrapper",
           "namespace": "",
           "comb": "",
-          "styleLess": "display: inline-flex; align-items: center; justify-content: center; color: currentColor; animation: spinner-rotate var(--duration-700) linear infinite;",
+          "styleLess": "width: 100%; overflow-x: auto;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
         },
         {
-          "_id": "5d056fc6-0003-4d99-80bf-d990bf855d05",
+          "_id": "4a9c9bdf-0004-43e5-80c1-3e50c1114a9c",
           "fake": false,
           "type": "class",
-          "name": "ds-spinner--m",
+          "name": "ds-table",
           "namespace": "",
           "comb": "",
-          "styleLess": "width: 1.5rem; height: 1.5rem;",
+          "styleLess": "width: 100%; border-collapse: collapse; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; font-size: var(--font-size-sm); line-height: var(--line-height-sm); text-align: left;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -118,10 +100,13 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": "@keyframes spinner-rotate{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.ds-spinner svg{width:100%;height:100%}@media (prefers-reduced-motion:reduce){.ds-spinner{animation-duration:0s}}",
-  "tokensCss": ":root {\n  --duration-700: 700ms;\n}",
+  "headCss": ".ds-table__footer .ds-table__cell{font-weight:var(--font-weight-semibold)}.ds-table__head--right,.ds-table__cell--right{text-align:right}.ds-table__head--center,.ds-table__cell--center{text-align:center}@media (prefers-reduced-motion:reduce){.ds-table__row{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-sm: 12.8px;\n  --font-weight-semibold: 600;\n  --line-height-sm: 1.45;\n}",
   "tokensResolved": [
-    "duration-700"
+    "font-family-sans",
+    "font-size-sm",
+    "font-weight-semibold",
+    "line-height-sm"
   ],
   "manifest": {
     "channelVersion": "v1",
@@ -131,14 +116,27 @@
     ],
     "js": [],
     "tokens": [
-      "duration-700"
+      "font-family-sans",
+      "font-size-sm",
+      "font-weight-semibold",
+      "line-height-sm"
     ]
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
       "prop": "selector",
-      "selector": ".spinner svg",
+      "selector": ".table__footer .table__cell",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".table__head--right,\n.table__cell--right",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".table__head--center,\n.table__cell--center",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {

@@ -1,0 +1,138 @@
+{
+  "slug": "combobox",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "afb65f8e-0003-485d-8126-85d126bdafb6",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "afb65f8e-0001-483d-8123-83d12397afb6",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "afb65f8e-0002-484d-8125-84d1252aafb6"
+          ],
+          "children": [
+            "afb65f8e-0003-485d-8126-85d126bdafb6"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "afb65f8e-0002-484d-8125-84d1252aafb6",
+          "fake": false,
+          "type": "class",
+          "name": "ds-combobox",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: relative; display: inline-flex; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes combobox-in{0%{opacity:0;transform:scale(.96)translateY(-4px)}to{opacity:1;transform:scale(1)translateY(0)}}.ds-combobox__trigger[aria-invalid=true]{border-color:var(--destructive);box-shadow:0 0 var(--focus-ring-width,2px) 0 var(--focus-ring-error-color)}:is(.ds-combobox__trigger[aria-invalid=true]:focus-visible,.ds-combobox__trigger[aria-invalid=true].ds-combobox__trigger--open){border-color:var(--destructive);box-shadow:0 0 0 var(--focus-ring-width,2px) var(--focus-ring-error-color)}.ds-combobox__trigger--open .ds-combobox__trigger-icon{transform:rotate(180deg)}.ds-combobox__input::placeholder{color:var(--placeholder)}.ds-combobox__item:hover,.ds-combobox__item--highlighted{background-color:var(--accent);color:var(--accent-foreground)}@media (prefers-reduced-motion:reduce){.ds-combobox__trigger,.ds-combobox__trigger-icon,.ds-combobox__item{transition-duration:0s}.ds-combobox__content{animation-duration:0s}}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --accent-foreground: #171717;\n  --destructive: #f84131;\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --placeholder: #525252;\n}",
+  "tokensResolved": [
+    "accent",
+    "accent-foreground",
+    "destructive",
+    "font-family-sans",
+    "placeholder"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "accent",
+      "accent-foreground",
+      "destructive",
+      "font-family-sans",
+      "placeholder"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".combobox__trigger[aria-invalid=\"true\"]",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".combobox__trigger[aria-invalid=\"true\"]:focus-visible,\n.combobox__trigger[aria-invalid=\"true\"].combobox__trigger--open",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".combobox__trigger--open .combobox__trigger-icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".combobox__input::placeholder",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".combobox__item:hover,\n.combobox__item--highlighted",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-error-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--focus-ring-width",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    }
+  ]
+}

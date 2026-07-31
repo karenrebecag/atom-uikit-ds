@@ -1,0 +1,56 @@
+{
+  "slug": "alert-dialog",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "d3aeea3c-0001-4b75-808e-b7508e79d3ae",
+          "text": true,
+          "v": "Atom"
+        }
+      ],
+      "styles": [],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes alert-dialog-in{0%{opacity:0;transform:translate(-50%,-50%)scale(.95)}to{opacity:1;transform:translate(-50%,-50%)scale(1)}}@keyframes alert-dialog-out{0%{opacity:1;transform:translate(-50%,-50%)scale(1)}to{opacity:0;transform:translate(-50%,-50%)scale(.95)}}.ds-alert-dialog__media svg{width:100%;height:100%}@media (prefers-reduced-motion:reduce){.ds-alert-dialog,.ds-alert-dialog--exiting{animation-duration:0s}}",
+  "tokensCss": "",
+  "tokensResolved": [],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": []
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".alert-dialog__media svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

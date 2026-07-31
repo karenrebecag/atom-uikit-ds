@@ -1,21 +1,27 @@
 {
-  "slug": "divider",
+  "slug": "dropdown-menu",
   "format": "webflow-xscp",
   "clipboard": {
     "type": "@webflow/XscpData",
     "payload": {
       "nodes": [
         {
-          "_id": "36b04926-0001-43c5-8d6f-3c5d6f3f36b0",
+          "_id": "f3fe7c00-0003-41e0-88e1-1e08e1c7f3fe",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "f3fe7c00-0001-4200-88e4-2008e4edf3fe",
           "type": "Block",
-          "tag": "hr",
+          "tag": "div",
           "classes": [
-            "36b04926-0002-43d5-8d70-3d5d70d236b0",
-            "36b04926-0003-43e5-8d72-3e5d726536b0"
+            "f3fe7c00-0002-41d0-88e0-1d08e034f3fe"
           ],
-          "children": [],
+          "children": [
+            "f3fe7c00-0003-41e0-88e1-1e08e1c7f3fe"
+          ],
           "data": {
-            "tag": "hr",
+            "tag": "div",
             "text": false,
             "displayName": "",
             "attr": {
@@ -33,26 +39,13 @@
       ],
       "styles": [
         {
-          "_id": "36b04926-0002-43d5-8d70-3d5d70d236b0",
+          "_id": "f3fe7c00-0002-41d0-88e0-1d08e034f3fe",
           "fake": false,
           "type": "class",
-          "name": "ds-divider",
+          "name": "ds-dropdown-menu",
           "namespace": "",
           "comb": "",
-          "styleLess": "border: none; margin: 0; flex-shrink: 0;",
-          "variants": {},
-          "children": [],
-          "createdBy": "590cdb22ed5bf253e056f0a7",
-          "selector": null
-        },
-        {
-          "_id": "36b04926-0003-43e5-8d72-3e5d726536b0",
-          "fake": false,
-          "type": "class",
-          "name": "ds-divider--horizontal",
-          "namespace": "",
-          "comb": "",
-          "styleLess": "width: 100%; height: 0; border-top: var(--stroke-hairline) solid var(--border);",
+          "styleLess": "position: relative; display: inline-flex;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -75,12 +68,9 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-divider--labeled:after{height:var(--stroke-hairline);content:\"\";opacity:.15;background-color:currentColor;flex:1}",
-  "tokensCss": ":root {\n  --border: #e5e5e5;\n  --stroke-hairline: 1px;\n}",
-  "tokensResolved": [
-    "border",
-    "stroke-hairline"
-  ],
+  "headCss": "@keyframes dropdown-menu-in{0%{opacity:0;transform:scale(.96)translateY(-2px)}to{opacity:1;transform:scale(1)translateY(0)}}.ds-dropdown-menu__item-icon svg{width:100%;height:100%}@media (prefers-reduced-motion:reduce){.ds-dropdown-menu__item{transition-duration:0s}.ds-dropdown-menu__content{animation-duration:0s}}",
+  "tokensCss": "",
+  "tokensResolved": [],
   "manifest": {
     "channelVersion": "v1",
     "consume": [
@@ -88,17 +78,19 @@
       "https://atom-web-ds.vercel.app/v1/components.css"
     ],
     "js": [],
-    "tokens": [
-      "border",
-      "stroke-hairline"
-    ]
+    "tokens": []
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
       "prop": "selector",
-      "selector": ".divider--labeled::after",
+      "selector": ".dropdown-menu__item-icon svg",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
     }
   ]
 }

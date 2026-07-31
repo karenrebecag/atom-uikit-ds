@@ -1,0 +1,215 @@
+{
+  "slug": "link-button",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "f44765c8-0006-4b9c-81cf-b9c1cf40f447",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "f44765c8-0004-4bbc-81d2-bbc1d266f447",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "f44765c8-0005-4bcc-81d3-bcc1d3f9f447"
+          ],
+          "children": [
+            "f44765c8-0006-4b9c-81cf-b9c1cf40f447"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "f44765c8-0001-4c0c-81da-c0c1da45f447",
+          "type": "Link",
+          "tag": "a",
+          "classes": [
+            "f44765c8-0002-4bdc-81d5-bdc1d58cf447",
+            "f44765c8-0003-4bec-81d7-bec1d71ff447"
+          ],
+          "children": [
+            "f44765c8-0004-4bbc-81d2-bbc1d266f447"
+          ],
+          "data": {
+            "tag": "a",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            },
+            "button": false,
+            "block": "inline",
+            "link": {
+              "mode": "external",
+              "url": "#"
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "f44765c8-0002-4bdc-81d5-bdc1d58cf447",
+          "fake": false,
+          "type": "class",
+          "name": "ds-link-button",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; gap: 0.5em; padding: 0; background: none; border: none; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; font-weight: var(--font-weight-medium); line-height: 1; color: var(--link-button-fg-enabled); cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; text-decoration: none; transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);",
+          "variants": {
+            "main_focus": {
+              "styleLess": "outline: var(--ring-width) solid var(--ring); outline-offset: var(--ring-offset); border-radius: 0.125em;"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "f44765c8-0003-4bec-81d7-bec1d71ff447",
+          "fake": false,
+          "type": "class",
+          "name": "ds-link-button--default",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "font-size: var(--font-size-base);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "f44765c8-0005-4bcc-81d3-bcc1d3f9f447",
+          "fake": false,
+          "type": "class",
+          "name": "ds-link-button__text",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline; position: relative;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes link-button-shimmer{0%,to{background-position:200%}50%{background-position:0%}}.ds-link-button:hover:not(.ds-link-button--disabled){color:var(--link-button-fg-hover)}.ds-link-button:active:not(.ds-link-button--disabled){color:var(--link-button-fg-pressed)}.ds-link-button__text:before{content:\"\";transform-origin:100%;background-color:currentColor;width:100%;height:.0625em;transition:transform .735s cubic-bezier(.625,.05,0,1);position:absolute;bottom:-.0625em;left:0;transform:scaleX(0)rotate(.001deg)}.ds-link-button--animated:not(.ds-link-button--disabled) .ds-link-button__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}.ds-link-button--animated:not(.ds-link-button--disabled) .ds-link-button__text{background:linear-gradient(120deg, currentColor 0%, currentColor 35%, color-mix(in srgb, currentColor 40%, white) 50%, currentColor 65%, currentColor 100%);-webkit-text-fill-color:transparent;background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:3s ease-in-out infinite link-button-shimmer}@media (prefers-reduced-motion:reduce){.ds-link-button{transition-duration:0s}}@media (hover:hover) and (pointer:fine){.ds-link-button--animated:hover:not(.ds-link-button--disabled) .ds-link-button__text:before,[data-hover]:hover .ds-link-button--animated:not(.ds-link-button--disabled) .ds-link-button__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}}@media (prefers-reduced-motion:reduce){.ds-link-button--animated:not(.ds-link-button--disabled) .ds-link-button__text{-webkit-text-fill-color:currentColor;background:0 0;animation:none}}",
+  "tokensCss": ":root {\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-base: 16px;\n  --font-weight-medium: 500;\n  --link-button-fg-enabled: #0e7490;\n  --link-button-fg-hover: #0a0a0a;\n  --link-button-fg-pressed: #0a0a0a;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n}",
+  "tokensResolved": [
+    "font-family-sans",
+    "font-size-base",
+    "font-weight-medium",
+    "link-button-fg-enabled",
+    "link-button-fg-hover",
+    "link-button-fg-pressed",
+    "ring",
+    "ring-offset",
+    "ring-width"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css",
+      "https://atom-web-ds.vercel.app/v1/webflow.css"
+    ],
+    "js": [],
+    "tokens": [
+      "font-family-sans",
+      "font-size-base",
+      "font-weight-medium",
+      "link-button-fg-enabled",
+      "link-button-fg-hover",
+      "link-button-fg-pressed",
+      "ring",
+      "ring-offset",
+      "ring-width"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".link-button:hover:not(.link-button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".link-button:active:not(.link-button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".link-button__text::before",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".link-button--animated:not(.link-button--disabled) .link-button__text::before",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".link-button--animated:not(.link-button--disabled) .link-button__text",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(hover: hover) and (pointer: fine)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "motion",
+      "selector": "link-button",
+      "reason": "animated component without REQUIRED_HOOKS in its behavior module — emitted static (add the export to enable motion)"
+    }
+  ]
+}

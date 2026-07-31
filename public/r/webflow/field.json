@@ -1,27 +1,38 @@
 {
-  "slug": "divider",
+  "slug": "field",
   "format": "webflow-xscp",
   "clipboard": {
     "type": "@webflow/XscpData",
     "payload": {
       "nodes": [
         {
-          "_id": "36b04926-0001-43c5-8d6f-3c5d6f3f36b0",
+          "_id": "67826267-0003-4171-848c-17148c3c6782",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "67826267-0001-4191-848f-19148f626782",
           "type": "Block",
-          "tag": "hr",
+          "tag": "div",
           "classes": [
-            "36b04926-0002-43d5-8d70-3d5d70d236b0",
-            "36b04926-0003-43e5-8d72-3e5d726536b0"
+            "67826267-0002-4181-848d-18148dcf6782"
           ],
-          "children": [],
+          "children": [
+            "67826267-0003-4171-848c-17148c3c6782"
+          ],
           "data": {
-            "tag": "hr",
+            "tag": "div",
             "text": false,
             "displayName": "",
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "role",
+                "value": "group"
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -33,26 +44,13 @@
       ],
       "styles": [
         {
-          "_id": "36b04926-0002-43d5-8d70-3d5d70d236b0",
+          "_id": "67826267-0002-4181-848d-18148dcf6782",
           "fake": false,
           "type": "class",
-          "name": "ds-divider",
+          "name": "ds-field",
           "namespace": "",
           "comb": "",
-          "styleLess": "border: none; margin: 0; flex-shrink: 0;",
-          "variants": {},
-          "children": [],
-          "createdBy": "590cdb22ed5bf253e056f0a7",
-          "selector": null
-        },
-        {
-          "_id": "36b04926-0003-43e5-8d72-3e5d726536b0",
-          "fake": false,
-          "type": "class",
-          "name": "ds-divider--horizontal",
-          "namespace": "",
-          "comb": "",
-          "styleLess": "width: 100%; height: 0; border-top: var(--stroke-hairline) solid var(--border);",
+          "styleLess": "display: flex; flex-direction: column; gap: var(--spacing-1); width: 100%;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -75,11 +73,12 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-divider--labeled:after{height:var(--stroke-hairline);content:\"\";opacity:.15;background-color:currentColor;flex:1}",
-  "tokensCss": ":root {\n  --border: #e5e5e5;\n  --stroke-hairline: 1px;\n}",
+  "headCss": ".ds-field__label--required:after{content:\" *\";color:var(--destructive)}.ds-field[data-invalid] .ds-field__label{color:var(--destructive)}.ds-field--disabled .ds-field__label{color:var(--muted-foreground)}",
+  "tokensCss": ":root {\n  --destructive: #f84131;\n  --muted-foreground: #525252;\n  --spacing-1: 4px;\n}",
   "tokensResolved": [
-    "border",
-    "stroke-hairline"
+    "destructive",
+    "muted-foreground",
+    "spacing-1"
   ],
   "manifest": {
     "channelVersion": "v1",
@@ -89,15 +88,26 @@
     ],
     "js": [],
     "tokens": [
-      "border",
-      "stroke-hairline"
+      "destructive",
+      "muted-foreground",
+      "spacing-1"
     ]
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
       "prop": "selector",
-      "selector": ".divider--labeled::after",
+      "selector": ".field__label--required::after",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".field[data-invalid] .field__label",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".field--disabled .field__label",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     }
   ]

@@ -1,0 +1,274 @@
+{
+  "slug": "radio",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "ae401eb4-0003-486f-887e-86f87e3bae40",
+          "type": "Block",
+          "tag": "input",
+          "classes": [
+            "ae401eb4-0004-48bf-8886-8bf8861aae40"
+          ],
+          "children": [],
+          "data": {
+            "tag": "input",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "ae401eb4-0007-48af-8884-8af88487ae40",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "ae401eb4-0008-47ff-8873-7ff87336ae40"
+          ],
+          "children": [],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "ae401eb4-0005-48cf-8887-8cf887adae40",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "ae401eb4-0006-489f-8882-89f882f4ae40"
+          ],
+          "children": [
+            "ae401eb4-0007-48af-8884-8af88487ae40"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "ae401eb4-0001-488f-8881-88f88161ae40",
+          "type": "Block",
+          "tag": "label",
+          "classes": [
+            "ae401eb4-0002-485f-887c-85f87ca8ae40"
+          ],
+          "children": [
+            "ae401eb4-0003-486f-887e-86f87e3bae40",
+            "ae401eb4-0005-48cf-8887-8cf887adae40"
+          ],
+          "data": {
+            "tag": "label",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "ae401eb4-0002-485f-887c-85f87ca8ae40",
+          "fake": false,
+          "type": "class",
+          "name": "ds-radio",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; gap: 0.5em; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; position: relative;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "ae401eb4-0004-48bf-8886-8bf8861aae40",
+          "fake": false,
+          "type": "class",
+          "name": "ds-radio__input",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: absolute; width: 2.5rem; height: 2.5rem; margin: 0; padding: 0; opacity: 0; cursor: inherit; left: -0.75rem; top: 50%; transform: translateY(-50%);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "ae401eb4-0006-489f-8882-89f882f4ae40",
+          "fake": false,
+          "type": "class",
+          "name": "ds-radio__circle",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; align-items: center; justify-content: center; width: 1rem; height: 1rem; flex-shrink: 0; border-radius: var(--radius-full); border: var(--stroke-thin) solid var(--checkbox-border-default); background-color: var(--checkbox-bg-unchecked); transition: background-color var(--duration-150) var(--easing-out),\n    border-color var(--duration-150) var(--easing-out),\n    box-shadow var(--duration-150) var(--easing-out);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "ae401eb4-0008-47ff-8873-7ff87336ae40",
+          "fake": false,
+          "type": "class",
+          "name": "ds-radio__dot",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "width: 0.5rem; height: 0.5rem; border-radius: var(--radius-full); background-color: var(--checkbox-fg-checked); transform: scale(0); transition: transform var(--duration-150) var(--easing-out);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-radio__input:hover:not(:disabled)~.ds-radio__circle{background-color:var(--checkbox-bg-unchecked-hover)}.ds-radio__input:checked:hover:not(:disabled)~.ds-radio__circle{background-color:var(--checkbox-bg-checked-hover)}.ds-radio__input:checked~.ds-radio__circle{background-color:var(--checkbox-bg-checked);border-color:var(--checkbox-bg-checked)}.ds-radio__input:checked~.ds-radio__circle .ds-radio__dot{transform:scale(1)}.ds-radio__input:focus-visible~.ds-radio__circle{box-shadow:0 0 0 var(--stroke-medium) var(--checkbox-focus-ring-default)}.ds-radio__input:disabled~.ds-radio__circle{background-color:var(--checkbox-bg-disabled);border-color:var(--checkbox-bg-disabled)}.ds-radio__input:disabled~.ds-radio__circle .ds-radio__dot{background-color:var(--checkbox-fg-disabled)}.ds-radio--error .ds-radio__circle{border-color:var(--checkbox-border-error)}.ds-radio--disabled .ds-radio__label{color:var(--muted-foreground)}",
+  "tokensCss": ":root {\n  --checkbox-bg-checked: #0a0a0a;\n  --checkbox-bg-checked-hover: #262626;\n  --checkbox-bg-disabled: #f5f5f5;\n  --checkbox-bg-unchecked: #fafafa;\n  --checkbox-bg-unchecked-hover: #f5f5f5;\n  --checkbox-border-default: #525252;\n  --checkbox-border-error: #f84131;\n  --checkbox-fg-checked: #fafafa;\n  --checkbox-fg-disabled: #525252;\n  --checkbox-focus-ring-default: #a1a1a1b3;\n  --duration-150: 150ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --muted-foreground: #525252;\n  --radius-full: 9999px;\n  --stroke-medium: 2px;\n  --stroke-thin: 1.5px;\n}",
+  "tokensResolved": [
+    "checkbox-bg-checked",
+    "checkbox-bg-checked-hover",
+    "checkbox-bg-disabled",
+    "checkbox-bg-unchecked",
+    "checkbox-bg-unchecked-hover",
+    "checkbox-border-default",
+    "checkbox-border-error",
+    "checkbox-fg-checked",
+    "checkbox-fg-disabled",
+    "checkbox-focus-ring-default",
+    "duration-150",
+    "easing-out",
+    "muted-foreground",
+    "radius-full",
+    "stroke-medium",
+    "stroke-thin"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "checkbox-bg-checked",
+      "checkbox-bg-checked-hover",
+      "checkbox-bg-disabled",
+      "checkbox-bg-unchecked",
+      "checkbox-bg-unchecked-hover",
+      "checkbox-border-default",
+      "checkbox-border-error",
+      "checkbox-fg-checked",
+      "checkbox-fg-disabled",
+      "checkbox-focus-ring-default",
+      "duration-150",
+      "easing-out",
+      "muted-foreground",
+      "radius-full",
+      "stroke-medium",
+      "stroke-thin"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".radio__input:hover:not(:disabled) ~ .radio__circle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio__input:checked:hover:not(:disabled) ~ .radio__circle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio__input:checked ~ .radio__circle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio__input:checked ~ .radio__circle .radio__dot",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio__input:focus-visible ~ .radio__circle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio__input:disabled ~ .radio__circle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio__input:disabled ~ .radio__circle .radio__dot",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio--error .radio__circle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".radio--disabled .radio__label",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    }
+  ]
+}

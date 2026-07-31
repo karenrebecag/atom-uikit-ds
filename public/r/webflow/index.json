@@ -1,9 +1,165 @@
 {
   "format": "webflow-xscp",
   "pilots": [
+    "accordion",
+    "alert-dialog",
+    "avatar",
+    "avatar-group",
     "badge",
+    "breadcrumb",
+    "button",
+    "button-group",
+    "calendar",
+    "checkbox",
+    "chip",
+    "combobox",
+    "context-menu",
+    "dialog",
     "divider",
+    "drawer",
+    "dropdown-menu",
+    "empty",
+    "field",
+    "icon-button",
+    "image",
+    "input",
+    "item",
+    "link-button",
     "marquee",
-    "spinner"
+    "nav-link",
+    "pagination",
+    "radio",
+    "select",
+    "sheet",
+    "skeleton",
+    "slider",
+    "spinner",
+    "stats-card",
+    "table",
+    "tabs",
+    "tag",
+    "textarea",
+    "toggle",
+    "toggle-group"
+  ],
+  "emitted": [
+    "accordion",
+    "alert-dialog",
+    "avatar",
+    "avatar-group",
+    "badge",
+    "breadcrumb",
+    "button",
+    "button-group",
+    "calendar",
+    "checkbox",
+    "chip",
+    "combobox",
+    "context-menu",
+    "dialog",
+    "divider",
+    "drawer",
+    "dropdown-menu",
+    "empty",
+    "field",
+    "icon-button",
+    "image",
+    "input",
+    "item",
+    "link-button",
+    "marquee",
+    "nav-link",
+    "pagination",
+    "radio",
+    "select",
+    "sheet",
+    "skeleton",
+    "slider",
+    "spinner",
+    "stats-card",
+    "table",
+    "tabs",
+    "tag",
+    "textarea",
+    "toggle",
+    "toggle-group"
+  ],
+  "excluded": [
+    {
+      "name": "whatsapp-button",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "section-header",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "prose",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "toc",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "burger-icon",
+      "reason": "no CSS in registry item"
+    },
+    {
+      "name": "icon",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "logo",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "feature",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "progress-nav",
+      "reason": "render error: Cannot read properties of undefined (reading 'map')"
+    },
+    {
+      "name": "resizable",
+      "reason": "render error: Resizable components must be used within <ResizablePanelGroup>"
+    },
+    {
+      "name": "stepper",
+      "reason": "render error: Cannot read properties of undefined (reading 'map')"
+    },
+    {
+      "name": "toast",
+      "reason": "empty HTML from renderToStaticMarkup"
+    },
+    {
+      "name": "typography",
+      "reason": "no CSS in registry item"
+    },
+    {
+      "name": "user-profile",
+      "reason": "render error: Cannot read properties of undefined (reading 'split')"
+    },
+    {
+      "name": "video-player",
+      "reason": "generate failed: Invalid token in pseudo element: WhiteSpace(\" \")"
+    },
+    {
+      "name": "sidebar",
+      "reason": "missing dist for components/molecules/sidebar/Sidebar.tsx"
+    },
+    {
+      "name": "tooltip",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "menu-button",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "pricing-card",
+      "reason": "no React source (css-only / no-tsx)"
+    }
   ]
 }

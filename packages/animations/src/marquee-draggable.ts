@@ -14,6 +14,24 @@
 //
 // Requires: gsap, Observer, ScrollTrigger (global or registered)
 
+/** F8b — single source for Webflow/domContract; must list every data-* the module queries. */
+export const REQUIRED_HOOKS = [
+  'data-draggable-marquee',
+  'data-draggable-marquee-collection',
+  'data-draggable-marquee-list',
+] as const;
+
+export const REQUIRED_ANATOMY = [
+  '[data-draggable-marquee-collection]',
+  '[data-draggable-marquee-list]',
+  '.marquee__item',
+] as const;
+
+export const GSAP_PLUGINS = ['Observer', 'ScrollTrigger'] as const;
+
+/** Wave-1 Webflow: behaviors must not write canonical BEM classes. */
+export const STATES_WRITTEN_AS_CLASSES = false;
+
 type CleanupFn = () => void;
 
 declare const gsap: any;

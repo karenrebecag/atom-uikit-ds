@@ -1,0 +1,338 @@
+{
+  "slug": "tag",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "95f72993-0008-4dd8-8cdf-dd8cdf4995f7",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "95f72993-0006-4e78-8cef-e78cef0795f7",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "95f72993-0007-4e68-8ced-e68ced7495f7"
+          ],
+          "children": [
+            "95f72993-0008-4dd8-8cdf-dd8cdf4995f7"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "95f72993-0001-4e48-8cea-e48cea4e95f7",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "95f72993-0002-4e38-8ce8-e38ce8bb95f7",
+            "95f72993-0003-4e28-8ce7-e28ce72895f7",
+            "95f72993-0004-4e98-8cf2-e98cf22d95f7",
+            "95f72993-0005-4e88-8cf0-e88cf09a95f7"
+          ],
+          "children": [
+            "95f72993-0006-4e78-8cef-e78cef0795f7"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "95f72993-0002-4e38-8ce8-e38ce8bb95f7",
+          "fake": false,
+          "type": "class",
+          "name": "ds-tag",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-1); max-width: 12.5rem; border-radius: var(--radius-full); border: var(--stroke-thin) solid transparent; font-family: var(--font-family-sans); font-weight: var(--font-weight-medium); line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "95f72993-0003-4e28-8ce7-e28ce72895f7",
+          "fake": false,
+          "type": "class",
+          "name": "ds-tag--filled",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "95f72993-0004-4e98-8cf2-e98cf22d95f7",
+          "fake": false,
+          "type": "class",
+          "name": "ds-tag--neutral",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "95f72993-0005-4e88-8cf0-e88cf09a95f7",
+          "fake": false,
+          "type": "class",
+          "name": "ds-tag--s",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "height: 1.25rem; padding: 0 var(--spacing-2); font-size: var(--font-size-xs);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "95f72993-0007-4e68-8ced-e68ced7495f7",
+          "fake": false,
+          "type": "class",
+          "name": "ds-tag__label",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 1px;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-tag--ghost.ds-tag--success{color:var(--color-forest)}.ds-tag--ghost.ds-tag--warning{color:var(--color-amber-700)}.ds-tag--ghost.ds-tag--danger{color:var(--color-coral-700)}.ds-tag--ghost.ds-tag--info{color:var(--color-sky)}.ds-tag--ghost.ds-tag--neutral{color:var(--foreground)}.ds-tag--ghost.ds-tag--brand{color:var(--color-orange-700)}.ds-tag--ghost.ds-tag--ai{color:var(--color-green-electric)}.ds-tag--ghost.ds-tag--disabled{color:var(--muted-foreground)}.ds-tag--filled.ds-tag--success{background-color:color-mix(in srgb, var(--color-green-electric) 18%, var(--background));color:var(--color-forest)}.ds-tag--filled.ds-tag--warning{background-color:var(--color-amber-50);color:var(--color-amber-700)}.ds-tag--filled.ds-tag--danger{background-color:color-mix(in srgb, var(--color-coral-500) 16%, var(--background));color:var(--color-coral-700)}.ds-tag--filled.ds-tag--info{background-color:color-mix(in srgb, var(--color-sky) 18%, var(--background));color:var(--color-neutral-900)}.ds-tag--filled.ds-tag--neutral{background-color:var(--color-neutral-200);color:var(--foreground)}.ds-tag--filled.ds-tag--brand{background-color:var(--color-orange-50);color:var(--color-orange-700)}.ds-tag--filled.ds-tag--ai{background:linear-gradient(136deg, color-mix(in srgb, var(--color-green-electric) 20%, var(--background)), color-mix(in srgb, var(--color-forest) 12%, var(--background)));color:var(--color-forest)}.ds-tag--filled.ds-tag--disabled{background-color:var(--muted);color:var(--muted-foreground)}.ds-tag--outlined.ds-tag--success{border-color:var(--color-forest);color:var(--color-forest)}.ds-tag--outlined.ds-tag--warning{border-color:var(--color-amber-700);color:var(--color-amber-700)}.ds-tag--outlined.ds-tag--danger{border-color:var(--color-coral-700);color:var(--color-coral-700)}.ds-tag--outlined.ds-tag--info{border-color:var(--color-sky);color:var(--color-neutral-900)}.ds-tag--outlined.ds-tag--neutral{border-color:var(--border);color:var(--foreground)}.ds-tag--outlined.ds-tag--brand{border-color:var(--color-orange-700);color:var(--color-orange-700)}.ds-tag--outlined.ds-tag--ai{border-color:var(--color-green-electric);color:var(--color-forest)}.ds-tag--outlined.ds-tag--disabled{border-color:var(--muted);color:var(--muted-foreground)}",
+  "tokensCss": ":root {\n  --background: #fafafa;\n  --border: #e5e5e5;\n  --color-amber-50: #fffbea;\n  --color-amber-700: #bb4d00;\n  --color-coral-500: #f84131;\n  --color-coral-700: #c21e12;\n  --color-forest: #0a290f;\n  --color-green-electric: #25d366;\n  --color-neutral-200: #e5e5e5;\n  --color-neutral-900: #171717;\n  --color-orange-50: #fff4ed;\n  --color-orange-700: #a44200;\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-xs: 10.24px;\n  --font-weight-medium: 500;\n  --foreground: #0a0a0a;\n  --muted: #f5f5f5;\n  --muted-foreground: #525252;\n  --radius-full: 9999px;\n  --spacing-1: 4px;\n  --spacing-2: 8px;\n  --stroke-thin: 1.5px;\n}",
+  "tokensResolved": [
+    "background",
+    "border",
+    "color-amber-50",
+    "color-amber-700",
+    "color-coral-500",
+    "color-coral-700",
+    "color-forest",
+    "color-green-electric",
+    "color-neutral-200",
+    "color-neutral-900",
+    "color-orange-50",
+    "color-orange-700",
+    "font-family-sans",
+    "font-size-xs",
+    "font-weight-medium",
+    "foreground",
+    "muted",
+    "muted-foreground",
+    "radius-full",
+    "spacing-1",
+    "spacing-2",
+    "stroke-thin"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "background",
+      "border",
+      "color-amber-50",
+      "color-amber-700",
+      "color-coral-500",
+      "color-coral-700",
+      "color-forest",
+      "color-green-electric",
+      "color-neutral-200",
+      "color-neutral-900",
+      "color-orange-50",
+      "color-orange-700",
+      "font-family-sans",
+      "font-size-xs",
+      "font-weight-medium",
+      "foreground",
+      "muted",
+      "muted-foreground",
+      "radius-full",
+      "spacing-1",
+      "spacing-2",
+      "stroke-thin"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--success",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--warning",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--danger",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--info",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--neutral",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--brand",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--ai",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--ghost.tag--disabled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--success",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--warning",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--danger",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--info",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--neutral",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--brand",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--ai",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--filled.tag--disabled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--success",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--warning",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--danger",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--info",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--neutral",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--brand",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--ai",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".tag--outlined.tag--disabled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "--color-sky",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    }
+  ]
+}

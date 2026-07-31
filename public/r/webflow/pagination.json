@@ -1,29 +1,29 @@
 {
-  "slug": "spinner",
+  "slug": "pagination",
   "format": "webflow-xscp",
   "clipboard": {
     "type": "@webflow/XscpData",
     "payload": {
       "nodes": [
         {
-          "_id": "5d056fc6-0004-4d29-80b4-d290b4805d05",
-          "type": "HtmlEmbed",
-          "tag": "div",
-          "classes": [],
-          "children": [],
-          "v": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 0 1 10 10\"></path></svg>",
+          "_id": "46c013c9-0005-4fb3-804c-fb304cf446c0",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "46c013c9-0003-4f93-8049-f93049ce46c0",
+          "type": "List",
+          "tag": "ul",
+          "classes": [
+            "46c013c9-0004-4fc3-804e-fc304e8746c0"
+          ],
+          "children": [
+            "46c013c9-0005-4fb3-804c-fb304cf446c0"
+          ],
           "data": {
-            "embed": {
-              "type": "html",
-              "meta": {
-                "html": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 0 1 10 10\"></path></svg>",
-                "div": false,
-                "iframe": false,
-                "script": false,
-                "compilable": false
-              }
-            },
-            "insideRTE": false,
+            "tag": "ul",
+            "text": false,
+            "displayName": "",
             "attr": {
               "id": ""
             },
@@ -34,22 +34,24 @@
             "visibility": {
               "conditions": []
             },
-            "displayName": ""
+            "list": {
+              "type": "list",
+              "unstyled": false
+            }
           }
         },
         {
-          "_id": "5d056fc6-0001-4d79-80bc-d790bc5f5d05",
+          "_id": "46c013c9-0001-4f73-8046-f73046a846c0",
           "type": "Block",
-          "tag": "span",
+          "tag": "nav",
           "classes": [
-            "5d056fc6-0002-4d89-80bd-d890bdf25d05",
-            "5d056fc6-0003-4d99-80bf-d990bf855d05"
+            "46c013c9-0002-4fa3-804b-fa304b6146c0"
           ],
           "children": [
-            "5d056fc6-0004-4d29-80b4-d290b4805d05"
+            "46c013c9-0003-4f93-8049-f93049ce46c0"
           ],
           "data": {
-            "tag": "span",
+            "tag": "nav",
             "text": false,
             "displayName": "",
             "attr": {
@@ -57,12 +59,8 @@
             },
             "xattr": [
               {
-                "name": "role",
-                "value": "status"
-              },
-              {
                 "name": "aria-label",
-                "value": "Loading"
+                "value": "Pagination"
               }
             ],
             "search": {
@@ -76,26 +74,26 @@
       ],
       "styles": [
         {
-          "_id": "5d056fc6-0002-4d89-80bd-d890bdf25d05",
+          "_id": "46c013c9-0002-4fa3-804b-fa304b6146c0",
           "fake": false,
           "type": "class",
-          "name": "ds-spinner",
+          "name": "ds-pagination",
           "namespace": "",
           "comb": "",
-          "styleLess": "display: inline-flex; align-items: center; justify-content: center; color: currentColor; animation: spinner-rotate var(--duration-700) linear infinite;",
+          "styleLess": "display: flex; justify-content: center; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
         },
         {
-          "_id": "5d056fc6-0003-4d99-80bf-d990bf855d05",
+          "_id": "46c013c9-0004-4fc3-804e-fc304e8746c0",
           "fake": false,
           "type": "class",
-          "name": "ds-spinner--m",
+          "name": "ds-pagination__list",
           "namespace": "",
           "comb": "",
-          "styleLess": "width: 1.5rem; height: 1.5rem;",
+          "styleLess": "display: flex; align-items: center; gap: var(--spacing-1, 4px); list-style: none; margin: 0; padding: 0;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -118,10 +116,11 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": "@keyframes spinner-rotate{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.ds-spinner svg{width:100%;height:100%}@media (prefers-reduced-motion:reduce){.ds-spinner{animation-duration:0s}}",
-  "tokensCss": ":root {\n  --duration-700: 700ms;\n}",
+  "headCss": ".ds-pagination__link-icon svg{width:100%;height:100%}@media (prefers-reduced-motion:reduce){.ds-pagination__link{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --spacing-1: 4px;\n}",
   "tokensResolved": [
-    "duration-700"
+    "font-family-sans",
+    "spacing-1"
   ],
   "manifest": {
     "channelVersion": "v1",
@@ -131,14 +130,15 @@
     ],
     "js": [],
     "tokens": [
-      "duration-700"
+      "font-family-sans",
+      "spacing-1"
     ]
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
       "prop": "selector",
-      "selector": ".spinner svg",
+      "selector": ".pagination__link-icon svg",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {

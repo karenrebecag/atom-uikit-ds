@@ -1,0 +1,191 @@
+{
+  "slug": "input",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "f9d86f7b-0001-4324-8cb3-324cb346f9d8",
+          "type": "Block",
+          "tag": "input",
+          "classes": [
+            "f9d86f7b-0002-4314-8cb1-314cb1b3f9d8"
+          ],
+          "children": [],
+          "data": {
+            "tag": "input",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "f9d86f7b-0002-4314-8cb1-314cb1b3f9d8",
+          "fake": false,
+          "type": "class",
+          "name": "ds-input",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; width: 100%; height: 2.5rem; padding: 0 var(--spacing-2); border: var(--stroke-thin) solid var(--border-input); border-radius: var(--radius-md); background-color: var(--background); color: var(--foreground); font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; font-size: var(--font-size-sm); line-height: 1; outline: none; transition: border-color var(--duration-150) var(--easing-out),\n    box-shadow var(--duration-150) var(--easing-out);",
+          "variants": {
+            "main_focus": {
+              "styleLess": "border-color: var(--border-focus); box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-input::placeholder{color:var(--placeholder)}.ds-input[aria-invalid=true]{border-color:var(--destructive);box-shadow:0 0 var(--stroke-medium) 0 var(--focus-ring-error-color)}.ds-input[aria-invalid=true]:focus{border-color:var(--destructive);box-shadow:0 0 0 var(--stroke-medium) var(--focus-ring-error-color)}.ds-input[type=file]{padding:0}.ds-input[type=file]::-webkit-file-upload-button{height:100%;padding:0 var(--spacing-3);border:none;border-right:var(--stroke-thin) solid var(--border-input);background-color:var(--muted);color:var(--foreground);font-family:inherit;font-size:inherit;font-weight:var(--font-weight-medium);cursor:pointer}.ds-input[type=file]::file-selector-button{height:100%;padding:0 var(--spacing-3);border:none;border-right:var(--stroke-thin) solid var(--border-input);background-color:var(--muted);color:var(--foreground);font-family:inherit;font-size:inherit;font-weight:var(--font-weight-medium);cursor:pointer}.ds-input-group__input::placeholder{color:var(--placeholder)}.ds-input-group__icon svg{width:100%;height:100%}.ds-input-group--disabled .ds-input-group__icon{color:var(--muted-foreground)}",
+  "tokensCss": ":root {\n  --background: #fafafa;\n  --border-focus: #171717;\n  --border-input: #d4d4d4;\n  --destructive: #f84131;\n  --duration-150: 150ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-sm: 12.8px;\n  --font-weight-medium: 500;\n  --foreground: #0a0a0a;\n  --muted: #f5f5f5;\n  --muted-foreground: #525252;\n  --placeholder: #525252;\n  --radius-md: 8px;\n  --spacing-2: 8px;\n  --spacing-3: 12px;\n  --stroke-medium: 2px;\n  --stroke-thin: 1.5px;\n}",
+  "tokensResolved": [
+    "background",
+    "border-focus",
+    "border-input",
+    "destructive",
+    "duration-150",
+    "easing-out",
+    "font-family-sans",
+    "font-size-sm",
+    "font-weight-medium",
+    "foreground",
+    "muted",
+    "muted-foreground",
+    "placeholder",
+    "radius-md",
+    "spacing-2",
+    "spacing-3",
+    "stroke-medium",
+    "stroke-thin"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "background",
+      "border-focus",
+      "border-input",
+      "destructive",
+      "duration-150",
+      "easing-out",
+      "font-family-sans",
+      "font-size-sm",
+      "font-weight-medium",
+      "foreground",
+      "muted",
+      "muted-foreground",
+      "placeholder",
+      "radius-md",
+      "spacing-2",
+      "spacing-3",
+      "stroke-medium",
+      "stroke-thin"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": ":disabled",
+      "selector": ".input:disabled",
+      "reason": "pseudo-class not mapped to Webflow variant"
+    },
+    {
+      "prop": ":focus-within",
+      "selector": ".input-group:focus-within",
+      "reason": "pseudo-class not mapped to Webflow variant"
+    },
+    {
+      "prop": ":focus-within",
+      "selector": ".input-group--error:focus-within",
+      "reason": "pseudo-class not mapped to Webflow variant"
+    },
+    {
+      "prop": ":disabled",
+      "selector": ".input-group__input:disabled",
+      "reason": "pseudo-class not mapped to Webflow variant"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input::placeholder",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input[aria-invalid=\"true\"]",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input[aria-invalid=\"true\"]:focus",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input[type=\"file\"]",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input[type=\"file\"]::file-selector-button",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input-group__input::placeholder",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input-group__icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".input-group--disabled .input-group__icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--focus-ring-error-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    }
+  ]
+}

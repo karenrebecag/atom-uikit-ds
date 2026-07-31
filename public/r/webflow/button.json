@@ -1,0 +1,374 @@
+{
+  "slug": "button",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "43b27471-0007-4ef3-8391-ef3391d243b2",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "43b27471-0005-4ed3-838e-ed338eac43b2",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "43b27471-0006-4f03-8393-f033936543b2"
+          ],
+          "children": [
+            "43b27471-0007-4ef3-8391-ef3391d243b2"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "43b27471-0001-4e93-8388-e933886043b2",
+          "type": "Link",
+          "tag": "button",
+          "classes": [
+            "43b27471-0002-4ec3-838d-ec338d1943b2",
+            "43b27471-0003-4eb3-838b-eb338b8643b2",
+            "43b27471-0004-4ee3-8390-ee33903f43b2"
+          ],
+          "children": [
+            "43b27471-0005-4ed3-838e-ed338eac43b2"
+          ],
+          "data": {
+            "tag": "button",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "aria-busy",
+                "value": "false"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            },
+            "button": true,
+            "block": "inline",
+            "link": {
+              "mode": "external",
+              "url": "#"
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "43b27471-0002-4ec3-838d-ec338d1943b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-button",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; border-radius: 0.625em; border: 1px solid transparent; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; font-weight: var(--font-weight-medium); line-height: 1; width: auto; max-width: 100%; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; text-decoration: none; box-shadow: var(--shadow-none); transition: background-color var(--duration-300) var(--easing-out),\n    color var(--duration-300) var(--easing-out),\n    border-color var(--duration-300) var(--easing-out),\n    scale var(--duration-500) cubic-bezier(0.32, 0.72, 0, 1); position: relative;",
+          "variants": {
+            "main_focus": {
+              "styleLess": "outline: var(--ring-width) solid var(--ring); outline-offset: var(--ring-offset); outline: none; box-shadow: 0 0 0 var(--stroke-medium) var(--background),\n    0 0 0 calc(var(--stroke-medium) * 2) var(--ring);"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "43b27471-0003-4eb3-838b-eb338b8643b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-button--primary",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "background-color: var(--button-bg-primary); color: var(--button-fg-primary);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "43b27471-0004-4ee3-8390-ee33903f43b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-button--m",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "height: var(--button-height-m); padding: 0 var(--button-padding-x-m); font-size: var(--button-font-size-all);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "43b27471-0006-4f03-8393-f033936543b2",
+          "fake": false,
+          "type": "class",
+          "name": "ds-button__label",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes button-spin{to{transform:rotate(360deg)}}.ds-button:active:not(.ds-button--disabled):not(.ds-button--loading){scale:.955 .925}.ds-button--primary:hover:not(.ds-button--disabled){background-color:var(--button-hover-bg-primary)}.ds-button--primary:active:not(.ds-button--disabled){background-color:var(--button-pressed-bg-primary)}.ds-button--secondary:hover:not(.ds-button--disabled){background-color:var(--button-hover-bg-secondary)}.ds-button--secondary:active:not(.ds-button--disabled){background-color:var(--button-pressed-bg-secondary)}.ds-button--tertiary:hover:not(.ds-button--disabled){background-color:var(--button-hover-bg-tertiary)}.ds-button--tertiary:active:not(.ds-button--disabled){background-color:var(--button-pressed-bg-tertiary)}.ds-button--destructive-primary:hover:not(.ds-button--disabled){background-color:var(--button-hover-bg-destructive-primary)}.ds-button--destructive-primary:active:not(.ds-button--disabled){background-color:var(--button-pressed-bg-destructive-primary)}.ds-button--destructive-secondary:hover:not(.ds-button--disabled){background-color:var(--button-hover-bg-destructive-secondary)}.ds-button--destructive-secondary:active:not(.ds-button--disabled){background-color:var(--button-pressed-bg-destructive-secondary)}.ds-button--destructive-tertiary:hover:not(.ds-button--disabled){background-color:var(--button-hover-bg-destructive-tertiary)}.ds-button--destructive-tertiary:active:not(.ds-button--disabled){background-color:var(--button-pressed-bg-destructive-tertiary)}.ds-button--disabled.ds-button--primary,.ds-button--disabled.ds-button--secondary,.ds-button--disabled.ds-button--destructive-primary,.ds-button--disabled.ds-button--destructive-secondary{background-color:var(--muted);border-color:#0000}.ds-button--disabled.ds-button--tertiary,.ds-button--disabled.ds-button--destructive-tertiary{background-color:#0000;border-color:#0000}.ds-button--loading .ds-button__label{opacity:0}.ds-button--loading .ds-button__spinner{justify-content:center;align-items:center;display:flex;position:absolute;top:0;bottom:0;left:0;right:0}.ds-button__icon svg{width:100%;height:100%}.ds-button--loading .ds-button__spinner{display:flex}.ds-button__text.ds-is-default .button__split-char{transition:translate .82s linear(0, .5737 7.6%, .8382 11.87%, .9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, .9995 46.99%, .9872 51.63%, .9842 58.77%, 1.0011 81.26%, 1), scale .82s linear(0, .5737 7.6%, .8382 11.87%, .9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, .9995 46.99%, .9872 51.63%, .9842 58.77%, 1.0011 81.26%, 1), opacity .15s ease-out, filter .15s ease-out}.ds-button__text.ds-is-hover .button__split-char{opacity:0;filter:blur(.2em);transition:translate .45s cubic-bezier(.32,.72,0,1),scale .45s cubic-bezier(.32,.72,0,1),opacity .15s ease-out 50ms,filter .15s ease-out 50ms;translate:-1em;scale:.5}.ds-button.ds-is-static .ds-button__text.ds-is-hover{display:none}.ds-button.ds-is-static:is(:hover,:focus-visible) .ds-button__text.ds-is-default .button__split-char{opacity:1;filter:none;translate:0;scale:1}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-button[data-button-animate]:hover:not(.ds-button--disabled):not(.ds-button--loading){scale:1.06 1.095}}@media (prefers-reduced-motion:reduce){.ds-button{transition-duration:0s}.ds-button:active:not(.ds-button--disabled){scale:1}.ds-button__spinner-icon{animation:none}}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-button:is(:hover,:focus-visible) .ds-button__text.ds-is-default .button__split-char,.ds-link-button:is(:hover,:focus-visible) .ds-button__text.ds-is-default .button__split-char,.ds-toggle-group__item:is(:hover,:focus-visible) .ds-button__text.ds-is-default .button__split-char,[data-hover]:is(:hover,:focus-visible) :is(.ds-button,.ds-link-button,.ds-toggle-group__item) .ds-button__text.ds-is-default .button__split-char{opacity:0;filter:blur(5px);transition:translate .45s calc((var(--char) - 1) * 18ms) cubic-bezier(.32, .72, 0, 1), scale .45s calc((var(--char) - 1) * 18ms) cubic-bezier(.32, .72, 0, 1), opacity .15s calc((var(--char) - 1) * 18ms + 50ms) ease-out, filter .15s calc((var(--char) - 1) * 18ms + 50ms) ease-out;translate:.5em;scale:.5}.ds-button:is(:hover,:focus-visible) .ds-button__text.ds-is-hover .button__split-char,.ds-link-button:is(:hover,:focus-visible) .ds-button__text.ds-is-hover .button__split-char,.ds-toggle-group__item:is(:hover,:focus-visible) .ds-button__text.ds-is-hover .button__split-char,[data-hover]:is(:hover,:focus-visible) :is(.ds-button,.ds-link-button,.ds-toggle-group__item) .ds-button__text.ds-is-hover .button__split-char{opacity:1;filter:blur();transition:translate .82s calc((var(--char) - 1) * 18ms + 50ms) linear(0, .5737 7.6%, .8382 11.87%, .9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, .9995 46.99%, .9872 51.63%, .9842 58.77%, 1.0011 81.26%, 1), scale .82s calc((var(--char) - 1) * 18ms + 50ms) linear(0, .5737 7.6%, .8382 11.87%, .9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, .9995 46.99%, .9872 51.63%, .9842 58.77%, 1.0011 81.26%, 1), opacity .15s calc((var(--char) - 1) * 18ms + 50ms) ease-out, filter .15s calc((var(--char) - 1) * 18ms + 50ms) ease-out;translate:0;scale:1}}",
+  "tokensCss": ":root {\n  --background: #fafafa;\n  --button-bg-primary: #0a0a0a;\n  --button-fg-primary: #fafafa;\n  --button-font-size-all: 12.8px;\n  --button-height-m: 40px;\n  --button-hover-bg-destructive-primary: #c21e12;\n  --button-hover-bg-destructive-secondary: #f5f5f5;\n  --button-hover-bg-destructive-tertiary: #f5f5f5;\n  --button-hover-bg-primary: #262626;\n  --button-hover-bg-secondary: #f5f5f5;\n  --button-hover-bg-tertiary: #f5f5f5;\n  --button-padding-x-m: 16px;\n  --button-pressed-bg-destructive-primary: #c21e12;\n  --button-pressed-bg-destructive-secondary: #f5f5f5;\n  --button-pressed-bg-destructive-tertiary: #f5f5f5;\n  --button-pressed-bg-primary: #f5f5f5;\n  --button-pressed-bg-secondary: #f5f5f5;\n  --button-pressed-bg-tertiary: #f5f5f5;\n  --duration-300: 300ms;\n  --duration-500: 500ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-weight-medium: 500;\n  --muted: #f5f5f5;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n  --shadow-none: 0 0 #0000;\n  --stroke-medium: 2px;\n}",
+  "tokensResolved": [
+    "background",
+    "button-bg-primary",
+    "button-fg-primary",
+    "button-font-size-all",
+    "button-height-m",
+    "button-hover-bg-destructive-primary",
+    "button-hover-bg-destructive-secondary",
+    "button-hover-bg-destructive-tertiary",
+    "button-hover-bg-primary",
+    "button-hover-bg-secondary",
+    "button-hover-bg-tertiary",
+    "button-padding-x-m",
+    "button-pressed-bg-destructive-primary",
+    "button-pressed-bg-destructive-secondary",
+    "button-pressed-bg-destructive-tertiary",
+    "button-pressed-bg-primary",
+    "button-pressed-bg-secondary",
+    "button-pressed-bg-tertiary",
+    "duration-300",
+    "duration-500",
+    "easing-out",
+    "font-family-sans",
+    "font-weight-medium",
+    "muted",
+    "ring",
+    "ring-offset",
+    "ring-width",
+    "shadow-none",
+    "stroke-medium"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css",
+      "https://atom-web-ds.vercel.app/v1/webflow.css"
+    ],
+    "js": [],
+    "tokens": [
+      "background",
+      "button-bg-primary",
+      "button-fg-primary",
+      "button-font-size-all",
+      "button-height-m",
+      "button-hover-bg-destructive-primary",
+      "button-hover-bg-destructive-secondary",
+      "button-hover-bg-destructive-tertiary",
+      "button-hover-bg-primary",
+      "button-hover-bg-secondary",
+      "button-hover-bg-tertiary",
+      "button-padding-x-m",
+      "button-pressed-bg-destructive-primary",
+      "button-pressed-bg-destructive-secondary",
+      "button-pressed-bg-destructive-tertiary",
+      "button-pressed-bg-primary",
+      "button-pressed-bg-secondary",
+      "button-pressed-bg-tertiary",
+      "duration-300",
+      "duration-500",
+      "easing-out",
+      "font-family-sans",
+      "font-weight-medium",
+      "muted",
+      "ring",
+      "ring-offset",
+      "ring-width",
+      "shadow-none",
+      "stroke-medium"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".button:active:not(.button--disabled):not(.button--loading)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--primary:hover:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--primary:active:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--secondary:hover:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--secondary:active:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--tertiary:hover:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--tertiary:active:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--destructive-primary:hover:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--destructive-primary:active:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--destructive-secondary:hover:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--destructive-secondary:active:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--destructive-tertiary:hover:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--destructive-tertiary:active:not(.button--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--disabled.button--primary,\n.button--disabled.button--secondary,\n.button--disabled.button--destructive-primary,\n.button--disabled.button--destructive-secondary",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--disabled.button--tertiary,\n.button--disabled.button--destructive-tertiary",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--loading .button__label",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--loading .button__spinner",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button__icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button--loading .button__spinner",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button__text.is--default .button__split-char",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button__text.is--hover .button__split-char",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button.is--static .button__text.is--hover",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".button.is--static:is(:hover, :focus-visible) .button__text.is--default .button__split-char",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--char",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "motion",
+      "selector": "button",
+      "reason": "animated component without REQUIRED_HOOKS in its behavior module — emitted static (add the export to enable motion)"
+    }
+  ]
+}

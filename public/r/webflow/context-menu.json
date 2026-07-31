@@ -1,0 +1,75 @@
+{
+  "slug": "context-menu",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "9bad00f4-0002-40ff-83c8-0ff3c8e89bad",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "9bad00f4-0001-412f-83cd-12f3cda19bad",
+          "type": "Block",
+          "tag": "div",
+          "classes": [],
+          "children": [
+            "9bad00f4-0002-40ff-83c8-0ff3c8e89bad"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes context-menu-in{0%{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}@media (prefers-reduced-motion:reduce){.ds-context-menu__content{animation-duration:0s}}",
+  "tokensCss": "",
+  "tokensResolved": [],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": []
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

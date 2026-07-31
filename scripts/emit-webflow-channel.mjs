@@ -1,22 +1,27 @@
 /**
- * F6 — Derive public/r/webflow/{slug}.json from canónico public/r items.
- * Pure build-time artifact; the MCP serves it, never re-generates it
- * (fix hallazgo 1: el generador vive SOLO aquí, cero gemelos en el MCP).
+ * F6/F7/F8 — Derive public/r/webflow/{slug}.json from canónico registry items.
+ * F8a: HTML from renderToStaticMarkup(React dist); pilots/*.html = regression fixtures only.
+ * Generator lives ONLY here; MCP serves artifacts, never regenerates them.
  */
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { generateXscp, resolveTokensCss } from './webflow/generate-xscp.mjs';
+import { generateXscp, resolveTokensCss, structuralEqual } from './webflow/generate-xscp.mjs';
 import {
   getDomContract,
+  getDomContractSync,
+  loadDomContracts,
   buildMotionScripts,
   buildConsumeCss,
   validateHtmlAgainstContract,
 } from './webflow/dom-contract.mjs';
+import { renderAnatomy } from './webflow/render-anatomy.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const PILOTS_DIR = path.join(here, 'webflow', 'pilots');
+const FIXTURES_DIR = path.join(here, 'webflow', 'fixtures', 'pilots');
+const LEGACY_PILOTS_DIR = path.join(here, 'webflow', 'pilots');
 
 /**
  * @param {string} outDir - public/r
@@ -24,67 +29,207 @@ const PILOTS_DIR = path.join(here, 'webflow', 'pilots');
  */
 export async function emitWebflowChannel(outDir, opts = {}) {
   const log = opts.log ?? (() => {});
-  const pilotFiles = (await fs.readdir(PILOTS_DIR)).filter((f) => f.endsWith('.html'));
   const webflowDir = path.join(outDir, 'webflow');
   await fs.mkdir(webflowDir, { recursive: true });
 
-  // Tokens resueltos por artefacto (autocontenido): sin foundation cargado en el
-  // sitio, toda declaración var() es inválida — verificado en paste real.
+  // F8b: contracts from behavior exports
+  try {
+    await loadDomContracts();
+  } catch (e) {
+    log(`  [webflow] dom-contract load warning: ${e.message} (using sync fallback)`);
+  }
+
   const nestedTokens = JSON.parse(
     await fs.readFile(path.join(outDir, 'tokens-nested.json'), 'utf8'),
   );
+  const index = JSON.parse(await fs.readFile(path.join(outDir, 'index.json'), 'utf8'));
+  const components = index.filter((i) => i.kind === 'component');
 
-  const slugs = [];
-  for (const file of pilotFiles) {
-    const slug = file.replace(/\.html$/, '');
-    const html = await fs.readFile(path.join(PILOTS_DIR, file), 'utf8');
+  const emitted = [];
+  const excluded = [];
 
-    const itemPath = path.join(outDir, `${slug}.json`);
+  for (const entry of components) {
+    const slug = entry.name;
+    const safe = slug.replace(/\//g, '--');
+    const itemPath = path.join(outDir, `${safe}.json`);
+    if (!existsSync(itemPath)) {
+      excluded.push({ name: slug, reason: 'missing published registry item' });
+      continue;
+    }
     const item = JSON.parse(await fs.readFile(itemPath, 'utf8'));
-    const css = (item.files ?? [])
-      .filter((f) => f.path.endsWith('.css'))
-      .map((f) => f.content ?? '')
-      .join('\n\n');
 
+    // Layouts are kind:layout — not in this loop. Components only.
+    const rendered = await renderAnatomy(item);
+    if ('reason' in rendered && !('html' in rendered)) {
+      excluded.push({ name: slug, reason: rendered.reason });
+      continue;
+    }
+
+    let html = rendered.html;
+
+    // F8a: regression fixtures (ex-pilots) must structuralEqual the render path
+    const fixturePath = fixturePathFor(slug);
+    if (fixturePath) {
+      const fixtureHtml = readFileSync(fixturePath, 'utf8');
+      const css = cssFromItem(item);
+      const fromRender = generateXscp(html, css, { slug });
+      const fromFixture = generateXscp(fixtureHtml, css, { slug });
+      if (!structuralEqual(fromRender.clipboard, fromFixture.clipboard)) {
+        // Prefer fixture HTML only if render is missing required motion hooks
+        const contract = getDomContract(slug);
+        if (contract) {
+          const renderOk = validateHtmlAgainstContract(html, contract);
+          const fixtureOk = validateHtmlAgainstContract(fixtureHtml, contract);
+          if (!renderOk.ok && fixtureOk.ok) {
+            // previewProps not set yet — use fixture but warn
+            log(
+              `  [webflow] ${slug}: render missing domContract hooks — using fixture until meta.webflow.previewProps is set (${renderOk.missing?.join(', ')})`,
+            );
+            html = fixtureHtml;
+          } else if (renderOk.ok && !fixtureOk.ok) {
+            log(`  [webflow] ${slug}: fixture stale vs render; keeping render (truth)`);
+          } else if (!renderOk.ok && !fixtureOk.ok) {
+            excluded.push({
+              name: slug,
+              reason: `domContract fail on render and fixture: ${renderOk.missing?.join(', ')}`,
+            });
+            continue;
+          } else {
+            // both ok but structural differ — fail build (anti-drift)
+            throw new Error(
+              `webflow fixture regression ${slug}: render XscpData diverges from fixtures/pilots/${slug}.html — update fixture or previewProps`,
+            );
+          }
+        } else {
+          // static: class structure must match — soft: prefer render as truth, log
+          log(
+            `  [webflow] ${slug}: fixture structural mismatch — keeping render as truth (update fixture)`,
+          );
+        }
+      }
+    }
+
+    const css = cssFromItem(item);
+    if (!css.trim()) {
+      excluded.push({ name: slug, reason: 'no CSS in registry item' });
+      continue;
+    }
+
+    const result = await buildArtifact({ slug, html, css, item, nestedTokens });
+    if (!result.ok) {
+      excluded.push({ name: slug, reason: result.reason });
+      continue;
+    }
+    if (result.artifact.unsupported?.some((u) => u.prop === 'motion')) {
+      log(`  [webflow] ${slug}: motion OMITTED — module lacks REQUIRED_HOOKS (emitted static)`);
+    }
+
+    await fs.writeFile(
+      path.join(webflowDir, `${safe}.json`),
+      JSON.stringify(result.artifact, null, 2),
+      'utf8',
+    );
+    emitted.push(slug);
+  }
+
+  const layouts = index.filter((i) => i.kind === 'layout');
+  log(`  [webflow] layouts skipped this wave: ${layouts.length} (F8d later)`);
+
+  // Remove orphan webflow json not in emitted
+  const expected = new Set([...emitted.map((s) => `${s.replace(/\//g, '--')}.json`), 'index.json']);
+  for (const file of await fs.readdir(webflowDir)) {
+    if (file.endsWith('.json') && !expected.has(file)) {
+      await fs.rm(path.join(webflowDir, file));
+      log(`  [webflow] removed orphan ${file}`);
+    }
+  }
+
+  await fs.writeFile(
+    path.join(webflowDir, 'index.json'),
+    JSON.stringify(
+      {
+        format: 'webflow-xscp',
+        pilots: emitted.sort(),
+        emitted: emitted.sort(),
+        excluded: excluded.map((e) => ({ name: e.name, reason: e.reason })),
+      },
+      null,
+      2,
+    ),
+    'utf8',
+  );
+
+  const eligible = components.length;
+  log(`  [webflow] elegibles=${eligible} emitidos=${emitted.length} excluidos=${excluded.length}`);
+  for (const e of excluded) {
+    log(`  [webflow] excluded ${e.name}: ${e.reason}`);
+  }
+
+  if (eligible !== emitted.length + excluded.length) {
+    throw new Error(
+      `webflow emit accounting error: ${eligible} !== ${emitted.length}+${excluded.length}`,
+    );
+  }
+
+  return { emitted, excluded };
+}
+
+function fixturePathFor(slug) {
+  const a = path.join(FIXTURES_DIR, `${slug}.html`);
+  const b = path.join(LEGACY_PILOTS_DIR, `${slug}.html`);
+  if (existsSync(a)) return a;
+  if (existsSync(b)) return b;
+  return null;
+}
+
+function cssFromItem(item) {
+  return (item.files ?? [])
+    .filter((f) => f.path?.endsWith('.css'))
+    .map((f) => f.content ?? '')
+    .join('\n\n');
+}
+
+/**
+ * @param {{ slug: string, html: string, css: string, item: object, nestedTokens: object }} args
+ */
+async function buildArtifact({ slug, html, css, item, nestedTokens }) {
+  try {
     const pkg = generateXscp(html, css, { slug });
 
-    // var() usados en styleLess Y en los chunks del head → :root autocontenido
     const styleLessCss = pkg.clipboard.payload.styles
-      .map((s) => [s.styleLess, ...Object.values(s.variants).map((v) => v.styleLess)].join(' '))
+      .map((s) => [s.styleLess, ...Object.values(s.variants || {}).map((v) => v.styleLess)].join(' '))
       .join(' ');
     const tokens = resolveTokensCss(`${styleLessCss}\n${pkg.headCss}`, nestedTokens);
     for (const name of tokens.unresolved) {
       pkg.unsupported.push({
         prop: `--${name}`,
         selector: ':root',
-        reason: 'token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste',
+        reason:
+          'token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste',
       });
     }
-    // tokensCss viaja SEPARADO del headCss para soportar los dos modos de
-    // distribución (decisión Karen 2026-07-31):
-    //  - "connected" (default, no-code): el sitio carga /v1/tokens.css y el
-    //    paste consume tokens VIVOS — un cambio de token re-afina lo pegado.
-    //    El head se pega SIN tokensCss (pegarlo pisaría la escala fluida --u).
-    //  - "standalone" (técnico, estilo shadcn): head = tokensCss + headCss,
-    //    autocontenido para sitios ajenos sin el canal /v1.
-    //
-    // F7: motion scripts + DOM contract derived from registry (peerDeps/hasAnimation)
-    // and scripts/webflow/dom-contract.mjs — never hard-coded per slug beyond that map.
+
     const motion = buildMotionScripts(item, slug);
-    const domContract = getDomContract(slug);
+    if (motion.motionOmitted) {
+      // Ruidoso, nunca silencioso: pintura sí, JS no-verificado no. Queda en
+      // unsupported (visible en artefacto/docs) y el caller lo loguea.
+      pkg.unsupported.push({
+        prop: 'motion',
+        selector: slug,
+        reason: 'animated component without REQUIRED_HOOKS in its behavior module — emitted static (add the export to enable motion)',
+      });
+    }
+    const domContract = getDomContract(slug) ?? getDomContractSync(slug);
     if (domContract) {
       const check = validateHtmlAgainstContract(html, domContract);
       if (!check.ok) {
-        throw new Error(
-          `webflow pilot "${slug}" fails domContract: missing ${check.missing.join(', ')}`,
-        );
+        return {
+          ok: false,
+          reason: `domContract fail: missing ${check.missing.join(', ')}`,
+        };
       }
     }
 
-    // Manifest de la cadena de dependencias (idea Karen 2026-07-31): la
-    // instancia pegada es pura referencia; esto declara EXPLÍCITO qué
-    // endpoints la pintan, para que cualquier consumidor (MCP, botón de la
-    // docu, compiladores futuros) resuelva la cadena mecánicamente.
     const manifest = {
       channelVersion: 'v1',
       consume: buildConsumeCss(item),
@@ -102,29 +247,21 @@ export async function emitWebflowChannel(outDir, opts = {}) {
         : {}),
     };
 
-    const artifact = {
-      slug,
-      format: 'webflow-xscp',
-      clipboard: pkg.clipboard,
-      headCss: pkg.headCss,
-      tokensCss: tokens.tokensCss,
-      tokensResolved: tokens.resolved,
-      manifest,
-      footerNote: pkg.footerNote,
-      unsupported: pkg.unsupported,
+    return {
+      ok: true,
+      artifact: {
+        slug,
+        format: 'webflow-xscp',
+        clipboard: pkg.clipboard,
+        headCss: pkg.headCss,
+        tokensCss: tokens.tokensCss,
+        tokensResolved: tokens.resolved,
+        manifest,
+        footerNote: pkg.footerNote,
+        unsupported: pkg.unsupported,
+      },
     };
-    await fs.writeFile(
-      path.join(webflowDir, `${slug}.json`),
-      JSON.stringify(artifact, null, 2),
-      'utf8',
-    );
-    slugs.push(slug);
+  } catch (e) {
+    return { ok: false, reason: `generate failed: ${e.message}` };
   }
-
-  await fs.writeFile(
-    path.join(webflowDir, 'index.json'),
-    JSON.stringify({ format: 'webflow-xscp', pilots: slugs.sort() }, null, 2),
-    'utf8',
-  );
-  log(`  [webflow] emitted ${slugs.length} pilot artifacts + index`);
 }

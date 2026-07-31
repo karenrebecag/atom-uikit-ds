@@ -1,0 +1,277 @@
+{
+  "slug": "chip",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "96385f0f-0007-4ffe-882a-ffe82a889638",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "96385f0f-0005-401e-882d-01e82dae9638",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "96385f0f-0006-400e-882c-00e82c1b9638"
+          ],
+          "children": [
+            "96385f0f-0007-4ffe-882a-ffe82a889638"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "96385f0f-0001-405e-8833-05e833fa9638",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "96385f0f-0002-404e-8832-04e832679638",
+            "96385f0f-0003-403e-8830-03e830d49638",
+            "96385f0f-0004-402e-882f-02e82f419638"
+          ],
+          "children": [
+            "96385f0f-0005-401e-882d-01e82dae9638"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "96385f0f-0002-404e-8832-04e832679638",
+          "fake": false,
+          "type": "class",
+          "name": "ds-chip",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; gap: 0.375em; border-radius: 0.5em; border: var(--stroke-thin) solid transparent; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); line-height: 1; color: var(--foreground); cursor: default; user-select: none; -webkit-tap-highlight-color: transparent; white-space: nowrap; transition: background-color var(--duration-150) var(--easing-out),\n    border-color var(--duration-150) var(--easing-out),\n    scale var(--duration-150) var(--easing-in-out);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "96385f0f-0003-403e-8830-03e830d49638",
+          "fake": false,
+          "type": "class",
+          "name": "ds-chip--outlined",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "background-color: var(--background); border-color: var(--border);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "96385f0f-0004-402e-882f-02e82f419638",
+          "fake": false,
+          "type": "class",
+          "name": "ds-chip--s",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "height: 1.5rem; padding: 0 var(--spacing-2);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "96385f0f-0006-400e-882c-00e82c1b9638",
+          "fake": false,
+          "type": "class",
+          "name": "ds-chip__label",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-chip[data-chip-animate]:active:not(.ds-chip--disabled){scale:.955 .925}.ds-chip--outlined:hover:not(.ds-chip--disabled),.ds-chip--filled:hover:not(.ds-chip--disabled){background-color:var(--accent)}.ds-chip--disabled.ds-chip--outlined{border-color:var(--muted);background-color:var(--muted)}.ds-chip--disabled.ds-chip--filled{background-color:var(--muted)}.ds-chip--error.ds-chip--outlined{border-color:var(--destructive);color:var(--destructive)}.ds-chip--error.ds-chip--outlined:hover:not(.ds-chip--disabled){background-color:color-mix(in srgb, var(--destructive) 6%, var(--background))}.ds-chip--error.ds-chip--filled{background-color:color-mix(in srgb, var(--destructive) 8%, var(--background));color:var(--destructive)}.ds-chip--error.ds-chip--filled:hover:not(.ds-chip--disabled){background-color:color-mix(in srgb, var(--destructive) 12%, var(--background))}.ds-chip--focused{box-shadow:0 0 0 var(--stroke-medium) var(--focus-ring-color);outline:none}.ds-chip:focus-visible{box-shadow:0 0 0 var(--stroke-medium) var(--focus-ring-color);outline:none}.ds-chip__icon svg,.ds-chip__close svg{width:100%;height:100%}.ds-chip--error .ds-chip__close{background-color:color-mix(in srgb, var(--destructive) 10%, transparent)}.ds-chip--disabled .ds-chip__close{cursor:not-allowed;pointer-events:none;background-color:color-mix(in srgb, var(--foreground) 4%, transparent)}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-chip[data-chip-animate]:hover:not(.ds-chip--disabled){transition:background-color .15s cubic-bezier(.19, 1, .22, 1), border-color .15s cubic-bezier(.19, 1, .22, 1), scale var(--duration-500) 50ms cubic-bezier(.32, .72, 0, 1);scale:1.06 1.095}}@media (prefers-reduced-motion:reduce){.ds-chip{transition-duration:0s}.ds-chip:active:not(.ds-chip--disabled){scale:1}}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-chip__close:hover{background-color:color-mix(in srgb, var(--foreground) 12%, transparent);scale:1.06 1.095}.ds-chip--error .ds-chip__close:hover{background-color:color-mix(in srgb, var(--destructive) 18%, transparent)}}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --background: #fafafa;\n  --border: #e5e5e5;\n  --destructive: #f84131;\n  --duration-150: 150ms;\n  --duration-500: 500ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-xs: 10.24px;\n  --font-weight-medium: 500;\n  --foreground: #0a0a0a;\n  --muted: #f5f5f5;\n  --spacing-2: 8px;\n  --stroke-medium: 2px;\n  --stroke-thin: 1.5px;\n}",
+  "tokensResolved": [
+    "accent",
+    "background",
+    "border",
+    "destructive",
+    "duration-150",
+    "duration-500",
+    "easing-in-out",
+    "easing-out",
+    "font-family-sans",
+    "font-size-xs",
+    "font-weight-medium",
+    "foreground",
+    "muted",
+    "spacing-2",
+    "stroke-medium",
+    "stroke-thin"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "accent",
+      "background",
+      "border",
+      "destructive",
+      "duration-150",
+      "duration-500",
+      "easing-in-out",
+      "easing-out",
+      "font-family-sans",
+      "font-size-xs",
+      "font-weight-medium",
+      "foreground",
+      "muted",
+      "spacing-2",
+      "stroke-medium",
+      "stroke-thin"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".chip[data-chip-animate]:active:not(.chip--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--outlined:hover:not(.chip--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--filled:hover:not(.chip--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--disabled.chip--outlined",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--disabled.chip--filled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--error.chip--outlined",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--error.chip--outlined:hover:not(.chip--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--error.chip--filled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--error.chip--filled:hover:not(.chip--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip:focus-visible,\n.chip--focused",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip__icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip__close svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--error .chip__close",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".chip--disabled .chip__close",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    }
+  ]
+}

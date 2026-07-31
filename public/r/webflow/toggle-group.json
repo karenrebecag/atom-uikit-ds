@@ -1,0 +1,176 @@
+{
+  "slug": "toggle-group",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "e0c8325b-0003-431e-8093-31e09380e0c8",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "e0c8325b-0001-433e-8096-33e096a6e0c8",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "e0c8325b-0002-432e-8095-32e09513e0c8"
+          ],
+          "children": [
+            "e0c8325b-0003-431e-8093-31e09380e0c8"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "role",
+                "value": "group"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "e0c8325b-0002-432e-8095-32e09513e0c8",
+          "fake": false,
+          "type": "class",
+          "name": "ds-toggle-group",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: stretch; gap: var(--spacing-1, 4px); border-radius: var(--radius-md);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-toggle-group__item-icon svg{width:100%;height:100%}.ds-toggle-group__item--icon-only.ds-toggle-group__item--xs{width:1.75rem;padding:0}.ds-toggle-group__item--icon-only.ds-toggle-group__item--s{width:2rem;padding:0}.ds-toggle-group__item--icon-only.ds-toggle-group__item--m{width:2.5rem;padding:0}.ds-toggle-group__item--icon-only.ds-toggle-group__item--l{width:3rem;padding:0}.ds-toggle-group--outline .ds-toggle-group__item{border:var(--stroke-hairline) solid var(--border);border-radius:0}.ds-toggle-group--outline:not(.ds-toggle-group--vertical) .ds-toggle-group__item+.ds-toggle-group__item{margin-left:calc(-1 * var(--stroke-hairline))}.ds-toggle-group--outline:not(.ds-toggle-group--vertical) .ds-toggle-group__item:first-child{border-radius:var(--radius-md) 0 0 var(--radius-md)}.ds-toggle-group--outline:not(.ds-toggle-group--vertical) .ds-toggle-group__item:last-child{border-radius:0 var(--radius-md) var(--radius-md) 0}.ds-toggle-group--outline.ds-toggle-group--vertical .ds-toggle-group__item+.ds-toggle-group__item{margin-top:calc(-1 * var(--stroke-hairline))}.ds-toggle-group--outline.ds-toggle-group--vertical .ds-toggle-group__item:first-child{border-radius:var(--radius-md) var(--radius-md) 0 0}.ds-toggle-group--outline.ds-toggle-group--vertical .ds-toggle-group__item:last-child{border-radius:0 0 var(--radius-md) var(--radius-md)}.ds-toggle-group__item:active:not(.ds-toggle-group__item--disabled){scale:.925}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-toggle-group[data-toggle-group-animate] .ds-toggle-group__item:hover:not(.ds-toggle-group__item--disabled){scale:1.095}.ds-toggle-group[data-toggle-group-animate] .ds-toggle-group__item:hover:not(.ds-toggle-group__item--disabled) .ds-toggle-group__item-icon{transition:rotate .6s cubic-bezier(.19,1,.22,1) 50ms;rotate:360deg}}@media (prefers-reduced-motion:reduce){.ds-toggle-group__item,.ds-toggle-group__item-icon{transition-duration:0s}.ds-toggle-group__item:active{scale:1}}",
+  "tokensCss": ":root {\n  --border: #e5e5e5;\n  --radius-md: 8px;\n  --spacing-1: 4px;\n  --stroke-hairline: 1px;\n}",
+  "tokensResolved": [
+    "border",
+    "radius-md",
+    "spacing-1",
+    "stroke-hairline"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "border",
+      "radius-md",
+      "spacing-1",
+      "stroke-hairline"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".toggle-group__item-icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group__item--icon-only.toggle-group__item--xs",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group__item--icon-only.toggle-group__item--s",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group__item--icon-only.toggle-group__item--m",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group__item--icon-only.toggle-group__item--l",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline .toggle-group__item",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline:not(.toggle-group--vertical) .toggle-group__item + .toggle-group__item",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline:not(.toggle-group--vertical) .toggle-group__item:first-child",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline:not(.toggle-group--vertical) .toggle-group__item:last-child",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline.toggle-group--vertical .toggle-group__item + .toggle-group__item",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline.toggle-group--vertical .toggle-group__item:first-child",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group--outline.toggle-group--vertical .toggle-group__item:last-child",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".toggle-group__item:active:not(.toggle-group__item--disabled)",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

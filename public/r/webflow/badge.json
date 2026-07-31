@@ -8,7 +8,7 @@
         {
           "_id": "35648278-0007-487d-80c0-87d0c0033564",
           "text": true,
-          "v": "3"
+          "v": "Atom"
         },
         {
           "_id": "35648278-0005-489d-80c3-89d0c3293564",
@@ -55,12 +55,7 @@
             "attr": {
               "id": ""
             },
-            "xattr": [
-              {
-                "name": "data-atom-badge",
-                "value": ""
-              }
-            ],
+            "xattr": [],
             "search": {
               "exclude": false
             },

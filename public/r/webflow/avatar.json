@@ -1,0 +1,299 @@
+{
+  "slug": "avatar",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "223449c4-0008-442b-8171-42b171c62234",
+          "type": "HtmlEmbed",
+          "tag": "div",
+          "classes": [],
+          "children": [],
+          "v": "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"2 2\"><circle cx=\"8\" cy=\"6\" r=\"3\"></circle><path d=\"M3 14a5 5 0 0110 0\"></path></svg>",
+          "data": {
+            "embed": {
+              "type": "html",
+              "meta": {
+                "html": "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"2 2\"><circle cx=\"8\" cy=\"6\" r=\"3\"></circle><path d=\"M3 14a5 5 0 0110 0\"></path></svg>",
+                "div": false,
+                "iframe": false,
+                "script": false,
+                "compilable": false
+              }
+            },
+            "insideRTE": false,
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            },
+            "displayName": ""
+          }
+        },
+        {
+          "_id": "223449c4-0006-44cb-8181-4cb181842234",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "223449c4-0007-44db-8183-4db183172234"
+          ],
+          "children": [
+            "223449c4-0008-442b-8171-42b171c62234"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "223449c4-0001-44bb-817f-4bb17ff12234",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "223449c4-0002-448b-817b-48b17b382234",
+            "223449c4-0003-449b-817c-49b17ccb2234",
+            "223449c4-0004-44eb-8184-4eb184aa2234",
+            "223449c4-0005-44fb-8186-4fb1863d2234"
+          ],
+          "children": [
+            "223449c4-0006-44cb-8181-4cb181842234"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "223449c4-0002-448b-817b-48b17b382234",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; background-color: var(--muted);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "223449c4-0003-449b-817c-49b17ccb2234",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar--image-border",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "padding: 0.125rem;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "223449c4-0004-44eb-8184-4eb184aa2234",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar--circle",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "border-radius: var(--radius-full);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "223449c4-0005-44fb-8186-4fb1863d2234",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar--s",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "width: 2rem; height: 2rem;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "223449c4-0007-44db-8183-4db183172234",
+          "fake": false,
+          "type": "class",
+          "name": "ds-avatar__icon",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; align-items: center; justify-content: center;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes avatar-skeleton-pulse{0%,to{opacity:1}50%{opacity:.5}}.ds-avatar--square.ds-avatar--xs,.ds-avatar--square.ds-avatar--s{border-radius:var(--radius-md)}.ds-avatar--square.ds-avatar--m{border-radius:var(--radius-lg)}.ds-avatar--square.ds-avatar--l{border-radius:var(--radius-xl)}.ds-avatar--image-border.ds-avatar--m,.ds-avatar--image-border.ds-avatar--l{padding:.25rem}.ds-avatar--initials.ds-avatar--l{font-size:var(--font-size-base)}.ds-avatar--circle .ds-avatar__image{border-radius:var(--radius-full)}.ds-avatar--xs .ds-avatar__icon{width:.75rem;height:.75rem}.ds-avatar--s .ds-avatar__icon{width:1rem;height:1rem}.ds-avatar--m .ds-avatar__icon{width:1.25rem;height:1.25rem}.ds-avatar--l .ds-avatar__icon{width:1.5rem;height:1.5rem}.ds-avatar__icon svg{width:100%;height:100%}.ds-avatar--xs .ds-avatar__status{border-width:var(--stroke-hairline);width:.5rem;height:.5rem;bottom:-.0625rem;right:-.0625rem}.ds-avatar--s .ds-avatar__status{border-width:var(--stroke-hairline);width:.5rem;height:.5rem;bottom:0;right:0}.ds-avatar--m .ds-avatar__status{border-width:var(--stroke-thin);width:.75rem;height:.75rem;bottom:0;right:0}.ds-avatar--l .ds-avatar__status{border-width:var(--stroke-medium);width:1rem;height:1rem;bottom:0;right:0}.ds-avatar--skeleton *{display:none}",
+  "tokensCss": ":root {\n  --font-size-base: 16px;\n  --muted: #f5f5f5;\n  --radius-full: 9999px;\n  --radius-lg: 12px;\n  --radius-md: 8px;\n  --radius-xl: 16px;\n  --stroke-hairline: 1px;\n  --stroke-medium: 2px;\n  --stroke-thin: 1.5px;\n}",
+  "tokensResolved": [
+    "font-size-base",
+    "muted",
+    "radius-full",
+    "radius-lg",
+    "radius-md",
+    "radius-xl",
+    "stroke-hairline",
+    "stroke-medium",
+    "stroke-thin"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "font-size-base",
+      "muted",
+      "radius-full",
+      "radius-lg",
+      "radius-md",
+      "radius-xl",
+      "stroke-hairline",
+      "stroke-medium",
+      "stroke-thin"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".avatar--square.avatar--xs",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--square.avatar--s",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--square.avatar--m",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--square.avatar--l",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--image-border.avatar--m,\n.avatar--image-border.avatar--l",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--initials.avatar--l",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--circle .avatar__image",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--xs .avatar__icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--s .avatar__icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--m .avatar__icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--l .avatar__icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar__icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--xs .avatar__status",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--s .avatar__status",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--m .avatar__status",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--l .avatar__status",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".avatar--skeleton *",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    }
+  ]
+}

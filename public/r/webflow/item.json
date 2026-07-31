@@ -1,0 +1,133 @@
+{
+  "slug": "item",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "9f3833e6-0003-4397-8c3b-397c3b259f38",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "9f3833e6-0001-4377-8c37-377c37ff9f38",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "9f3833e6-0002-4387-8c39-387c39929f38"
+          ],
+          "children": [
+            "9f3833e6-0003-4397-8c3b-397c3b259f38"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "9f3833e6-0002-4387-8c39-387c39929f38",
+          "fake": false,
+          "type": "class",
+          "name": "ds-item",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; align-items: center; gap: var(--spacing-3, 12px); padding: var(--spacing-3, 12px) var(--spacing-4, 16px); font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; text-decoration: none; color: inherit; transition: background-color var(--duration-100) var(--easing-in-out);",
+          "variants": {
+            "main_hover": {
+              "styleLess": "background-color: var(--accent);"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-item--sm .ds-item__media--icon{width:var(--spacing-8,32px);height:var(--spacing-8,32px);padding:var(--spacing-2,8px)}.ds-item__media--icon svg{width:100%;height:100%}.ds-item__media--image img{object-fit:cover;width:100%;height:100%;display:block}.ds-item-group--outline>.ds-item{border:none;border-radius:0}@media (prefers-reduced-motion:reduce){.ds-item{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --duration-100: 100ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --spacing-2: 8px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n  --spacing-8: 32px;\n}",
+  "tokensResolved": [
+    "accent",
+    "duration-100",
+    "easing-in-out",
+    "font-family-sans",
+    "spacing-2",
+    "spacing-3",
+    "spacing-4",
+    "spacing-8"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "accent",
+      "duration-100",
+      "easing-in-out",
+      "font-family-sans",
+      "spacing-2",
+      "spacing-3",
+      "spacing-4",
+      "spacing-8"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".item--sm .item__media--icon",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".item__media--icon svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".item__media--image img",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".item-group--outline > .item",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

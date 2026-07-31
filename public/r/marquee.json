@@ -96,5 +96,20 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "webflow": {
+      "previewProps": {
+        "draggable": true,
+        "fade": true,
+        "duration": 20
+      },
+      "previewChildren": [
+        "Atom",
+        "UIKit",
+        "Motion",
+        "Webflow"
+      ]
+    }
   }
 }
