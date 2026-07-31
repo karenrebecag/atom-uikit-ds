@@ -283,6 +283,15 @@ async function main() {
     process.exit(1);
   }
 
+  // F6: derive Webflow XscpData artifacts from canónico (generator lives here only)
+  try {
+    const { emitWebflowChannel } = await import('./emit-webflow-channel.mjs');
+    await emitWebflowChannel(OUT_DIR, { log: console.log });
+  } catch (err) {
+    console.error(`  [ERROR] webflow channel: ${err.message}`);
+    process.exit(1);
+  }
+
   console.log('');
 
   if (errors > 0) process.exit(1);

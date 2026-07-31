@@ -1,0 +1,222 @@
+{
+  "slug": "badge",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "35648278-0007-487d-80c0-87d0c0033564",
+          "text": true,
+          "v": "3"
+        },
+        {
+          "_id": "35648278-0005-489d-80c3-89d0c3293564",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "35648278-0006-486d-80be-86d0be703564"
+          ],
+          "children": [
+            "35648278-0007-487d-80c0-87d0c0033564"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "35648278-0001-48dd-80c9-8dd0c9753564",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "35648278-0002-48ad-80c4-8ad0c4bc3564",
+            "35648278-0003-48bd-80c6-8bd0c64f3564",
+            "35648278-0004-488d-80c1-88d0c1963564"
+          ],
+          "children": [
+            "35648278-0005-489d-80c3-89d0c3293564"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-atom-badge",
+                "value": ""
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "35648278-0002-48ad-80c4-8ad0c4bc3564",
+          "fake": false,
+          "type": "class",
+          "name": "ds-badge",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; justify-content: center; min-width: 1rem; max-width: 2.25rem; height: 1rem; padding: 0 var(--spacing-1); border-radius: var(--radius-full); font-family: var(--font-family-sans); font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); line-height: 1; white-space: nowrap; overflow: hidden;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "35648278-0003-48bd-80c6-8bd0c64f3564",
+          "fake": false,
+          "type": "class",
+          "name": "ds-badge--neutral",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "35648278-0004-488d-80c1-88d0c1963564",
+          "fake": false,
+          "type": "class",
+          "name": "ds-badge--enabled",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "35648278-0006-486d-80be-86d0be703564",
+          "fake": false,
+          "type": "class",
+          "name": "ds-badge__label",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; min-width: 1px;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": ".ds-badge--neutral.ds-badge--enabled{background-color:var(--muted);color:var(--foreground)}.ds-badge--neutral.ds-badge--focused{background-color:var(--primary);color:var(--primary-foreground)}.ds-badge--neutral.ds-badge--subtle{background-color:var(--color-neutral-800);color:var(--color-neutral-50)}.ds-badge--inbox.ds-badge--enabled{background-color:var(--color-coral-300);color:var(--color-neutral-950)}.ds-badge--inbox.ds-badge--focused{background-color:var(--color-coral-700);color:var(--color-neutral-50)}.ds-badge--inbox.ds-badge--subtle{background-color:var(--destructive);color:var(--destructive-foreground)}",
+  "tokensCss": ":root {\n  --color-coral-300: #fb7a6e;\n  --color-coral-700: #c21e12;\n  --color-neutral-50: #fafafa;\n  --color-neutral-800: #262626;\n  --color-neutral-950: #0a0a0a;\n  --destructive: #f84131;\n  --destructive-foreground: #0a0a0a;\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-xs: 10.24px;\n  --font-weight-medium: 500;\n  --foreground: #0a0a0a;\n  --muted: #f5f5f5;\n  --primary: #0a0a0a;\n  --primary-foreground: #fafafa;\n  --radius-full: 9999px;\n  --spacing-1: 4px;\n}",
+  "tokensResolved": [
+    "color-coral-300",
+    "color-coral-700",
+    "color-neutral-50",
+    "color-neutral-800",
+    "color-neutral-950",
+    "destructive",
+    "destructive-foreground",
+    "font-family-sans",
+    "font-size-xs",
+    "font-weight-medium",
+    "foreground",
+    "muted",
+    "primary",
+    "primary-foreground",
+    "radius-full",
+    "spacing-1"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "color-coral-300",
+      "color-coral-700",
+      "color-neutral-50",
+      "color-neutral-800",
+      "color-neutral-950",
+      "destructive",
+      "destructive-foreground",
+      "font-family-sans",
+      "font-size-xs",
+      "font-weight-medium",
+      "foreground",
+      "muted",
+      "primary",
+      "primary-foreground",
+      "radius-full",
+      "spacing-1"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".badge--neutral.badge--enabled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".badge--neutral.badge--focused",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".badge--neutral.badge--subtle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".badge--inbox.badge--enabled",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".badge--inbox.badge--focused",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".badge--inbox.badge--subtle",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    }
+  ]
+}

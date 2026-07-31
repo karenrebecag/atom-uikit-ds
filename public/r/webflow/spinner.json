@@ -1,0 +1,154 @@
+{
+  "slug": "spinner",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "5d056fc6-0004-4d29-80b4-d290b4805d05",
+          "type": "HtmlEmbed",
+          "tag": "div",
+          "classes": [],
+          "children": [],
+          "v": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 0 1 10 10\"/></svg>",
+          "data": {
+            "embed": {
+              "type": "html",
+              "meta": {
+                "html": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 0 1 10 10\"/></svg>",
+                "div": false,
+                "iframe": false,
+                "script": false,
+                "compilable": false
+              }
+            },
+            "insideRTE": false,
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            },
+            "displayName": ""
+          }
+        },
+        {
+          "_id": "5d056fc6-0001-4d79-80bc-d790bc5f5d05",
+          "type": "Block",
+          "tag": "span",
+          "classes": [
+            "5d056fc6-0002-4d89-80bd-d890bdf25d05",
+            "5d056fc6-0003-4d99-80bf-d990bf855d05"
+          ],
+          "children": [
+            "5d056fc6-0004-4d29-80b4-d290b4805d05"
+          ],
+          "data": {
+            "tag": "span",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-atom-spinner",
+                "value": ""
+              },
+              {
+                "name": "role",
+                "value": "status"
+              },
+              {
+                "name": "aria-label",
+                "value": "Loading"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "5d056fc6-0002-4d89-80bd-d890bdf25d05",
+          "fake": false,
+          "type": "class",
+          "name": "ds-spinner",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: inline-flex; align-items: center; justify-content: center; color: currentColor; animation: spinner-rotate var(--duration-700) linear infinite;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "5d056fc6-0003-4d99-80bf-d990bf855d05",
+          "fake": false,
+          "type": "class",
+          "name": "ds-spinner--m",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "width: 1.5rem; height: 1.5rem;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes spinner-rotate{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.ds-spinner svg{width:100%;height:100%}@media (prefers-reduced-motion:reduce){.ds-spinner{animation-duration:0s}}",
+  "tokensCss": ":root {\n  --duration-700: 700ms;\n}",
+  "tokensResolved": [
+    "duration-700"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css"
+    ],
+    "js": [],
+    "tokens": [
+      "duration-700"
+    ]
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".spinner svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    }
+  ]
+}

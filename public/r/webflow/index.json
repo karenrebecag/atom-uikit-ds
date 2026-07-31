@@ -1,0 +1,8 @@
+{
+  "format": "webflow-xscp",
+  "pilots": [
+    "badge",
+    "divider",
+    "spinner"
+  ]
+}
