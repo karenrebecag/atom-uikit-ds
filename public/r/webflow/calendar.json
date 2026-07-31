@@ -76,8 +76,6 @@
             "a4810d1f-0009-4587-8bac-587bac72a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -103,7 +101,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -212,8 +210,6 @@
             "a4810d1f-0010-41ec-8499-1ec49974a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -239,7 +235,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -562,8 +558,6 @@
             "a4810d1f-002b-48bb-8cf6-8bbcf646a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -581,7 +575,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -629,8 +623,6 @@
             "a4810d1f-002e-490b-8cfe-90bcfe25a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -648,7 +640,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -696,8 +688,6 @@
             "a4810d1f-0031-491b-8cff-91bcffb8a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -715,7 +705,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -762,8 +752,6 @@
             "a4810d1f-0034-422b-8a12-22ba1264a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -781,7 +769,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -828,8 +816,6 @@
             "a4810d1f-0037-421b-8a10-21ba10d1a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -847,7 +833,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -894,8 +880,6 @@
             "a4810d1f-003a-41cb-8a08-1cba08f2a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -913,7 +897,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -960,8 +944,6 @@
             "a4810d1f-003d-41db-87cb-1db7cbeea481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -979,7 +961,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1056,8 +1038,6 @@
             "a4810d1f-0041-421b-87d2-21b7d23aa481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1075,7 +1055,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1122,8 +1102,6 @@
             "a4810d1f-0044-416b-87c0-16b7c0e9a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1141,7 +1119,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1188,8 +1166,6 @@
             "a4810d1f-0047-419b-8587-19b5870ba481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1207,7 +1183,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1254,8 +1230,6 @@
             "a4810d1f-004a-41cb-858b-1cb58bc4a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1273,7 +1247,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1320,8 +1294,6 @@
             "a4810d1f-004d-41fb-8590-1fb5907da481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1339,7 +1311,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1386,8 +1358,6 @@
             "a4810d1f-0050-412b-833d-12b33d6fa481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1405,7 +1375,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1452,8 +1422,6 @@
             "a4810d1f-0053-413b-833f-13b33f02a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1471,7 +1439,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1548,8 +1516,6 @@
             "a4810d1f-0057-40fb-8338-0fb338b6a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1567,7 +1533,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1614,8 +1580,6 @@
             "a4810d1f-005a-48cb-802b-8cb02be6a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1633,7 +1597,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1680,8 +1644,6 @@
             "a4810d1f-005d-48bb-802a-8bb02a53a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1699,7 +1661,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1746,8 +1708,6 @@
             "a4810d1f-0060-48eb-802f-8eb02f0ca481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1765,7 +1725,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1812,8 +1772,6 @@
             "a4810d1f-0063-495b-803a-95b03a11a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1831,7 +1789,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1878,8 +1836,6 @@
             "a4810d1f-0066-4c57-88e5-c578e534a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1897,7 +1853,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -1944,8 +1900,6 @@
             "a4810d1f-0069-4c47-88e3-c478e3a1a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -1963,7 +1917,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2040,8 +1994,6 @@
             "a4810d1f-006d-4c07-88dd-c078dd55a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2059,7 +2011,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2106,8 +2058,6 @@
             "a4810d1f-0070-4af7-8b01-af7b0129a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2125,7 +2075,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2172,8 +2122,6 @@
             "a4810d1f-0073-4b07-8b02-b07b02bca481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2191,7 +2139,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2238,8 +2186,6 @@
             "a4810d1f-0076-4b57-8b0a-b57b0a9ba481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2257,7 +2203,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2304,8 +2250,6 @@
             "a4810d1f-0079-43c7-8390-3c73905ba481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2323,7 +2267,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2370,8 +2314,6 @@
             "a4810d1f-007c-43f7-8395-3f739514a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2389,7 +2331,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2436,8 +2378,6 @@
             "a4810d1f-007f-4427-8399-427399cda481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2455,7 +2395,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2532,8 +2472,6 @@
             "a4810d1f-0083-4407-85d5-4075d53ea481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2551,7 +2489,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2598,8 +2536,6 @@
             "a4810d1f-0086-4457-85dd-4575dd1da481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2617,7 +2553,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2664,8 +2600,6 @@
             "a4810d1f-0089-4427-85d8-4275d864a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2683,7 +2617,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2730,8 +2664,6 @@
             "a4810d1f-008c-43f8-829f-3f829f9ea481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2749,7 +2681,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2796,8 +2728,6 @@
             "a4810d1f-008f-43e8-829e-3e829e0ba481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2815,7 +2745,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2863,8 +2793,6 @@
             "a4810d1f-0093-4428-82a4-4282a457a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2882,7 +2810,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -2930,8 +2858,6 @@
             "a4810d1f-0096-4458-84e7-4584e7a7a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -2949,7 +2875,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3027,8 +2953,6 @@
             "a4810d1f-009a-4418-84e1-4184e15ba481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3046,7 +2970,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3094,8 +3018,6 @@
             "a4810d1f-009d-4428-84e2-4284e2eea481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3113,7 +3035,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3161,8 +3083,6 @@
             "a4810d1f-00a0-4b37-8d46-b37d460ca481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3180,7 +3100,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3228,8 +3148,6 @@
             "a4810d1f-00a3-4b67-8d4a-b67d4ac5a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3247,7 +3165,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3295,8 +3213,6 @@
             "a4810d1f-00a6-4b17-8d42-b17d42e6a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3314,7 +3230,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3362,8 +3278,6 @@
             "a4810d1f-00a9-4bc7-8d54-bc7d5437a481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3381,7 +3295,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3429,8 +3343,6 @@
             "a4810d1f-00ac-4378-8054-3780546fa481"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -3448,7 +3360,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -3724,11 +3636,7 @@
           "namespace": "",
           "comb": "",
           "styleLess": "width: 36px; height: 36px; padding: 0; border: none; border-radius: var(--radius-md); background: none; color: var(--foreground); font-family: inherit; font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); line-height: 1; text-align: center; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-100) var(--easing-in-out);",
-          "variants": {
-            "main_focus": {
-              "styleLess": "outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color); outline-offset: -2px;"
-            }
-          },
+          "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
@@ -3776,7 +3684,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-calendar__day:hover:not(.ds-calendar__day--disabled):not(.ds-calendar__day--selected){background-color:var(--accent);color:var(--accent-foreground)}.ds-calendar__day--range-start.ds-calendar__day--range-end{border-radius:var(--radius-md)}@media (prefers-reduced-motion:reduce){.ds-calendar__day{transition-duration:0s}}",
+  "headCss": ".ds-calendar__day:hover:not(.ds-calendar__day--disabled):not(.ds-calendar__day--selected){background-color:var(--accent);color:var(--accent-foreground)}.ds-calendar__day--range-start.ds-calendar__day--range-end{border-radius:var(--radius-md)}.ds-calendar__day:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:-2px}@media (prefers-reduced-motion:reduce){.ds-calendar__day{transition-duration:0s}}",
   "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --accent-foreground: #171717;\n  --duration-100: 100ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-sm: 12.8px;\n  --font-size-xs: 10.24px;\n  --font-weight-medium: 500;\n  --font-weight-regular: 400;\n  --font-weight-semibold: 600;\n  --foreground: #0a0a0a;\n  --muted-foreground: #525252;\n  --opacity-50: 0.5;\n  --primary: #0a0a0a;\n  --radius-md: 8px;\n  --spacing-2: 8px;\n  --spacing-3: 12px;\n}",
   "tokensResolved": [
     "accent",
@@ -3827,6 +3735,11 @@
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
+      "prop": ":focus-visible",
+      "selector": ".calendar__day:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
+    {
       "prop": "selector",
       "selector": ".calendar__day:hover:not(.calendar__day--disabled):not(.calendar__day--selected)",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
@@ -3834,6 +3747,11 @@
     {
       "prop": "selector",
       "selector": ".calendar__day--range-start.calendar__day--range-end",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".calendar__day:focus-visible",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {

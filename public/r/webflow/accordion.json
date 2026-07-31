@@ -68,7 +68,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-accordion__chevron svg{width:100%;height:100%}.ds-accordion__item--open .ds-accordion__chevron{transform:rotate(180deg)}.ds-accordion__item--open .ds-accordion__content-wrapper{grid-template-rows:1fr}@media (prefers-reduced-motion:reduce){.ds-accordion__content-wrapper,.ds-accordion__chevron{transition-duration:0s}}",
+  "headCss": ".ds-accordion__chevron svg{width:100%;height:100%}.ds-accordion__item--open .ds-accordion__chevron{transform:rotate(180deg)}.ds-accordion__item--open .ds-accordion__content-wrapper{grid-template-rows:1fr}.ds-accordion__trigger:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:2px;border-radius:4px}@media (prefers-reduced-motion:reduce){.ds-accordion__content-wrapper,.ds-accordion__chevron{transition-duration:0s}}",
   "tokensCss": "",
   "tokensResolved": [],
   "manifest": {
@@ -82,6 +82,11 @@
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
+    {
+      "prop": ":focus-visible",
+      "selector": ".accordion__trigger:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
     {
       "prop": "selector",
       "selector": ".accordion__chevron svg",
@@ -98,9 +103,24 @@
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {
+      "prop": "selector",
+      "selector": ".accordion__trigger:focus-visible",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
       "prop": "@media",
       "selector": "(prefers-reduced-motion: reduce)",
       "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--focus-ring-width",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
     }
   ]
 }

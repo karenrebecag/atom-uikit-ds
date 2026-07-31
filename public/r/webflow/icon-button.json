@@ -42,8 +42,6 @@
             "b89a8977-0005-4a86-8aaf-a86aaf26b89a"
           ],
           "data": {
-            "tag": "a",
-            "text": false,
             "displayName": "",
             "attr": {
               "id": ""
@@ -65,7 +63,7 @@
               "conditions": []
             },
             "button": true,
-            "block": "inline",
+            "block": "",
             "link": {
               "mode": "external",
               "url": "#"
@@ -82,11 +80,7 @@
           "namespace": "",
           "comb": "",
           "styleLess": "display: inline-flex; align-items: center; justify-content: center; aspect-ratio: 1; padding: 0; border-radius: 0.625em; border: 1px solid transparent; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif; line-height: 1; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; text-decoration: none; transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1); position: relative;",
-          "variants": {
-            "main_focus": {
-              "styleLess": "outline: var(--ring-width) solid var(--ring); outline-offset: var(--ring-offset);"
-            }
-          },
+          "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
@@ -147,7 +141,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-icon-button:active:not(.ds-icon-button--disabled):not(.ds-icon-button--loading){scale:.925}.ds-icon-button--primary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-primary)}.ds-icon-button--primary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-primary)}.ds-icon-button--secondary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-secondary)}.ds-icon-button--secondary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-secondary)}.ds-icon-button--tertiary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-tertiary)}.ds-icon-button--tertiary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-tertiary)}.ds-icon-button--destructive-primary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-destructive-primary)}.ds-icon-button--destructive-primary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-destructive-primary)}.ds-icon-button--destructive-secondary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-destructive-secondary)}.ds-icon-button--destructive-secondary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-destructive-secondary)}.ds-icon-button--destructive-tertiary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-destructive-tertiary)}.ds-icon-button--destructive-tertiary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-destructive-tertiary)}.ds-icon-button--disabled.ds-icon-button--primary,.ds-icon-button--disabled.ds-icon-button--secondary,.ds-icon-button--disabled.ds-icon-button--destructive-primary,.ds-icon-button--disabled.ds-icon-button--destructive-secondary{background-color:var(--muted);border-color:#0000}.ds-icon-button--disabled.ds-icon-button--tertiary,.ds-icon-button--disabled.ds-icon-button--destructive-tertiary{background-color:#0000;border-color:#0000}.ds-icon-button__icon svg{width:100%;height:100%}.ds-icon-button--loading .ds-icon-button__icon{opacity:0}.ds-icon-button--loading .ds-icon-button__spinner{justify-content:center;align-items:center;display:flex;position:absolute;top:0;bottom:0;left:0;right:0}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-icon-button[data-icon-button-animate]:hover:not(.ds-icon-button--disabled):not(.ds-icon-button--loading){scale:1.095}}@media (prefers-reduced-motion:reduce){.ds-icon-button{transition-duration:0s}.ds-icon-button:active:not(.ds-icon-button--disabled){scale:1}}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-icon-button[data-icon-button-animate]:is(:hover,:focus-visible) .ds-icon-button__icon,[data-hover]:is(:hover,:focus-visible) .ds-icon-button[data-icon-button-animate] .ds-icon-button__icon{transition:rotate .6s cubic-bezier(.19,1,.22,1) 50ms;rotate:360deg}}",
+  "headCss": ".ds-icon-button:active:not(.ds-icon-button--disabled):not(.ds-icon-button--loading){scale:.925}.ds-icon-button--primary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-primary)}.ds-icon-button--primary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-primary)}.ds-icon-button--secondary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-secondary)}.ds-icon-button--secondary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-secondary)}.ds-icon-button--tertiary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-tertiary)}.ds-icon-button--tertiary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-tertiary)}.ds-icon-button--destructive-primary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-destructive-primary)}.ds-icon-button--destructive-primary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-destructive-primary)}.ds-icon-button--destructive-secondary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-destructive-secondary)}.ds-icon-button--destructive-secondary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-destructive-secondary)}.ds-icon-button--destructive-tertiary:hover:not(.ds-icon-button--disabled){background-color:var(--button-hover-bg-destructive-tertiary)}.ds-icon-button--destructive-tertiary:active:not(.ds-icon-button--disabled){background-color:var(--button-pressed-bg-destructive-tertiary)}.ds-icon-button--disabled.ds-icon-button--primary,.ds-icon-button--disabled.ds-icon-button--secondary,.ds-icon-button--disabled.ds-icon-button--destructive-primary,.ds-icon-button--disabled.ds-icon-button--destructive-secondary{background-color:var(--muted);border-color:#0000}.ds-icon-button--disabled.ds-icon-button--tertiary,.ds-icon-button--disabled.ds-icon-button--destructive-tertiary{background-color:#0000;border-color:#0000}.ds-icon-button__icon svg{width:100%;height:100%}.ds-icon-button--loading .ds-icon-button__icon{opacity:0}.ds-icon-button--loading .ds-icon-button__spinner{justify-content:center;align-items:center;display:flex;position:absolute;top:0;bottom:0;left:0;right:0}.ds-icon-button:focus-visible{outline:var(--ring-width) solid var(--ring);outline-offset:var(--ring-offset)}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-icon-button[data-icon-button-animate]:hover:not(.ds-icon-button--disabled):not(.ds-icon-button--loading){scale:1.095}}@media (prefers-reduced-motion:reduce){.ds-icon-button{transition-duration:0s}.ds-icon-button:active:not(.ds-icon-button--disabled){scale:1}}@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.ds-icon-button[data-icon-button-animate]:is(:hover,:focus-visible) .ds-icon-button__icon,[data-hover]:is(:hover,:focus-visible) .ds-icon-button[data-icon-button-animate] .ds-icon-button__icon{transition:rotate .6s cubic-bezier(.19,1,.22,1) 50ms;rotate:360deg}}",
   "tokensCss": ":root {\n  --button-bg-primary: #0a0a0a;\n  --button-fg-primary: #fafafa;\n  --button-font-size-all: 12.8px;\n  --button-height-m: 40px;\n  --button-hover-bg-destructive-primary: #c21e12;\n  --button-hover-bg-destructive-secondary: #f5f5f5;\n  --button-hover-bg-destructive-tertiary: #f5f5f5;\n  --button-hover-bg-primary: #262626;\n  --button-hover-bg-secondary: #f5f5f5;\n  --button-hover-bg-tertiary: #f5f5f5;\n  --button-pressed-bg-destructive-primary: #c21e12;\n  --button-pressed-bg-destructive-secondary: #f5f5f5;\n  --button-pressed-bg-destructive-tertiary: #f5f5f5;\n  --button-pressed-bg-primary: #f5f5f5;\n  --button-pressed-bg-secondary: #f5f5f5;\n  --button-pressed-bg-tertiary: #f5f5f5;\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --muted: #f5f5f5;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n}",
   "tokensResolved": [
     "button-bg-primary",
@@ -206,6 +200,11 @@
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
+    {
+      "prop": ":focus-visible",
+      "selector": ".icon-button:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
     {
       "prop": "selector",
       "selector": ".icon-button:active:not(.icon-button--disabled):not(.icon-button--loading)",
@@ -294,6 +293,11 @@
     {
       "prop": "selector",
       "selector": ".icon-button--loading .icon-button__spinner",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".icon-button:focus-visible",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {

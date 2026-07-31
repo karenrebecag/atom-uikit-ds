@@ -51,11 +51,17 @@ const TAG_TYPE = {
 /** Tags que el Designer solo representa con tipos Form* nativos (wave 2). */
 const FORM_CONTROL_TAGS = new Set(['input', 'textarea', 'select', 'option', 'form', 'optgroup']);
 
+/**
+ * Solo pseudo-variants EMPÍRICAMENTE seguros: main_active probado en paste real
+ * (marquee OK) y main_hover (documentación comunitaria consistente).
+ * `main_focus` NO existe en ningún dump real y CRASHEA el Designer (verificado
+ * 2026-07-31: button/icon-button/link-button — todos y solo los que lo llevaban).
+ * focus/focus-visible toman la ruta del head como CSS normal; en connected no
+ * se pierde nada: components.css ya lleva los focus rings reales.
+ */
 const PSEUDO_VARIANT = {
   hover: 'main_hover',
-  focus: 'main_focus',
   active: 'main_active',
-  'focus-visible': 'main_focus',
 };
 
 /**
@@ -182,8 +188,12 @@ export function generateXscp(html, css, opts = {}) {
     };
 
     if (type === 'Link') {
+      // Shape EXACTO del nodo Link real (fixture hero-2): sin data.tag ni
+      // data.text, block vacío. La divergencia era co-sospechosa del crash.
+      delete data.tag;
+      delete data.text;
       data.button = tag === 'button' || dataAttrs['data-button'] !== undefined;
-      data.block = 'inline';
+      data.block = '';
       data.link = {
         mode: 'external',
         url: dataAttrs.href ?? '#',
@@ -519,10 +529,18 @@ function parseCss(css, unsupported) {
       const [cls, pseudo] = key.split(':');
       const variant = PSEUDO_VARIANT[pseudo];
       if (!variant) {
+        // Pseudo no mapeable como variant (focus/focus-visible crashean el
+        // Designer): viaja al head como CSS normal — nunca drop silencioso.
+        const decls = val.decls ?? val;
+        const body = decls.map((d) => `  ${d.prop}: ${d.value};`).join('\n');
+        complexRules.push({
+          selector: `.${cls}:${pseudo}`,
+          block: `.${cls}:${pseudo} {\n${body}\n}`,
+        });
         unsupported.push({
           prop: `:${pseudo}`,
           selector: `.${key}`,
-          reason: 'pseudo-class not mapped to Webflow variant',
+          reason: 'pseudo-class not a safe Designer variant — moved to head Custom Code',
         });
         continue;
       }

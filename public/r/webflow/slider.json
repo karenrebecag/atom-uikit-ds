@@ -175,9 +175,6 @@
           "variants": {
             "main_hover": {
               "styleLess": "box-shadow: 0 0 0 var(--spacing-2) color-mix(in srgb, var(--foreground) 4%, transparent);"
-            },
-            "main_focus": {
-              "styleLess": "outline: var(--stroke-medium) solid var(--focus-ring-color); outline-offset: var(--stroke-medium);"
             }
           },
           "children": [],
@@ -201,7 +198,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-slider__thumb:active,.ds-slider__thumb--dragging{cursor:grabbing;scale:1.1}@media (prefers-reduced-motion:reduce){.ds-slider__thumb{transition-duration:0s}}",
+  "headCss": ".ds-slider__thumb:active,.ds-slider__thumb--dragging{cursor:grabbing;scale:1.1}.ds-slider__thumb:focus-visible{outline:var(--stroke-medium) solid var(--focus-ring-color);outline-offset:var(--stroke-medium)}@media (prefers-reduced-motion:reduce){.ds-slider__thumb{transition-duration:0s}}",
   "tokensCss": ":root {\n  --background: #fafafa;\n  --duration-150: 150ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --foreground: #0a0a0a;\n  --muted: #f5f5f5;\n  --primary: #0a0a0a;\n  --radius-full: 9999px;\n  --spacing-2: 8px;\n  --spacing-5: 20px;\n  --stroke-medium: 2px;\n}",
   "tokensResolved": [
     "background",
@@ -238,8 +235,18 @@
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
+      "prop": ":focus-visible",
+      "selector": ".slider__thumb:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
+    {
       "prop": "selector",
       "selector": ".slider__thumb:active,\n.slider__thumb--dragging",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".slider__thumb:focus-visible",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {

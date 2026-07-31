@@ -68,13 +68,15 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": "@keyframes select-in{0%{opacity:0;transform:scale(.96)translateY(-4px)}to{opacity:1;transform:scale(1)translateY(0)}}.ds-select__trigger[aria-invalid=true]{border-color:var(--destructive);box-shadow:0 0 var(--focus-ring-width,2px) 0 var(--focus-ring-error-color)}:is(.ds-select__trigger[aria-invalid=true]:focus-visible,.ds-select__trigger[aria-invalid=true].ds-select__trigger--open){border-color:var(--destructive);box-shadow:0 0 0 var(--focus-ring-width,2px) var(--focus-ring-error-color)}.ds-select__trigger--open .ds-select__icon{transform:rotate(180deg)}.ds-select__item:hover,.ds-select__item--highlighted{background-color:var(--accent);color:var(--accent-foreground)}@media (prefers-reduced-motion:reduce){.ds-select__trigger,.ds-select__icon,.ds-select__item{transition-duration:0s}.ds-select__content{animation-duration:0s}}",
-  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --accent-foreground: #171717;\n  --destructive: #f84131;\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n}",
+  "headCss": "@keyframes select-in{0%{opacity:0;transform:scale(.96)translateY(-4px)}to{opacity:1;transform:scale(1)translateY(0)}}.ds-select__trigger[aria-invalid=true]{border-color:var(--destructive);box-shadow:0 0 var(--focus-ring-width,2px) 0 var(--focus-ring-error-color)}:is(.ds-select__trigger[aria-invalid=true]:focus-visible,.ds-select__trigger[aria-invalid=true].ds-select__trigger--open){border-color:var(--destructive);box-shadow:0 0 0 var(--focus-ring-width,2px) var(--focus-ring-error-color)}.ds-select__trigger--open .ds-select__icon{transform:rotate(180deg)}.ds-select__item:hover,.ds-select__item--highlighted{background-color:var(--accent);color:var(--accent-foreground)}.ds-select__trigger:focus-visible{border-color:var(--border-focus);box-shadow:0 0 0 var(--focus-ring-width,2px) var(--focus-ring-color);outline:none}.ds-select__item:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:-2px;border-radius:var(--radius-sm)}@media (prefers-reduced-motion:reduce){.ds-select__trigger,.ds-select__icon,.ds-select__item{transition-duration:0s}.ds-select__content{animation-duration:0s}}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --accent-foreground: #171717;\n  --border-focus: #171717;\n  --destructive: #f84131;\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --radius-sm: 4px;\n}",
   "tokensResolved": [
     "accent",
     "accent-foreground",
+    "border-focus",
     "destructive",
-    "font-family-sans"
+    "font-family-sans",
+    "radius-sm"
   ],
   "manifest": {
     "channelVersion": "v1",
@@ -86,12 +88,24 @@
     "tokens": [
       "accent",
       "accent-foreground",
+      "border-focus",
       "destructive",
-      "font-family-sans"
+      "font-family-sans",
+      "radius-sm"
     ]
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
+    {
+      "prop": ":focus-visible",
+      "selector": ".select__trigger:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
+    {
+      "prop": ":focus-visible",
+      "selector": ".select__item:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
     {
       "prop": "selector",
       "selector": ".select__trigger[aria-invalid=\"true\"]",
@@ -113,9 +127,24 @@
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {
+      "prop": "selector",
+      "selector": ".select__trigger:focus-visible",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".select__item:focus-visible",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
       "prop": "@media",
       "selector": "(prefers-reduced-motion: reduce)",
       "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
     },
     {
       "prop": "--focus-ring-error-color",

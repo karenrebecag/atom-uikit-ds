@@ -151,9 +151,27 @@ describe('generateXscp', () => {
     const node = pkg.clipboard.payload.nodes.find((n) => n.type === 'Link');
     assert.ok(node, 'Link node emitted');
     assert.equal(node.tag, 'a', 'tag button rewritten to a (Block/button crashes Designer)');
-    assert.equal(node.data.tag, 'a');
+    // Shape real del Link (hero-2): sin data.tag/text, block vacio
+    assert.ok(!('tag' in node.data), 'Link data carries no tag (real dump shape)');
+    assert.ok(!('text' in node.data), 'Link data carries no text');
+    assert.equal(node.data.block, '');
     assert.equal(node.data.button, true);
     assert.ok(node.data.xattr.some((x) => x.name === 'role' && x.value === 'button'));
+  });
+
+  it('crash-fix: focus/focus-visible NEVER become variants — moved to head (main_focus crashes Designer)', () => {
+    const css = `
+      .btn { display: inline-flex; }
+      .btn:hover { opacity: 0.9; }
+      .btn:focus-visible { outline: 2px solid red; }
+      .btn:focus { box-shadow: 0 0 0 2px blue; }
+    `;
+    const pkg = generateXscp(`<a class="btn">Go</a>`, css, { slug: 'btn' });
+    const btn = pkg.clipboard.payload.styles.find((s) => s.name === 'ds-btn');
+    assert.deepEqual(Object.keys(btn.variants), ['main_hover'], 'solo hover como variant');
+    assert.match(pkg.headCss, /\.ds-btn:focus-visible/);
+    assert.match(pkg.headCss, /\.ds-btn:focus[^-]/);
+    assert.ok(pkg.unsupported.some((u) => u.prop === ':focus-visible'));
   });
 
   it('crash-fix: native form controls throw (excluded from channel, wave 2 = Form* types)', () => {

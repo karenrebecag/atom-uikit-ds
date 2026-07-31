@@ -68,7 +68,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-tabs__list .ds-tabs__trigger{text-align:center;flex:1}.ds-tabs--vertical .ds-tabs__list{flex-direction:column;align-items:stretch}.ds-tabs--vertical .ds-tabs__list:not(.ds-tabs__list--line){border-radius:var(--radius-lg)}.ds-tabs--vertical .ds-tabs__list--line{border-bottom:none;border-right:var(--stroke-hairline) solid var(--border)}.ds-tabs__list--animated .ds-tabs__trigger{z-index:1;position:relative}.ds-tabs__list--animated .ds-tabs__trigger--active{box-shadow:none;background:0 0}.ds-tabs__list--line .ds-tabs__trigger{padding:var(--spacing-2,8px) var(--spacing-4,16px);border-radius:0;position:relative}.ds-tabs__list--line .ds-tabs__trigger:after{content:\"\";height:var(--stroke-medium);transition:background-color var(--duration-150) var(--easing-in-out);background-color:#0000;position:absolute;bottom:-1px;left:0;right:0}.ds-tabs__list--line .ds-tabs__trigger--active{box-shadow:none;color:var(--foreground);background:0 0}.ds-tabs__list--line .ds-tabs__trigger--active:after{background-color:var(--primary)}.ds-tabs--vertical .ds-tabs__list--line .ds-tabs__trigger:after{width:var(--stroke-medium);height:100%;top:0;bottom:auto;left:auto;right:-1px}.ds-tabs__trigger-icon svg{width:100%;height:100%}.ds-tabs--vertical .ds-tabs__content{flex:1;padding-top:0}@media (prefers-reduced-motion:reduce){.ds-tabs__trigger,.ds-tabs__list--line .ds-tabs__trigger:after{transition-duration:0s}}",
+  "headCss": ".ds-tabs__list .ds-tabs__trigger{text-align:center;flex:1}.ds-tabs--vertical .ds-tabs__list{flex-direction:column;align-items:stretch}.ds-tabs--vertical .ds-tabs__list:not(.ds-tabs__list--line){border-radius:var(--radius-lg)}.ds-tabs--vertical .ds-tabs__list--line{border-bottom:none;border-right:var(--stroke-hairline) solid var(--border)}.ds-tabs__list--animated .ds-tabs__trigger{z-index:1;position:relative}.ds-tabs__list--animated .ds-tabs__trigger--active{box-shadow:none;background:0 0}.ds-tabs__list--line .ds-tabs__trigger{padding:var(--spacing-2,8px) var(--spacing-4,16px);border-radius:0;position:relative}.ds-tabs__list--line .ds-tabs__trigger:after{content:\"\";height:var(--stroke-medium);transition:background-color var(--duration-150) var(--easing-in-out);background-color:#0000;position:absolute;bottom:-1px;left:0;right:0}.ds-tabs__list--line .ds-tabs__trigger--active{box-shadow:none;color:var(--foreground);background:0 0}.ds-tabs__list--line .ds-tabs__trigger--active:after{background-color:var(--primary)}.ds-tabs--vertical .ds-tabs__list--line .ds-tabs__trigger:after{width:var(--stroke-medium);height:100%;top:0;bottom:auto;left:auto;right:-1px}.ds-tabs__trigger-icon svg{width:100%;height:100%}.ds-tabs--vertical .ds-tabs__content{flex:1;padding-top:0}.ds-tabs__trigger:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:-2px}@media (prefers-reduced-motion:reduce){.ds-tabs__trigger,.ds-tabs__list--line .ds-tabs__trigger:after{transition-duration:0s}}",
   "tokensCss": ":root {\n  --border: #e5e5e5;\n  --duration-150: 150ms;\n  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --foreground: #0a0a0a;\n  --primary: #0a0a0a;\n  --radius-lg: 12px;\n  --spacing-2: 8px;\n  --spacing-4: 16px;\n  --stroke-hairline: 1px;\n  --stroke-medium: 2px;\n}",
   "tokensResolved": [
     "border",
@@ -106,6 +106,11 @@
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
+    {
+      "prop": ":focus-visible",
+      "selector": ".tabs__trigger:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
     {
       "prop": "selector",
       "selector": ".tabs__list .tabs__trigger",
@@ -172,9 +177,24 @@
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {
+      "prop": "selector",
+      "selector": ".tabs__trigger:focus-visible",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
       "prop": "@media",
       "selector": "(prefers-reduced-motion: reduce)",
       "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--focus-ring-width",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
     }
   ]
 }

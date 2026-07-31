@@ -116,10 +116,11 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-breadcrumb__separator svg{width:1em;height:1em}@media (prefers-reduced-motion:reduce){.ds-breadcrumb__link{transition-duration:0s}}",
-  "tokensCss": ":root {\n  --font-size-sm: 12.8px;\n  --spacing-1: 4px;\n}",
+  "headCss": ".ds-breadcrumb__separator svg{width:1em;height:1em}.ds-breadcrumb__link:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:2px;border-radius:var(--radius-sm)}@media (prefers-reduced-motion:reduce){.ds-breadcrumb__link{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --font-size-sm: 12.8px;\n  --radius-sm: 4px;\n  --spacing-1: 4px;\n}",
   "tokensResolved": [
     "font-size-sm",
+    "radius-sm",
     "spacing-1"
   ],
   "manifest": {
@@ -131,20 +132,41 @@
     "js": [],
     "tokens": [
       "font-size-sm",
+      "radius-sm",
       "spacing-1"
     ]
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
     {
+      "prop": ":focus-visible",
+      "selector": ".breadcrumb__link:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
+    {
       "prop": "selector",
       "selector": ".breadcrumb__separator svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".breadcrumb__link:focus-visible",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {
       "prop": "@media",
       "selector": "(prefers-reduced-motion: reduce)",
       "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--focus-ring-color",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--focus-ring-width",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
     }
   ]
 }
