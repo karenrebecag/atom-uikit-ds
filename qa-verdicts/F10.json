@@ -35,8 +35,8 @@
     },
     {
       "id": "F10-C7",
-      "status": "pass-local",
-      "evidence": ".github/workflows/smoke-publish.yml: post-merge, sleep 120s + 5 retries, canario chip, ATOM_REGISTRY_KEY secret. Evidencia job verde en merge real pendiente."
+      "status": "pass",
+      "evidence": "Run 30669368817 SUCCESS en GitHub Actions (canario chip: /api/r OK, /api/r/webflow OK, /v1 OK — Propagación OK). Prueba negativa REAL: el primer run falló con 401 + diagnóstico accionable por secret ausente; ATOM_REGISTRY_KEY configurado en repo Secrets y re-run verde. Retries y espera post-deploy funcionando."
     },
     {
       "id": "F10-C8",
