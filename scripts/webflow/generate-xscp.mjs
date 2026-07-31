@@ -52,6 +52,16 @@ const TAG_TYPE = {
 const FORM_CONTROL_TAGS = new Set(['input', 'textarea', 'select', 'option', 'form', 'optgroup']);
 
 /**
+ * Propiedades que CRASHEAN el panel de estilos del Designer AL SELECCIONAR el
+ * elemento (fixture-book empírico — bisección con Karen 2026-07-31: pastes
+ * mínimos de una propiedad; aspect-ratio reprodujo el crash; text-decoration,
+ * background shorthand y letter-spacing probaron OK). Van al head Custom Code:
+ * pintura intacta en publish, y en connected components.css ya las sirve.
+ * Ampliar SOLO con reproducción mínima verificada.
+ */
+const DESIGNER_UNSAFE_PROPS = new Set(['aspect-ratio']);
+
+/**
  * Solo pseudo-variants EMPÍRICAMENTE seguros: main_active probado en paste real
  * (marquee OK) y main_hover (documentación comunitaria consistente).
  * `main_focus` NO existe en ningún dump real y CRASHEA el Designer (verificado
@@ -278,17 +288,27 @@ export function generateXscp(html, css, opts = {}) {
     // Custom properties (--x) no son expresables en el panel de estilos del
     // Designer: van como regla normal al head Custom Code (aplica a la clase
     // pegada) — sin esto los modificadores var-driven pegan SIN estilo.
-    const varDecls = (base.decls ?? []).filter((d) => d.prop.startsWith('--'));
-    const cssDecls = (base.decls ?? []).filter((d) => !d.prop.startsWith('--'));
-    if (varDecls.length) {
+    const toHead = (d) => d.prop.startsWith('--') || DESIGNER_UNSAFE_PROPS.has(d.prop);
+    const headDecls = (base.decls ?? []).filter(toHead);
+    const cssDecls = (base.decls ?? []).filter((d) => !toHead(d));
+    if (headDecls.length) {
       headChunks.push(
-        `.${className} {\n  ${varDecls.map((d) => `${d.prop}: ${d.value};`).join('\n  ')}\n}`,
+        `.${className} {\n  ${headDecls.map((d) => `${d.prop}: ${d.value};`).join('\n  ')}\n}`,
       );
-      unsupported.push({
-        prop: '--custom-properties',
-        selector: `.${className}`,
-        reason: 'CSS custom properties — moved to head Custom Code (Designer styles cannot declare them)',
-      });
+      for (const d of headDecls.filter((x) => DESIGNER_UNSAFE_PROPS.has(x.prop))) {
+        unsupported.push({
+          prop: d.prop,
+          selector: `.${className}`,
+          reason: 'crashes the Designer style panel on selection (empirically verified) — moved to head Custom Code',
+        });
+      }
+      if (headDecls.some((x) => x.prop.startsWith('--'))) {
+        unsupported.push({
+          prop: '--custom-properties',
+          selector: `.${className}`,
+          reason: 'CSS custom properties — moved to head Custom Code (Designer styles cannot declare them)',
+        });
+      }
     }
     base.decls = cssDecls;
 
@@ -460,6 +480,15 @@ function declsToStyleLess(decls, unsupported, selector) {
         prop,
         selector,
         reason: 'custom property inside a variant — declare it on the base class or tokens sheet',
+      });
+      continue;
+    }
+    if (DESIGNER_UNSAFE_PROPS.has(prop)) {
+      // En variants/media no hay ruta al head con contexto: reportar ruidoso.
+      unsupported.push({
+        prop,
+        selector,
+        reason: 'crashes the Designer style panel — dropped from variant (declare it on the base class)',
       });
       continue;
     }

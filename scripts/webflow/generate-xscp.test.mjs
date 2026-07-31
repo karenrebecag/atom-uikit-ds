@@ -142,6 +142,19 @@ describe('generateXscp', () => {
     assert.ok(node.data.xattr.some((x) => x.name === 'data-atom-badge'));
   });
 
+  it('crash-fix: aspect-ratio NEVER reaches styleLess — crashes Designer panel on click', () => {
+    const pkg = generateXscp(
+      `<span class="icon">x</span>`,
+      `.icon { display: inline-flex; aspect-ratio: 1; padding: 8px; }`,
+      { slug: 'icon' },
+    );
+    const st = pkg.clipboard.payload.styles.find((s) => s.name === 'ds-icon');
+    assert.ok(!/aspect-ratio/.test(st.styleLess), 'aspect-ratio fuera del styleLess');
+    assert.match(st.styleLess, /display:\s*inline-flex/, 'el resto de decls se conserva');
+    assert.match(pkg.headCss, /\.ds-icon\{aspect-ratio:1/);
+    assert.ok(pkg.unsupported.some((u) => u.prop === 'aspect-ratio' && /crashes the Designer/.test(u.reason)));
+  });
+
   it('crash-fix: <button> becomes Designer-legit Link Button (tag a, data.button, role)', () => {
     const pkg = generateXscp(
       `<button class="button" data-atom-button="" type="button">Go</button>`,
