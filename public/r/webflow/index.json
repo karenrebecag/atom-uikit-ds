@@ -3,6 +3,7 @@
   "pilots": [
     "badge",
     "divider",
+    "marquee",
     "spinner"
   ]
 }

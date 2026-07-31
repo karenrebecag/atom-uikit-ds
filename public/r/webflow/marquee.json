@@ -1,0 +1,408 @@
+{
+  "slug": "marquee",
+  "format": "webflow-xscp",
+  "clipboard": {
+    "type": "@webflow/XscpData",
+    "payload": {
+      "nodes": [
+        {
+          "_id": "02ace84b-000a-46c8-8b14-6c8b145202ac",
+          "text": true,
+          "v": "Atom"
+        },
+        {
+          "_id": "02ace84b-0008-40e9-8323-0e9323c102ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0009-40d9-8322-0d93222e02ac"
+          ],
+          "children": [
+            "02ace84b-000a-46c8-8b14-6c8b145202ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-000c-46a8-8b11-6a8b112c02ac",
+          "text": true,
+          "v": "UIKit"
+        },
+        {
+          "_id": "02ace84b-000b-46d8-8b15-6d8b15e502ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0009-40d9-8322-0d93222e02ac"
+          ],
+          "children": [
+            "02ace84b-000c-46a8-8b11-6a8b112c02ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-000e-4688-8b0e-688b0e0602ac",
+          "text": true,
+          "v": "Motion"
+        },
+        {
+          "_id": "02ace84b-000d-46b8-8b12-6b8b12bf02ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0009-40d9-8322-0d93222e02ac"
+          ],
+          "children": [
+            "02ace84b-000e-4688-8b0e-688b0e0602ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-0010-4668-8b0a-668b0ae002ac",
+          "text": true,
+          "v": "Webflow"
+        },
+        {
+          "_id": "02ace84b-000f-4698-8b0f-698b0f9902ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0009-40d9-8322-0d93222e02ac"
+          ],
+          "children": [
+            "02ace84b-0010-4668-8b0a-668b0ae002ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-0006-4089-831a-08931a4f02ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0007-4079-8318-079318bc02ac"
+          ],
+          "children": [
+            "02ace84b-0008-40e9-8323-0e9323c102ac",
+            "02ace84b-000b-46d8-8b15-6d8b15e502ac",
+            "02ace84b-000d-46b8-8b12-6b8b12bf02ac",
+            "02ace84b-000f-4698-8b0f-698b0f9902ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-draggable-marquee-list",
+                "value": ""
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-0004-40a9-831d-0a931d7502ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0005-4099-831b-09931be202ac"
+          ],
+          "children": [
+            "02ace84b-0006-4089-831a-08931a4f02ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-draggable-marquee-collection",
+                "value": ""
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-0001-4059-8315-0593159602ac",
+          "type": "Block",
+          "tag": "div",
+          "classes": [
+            "02ace84b-0002-4049-8314-0493140302ac",
+            "02ace84b-0003-4039-8312-0393127002ac"
+          ],
+          "children": [
+            "02ace84b-0004-40a9-831d-0a931d7502ac"
+          ],
+          "data": {
+            "tag": "div",
+            "text": false,
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-draggable-marquee",
+                "value": ""
+              },
+              {
+                "name": "data-direction",
+                "value": "left"
+              },
+              {
+                "name": "data-duration",
+                "value": "20"
+              },
+              {
+                "name": "data-multiplier",
+                "value": "35"
+              },
+              {
+                "name": "data-sensitivity",
+                "value": "0.01"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            }
+          }
+        }
+      ],
+      "styles": [
+        {
+          "_id": "02ace84b-0002-4049-8314-0493140302ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; position: relative; overflow: hidden; width: 100%; font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0003-4039-8312-0393127002ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee--fade",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "mask-image: linear-gradient(\n    to right,\n    transparent,\n    black var(--spacing-10, 40px),\n    black calc(100% - var(--spacing-10, 40px)),\n    transparent\n  ); -webkit-mask-image: linear-gradient(\n    to right,\n    transparent,\n    black var(--spacing-10, 40px),\n    black calc(100% - var(--spacing-10, 40px)),\n    transparent\n  );",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0005-4099-831b-09931be202ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee__collection",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; align-items: center; flex: none; will-change: transform; cursor: grab;",
+          "variants": {
+            "main_active": {
+              "styleLess": "cursor: grabbing;"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0007-4079-8318-079318bc02ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee__list",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "flex: none; display: flex; align-items: center; animation: marquee-scroll var(--marquee-duration, 30s) linear infinite; animation-play-state: var(--marquee-state, running);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0009-40d9-8322-0d93222e02ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee__item",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "display: flex; align-items: center; gap: var(--spacing-4, 16px); padding: var(--spacing-3, 12px) var(--spacing-4, 16px); flex-shrink: 0; white-space: nowrap;",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        }
+      ],
+      "assets": [],
+      "ix1": [],
+      "ix2": {
+        "interactions": [],
+        "events": [],
+        "actionLists": []
+      }
+    },
+    "meta": {
+      "unlinkedSymbolCount": 0,
+      "droppedLinks": 0,
+      "dynBindRemovedCount": 0,
+      "dynListBindRemovedCount": 0,
+      "paginationRemovedCount": 0
+    }
+  },
+  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee__separator svg{width:1em;height:1em}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}}",
+  "tokensCss": ":root {\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --spacing-10: 40px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n}",
+  "tokensResolved": [
+    "font-family-sans",
+    "spacing-10",
+    "spacing-3",
+    "spacing-4"
+  ],
+  "manifest": {
+    "channelVersion": "v1",
+    "consume": [
+      "https://atom-web-ds.vercel.app/v1/tokens.css",
+      "https://atom-web-ds.vercel.app/v1/components.css",
+      "https://atom-web-ds.vercel.app/v1/webflow.css"
+    ],
+    "js": [
+      "https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js",
+      "https://cdn.jsdelivr.net/npm/gsap@3/dist/Observer.min.js",
+      "https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js",
+      "https://atom-web-ds.vercel.app/v1/animations.js"
+    ],
+    "init": "window.__atomMotionCleanup = AtomMotion.initAll();",
+    "tokens": [
+      "font-family-sans",
+      "spacing-10",
+      "spacing-3",
+      "spacing-4"
+    ],
+    "domContract": {
+      "hooks": [
+        "data-draggable-marquee",
+        "data-draggable-marquee-collection",
+        "data-draggable-marquee-list"
+      ],
+      "anatomy": [
+        "[data-draggable-marquee-collection]",
+        "[data-draggable-marquee-list]",
+        ".marquee__item"
+      ],
+      "statesWrittenAsClasses": false
+    }
+  },
+  "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
+  "unsupported": [
+    {
+      "prop": "selector",
+      "selector": ".marquee--reverse .marquee__list",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".marquee--pause-hover:hover .marquee__list",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".marquee__separator svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "--marquee-duration",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--marquee-state",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    }
+  ]
+}

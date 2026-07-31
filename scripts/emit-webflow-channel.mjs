@@ -8,6 +8,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateXscp, resolveTokensCss } from './webflow/generate-xscp.mjs';
+import {
+  getDomContract,
+  buildMotionScripts,
+  buildConsumeCss,
+  validateHtmlAgainstContract,
+} from './webflow/dom-contract.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PILOTS_DIR = path.join(here, 'webflow', 'pilots');
@@ -61,6 +67,41 @@ export async function emitWebflowChannel(outDir, opts = {}) {
     //    El head se pega SIN tokensCss (pegarlo pisaría la escala fluida --u).
     //  - "standalone" (técnico, estilo shadcn): head = tokensCss + headCss,
     //    autocontenido para sitios ajenos sin el canal /v1.
+    //
+    // F7: motion scripts + DOM contract derived from registry (peerDeps/hasAnimation)
+    // and scripts/webflow/dom-contract.mjs — never hard-coded per slug beyond that map.
+    const motion = buildMotionScripts(item, slug);
+    const domContract = getDomContract(slug);
+    if (domContract) {
+      const check = validateHtmlAgainstContract(html, domContract);
+      if (!check.ok) {
+        throw new Error(
+          `webflow pilot "${slug}" fails domContract: missing ${check.missing.join(', ')}`,
+        );
+      }
+    }
+
+    // Manifest de la cadena de dependencias (idea Karen 2026-07-31): la
+    // instancia pegada es pura referencia; esto declara EXPLÍCITO qué
+    // endpoints la pintan, para que cualquier consumidor (MCP, botón de la
+    // docu, compiladores futuros) resuelva la cadena mecánicamente.
+    const manifest = {
+      channelVersion: 'v1',
+      consume: buildConsumeCss(item),
+      js: motion.js,
+      ...(motion.init ? { init: motion.init } : {}),
+      tokens: tokens.resolved,
+      ...(domContract
+        ? {
+            domContract: {
+              hooks: domContract.hooks,
+              anatomy: domContract.anatomy,
+              statesWrittenAsClasses: domContract.statesWrittenAsClasses,
+            },
+          }
+        : {}),
+    };
+
     const artifact = {
       slug,
       format: 'webflow-xscp',
@@ -68,19 +109,7 @@ export async function emitWebflowChannel(outDir, opts = {}) {
       headCss: pkg.headCss,
       tokensCss: tokens.tokensCss,
       tokensResolved: tokens.resolved,
-      // Manifest de la cadena de dependencias (idea Karen 2026-07-31): la
-      // instancia pegada es pura referencia; esto declara EXPLÍCITO qué
-      // endpoints la pintan, para que cualquier consumidor (MCP, botón de la
-      // docu, compiladores futuros) resuelva la cadena mecánicamente.
-      manifest: {
-        channelVersion: 'v1',
-        consume: [
-          'https://atom-web-ds.vercel.app/v1/tokens.css',
-          'https://atom-web-ds.vercel.app/v1/components.css',
-        ],
-        js: [],
-        tokens: tokens.resolved,
-      },
+      manifest,
       footerNote: pkg.footerNote,
       unsupported: pkg.unsupported,
     };

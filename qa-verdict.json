@@ -6,6 +6,7 @@
     "F3": "committed-in-history (meta.agent pilots)",
     "F4": "qa-verdicts/F4.json",
     "F5": "qa-verdicts/F5.json",
-    "F6": "qa-verdicts/F6.json"
+    "F6": "qa-verdicts/F6.json",
+    "F7": "qa-verdicts/F7.json"
   }
 }

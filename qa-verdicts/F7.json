@@ -1,0 +1,49 @@
+{
+  "feature": "F7",
+  "date": "2026-07-31",
+  "commit": "wt-pending",
+  "checks": [
+    {
+      "id": "F7-C1",
+      "desc": "Animated marquee artifact declares js, init, domContract; badge js:[].",
+      "status": "pass",
+      "evidence": "public/r/webflow/marquee.json: js=[gsap,Observer,ScrollTrigger,animations.js], init=AtomMotion.initAll, domContract.hooks present. badge.manifest.js=[]"
+    },
+    {
+      "id": "F7-C2",
+      "desc": "Conformance: mutilating pilot marquee fails naming the missing hook.",
+      "status": "pass",
+      "evidence": "dom-contract.test.mjs F7-C2; emit throws if pilot fails contract; conformance.mjs webflow-dom section green"
+    },
+    {
+      "id": "F7-C3",
+      "desc": "MCP connected marquee includes before-body scripts; badge does not.",
+      "status": "pass",
+      "evidence": "tests/webflow-motion.test.ts F7-C3"
+    },
+    {
+      "id": "F7-C4",
+      "desc": "E2E paste marquee in ds-lab → motion visible + reduced-motion.",
+      "status": "pending",
+      "evidence": "Manual Karen: paste marquee on ds-lab (stack already present), publish, record motion"
+    },
+    {
+      "id": "F7-C5",
+      "desc": "marquee-draggable does not write canonical classes.",
+      "status": "pass",
+      "evidence": "grep classList/className on marquee-draggable.ts empty; test F7-C5"
+    },
+    {
+      "id": "F7-C6",
+      "desc": "Suites green.",
+      "status": "pass",
+      "evidence": "node --test scripts/webflow/*.test.mjs; pnpm test MCP"
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": ["F7-C4 manual ds-lab paste"],
+  "notes": [
+    "DOM hooks match real source (data-draggable-marquee*), not the illustrative names in the early spec draft.",
+    "F6-C2 Designer paste for static pilots remains a separate manual gate if not already signed."
+  ]
+}

@@ -17,6 +17,10 @@ import {
   runPublishedConformance,
   formatReport,
 } from './agent-meta-conformance.mjs';
+import {
+  getDomContract,
+  validateHtmlAgainstContract,
+} from './webflow/dom-contract.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const CONF = join(ROOT, 'conformance');
@@ -385,6 +389,70 @@ function sectionAgentMeta() {
 
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// webflow-dom — F7: pilot HTML satisfies domContract; no statesWrittenAsClasses
+// ---------------------------------------------------------------------------
+
+function sectionWebflowDom() {
+  const pilotsDir = join(ROOT, 'scripts/webflow/pilots');
+  const webflowOut = join(ROOT, 'public/r/webflow');
+  if (!existsSync(pilotsDir)) {
+    note('webflow-dom', 'no pilots dir');
+    return;
+  }
+
+  // Validate every pilot that has a DOM contract
+  for (const file of readdirSync(pilotsDir).filter((f) => f.endsWith('.html'))) {
+    const slug = file.replace(/\.html$/, '');
+    const contract = getDomContract(slug);
+    if (!contract) {
+      ok('webflow-dom', `${slug}: no domContract (static pilot)`);
+      continue;
+    }
+    const html = readFileSync(join(pilotsDir, file), 'utf8');
+    const check = validateHtmlAgainstContract(html, contract);
+    if (!check.ok) {
+      fail('webflow-dom', `${slug}: missing ${check.missing.join(', ')}`);
+    } else {
+      ok('webflow-dom', `${slug}: hooks + anatomy ok`);
+    }
+
+    // Emitted artifact must carry the same contract (if built)
+    const artPath = join(webflowOut, `${slug}.json`);
+    if (existsSync(artPath)) {
+      const art = readJson(artPath);
+      const hooks = art.manifest?.domContract?.hooks ?? [];
+      for (const h of contract.hooks) {
+        if (!hooks.includes(h)) {
+          fail('webflow-dom', `${slug}: published artifact missing hook ${h} in manifest.domContract`);
+        }
+      }
+      if (!art.manifest?.js?.length) {
+        fail('webflow-dom', `${slug}: animated pilot artifact has empty manifest.js`);
+      }
+      if (!art.manifest?.init) {
+        fail('webflow-dom', `${slug}: animated pilot missing manifest.init`);
+      }
+    } else {
+      note('webflow-dom', `${slug}: public/r/webflow/${slug}.json not built yet — run build:registry`);
+    }
+  }
+
+  // Static pilots must not gain js
+  for (const file of readdirSync(pilotsDir).filter((f) => f.endsWith('.html'))) {
+    const slug = file.replace(/\.html$/, '');
+    if (getDomContract(slug)) continue;
+    const artPath = join(webflowOut, `${slug}.json`);
+    if (!existsSync(artPath)) continue;
+    const art = readJson(artPath);
+    if (art.manifest?.js?.length) {
+      fail('webflow-dom', `${slug}: static pilot should have js:[] (got ${art.manifest.js.length})`);
+    } else {
+      ok('webflow-dom', `${slug}: static js:[]`);
+    }
+  }
+}
+
 const SECTIONS = {
   tokens: sectionTokens,
   css: sectionCss,
@@ -393,6 +461,7 @@ const SECTIONS = {
   budgets: sectionBudgets,
   distribution: () => checkDistribution({ fail, ok, note }),
   'agent-meta': sectionAgentMeta,
+  'webflow-dom': sectionWebflowDom,
 };
 
 const pick = process.argv[2];
