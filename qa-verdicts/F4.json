@@ -1,0 +1,39 @@
+{
+  "feature": "F4",
+  "date": "2026-07-31",
+  "commit": "wt-pending",
+  "checks": [
+    {
+      "id": "F4-C1",
+      "status": "pass",
+      "evidence": "mutation smoke + agent-meta-conformance.test.mjs"
+    },
+    {
+      "id": "F4-C2",
+      "status": "pass",
+      "evidence": "missing prop fixture"
+    },
+    {
+      "id": "F4-C3",
+      "status": "pass",
+      "evidence": "agent-meta green after animated default fix"
+    },
+    {
+      "id": "F4-C4",
+      "status": "pass",
+      "evidence": "unparseable fail"
+    },
+    {
+      "id": "F4-C5",
+      "status": "pass",
+      "evidence": ".github/workflows/conformance.yml → node scripts/conformance.mjs includes agent-meta"
+    },
+    {
+      "id": "F4-C6",
+      "status": "pass",
+      "evidence": "conformance full green"
+    }
+  ],
+  "verdict": "approved",
+  "blocking": []
+}

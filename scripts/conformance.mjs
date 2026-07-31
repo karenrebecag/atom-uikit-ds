@@ -13,6 +13,10 @@ import { join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { checkDistribution } from './check-distribution.mjs';
+import {
+  runPublishedConformance,
+  formatReport,
+} from './agent-meta-conformance.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const CONF = join(ROOT, 'conformance');
@@ -350,6 +354,36 @@ function sectionBudgets() {
 }
 
 // ---------------------------------------------------------------------------
+// agent-meta — F4: meta.agent.configurables ↔ published React defaults
+// ---------------------------------------------------------------------------
+
+function sectionAgentMeta() {
+  const pub = join(ROOT, 'public', 'r');
+  if (!existsSync(pub)) {
+    note('agent-meta', 'public/r no existe — corre build:registry para verificar meta.agent');
+    return;
+  }
+  const { reports, failures: n } = runPublishedConformance(
+    pub,
+    { readFileSync, readdirSync, existsSync },
+    { join },
+  );
+  if (reports.length === 0) {
+    ok('agent-meta', 'ningún item con meta.agent (nada que verificar)');
+    return;
+  }
+  for (const r of reports) {
+    if (r.unparseable || r.missing.length || r.mismatched.length) {
+      fail('agent-meta', formatReport(r));
+    } else {
+      ok('agent-meta', formatReport(r));
+    }
+  }
+  // failures already counted via fail(); n used only for summary intent
+  if (n === 0) ok('agent-meta', `${reports.length} item(s) con meta.agent alineados al source`);
+}
+
+// ---------------------------------------------------------------------------
 
 const SECTIONS = {
   tokens: sectionTokens,
@@ -358,6 +392,7 @@ const SECTIONS = {
   registry: sectionRegistry,
   budgets: sectionBudgets,
   distribution: () => checkDistribution({ fail, ok, note }),
+  'agent-meta': sectionAgentMeta,
 };
 
 const pick = process.argv[2];

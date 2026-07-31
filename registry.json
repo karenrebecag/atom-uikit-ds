@@ -154,9 +154,9 @@
             {
               "prop": "animated",
               "type": "boolean",
-              "default": "true",
+              "default": "false",
               "what": "Whether the label text-swap animation runs on hover/press.",
-              "how": "true for marketing and primary CTAs; false in data-dense tables or prefers-reduced-motion contexts."
+              "how": "false in dense tables or reduced-motion; true for marketing CTAs when motion is wanted. Default matches source: false."
             },
             {
               "prop": "loading",
