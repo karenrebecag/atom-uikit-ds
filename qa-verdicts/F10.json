@@ -15,8 +15,8 @@
     },
     {
       "id": "F10-C3",
-      "status": "pending",
-      "evidence": "Tras push: docs registry-first + MCP source usage/gotchas en 2 slugs del lote."
+      "status": "pass",
+      "evidence": "Verificado EN VIVO contra producción: atom_uikit_source({component:\"button\", include:[\"usage\",\"gotchas\",\"deps\"]}) vía MCP real devuelve usage (con animated en el ejemplo), 3 gotchas (react/a11y/css-modules) y deps=[gsap]; /api/r/button.json sirve meta.agent (5 configurables). Página docs registry-first: contenido servido confirmado por API; vistazo visual = Karen en su próxima navegación."
     },
     {
       "id": "F10-C4",
@@ -25,8 +25,8 @@
     },
     {
       "id": "F10-C5",
-      "status": "pass-local",
-      "evidence": "REQUIRED_HOOKS (+ANATOMY/GSAP/STATES) en 9 módulos animations. loadDomContracts ALL_BEHAVIOR_MODULES. Invariante querySelector↔hooks verde (node --test dom-contract). progress-nav STATES_WRITTEN_AS_CLASSES=true. motionOmitted restaurado si sin contrato."
+      "status": "pass",
+      "evidence": "REQUIRED_HOOKS (+ANATOMY/GSAP/STATES) en 9 módulos animations. loadDomContracts ALL_BEHAVIOR_MODULES. Invariante querySelector↔hooks verde (node --test dom-contract). progress-nav STATES_WRITTEN_AS_CLASSES=true. motionOmitted restaurado si sin contrato. | Post-push: Conformance CI verde."
     },
     {
       "id": "F10-C6",
@@ -40,8 +40,8 @@
     },
     {
       "id": "F10-C8",
-      "status": "pass-local",
-      "evidence": "node --test scripts/**/*.test.mjs → 48 pass / 0 fail. agent-meta-conformance green. docs/MCP sin cambios de código."
+      "status": "pass",
+      "evidence": "node --test scripts/**/*.test.mjs → 48 pass / 0 fail. agent-meta-conformance green. docs/MCP sin cambios de código. | Post-push: CI completo verde (Conformance, sync-docs, component-tests, deploy-public-dist, Smoke)."
     }
   ],
   "verdict": "in_progress",
