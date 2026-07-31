@@ -1,0 +1,60 @@
+{
+  "feature": "F10",
+  "date": "2026-07-31",
+  "commit": "pending-karen-gate-lote1",
+  "checks": [
+    {
+      "id": "F10-C1",
+      "status": "pass",
+      "evidence": "14 items with meta.agent (lote1: button, icon-button, link-button, button-group, input, select, chip, tag, accordion, toggle, textarea, checkbox, radio + pilot badge). build:registry green. agent-meta-conformance green. Completeness: select/textarea/checkbox/radio/accordion = usage+gotchas without root configurables (compound or prop-on-child)."
+    },
+    {
+      "id": "F10-C2",
+      "status": "pass",
+      "evidence": "Karen 2026-07-31: tabla lote 1 (14 componentes) revisada en f10-lote1-firma.html — firma: \"vamos, pushea y merge\". Sin ajustes solicitados."
+    },
+    {
+      "id": "F10-C3",
+      "status": "pending",
+      "evidence": "Tras push: docs registry-first + MCP source usage/gotchas en 2 slugs del lote."
+    },
+    {
+      "id": "F10-C4",
+      "status": "pending",
+      "evidence": "Cobertura actual 14/120 items (≈12% de registry total; >12 componentes top del lote1). Ola completa ≥90% en lotes 2+."
+    },
+    {
+      "id": "F10-C5",
+      "status": "pass-local",
+      "evidence": "REQUIRED_HOOKS (+ANATOMY/GSAP/STATES) en 9 módulos animations. loadDomContracts ALL_BEHAVIOR_MODULES. Invariante querySelector↔hooks verde (node --test dom-contract). progress-nav STATES_WRITTEN_AS_CLASSES=true. motionOmitted restaurado si sin contrato."
+    },
+    {
+      "id": "F10-C6",
+      "status": "pending",
+      "evidence": "PENDIENTE decisión Karen: previewProps animated:true para familia button. Mientras: pegan estáticos (opt-in no activado) — correcto por política."
+    },
+    {
+      "id": "F10-C7",
+      "status": "pass-local",
+      "evidence": ".github/workflows/smoke-publish.yml: post-merge, sleep 120s + 5 retries, canario chip, ATOM_REGISTRY_KEY secret. Evidencia job verde en merge real pendiente."
+    },
+    {
+      "id": "F10-C8",
+      "status": "pass-local",
+      "evidence": "node --test scripts/**/*.test.mjs → 48 pass / 0 fail. agent-meta-conformance green. docs/MCP sin cambios de código."
+    }
+  ],
+  "verdict": "in_progress",
+  "blocking": [
+    "F10-C2 Karen firma tabla lote1",
+    "F10-C6 previewProps.animated decision",
+    "F10-C7 smoke CI en merge real"
+  ],
+  "notes": [
+    "Orden ejecutado: F10c workflow → F10b contratos → F10a lote1 meta.agent.",
+    "Sample hows anti-genérico (F10-C2): (1) button.variant: One primary per section. Use destructive-* only for irreversible actions. (2) button.animated: false in dense tables or reduced-motion; true for marketing CTAs. (3) chip.type: outlined for filters at rest; filled when selected. (4) tag.intent: neutral for meta; success/warning/danger for state; brand/ai sparingly. (5) badge.state: enabled default; focused when related control active; subtle for de-emphasized counts.",
+    "Parser F4 mejorado: multi-export (ButtonGroup) resuelve por PascalCase del slug.",
+    "Webflow button/icon-button/link-button/toggle-group removidos del canal hasta previewProps con hooks — política F7 honesta (no motion no-verificado).",
+    "Auditoría 2026-07-31 (fix aplicado): F10b introdujo una regresión — la familia button quedó EXCLUIDA del canal porque el validador trataba los hooks opt-in del behavior como obligatorios (0 hooks en render con animated=false → domContract fail). Semántica corregida (countContractHooks): 0 hooks = componente opta por estático (emitir sin motion, nota visible); hooks parciales = anatomía rota (excluir). Canal restaurado a 35; marquee intacto; 48/48 + conformance verdes."
+  ]
+}
