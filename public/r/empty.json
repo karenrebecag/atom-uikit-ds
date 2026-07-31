@@ -3,7 +3,7 @@
   "name": "empty",
   "type": "registry:component",
   "title": "Empty",
-  "description": "Empty",
+  "description": "A calm blank state with icon, message, and optional CTA. Zero results and first-run screens.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Empty",
-      "description": "Empty",
+      "description": "A calm blank state with icon, message, and optional CTA. Zero results and first-run screens.",
       "category": "layout",
       "variants": [
         "default",

@@ -3,7 +3,7 @@
   "name": "logo",
   "type": "registry:component",
   "title": "Logo",
-  "description": "Marca oficial de Atom theme-aware: dual light/dark que voltea con data-theme. Assets oficiales en R2, documentados en el CSS.",
+  "description": "Official Atom mark that flips light/dark with data-theme. Never invent marks — use this asset only.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "Logo",
-      "description": "Marca oficial de Atom theme-aware: dual light/dark que voltea con data-theme. Assets oficiales en R2, documentados en el CSS.",
+      "description": "Official Atom mark that flips light/dark with data-theme. Never invent marks — use this asset only.",
       "category": "actions",
       "variants": [],
       "sizes": [],

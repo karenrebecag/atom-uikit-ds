@@ -3,7 +3,7 @@
   "name": "user-profile",
   "type": "registry:component",
   "title": "UserProfile",
-  "description": "UserProfile",
+  "description": "Avatar plus name and optional meta in one block. Account headers and people cards.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "UserProfile",
-      "description": "UserProfile",
+      "description": "Avatar plus name and optional meta in one block. Account headers and people cards.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

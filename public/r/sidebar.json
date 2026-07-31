@@ -3,7 +3,7 @@
   "name": "sidebar",
   "type": "registry:component",
   "title": "Sidebar",
-  "description": "Navigation sidebar with 11 sub-components",
+  "description": "Collapsible app navigation with nested items and sections. Primary product shell chrome.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -68,7 +68,7 @@
   "atom": {
     "discovery": {
       "name": "Sidebar",
-      "description": "Navigation sidebar with 11 sub-components",
+      "description": "Collapsible app navigation with nested items and sections. Primary product shell chrome.",
       "category": "navigation",
       "variants": [],
       "sizes": [],

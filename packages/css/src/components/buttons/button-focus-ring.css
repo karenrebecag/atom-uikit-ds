@@ -1,0 +1,16 @@
+/**
+ * Anillo de foco del botón, en su propio partial porque el canal de Webflow lo
+ * necesita y el panel de estilos no puede declararlo: un box-shadow compuesto
+ * con dos var() se parsea como una sola variable y pierde la geometría.
+ *
+ * Doble anillo (superficie + contraste) para que se vea sobre cualquier fondo,
+ * incluido el propio color del botón. Ambos colores salen de tokens.
+ *
+ * Solo `:focus-visible`: el foco de ratón no debe pintar anillo.
+ */
+.button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--stroke-medium) var(--background),
+    0 0 0 calc(var(--stroke-medium) * 2) var(--ring);
+}

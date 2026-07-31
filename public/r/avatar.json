@@ -3,7 +3,7 @@
   "name": "avatar",
   "type": "registry:component",
   "title": "Avatar",
-  "description": "User avatar with image, initials, or icon",
+  "description": "Shows a face, initials, or fallback icon at a fixed size. People in lists, comments, and headers.",
   "registryDependencies": [
     "tokens"
   ],
@@ -22,7 +22,7 @@
   "atom": {
     "discovery": {
       "name": "Avatar",
-      "description": "User avatar with image, initials, or icon",
+      "description": "Shows a face, initials, or fallback icon at a fixed size. People in lists, comments, and headers.",
       "category": "indicators",
       "variants": [],
       "sizes": [

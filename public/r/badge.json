@@ -3,7 +3,7 @@
   "name": "badge",
   "type": "registry:component",
   "title": "Badge",
-  "description": "Status indicator badge",
+  "description": "A small status chip that sits on an edge or next to a label. Counts, inbox state, and quiet flags.",
   "registryDependencies": [
     "tokens"
   ],
@@ -22,7 +22,7 @@
   "atom": {
     "discovery": {
       "name": "Badge",
-      "description": "Status indicator badge",
+      "description": "A small status chip that sits on an edge or next to a label. Counts, inbox state, and quiet flags.",
       "category": "indicators",
       "variants": [
         "neutral",

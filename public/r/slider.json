@@ -3,7 +3,7 @@
   "name": "slider",
   "type": "registry:component",
   "title": "Slider",
-  "description": "Slider",
+  "description": "Drag a thumb along a track to set a value. Ranges, volume, and continuous settings.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Slider",
-      "description": "Slider",
+      "description": "Drag a thumb along a track to set a value. Ranges, volume, and continuous settings.",
       "category": "forms",
       "variants": [],
       "sizes": [],

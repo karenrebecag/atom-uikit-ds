@@ -3,7 +3,7 @@
   "name": "calendar",
   "type": "registry:component",
   "title": "Calendar",
-  "description": "Calendar",
+  "description": "A month grid to pick a date (or range) with keyboard support. Scheduling and date filters.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Calendar",
-      "description": "Calendar",
+      "description": "A month grid to pick a date (or range) with keyboard support. Scheduling and date filters.",
       "category": "data-display",
       "variants": [],
       "sizes": [],

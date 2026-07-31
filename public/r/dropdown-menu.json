@@ -3,7 +3,7 @@
   "name": "dropdown-menu",
   "type": "registry:component",
   "title": "DropdownMenu",
-  "description": "DropdownMenu",
+  "description": "Click a trigger and a menu drops with actions or nested groups. App chrome and overflow menus.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "DropdownMenu",
-      "description": "DropdownMenu",
+      "description": "Click a trigger and a menu drops with actions or nested groups. App chrome and overflow menus.",
       "category": "navigation",
       "variants": [
         "default",

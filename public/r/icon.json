@@ -3,7 +3,7 @@
   "name": "icon",
   "type": "registry:component",
   "title": "Icon",
-  "description": "Escala y color para SVG inline: el DS envia el tamano, no los paths",
+  "description": "Sizes and colors an inline SVG; the DS owns scale, not the path art. Pair with any approved icon set.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "Icon",
-      "description": "Escala y color para SVG inline: el DS envia el tamano, no los paths",
+      "description": "Sizes and colors an inline SVG; the DS owns scale, not the path art. Pair with any approved icon set.",
       "category": "actions",
       "variants": [],
       "sizes": [],

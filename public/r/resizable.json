@@ -3,7 +3,7 @@
   "name": "resizable",
   "type": "registry:component",
   "title": "Resizable",
-  "description": "Resizable",
+  "description": "Drag a handle to grow or shrink adjacent panes. Split views and customizable workspaces.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Resizable",
-      "description": "Resizable",
+      "description": "Drag a handle to grow or shrink adjacent panes. Split views and customizable workspaces.",
       "category": "layout",
       "variants": [],
       "sizes": [],

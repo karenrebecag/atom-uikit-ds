@@ -3,7 +3,7 @@
   "name": "field",
   "type": "registry:component",
   "title": "Field",
-  "description": "Form field wrapper with label, helper, error",
+  "description": "Wraps a control with label, helper, and error so the whole row stays aligned. Required around every form input.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Field",
-      "description": "Form field wrapper with label, helper, error",
+      "description": "Wraps a control with label, helper, and error so the whole row stays aligned. Required around every form input.",
       "category": "forms",
       "variants": [],
       "sizes": [],

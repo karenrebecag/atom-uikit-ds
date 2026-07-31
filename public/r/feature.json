@@ -3,7 +3,7 @@
   "name": "feature",
   "type": "registry:component",
   "title": "Feature",
-  "description": "Fila icono + texto (+ valor): listas de beneficios, specs, checklists",
+  "description": "Icon plus text (and optional value) in one row. Benefit lists, specs, and checklists.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "Feature",
-      "description": "Fila icono + texto (+ valor): listas de beneficios, specs, checklists",
+      "description": "Icon plus text (and optional value) in one row. Benefit lists, specs, and checklists.",
       "category": "actions",
       "variants": [],
       "sizes": [],

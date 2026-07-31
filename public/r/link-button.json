@@ -3,7 +3,7 @@
   "name": "link-button",
   "type": "registry:component",
   "title": "LinkButton",
-  "description": "Inline text link with shimmer animation",
+  "description": "Inline text that shimmers as you hover, then navigates like a link. Secondary CTAs inside paragraphs or cards.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "LinkButton",
-      "description": "Inline text link with shimmer animation",
+      "description": "Inline text that shimmers as you hover, then navigates like a link. Secondary CTAs inside paragraphs or cards.",
       "category": "actions",
       "variants": [],
       "sizes": [

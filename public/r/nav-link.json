@@ -3,7 +3,7 @@
   "name": "nav-link",
   "type": "registry:component",
   "title": "NavLink",
-  "description": "NavLink",
+  "description": "A navigation link that shows active state as you move through the app. Sidebars and top nav.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "NavLink",
-      "description": "NavLink",
+      "description": "A navigation link that shows active state as you move through the app. Sidebars and top nav.",
       "category": "navigation",
       "variants": [],
       "sizes": [

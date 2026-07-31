@@ -3,7 +3,7 @@
   "name": "spinner",
   "type": "registry:component",
   "title": "Spinner",
-  "description": "Loading spinner",
+  "description": "A spinning mark that says “still working” without blocking the page. Inline loads and button pending states.",
   "registryDependencies": [
     "tokens"
   ],
@@ -22,7 +22,7 @@
   "atom": {
     "discovery": {
       "name": "Spinner",
-      "description": "Loading spinner",
+      "description": "A spinning mark that says “still working” without blocking the page. Inline loads and button pending states.",
       "category": "indicators",
       "variants": [],
       "sizes": [

@@ -3,7 +3,7 @@
   "name": "stats-card",
   "type": "registry:component",
   "title": "StatsCard",
-  "description": "StatsCard",
+  "description": "A metric with label and optional delta in a compact card. Dashboards and KPI strips.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "StatsCard",
-      "description": "StatsCard",
+      "description": "A metric with label and optional delta in a compact card. Dashboards and KPI strips.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

@@ -3,7 +3,7 @@
   "name": "chip",
   "type": "registry:component",
   "title": "Chip",
-  "description": "Chip",
+  "description": "A compact pill for a filter or selection you can remove. Multi-select tags and active filters.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Chip",
-      "description": "Chip",
+      "description": "A compact pill for a filter or selection you can remove. Multi-select tags and active filters.",
       "category": "indicators",
       "variants": [],
       "sizes": [

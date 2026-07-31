@@ -3,7 +3,7 @@
   "name": "accordion",
   "type": "registry:component",
   "title": "Accordion",
-  "description": "Accordion",
+  "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Accordion",
-      "description": "Accordion",
+      "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
       "category": "layout",
       "variants": [],
       "sizes": [],

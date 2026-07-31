@@ -3,7 +3,7 @@
   "name": "table",
   "type": "registry:component",
   "title": "Table",
-  "description": "Data table with sorting and selection",
+  "description": "Rows of data you can sort and select. Dense records, not marketing layouts.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Table",
-      "description": "Data table with sorting and selection",
+      "description": "Rows of data you can sort and select. Dense records, not marketing layouts.",
       "category": "data-display",
       "variants": [],
       "sizes": [],

@@ -3,7 +3,7 @@
   "name": "pagination",
   "type": "registry:component",
   "title": "Pagination",
-  "description": "Pagination",
+  "description": "Pages of results with prev/next and numbered jumps. Large tables and search hits.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Pagination",
-      "description": "Pagination",
+      "description": "Pages of results with prev/next and numbered jumps. Large tables and search hits.",
       "category": "navigation",
       "variants": [],
       "sizes": [],

@@ -3,7 +3,7 @@
   "name": "burger-icon",
   "type": "registry:component",
   "title": "BurgerIcon",
-  "description": "BurgerIcon",
+  "description": "Three lines that morph into a close mark when the menu opens. Mobile nav toggles only.",
   "registryDependencies": [
     "tokens"
   ],
@@ -17,7 +17,7 @@
   "atom": {
     "discovery": {
       "name": "BurgerIcon",
-      "description": "BurgerIcon",
+      "description": "Three lines that morph into a close mark when the menu opens. Mobile nav toggles only.",
       "category": "actions",
       "variants": [],
       "sizes": [],

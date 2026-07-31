@@ -3,7 +3,7 @@
   "name": "button-group",
   "type": "registry:component",
   "title": "ButtonGroup",
-  "description": "Horizontal/vertical group of buttons",
+  "description": "Buttons sit flush so related actions read as one control. Use for aligned toolbars, not free-floating CTAs.",
   "registryDependencies": [
     "tokens",
     "foundation",
@@ -24,7 +24,7 @@
   "atom": {
     "discovery": {
       "name": "ButtonGroup",
-      "description": "Horizontal/vertical group of buttons",
+      "description": "Buttons sit flush so related actions read as one control. Use for aligned toolbars, not free-floating CTAs.",
       "category": "actions",
       "variants": [],
       "sizes": [],

@@ -3,7 +3,7 @@
   "name": "tag",
   "type": "registry:component",
   "title": "Tag",
-  "description": "Tag",
+  "description": "A small label for category or status — ghost, filled, or outlined. Metadata, not interactive filters.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Tag",
-      "description": "Tag",
+      "description": "A small label for category or status — ghost, filled, or outlined. Metadata, not interactive filters.",
       "category": "indicators",
       "variants": [
         "ghost",

@@ -3,7 +3,7 @@
   "name": "toc",
   "type": "registry:component",
   "title": "Table of Contents",
-  "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+  "description": "A side rail that highlights the heading you are reading and shows depth. Long docs; links come from headings.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "Table of Contents",
-      "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+      "description": "A side rail that highlights the heading you are reading and shows depth. Long docs; links come from headings.",
       "category": "navigation",
       "variants": [],
       "sizes": [],

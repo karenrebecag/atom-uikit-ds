@@ -3,7 +3,7 @@
   "name": "prose",
   "type": "registry:component",
   "title": "Prose",
-  "description": "Contenido largo estilizado por elemento (articulos, documentacion, legales): una clase en el contenedor y sus h2-h6, p, listas, cita, codigo y tabla heredan el sistema",
+  "description": "Drop long copy in one container; headings, lists, quotes, code, and tables inherit DS type. Articles and legal pages.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "Prose",
-      "description": "Contenido largo estilizado por elemento (articulos, documentacion, legales): una clase en el contenedor y sus h2-h6, p, listas, cita, codigo y tabla heredan el sistema",
+      "description": "Drop long copy in one container; headings, lists, quotes, code, and tables inherit DS type. Articles and legal pages.",
       "category": "layout",
       "variants": [],
       "sizes": [],

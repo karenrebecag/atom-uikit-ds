@@ -3,7 +3,7 @@
   "name": "whatsapp-button",
   "type": "registry:component",
   "title": "WhatsApp Button",
-  "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+  "description": "Opens a WhatsApp chat — Atom’s contact path, never a form. Inline, pill, or icon with a sliding icon on hover.",
   "registryDependencies": [
     "tokens"
   ],
@@ -22,7 +22,7 @@
   "atom": {
     "discovery": {
       "name": "WhatsApp Button",
-      "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+      "description": "Opens a WhatsApp chat — Atom’s contact path, never a form. Inline, pill, or icon with a sliding icon on hover.",
       "category": "actions",
       "variants": [
         "inline",

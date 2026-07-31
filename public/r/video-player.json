@@ -3,7 +3,7 @@
   "name": "video-player",
   "type": "registry:component",
   "title": "VideoPlayer",
-  "description": "VideoPlayer",
+  "description": "Play, pause, and scrub branded video with DS chrome. Product demos and embedded media.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "VideoPlayer",
-      "description": "VideoPlayer",
+      "description": "Play, pause, and scrub branded video with DS chrome. Product demos and embedded media.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

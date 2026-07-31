@@ -3,7 +3,7 @@
   "name": "alert-dialog",
   "type": "registry:component",
   "title": "AlertDialog",
-  "description": "AlertDialog",
+  "description": "A blocking prompt with a clear decision — continue or cancel, including destructive. Irreversible actions.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "AlertDialog",
-      "description": "AlertDialog",
+      "description": "A blocking prompt with a clear decision — continue or cancel, including destructive. Irreversible actions.",
       "category": "surfaces",
       "variants": [
         "default",

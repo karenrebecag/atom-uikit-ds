@@ -3,7 +3,7 @@
   "name": "context-menu",
   "type": "registry:component",
   "title": "ContextMenu",
-  "description": "ContextMenu",
+  "description": "Right-click (or long-press) and a menu appears at the pointer. Row actions without cluttering the UI.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "ContextMenu",
-      "description": "ContextMenu",
+      "description": "Right-click (or long-press) and a menu appears at the pointer. Row actions without cluttering the UI.",
       "category": "navigation",
       "variants": [
         "default",

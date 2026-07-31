@@ -3,7 +3,7 @@
   "name": "skeleton",
   "type": "registry:component",
   "title": "Skeleton",
-  "description": "Content placeholder with shimmer animation",
+  "description": "Grey shapes shimmer where content will land. First paint placeholders for cards, text, and avatars.",
   "registryDependencies": [
     "tokens"
   ],
@@ -22,7 +22,7 @@
   "atom": {
     "discovery": {
       "name": "Skeleton",
-      "description": "Content placeholder with shimmer animation",
+      "description": "Grey shapes shimmer where content will land. First paint placeholders for cards, text, and avatars.",
       "category": "indicators",
       "variants": [
         "default",

@@ -3,7 +3,7 @@
   "name": "pricing-card",
   "type": "registry:component",
   "title": "PricingCard",
-  "description": "Tarjeta de plan estilo OSMO: superficie cromatica (clara/brand/dark via data-theme), eyebrow mono, titulo display, divider con tags, benefits con hairlines y scribble decorativo",
+  "description": "A plan card with price, tags, benefits, and CTA on light, brand, or dark surface. Pricing tables.",
   "registryDependencies": [
     "tokens",
     "foundation",
@@ -19,7 +19,7 @@
   "atom": {
     "discovery": {
       "name": "PricingCard",
-      "description": "Tarjeta de plan estilo OSMO: superficie cromatica (clara/brand/dark via data-theme), eyebrow mono, titulo display, divider con tags, benefits con hairlines y scribble decorativo",
+      "description": "A plan card with price, tags, benefits, and CTA on light, brand, or dark surface. Pricing tables.",
       "category": "actions",
       "variants": [],
       "sizes": [],

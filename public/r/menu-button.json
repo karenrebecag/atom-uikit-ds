@@ -3,7 +3,7 @@
   "name": "menu-button",
   "type": "registry:component",
   "title": "MenuButton",
-  "description": "Button that triggers a dropdown menu",
+  "description": "A button that opens a dropdown of related actions. Compact toolbars with overflow choices.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "MenuButton",
-      "description": "Button that triggers a dropdown menu",
+      "description": "A button that opens a dropdown of related actions. Compact toolbars with overflow choices.",
       "category": "actions",
       "variants": [],
       "sizes": [],

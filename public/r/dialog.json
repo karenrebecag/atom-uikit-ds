@@ -3,7 +3,7 @@
   "name": "dialog",
   "type": "registry:component",
   "title": "Dialog",
-  "description": "Modal dialog with overlay",
+  "description": "Dims the page and centers a modal you must dismiss. Confirmations and short focused tasks.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Dialog",
-      "description": "Modal dialog with overlay",
+      "description": "Dims the page and centers a modal you must dismiss. Confirmations and short focused tasks.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

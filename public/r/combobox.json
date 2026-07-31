@@ -3,7 +3,7 @@
   "name": "combobox",
   "type": "registry:component",
   "title": "Combobox",
-  "description": "Combobox",
+  "description": "Type to filter options, then pick one like a select. Large catalogs where search beats scrolling.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Combobox",
-      "description": "Combobox",
+      "description": "Type to filter options, then pick one like a select. Large catalogs where search beats scrolling.",
       "category": "forms",
       "variants": [],
       "sizes": [],

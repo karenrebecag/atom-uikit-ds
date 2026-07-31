@@ -3,7 +3,7 @@
   "name": "marquee",
   "type": "registry:component",
   "title": "Marquee",
-  "description": "Marquee",
+  "description": "Content scrolls continuously along a track without interaction. Logo strips and social proof.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Marquee",
-      "description": "Marquee",
+      "description": "Content scrolls continuously along a track without interaction. Logo strips and social proof.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

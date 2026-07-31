@@ -92,7 +92,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Button",
-      "description": "6 variantes, 5 tamanos, text-swap animation",
+      "description": "Press and the label swaps with a short lift; six intents from primary to destructive. One primary action per section.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -112,6 +112,11 @@
           "sourcePath": "packages/css/src/components/buttons/button-text-swap.css",
           "outputPath": "styles/components/button-text-swap.css",
           "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/button-focus-ring.css",
+          "outputPath": "styles/components/button-focus-ring.css",
+          "type": "registry:file"
         }
       ]
     },
@@ -121,7 +126,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "IconButton",
-      "description": "Square icon-only button with rotation animation",
+      "description": "A square control that holds only an icon and rotates slightly on press. Toolbars, close, and dense actions.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -145,7 +150,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "LinkButton",
-      "description": "Inline text link with shimmer animation",
+      "description": "Inline text that shimmers as you hover, then navigates like a link. Secondary CTAs inside paragraphs or cards.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -169,7 +174,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "ButtonGroup",
-      "description": "Horizontal/vertical group of buttons",
+      "description": "Buttons sit flush so related actions read as one control. Use for aligned toolbars, not free-floating CTAs.",
       "registryDependencies": [
         "tokens",
         "foundation",
@@ -199,7 +204,7 @@
       "framework": "css",
       "installGroup": "components",
       "title": "WhatsApp Button",
-      "description": "Contact CTA — Atom converts via WhatsApp, never forms. 3 variants (inline/pill/icon), 5 sizes, label slot, icon-slide animation.",
+      "description": "Opens a WhatsApp chat — Atom’s contact path, never a form. Inline, pill, or icon with a sliding icon on hover.",
       "registryDependencies": [
         "tokens"
       ],
@@ -225,7 +230,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Input",
-      "description": "Text input with error, disabled, and focus states",
+      "description": "A single-line field that shows focus, error, and disabled states as you type. Pair with field for label and helper.",
       "cssClassPrefixes": [
         "input",
         "input-group"
@@ -253,7 +258,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Textarea",
-      "description": "Multi-line text input",
+      "description": "A multi-line box that grows with longer answers. Bios, messages, and free-form notes.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -277,7 +282,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Select",
-      "description": "Dropdown select with search, groups, keyboard nav",
+      "description": "Opens a searchable list; pick one option with keyboard or click. Groups long option sets cleanly.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -309,7 +314,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Checkbox",
-      "description": "Checkbox with indeterminate state",
+      "description": "Ticks on or off; supports indeterminate when some children are selected. Multi-select lists and filters.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -333,7 +338,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Radio",
-      "description": "Radio button group",
+      "description": "Picks exactly one option in a group; the previous choice clears. Mutually exclusive settings.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -357,7 +362,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Toggle",
-      "description": "Boolean switch",
+      "description": "A switch that slides between on and off without a form submit. Instant preferences and feature flags.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -381,7 +386,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Field",
-      "description": "Form field wrapper with label, helper, error",
+      "description": "Wraps a control with label, helper, and error so the whole row stays aligned. Required around every form input.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -405,7 +410,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Tabs",
-      "description": "Tabbed navigation with animated indicator",
+      "description": "Click a tab and the indicator slides under it while the panel swaps. Sectioned content without page jumps.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -429,7 +434,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Divider",
-      "description": "Horizontal or vertical separator",
+      "description": "A thin line that separates blocks horizontally or vertically. Visual rhythm between groups of content.",
       "registryDependencies": [
         "tokens"
       ],
@@ -452,7 +457,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "SectionHeader",
-      "description": "Eyebrow + titulo + subtitulo con medida de lectura: la entrada de una seccion",
+      "description": "Eyebrow, title, and subtitle set the reading measure for a section entrance. Start every major block here.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -471,7 +476,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "Prose",
-      "description": "Contenido largo estilizado por elemento (articulos, documentacion, legales): una clase en el contenedor y sus h2-h6, p, listas, cita, codigo y tabla heredan el sistema",
+      "description": "Drop long copy in one container; headings, lists, quotes, code, and tables inherit DS type. Articles and legal pages.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -490,7 +495,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "Table of Contents",
-      "description": "Rail de indice de un documento largo: pinta el estado activo y la profundidad; los links los genera el behavior toc-animation desde los headings",
+      "description": "A side rail that highlights the heading you are reading and shows depth. Long docs; links come from headings.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -509,7 +514,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Avatar",
-      "description": "User avatar with image, initials, or icon",
+      "description": "Shows a face, initials, or fallback icon at a fixed size. People in lists, comments, and headers.",
       "registryDependencies": [
         "tokens"
       ],
@@ -532,7 +537,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Badge",
-      "description": "Status indicator badge",
+      "description": "A small status chip that sits on an edge or next to a label. Counts, inbox state, and quiet flags.",
       "registryDependencies": [
         "tokens"
       ],
@@ -555,7 +560,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Spinner",
-      "description": "Loading spinner",
+      "description": "A spinning mark that says “still working” without blocking the page. Inline loads and button pending states.",
       "registryDependencies": [
         "tokens"
       ],
@@ -578,7 +583,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Skeleton",
-      "description": "Content placeholder with shimmer animation",
+      "description": "Grey shapes shimmer where content will land. First paint placeholders for cards, text, and avatars.",
       "registryDependencies": [
         "tokens"
       ],
@@ -601,7 +606,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Dialog",
-      "description": "Modal dialog with overlay",
+      "description": "Dims the page and centers a modal you must dismiss. Confirmations and short focused tasks.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -625,7 +630,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Table",
-      "description": "Data table with sorting and selection",
+      "description": "Rows of data you can sort and select. Dense records, not marketing layouts.",
       "cssClassPrefixes": [
         "table",
         "table-wrapper"
@@ -653,7 +658,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Accordion",
-      "description": "Accordion",
+      "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -677,7 +682,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "AlertDialog",
-      "description": "AlertDialog",
+      "description": "A blocking prompt with a clear decision — continue or cancel, including destructive. Irreversible actions.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -701,7 +706,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "AvatarGroup",
-      "description": "AvatarGroup",
+      "description": "Faces stack with a +N overflow when the list grows. Team members and multi-assignee fields.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -725,7 +730,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Breadcrumb",
-      "description": "Breadcrumb",
+      "description": "A path of links that shows where you are and lets you jump up. Nested pages and deep product trees.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -749,7 +754,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "BurgerIcon",
-      "description": "BurgerIcon",
+      "description": "Three lines that morph into a close mark when the menu opens. Mobile nav toggles only.",
       "registryDependencies": [
         "tokens"
       ],
@@ -767,7 +772,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Calendar",
-      "description": "Calendar",
+      "description": "A month grid to pick a date (or range) with keyboard support. Scheduling and date filters.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -791,7 +796,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Chip",
-      "description": "Chip",
+      "description": "A compact pill for a filter or selection you can remove. Multi-select tags and active filters.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -816,7 +821,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Combobox",
-      "description": "Combobox",
+      "description": "Type to filter options, then pick one like a select. Large catalogs where search beats scrolling.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -840,7 +845,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "ContextMenu",
-      "description": "ContextMenu",
+      "description": "Right-click (or long-press) and a menu appears at the pointer. Row actions without cluttering the UI.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -864,7 +869,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Drawer",
-      "description": "Drawer",
+      "description": "A panel slides in from the edge over the page. Filters, mobile nav, and secondary flows.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -888,7 +893,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "DropdownMenu",
-      "description": "DropdownMenu",
+      "description": "Click a trigger and a menu drops with actions or nested groups. App chrome and overflow menus.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -912,7 +917,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Empty",
-      "description": "Empty",
+      "description": "A calm blank state with icon, message, and optional CTA. Zero results and first-run screens.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -936,7 +941,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "Icon",
-      "description": "Escala y color para SVG inline: el DS envia el tamano, no los paths",
+      "description": "Sizes and colors an inline SVG; the DS owns scale, not the path art. Pair with any approved icon set.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -955,7 +960,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "Logo",
-      "description": "Marca oficial de Atom theme-aware: dual light/dark que voltea con data-theme. Assets oficiales en R2, documentados en el CSS.",
+      "description": "Official Atom mark that flips light/dark with data-theme. Never invent marks — use this asset only.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -974,7 +979,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "Feature",
-      "description": "Fila icono + texto (+ valor): listas de beneficios, specs, checklists",
+      "description": "Icon plus text (and optional value) in one row. Benefit lists, specs, and checklists.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -993,7 +998,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Image",
-      "description": "Image",
+      "description": "A responsive frame for media from thumb to hero. Product shots and section visuals.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1017,7 +1022,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Item",
-      "description": "Item",
+      "description": "A single selectable row with optional leading/trailing slots. Lists, menus, and pickers.",
       "cssClassPrefixes": [
         "item",
         "item-group",
@@ -1046,7 +1051,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Marquee",
-      "description": "Marquee",
+      "description": "Content scrolls continuously along a track without interaction. Logo strips and social proof.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1070,7 +1075,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "NavLink",
-      "description": "NavLink",
+      "description": "A navigation link that shows active state as you move through the app. Sidebars and top nav.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1094,7 +1099,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Pagination",
-      "description": "Pagination",
+      "description": "Pages of results with prev/next and numbered jumps. Large tables and search hits.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1118,7 +1123,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "ProgressNav",
-      "description": "ProgressNav",
+      "description": "A stepped rail that fills as you advance through a flow. Wizards and multi-step forms.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1142,7 +1147,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Resizable",
-      "description": "Resizable",
+      "description": "Drag a handle to grow or shrink adjacent panes. Split views and customizable workspaces.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1166,7 +1171,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Sheet",
-      "description": "Sheet",
+      "description": "A surface rises from the bottom (or side) for a short task. Mobile-friendly alternatives to dialogs.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1190,7 +1195,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Slider",
-      "description": "Slider",
+      "description": "Drag a thumb along a track to set a value. Ranges, volume, and continuous settings.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1218,7 +1223,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "StatsCard",
-      "description": "StatsCard",
+      "description": "A metric with label and optional delta in a compact card. Dashboards and KPI strips.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1242,7 +1247,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Stepper",
-      "description": "Stepper",
+      "description": "Numbered steps show progress through a sequence. Checkouts and multi-stage onboarding.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1266,7 +1271,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Tag",
-      "description": "Tag",
+      "description": "A small label for category or status — ghost, filled, or outlined. Metadata, not interactive filters.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1290,7 +1295,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Toast",
-      "description": "Toast",
+      "description": "A brief message slides in and dismisses itself. Success, error, warning, and info feedback.",
       "cssClassPrefixes": [
         "toast",
         "toaster"
@@ -1318,7 +1323,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "ToggleGroup",
-      "description": "ToggleGroup",
+      "description": "Segmented options where one (or more) stay pressed. View switches and compact filters.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1346,7 +1351,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Typography",
-      "description": "Typography",
+      "description": "Display, title, body, and mono styles from the type scale. Any text that must match the DS.",
       "registryDependencies": [
         "tokens"
       ],
@@ -1378,7 +1383,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "UserProfile",
-      "description": "UserProfile",
+      "description": "Avatar plus name and optional meta in one block. Account headers and people cards.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1402,7 +1407,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "VideoPlayer",
-      "description": "VideoPlayer",
+      "description": "Play, pause, and scrub branded video with DS chrome. Product demos and embedded media.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1426,7 +1431,7 @@
       "framework": "react",
       "installGroup": "components",
       "title": "Sidebar",
-      "description": "Navigation sidebar with 11 sub-components",
+      "description": "Collapsible app navigation with nested items and sections. Primary product shell chrome.",
       "cssClassPrefixes": [
         "sidebar",
         "sidebar-collapsible"
@@ -1499,7 +1504,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "Tooltip",
-      "description": "Tooltip popup on hover",
+      "description": "Hover or focus and a short hint appears beside the control. Labels for icon-only actions.",
       "registryDependencies": [
         "tokens"
       ],
@@ -1517,7 +1522,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "MenuButton",
-      "description": "Button that triggers a dropdown menu",
+      "description": "A button that opens a dropdown of related actions. Compact toolbars with overflow choices.",
       "registryDependencies": [
         "tokens",
         "foundation"
@@ -1536,7 +1541,7 @@
       "framework": "css",
       "installGroup": "styles",
       "title": "PricingCard",
-      "description": "Tarjeta de plan estilo OSMO: superficie cromatica (clara/brand/dark via data-theme), eyebrow mono, titulo display, divider con tags, benefits con hairlines y scribble decorativo",
+      "description": "A plan card with price, tags, benefits, and CTA on light, brand, or dark surface. Pricing tables.",
       "registryDependencies": [
         "tokens",
         "foundation",

@@ -3,7 +3,7 @@
   "name": "select",
   "type": "registry:component",
   "title": "Select",
-  "description": "Dropdown select with search, groups, keyboard nav",
+  "description": "Opens a searchable list; pick one option with keyboard or click. Groups long option sets cleanly.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Select",
-      "description": "Dropdown select with search, groups, keyboard nav",
+      "description": "Opens a searchable list; pick one option with keyboard or click. Groups long option sets cleanly.",
       "category": "forms",
       "variants": [],
       "sizes": [],

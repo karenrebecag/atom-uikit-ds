@@ -3,7 +3,7 @@
   "name": "divider",
   "type": "registry:component",
   "title": "Divider",
-  "description": "Horizontal or vertical separator",
+  "description": "A thin line that separates blocks horizontally or vertically. Visual rhythm between groups of content.",
   "registryDependencies": [
     "tokens"
   ],
@@ -22,7 +22,7 @@
   "atom": {
     "discovery": {
       "name": "Divider",
-      "description": "Horizontal or vertical separator",
+      "description": "A thin line that separates blocks horizontally or vertically. Visual rhythm between groups of content.",
       "category": "layout",
       "variants": [],
       "sizes": [],

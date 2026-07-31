@@ -3,7 +3,7 @@
   "name": "breadcrumb",
   "type": "registry:component",
   "title": "Breadcrumb",
-  "description": "Breadcrumb",
+  "description": "A path of links that shows where you are and lets you jump up. Nested pages and deep product trees.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Breadcrumb",
-      "description": "Breadcrumb",
+      "description": "A path of links that shows where you are and lets you jump up. Nested pages and deep product trees.",
       "category": "navigation",
       "variants": [],
       "sizes": [],

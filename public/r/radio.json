@@ -3,7 +3,7 @@
   "name": "radio",
   "type": "registry:component",
   "title": "Radio",
-  "description": "Radio button group",
+  "description": "Picks exactly one option in a group; the previous choice clears. Mutually exclusive settings.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Radio",
-      "description": "Radio button group",
+      "description": "Picks exactly one option in a group; the previous choice clears. Mutually exclusive settings.",
       "category": "forms",
       "variants": [],
       "sizes": [],

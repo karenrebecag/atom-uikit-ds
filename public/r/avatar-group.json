@@ -3,7 +3,7 @@
   "name": "avatar-group",
   "type": "registry:component",
   "title": "AvatarGroup",
-  "description": "AvatarGroup",
+  "description": "Faces stack with a +N overflow when the list grows. Team members and multi-assignee fields.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "AvatarGroup",
-      "description": "AvatarGroup",
+      "description": "Faces stack with a +N overflow when the list grows. Team members and multi-assignee fields.",
       "category": "indicators",
       "variants": [],
       "sizes": [

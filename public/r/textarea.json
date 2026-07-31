@@ -3,7 +3,7 @@
   "name": "textarea",
   "type": "registry:component",
   "title": "Textarea",
-  "description": "Multi-line text input",
+  "description": "A multi-line box that grows with longer answers. Bios, messages, and free-form notes.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Textarea",
-      "description": "Multi-line text input",
+      "description": "A multi-line box that grows with longer answers. Bios, messages, and free-form notes.",
       "category": "forms",
       "variants": [],
       "sizes": [],

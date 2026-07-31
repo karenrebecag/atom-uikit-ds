@@ -3,7 +3,7 @@
   "name": "image",
   "type": "registry:component",
   "title": "Image",
-  "description": "Image",
+  "description": "A responsive frame for media from thumb to hero. Product shots and section visuals.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Image",
-      "description": "Image",
+      "description": "A responsive frame for media from thumb to hero. Product shots and section visuals.",
       "category": "actions",
       "variants": [],
       "sizes": [

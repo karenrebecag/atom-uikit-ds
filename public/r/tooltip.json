@@ -3,7 +3,7 @@
   "name": "tooltip",
   "type": "registry:component",
   "title": "Tooltip",
-  "description": "Tooltip popup on hover",
+  "description": "Hover or focus and a short hint appears beside the control. Labels for icon-only actions.",
   "registryDependencies": [
     "tokens"
   ],
@@ -17,7 +17,7 @@
   "atom": {
     "discovery": {
       "name": "Tooltip",
-      "description": "Tooltip popup on hover",
+      "description": "Hover or focus and a short hint appears beside the control. Labels for icon-only actions.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

@@ -3,7 +3,7 @@
   "name": "stepper",
   "type": "registry:component",
   "title": "Stepper",
-  "description": "Stepper",
+  "description": "Numbered steps show progress through a sequence. Checkouts and multi-stage onboarding.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Stepper",
-      "description": "Stepper",
+      "description": "Numbered steps show progress through a sequence. Checkouts and multi-stage onboarding.",
       "category": "actions",
       "variants": [],
       "sizes": [],

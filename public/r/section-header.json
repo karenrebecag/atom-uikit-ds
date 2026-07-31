@@ -3,7 +3,7 @@
   "name": "section-header",
   "type": "registry:component",
   "title": "SectionHeader",
-  "description": "Eyebrow + titulo + subtitulo con medida de lectura: la entrada de una seccion",
+  "description": "Eyebrow, title, and subtitle set the reading measure for a section entrance. Start every major block here.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -18,7 +18,7 @@
   "atom": {
     "discovery": {
       "name": "SectionHeader",
-      "description": "Eyebrow + titulo + subtitulo con medida de lectura: la entrada de una seccion",
+      "description": "Eyebrow, title, and subtitle set the reading measure for a section entrance. Start every major block here.",
       "category": "layout",
       "variants": [],
       "sizes": [],

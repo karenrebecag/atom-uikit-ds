@@ -3,7 +3,7 @@
   "name": "icon-button",
   "type": "registry:component",
   "title": "IconButton",
-  "description": "Square icon-only button with rotation animation",
+  "description": "A square control that holds only an icon and rotates slightly on press. Toolbars, close, and dense actions.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "IconButton",
-      "description": "Square icon-only button with rotation animation",
+      "description": "A square control that holds only an icon and rotates slightly on press. Toolbars, close, and dense actions.",
       "category": "actions",
       "variants": [
         "primary",

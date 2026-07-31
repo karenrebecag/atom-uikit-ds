@@ -3,7 +3,7 @@
   "name": "item",
   "type": "registry:component",
   "title": "Item",
-  "description": "Item",
+  "description": "A single selectable row with optional leading/trailing slots. Lists, menus, and pickers.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Item",
-      "description": "Item",
+      "description": "A single selectable row with optional leading/trailing slots. Lists, menus, and pickers.",
       "category": "layout",
       "variants": [
         "default",

@@ -3,7 +3,7 @@
   "name": "input",
   "type": "registry:component",
   "title": "Input",
-  "description": "Text input with error, disabled, and focus states",
+  "description": "A single-line field that shows focus, error, and disabled states as you type. Pair with field for label and helper.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Input",
-      "description": "Text input with error, disabled, and focus states",
+      "description": "A single-line field that shows focus, error, and disabled states as you type. Pair with field for label and helper.",
       "category": "forms",
       "variants": [],
       "sizes": [],

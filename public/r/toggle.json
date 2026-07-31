@@ -3,7 +3,7 @@
   "name": "toggle",
   "type": "registry:component",
   "title": "Toggle",
-  "description": "Boolean switch",
+  "description": "A switch that slides between on and off without a form submit. Instant preferences and feature flags.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Toggle",
-      "description": "Boolean switch",
+      "description": "A switch that slides between on and off without a form submit. Instant preferences and feature flags.",
       "category": "forms",
       "variants": [],
       "sizes": [],

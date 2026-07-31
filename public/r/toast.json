@@ -3,7 +3,7 @@
   "name": "toast",
   "type": "registry:component",
   "title": "Toast",
-  "description": "Toast",
+  "description": "A brief message slides in and dismisses itself. Success, error, warning, and info feedback.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Toast",
-      "description": "Toast",
+      "description": "A brief message slides in and dismisses itself. Success, error, warning, and info feedback.",
       "category": "surfaces",
       "variants": [
         "default",

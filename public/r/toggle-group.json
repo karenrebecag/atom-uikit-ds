@@ -3,7 +3,7 @@
   "name": "toggle-group",
   "type": "registry:component",
   "title": "ToggleGroup",
-  "description": "ToggleGroup",
+  "description": "Segmented options where one (or more) stay pressed. View switches and compact filters.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "ToggleGroup",
-      "description": "ToggleGroup",
+      "description": "Segmented options where one (or more) stay pressed. View switches and compact filters.",
       "category": "actions",
       "variants": [
         "default",

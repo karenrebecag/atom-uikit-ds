@@ -3,7 +3,7 @@
   "name": "checkbox",
   "type": "registry:component",
   "title": "Checkbox",
-  "description": "Checkbox with indeterminate state",
+  "description": "Ticks on or off; supports indeterminate when some children are selected. Multi-select lists and filters.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Checkbox",
-      "description": "Checkbox with indeterminate state",
+      "description": "Ticks on or off; supports indeterminate when some children are selected. Multi-select lists and filters.",
       "category": "forms",
       "variants": [],
       "sizes": [],

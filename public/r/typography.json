@@ -3,7 +3,7 @@
   "name": "typography",
   "type": "registry:component",
   "title": "Typography",
-  "description": "Typography",
+  "description": "Display, title, body, and mono styles from the type scale. Any text that must match the DS.",
   "registryDependencies": [
     "tokens"
   ],
@@ -17,7 +17,7 @@
   "atom": {
     "discovery": {
       "name": "Typography",
-      "description": "Typography",
+      "description": "Display, title, body, and mono styles from the type scale. Any text that must match the DS.",
       "category": "actions",
       "variants": [],
       "sizes": [],

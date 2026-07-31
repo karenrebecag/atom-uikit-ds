@@ -3,7 +3,7 @@
   "name": "sheet",
   "type": "registry:component",
   "title": "Sheet",
-  "description": "Sheet",
+  "description": "A surface rises from the bottom (or side) for a short task. Mobile-friendly alternatives to dialogs.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Sheet",
-      "description": "Sheet",
+      "description": "A surface rises from the bottom (or side) for a short task. Mobile-friendly alternatives to dialogs.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

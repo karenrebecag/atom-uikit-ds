@@ -3,7 +3,7 @@
   "name": "tabs",
   "type": "registry:component",
   "title": "Tabs",
-  "description": "Tabbed navigation with animated indicator",
+  "description": "Click a tab and the indicator slides under it while the panel swaps. Sectioned content without page jumps.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Tabs",
-      "description": "Tabbed navigation with animated indicator",
+      "description": "Click a tab and the indicator slides under it while the panel swaps. Sectioned content without page jumps.",
       "category": "navigation",
       "variants": [
         "default",

@@ -3,7 +3,7 @@
   "name": "drawer",
   "type": "registry:component",
   "title": "Drawer",
-  "description": "Drawer",
+  "description": "A panel slides in from the edge over the page. Filters, mobile nav, and secondary flows.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "Drawer",
-      "description": "Drawer",
+      "description": "A panel slides in from the edge over the page. Filters, mobile nav, and secondary flows.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],

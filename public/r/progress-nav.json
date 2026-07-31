@@ -3,7 +3,7 @@
   "name": "progress-nav",
   "type": "registry:component",
   "title": "ProgressNav",
-  "description": "ProgressNav",
+  "description": "A stepped rail that fills as you advance through a flow. Wizards and multi-step forms.",
   "registryDependencies": [
     "tokens",
     "foundation"
@@ -23,7 +23,7 @@
   "atom": {
     "discovery": {
       "name": "ProgressNav",
-      "description": "ProgressNav",
+      "description": "A stepped rail that fills as you advance through a flow. Wizards and multi-step forms.",
       "category": "surfaces",
       "variants": [],
       "sizes": [],
