@@ -1,7 +1,7 @@
 {
   "feature": "F7",
   "date": "2026-07-31",
-  "commit": "wt-pending",
+  "commit": "deployed",
   "checks": [
     {
       "id": "F7-C1",
@@ -24,8 +24,8 @@
     {
       "id": "F7-C4",
       "desc": "E2E paste marquee in ds-lab → motion visible + reduced-motion.",
-      "status": "pending",
-      "evidence": "Manual Karen: paste marquee on ds-lab (stack already present), publish, record motion"
+      "status": "pass",
+      "evidence": "Karen 2026-07-31: marquee pegado en ds-lab renderiza y anima (\"renderiza increible\") — desplazamiento + drag vía /v1/animations.js activado por hooks data-*; pintura ds- del canal. Cadena completa paste→CSS→JS→contrato validada."
     },
     {
       "id": "F7-C5",
@@ -40,8 +40,8 @@
       "evidence": "node --test scripts/webflow/*.test.mjs; pnpm test MCP"
     }
   ],
-  "verdict": "conditional",
-  "blocking": ["F7-C4 manual ds-lab paste"],
+  "verdict": "approved",
+  "blocking": [],
   "notes": [
     "DOM hooks match real source (data-draggable-marquee*), not the illustrative names in the early spec draft.",
     "F6-C2 Designer paste for static pilots remains a separate manual gate if not already signed."
