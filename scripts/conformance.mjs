@@ -19,6 +19,7 @@ import {
 } from './agent-meta-conformance.mjs';
 import {
   getDomContract,
+  getDomContractSync,
   validateHtmlAgainstContract,
 } from './webflow/dom-contract.mjs';
 
@@ -401,10 +402,19 @@ function sectionWebflowDom() {
     return;
   }
 
-  // Validate every pilot that has a DOM contract
+  // Validate every pilot that has a DOM contract. Resolución en cascada:
+  // cache async → dist sync → contrato publicado en el ARTEFACTO (este último
+  // hace el gate independiente de si CI compiló packages/animations — el bug
+  // que rompió Conformance el 2026-07-31: marquee clasificado como estático).
+  const artifactContract = (slug) => {
+    const p = join(webflowOut, `${slug}.json`);
+    if (!existsSync(p)) return null;
+    const dc = readJson(p).manifest?.domContract;
+    return dc?.hooks?.length ? { hooks: dc.hooks, anatomy: dc.anatomy ?? [], statesWrittenAsClasses: !!dc.statesWrittenAsClasses } : null;
+  };
   for (const file of readdirSync(pilotsDir).filter((f) => f.endsWith('.html'))) {
     const slug = file.replace(/\.html$/, '');
-    const contract = getDomContract(slug);
+    const contract = getDomContract(slug) ?? getDomContractSync(slug) ?? artifactContract(slug);
     if (!contract) {
       ok('webflow-dom', `${slug}: no domContract (static pilot)`);
       continue;
@@ -438,17 +448,26 @@ function sectionWebflowDom() {
     }
   }
 
-  // Static pilots must not gain js
-  for (const file of readdirSync(pilotsDir).filter((f) => f.endsWith('.html'))) {
-    const slug = file.replace(/\.html$/, '');
-    if (getDomContract(slug)) continue;
-    const artPath = join(webflowOut, `${slug}.json`);
-    if (!existsSync(artPath)) continue;
-    const art = readJson(artPath);
-    if (art.manifest?.js?.length) {
-      fail('webflow-dom', `${slug}: static pilot should have js:[] (got ${art.manifest.js.length})`);
-    } else {
-      ok('webflow-dom', `${slug}: static js:[]`);
+  // Self-consistencia de TODOS los artefactos publicados (política F8, entorno-
+  // independiente): motion (js) SOLO con domContract en el propio manifest.
+  if (existsSync(webflowOut)) {
+    let jsSinContrato = 0;
+    let total = 0;
+    for (const f of readdirSync(webflowOut).filter((x) => x.endsWith('.json') && x !== 'index.json')) {
+      const art = readJson(join(webflowOut, f));
+      total++;
+      const hasJs = !!art.manifest?.js?.length;
+      const hasDc = !!art.manifest?.domContract?.hooks?.length;
+      if (hasJs && !hasDc) {
+        jsSinContrato++;
+        fail('webflow-dom', `${art.slug}: manifest.js sin domContract — motion no verificado`);
+      }
+      if (hasJs && !art.manifest?.init) {
+        fail('webflow-dom', `${art.slug}: manifest.js sin init`);
+      }
+    }
+    if (jsSinContrato === 0) {
+      ok('webflow-dom', `${total} artefactos: js solo con domContract`);
     }
   }
 }
