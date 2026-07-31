@@ -26,10 +26,26 @@ const paths = [
 const bust = `smoke=${Date.now()}`;
 const busted = (href) => `${href}${href.includes('?') ? '&' : '?'}${bust}`;
 
+/**
+ * Un artefacto NUEVO puede tardar en aparecer en todos los edges: el smoke de
+ * CI corre justo despues del deploy y un 404 ahi es propagacion, no un fallo
+ * real (paso el 2026-07-31 con webflow.css). Reintento acotado solo para 404/5xx
+ * — un 200 con headers mal NO se reintenta, eso si es un fallo de verdad.
+ */
+async function fetchWithRetry(url, init, { attempts = 6, delayMs = 5000 } = {}) {
+  for (let i = 1; ; i++) {
+    const res = await fetch(url, init);
+    if (res.status === 200 || i === attempts) return res;
+    if (res.status !== 404 && res.status < 500) return res;
+    console.log(`  … ${res.status} en ${url.split('?')[0]} — reintento ${i}/${attempts - 1}`);
+    await new Promise((r) => setTimeout(r, delayMs));
+  }
+}
+
 let failed = 0;
 for (const p of paths) {
   const url = busted(new URL(p, base).href);
-  const res = await fetch(url, { method: 'HEAD' });
+  const res = await fetchWithRetry(url, { method: 'HEAD' });
   const acao = res.headers.get('access-control-allow-origin');
   const cache = res.headers.get('cache-control') || '';
   // Local serve may omit CORS headers — only require ACAO on non-localhost
