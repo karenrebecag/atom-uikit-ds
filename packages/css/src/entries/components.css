@@ -1,0 +1,14 @@
+/**
+ * Components channel: SOLO los componentes, sin scope, sin tokens, sin reset,
+ * sin foundation. Para el modo "connected" del paste de Webflow (F6): el sitio
+ * linkea tokens.css + components.css una vez y todo componente pegado queda
+ * pintado COMPLETO desde el CDN — keyframes, selectores compuestos de variante,
+ * hijos svg y custom props incluidos, que el panel del Designer no puede
+ * expresar. Los styles nativos del clipboard quedan como preview del canvas.
+ *
+ * No lleva reset ni body: cargarlo no puede reestilizar el host (misma garantia
+ * que webflow.css). Los valores son var(--token): sin tokens.css al lado, las
+ * declaraciones var() no resuelven — este artefacto se consume EN PAR con
+ * tokens.css (documentado en webflow-playbook).
+ */
+@import '../components/index.css';

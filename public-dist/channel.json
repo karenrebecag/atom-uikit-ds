@@ -14,6 +14,12 @@
       "path": "packages/css/dist/webflow.css"
     },
     {
+      "$comment": "Componentes SIN scope, sin tokens/reset/foundation. Par obligado de tokens.css para el modo connected del paste XscpData (F6): pinta completo lo pegado (keyframes, compuestos, svg) sin bloque head por componente.",
+      "out": "components.css",
+      "from": "@atom-uikit/css",
+      "path": "packages/css/dist/components.css"
+    },
+    {
       "out": "tokens.json",
       "from": "@atom-uikit/tokens",
       "path": "packages/tokens/build/json/tokens.json"

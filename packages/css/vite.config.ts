@@ -34,6 +34,7 @@ export default defineConfig({
         atom: resolve(__dirname, 'src/entries/atom.css'),
         embed: resolve(__dirname, 'src/entries/embed.css'),
         webflow: resolve(__dirname, 'src/entries/webflow.css'),
+        components: resolve(__dirname, 'src/entries/components.css'),
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -74,7 +75,7 @@ export default defineConfig({
         const cssFiles = files.filter((f) => f.endsWith('.css'));
 
         // Map entry-ish names: vite names CSS after the entry chunk (tokens, foundation, atom)
-        for (const key of ['tokens', 'foundation', 'atom', 'embed', 'webflow'] as const) {
+        for (const key of ['tokens', 'foundation', 'atom', 'embed', 'webflow', 'components'] as const) {
           const match = cssFiles.find(
             (f) => f === `${key}.css` || f.startsWith(`${key}-`) || f.includes(`${key}-`)
           );
@@ -175,6 +176,34 @@ export default defineConfig({
           );
         }
         console.log('[atom-webflow-prefix] dist/webflow.css namespaced under ds-');
+      },
+    },
+    {
+      // Canal paste (F6): components.css con el MISMO namespace ds- que las
+      // clases del clipboard XscpData — la colisión con sitios sucios se vuelve
+      // imposible por diseño. A diferencia del canal master, aquí NO corre
+      // findUnrenamedStates: los modificadores `--` llegan por paste
+      // programático (verificado en ds-lab 2026-07-31: publican y pintan),
+      // nadie los tipea en el panel.
+      name: 'atom-components-prefix',
+      closeBundle() {
+        const target = resolve(__dirname, 'dist/components.css');
+        if (!existsSync(target)) {
+          console.warn('[atom-components-prefix] dist/components.css not found — skipped');
+          return;
+        }
+        const prefixed = prefixWebflowCss(readFileSync(target, 'utf8'));
+        writeFileSync(target, prefixed);
+
+        const offenders = findUnprefixedClasses(prefixed);
+        if (offenders.length > 0) {
+          throw new Error(
+            `[atom-components-prefix] ${offenders.length} unprefixed class(es): ${offenders
+              .slice(0, 10)
+              .join(', ')}`
+          );
+        }
+        console.log('[atom-components-prefix] dist/components.css namespaced under ds-');
       },
     },
   ],
