@@ -9,7 +9,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { scopeEmbedCss, findUnscopedSelectors } from './scripts/scope-embed.mjs';
-import { prefixWebflowCss, findUnprefixedClasses } from './scripts/prefix-webflow.mjs';
+import { prefixWebflowCss, findUnprefixedClasses, findUnrenamedStates } from './scripts/prefix-webflow.mjs';
 
 /**
  * Four public artifacts from one package:
@@ -162,6 +162,16 @@ export default defineConfig({
             `[atom-webflow-prefix] ${offenders.length} unprefixed class(es): ${offenders
               .slice(0, 10)
               .join(', ')}`
+          );
+        }
+        const unrenamed = findUnrenamedStates(prefixed);
+        if (unrenamed.length > 0) {
+          // Webflow no acepta doble guion en nombres de clase: un estado sin
+          // renombrar llega al Designer como algo que el autor no puede escribir.
+          throw new Error(
+            `[atom-webflow-prefix] estado(s) sin renombrar: ${unrenamed.join(
+              ', '
+            )} — agregalos a STATE_RENAMES`
           );
         }
         console.log('[atom-webflow-prefix] dist/webflow.css namespaced under ds-');

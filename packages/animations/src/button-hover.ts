@@ -18,6 +18,16 @@ export interface AnimationConfig {
  * Requires: gsap, SplitText (registered externally)
  * Respects: prefers-reduced-motion, (hover: hover) and (pointer: fine)
  */
+/**
+ * `undefined` (atributo ausente) y `''` (presente sin valor) significan ACTIVO:
+ * el contrato historico es la presencia del atributo y no debe romperse.
+ * Solo apagan los valores explicitamente falsos.
+ */
+function isFalsy(value: string | undefined): boolean {
+  if (value === undefined || value === '') return false;
+  return ['false', '0', 'off', 'no'].includes(value.trim().toLowerCase());
+}
+
 export function initButtonHover(config: AnimationConfig = {}): CleanupFn {
   const gsap = (globalThis as any).gsap;
   const SplitText = (globalThis as any).SplitText;
@@ -45,7 +55,13 @@ export function initButtonHover(config: AnimationConfig = {}): CleanupFn {
   const splits: any[] = [];
 
   buttons.forEach((element: Element) => {
-    if ((element as HTMLElement).dataset.motionExempt !== undefined) return;
+    const el = element as HTMLElement;
+    if (el.dataset.motionExempt !== undefined) return;
+    // Opt-out por VALOR, no solo por ausencia del atributo: un host declarativo
+    // (Webflow, un CMS, una plantilla) suele poder escribir el valor de un
+    // atributo pero no decidir si el atributo existe. Con esto el mismo booleano
+    // del autor apaga la animacion en cualquier tecnologia.
+    if (isFalsy(el.dataset.buttonAnimate) || isFalsy(el.dataset.linkButtonAnimate)) return;
 
     const textElements = element.querySelectorAll('[data-button-text]');
     if (textElements.length === 0) return;

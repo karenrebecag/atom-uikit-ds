@@ -69,6 +69,50 @@ export interface AtomRegistryItem {
 
   /** Source files to include */
   files: AtomRegistryFile[];
+
+  /**
+   * Free-form shadcn `meta` bag. F3: optional `agent` block for agent-facing
+   * tuning (configurables, gotchas, usage). Validated by validate-agent-meta.mjs.
+   */
+  meta?: {
+    agent?: AtomAgentMeta;
+    [key: string]: unknown;
+  };
+}
+
+/** Closed enum for integration gotchas (F3). */
+export type AtomAgentGotchaContext =
+  | 'react'
+  | 'ssr'
+  | 'css-modules'
+  | 'a11y'
+  | 'layout';
+
+export type AtomAgentConfigurableType = 'number' | 'select' | 'boolean' | 'multiselect';
+
+export interface AtomAgentConfigurable {
+  prop: string;
+  type: AtomAgentConfigurableType;
+  default?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  unit?: string;
+  options?: string[];
+  what: string;
+  how: string;
+}
+
+export interface AtomAgentGotcha {
+  context: AtomAgentGotchaContext;
+  note: string;
+}
+
+/** Agent-facing manifest under meta.agent (published on per-item JSON). */
+export interface AtomAgentMeta {
+  configurables: AtomAgentConfigurable[];
+  gotchas: AtomAgentGotcha[];
+  usage: string;
 }
 
 export interface AtomRegistryFile {
@@ -101,6 +145,11 @@ export interface RegistryItemOutput {
   }>;
   /** MCP-consumable metadata. Optional for backward compat with old items. */
   atom?: AtomField;
+  /** shadcn free-form meta; may include agent (F3). */
+  meta?: {
+    agent?: AtomAgentMeta;
+    [key: string]: unknown;
+  };
 }
 
 // ---------------------------------------------------------------------------

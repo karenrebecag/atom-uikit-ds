@@ -77,3 +77,20 @@
       filter 0.15s calc((var(--char) - 1) * 0.018s + 0.05s) ease-out;
   }
 }
+
+/* ---- Variante estatica: el mismo boton, sin swap ----
+   El equivalente declarativo del opt-out por atributo, para hosts donde el
+   autor puede aplicar una clase pero no decidir si un atributo existe (Webflow:
+   las props no pueden enlazarse a atributos, solo a visibility — verificado).
+   Neutraliza las dos mitades del swap: esconde la capa de reemplazo y deja
+   quieta la de por defecto en hover. */
+.button.is--static .button__text.is--hover {
+  display: none;
+}
+
+.button.is--static:is(:hover, :focus-visible) .button__text.is--default .button__split-char {
+  opacity: 1;
+  filter: none;
+  translate: 0 0 0;
+  scale: 1;
+}

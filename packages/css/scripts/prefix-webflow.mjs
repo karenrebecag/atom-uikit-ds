@@ -27,8 +27,14 @@ export const RUNTIME_CLASSES = new Set(['button__split-char']);
 const STATE_RENAMES = new Map([
   ['is--default', 'is-default'],
   ['is--hover', 'is-hover'],
+  ['is--static', 'is-static'],
   ['button__label-inner', 'button__inner'],
 ]);
+
+/** Un estado del DS que llegue aqui sin renombrar deja un `ds-is--x` feo en Webflow. */
+export function findUnrenamedStates(css) {
+  return [...new Set([...css.matchAll(/\.ds-([a-z0-9_-]*--[a-z0-9_-]+)/g)].map((m) => m[1]))];
+}
 
 export function prefixClassName(name) {
   if (RUNTIME_CLASSES.has(name)) return name;

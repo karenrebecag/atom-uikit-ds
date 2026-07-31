@@ -118,7 +118,78 @@
           "outputPath": "styles/components/button-focus-ring.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "primary",
+              "options": [
+                "primary",
+                "secondary",
+                "tertiary",
+                "destructive-primary",
+                "destructive-secondary",
+                "destructive-tertiary"
+              ],
+              "what": "Visual intent of the button surface and text.",
+              "how": "One primary per section. Use destructive-* only for irreversible actions. Default: primary."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "m",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l",
+                "xl"
+              ],
+              "what": "Hit target and type scale of the control.",
+              "how": "m for forms and content; s/xs for dense toolbars; l/xl for hero CTAs. Default: m."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "true",
+              "what": "Whether the label text-swap animation runs on hover/press.",
+              "how": "true for marketing and primary CTAs; false in data-dense tables or prefers-reduced-motion contexts."
+            },
+            {
+              "prop": "loading",
+              "type": "boolean",
+              "default": "false",
+              "what": "Shows a busy state and blocks re-clicks while work is in flight.",
+              "how": "true only during async submit; pair with disabled if the form must not resubmit."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Prevents interaction and dims the control.",
+              "how": "true when prerequisites are unmet; prefer explaining why nearby, not only a dead button."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Text-swap animation needs the real label as children string/node; do not replace children with a custom spinner while loading — use the loading prop."
+            },
+            {
+              "context": "a11y",
+              "note": "Keep a clear accessible name; icon-only usage belongs on icon-button, not button with empty children."
+            },
+            {
+              "context": "css-modules",
+              "note": "Button CSS is global BEM (.btn*). Import the published stylesheet globally; CSS Modules will scope classes and break styles."
+            }
+          ],
+          "usage": "import { Button } from '@/components/atoms/Button';\n\n<Button variant=\"primary\" size=\"m\" animated>\n  Save\n</Button>"
+        }
+      }
     },
     {
       "name": "icon-button",
@@ -552,7 +623,47 @@
           "outputPath": "styles/components/badge.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "neutral",
+              "options": [
+                "neutral",
+                "inbox"
+              ],
+              "what": "Surface style of the status chip.",
+              "how": "neutral for quiet metadata; inbox for count/attention chips. Default: neutral."
+            },
+            {
+              "prop": "state",
+              "type": "select",
+              "default": "enabled",
+              "options": [
+                "enabled",
+                "focused",
+                "subtle"
+              ],
+              "what": "Emphasis of the badge relative to surrounding UI.",
+              "how": "enabled default; focused when the related control is active; subtle for de-emphasized counts."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "If the badge is a live count, expose the meaning in accessible text (e.g. aria-label on the parent control), not only the digit."
+            },
+            {
+              "context": "layout",
+              "note": "Badges are inline; do not stretch them as block-level status banners — use toast or alert patterns for that."
+            }
+          ],
+          "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
+        }
+      }
     },
     {
       "name": "spinner",

@@ -1,37 +1,49 @@
 {
-  "feature": "F1",
+  "feature": "F3",
   "date": "2026-07-31",
   "commit": "mcp:69bad70+wt / ds:2a0d4a5+wt",
   "checks": [
     {
-      "id": "F1-C1",
-      "desc": "Toda respuesta de atom_uikit_search y atom_uikit_list termina con la follow-up line del contrato (verificable por assert de sufijo en tests).",
+      "id": "F3-C1",
+      "desc": "build:registry del DS falla (exit ≠ 0, mensaje con slug y prop) ante manifests inválidos.",
       "status": "pass",
-      "evidence": "pnpm test tests/search.test.ts — 10 passed including F1-C1 multi-result, single-result slug interpolation, and list follow-up"
+      "evidence": "node --test scripts/validate-agent-meta.test.mjs 5 pass; smoke invalid build exit 1 with button.size + slug.prop messages"
     },
     {
-      "id": "F1-C2",
-      "desc": "El bloque de componentes de atom_uikit_context incluye la follow-up line una única vez.",
+      "id": "F3-C2",
+      "desc": "JSON publicado de pilotos completo (select options / number ranges).",
       "status": "pass",
-      "evidence": "pnpm test tests/context.test.ts — F1-C2 exactly-once asserts pass"
+      "evidence": "public/r/button.json and badge.json meta.agent present; lint bad []"
     },
     {
-      "id": "F1-C3",
-      "desc": "El 100% de los items de componente del registry tienen description no vacía, ≤ 220 caracteres, y que NO empieza por \"A component\", \"Provides\", \"Component for\".",
+      "id": "F3-C3",
+      "desc": "atom_uikit_component enriquecido con manifest.",
       "status": "pass",
-      "evidence": "lint public/r/index.json kind=component → total 59, bad [], exit 0 after build:registry"
+      "evidence": "uikit-atom-mcp tests/component.test.ts F3-C3 pass"
     },
     {
-      "id": "F1-C4",
-      "desc": "Muestra de 5 descriptions revisada a mano contra la guía de reescritura (conducta observable presente) — check manual documentado.",
+      "id": "F3-C4",
+      "desc": "Degradación sin manifest (snapshot).",
       "status": "pass",
-      "evidence": "Karen approved full 59-row table 2026-07-31; sample button/accordion/whatsapp-button/toc/pricing-card all behavioral"
+      "evidence": "uikit-atom-mcp tests/component.test.ts F3-C4 + snapshots"
     },
     {
-      "id": "F1-C5",
-      "desc": "pnpm test del MCP pasa completo (sin regresiones en tests existentes de search/list/context).",
+      "id": "F3-C5",
+      "desc": "Governance adapter 3 funciones.",
       "status": "pass",
-      "evidence": "uikit-atom-mcp pnpm test: 193 passed, 41 skipped, 0 failed"
+      "evidence": "governance.test.ts 10 passed"
+    },
+    {
+      "id": "F3-C6",
+      "desc": "getImplementationData gotchas + usage.",
+      "status": "pass",
+      "evidence": "adapter-agent.test.ts 3 passed"
+    },
+    {
+      "id": "F3-C7",
+      "desc": "Suite MCP completa.",
+      "status": "pass",
+      "evidence": "198 passed, 41 skipped, 0 failed"
     }
   ],
   "verdict": "approved",

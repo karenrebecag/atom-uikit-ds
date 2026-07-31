@@ -68,5 +68,45 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "neutral",
+          "options": [
+            "neutral",
+            "inbox"
+          ],
+          "what": "Surface style of the status chip.",
+          "how": "neutral for quiet metadata; inbox for count/attention chips. Default: neutral."
+        },
+        {
+          "prop": "state",
+          "type": "select",
+          "default": "enabled",
+          "options": [
+            "enabled",
+            "focused",
+            "subtle"
+          ],
+          "what": "Emphasis of the badge relative to surrounding UI.",
+          "how": "enabled default; focused when the related control is active; subtle for de-emphasized counts."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "If the badge is a live count, expose the meaning in accessible text (e.g. aria-label on the parent control), not only the digit."
+        },
+        {
+          "context": "layout",
+          "note": "Badges are inline; do not stretch them as block-level status banners — use toast or alert patterns for that."
+        }
+      ],
+      "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
+    }
   }
 }

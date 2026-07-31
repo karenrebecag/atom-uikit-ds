@@ -107,6 +107,8 @@ try {
   extractAllMetadata = null;
 }
 
+import { validateAgentMeta } from './validate-agent-meta.mjs';
+
 async function main() {
   const registry = JSON.parse(await fs.readFile(REGISTRY_PATH, 'utf8'));
   await fs.mkdir(OUT_DIR, { recursive: true });
@@ -123,6 +125,25 @@ async function main() {
       }
     }
     console.log(`  Metadata extracted: ${metadataMap.size} items\n`);
+  }
+
+  // F3: fail the build on invalid meta.agent (slug + prop in messages)
+  let agentMetaErrors = 0;
+  for (const item of registry.items) {
+    if (!item.meta?.agent) continue;
+    const atom = metadataMap.get(item.name);
+    const knownProps = (atom?.discovery?.props ?? []).map((p) => p.name);
+    const result = validateAgentMeta(item.name, item.meta.agent, knownProps);
+    if (!result.ok) {
+      for (const msg of result.errors) {
+        console.error(`  [ERROR] meta.agent: ${msg}`);
+      }
+      agentMetaErrors += result.errors.length;
+    }
+  }
+  if (agentMetaErrors > 0) {
+    console.error(`\n  meta.agent validation failed (${agentMetaErrors} error(s)). Aborting build.\n`);
+    process.exit(1);
   }
 
   let built = 0;
@@ -164,6 +185,11 @@ async function main() {
       if (atom) {
         output.atom = atom;
         enriched++;
+      }
+
+      // F3: passthrough meta (shadcn free-form) including meta.agent
+      if (item.meta && typeof item.meta === 'object') {
+        output.meta = item.meta;
       }
 
       // Layouts se publican autodescriptivos: html/css planos + contrato de slots
