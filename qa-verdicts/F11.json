@@ -6,29 +6,28 @@
   "checks": [
     {
       "id": "F11-C4",
-      "status": "pass-local",
-      "evidence": ".github/workflows/storybook-build.yml — build tokens+css + storybook build + smoke on PR/push paths. Local: pnpm --filter @atom-uikit/storybook build green (113 stories). Negative test procedure: break a story → build fails → revert (documented; not committed)."
+      "status": "pass",
+      "evidence": "Run real en CI: SUCCESS (github run 30669890879) — build tokens+css+storybook+smoke en push a main. Prueba negativa pendiente de ocasión natural (primera story rota la demostrará)."
     },
     {
       "id": "F11-C5",
-      "status": "pass-local",
-      "evidence": "Fase 0 inventory: storybook build succeeded with 0 compile errors. smoke-storybook-previews.mjs: 43 required docs-facing ids present in index.json + iframe HTTP 200 against local static. Output: smoke-storybook-previews green (43 required ids)."
+      "status": "pass",
+      "evidence": "Fase 0 inventory: storybook build succeeded with 0 compile errors. smoke-storybook-previews.mjs: 43 required docs-facing ids present in index.json + iframe HTTP 200 against local static. Output: smoke-storybook-previews green (43 required ids). | Auditoría: smoke contra host VIVO 43/43 verdes."
     },
     {
       "id": "F11-C6",
-      "status": "pass-local",
+      "status": "pass",
       "evidence": "`node scripts/smoke-storybook-previews.mjs http://127.0.0.1:6006 --self-test-missing` → self-test OK — missing id named: definitely-not-a-real-story--default"
     },
     {
       "id": "F11-C7",
-      "status": "pass-local",
-      "evidence": "Storybook app build green. Docs changes are prefetch-only (no build run required for smoke)."
+      "status": "pass",
+      "evidence": "Storybook app build green. Docs changes are prefetch-only (no build run required for smoke). | CI verde en push real."
     }
   ],
   "verdict": "conditional",
   "blocking": [
-    "CI run link on real PR (storybook-build green)",
-    "Optional: post-deploy smoke against atom-uikit-ds-storybook.vercel.app"
+    "F11-C3 — gate subjetivo de Karen en la docu desplegada (repo docs)"
   ],
   "notes": [
     "iframe.html always embeds sb-errordisplay CSS in the shell — smoke uses index.json membership + HTTP 200, not HTML string search (false positives).",
