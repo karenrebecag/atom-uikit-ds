@@ -18,6 +18,7 @@ const paths = [
   '/v1/tokens.json',
   '/v1/tokens-nested.json',
   '/v1/animations.js',
+  '/v1/webflow.css',
 ];
 
 // CDN cache-buster: right after a deploy the edge can serve entries up to
@@ -72,6 +73,23 @@ if (!anim.includes('root.AtomMotion = api')) {
   failed++;
 } else {
   console.log('OK  animations.js exposes AtomMotion, GSAP stays external, reads tokens');
+}
+
+// webflow.css carries ONLY what Webflow's style panel cannot express, under the
+// ds- namespace. A global rule or an unprefixed class here would restyle the
+// host site — the exact failure the namespace exists to prevent.
+const wf = await fetch(busted(new URL('/v1/webflow.css', base).href)).then((r) => r.text());
+if (/(^|})(body|:root|html)\s*\{/.test(wf)) {
+  console.log('FAIL webflow.css leaks a global body/:root/html rule');
+  failed++;
+} else if (!wf.includes('var(--char)')) {
+  console.log('FAIL webflow.css lost the per-character animation');
+  failed++;
+} else if (/(^|[,}])\.(?!ds-|button__split-char)[a-zA-Z]/.test(wf)) {
+  console.log('FAIL webflow.css has a class outside the ds- namespace');
+  failed++;
+} else {
+  console.log('OK  webflow.css is ds-namespaced, no global rules, keeps the char animation');
 }
 
 // embed.css must never restyle a host page: a bare `body{` or `:root{` here is

@@ -107,6 +107,11 @@
           "sourcePath": "packages/css/src/components/buttons/button.css",
           "outputPath": "styles/components/button.css",
           "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/button-text-swap.css",
+          "outputPath": "styles/components/button-text-swap.css",
+          "type": "registry:file"
         }
       ]
     },

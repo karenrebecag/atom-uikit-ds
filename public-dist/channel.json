@@ -8,6 +8,12 @@
     { "out": "atom.css", "from": "@atom-uikit/css", "path": "packages/css/dist/atom.css" },
     { "out": "embed.css", "from": "@atom-uikit/css", "path": "packages/css/dist/embed.css" },
     {
+      "$comment": "Solo lo que el panel de estilos de Webflow no puede expresar (curvas linear(), delays calc() por caracter). Namespace ds-, sin tokens ni reset: cargarlo no puede reestilizar el host.",
+      "out": "webflow.css",
+      "from": "@atom-uikit/css",
+      "path": "packages/css/dist/webflow.css"
+    },
+    {
       "out": "tokens.json",
       "from": "@atom-uikit/tokens",
       "path": "packages/tokens/build/json/tokens.json"

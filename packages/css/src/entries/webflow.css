@@ -1,0 +1,17 @@
+/**
+ * Canal de Webflow: SOLO lo que el panel de estilos de Webflow no puede expresar.
+ *
+ * En Webflow el color, el espaciado, el radius y la tipografía ya viajan como
+ * Variables nativas (colección "Atom DS v1"), y ahí se estilizan en el canvas.
+ * Lo que NO tiene equivalente en el panel son las interacciones finas: curvas
+ * `linear()`, delays `calc()` por índice de carácter y transiciones de varias
+ * propiedades con retardos distintos.
+ *
+ * Este artefacto publica exactamente eso, y nada más. No trae tokens, ni reset,
+ * ni componentes: cargarlo NO puede reestilizar el sitio anfitrión. Todos sus
+ * selectores van bajo el namespace `ds-` (scripts/prefix-webflow.mjs), porque
+ * cuatro nombres del DS ya están tomados en atomchat.io con otra semántica.
+ *
+ * Se carga junto a tokens.css, que es de donde salen las variables en runtime.
+ */
+@import '../components/buttons/button-text-swap.css';

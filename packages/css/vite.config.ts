@@ -9,6 +9,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { scopeEmbedCss, findUnscopedSelectors } from './scripts/scope-embed.mjs';
+import { prefixWebflowCss, findUnprefixedClasses } from './scripts/prefix-webflow.mjs';
 
 /**
  * Four public artifacts from one package:
@@ -32,6 +33,7 @@ export default defineConfig({
         foundation: resolve(__dirname, 'src/entries/foundation.css'),
         atom: resolve(__dirname, 'src/entries/atom.css'),
         embed: resolve(__dirname, 'src/entries/embed.css'),
+        webflow: resolve(__dirname, 'src/entries/webflow.css'),
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -72,7 +74,7 @@ export default defineConfig({
         const cssFiles = files.filter((f) => f.endsWith('.css'));
 
         // Map entry-ish names: vite names CSS after the entry chunk (tokens, foundation, atom)
-        for (const key of ['tokens', 'foundation', 'atom', 'embed'] as const) {
+        for (const key of ['tokens', 'foundation', 'atom', 'embed', 'webflow'] as const) {
           const match = cssFiles.find(
             (f) => f === `${key}.css` || f.startsWith(`${key}-`) || f.includes(`${key}-`)
           );
@@ -138,6 +140,31 @@ export default defineConfig({
           );
         }
         console.log('[atom-embed-scope] dist/embed.css scoped under .atom-embed');
+      },
+    },
+    {
+      // Corre despues de atom-css-artifacts, igual que el scope del embed.
+      name: 'atom-webflow-prefix',
+      closeBundle() {
+        const target = resolve(__dirname, 'dist/webflow.css');
+        if (!existsSync(target)) {
+          console.warn('[atom-webflow-prefix] dist/webflow.css not found — skipped');
+          return;
+        }
+        const prefixed = prefixWebflowCss(readFileSync(target, 'utf8'));
+        writeFileSync(target, prefixed);
+
+        const offenders = findUnprefixedClasses(prefixed);
+        if (offenders.length > 0) {
+          // Falla el build: una clase sin prefijo aqui pisa estilos del sitio
+          // anfitrion, que es exactamente lo que este namespace evita.
+          throw new Error(
+            `[atom-webflow-prefix] ${offenders.length} unprefixed class(es): ${offenders
+              .slice(0, 10)
+              .join(', ')}`
+          );
+        }
+        console.log('[atom-webflow-prefix] dist/webflow.css namespaced under ds-');
       },
     },
   ],

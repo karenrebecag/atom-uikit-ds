@@ -30,8 +30,8 @@
   },
   "baseline": {
     "buttons/button.css": {
-      "easing-literal": 9,
-      "duration-literal": 4
+      "easing-literal": 1,
+      "duration-literal": 0
     },
     "buttons/icon-button.css": {
       "easing-literal": 6,
@@ -89,6 +89,10 @@
       "important": 20,
       "easing-literal": 7,
       "duration-literal": 8
+    },
+    "buttons/button-text-swap.css": {
+      "easing-literal": 8,
+      "duration-literal": 4
     }
   }
 }

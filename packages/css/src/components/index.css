@@ -1,5 +1,6 @@
 /* Component styles */
 @import './buttons/button.css';
+@import './buttons/button-text-swap.css';
 @import './buttons/icon-button.css';
 @import './buttons/link-button.css';
 @import './buttons/button-group.css';
