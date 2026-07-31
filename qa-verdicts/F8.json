@@ -42,8 +42,8 @@
     {
       "id": "F8-C7",
       "desc": "E2E copy from docs → ds-lab paste",
-      "status": "pending",
-      "evidence": "Manual Karen after deploy"
+      "status": "pass",
+      "evidence": "Karen 2026-07-31: chip (componente sin piloto manual) copiado desde la docu y pegado OK; posteriormente hardening completo del canal — 3 modos de crash aislados por bisección y corregidos (form tags, main_focus, aspect-ratio); los 4 de la familia button sobreviven click + publish."
     },
     {
       "id": "F8-C8",
@@ -52,10 +52,8 @@
       "evidence": "DS webflow tests 10+; MCP 216 passed; emit accounting green"
     }
   ],
-  "verdict": "conditional",
-  "blocking": [
-    "F8-C7 manual E2E from docs"
-  ],
+  "verdict": "approved",
+  "blocking": [],
   "notes": [
     "40 components auto-emitted including chip/tag without hand HTML.",
     "meta.webflow.previewProps on marquee for draggable anatomy.",
