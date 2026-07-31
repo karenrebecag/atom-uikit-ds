@@ -62,5 +62,29 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "orientation",
+          "type": "select",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ],
+          "what": "Layout axis of grouped buttons.",
+          "how": "horizontal for toolbars; vertical for stacked mobile actions. Default: horizontal."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "layout",
+          "note": "Children must be Button/IconButton siblings — spacing is owned by the group, not ad-hoc margins."
+        }
+      ],
+      "usage": "import { ButtonGroup } from '@/components/atoms/ButtonGroup';\nimport { Button } from '@/components/atoms/Button';\n\n<ButtonGroup orientation=\"horizontal\">\n  <Button variant=\"secondary\">Cancel</Button>\n  <Button variant=\"primary\">Save</Button>\n</ButtonGroup>"
+    }
   }
 }

@@ -89,5 +89,25 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Controlled mode needs both value and onValueChange; open/onOpenChange for menu state."
+        },
+        {
+          "context": "a11y",
+          "note": "Compose with SelectTrigger/SelectContent subcomponents — do not replace the trigger with a raw button."
+        },
+        {
+          "context": "ssr",
+          "note": "Portal content may mismatch on first paint; prefer client-only mount for the open menu in Next."
+        }
+      ],
+      "usage": "import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/atoms/Select';\n\n<Select value={v} onValueChange={setV}>\n  <SelectTrigger>Choose</SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"a\">A</SelectItem>\n  </SelectContent>\n</Select>"
+    }
   }
 }

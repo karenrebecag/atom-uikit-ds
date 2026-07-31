@@ -62,5 +62,29 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "error",
+          "type": "boolean",
+          "default": "false",
+          "what": "Shows the error surface (border/color) on the field.",
+          "how": "true only when validation failed and a helper/error message is visible nearby. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Pair with Field (label + helper/error) so the control has an accessible name and describedby."
+        },
+        {
+          "context": "react",
+          "note": "iconLeft/iconRight are ReactNode slots — do not put interactive buttons inside without keyboard support."
+        }
+      ],
+      "usage": "import { Input } from '@/components/atoms/Input';\nimport { Field } from '@/components/atoms/Field';\n\n<Field label=\"Email\" error=\"Required\">\n  <Input type=\"email\" error placeholder=\"you@company.com\" />\n</Field>"
+    }
   }
 }

@@ -110,5 +110,75 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "type",
+          "type": "select",
+          "default": "outlined",
+          "options": [
+            "outlined",
+            "filled"
+          ],
+          "what": "Surface style of the chip (outlined vs filled).",
+          "how": "outlined for filters at rest; filled when selected. Default: outlined."
+        },
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "s",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl"
+          ],
+          "what": "Padding and type scale of the chip.",
+          "how": "s for filter bars; m for forms; xs only in dense tables. Default: s."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Prevents remove/select interaction.",
+          "how": "true when the filter is locked by plan or permissions. Default: false."
+        },
+        {
+          "prop": "error",
+          "type": "boolean",
+          "default": "false",
+          "what": "Error emphasis on the chip surface.",
+          "how": "true only with an associated validation message. Default: false."
+        },
+        {
+          "prop": "focused",
+          "type": "boolean",
+          "default": "false",
+          "what": "Forced focus ring for composed controls.",
+          "how": "Prefer real :focus-visible; use focused only for composite widgets. Default: false."
+        },
+        {
+          "prop": "animated",
+          "type": "boolean",
+          "default": "false",
+          "what": "Motion on appear/dismiss.",
+          "how": "true for filter UIs; false in static meta lists. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "onClose must have an accessible name (aria-label on the close control)."
+        },
+        {
+          "context": "react",
+          "note": "variant prop is named type (not variant) — keep in sync with registry variantProp."
+        }
+      ],
+      "usage": "import { Chip } from '@/components/atoms/Chip';\n\n<Chip type=\"filled\" size=\"s\" onClose={() => {}}>\n  Design\n</Chip>"
+    }
   }
 }

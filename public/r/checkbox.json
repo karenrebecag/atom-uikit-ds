@@ -75,5 +75,17 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Indeterminate is visual only — keep the accessible checked state in sync for AT."
+        }
+      ],
+      "usage": "import { Checkbox } from '@/components/atoms/Checkbox';\n\n<Checkbox checked={ok} onChange={setOk} label=\"I agree\" />"
+    }
   }
 }

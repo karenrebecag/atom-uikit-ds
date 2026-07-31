@@ -73,5 +73,39 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "checked",
+          "type": "boolean",
+          "default": "false",
+          "what": "On/off state of the switch.",
+          "how": "Controlled: pass checked + onChange. Default uncontrolled depends on usage."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Prevents toggling.",
+          "how": "true when the setting is locked by plan. Default: false."
+        },
+        {
+          "prop": "animated",
+          "type": "boolean",
+          "default": "false",
+          "what": "Thumb motion on toggle.",
+          "how": "true by default for preferences; false if reduced-motion is required at the call site. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Provide a visible label (label prop or Field) — a bare switch fails WCAG name."
+        }
+      ],
+      "usage": "import { Toggle } from '@/components/atoms/Toggle';\n\n<Toggle checked={on} onChange={setOn} label=\"Email alerts\" />"
+    }
   }
 }

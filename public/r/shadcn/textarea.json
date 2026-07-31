@@ -20,5 +20,17 @@
       "content": "/* -------------------------------------------------------------------------\n   Textarea\n\n   Multi-line text input. Shares color system with Input.\n   Min height 80px, resizable vertically by default.\n   Colors matched to Figma atom-text-field.\n\n   States: default, focus, disabled, error\n   ------------------------------------------------------------------------- */\n\n.textarea {\n  display: flex;\n  width: 100%;\n  min-height: 5rem;\n  padding: var(--spacing-2);\n  border: var(--stroke-thin) solid var(--border-input);\n  border-radius: var(--radius-md);\n  background-color: var(--background);\n  color: var(--foreground);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  line-height: 1.5;\n  resize: vertical;\n  outline: none;\n  transition:\n    border-color var(--duration-150) var(--easing-out),\n    box-shadow var(--duration-150) var(--easing-out);\n}\n\n.textarea::placeholder {\n  color: var(--placeholder);\n}\n\n.textarea:focus {\n  border-color: var(--border-focus);\n  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-color);\n}\n\n.textarea:disabled {\n  background-color: var(--muted);\n  border-color: var(--muted);\n  color: var(--muted-foreground);\n  cursor: not-allowed;\n  resize: none;\n  opacity: 1;\n}\n\n.textarea[aria-invalid=\"true\"] {\n  border-color: var(--destructive);\n  box-shadow: 0 0 var(--stroke-medium) 0 var(--focus-ring-error-color);\n}\n\n.textarea[aria-invalid=\"true\"]:focus {\n  border-color: var(--destructive);\n  box-shadow: 0 0 0 var(--stroke-medium) var(--focus-ring-error-color);\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Pair with Field for label/helper/error; set rows thoughtfully for mobile keyboards."
+        }
+      ],
+      "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
+    }
+  }
 }

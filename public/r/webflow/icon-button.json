@@ -323,7 +323,7 @@
     {
       "prop": "motion",
       "selector": "icon-button",
-      "reason": "animated component without REQUIRED_HOOKS in its behavior module — emitted static (add the export to enable motion)"
+      "reason": "motion opt-in hooks not present in canonical render (e.g. animated=false default) — emitted static; set meta.webflow.previewProps to enable"
     }
   ]
 }

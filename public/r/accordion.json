@@ -64,5 +64,21 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "defaultOpen lives on AccordionItem, not Accordion. Pass it per item: <AccordionItem title=\"…\" defaultOpen>."
+        },
+        {
+          "context": "a11y",
+          "note": "Trigger is a button with aria-expanded; do not nest interactive elements inside title."
+        }
+      ],
+      "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
+    }
   }
 }

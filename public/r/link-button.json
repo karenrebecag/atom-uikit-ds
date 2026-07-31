@@ -85,5 +85,50 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "xs",
+            "sm",
+            "default",
+            "lg",
+            "xl"
+          ],
+          "what": "Type and padding scale of the inline link control.",
+          "how": "default for body copy; sm/xs for dense meta; lg/xl for hero links. Default: default."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Prevents navigation and dims the link.",
+          "how": "Prefer removing the link over a dead disabled style when possible. Default: false."
+        },
+        {
+          "prop": "animated",
+          "type": "boolean",
+          "default": "false",
+          "what": "Whether the shimmer / text-swap motion runs on hover.",
+          "how": "true for marketing CTAs in body; false in dense legal lists. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Requires a real href for keyboard and screen readers; do not fake links with onClick only."
+        },
+        {
+          "context": "react",
+          "note": "children must be a string for animated text-swap paths."
+        }
+      ],
+      "usage": "import { LinkButton } from '@/components/atoms/LinkButton';\n\n<LinkButton href=\"/docs\" size=\"default\" animated>\n  Read the docs\n</LinkButton>"
+    }
   }
 }

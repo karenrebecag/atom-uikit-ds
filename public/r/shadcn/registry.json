@@ -122,6 +122,73 @@
         "gsap"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "primary",
+              "options": [
+                "primary",
+                "secondary",
+                "tertiary",
+                "destructive-primary",
+                "destructive-secondary",
+                "destructive-tertiary"
+              ],
+              "what": "Visual intent of the square icon control.",
+              "how": "Match the surrounding button family. One primary per section; destructive only for irreversible actions. Default: primary."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "m",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l",
+                "xl"
+              ],
+              "what": "Hit target of the icon-only control.",
+              "how": "m for toolbars; s/xs for dense tables; l/xl for hero chrome. Default: m."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Prevents interaction and dims the control.",
+              "how": "true when the action is unavailable; prefer a tooltip explaining why. Default: false."
+            },
+            {
+              "prop": "loading",
+              "type": "boolean",
+              "default": "false",
+              "what": "Shows busy state and blocks re-clicks.",
+              "how": "true only during async work; pair with disabled semantics for forms. Default: false."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "false",
+              "what": "Whether the icon rotation / motion runs on interaction.",
+              "how": "true for marketing chrome; false in data-dense tables or reduced-motion contexts. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Always provide an accessible name (aria-label) — there is no visible text children."
+            },
+            {
+              "context": "css-modules",
+              "note": "Uses global BEM (.button*). Import published CSS globally; Modules will scope and break styles."
+            }
+          ],
+          "usage": "import { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton variant=\"ghost\" size=\"m\" aria-label=\"Close\" />"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/IconButton.tsx",
@@ -147,6 +214,51 @@
         "gsap"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "default",
+              "options": [
+                "xs",
+                "sm",
+                "default",
+                "lg",
+                "xl"
+              ],
+              "what": "Type and padding scale of the inline link control.",
+              "how": "default for body copy; sm/xs for dense meta; lg/xl for hero links. Default: default."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Prevents navigation and dims the link.",
+              "how": "Prefer removing the link over a dead disabled style when possible. Default: false."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "false",
+              "what": "Whether the shimmer / text-swap motion runs on hover.",
+              "how": "true for marketing CTAs in body; false in dense legal lists. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Requires a real href for keyboard and screen readers; do not fake links with onClick only."
+            },
+            {
+              "context": "react",
+              "note": "children must be a string for animated text-swap paths."
+            }
+          ],
+          "usage": "import { LinkButton } from '@/components/atoms/LinkButton';\n\n<LinkButton href=\"/docs\" size=\"default\" animated>\n  Read the docs\n</LinkButton>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/LinkButton.tsx",
@@ -172,6 +284,30 @@
         "button"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "orientation",
+              "type": "select",
+              "default": "horizontal",
+              "options": [
+                "horizontal",
+                "vertical"
+              ],
+              "what": "Layout axis of grouped buttons.",
+              "how": "horizontal for toolbars; vertical for stacked mobile actions. Default: horizontal."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "layout",
+              "note": "Children must be Button/IconButton siblings — spacing is owned by the group, not ad-hoc margins."
+            }
+          ],
+          "usage": "import { ButtonGroup } from '@/components/atoms/ButtonGroup';\nimport { Button } from '@/components/atoms/Button';\n\n<ButtonGroup orientation=\"horizontal\">\n  <Button variant=\"secondary\">Cancel</Button>\n  <Button variant=\"primary\">Save</Button>\n</ButtonGroup>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/ButtonGroup.tsx",
@@ -194,6 +330,30 @@
         "forms"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "error",
+              "type": "boolean",
+              "default": "false",
+              "what": "Shows the error surface (border/color) on the field.",
+              "how": "true only when validation failed and a helper/error message is visible nearby. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Pair with Field (label + helper/error) so the control has an accessible name and describedby."
+            },
+            {
+              "context": "react",
+              "note": "iconLeft/iconRight are ReactNode slots — do not put interactive buttons inside without keyboard support."
+            }
+          ],
+          "usage": "import { Input } from '@/components/atoms/Input';\nimport { Field } from '@/components/atoms/Field';\n\n<Field label=\"Email\" error=\"Required\">\n  <Input type=\"email\" error placeholder=\"you@company.com\" />\n</Field>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Input.tsx",
@@ -216,6 +376,18 @@
         "forms"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Pair with Field for label/helper/error; set rows thoughtfully for mobile keyboards."
+            }
+          ],
+          "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Textarea.tsx",
@@ -238,6 +410,26 @@
         "forms"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Controlled mode needs both value and onValueChange; open/onOpenChange for menu state."
+            },
+            {
+              "context": "a11y",
+              "note": "Compose with SelectTrigger/SelectContent subcomponents — do not replace the trigger with a raw button."
+            },
+            {
+              "context": "ssr",
+              "note": "Portal content may mismatch on first paint; prefer client-only mount for the open menu in Next."
+            }
+          ],
+          "usage": "import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/atoms/Select';\n\n<Select value={v} onValueChange={setV}>\n  <SelectTrigger>Choose</SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"a\">A</SelectItem>\n  </SelectContent>\n</Select>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Select.tsx",
@@ -263,6 +455,18 @@
         "gsap"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Indeterminate is visual only — keep the accessible checked state in sync for AT."
+            }
+          ],
+          "usage": "import { Checkbox } from '@/components/atoms/Checkbox';\n\n<Checkbox checked={ok} onChange={setOk} label=\"I agree\" />"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Checkbox.tsx",
@@ -285,6 +489,18 @@
         "forms"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Group radios with the same name and a fieldset/legend or Field group label."
+            }
+          ],
+          "usage": "import { Radio, RadioGroup } from '@/components/atoms/Radio';\n\n<RadioGroup value={v} onValueChange={setV}>\n  <Radio value=\"a\" label=\"A\" />\n  <Radio value=\"b\" label=\"B\" />\n</RadioGroup>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Radio.tsx",
@@ -307,6 +523,40 @@
         "forms"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "checked",
+              "type": "boolean",
+              "default": "false",
+              "what": "On/off state of the switch.",
+              "how": "Controlled: pass checked + onChange. Default uncontrolled depends on usage."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Prevents toggling.",
+              "how": "true when the setting is locked by plan. Default: false."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "false",
+              "what": "Thumb motion on toggle.",
+              "how": "true by default for preferences; false if reduced-motion is required at the call site. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Provide a visible label (label prop or Field) — a bare switch fails WCAG name."
+            }
+          ],
+          "usage": "import { Toggle } from '@/components/atoms/Toggle';\n\n<Toggle checked={on} onChange={setOn} label=\"Email alerts\" />"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Toggle.tsx",
@@ -567,6 +817,22 @@
         "layout"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "defaultOpen lives on AccordionItem, not Accordion. Pass it per item: <AccordionItem title=\"…\" defaultOpen>."
+            },
+            {
+              "context": "a11y",
+              "note": "Trigger is a button with aria-expanded; do not nest interactive elements inside title."
+            }
+          ],
+          "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Accordion.tsx",
@@ -694,6 +960,76 @@
         "indicators"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "type",
+              "type": "select",
+              "default": "outlined",
+              "options": [
+                "outlined",
+                "filled"
+              ],
+              "what": "Surface style of the chip (outlined vs filled).",
+              "how": "outlined for filters at rest; filled when selected. Default: outlined."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "s",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l",
+                "xl"
+              ],
+              "what": "Padding and type scale of the chip.",
+              "how": "s for filter bars; m for forms; xs only in dense tables. Default: s."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Prevents remove/select interaction.",
+              "how": "true when the filter is locked by plan or permissions. Default: false."
+            },
+            {
+              "prop": "error",
+              "type": "boolean",
+              "default": "false",
+              "what": "Error emphasis on the chip surface.",
+              "how": "true only with an associated validation message. Default: false."
+            },
+            {
+              "prop": "focused",
+              "type": "boolean",
+              "default": "false",
+              "what": "Forced focus ring for composed controls.",
+              "how": "Prefer real :focus-visible; use focused only for composite widgets. Default: false."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "false",
+              "what": "Motion on appear/dismiss.",
+              "how": "true for filter UIs; false in static meta lists. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "onClose must have an accessible name (aria-label on the close control)."
+            },
+            {
+              "context": "react",
+              "note": "variant prop is named type (not variant) — keep in sync with registry variantProp."
+            }
+          ],
+          "usage": "import { Chip } from '@/components/atoms/Chip';\n\n<Chip type=\"filled\" size=\"s\" onClose={() => {}}>\n  Design\n</Chip>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Chip.tsx",
@@ -873,6 +1209,21 @@
         "gsap"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "webflow": {
+          "previewProps": {
+            "draggable": true,
+            "fade": true,
+            "duration": 20
+          },
+          "previewChildren": [
+            "Atom",
+            "UIKit",
+            "Motion",
+            "Webflow"
+          ]
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Marquee.tsx",
@@ -1074,6 +1425,67 @@
         "indicators"
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "filled",
+              "options": [
+                "ghost",
+                "filled",
+                "outlined"
+              ],
+              "what": "Surface treatment of the status tag.",
+              "how": "filled for primary status; outlined for quiet meta; ghost for inline. Default: filled."
+            },
+            {
+              "prop": "intent",
+              "type": "select",
+              "default": "neutral",
+              "options": [
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "neutral",
+                "brand",
+                "ai",
+                "disabled"
+              ],
+              "what": "Semantic color of the tag.",
+              "how": "neutral for meta; success/warning/danger for state; brand/ai sparingly. Default: neutral."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "s",
+              "options": [
+                "xs",
+                "s",
+                "m"
+              ],
+              "what": "Type and padding scale.",
+              "how": "s default; xs for dense tables; m for marketing. Default: s."
+            },
+            {
+              "prop": "dot",
+              "type": "boolean",
+              "default": "false",
+              "what": "Shows a leading status dot.",
+              "how": "true for live/status lists; false for pure labels. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Tags are not interactive by default — do not use them as buttons; use Chip or Button."
+            }
+          ],
+          "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
+        }
+      },
       "files": [
         {
           "path": "components/atoms/Tag.tsx",

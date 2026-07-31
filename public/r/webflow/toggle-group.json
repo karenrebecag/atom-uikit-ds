@@ -188,6 +188,11 @@
       "prop": "--focus-ring-color",
       "selector": ":root",
       "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "motion",
+      "selector": "toggle-group",
+      "reason": "motion opt-in hooks not present in canonical render (e.g. animated=false default) — emitted static; set meta.webflow.previewProps to enable"
     }
   ]
 }

@@ -107,5 +107,72 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "primary",
+          "options": [
+            "primary",
+            "secondary",
+            "tertiary",
+            "destructive-primary",
+            "destructive-secondary",
+            "destructive-tertiary"
+          ],
+          "what": "Visual intent of the square icon control.",
+          "how": "Match the surrounding button family. One primary per section; destructive only for irreversible actions. Default: primary."
+        },
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "m",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl"
+          ],
+          "what": "Hit target of the icon-only control.",
+          "how": "m for toolbars; s/xs for dense tables; l/xl for hero chrome. Default: m."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Prevents interaction and dims the control.",
+          "how": "true when the action is unavailable; prefer a tooltip explaining why. Default: false."
+        },
+        {
+          "prop": "loading",
+          "type": "boolean",
+          "default": "false",
+          "what": "Shows busy state and blocks re-clicks.",
+          "how": "true only during async work; pair with disabled semantics for forms. Default: false."
+        },
+        {
+          "prop": "animated",
+          "type": "boolean",
+          "default": "false",
+          "what": "Whether the icon rotation / motion runs on interaction.",
+          "how": "true for marketing chrome; false in data-dense tables or reduced-motion contexts. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Always provide an accessible name (aria-label) — there is no visible text children."
+        },
+        {
+          "context": "css-modules",
+          "note": "Uses global BEM (.button*). Import published CSS globally; Modules will scope and break styles."
+        }
+      ],
+      "usage": "import { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton variant=\"ghost\" size=\"m\" aria-label=\"Close\" />"
+    }
   }
 }

@@ -47,5 +47,17 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Pair with Field for label/helper/error; set rows thoughtfully for mobile keyboards."
+        }
+      ],
+      "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
+    }
   }
 }

@@ -23,5 +23,20 @@
       "content": "/* -------------------------------------------------------------------------\n   Marquee\n\n   Infinite horizontal scroll. CSS animation, JS for speed + duplication.\n   Pauses when out of viewport. Hover pauses optional.\n\n   Parts: .marquee, .marquee__list, .marquee__item\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.marquee {\n  display: flex;\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- Fade edges ---- */\n\n.marquee--fade {\n  mask-image: linear-gradient(\n    to right,\n    transparent,\n    black var(--spacing-10, 40px),\n    black calc(100% - var(--spacing-10, 40px)),\n    transparent\n  );\n  -webkit-mask-image: linear-gradient(\n    to right,\n    transparent,\n    black var(--spacing-10, 40px),\n    black calc(100% - var(--spacing-10, 40px)),\n    transparent\n  );\n}\n\n/* ---- List (duplicated by JS) ---- */\n\n.marquee__list {\n  flex: none;\n  display: flex;\n  align-items: center;\n  animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;\n  animation-play-state: var(--marquee-state, running);\n}\n\n.marquee--reverse .marquee__list {\n  animation-direction: reverse;\n}\n\n.marquee--pause-hover:hover .marquee__list {\n  animation-play-state: paused;\n}\n\n@keyframes marquee-scroll {\n  to {\n    transform: translateX(-100%);\n  }\n}\n\n/* ---- Item ---- */\n\n.marquee__item {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-4, 16px);\n  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);\n  flex-shrink: 0;\n  white-space: nowrap;\n}\n\n/* ---- Separator (optional decorative element between items) ---- */\n\n.marquee__separator {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  color: var(--muted-foreground);\n}\n\n.marquee__separator svg {\n  width: 1em;\n  height: 1em;\n}\n\n/* ---- Draggable mode (GSAP) ---- */\n\n.marquee__collection {\n  display: flex;\n  align-items: center;\n  flex: none;\n  will-change: transform;\n  cursor: grab;\n}\n\n.marquee__collection:active {\n  cursor: grabbing;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .marquee__list {\n    animation-play-state: paused;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "meta": {
+    "webflow": {
+      "previewProps": {
+        "draggable": true,
+        "fade": true,
+        "duration": 20
+      },
+      "previewChildren": [
+        "Atom",
+        "UIKit",
+        "Motion",
+        "Webflow"
+      ]
+    }
+  }
 }

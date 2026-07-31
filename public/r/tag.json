@@ -109,5 +109,66 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "filled",
+          "options": [
+            "ghost",
+            "filled",
+            "outlined"
+          ],
+          "what": "Surface treatment of the status tag.",
+          "how": "filled for primary status; outlined for quiet meta; ghost for inline. Default: filled."
+        },
+        {
+          "prop": "intent",
+          "type": "select",
+          "default": "neutral",
+          "options": [
+            "success",
+            "warning",
+            "danger",
+            "info",
+            "neutral",
+            "brand",
+            "ai",
+            "disabled"
+          ],
+          "what": "Semantic color of the tag.",
+          "how": "neutral for meta; success/warning/danger for state; brand/ai sparingly. Default: neutral."
+        },
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "s",
+          "options": [
+            "xs",
+            "s",
+            "m"
+          ],
+          "what": "Type and padding scale.",
+          "how": "s default; xs for dense tables; m for marketing. Default: s."
+        },
+        {
+          "prop": "dot",
+          "type": "boolean",
+          "default": "false",
+          "what": "Shows a leading status dot.",
+          "how": "true for live/status lists; false for pure labels. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Tags are not interactive by default — do not use them as buttons; use Chip or Button."
+        }
+      ],
+      "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
+    }
   }
 }
