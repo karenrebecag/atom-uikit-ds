@@ -4,8 +4,15 @@ on:
   pull_request:
     paths:
       - 'packages/tokens/**'
+      # F14 hizo que la capa derivada lea el CSS y el source de los componentes,
+      # asi que ahora tambien mueven public/r. Sin estas rutas un cambio de CSS
+      # derivaba el registry sin que ningun check lo mirara.
+      - 'packages/css/**'
+      - 'packages/components-react/**'
+      - 'packages/layouts/**'
       - 'registry.json'
       - 'scripts/**'
+      - 'public/r/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -27,7 +34,18 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       # Builds tokens (Style Dictionary) + emits public/r/tokens-nested.json
+      # El registry lee dist de varios paquetes: components-react para renderizar
+      # el XscpData de Webflow, y animations para el js de los artefactos animados
+      # (button, icon-button, link-button, marquee, toggle-group). En local pasa
+      # desapercibido porque los dist sobreviven entre builds; en CI hay que
+      # construirlos todos o el check compara contra artefactos incompletos. 5s.
+      - run: pnpm build
       - run: pnpm build:registry
+      # El build acaba de regenerar public/r. Si lo commiteado no coincide, main
+      # esta sirviendo algo que su propio codigo no reproduce — que es como la
+      # capa derivada llego a produccion vacia el 2026-08-02.
+      - name: Registry sin deriva
+        run: node scripts/check-registry-drift.mjs
       # Layer rules (primitives literal / semantic refs / component refs)
       - run: pnpm validate
       # WCAG AA surface/foreground contrast (light + dark)
