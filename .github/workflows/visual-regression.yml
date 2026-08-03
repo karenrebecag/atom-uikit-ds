@@ -5,6 +5,11 @@ on:
     paths:
       - 'packages/tokens/**'
       - 'packages/css/**'
+      # El markup tambien pinta: reordenar un span, cambiar una clase o envolver
+      # un icono mueve pixeles sin tocar tokens ni CSS. component-tests cubre
+      # comportamiento, no apariencia, asi que sin esta ruta ese cambio no lo
+      # miraba ningun snapshot.
+      - 'packages/components-react/**'
       - 'apps/storybook/**'
       - '.github/workflows/visual-regression.yml'
   # Regeneracion deliberada de baselines linux (stories nuevas o cambio visual
