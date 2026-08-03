@@ -296,6 +296,7 @@ function sectionRegistry() {
       ...registry.items.map((i) => `${i.name.replace(/\//g, '--')}.json`),
       'index.json',
       'tokens-nested.json',
+      'content-coverage.json',
     ]);
     const actual = readdirSync(pubDir).filter((f) => f.endsWith('.json'));
     const orphan = actual.filter((f) => !expected.has(f));
