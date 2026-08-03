@@ -55,9 +55,36 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "default",
+            "circle",
+            "text"
+          ],
+          "what": "Placeholder geometry.",
+          "how": "default for blocks/cards; circle for avatars; text for line stacks. Default: default."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Mark the loading region with aria-busy on the container; skeleton itself is decorative."
+        },
+        {
+          "context": "layout",
+          "note": "Size via className/width styles to match the real component footprint — avoid layout shift when content swaps in."
+        }
+      ],
+      "usage": "import { Skeleton } from '@/components/atoms/Skeleton';\n\n<div aria-busy=\"true\">\n  <Skeleton variant=\"circle\" className=\"w-10 h-10\" />\n  <Skeleton variant=\"text\" className=\"w-40\" />\n</div>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

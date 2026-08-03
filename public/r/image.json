@@ -91,9 +91,74 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "size",
+          "type": "select",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l",
+            "hero",
+            "full"
+          ],
+          "what": "Intrinsic display size of the image frame.",
+          "how": "m for cards; l/hero for marketing; full for edge-to-edge bands. Default: m."
+        },
+        {
+          "prop": "ratio",
+          "type": "select",
+          "options": [
+            "1x1",
+            "4x3",
+            "16x9",
+            "21x9"
+          ],
+          "what": "Aspect ratio lock for the frame before load.",
+          "how": "16x9 for video thumbs; 1x1 for avatars/product tiles; 21x9 only for cinematic heroes."
+        },
+        {
+          "prop": "fit",
+          "type": "select",
+          "options": [
+            "cover",
+            "contain"
+          ],
+          "what": "object-fit strategy inside the frame.",
+          "how": "cover for crops/heroes; contain when the whole asset must stay visible (logos, diagrams)."
+        },
+        {
+          "prop": "radius",
+          "type": "select",
+          "options": [
+            "none",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "full"
+          ],
+          "what": "Corner rounding of the image frame.",
+          "how": "md for cards; full only for circular crops; none for full-bleed media."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Always pass meaningful alt (or alt=\"\" only when purely decorative and adjacent text already names it)."
+        },
+        {
+          "context": "react",
+          "note": "Forwards native img attributes; do not nest interactive buttons inside without a separate control pattern."
+        }
+      ],
+      "usage": "import { Image } from '@/components/atoms/Image';\n\n<Image\n  src=\"/photos/hero.jpg\"\n  alt=\"Team workshop\"\n  size=\"l\"\n  ratio=\"16x9\"\n  fit=\"cover\"\n  radius=\"md\"\n/>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

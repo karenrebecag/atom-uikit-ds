@@ -22,9 +22,38 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "required",
+          "type": "boolean",
+          "default": "false",
+          "what": "Marks the field as required in the label UI.",
+          "how": "true when the form blocks submit without this value; still validate in code. Default: false."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Disables label + child control affordances.",
+          "how": "true when the field is locked by plan; prefer explaining why nearby. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Pass htmlFor matching the control id, or wrap a single control so the label associates; put error text in error prop for aria-describedby patterns."
+        },
+        {
+          "context": "react",
+          "note": "Field does not render the input itself — children must be Input/Select/Textarea/etc."
+        }
+      ],
+      "usage": "import { Field } from '@/components/atoms/Field';\nimport { Input } from '@/components/atoms/Input';\n\n<Field label=\"Email\" htmlFor=\"email\" error={err} required>\n  <Input id=\"email\" type=\"email\" error={!!err} />\n</Field>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

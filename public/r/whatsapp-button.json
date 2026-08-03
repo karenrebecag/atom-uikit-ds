@@ -66,9 +66,23 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "WhatsApp Button is CSS/registry oriented for marketing embeds; prefer LinkButton or Button patterns in app React when you need full TS props."
+        },
+        {
+          "context": "a11y",
+          "note": "Link must open a real wa.me / api.whatsapp.com URL; never fake the chat with javascript:void."
+        }
+      ],
+      "usage": "<!-- Prefer published CSS + anchor from the registry item for marketing pages -->\n<a class=\"whatsapp-button whatsapp-button--pill whatsapp-button--m\" href=\"https://wa.me/15551234567\">Chat on WhatsApp</a>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

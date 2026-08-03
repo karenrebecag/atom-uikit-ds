@@ -16,9 +16,23 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Import named levels (TypographyH1…TypographyP), not a single polymorphic Typography root — each maps to a semantic HTML heading/paragraph class."
+        },
+        {
+          "context": "css-modules",
+          "note": "Heading classes (.h1, .h2, …) are global BEM from the design system CSS — import the published stylesheet globally."
+        }
+      ],
+      "usage": "import { TypographyH1, TypographyP } from '@/components/atoms/Typography';\n\n<TypographyH1>Ship faster with ATOM</TypographyH1>\n<TypographyP>Design-system components for product teams.</TypographyP>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": []

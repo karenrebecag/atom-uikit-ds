@@ -35,9 +35,23 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "BurgerIcon is presentational only — place it inside IconButton or menu-button for hit target and aria-expanded on the control, not on the icon spans."
+        },
+        {
+          "context": "a11y",
+          "note": "The three lines are decorative; the parent control must expose the open/closed name (aria-label / aria-expanded)."
+        }
+      ],
+      "usage": "import { BurgerIcon } from '@/components/atoms/BurgerIcon';\nimport { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton aria-label=\"Open menu\" aria-expanded={open}>\n  <BurgerIcon />\n</IconButton>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": []

@@ -77,9 +77,54 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "s",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l"
+          ],
+          "what": "Size applied to all children avatars.",
+          "how": "s in lists; m in page headers. Keep consistent with surrounding density. Default: s."
+        },
+        {
+          "prop": "shape",
+          "type": "select",
+          "default": "circle",
+          "options": [
+            "circle",
+            "square"
+          ],
+          "what": "Shape applied to children.",
+          "how": "Match Avatar shape in the same product surface. Default: circle."
+        },
+        {
+          "prop": "max",
+          "type": "number",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "unit": "count",
+          "what": "Max faces before +N overflow.",
+          "how": "3–5 in cards; higher only when space is guaranteed."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Children must be Avatar components; max trims visually and should be reflected in accessible summary text (+N people)."
+        }
+      ],
+      "usage": "import { Avatar, AvatarGroup } from '@/components/atoms/Avatar';\n\n<AvatarGroup size=\"s\" max={3}>\n  <Avatar type=\"initials\" initials=\"AL\" alt=\"Ada\" />\n  <Avatar type=\"initials\" initials=\"GR\" alt=\"Grace\" />\n  <Avatar type=\"initials\" initials=\"KT\" alt=\"Katherine\" />\n  <Avatar type=\"initials\" initials=\"XX\" alt=\"Extra\" />\n</AvatarGroup>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

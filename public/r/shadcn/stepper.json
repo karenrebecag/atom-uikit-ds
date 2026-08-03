@@ -22,9 +22,23 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Stepper accepts orientation (horizontal|vertical) and steps: { state, title, description }[]. Keep exactly one step with state active."
+        },
+        {
+          "context": "a11y",
+          "note": "Titles must be unique and human-readable; do not rely on color alone to convey completed vs upcoming."
+        }
+      ],
+      "usage": "import { Stepper } from '@/components/atoms/Stepper';\n\n<Stepper\n  orientation=\"horizontal\"\n  steps={[\n    { state: 'completed', title: 'Account' },\n    { state: 'active', title: 'Plan' },\n    { state: 'upcoming', title: 'Pay' },\n  ]}\n/>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

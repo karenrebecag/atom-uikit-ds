@@ -1,0 +1,48 @@
+{
+  "feature": "F16",
+  "date": "2026-08-03",
+  "commit": "pending",
+  "checks": [
+    {
+      "id": "F16-C1",
+      "status": "pass-local",
+      "evidence": "scripts/content-coverage.mjs → public/r/content-coverage.json. Controls: button full+editorial; input excluded webflow; whatsapp-button hasReact=false from files (not registry flag). Tests content-coverage.test.mjs 7 pass. Eligible 49 after fix."
+    },
+    {
+      "id": "F16-C2",
+      "status": "pass-local",
+      "evidence": "batches[0]=meta-agent-1 slugs: burger-icon, image, stepper, toggle-group, typography, whatsapp-button, combobox, field, slider, avatar, avatar-group, skeleton. F16b lote1 content drafted for exactly those slugs."
+    },
+    {
+      "id": "F16-C3",
+      "status": "in_progress",
+      "evidence": "After lote1 (Karen signed): meta.agent full 25/49 eligible (51%). Need ≥90% — more lotes required."
+    },
+    {
+      "id": "F16-C4",
+      "status": "pending",
+      "evidence": "editorial still 3/49 eligible (6%). F16c not started this session."
+    },
+    {
+      "id": "F16-C5",
+      "status": "pass-local",
+      "evidence": "approved-by-karen 2026-08-03 — 'dale' on lote meta-agent-1 + coverage hasReact fix; two local commits, no push until asked."
+    },
+    {
+      "id": "F16-C6",
+      "status": "pass-local",
+      "evidence": "smoke-publish.yml runs content-coverage.mjs --check-no-regression + GITHUB_STEP_SUMMARY. Live green/red proof after push."
+    }
+  ],
+  "verdict": "in_progress",
+  "blocking": [
+    "F16b remaining batches to ≥90%",
+    "F16c editorial batches to ≥90%",
+    "CI green link for F16d"
+  ],
+  "notes": [
+    "Eligible agent surface = kind component + hasReact derived from published files (49 after whatsapp-button fix).",
+    "Layouts/hooks/foundation excluded with reasons in the board."
+  ]
+}
+

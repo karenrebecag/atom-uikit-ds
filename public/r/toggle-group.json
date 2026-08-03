@@ -111,9 +111,77 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "type",
+          "type": "select",
+          "default": "single",
+          "options": [
+            "single",
+            "multiple"
+          ],
+          "what": "Selection model: one value or many.",
+          "how": "single for segmented controls; multiple for multi-filter toolbars. Default: single."
+        },
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "default",
+            "outline"
+          ],
+          "what": "Surface style of the group.",
+          "how": "default for primary toolbars; outline on busy backgrounds. Default: default."
+        },
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "m",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l"
+          ],
+          "what": "Hit target scale for items.",
+          "how": "m default; xs/s for dense filters; l for marketing toggles. Default: m."
+        },
+        {
+          "prop": "orientation",
+          "type": "select",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ],
+          "what": "Layout axis of items.",
+          "how": "horizontal almost always; vertical only in narrow side rails. Default: horizontal."
+        },
+        {
+          "prop": "animated",
+          "type": "boolean",
+          "default": "false",
+          "what": "Motion on selection change.",
+          "how": "true for marketing; false in data-dense admin. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Controlled mode needs value + onValueChange; type=single stores one string, multiple stores string[]."
+        },
+        {
+          "context": "a11y",
+          "note": "Each ToggleGroupItem needs a visible label or aria-label; group should sit in a labelled fieldset when used as a form control."
+        }
+      ],
+      "usage": "import { ToggleGroup, ToggleGroupItem } from '@/components/atoms/ToggleGroup';\n\n<ToggleGroup type=\"single\" value={view} onValueChange={setView} size=\"m\">\n  <ToggleGroupItem value=\"list\">List</ToggleGroupItem>\n  <ToggleGroupItem value=\"grid\">Grid</ToggleGroupItem>\n</ToggleGroup>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

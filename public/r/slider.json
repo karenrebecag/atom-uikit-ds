@@ -88,9 +88,64 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "min",
+          "type": "number",
+          "default": "0",
+          "min": 0,
+          "max": 10000,
+          "step": 1,
+          "unit": "unit",
+          "what": "Lower bound of the range.",
+          "how": "0 for percentages; set to business min for money/quantity. Default: 0."
+        },
+        {
+          "prop": "max",
+          "type": "number",
+          "default": "100",
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "unit": "unit",
+          "what": "Upper bound of the range.",
+          "how": "100 for %; match the product ceiling. Must be > min. Default: 100."
+        },
+        {
+          "prop": "step",
+          "type": "number",
+          "default": "1",
+          "min": 0.01,
+          "max": 1000,
+          "step": 0.01,
+          "unit": "unit",
+          "what": "Snap increment for keyboard and drag.",
+          "how": "1 for integers; 0.1/0.01 for fine controls. Default: 1."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Blocks interaction.",
+          "how": "true when prerequisites are unmet. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Expose the value in text nearby or aria-valuetext; keep min/max/step consistent with the visible unit."
+        },
+        {
+          "context": "react",
+          "note": "Controlled: value + onValueChange; uncontrolled: defaultValue. Values are numbers (or number[] if multi-thumb patterns are used)."
+        }
+      ],
+      "usage": "import { Slider } from '@/components/atoms/Slider';\n\n<Slider min={0} max={100} step={5} value={volume} onValueChange={setVolume} />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

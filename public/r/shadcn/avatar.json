@@ -22,9 +22,71 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "type",
+          "type": "select",
+          "default": "image-border",
+          "options": [
+            "image",
+            "image-border",
+            "initials",
+            "icon"
+          ],
+          "what": "Content strategy for the avatar face.",
+          "how": "image-border for product UIs with photo; initials when photo missing; icon for bots. Default: image-border."
+        },
+        {
+          "prop": "shape",
+          "type": "select",
+          "default": "circle",
+          "options": [
+            "circle",
+            "square"
+          ],
+          "what": "Outer shape of the avatar.",
+          "how": "circle default for people; square for brands/workspaces. Default: circle."
+        },
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "s",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l"
+          ],
+          "what": "Pixel scale of the avatar.",
+          "how": "s in lists; m in headers; l for profile heroes; xs in dense tables. Default: s."
+        },
+        {
+          "prop": "status",
+          "type": "boolean",
+          "default": "false",
+          "what": "Shows the presence/status pip.",
+          "how": "true only when presence is real-time and meaningful. Default: false."
+        },
+        {
+          "prop": "skeleton",
+          "type": "boolean",
+          "default": "false",
+          "what": "Loading placeholder surface.",
+          "how": "true while the image URL is resolving. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Provide alt for image type or aria-label for initials/icon so the person/entity is named."
+        }
+      ],
+      "usage": "import { Avatar } from '@/components/atoms/Avatar';\n\n<Avatar type=\"image-border\" size=\"m\" src=\"/u/a.jpg\" alt=\"Ada Lovelace\" status />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T04:59:37.770Z",
-      "sourceCommit": "2fa6b41",
+      "generatedAt": "2026-08-03T16:50:08.749Z",
+      "sourceCommit": "c7ff145",
       "install": {
         "peerDeps": [],
         "cssImports": [

@@ -92,8 +92,8 @@
           }
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -554,8 +554,8 @@
           }
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -1007,8 +1007,8 @@
           }
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -1169,8 +1169,8 @@
           "usage": "import { ButtonGroup } from '@/components/atoms/ButtonGroup';\nimport { Button } from '@/components/atoms/Button';\n\n<ButtonGroup orientation=\"horizontal\">\n  <Button variant=\"secondary\">Cancel</Button>\n  <Button variant=\"primary\">Save</Button>\n</ButtonGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1272,8 +1272,8 @@
           "usage": "import { Input } from '@/components/atoms/Input';\nimport { Field } from '@/components/atoms/Field';\n\n<Field label=\"Email\" error=\"Required\">\n  <Input type=\"email\" error placeholder=\"you@company.com\" />\n</Field>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1418,8 +1418,8 @@
           "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1540,8 +1540,8 @@
           "usage": "import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/atoms/Select';\n\n<Select value={v} onValueChange={setV}>\n  <SelectTrigger>Choose</SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"a\">A</SelectItem>\n  </SelectContent>\n</Select>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1728,8 +1728,8 @@
           "usage": "import { Checkbox } from '@/components/atoms/Checkbox';\n\n<Checkbox checked={ok} onChange={setOk} label=\"I agree\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -1885,8 +1885,8 @@
           "usage": "import { Radio, RadioGroup } from '@/components/atoms/Radio';\n\n<RadioGroup value={v} onValueChange={setV}>\n  <Radio value=\"a\" label=\"A\" />\n  <Radio value=\"b\" label=\"B\" />\n</RadioGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2061,8 +2061,8 @@
           "usage": "import { Toggle } from '@/components/atoms/Toggle';\n\n<Toggle checked={on} onChange={setOn} label=\"Email alerts\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2207,9 +2207,38 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "required",
+              "type": "boolean",
+              "default": "false",
+              "what": "Marks the field as required in the label UI.",
+              "how": "true when the form blocks submit without this value; still validate in code. Default: false."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Disables label + child control affordances.",
+              "how": "true when the field is locked by plan; prefer explaining why nearby. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Pass htmlFor matching the control id, or wrap a single control so the label associates; put error text in error prop for aria-describedby patterns."
+            },
+            {
+              "context": "react",
+              "note": "Field does not render the input itself — children must be Input/Select/Textarea/etc."
+            }
+          ],
+          "usage": "import { Field } from '@/components/atoms/Field';\nimport { Input } from '@/components/atoms/Input';\n\n<Field label=\"Email\" htmlFor=\"email\" error={err} required>\n  <Input id=\"email\" type=\"email\" error={!!err} />\n</Field>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2297,8 +2326,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2524,8 +2553,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2622,9 +2651,71 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "type",
+              "type": "select",
+              "default": "image-border",
+              "options": [
+                "image",
+                "image-border",
+                "initials",
+                "icon"
+              ],
+              "what": "Content strategy for the avatar face.",
+              "how": "image-border for product UIs with photo; initials when photo missing; icon for bots. Default: image-border."
+            },
+            {
+              "prop": "shape",
+              "type": "select",
+              "default": "circle",
+              "options": [
+                "circle",
+                "square"
+              ],
+              "what": "Outer shape of the avatar.",
+              "how": "circle default for people; square for brands/workspaces. Default: circle."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "s",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l"
+              ],
+              "what": "Pixel scale of the avatar.",
+              "how": "s in lists; m in headers; l for profile heroes; xs in dense tables. Default: s."
+            },
+            {
+              "prop": "status",
+              "type": "boolean",
+              "default": "false",
+              "what": "Shows the presence/status pip.",
+              "how": "true only when presence is real-time and meaningful. Default: false."
+            },
+            {
+              "prop": "skeleton",
+              "type": "boolean",
+              "default": "false",
+              "what": "Loading placeholder surface.",
+              "how": "true while the image URL is resolving. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Provide alt for image type or aria-label for initials/icon so the person/entity is named."
+            }
+          ],
+          "usage": "import { Avatar } from '@/components/atoms/Avatar';\n\n<Avatar type=\"image-border\" size=\"m\" src=\"/u/a.jpg\" alt=\"Ada Lovelace\" status />"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2822,8 +2913,8 @@
           "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2969,8 +3060,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3047,9 +3138,36 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "default",
+              "options": [
+                "default",
+                "circle",
+                "text"
+              ],
+              "what": "Placeholder geometry.",
+              "how": "default for blocks/cards; circle for avatars; text for line stacks. Default: default."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Mark the loading region with aria-busy on the container; skeleton itself is decorative."
+            },
+            {
+              "context": "layout",
+              "note": "Size via className/width styles to match the real component footprint — avoid layout shift when content swaps in."
+            }
+          ],
+          "usage": "import { Skeleton } from '@/components/atoms/Skeleton';\n\n<div aria-busy=\"true\">\n  <Skeleton variant=\"circle\" className=\"w-10 h-10\" />\n  <Skeleton variant=\"text\" className=\"w-40\" />\n</div>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3119,8 +3237,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3249,8 +3367,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3344,8 +3462,8 @@
           "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3493,8 +3611,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3604,9 +3722,54 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "s",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l"
+              ],
+              "what": "Size applied to all children avatars.",
+              "how": "s in lists; m in page headers. Keep consistent with surrounding density. Default: s."
+            },
+            {
+              "prop": "shape",
+              "type": "select",
+              "default": "circle",
+              "options": [
+                "circle",
+                "square"
+              ],
+              "what": "Shape applied to children.",
+              "how": "Match Avatar shape in the same product surface. Default: circle."
+            },
+            {
+              "prop": "max",
+              "type": "number",
+              "min": 1,
+              "max": 12,
+              "step": 1,
+              "unit": "count",
+              "what": "Max faces before +N overflow.",
+              "how": "3–5 in cards; higher only when space is guaranteed."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Children must be Avatar components; max trims visually and should be reflected in accessible summary text (+N people)."
+            }
+          ],
+          "usage": "import { Avatar, AvatarGroup } from '@/components/atoms/Avatar';\n\n<AvatarGroup size=\"s\" max={3}>\n  <Avatar type=\"initials\" initials=\"AL\" alt=\"Ada\" />\n  <Avatar type=\"initials\" initials=\"GR\" alt=\"Grace\" />\n  <Avatar type=\"initials\" initials=\"KT\" alt=\"Katherine\" />\n  <Avatar type=\"initials\" initials=\"XX\" alt=\"Extra\" />\n</AvatarGroup>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3692,8 +3855,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3784,9 +3947,23 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "BurgerIcon is presentational only — place it inside IconButton or menu-button for hit target and aria-expanded on the control, not on the icon spans."
+            },
+            {
+              "context": "a11y",
+              "note": "The three lines are decorative; the parent control must expose the open/closed name (aria-label / aria-expanded)."
+            }
+          ],
+          "usage": "import { BurgerIcon } from '@/components/atoms/BurgerIcon';\nimport { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton aria-label=\"Open menu\" aria-expanded={open}>\n  <BurgerIcon />\n</IconButton>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": []
@@ -3849,8 +4026,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4060,8 +4237,8 @@
           "usage": "import { Chip } from '@/components/atoms/Chip';\n\n<Chip type=\"filled\" size=\"s\" onClose={() => {}}>\n  Design\n</Chip>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4365,9 +4542,35 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "autoHighlight",
+              "type": "boolean",
+              "what": "Whether the first option is highlighted as the user types.",
+              "how": "true for short lists (<20); false when accidental Enter would pick a wrong option.",
+              "default": "false"
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Compose Combobox + ComboboxInput + ComboboxContent/Item; controlled mode needs value/onValueChange and often open/onOpenChange."
+            },
+            {
+              "context": "ssr",
+              "note": "Portal content can mismatch on first paint in Next — mount the open list on the client."
+            },
+            {
+              "context": "a11y",
+              "note": "Pair with Field label; keep keyboard arrows/Enter/Escape working — do not replace the input with a non-textbox."
+            }
+          ],
+          "usage": "import { Combobox, ComboboxInput, ComboboxContent, ComboboxItem } from '@/components/molecules/Combobox';\n\n<Combobox value={v} onValueChange={setV}>\n  <ComboboxInput placeholder=\"Search country\" />\n  <ComboboxContent>\n    <ComboboxItem value=\"mx\">Mexico</ComboboxItem>\n    <ComboboxItem value=\"us\">United States</ComboboxItem>\n  </ComboboxContent>\n</Combobox>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4565,8 +4768,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4648,8 +4851,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4785,8 +4988,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4929,8 +5132,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5035,9 +5238,74 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "size",
+              "type": "select",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l",
+                "hero",
+                "full"
+              ],
+              "what": "Intrinsic display size of the image frame.",
+              "how": "m for cards; l/hero for marketing; full for edge-to-edge bands. Default: m."
+            },
+            {
+              "prop": "ratio",
+              "type": "select",
+              "options": [
+                "1x1",
+                "4x3",
+                "16x9",
+                "21x9"
+              ],
+              "what": "Aspect ratio lock for the frame before load.",
+              "how": "16x9 for video thumbs; 1x1 for avatars/product tiles; 21x9 only for cinematic heroes."
+            },
+            {
+              "prop": "fit",
+              "type": "select",
+              "options": [
+                "cover",
+                "contain"
+              ],
+              "what": "object-fit strategy inside the frame.",
+              "how": "cover for crops/heroes; contain when the whole asset must stay visible (logos, diagrams)."
+            },
+            {
+              "prop": "radius",
+              "type": "select",
+              "options": [
+                "none",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "full"
+              ],
+              "what": "Corner rounding of the image frame.",
+              "how": "md for cards; full only for circular crops; none for full-bleed media."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Always pass meaningful alt (or alt=\"\" only when purely decorative and adjacent text already names it)."
+            },
+            {
+              "context": "react",
+              "note": "Forwards native img attributes; do not nest interactive buttons inside without a separate control pattern."
+            }
+          ],
+          "usage": "import { Image } from '@/components/atoms/Image';\n\n<Image\n  src=\"/photos/hero.jpg\"\n  alt=\"Team workshop\"\n  size=\"l\"\n  ratio=\"16x9\"\n  fit=\"cover\"\n  radius=\"md\"\n/>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5179,8 +5447,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5294,8 +5562,8 @@
           ]
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -5387,8 +5655,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5507,8 +5775,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5630,8 +5898,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -5783,8 +6051,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5878,8 +6146,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6055,9 +6323,64 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "min",
+              "type": "number",
+              "default": "0",
+              "min": 0,
+              "max": 10000,
+              "step": 1,
+              "unit": "unit",
+              "what": "Lower bound of the range.",
+              "how": "0 for percentages; set to business min for money/quantity. Default: 0."
+            },
+            {
+              "prop": "max",
+              "type": "number",
+              "default": "100",
+              "min": 1,
+              "max": 10000,
+              "step": 1,
+              "unit": "unit",
+              "what": "Upper bound of the range.",
+              "how": "100 for %; match the product ceiling. Must be > min. Default: 100."
+            },
+            {
+              "prop": "step",
+              "type": "number",
+              "default": "1",
+              "min": 0.01,
+              "max": 1000,
+              "step": 0.01,
+              "unit": "unit",
+              "what": "Snap increment for keyboard and drag.",
+              "how": "1 for integers; 0.1/0.01 for fine controls. Default: 1."
+            },
+            {
+              "prop": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "what": "Blocks interaction.",
+              "how": "true when prerequisites are unmet. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Expose the value in text nearby or aria-valuetext; keep min/max/step consistent with the visible unit."
+            },
+            {
+              "context": "react",
+              "note": "Controlled: value + onValueChange; uncontrolled: defaultValue. Values are numbers (or number[] if multi-thumb patterns are used)."
+            }
+          ],
+          "usage": "import { Slider } from '@/components/atoms/Slider';\n\n<Slider min={0} max={100} step={5} value={volume} onValueChange={setVolume} />"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6150,8 +6473,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6266,9 +6589,23 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Stepper accepts orientation (horizontal|vertical) and steps: { state, title, description }[]. Keep exactly one step with state active."
+            },
+            {
+              "context": "a11y",
+              "note": "Titles must be unique and human-readable; do not rely on color alone to convey completed vs upcoming."
+            }
+          ],
+          "usage": "import { Stepper } from '@/components/atoms/Stepper';\n\n<Stepper\n  orientation=\"horizontal\"\n  steps={[\n    { state: 'completed', title: 'Account' },\n    { state: 'active', title: 'Plan' },\n    { state: 'upcoming', title: 'Pay' },\n  ]}\n/>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6453,8 +6790,8 @@
           "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6668,8 +7005,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6843,9 +7180,77 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "type",
+              "type": "select",
+              "default": "single",
+              "options": [
+                "single",
+                "multiple"
+              ],
+              "what": "Selection model: one value or many.",
+              "how": "single for segmented controls; multiple for multi-filter toolbars. Default: single."
+            },
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "default",
+              "options": [
+                "default",
+                "outline"
+              ],
+              "what": "Surface style of the group.",
+              "how": "default for primary toolbars; outline on busy backgrounds. Default: default."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "m",
+              "options": [
+                "xs",
+                "s",
+                "m",
+                "l"
+              ],
+              "what": "Hit target scale for items.",
+              "how": "m default; xs/s for dense filters; l for marketing toggles. Default: m."
+            },
+            {
+              "prop": "orientation",
+              "type": "select",
+              "default": "horizontal",
+              "options": [
+                "horizontal",
+                "vertical"
+              ],
+              "what": "Layout axis of items.",
+              "how": "horizontal almost always; vertical only in narrow side rails. Default: horizontal."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": "false",
+              "what": "Motion on selection change.",
+              "how": "true for marketing; false in data-dense admin. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Controlled mode needs value + onValueChange; type=single stores one string, multiple stores string[]."
+            },
+            {
+              "context": "a11y",
+              "note": "Each ToggleGroupItem needs a visible label or aria-label; group should sit in a labelled fieldset when used as a form control."
+            }
+          ],
+          "usage": "import { ToggleGroup, ToggleGroupItem } from '@/components/atoms/ToggleGroup';\n\n<ToggleGroup type=\"single\" value={view} onValueChange={setView} size=\"m\">\n  <ToggleGroupItem value=\"list\">List</ToggleGroupItem>\n  <ToggleGroupItem value=\"grid\">Grid</ToggleGroupItem>\n</ToggleGroup>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7025,9 +7430,23 @@
       ],
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Import named levels (TypographyH1…TypographyP), not a single polymorphic Typography root — each maps to a semantic HTML heading/paragraph class."
+            },
+            {
+              "context": "css-modules",
+              "note": "Heading classes (.h1, .h2, …) are global BEM from the design system CSS — import the published stylesheet globally."
+            }
+          ],
+          "usage": "import { TypographyH1, TypographyP } from '@/components/atoms/Typography';\n\n<TypographyH1>Ship faster with ATOM</TypographyH1>\n<TypographyP>Design-system components for product teams.</TypographyP>"
+        },
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": []
@@ -7066,8 +7485,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7175,8 +7594,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
@@ -7389,8 +7808,8 @@
       "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
       "meta": {
         "derived": {
-          "generatedAt": "2026-08-03T04:59:37.770Z",
-          "sourceCommit": "2fa6b41",
+          "generatedAt": "2026-08-03T16:50:08.749Z",
+          "sourceCommit": "c7ff145",
           "install": {
             "peerDeps": [
               "gsap"
