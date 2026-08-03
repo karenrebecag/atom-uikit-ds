@@ -238,20 +238,38 @@ pertenece al organismo y no se puede repartir entre átomos.
 
 Documenta la excepción en el módulo con un comentario que diga POR QUÉ, no qué.
 
-### D4. Donde se valida cada cosa (behaviors GSAP)
+### D4. El estandar de stories (Button es el canonico) y donde se valida cada cosa
 
-La story de un behavior GSAP corre en **modo instantaneo** (Storybook no carga
-GSAP; el camino sin-motion del behavior es DOM directo). Eso valida contrato,
-anatomia, disclosure y snapshot — **no** valida el motion. La coreografia real
-solo se ve donde hay GSAP de verdad:
+Desde 2026-08-03 `preview.ts` carga **GSAP real** (+CustomEase +SplitText) y lo
+expone en `globalThis`: las stories muestran el motion VERDADERO. Toda story
+sigue el patron de `Button.stories.tsx`:
+
+1. **Toggle de animacion** (on/off) que ejecuta el `init*` REAL del behavior —
+   off emite `data-motion-exempt` (o `animated={false}`), nunca un stub.
+2. **Controles por variante/tamano/estado** con Tabs/Toggle del DS dentro de
+   `StoryPreviewLayout` — si el componente tiene variants, la story las expone.
+3. **Theme: NO lo toques.** El decorator global de `preview.ts` pone
+   `data-theme` y la docu lo sincroniza via `&globals=theme:X` en el iframe.
+   Una story que fija colores o tema rompe el visor.
+4. Re-init en cada cambio de control (remount por `key` o useEffect con deps):
+   cambiar un control es tambien el "replay" de la entrada.
+
+**Por que los snapshots siguen deterministas con GSAP cargado**: el
+test-runner emula `prefers-reduced-motion` (test-runner.ts) y TODOS los
+behaviors degradan a su camino instantaneo — contrato verificado en
+`animations-motion-contract`. Un behavior nuevo que no respete reduced-motion
+rompe este estandar ademas de la a11y.
 
 | Que | Donde se valida |
 |---|---|
 | contrato data-*, aria, teclado, estados | tests de `animations-motion-contract` |
-| anatomia + estatico (ambos temas) | story + regresion visual |
-| la animacion real (goo, spring, reveal) | **E2E en ds-lab**: paste desde la docu + staging |
+| anatomia + estatico (ambos temas) | regresion visual (reduced-motion ⇒ determinista) |
+| la coreografia, a ojo | la story misma — motion real |
+| el CANAL completo (paste, prefijo ds-, CDN) | **E2E en ds-lab**: paste desde la docu + staging |
 
-No reportes "la animacion funciona" desde la story: ahi no existe.
+La story ya muestra el motion, pero NO sustituye el E2E: el bug del prefijo
+`ds-` (clases muertas en el paste) era invisible en Storybook y letal en
+Webflow.
 
 ### D5. Adaptar de fuente externa: el mapeo cercano tiene dos trampas
 

@@ -2,65 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useRef, useState } from 'react';
 import { initScrollReveal } from '../../../../packages/animations/src/scroll-reveal';
 import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
-import { StoryPreviewLayout, sectionLabelRow } from '../utils/StoryPreviewLayout';
-import { IconActivity } from '../utils/SectionIcons';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { Button } from '../../../../packages/components-react/src/atoms/Button';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel } from '../utils/StoryPreviewLayout';
+import { IconActivity, IconSettings } from '../utils/SectionIcons';
 
 /**
- * La story ejecuta el behavior REAL (W6a): si `initScrollReveal` deja de
- * encontrar su contrato de data-attrs, esta story lo delata.
+ * Estandar de stories (Button es el canonico): behavior REAL con el GSAP que
+ * carga preview.ts, toggle de animacion, theme desde el visor.
  *
- * GSAP e IntersectionObserver se sustituyen por dobles, como en ArticleToc:
- * en Storybook no hay GSAP y el baseline visual necesita ser determinista (un
- * observer real depende del scroll). El doble de IO dispara la entrada de
- * forma sincrona y el de gsap registra el tween sin mover pixeles — el readout
- * bajo las cards muestra duracion/stagger/ease que el behavior resolvio desde
- * los tokens, que es el contrato que importa.
+ * El remount (key) re-dispara la entrada: cambiar cualquier control es tambien
+ * el boton de "replay". Baselines estables: el test-runner emula
+ * prefers-reduced-motion y el behavior muestra el contenido al instante.
  */
-
-interface TweenCall {
-  targets: number;
-  duration: number;
-  stagger: number;
-  ease: string;
-}
-
-function installDoubles(onTween: (call: TweenCall) => void): () => void {
-  const host = globalThis as typeof globalThis & {
-    gsap?: unknown;
-    IntersectionObserver?: unknown;
-  };
-  const previous = { gsap: host.gsap, io: host.IntersectionObserver };
-
-  host.gsap = {
-    set: () => {},
-    to: (targets: Element[], vars: Record<string, unknown>) => {
-      onTween({
-        targets: Array.isArray(targets) ? targets.length : 1,
-        duration: Number(vars.duration ?? 0),
-        stagger: Number(vars.stagger ?? 0),
-        ease: String(vars.ease ?? ''),
-      });
-      return { kill: () => {} };
-    },
-  };
-
-  // Entrega sincrona: el snapshot captura SIEMPRE el estado post-reveal.
-  host.IntersectionObserver = class {
-    private cb: (entries: Array<{ isIntersecting: boolean }>) => void;
-    constructor(cb: (entries: Array<{ isIntersecting: boolean }>) => void) {
-      this.cb = cb;
-    }
-    observe() {
-      this.cb([{ isIntersecting: true }]);
-    }
-    disconnect() {}
-  };
-
-  return () => {
-    host.gsap = previous.gsap;
-    host.IntersectionObserver = previous.io;
-  };
-}
 
 const card: React.CSSProperties = {
   padding: 'var(--spacing-6, 24px)',
@@ -82,27 +36,22 @@ const cardBody: React.CSSProperties = {
   color: 'var(--muted-foreground)',
 };
 
-function RevealDemo({ stagger }: { stagger: '1' | '2' | '3' }) {
+function RevealDemo({ stagger, animated }: { stagger: '1' | '2' | '3'; animated: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [tween, setTween] = useState<TweenCall | null>(null);
 
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
-
-    const restore = installDoubles(setTween);
     const cleanup = initScrollReveal({ scope: root });
-    return () => {
-      cleanup();
-      restore();
-    };
-  }, [stagger]);
+    return cleanup;
+  }, [stagger, animated]);
 
   return (
     <div ref={ref} style={{ width: '100%', maxWidth: 520 }}>
       <section
         data-reveal
         data-reveal-stagger={stagger}
+        data-motion-exempt={animated ? undefined : ''}
         aria-label="Reveal demo"
         style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3, 12px)' }}
       >
@@ -115,18 +64,6 @@ function RevealDemo({ stagger }: { stagger: '1' | '2' | '3' }) {
           </div>
         ))}
       </section>
-      <p
-        style={{
-          marginTop: 'var(--spacing-4, 16px)',
-          fontFamily: 'var(--font-family-mono, monospace)',
-          fontSize: '11px',
-          color: 'var(--muted-foreground)',
-        }}
-      >
-        {tween
-          ? `gsap.to → ${tween.targets} targets · duration ${tween.duration}s · stagger ${tween.stagger}s · ease ${tween.ease}`
-          : 'behavior sin disparar'}
-      </p>
     </div>
   );
 }
@@ -141,24 +78,40 @@ type Story = StoryObj;
 export const Default: Story = {
   render: function Render() {
     const [stagger, setStagger] = useState<'1' | '2' | '3'>('2');
+    const [animated, setAnimated] = useState(true);
+    const [replay, setReplay] = useState(0);
 
     return (
       <StoryPreviewLayout
         minHeight={360}
         controls={
-          <div>
-            <div style={sectionLabelRow}><IconActivity />Stagger token</div>
-            <Tabs value={stagger} onValueChange={(v) => setStagger(v as '1' | '2' | '3')}>
-              <TabsList animated>
-                <TabsTrigger value="1">--stagger-1</TabsTrigger>
-                <TabsTrigger value="2">--stagger-2</TabsTrigger>
-                <TabsTrigger value="3">--stagger-3</TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </div>
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconActivity />Stagger token</div>
+              <Tabs value={stagger} onValueChange={(v) => setStagger(v as '1' | '2' | '3')}>
+                <TabsList animated>
+                  <TabsTrigger value="1">--stagger-1</TabsTrigger>
+                  <TabsTrigger value="2">--stagger-2</TabsTrigger>
+                  <TabsTrigger value="3">--stagger-3</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+              <div style={switchRow}>
+                <span style={switchLabel}>Animado</span>
+                <Toggle animated checked={animated} onChange={setAnimated} />
+              </div>
+              <div style={{ marginTop: 'var(--spacing-2, 8px)' }}>
+                <Button variant="secondary" size="s" onClick={() => setReplay((n) => n + 1)}>
+                  Replay
+                </Button>
+              </div>
+            </div>
+          </>
         }
       >
-        <RevealDemo key={stagger} stagger={stagger} />
+        <RevealDemo key={`${stagger}-${animated}-${replay}`} stagger={stagger} animated={animated} />
       </StoryPreviewLayout>
     );
   },

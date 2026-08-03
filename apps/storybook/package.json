@@ -19,6 +19,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "concurrently": "9",
+    "gsap": "^3.12.0",
     "http-server": "14",
     "jest-image-snapshot": "6",
     "react": "^19.0.0",
