@@ -11,22 +11,22 @@
     {
       "id": "F16-C2",
       "status": "pass-local",
-      "evidence": "Lotes from board queue. Agent-1..3 done. Editorial-1..2 done. Editorial-3: dropdown-menu, nav-link, pagination, sidebar, tabs, alert-dialog, dialog, drawer, marquee, progress-nav, sheet, stats-card."
+      "evidence": "Lotes from board queue. Agent-1..3 done. Editorial-1..4 done. Editorial-4: toast, user-profile, video-player, calendar, table, accordion, divider, empty, item, resizable."
     },
     {
       "id": "F16-C3",
       "status": "pass-local",
-      "evidence": "After lote meta-agent-3 (Karen signed): meta.agent full 49/49 eligible (100%). Closes F10-C4 threshold (≥90%)."
+      "evidence": "meta.agent full 49/49 eligible (100%). Closes F10-C4 threshold (≥90%)."
     },
     {
       "id": "F16-C4",
-      "status": "in_progress",
-      "evidence": "After editorial-3 (Karen signed): 39/49 eligible (79.6%). Need ≥90% — one lote left (editorial-4, 10 slugs)."
+      "status": "pass-local",
+      "evidence": "After editorial-4 (Karen signed): editorial 49/49 eligible (100%). Format seed F12c; zero token tables. Closes F12-C8 threshold (≥90%)."
     },
     {
       "id": "F16-C5",
       "status": "pass-local",
-      "evidence": "approved-by-karen: agent-1..3; editorial-1..2; editorial-3 (2026-08-03 'vamos. dale') — navigation/surfaces. Local commits; push when asked."
+      "evidence": "approved-by-karen: agent-1..3; editorial-1..4 (last 'dale' 2026-08-03). Local commits; push when asked."
     },
     {
       "id": "F16-C6",
@@ -36,8 +36,8 @@
   ],
   "verdict": "in_progress",
   "blocking": [
-    "F16c editorial batches 2–4 to ≥90%",
-    "CI green link for F16d + C6-negative sim"
+    "CI green link for F16d after push",
+    "C6-negative sim: branch with deleted manifest → red"
   ],
   "notes": [
     "Eligible agent surface = kind component + hasReact derived from published files (49).",
