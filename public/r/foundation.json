@@ -46,8 +46,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -56,19 +56,39 @@
         ]
       },
       "anatomy": {
-        "bem": "<div class=\"foundation\">\n\n</div>",
-        "classes": []
+        "bem": "<div class=\"code-inline\">\n\n</div>",
+        "classes": [
+          {
+            "class": "code-inline",
+            "purpose": "root"
+          }
+        ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "2px",
+            "tokenPath": "stroke.medium"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Typography — OSMO/academy language\n\n   Type scale lives in token CSS custom properties (packages/tokens).\n   Fluid sizing is handled by scaling.css via root --size-font; rem values\n   scale proportionally.\n\n   Families:\n     --font-family-sans     Inter Tight (UI / headings)\n     --font-family-display  Grift (hero / display)\n     --font-family-mono     Interval\n     --font-family-scribble Gantol\n   ------------------------------------------------------------------------- */\n\nbody {\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  font-size: var(--size-font);\n  font-weight: 400;\n  line-height: 1.5;\n  color: #0a0a0a;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/* --- Display (Grift) --- */\n\n.display,\n.display-xl {\n  font-family: 'Grift', 'Inter Tight', Georgia, serif;\n  font-size: 76.29px;\n  line-height: 1.05;\n  font-weight: 400;\n  letter-spacing: -0.03em;\n  letter-spacing: -0.02em;\n}\n\n.display-lg {\n  font-family: 'Grift', 'Inter Tight', Georgia, serif;\n  font-size: 61.04px;\n  line-height: 1.1;\n  font-weight: 400;\n  letter-spacing: -0.03em;\n  letter-spacing: -0.02em;\n}\n\n/* --- Headings (Inter Tight / sans) --- */\n\n.h1,\n.h2 {\n  /* Grift: la voz de la marca vive en los titulos mayores. h3-h6 quedan en\n     sans porque son estructura densa, donde la legibilidad manda. */\n  font-family: 'Grift', 'Inter Tight', Georgia, serif;\n  letter-spacing: -0.02em;\n}\n\n.h3,\n.h4,\n.h5,\n.h6 {\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  letter-spacing: -0.01em;\n}\n\n.h1 {\n  font-size: 48.83px;\n  line-height: 1.15;\n  font-weight: 700;\n}\n\n.h2 {\n  font-size: 39.06px;\n  line-height: 1.2;\n  font-weight: 600;\n}\n\n.h3 {\n  font-size: 31.25px;\n  line-height: 1.25;\n  font-weight: 600;\n  letter-spacing: 0em;\n}\n\n.h4 {\n  font-size: 25px;\n  line-height: 1.3;\n  font-weight: 500;\n  letter-spacing: 0em;\n}\n\n.h5 {\n  font-size: 20px;\n  line-height: 1.45;\n  font-weight: 500;\n  letter-spacing: 0em;\n}\n\n.h6 {\n  font-size: 16px;\n  line-height: 1.5;\n  font-weight: 600;\n  letter-spacing: 0em;\n}\n\n/* --- Body --- */\n\n.body-lg {\n  font-size: 20px;\n  line-height: 1.45;\n}\n\n.body {\n  font-size: 16px;\n  line-height: 1.5;\n}\n\n.body-sm {\n  font-size: 12.8px;\n  line-height: 1.45;\n}\n\n/* --- Small text --- */\n\n.caption {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n.label {\n  font-size: 10.24px;\n  line-height: 1.4;\n  font-weight: 500;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n}\n\n/* --- Family utilities --- */\n\n.mono {\n  font-family: 'Interval', ui-monospace, 'Cascadia Code', monospace;\n}\n\n.scribble {\n  font-family: 'Gantol', 'Brush Script MT', cursive;\n}\n\n/* --- Semantic variants --- */\n\n.lead {\n  font-size: 20px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n.large {\n  font-size: 20px;\n  line-height: 1.45;\n  font-weight: 600;\n}\n\n.small {\n  font-size: 12.8px;\n  line-height: 1;\n  font-weight: 500;\n}\n\n.muted {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n/* --- Blockquote --- */\n\n.blockquote {\n  border-left: 2px solid #e5e5e5;\n  padding-left: 24px;\n  font-style: italic;\n  color: #0a0a0a;\n}\n\n/* --- List --- */\n\n.list {\n  list-style-type: disc;\n  margin-left: 24px;\n  font-size: 16px;\n  line-height: 1.5;\n}\n\n.list > li + li {\n  margin-top: 8px;\n}\n\n/* --- Code --- */\n\n.code {\n  font-family: 'Interval', ui-monospace, 'Cascadia Code', monospace;\n  font-size: 0.875em;\n}\n\n.code-inline {\n  font-family: 'Interval', ui-monospace, 'Cascadia Code', monospace;\n  font-size: 0.875em;\n  font-weight: 600;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 0.2em 0.4em;\n}\n\n/* Eyebrow / overline — etiqueta tecnica de seccion (patron OSMO) */\n.eyebrow {\n  font-family: 'Interval', ui-monospace, 'Cascadia Code', monospace;\n  font-size: 10.24px;\n  font-weight: 400;\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Typography — OSMO/academy language\n\n   Type scale lives in token CSS custom properties (packages/tokens).\n   Fluid sizing is handled by scaling.css via root --size-font; rem values\n   scale proportionally.\n\n   Families:\n     --font-family-sans     Inter Tight (UI / headings)\n     --font-family-display  Grift (hero / display)\n     --font-family-mono     Interval\n     --font-family-scribble Gantol\n   ------------------------------------------------------------------------- */\n\nbody {\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: var(--size-font);\n  font-weight: 400;\n  line-height: 1.5;\n  color: #0a0a0a;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/* --- Display (Grift) --- */\n\n.display,\n.display-xl {\n  font-family: 'grift', 'inter tight', georgia, serif;\n  font-size: 76.29px;\n  line-height: 1.05;\n  font-weight: 400;\n  letter-spacing: -0.03em;\n  letter-spacing: -0.02em;\n}\n\n.display-lg {\n  font-family: 'grift', 'inter tight', georgia, serif;\n  font-size: 61.04px;\n  line-height: 1.1;\n  font-weight: 400;\n  letter-spacing: -0.03em;\n  letter-spacing: -0.02em;\n}\n\n/* --- Headings (Inter Tight / sans) --- */\n\n.h1,\n.h2 {\n  /* Grift: la voz de la marca vive en los titulos mayores. h3-h6 quedan en\n     sans porque son estructura densa, donde la legibilidad manda. */\n  font-family: 'grift', 'inter tight', georgia, serif;\n  letter-spacing: -0.02em;\n}\n\n.h3,\n.h4,\n.h5,\n.h6 {\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  letter-spacing: -0.01em;\n}\n\n.h1 {\n  font-size: 48.83px;\n  line-height: 1.15;\n  font-weight: 700;\n}\n\n.h2 {\n  font-size: 39.06px;\n  line-height: 1.2;\n  font-weight: 600;\n}\n\n.h3 {\n  font-size: 31.25px;\n  line-height: 1.25;\n  font-weight: 600;\n  letter-spacing: 0em;\n}\n\n.h4 {\n  font-size: 25px;\n  line-height: 1.3;\n  font-weight: 500;\n  letter-spacing: 0em;\n}\n\n.h5 {\n  font-size: 20px;\n  line-height: 1.45;\n  font-weight: 500;\n  letter-spacing: 0em;\n}\n\n.h6 {\n  font-size: 16px;\n  line-height: 1.5;\n  font-weight: 600;\n  letter-spacing: 0em;\n}\n\n/* --- Body --- */\n\n.body-lg {\n  font-size: 20px;\n  line-height: 1.45;\n}\n\n.body {\n  font-size: 16px;\n  line-height: 1.5;\n}\n\n.body-sm {\n  font-size: 12.8px;\n  line-height: 1.45;\n}\n\n/* --- Small text --- */\n\n.caption {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n.label {\n  font-size: 10.24px;\n  line-height: 1.4;\n  font-weight: 500;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n}\n\n/* --- Family utilities --- */\n\n.mono {\n  font-family: 'interval', ui-monospace, 'cascadia code', monospace;\n}\n\n.scribble {\n  font-family: 'gantol', 'brush script mt', cursive;\n}\n\n/* --- Semantic variants --- */\n\n.lead {\n  font-size: 20px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n.large {\n  font-size: 20px;\n  line-height: 1.45;\n  font-weight: 600;\n}\n\n.small {\n  font-size: 12.8px;\n  line-height: 1;\n  font-weight: 500;\n}\n\n.muted {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n/* --- Blockquote --- */\n\n.blockquote {\n  border-left: 2px solid #e5e5e5;\n  padding-left: 24px;\n  font-style: italic;\n  color: #0a0a0a;\n}\n\n/* --- List --- */\n\n.list {\n  list-style-type: disc;\n  margin-left: 24px;\n  font-size: 16px;\n  line-height: 1.5;\n}\n\n.list > li + li {\n  margin-top: 8px;\n}\n\n/* --- Code --- */\n\n.code {\n  font-family: 'interval', ui-monospace, 'cascadia code', monospace;\n  font-size: 0.875em;\n}\n\n.code-inline {\n  font-family: 'interval', ui-monospace, 'cascadia code', monospace;\n  font-size: 0.875em;\n  font-weight: 600;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 0.2em 0.4em;\n}\n\n/* Eyebrow / overline — etiqueta tecnica de seccion (patron OSMO) */\n.eyebrow {\n  font-family: 'interval', ui-monospace, 'cascadia code', monospace;\n  font-size: 10.24px;\n  font-weight: 400;\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n}\n",
+      "motion": []
     }
   }
 }

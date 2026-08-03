@@ -36,25 +36,48 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": []
       },
       "anatomy": {
-        "bem": "<div class=\"burgerIcon\">\n\n</div>",
-        "classes": []
+        "bem": "<div class=\"burger-icon\">\n  <span class=\"burger-icon__line\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "burger-icon",
+            "purpose": "root"
+          },
+          {
+            "class": "burger-icon__line",
+            "purpose": "element"
+          }
+        ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "currentColor",
+            "tokenPath": "(literal)"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "export function BurgerIcon() {\n  return (\n    <span className=\"burger-icon\">\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n    </span>\n  );\n}\n",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Burger Icon\n\n   Three-line icon for use inside IconButton.\n   CSS transition burger ↔ X. GSAP opt-in via [data-menu-button-animate].\n\n   States: [data-menu-button=\"burger\"] (default), [data-menu-button=\"close\"]\n   Parts:  .burger-icon, .burger-icon__line\n   ------------------------------------------------------------------------- */\n\n/* ---- Icon container ---- */\n\n.burger-icon {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.1875em;\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Lines ---- */\n\n.burger-icon__line {\n  width: 1.25em;\n  height: 0.125em;\n  background-color: currentColor;\n  border-radius: 9999px;\n  transform-origin: center;\n  transition:\n    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),\n    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n/* ---- CSS-only X state ---- */\n\n[data-menu-button=\"close\"] .burger-icon__line:nth-child(1) {\n  transform: translateY(0.3125em) rotate(135deg);\n}\n\n[data-menu-button=\"close\"] .burger-icon__line:nth-child(2) {\n  opacity: 0;\n  transform: scaleX(0);\n}\n\n[data-menu-button=\"close\"] .burger-icon__line:nth-child(3) {\n  transform: translateY(-0.3125em) rotate(-135deg);\n}\n\n/* ---- GSAP mode: disable CSS transitions ---- */\n\n[data-menu-button-animate] .burger-icon__line {\n  transition: none;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .burger-icon__line {\n    transition-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "transform",
+          "duration": "var(--duration-300)",
+          "easing": "var(--easing-in-out)"
+        },
+        {
+          "property": "opacity",
+          "duration": "var(--duration-200)",
+          "easing": "var(--easing-in-out)"
+        }
       ]
     }
   }

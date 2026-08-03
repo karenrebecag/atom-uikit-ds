@@ -71,8 +71,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [
           "gsap"
@@ -83,75 +83,104 @@
         ]
       },
       "anatomy": {
-        "bem": "<div class=\"sidebar\">\n  <span class=\"sidebar__content\"></span>\n  <span class=\"sidebar__divider\"></span>\n  <span class=\"sidebar__footer\"></span>\n  <span class=\"sidebar__group\"></span>\n  <span class=\"sidebar__group-label\"></span>\n  <span class=\"sidebar__header\"></span>\n  <span class=\"sidebar__item\"></span>\n  <span class=\"sidebar__item--active\"></span>\n  <span class=\"sidebar__item--disabled\"></span>\n  <span class=\"sidebar__item-badge\"></span>\n  <span class=\"sidebar__item-icon\"></span>\n  <span class=\"sidebar__item-label\"></span>\n  <span class=\"sidebar__trigger\"></span>\n</div>",
+        "bem": "<div class=\"sidebar-collapsible\">\n  <span class=\"sidebar-collapsible__chevron\"></span>\n  <span class=\"sidebar-collapsible__content\"></span>\n  <span class=\"sidebar-collapsible__inner\"></span>\n  <span class=\"sidebar-collapsible__label\"></span>\n  <span class=\"sidebar-collapsible__trigger\"></span>\n</div>",
         "classes": [
           {
-            "class": "sidebar",
+            "class": "sidebar-collapsible",
             "purpose": "root"
           },
           {
-            "class": "sidebar--collapsed",
+            "class": "sidebar-collapsible--open",
             "purpose": "modifier"
           },
           {
-            "class": "sidebar__content",
+            "class": "sidebar-collapsible__chevron",
             "purpose": "element"
           },
           {
-            "class": "sidebar__divider",
+            "class": "sidebar-collapsible__content",
             "purpose": "element"
           },
           {
-            "class": "sidebar__footer",
+            "class": "sidebar-collapsible__inner",
             "purpose": "element"
           },
           {
-            "class": "sidebar__group",
+            "class": "sidebar-collapsible__label",
             "purpose": "element"
           },
           {
-            "class": "sidebar__group-label",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__header",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__item",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__item--active",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__item--disabled",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__item-badge",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__item-icon",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__item-label",
-            "purpose": "element"
-          },
-          {
-            "class": "sidebar__trigger",
+            "class": "sidebar-collapsible__trigger",
             "purpose": "element"
           }
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "collapsed",
+            "prop": "bg",
+            "hex": "#fafafa",
+            "tokenPath": "background"
+          },
+          {
+            "variant": "collapsed",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "collapsed",
+            "prop": "hover-bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "collapsed",
+            "prop": "hover-fg",
+            "hex": "#525252",
+            "tokenPath": "placeholder"
+          },
+          {
+            "variant": "collapsed",
+            "prop": "border",
+            "hex": "#e5e5e5",
+            "tokenPath": "border"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Sidebar\n\n   Composable: Provider (state) + Container + Header/Content/Footer\n   Collapse: .sidebar--collapsed toggles layout via CSS\n   Labels: [data-sidebar-label] hidden in collapsed via display:none\n   Tooltips: [data-tooltip] from tooltip.css, overridden to right/light\n   Animations: scale on hover, icon rotation in collapsed\n\n   240px expanded, 48px collapsed. Semantic tokens for colors.\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.sidebar {\n  --sidebar-w: 240px;\n  --sidebar-w-collapsed: 48px;\n\n  display: flex;\n  flex-direction: column;\n  width: var(--sidebar-w);\n  height: 100%;\n  min-height: 100%;\n  background: #f5f5f5;\n  border-right: 1px solid #efefef;\n  flex-shrink: 0;\n  transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.sidebar--collapsed { width: var(--sidebar-w-collapsed); }\n\n/* ---- Sections ---- */\n\n.sidebar__header {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  padding: 16px 12px;\n  flex-shrink: 0;\n}\n\n.sidebar__content {\n  flex: 1;\n  overflow-y: auto;\n  padding: 8px;\n}\n\n.sidebar__footer {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 12px;\n  flex-shrink: 0;\n  margin-top: auto;\n  border-top: 1px solid #efefef;\n}\n\n.sidebar__divider {\n  border: none;\n  border-top: 1px solid #e5e5e5;\n  margin: 8px 0;\n}\n\n/* Collapsed sections */\n.sidebar--collapsed .sidebar__header { flex-direction: column; gap: 8px; padding: 8px; align-items: center; }\n.sidebar--collapsed .sidebar__content { overflow: visible; padding: 4px; }\n.sidebar__footer .dropdown-menu { width: 100%; }\n.sidebar__footer .dropdown-menu__trigger { width: 100%; }\n.sidebar__footer .dropdown-menu__content { width: 100%; }\n\n.sidebar--collapsed .sidebar__footer { padding: 8px; justify-content: center; }\n\n/* ---- Labels: hide in collapsed ---- */\n\n.sidebar--collapsed [data-sidebar-label] { display: none; }\n\n/* ---- Group ---- */\n\n.sidebar__group { display: flex; flex-direction: column; gap: 2px; }\n.sidebar__group + .sidebar__group { margin-top: 24px; }\n\n.sidebar__group-label {\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 10.24px;\n  font-weight: 500;\n  color: #525252;\n  padding: 4px 8px;\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.sidebar--collapsed .sidebar__group-label { display: none; }\n\n/* ---- Item ---- */\n\n.sidebar__item {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 0 8px;\n  height: 36px;\n  border-radius: 6px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  color: #0a0a0a;\n  text-decoration: none;\n  cursor: pointer;\n  user-select: none;\n  white-space: nowrap;\n  transition:\n    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),\n    color 0.15s cubic-bezier(0.19, 1, 0.22, 1),\n    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);\n}\n\n.sidebar__item:hover { background: #f5f5f5; color: #525252; }\n.sidebar__item:active:not(.sidebar__item--disabled) { scale: 0.955 0.925; }\n.sidebar__item--active { background: #fff4ed; color: #a44200; }\n.sidebar__item--disabled { color: #525252; cursor: not-allowed; pointer-events: none; }\n\n/* Item parts */\n.sidebar__item-icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 18px; height: 18px; transition: rotate 0.5s cubic-bezier(0.19, 1, 0.22, 1); }\n.sidebar__item-icon svg { width: 100%; height: 100%; }\n.sidebar__item-label { flex: 1; overflow: hidden; text-overflow: ellipsis; }\n.sidebar__item-badge { font-size: 10.24px; font-weight: 500; color: #525252; flex-shrink: 0; }\n\n/* Collapsed items: icon-only, centered */\n.sidebar--collapsed .sidebar__item { justify-content: center; padding: 0; width: 32px; height: 32px; margin: 0 auto; }\n.sidebar--collapsed .sidebar__item-label,\n.sidebar--collapsed .sidebar__item-badge { display: none; }\n\n/* ---- Hover animations ---- */\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  /* Expanded: subtle Button-style grow */\n  .sidebar:not(.sidebar--collapsed) .sidebar__item:hover:not(.sidebar__item--disabled):not(.sidebar__item--active) {\n    scale: 1.03 1.05;\n  }\n  /* Collapsed: IconButton-style scale + icon spin */\n  .sidebar--collapsed .sidebar__item:hover:not(.sidebar__item--disabled):not(.sidebar__item--active) {\n    scale: 1.095;\n  }\n  .sidebar--collapsed .sidebar__item:hover .sidebar__item-icon {\n    rotate: 360deg;\n    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);\n  }\n}\n\n/* ---- Trigger ---- */\n\n.sidebar__trigger {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 24px;\n  height: 24px;\n  padding: 4px;\n  border: none;\n  background: #f5f5f5;\n  color: #525252;\n  cursor: pointer;\n  border-radius: 4px;\n  flex-shrink: 0;\n  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;\n}\n\n.sidebar__trigger:hover { background: #e5e5e5; color: #0a0a0a; }\n.sidebar__trigger svg { width: 16px; height: 16px; }\n\n.sidebar--collapsed .sidebar__trigger { background: #f5f5f5; color: #525252; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }\n.sidebar--collapsed .sidebar__trigger:hover { background: #f5f5f5; color: #525252; }\n\n/* ---- Tooltips (collapsed only) ---- */\n\n.sidebar:not(.sidebar--collapsed) [data-tooltip]::before,\n.sidebar:not(.sidebar--collapsed) [data-tooltip]::after { display: none !important; }\n\n.sidebar--collapsed [data-tooltip]::before {\n  bottom: auto !important; top: 50% !important;\n  left: calc(100% + 10px) !important; right: auto !important;\n  transform: translateY(-50%) translateX(-4px) !important;\n  background: #fafafa !important; color: #0a0a0a !important;\n  border: 1px solid #e5e5e5 !important;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1) !important;\n}\n.sidebar--collapsed [data-tooltip]:hover::before { transform: translateY(-50%) translateX(0) !important; }\n\n.sidebar--collapsed [data-tooltip]::after {\n  bottom: auto !important; top: 50% !important;\n  left: calc(100% + 7px) !important; right: auto !important;\n  transform: translateY(-50%) rotate(225deg) !important;\n  background: #fafafa !important;\n  border: 1px solid #e5e5e5 !important;\n  border-top: none !important; border-left: none !important;\n}\n\n/* ---- Collapsible ---- */\n\n.sidebar-collapsible__trigger {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 0 8px;\n  height: 36px;\n  width: 100%;\n  border: none;\n  background: none;\n  border-radius: 6px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  color: #0a0a0a;\n  cursor: pointer;\n  user-select: none;\n  text-align: left;\n  white-space: nowrap;\n  transition: background-color 0.15s ease, color 0.15s ease;\n}\n\n.sidebar-collapsible__trigger:hover { background: #f5f5f5; }\n.sidebar-collapsible__label { flex: 1; overflow: hidden; text-overflow: ellipsis; }\n.sidebar-collapsible__chevron { display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #525252; transition: transform 0.2s ease; }\n\n.sidebar-collapsible--open .sidebar-collapsible__chevron { transform: rotate(0deg); }\n.sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__chevron { transform: rotate(-90deg); }\n\n/* Collapsible content: animated height */\n.sidebar-collapsible__content { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 0.25s cubic-bezier(0.19, 1, 0.22, 1); }\n.sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__content { grid-template-rows: 0fr; }\n.sidebar-collapsible__inner { overflow: hidden; min-height: 0; display: flex; flex-direction: column; gap: 2px; }\n.sidebar-collapsible__inner .sidebar__item { padding-left: 34px; }\n\n/* Collapsed: collapsible becomes icon-only */\n.sidebar--collapsed .sidebar-collapsible__trigger { justify-content: center; padding: 0; width: 32px; height: 32px; margin: 0 auto; }\n.sidebar--collapsed .sidebar-collapsible__label,\n.sidebar--collapsed .sidebar-collapsible__chevron { display: none; }\n.sidebar--collapsed .sidebar-collapsible__content { display: none; }\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Sidebar\n\n   Composable: Provider (state) + Container + Header/Content/Footer\n   Collapse: .sidebar--collapsed toggles layout via CSS\n   Labels: [data-sidebar-label] hidden in collapsed via display:none\n   Tooltips: [data-tooltip] from tooltip.css, overridden to right/light\n   Animations: scale on hover, icon rotation in collapsed\n\n   240px expanded, 48px collapsed. Semantic tokens for colors.\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.sidebar {\n  --sidebar-w: 240px;\n  --sidebar-w-collapsed: 48px;\n\n  display: flex;\n  flex-direction: column;\n  width: var(--sidebar-w);\n  height: 100%;\n  min-height: 100%;\n  background: #f5f5f5;\n  border-right: 1px solid #efefef;\n  flex-shrink: 0;\n  transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.sidebar--collapsed { width: var(--sidebar-w-collapsed); }\n\n/* ---- Sections ---- */\n\n.sidebar__header {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  padding: 16px 12px;\n  flex-shrink: 0;\n}\n\n.sidebar__content {\n  flex: 1;\n  overflow-y: auto;\n  padding: 8px;\n}\n\n.sidebar__footer {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 12px;\n  flex-shrink: 0;\n  margin-top: auto;\n  border-top: 1px solid #efefef;\n}\n\n.sidebar__divider {\n  border: none;\n  border-top: 1px solid #e5e5e5;\n  margin: 8px 0;\n}\n\n/* Collapsed sections */\n.sidebar--collapsed .sidebar__header { flex-direction: column; gap: 8px; padding: 8px; align-items: center; }\n.sidebar--collapsed .sidebar__content { overflow: visible; padding: 4px; }\n.sidebar__footer .dropdown-menu { width: 100%; }\n.sidebar__footer .dropdown-menu__trigger { width: 100%; }\n.sidebar__footer .dropdown-menu__content { width: 100%; }\n\n.sidebar--collapsed .sidebar__footer { padding: 8px; justify-content: center; }\n\n/* ---- Labels: hide in collapsed ---- */\n\n.sidebar--collapsed [data-sidebar-label] { display: none; }\n\n/* ---- Group ---- */\n\n.sidebar__group { display: flex; flex-direction: column; gap: 2px; }\n.sidebar__group + .sidebar__group { margin-top: 24px; }\n\n.sidebar__group-label {\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 10.24px;\n  font-weight: 500;\n  color: #525252;\n  padding: 4px 8px;\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.sidebar--collapsed .sidebar__group-label { display: none; }\n\n/* ---- Item ---- */\n\n.sidebar__item {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 0 8px;\n  height: 36px;\n  border-radius: 6px;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  color: #0a0a0a;\n  text-decoration: none;\n  cursor: pointer;\n  user-select: none;\n  white-space: nowrap;\n  transition:\n    background-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),\n    color 0.15s cubic-bezier(0.19, 1, 0.22, 1),\n    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);\n}\n\n.sidebar__item:hover { background: #f5f5f5; color: #525252; }\n.sidebar__item:active:not(.sidebar__item--disabled) { scale: 0.955 0.925; }\n.sidebar__item--active { background: #fff4ed; color: #a44200; }\n.sidebar__item--disabled { color: #525252; cursor: not-allowed; pointer-events: none; }\n\n/* Item parts */\n.sidebar__item-icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 18px; height: 18px; transition: rotate 0.5s cubic-bezier(0.19, 1, 0.22, 1); }\n.sidebar__item-icon svg { width: 100%; height: 100%; }\n.sidebar__item-label { flex: 1; overflow: hidden; text-overflow: ellipsis; }\n.sidebar__item-badge { font-size: 10.24px; font-weight: 500; color: #525252; flex-shrink: 0; }\n\n/* Collapsed items: icon-only, centered */\n.sidebar--collapsed .sidebar__item { justify-content: center; padding: 0; width: 32px; height: 32px; margin: 0 auto; }\n.sidebar--collapsed .sidebar__item-label,\n.sidebar--collapsed .sidebar__item-badge { display: none; }\n\n/* ---- Hover animations ---- */\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  /* Expanded: subtle Button-style grow */\n  .sidebar:not(.sidebar--collapsed) .sidebar__item:hover:not(.sidebar__item--disabled):not(.sidebar__item--active) {\n    scale: 1.03 1.05;\n  }\n  /* Collapsed: IconButton-style scale + icon spin */\n  .sidebar--collapsed .sidebar__item:hover:not(.sidebar__item--disabled):not(.sidebar__item--active) {\n    scale: 1.095;\n  }\n  .sidebar--collapsed .sidebar__item:hover .sidebar__item-icon {\n    rotate: 360deg;\n    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);\n  }\n}\n\n/* ---- Trigger ---- */\n\n.sidebar__trigger {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 24px;\n  height: 24px;\n  padding: 4px;\n  border: none;\n  background: #f5f5f5;\n  color: #525252;\n  cursor: pointer;\n  border-radius: 4px;\n  flex-shrink: 0;\n  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;\n}\n\n.sidebar__trigger:hover { background: #e5e5e5; color: #0a0a0a; }\n.sidebar__trigger svg { width: 16px; height: 16px; }\n\n.sidebar--collapsed .sidebar__trigger { background: #f5f5f5; color: #525252; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }\n.sidebar--collapsed .sidebar__trigger:hover { background: #f5f5f5; color: #525252; }\n\n/* ---- Tooltips (collapsed only) ---- */\n\n.sidebar:not(.sidebar--collapsed) [data-tooltip]::before,\n.sidebar:not(.sidebar--collapsed) [data-tooltip]::after { display: none !important; }\n\n.sidebar--collapsed [data-tooltip]::before {\n  bottom: auto !important; top: 50% !important;\n  left: calc(100% + 10px) !important; right: auto !important;\n  transform: translateY(-50%) translateX(-4px) !important;\n  background: #fafafa !important; color: #0a0a0a !important;\n  border: 1px solid #e5e5e5 !important;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1) !important;\n}\n.sidebar--collapsed [data-tooltip]:hover::before { transform: translateY(-50%) translateX(0) !important; }\n\n.sidebar--collapsed [data-tooltip]::after {\n  bottom: auto !important; top: 50% !important;\n  left: calc(100% + 7px) !important; right: auto !important;\n  transform: translateY(-50%) rotate(225deg) !important;\n  background: #fafafa !important;\n  border: 1px solid #e5e5e5 !important;\n  border-top: none !important; border-left: none !important;\n}\n\n/* ---- Collapsible ---- */\n\n.sidebar-collapsible__trigger {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 0 8px;\n  height: 36px;\n  width: 100%;\n  border: none;\n  background: none;\n  border-radius: 6px;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  color: #0a0a0a;\n  cursor: pointer;\n  user-select: none;\n  text-align: left;\n  white-space: nowrap;\n  transition: background-color 0.15s ease, color 0.15s ease;\n}\n\n.sidebar-collapsible__trigger:hover { background: #f5f5f5; }\n.sidebar-collapsible__label { flex: 1; overflow: hidden; text-overflow: ellipsis; }\n.sidebar-collapsible__chevron { display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #525252; transition: transform 0.2s ease; }\n\n.sidebar-collapsible--open .sidebar-collapsible__chevron { transform: rotate(0deg); }\n.sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__chevron { transform: rotate(-90deg); }\n\n/* Collapsible content: animated height */\n.sidebar-collapsible__content { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 0.25s cubic-bezier(0.19, 1, 0.22, 1); }\n.sidebar-collapsible:not(.sidebar-collapsible--open) .sidebar-collapsible__content { grid-template-rows: 0fr; }\n.sidebar-collapsible__inner { overflow: hidden; min-height: 0; display: flex; flex-direction: column; gap: 2px; }\n.sidebar-collapsible__inner .sidebar__item { padding-left: 34px; }\n\n/* Collapsed: collapsible becomes icon-only */\n.sidebar--collapsed .sidebar-collapsible__trigger { justify-content: center; padding: 0; width: 32px; height: 32px; margin: 0 auto; }\n.sidebar--collapsed .sidebar-collapsible__label,\n.sidebar--collapsed .sidebar-collapsible__chevron { display: none; }\n.sidebar--collapsed .sidebar-collapsible__content { display: none; }\n",
       "motion": [
         {
           "property": "width",
@@ -323,10 +352,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

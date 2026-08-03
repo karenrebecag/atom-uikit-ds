@@ -1,0 +1,30 @@
+{
+  "feature": "F12c",
+  "date": "2026-08-02",
+  "commit": "pending",
+  "checks": [
+    {
+      "id": "F12-C1",
+      "status": "partial",
+      "evidence": "Matriz de secciones en F12-inventory-derivability.md. Export de 74 docs Payload aún sin SUPABASE_*; no se rescató prosa CMS. Lote seed editorial en docs/editorial/ (button, chip, input) — content review Karen."
+    },
+    {
+      "id": "F12-C8",
+      "status": "conditional",
+      "evidence": "Pipeline F9-C5: loadEditorialMarkdown path public/r/docs/{slug}.md + emit en build:registry. Migración masiva CMS pendiente de export."
+    },
+    {
+      "id": "F12c-pipeline",
+      "status": "pass",
+      "evidence": "emitEditorialDocs copies docs/editorial/*.md and packages/**/docs/*.md → public/r/docs/. Seed: button.md, chip.md, input.md."
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": [
+    "Karen review of editorial seed lote",
+    "Payload export of remaining component docs for full F12c"
+  ],
+  "notes": [
+    "Editorial only contains ejemplos / a11y / cuándo no usar — no hex/token tables."
+  ]
+}

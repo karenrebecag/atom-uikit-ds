@@ -65,8 +65,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": []
@@ -76,15 +76,18 @@
         "classes": []
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/**\n * Layout: testimonial-spotlight\n *\n * Una sola cita grande centrada con avatar, nombre, rol y logo del cliente. Maximo peso.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const testimonialSpotlight = {\n  slug: 'testimonial-spotlight',\n  name: 'Testimonio Spotlight',\n  description:\n    'Una sola cita grande centrada con avatar, nombre, rol y logo del cliente. Maximo peso. Structure only.',\n  components: ['avatar', 'typography', 'image'],\n  html: `<!-- Layout: testimonial-spotlight -->\n<section class=\"l-testimonial-spotlight\">\n  <blockquote class=\"l-testimonial-spotlight__quote\">{{quote}}</blockquote>\n  <div class=\"l-testimonial-spotlight__author\">\n    <img src=\"{{avatar}}\" alt=\"\" class=\"avatar avatar--s\" />\n    <div>\n      <div class=\"l-testimonial-spotlight__name\">{{name}}</div>\n      <div class=\"l-testimonial-spotlight__role\">{{role}}</div>\n    </div>\n    <img src=\"{{companyLogo}}\" alt=\"\" class=\"image l-testimonial-spotlight__logo\" />\n  </div>\n</section>`,\n  css: `/* Layout: testimonial-spotlight — structure only */\n.l-testimonial-spotlight {\n  text-align: center;\n  padding: 48px 32px;\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-testimonial-spotlight__quote {\n  font-size: var(--text-2xl);\n  font-style: italic;\n  margin-bottom: 24px;\n}\n.l-testimonial-spotlight__author {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n}\n.l-testimonial-spotlight__name {\n  font-weight: 600;\n}\n.l-testimonial-spotlight__role {\n  font-size: var(--text-sm);\n  color: #525252;\n}\n.l-testimonial-spotlight__logo {\n  height: 24px;\n  margin-left: 16px;\n}`,\n};",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "standaloneCss": "/* Layout: testimonial-spotlight — structure only */\n.l-testimonial-spotlight {\n  text-align: center;\n  padding: 48px 32px;\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-testimonial-spotlight__quote {\n  font-size: var(--text-2xl);\n  font-style: italic;\n  margin-bottom: 24px;\n}\n.l-testimonial-spotlight__author {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n}\n.l-testimonial-spotlight__name {\n  font-weight: 600;\n}\n.l-testimonial-spotlight__role {\n  font-size: var(--text-sm);\n  color: #525252;\n}\n.l-testimonial-spotlight__logo {\n  height: 24px;\n  margin-left: 16px;\n}\n",
+      "motion": []
     }
   }
 }

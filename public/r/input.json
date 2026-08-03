@@ -87,8 +87,8 @@
       "usage": "import { Input } from '@/components/atoms/Input';\nimport { Field } from '@/components/atoms/Field';\n\n<Field label=\"Email\" error=\"Required\">\n  <Input type=\"email\" error placeholder=\"you@company.com\" />\n</Field>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -97,19 +97,84 @@
         ]
       },
       "anatomy": {
-        "bem": "<div class=\"input\">\n\n</div>",
+        "bem": "<div class=\"input-group\">\n  <span class=\"input-group__icon\"></span>\n  <span class=\"input-group__input\"></span>\n</div>",
         "classes": [
           {
-            "class": "input",
+            "class": "input-group",
             "purpose": "root"
+          },
+          {
+            "class": "input-group--disabled",
+            "purpose": "modifier"
+          },
+          {
+            "class": "input-group--error",
+            "purpose": "modifier"
+          },
+          {
+            "class": "input-group__icon",
+            "purpose": "element"
+          },
+          {
+            "class": "input-group__input",
+            "purpose": "element"
           }
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "focused-border",
+            "hex": "#171717",
+            "tokenPath": "border.focus"
+          },
+          {
+            "variant": "all",
+            "prop": "error-border",
+            "hex": "#f84131",
+            "tokenPath": "destructive"
+          },
+          {
+            "variant": "all",
+            "prop": "disabled-bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "all",
+            "prop": "disabled-border",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "placeholder"
+          },
+          {
+            "variant": "all",
+            "prop": "disabled-fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Input\n\n   Base text input. Height matches Button m (40px).\n   Used standalone or inside Field wrapper.\n   Colors matched to Figma atom-text-field.\n\n   States: default, focus, disabled, error\n   ------------------------------------------------------------------------- */\n\n.input {\n  display: flex;\n  width: 100%;\n  height: 2.5rem;\n  padding: 0 8px;\n  border: 1.5px solid #d4d4d4;\n  border-radius: 8px;\n  background-color: #fafafa;\n  color: #0a0a0a;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  line-height: 1;\n  outline: none;\n  transition:\n    border-color 150ms cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.input::placeholder {\n  color: #525252;\n}\n\n.input:focus {\n  border-color: #171717;\n  box-shadow: 0 0 0 2px var(--focus-ring-color);\n}\n\n.input:disabled {\n  background-color: #f5f5f5;\n  border-color: #f5f5f5;\n  color: #525252;\n  cursor: not-allowed;\n  opacity: 1;\n}\n\n.input[aria-invalid=\"true\"] {\n  border-color: #f84131;\n  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);\n}\n\n.input[aria-invalid=\"true\"]:focus {\n  border-color: #f84131;\n  box-shadow: 0 0 0 2px var(--focus-ring-error-color);\n}\n\n/* File input */\n.input[type=\"file\"] {\n  padding: 0;\n}\n\n.input[type=\"file\"]::file-selector-button {\n  height: 100%;\n  padding: 0 12px;\n  border: none;\n  border-right: 1.5px solid #d4d4d4;\n  background-color: #f5f5f5;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: inherit;\n  font-weight: 500;\n  cursor: pointer;\n}\n\n/* ---- Input Group (input with leading/trailing icons) ---- */\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  width: 100%;\n  height: 2.5rem;\n  padding: 0 8px;\n  border: 1.5px solid #d4d4d4;\n  border-radius: 8px;\n  background-color: #fafafa;\n  transition:\n    border-color 150ms cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.input-group:focus-within {\n  border-color: #171717;\n  box-shadow: 0 0 0 2px var(--focus-ring-color);\n}\n\n.input-group--error {\n  border-color: #f84131;\n  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);\n}\n\n.input-group--error:focus-within {\n  border-color: #f84131;\n  box-shadow: 0 0 0 2px var(--focus-ring-error-color);\n}\n\n.input-group--disabled {\n  background-color: #f5f5f5;\n  border-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.input-group__input {\n  flex: 1;\n  min-width: 0;\n  border: none;\n  background: none;\n  color: #0a0a0a;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  line-height: 1;\n  outline: none;\n  padding: 0;\n}\n\n.input-group__input::placeholder {\n  color: #525252;\n}\n\n.input-group__input:disabled {\n  color: #525252;\n  cursor: not-allowed;\n}\n\n.input-group__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1em;\n  height: 1em;\n  color: #525252;\n}\n\n.input-group__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n.input-group--disabled .input-group__icon {\n  color: #525252;\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Input\n\n   Base text input. Height matches Button m (40px).\n   Used standalone or inside Field wrapper.\n   Colors matched to Figma atom-text-field.\n\n   States: default, focus, disabled, error\n   ------------------------------------------------------------------------- */\n\n.input {\n  display: flex;\n  width: 100%;\n  height: 2.5rem;\n  padding: 0 8px;\n  border: 1.5px solid #d4d4d4;\n  border-radius: 8px;\n  background-color: #fafafa;\n  color: #0a0a0a;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  line-height: 1;\n  outline: none;\n  transition:\n    border-color 150ms cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.input::placeholder {\n  color: #525252;\n}\n\n.input:focus {\n  border-color: #171717;\n  box-shadow: 0 0 0 2px var(--focus-ring-color);\n}\n\n.input:disabled {\n  background-color: #f5f5f5;\n  border-color: #f5f5f5;\n  color: #525252;\n  cursor: not-allowed;\n  opacity: 1;\n}\n\n.input[aria-invalid=\"true\"] {\n  border-color: #f84131;\n  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);\n}\n\n.input[aria-invalid=\"true\"]:focus {\n  border-color: #f84131;\n  box-shadow: 0 0 0 2px var(--focus-ring-error-color);\n}\n\n/* File input */\n.input[type=\"file\"] {\n  padding: 0;\n}\n\n.input[type=\"file\"]::file-selector-button {\n  height: 100%;\n  padding: 0 12px;\n  border: none;\n  border-right: 1.5px solid #d4d4d4;\n  background-color: #f5f5f5;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: inherit;\n  font-weight: 500;\n  cursor: pointer;\n}\n\n/* ---- Input Group (input with leading/trailing icons) ---- */\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  width: 100%;\n  height: 2.5rem;\n  padding: 0 8px;\n  border: 1.5px solid #d4d4d4;\n  border-radius: 8px;\n  background-color: #fafafa;\n  transition:\n    border-color 150ms cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.input-group:focus-within {\n  border-color: #171717;\n  box-shadow: 0 0 0 2px var(--focus-ring-color);\n}\n\n.input-group--error {\n  border-color: #f84131;\n  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);\n}\n\n.input-group--error:focus-within {\n  border-color: #f84131;\n  box-shadow: 0 0 0 2px var(--focus-ring-error-color);\n}\n\n.input-group--disabled {\n  background-color: #f5f5f5;\n  border-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.input-group__input {\n  flex: 1;\n  min-width: 0;\n  border: none;\n  background: none;\n  color: #0a0a0a;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  line-height: 1;\n  outline: none;\n  padding: 0;\n}\n\n.input-group__input::placeholder {\n  color: #525252;\n}\n\n.input-group__input:disabled {\n  color: #525252;\n  cursor: not-allowed;\n}\n\n.input-group__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1em;\n  height: 1em;\n  color: #525252;\n}\n\n.input-group__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n.input-group--disabled .input-group__icon {\n  color: #525252;\n}\n",
       "motion": [
         {
           "property": "border-color",
@@ -131,10 +196,6 @@
           "duration": "var(--duration-150)",
           "easing": "var(--easing-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

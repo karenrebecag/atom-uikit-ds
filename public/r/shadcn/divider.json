@@ -23,8 +23,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -54,15 +54,48 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "horizontal",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "vertical",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "labeled",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "labeled",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "labeled",
+            "prop": "bg",
+            "hex": "currentColor",
+            "tokenPath": "(literal)"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Divider\n\n   Horizontal or vertical separator line.\n   Figma: atom-horizontal-divider. We add vertical variant.\n\n   Orientation: horizontal (default), vertical\n   ------------------------------------------------------------------------- */\n\n.divider {\n  border: none;\n  margin: 0;\n  flex-shrink: 0;\n}\n\n.divider--horizontal {\n  width: 100%;\n  height: 0;\n  border-top: 1px solid #e5e5e5;\n}\n\n.divider--vertical {\n  height: 100%;\n  width: 0;\n  border-left: 1px solid #e5e5e5;\n  align-self: stretch;\n}\n\n/* ---- Labeled: etiqueta + linea que ocupa el resto (patron de seccion) ---- */\n\n.divider--labeled {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  width: 100%;\n  height: auto;\n  border: none;\n  color: #525252;\n}\n\n.divider--labeled::after {\n  flex: 1;\n  height: 1px;\n  content: '';\n  background-color: currentcolor;\n  opacity: 0.15;\n}\n",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "motion": []
     }
   }
 }

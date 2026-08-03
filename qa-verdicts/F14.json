@@ -1,0 +1,53 @@
+{
+  "feature": "F14",
+  "date": "2026-08-02",
+  "commit": "pending",
+  "checks": [
+    {
+      "id": "F14-C1",
+      "status": "pass",
+      "evidence": "Baseline before F14: 5/120 with tokens.resolved (button, button-hover, checkbox, link-button, nav-link)."
+    },
+    {
+      "id": "F14-C2",
+      "status": "pass",
+      "evidence": "badge: neutral enabled bg=#f5f5f5 (muted), fg=#0a0a0a; focused bg=#0a0a0a primary; subtle bg=#262626 colorNeutral800. Tests in derive-doc.test.mjs."
+    },
+    {
+      "id": "F14-C3",
+      "status": "pass",
+      "evidence": "After build:registry: 100/120 with non-empty tokens.resolved. Empty 20 listed with no-color-declarations or no-css-source (never no-component-tokens)."
+    },
+    {
+      "id": "F14-C4",
+      "status": "pass",
+      "evidence": "Diff of tokens.resolved for the five precise-path components: empty (CSS fallback skipped when component tokens exist)."
+    },
+    {
+      "id": "F14-C5",
+      "status": "pass",
+      "evidence": "resolveCssVar(--no-existe) → var(--no-existe); extractTokensFromCss keeps name."
+    },
+    {
+      "id": "F14-C6",
+      "status": "pass-local",
+      "evidence": "deriveItemDoc(badge) twice with different now → equal after stripping generatedAt/sourceCommit."
+    },
+    {
+      "id": "F14-C7",
+      "status": "pending",
+      "evidence": "Requires push + sync-docs + MCP cache; atom_uikit_get(badge, tokens) in prod."
+    },
+    {
+      "id": "F14-C8",
+      "status": "pass-local",
+      "evidence": "node --test scripts/derive-doc.test.mjs 15 pass."
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": ["F14-C6 dual build diff", "F14-C7 live MCP after deploy"],
+  "notes": [
+    "extractTokensFromCss + resolveCssVar reuse the flat tokens map; component JSON path remains primary.",
+    "Layouts derive after enrichLayout so plain CSS is available."
+  ]
+}

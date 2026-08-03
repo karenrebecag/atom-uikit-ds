@@ -71,8 +71,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -134,10 +134,53 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#ffffff",
+            "tokenPath": "popover"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "right",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "left",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "top",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "bottom",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Sheet\n\n   Side panel extending Dialog. Slides from screen edge.\n   Reuses dialog__overlay for backdrop.\n\n   Sides: top, right, bottom, left\n   Parts: .sheet, .sheet__header, .sheet__title,\n          .sheet__description, .sheet__body, .sheet__footer, .sheet__close\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.sheet {\n  position: fixed;\n  z-index: 50;\n  display: flex;\n  flex-direction: column;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  border: 1px solid #e5e5e5;\n}\n\n.sheet--exiting {\n  pointer-events: none;\n}\n\n/* ---- Sides ---- */\n\n.sheet--right {\n  top: 0; right: 0; bottom: 0;\n  width: 100%;\n  max-width: 400px;\n  border-left: 1px solid #e5e5e5;\n  border-right: none;\n  animation: sheet-right-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--right.sheet--exiting {\n  animation: sheet-right-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.sheet--left {\n  top: 0; left: 0; bottom: 0;\n  width: 100%;\n  max-width: 400px;\n  border-right: 1px solid #e5e5e5;\n  border-left: none;\n  animation: sheet-left-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--left.sheet--exiting {\n  animation: sheet-left-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.sheet--top {\n  top: 0; left: 0; right: 0;\n  height: auto;\n  max-height: 80vh;\n  border-bottom: 1px solid #e5e5e5;\n  border-top: none;\n  animation: sheet-top-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--top.sheet--exiting {\n  animation: sheet-top-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.sheet--bottom {\n  bottom: 0; left: 0; right: 0;\n  height: auto;\n  max-height: 80vh;\n  border-top: 1px solid #e5e5e5;\n  border-bottom: none;\n  animation: sheet-bottom-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--bottom.sheet--exiting {\n  animation: sheet-bottom-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n/* ---- Slide animations ---- */\n\n@keyframes sheet-right-in  { from { transform: translateX(100%); } to { transform: translateX(0); } }\n@keyframes sheet-right-out { from { transform: translateX(0); } to { transform: translateX(100%); } }\n@keyframes sheet-left-in   { from { transform: translateX(-100%); } to { transform: translateX(0); } }\n@keyframes sheet-left-out  { from { transform: translateX(0); } to { transform: translateX(-100%); } }\n@keyframes sheet-top-in    { from { transform: translateY(-100%); } to { transform: translateY(0); } }\n@keyframes sheet-top-out   { from { transform: translateY(0); } to { transform: translateY(-100%); } }\n@keyframes sheet-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }\n@keyframes sheet-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }\n\n/* ---- Header ---- */\n\n.sheet__header {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 24px;\n  padding-bottom: 0;\n}\n\n.sheet__title {\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n}\n\n.sheet__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n  margin: 0;\n}\n\n/* ---- Body ---- */\n\n.sheet__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: 24px;\n}\n\n/* ---- Footer ---- */\n\n.sheet__footer {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 12px;\n  padding: 24px;\n  padding-top: 0;\n}\n\n/* ---- Close ---- */\n\n.sheet__close {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .sheet,\n  .sheet--exiting {\n    animation-duration: 0ms;\n  }\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Sheet\n\n   Side panel extending Dialog. Slides from screen edge.\n   Reuses dialog__overlay for backdrop.\n\n   Sides: top, right, bottom, left\n   Parts: .sheet, .sheet__header, .sheet__title,\n          .sheet__description, .sheet__body, .sheet__footer, .sheet__close\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.sheet {\n  position: fixed;\n  z-index: 50;\n  display: flex;\n  flex-direction: column;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  border: 1px solid #e5e5e5;\n}\n\n.sheet--exiting {\n  pointer-events: none;\n}\n\n/* ---- Sides ---- */\n\n.sheet--right {\n  top: 0; right: 0; bottom: 0;\n  width: 100%;\n  max-width: 400px;\n  border-left: 1px solid #e5e5e5;\n  border-right: none;\n  animation: sheet-right-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--right.sheet--exiting {\n  animation: sheet-right-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.sheet--left {\n  top: 0; left: 0; bottom: 0;\n  width: 100%;\n  max-width: 400px;\n  border-right: 1px solid #e5e5e5;\n  border-left: none;\n  animation: sheet-left-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--left.sheet--exiting {\n  animation: sheet-left-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.sheet--top {\n  top: 0; left: 0; right: 0;\n  height: auto;\n  max-height: 80vh;\n  border-bottom: 1px solid #e5e5e5;\n  border-top: none;\n  animation: sheet-top-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--top.sheet--exiting {\n  animation: sheet-top-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.sheet--bottom {\n  bottom: 0; left: 0; right: 0;\n  height: auto;\n  max-height: 80vh;\n  border-top: 1px solid #e5e5e5;\n  border-bottom: none;\n  animation: sheet-bottom-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.sheet--bottom.sheet--exiting {\n  animation: sheet-bottom-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n/* ---- Slide animations ---- */\n\n@keyframes sheet-right-in  { from { transform: translateX(100%); } to { transform: translateX(0); } }\n@keyframes sheet-right-out { from { transform: translateX(0); } to { transform: translateX(100%); } }\n@keyframes sheet-left-in   { from { transform: translateX(-100%); } to { transform: translateX(0); } }\n@keyframes sheet-left-out  { from { transform: translateX(0); } to { transform: translateX(-100%); } }\n@keyframes sheet-top-in    { from { transform: translateY(-100%); } to { transform: translateY(0); } }\n@keyframes sheet-top-out   { from { transform: translateY(0); } to { transform: translateY(-100%); } }\n@keyframes sheet-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }\n@keyframes sheet-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }\n\n/* ---- Header ---- */\n\n.sheet__header {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 24px;\n  padding-bottom: 0;\n}\n\n.sheet__title {\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n}\n\n.sheet__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n  margin: 0;\n}\n\n/* ---- Body ---- */\n\n.sheet__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: 24px;\n}\n\n/* ---- Footer ---- */\n\n.sheet__footer {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 12px;\n  padding: 24px;\n  padding-top: 0;\n}\n\n/* ---- Close ---- */\n\n.sheet__close {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .sheet,\n  .sheet--exiting {\n    animation-duration: 0ms;\n  }\n}\n",
       "motion": [
         {
           "property": "@keyframes sheet-right-in",
@@ -179,10 +222,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

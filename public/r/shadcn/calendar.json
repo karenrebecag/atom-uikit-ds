@@ -23,8 +23,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -98,20 +98,47 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "accent"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-bg",
+            "hex": "#262626",
+            "tokenPath": "primary.hover"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-fg",
+            "hex": "#171717",
+            "tokenPath": "accent.foreground"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Calendar\n\n   Date picker grid. Month navigation, day selection.\n   Modes: single, range.\n\n   Parts: .calendar, .calendar__nav, .calendar__nav-btn,\n          .calendar__title, .calendar__grid, .calendar__head,\n          .calendar__row, .calendar__day\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.calendar {\n  display: inline-flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 12px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n}\n\n/* ---- Navigation ---- */\n\n.calendar__nav {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.calendar__title {\n  font-size: 12.8px;\n  font-weight: 600;\n  color: #0a0a0a;\n}\n\n/* ---- Grid ---- */\n\n.calendar__grid {\n  border-collapse: collapse;\n}\n\n.calendar__head {\n  font-size: 10.24px;\n  font-weight: 500;\n  color: #525252;\n  text-align: center;\n  padding-bottom: 8px;\n  width: 36px;\n}\n\n/* ---- Day cell ---- */\n\n.calendar__day {\n  width: 36px;\n  height: 36px;\n  padding: 0;\n  border: none;\n  border-radius: 8px;\n  background: none;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: 12.8px;\n  font-weight: 400;\n  line-height: 1;\n  text-align: center;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.calendar__day:hover:not(.calendar__day--disabled):not(.calendar__day--selected) {\n  background-color: #f5f5f5;\n  color: #171717;\n}\n\n.calendar__day:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* Outside month */\n.calendar__day--outside {\n  color: #525252;\n  opacity: 0.5;\n}\n\n/* Today */\n.calendar__day--today {\n  font-weight: 600;\n  color: #0a0a0a;\n  box-shadow: inset 0 -2px 0 #0a0a0a;\n}\n\n/* Selected */\n.calendar__day--selected {\n  background-color: #0a0a0a;\n  color: #fafafa;\n  font-weight: 500;\n}\n\n.calendar__day--selected:hover {\n  background-color: #262626;\n}\n\n/* Range: start + end */\n.calendar__day--range-start {\n  border-radius: 8px 0 0 8px;\n}\n\n.calendar__day--range-end {\n  border-radius: 0 8px 8px 0;\n}\n\n.calendar__day--range-start.calendar__day--range-end {\n  border-radius: 8px;\n}\n\n/* Range: middle */\n.calendar__day--in-range {\n  background-color: #f5f5f5;\n  color: #171717;\n  border-radius: 0;\n}\n\n/* Disabled */\n.calendar__day--disabled {\n  color: #525252;\n  opacity: 0.3;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .calendar__day {\n    transition-duration: 0ms;\n  }\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Calendar\n\n   Date picker grid. Month navigation, day selection.\n   Modes: single, range.\n\n   Parts: .calendar, .calendar__nav, .calendar__nav-btn,\n          .calendar__title, .calendar__grid, .calendar__head,\n          .calendar__row, .calendar__day\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.calendar {\n  display: inline-flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 12px;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n}\n\n/* ---- Navigation ---- */\n\n.calendar__nav {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.calendar__title {\n  font-size: 12.8px;\n  font-weight: 600;\n  color: #0a0a0a;\n}\n\n/* ---- Grid ---- */\n\n.calendar__grid {\n  border-collapse: collapse;\n}\n\n.calendar__head {\n  font-size: 10.24px;\n  font-weight: 500;\n  color: #525252;\n  text-align: center;\n  padding-bottom: 8px;\n  width: 36px;\n}\n\n/* ---- Day cell ---- */\n\n.calendar__day {\n  width: 36px;\n  height: 36px;\n  padding: 0;\n  border: none;\n  border-radius: 8px;\n  background: none;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: 12.8px;\n  font-weight: 400;\n  line-height: 1;\n  text-align: center;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.calendar__day:hover:not(.calendar__day--disabled):not(.calendar__day--selected) {\n  background-color: #f5f5f5;\n  color: #171717;\n}\n\n.calendar__day:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* Outside month */\n.calendar__day--outside {\n  color: #525252;\n  opacity: 0.5;\n}\n\n/* Today */\n.calendar__day--today {\n  font-weight: 600;\n  color: #0a0a0a;\n  box-shadow: inset 0 -2px 0 #0a0a0a;\n}\n\n/* Selected */\n.calendar__day--selected {\n  background-color: #0a0a0a;\n  color: #fafafa;\n  font-weight: 500;\n}\n\n.calendar__day--selected:hover {\n  background-color: #262626;\n}\n\n/* Range: start + end */\n.calendar__day--range-start {\n  border-radius: 8px 0 0 8px;\n}\n\n.calendar__day--range-end {\n  border-radius: 0 8px 8px 0;\n}\n\n.calendar__day--range-start.calendar__day--range-end {\n  border-radius: 8px;\n}\n\n/* Range: middle */\n.calendar__day--in-range {\n  background-color: #f5f5f5;\n  color: #171717;\n  border-radius: 0;\n}\n\n/* Disabled */\n.calendar__day--disabled {\n  color: #525252;\n  opacity: 0.3;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .calendar__day {\n    transition-duration: 0ms;\n  }\n}\n",
       "motion": [
         {
           "property": "background-color",
           "duration": "var(--duration-100)",
           "easing": "var(--easing-in-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

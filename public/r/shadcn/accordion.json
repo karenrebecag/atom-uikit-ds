@@ -37,8 +37,8 @@
       "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -84,7 +84,32 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Accordion\n\n   Collapsible content sections. Single or multiple open.\n   All colors via semantic tokens. Spacing via token values.\n\n   Parts: .accordion, .accordion__item, .accordion__trigger, .accordion__content\n   ------------------------------------------------------------------------- */\n\n.accordion {\n  width: 100%;\n}\n\n.accordion__item {\n  border-bottom: 1px solid #e5e5e5;\n}\n\n.accordion__trigger {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  width: 100%;\n  padding: 16px 0;\n  border: none;\n  background: none;\n  font-family: inherit;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 1.4;\n  color: #0a0a0a;\n  text-align: left;\n  text-decoration: none;\n  cursor: pointer;\n  transition: color 0.15s ease;\n}\n\n.accordion__trigger:hover {\n  color: #525252;\n}\n\n.accordion__trigger:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: 2px;\n  border-radius: 4px;\n}\n\n.accordion__chevron {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 16px;\n  height: 16px;\n  color: #525252;\n  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.accordion__chevron svg {\n  width: 100%;\n  height: 100%;\n}\n\n.accordion__item--open .accordion__chevron {\n  transform: rotate(180deg);\n}\n\n/* Content: animated height via grid */\n.accordion__content-wrapper {\n  display: grid;\n  grid-template-rows: 0fr;\n  transition: grid-template-rows 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.accordion__item--open .accordion__content-wrapper {\n  grid-template-rows: 1fr;\n}\n\n.accordion__content {\n  overflow: hidden;\n  min-height: 0;\n}\n\n.accordion__content-inner {\n  padding-bottom: 16px;\n  font-family: inherit;\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .accordion__content-wrapper,\n  .accordion__chevron {\n    transition-duration: 0ms;\n  }\n}\n",
@@ -134,10 +159,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

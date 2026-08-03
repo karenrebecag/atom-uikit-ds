@@ -43,8 +43,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -78,15 +78,18 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Section Header\n\n   Eyebrow + titulo + subtitulo: la entrada de cualquier seccion. Fija la\n   medida de lectura del subtitulo (~60ch) para que no se estire a todo el\n   ancho del container.\n\n   Variantes: --center (centrado), --wide (sin limite de medida)\n   ------------------------------------------------------------------------- */\n\n.section-header {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  margin-block-end: 80px;\n}\n\n.section-header--center {\n  align-items: center;\n  text-align: center;\n  margin-inline: auto;\n}\n\n.section-header__eyebrow {\n  color: #525252;\n}\n\n.section-header__subtitle {\n  max-width: 60ch;\n  font-size: 20px;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #525252;\n  text-wrap: pretty;\n}\n\n.section-header--wide .section-header__subtitle {\n  max-width: none;\n}\n",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "motion": []
     }
   }
 }

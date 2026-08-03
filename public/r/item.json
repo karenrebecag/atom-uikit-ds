@@ -89,8 +89,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -99,73 +99,68 @@
         ]
       },
       "anatomy": {
-        "bem": "<div class=\"item\">\n  <span class=\"item__actions\"></span>\n  <span class=\"item__content\"></span>\n  <span class=\"item__description\"></span>\n  <span class=\"item__media\"></span>\n  <span class=\"item__media--icon\"></span>\n  <span class=\"item__media--image\"></span>\n  <span class=\"item__title\"></span>\n</div>",
+        "bem": "<div class=\"item-separator\">\n\n</div>",
         "classes": [
           {
-            "class": "item",
+            "class": "item-separator",
             "purpose": "root"
-          },
-          {
-            "class": "item--muted",
-            "purpose": "modifier"
-          },
-          {
-            "class": "item--outline",
-            "purpose": "modifier"
-          },
-          {
-            "class": "item--sm",
-            "purpose": "modifier"
-          },
-          {
-            "class": "item--xs",
-            "purpose": "modifier"
-          },
-          {
-            "class": "item__actions",
-            "purpose": "element"
-          },
-          {
-            "class": "item__content",
-            "purpose": "element"
-          },
-          {
-            "class": "item__description",
-            "purpose": "element"
-          },
-          {
-            "class": "item__media",
-            "purpose": "element"
-          },
-          {
-            "class": "item__media--icon",
-            "purpose": "element"
-          },
-          {
-            "class": "item__media--image",
-            "purpose": "element"
-          },
-          {
-            "class": "item__title",
-            "purpose": "element"
           }
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#e5e5e5",
+            "tokenPath": "border"
+          },
+          {
+            "variant": "outline",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "accent"
+          },
+          {
+            "variant": "muted",
+            "prop": "bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "muted",
+            "prop": "hover-bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "accent"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Item\n\n   Versatile content row: media + title + description + actions.\n   For lists, settings, notifications, etc.\n\n   Variants: default, outline, muted\n   Sizes:    default, sm, xs\n   Parts:    .item, .item__media, .item__content, .item__title,\n             .item__description, .item__actions, .item-group,\n             .item-separator\n   ------------------------------------------------------------------------- */\n\n/* ---- Item ---- */\n\n.item {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  padding: 12px 16px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  text-decoration: none;\n  color: inherit;\n  transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.item:hover {\n  background-color: #f5f5f5;\n}\n\n/* ---- Variants ---- */\n\n.item--outline {\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n}\n\n.item--muted {\n  background-color: #f5f5f5;\n  border-radius: 12px;\n}\n\n.item--muted:hover {\n  background-color: #f5f5f5;\n}\n\n/* ---- Sizes ---- */\n\n.item--sm {\n  gap: 8px;\n  padding: 8px 12px;\n}\n\n.item--xs {\n  gap: 8px;\n  padding: 4px 8px;\n}\n\n/* ---- Media ---- */\n\n.item__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  color: #525252;\n}\n\n.item__media--icon {\n  width: 40px;\n  height: 40px;\n  border-radius: 12px;\n  background-color: #f5f5f5;\n  padding: 8px;\n}\n\n.item--sm .item__media--icon {\n  width: 32px;\n  height: 32px;\n  padding: 8px;\n}\n\n.item__media--icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n.item__media--image {\n  width: 48px;\n  height: 48px;\n  border-radius: 8px;\n  overflow: hidden;\n}\n\n.item__media--image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  display: block;\n}\n\n/* ---- Content ---- */\n\n.item__content {\n  flex: 1;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n/* ---- Title ---- */\n\n.item__title {\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n/* ---- Description ---- */\n\n.item__description {\n  font-size: 10.24px;\n  line-height: 1.4;\n  color: #525252;\n  margin: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n/* ---- Actions ---- */\n\n.item__actions {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  flex-shrink: 0;\n}\n\n/* ---- Group ---- */\n\n.item-group {\n  display: flex;\n  flex-direction: column;\n}\n\n.item-group--outline {\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n  overflow: hidden;\n}\n\n.item-group--outline > .item {\n  border: none;\n  border-radius: 0;\n}\n\n/* ---- Separator ---- */\n\n.item-separator {\n  height: 1px;\n  background-color: #e5e5e5;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .item {\n    transition-duration: 0ms;\n  }\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Item\n\n   Versatile content row: media + title + description + actions.\n   For lists, settings, notifications, etc.\n\n   Variants: default, outline, muted\n   Sizes:    default, sm, xs\n   Parts:    .item, .item__media, .item__content, .item__title,\n             .item__description, .item__actions, .item-group,\n             .item-separator\n   ------------------------------------------------------------------------- */\n\n/* ---- Item ---- */\n\n.item {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  padding: 12px 16px;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  text-decoration: none;\n  color: inherit;\n  transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.item:hover {\n  background-color: #f5f5f5;\n}\n\n/* ---- Variants ---- */\n\n.item--outline {\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n}\n\n.item--muted {\n  background-color: #f5f5f5;\n  border-radius: 12px;\n}\n\n.item--muted:hover {\n  background-color: #f5f5f5;\n}\n\n/* ---- Sizes ---- */\n\n.item--sm {\n  gap: 8px;\n  padding: 8px 12px;\n}\n\n.item--xs {\n  gap: 8px;\n  padding: 4px 8px;\n}\n\n/* ---- Media ---- */\n\n.item__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  color: #525252;\n}\n\n.item__media--icon {\n  width: 40px;\n  height: 40px;\n  border-radius: 12px;\n  background-color: #f5f5f5;\n  padding: 8px;\n}\n\n.item--sm .item__media--icon {\n  width: 32px;\n  height: 32px;\n  padding: 8px;\n}\n\n.item__media--icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n.item__media--image {\n  width: 48px;\n  height: 48px;\n  border-radius: 8px;\n  overflow: hidden;\n}\n\n.item__media--image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  display: block;\n}\n\n/* ---- Content ---- */\n\n.item__content {\n  flex: 1;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n/* ---- Title ---- */\n\n.item__title {\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n/* ---- Description ---- */\n\n.item__description {\n  font-size: 10.24px;\n  line-height: 1.4;\n  color: #525252;\n  margin: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n/* ---- Actions ---- */\n\n.item__actions {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  flex-shrink: 0;\n}\n\n/* ---- Group ---- */\n\n.item-group {\n  display: flex;\n  flex-direction: column;\n}\n\n.item-group--outline {\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n  overflow: hidden;\n}\n\n.item-group--outline > .item {\n  border: none;\n  border-radius: 0;\n}\n\n/* ---- Separator ---- */\n\n.item-separator {\n  height: 1px;\n  background-color: #e5e5e5;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .item {\n    transition-duration: 0ms;\n  }\n}\n",
       "motion": [
         {
           "property": "background-color",
           "duration": "var(--duration-100)",
           "easing": "var(--easing-in-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

@@ -72,8 +72,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": []
@@ -83,15 +83,24 @@
         "classes": []
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "#e5e5e5",
+            "tokenPath": "border"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/**\n * Layout: faq-accordion\n *\n * Preguntas frecuentes en accordion de una columna, con CTA de contacto al final.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const faqAccordion = {\n  slug: 'faq-accordion',\n  name: 'FAQ Accordion',\n  description:\n    'Preguntas frecuentes en accordion de una columna, con CTA de contacto al final. Structure only.',\n  components: ['accordion', 'button', 'typography'],\n  html: `<!-- Layout: faq-accordion -->\n<section class=\"l-faq-accordion\">\n  <div class=\"l-faq-accordion__header\">\n    <h2 class=\"l-faq-accordion__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-faq-accordion__list\">\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq1_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq1_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq2_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq2_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq3_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq3_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq4_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq4_answer}}</div>\n    </details>\n    <details class=\"l-faq-accordion__item\">\n      <summary class=\"l-faq-accordion__question\">{{faq5_question}}</summary>\n      <div class=\"l-faq-accordion__answer\">{{faq5_answer}}</div>\n    </details>\n  </div>\n  <div class=\"l-faq-accordion__cta\">\n    <a href=\"#\" class=\"button button--secondary button--m\">\n      <span class=\"button__label\">{{contactCta}}</span>\n    </a>\n  </div>\n</section>`,\n  css: `/* Layout: faq-accordion — structure only */\n.l-faq-accordion {\n  max-width: 720px;\n  margin: 0 auto;\n  padding: 48px 32px;\n}\n.l-faq-accordion__header {\n  text-align: center;\n  margin-bottom: 32px;\n}\n.l-faq-accordion__list {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n.l-faq-accordion__item {\n  border: 1px solid #e5e5e5;\n  border-radius: 8px;\n  padding: 16px;\n}\n.l-faq-accordion__item summary {\n  cursor: pointer;\n  font-weight: 600;\n  list-style: none;\n}\n.l-faq-accordion__item summary::-webkit-details-marker {\n  display: none;\n}\n.l-faq-accordion__answer {\n  margin-top: 8px;\n  padding-top: 8px;\n  border-top: 1px solid #e5e5e5;\n  color: #525252;\n}\n.l-faq-accordion__cta {\n  text-align: center;\n  margin-top: 32px;\n}`,\n};",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "standaloneCss": "/* Layout: faq-accordion — structure only */\n.l-faq-accordion {\n  max-width: 720px;\n  margin: 0 auto;\n  padding: 48px 32px;\n}\n.l-faq-accordion__header {\n  text-align: center;\n  margin-bottom: 32px;\n}\n.l-faq-accordion__list {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n.l-faq-accordion__item {\n  border: 1px solid #e5e5e5;\n  border-radius: 8px;\n  padding: 16px;\n}\n.l-faq-accordion__item summary {\n  cursor: pointer;\n  font-weight: 600;\n  list-style: none;\n}\n.l-faq-accordion__item summary::-webkit-details-marker {\n  display: none;\n}\n.l-faq-accordion__answer {\n  margin-top: 8px;\n  padding-top: 8px;\n  border-top: 1px solid #e5e5e5;\n  color: #525252;\n}\n.l-faq-accordion__cta {\n  text-align: center;\n  margin-top: 32px;\n}\n",
+      "motion": []
     }
   }
 }

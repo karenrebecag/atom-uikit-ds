@@ -1,0 +1,47 @@
+{
+  "feature": "F12a",
+  "date": "2026-08-02",
+  "commit": "pending",
+  "checks": [
+    {
+      "id": "F12-C1",
+      "status": "conditional",
+      "evidence": "Matriz 9 derivable / 2 editorial en qa-verdicts/F12-inventory-derivability.md. Export de 74 docs Payload NO ejecutado (sin SUPABASE_* local). F12c bloqueado hasta export."
+    },
+    {
+      "id": "F12-C2",
+      "status": "pass-with-finding",
+      "evidence": "Button primary bg: CMS CLAUDE #18181b vs emitido #0a0a0a. Emisor correcto (tokens.json). Drift CMS documentado. Tests derive-doc F12-C2 green."
+    },
+    {
+      "id": "F12-C3",
+      "status": "pass",
+      "evidence": "public/r: 120/120 items con meta.derived.sourceCommit. 115 partial con degradeReasons=['no-component-tokens'] (solo 4 JSON de component tokens en DS). 5 clean: button, checkbox, link-button, nav-link, button-hover."
+    },
+    {
+      "id": "F12-C4",
+      "status": "pass",
+      "evidence": "node --test scripts/derive-doc.test.mjs — broken CSS → degraded+reasons, no throw, hex still from tokens."
+    },
+    {
+      "id": "F12-C9",
+      "status": "pass",
+      "evidence": "README atom-mcp-distribution-specs actualizado: 14/120, F9 aditivo, F12/F13 en grafo (ya estaban en tabla)."
+    },
+    {
+      "id": "F12a-build",
+      "status": "pass",
+      "evidence": "pnpm build:registry — [F12a] meta.derived: 120 items (115 partial/degraded), sourceCommit=cc15bb1"
+    }
+  ],
+  "verdict": "conditional",
+  "blocking": [
+    "F12-C1 export completo de 74 docs Payload (credencial Supabase)",
+    "Review Karen del hallazgo drift #18181b vs #0a0a0a"
+  ],
+  "notes": [
+    "F12a emisor listo para F12b: meta.derived en canal public/r.",
+    "F12b NO arranca hasta approval F12a + decisión de merge MCP.",
+    "Ampliar packages/tokens/src/components/*.json reduce partials (no bloquea F12a)."
+  ]
+}

@@ -64,8 +64,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": []
@@ -78,11 +78,11 @@
         "resolved": [],
         "sizes": []
       },
-      "standaloneCss": "/**\n * Layout: page-header-split\n *\n * Cabecera interior en dos columnas: titulo grande izquierda, descripcion derecha.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pageHeaderSplit = {\n  slug: 'page-header-split',\n  name: 'Page Header Split',\n  description:\n    'Cabecera interior en dos columnas: titulo grande izquierda, descripcion derecha. Structure only.',\n  components: ['breadcrumb', 'typography'],\n  html: `<!-- Layout: page-header-split -->\n<header class=\"l-page-header-split\">\n  <div class=\"l-page-header-split__left\">\n    <nav class=\"breadcrumb\">\n      <a href=\"{{breadcrumb1_url}}\" class=\"nav-link\">{{breadcrumb1_label}}</a>\n      <span>/</span>\n      <a href=\"{{breadcrumb2_url}}\" class=\"nav-link\">{{breadcrumb2_label}}</a>\n    </nav>\n    <h1 class=\"l-page-header-split__headline\">{{headline}}</h1>\n  </div>\n  <div class=\"l-page-header-split__right\">\n    <p class=\"l-page-header-split__description\">{{description}}</p>\n  </div>\n</header>`,\n  css: `/* Layout: page-header-split — structure only */\n.l-page-header-split {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 32px;\n  padding: 48px 32px;\n  max-width: 960px;\n  margin: 0 auto;\n}\n@media (max-width: 768px) {\n  .l-page-header-split {\n    grid-template-columns: 1fr;\n  }\n}\n.l-page-header-split__left {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n.l-page-header-split__headline {\n  font-size: var(--text-4xl);\n}\n.l-page-header-split__right {\n  display: flex;\n  align-items: center;\n}`,\n};",
+      "standaloneCss": "/* Layout: page-header-split — structure only */\n.l-page-header-split {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 32px;\n  padding: 48px 32px;\n  max-width: 960px;\n  margin: 0 auto;\n}\n@media (max-width: 768px) {\n  .l-page-header-split {\n    grid-template-columns: 1fr;\n  }\n}\n.l-page-header-split__left {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n.l-page-header-split__headline {\n  font-size: var(--text-4xl);\n}\n.l-page-header-split__right {\n  display: flex;\n  align-items: center;\n}\n",
       "motion": [],
       "degraded": true,
       "degradeReasons": [
-        "no-component-tokens"
+        "no-color-declarations"
       ]
     }
   }

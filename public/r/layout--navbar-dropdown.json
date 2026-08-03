@@ -77,8 +77,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": []
@@ -88,15 +88,18 @@
         "classes": []
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "#e5e5e5",
+            "tokenPath": "border"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/**\n * Layout: navbar-dropdown\n *\n * Navbar con menus desplegables por grupo (Producto, Recursos...). Para sitios con muchas paginas.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const navbarDropdown = {\n  slug: 'navbar-dropdown',\n  name: 'Navbar con dropdowns',\n  description:\n    'Navbar con menus desplegables por grupo (Producto, Recursos...). Para sitios con muchas paginas. Structure only.',\n  components: ['nav-link', 'dropdown-menu', 'menu-button', 'button', 'burger-icon', 'image'],\n  html: `<!-- Layout: navbar-dropdown -->\n<nav class=\"l-navbar-dropdown\">\n  <div class=\"l-navbar-dropdown__logo\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n  </div>\n  <div class=\"l-navbar-dropdown__menu\">\n    <div class=\"dropdown-menu\">\n      <button class=\"nav-link\">Producto</button>\n      <div class=\"dropdown-menu__content\">\n        <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n        <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n      </div>\n    </div>\n    <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n    <div class=\"dropdown-menu\">\n      <button class=\"nav-link\">Recursos</button>\n      <div class=\"dropdown-menu__content\">\n        <a href=\"{{link4_url}}\" class=\"nav-link\">{{link4_label}}</a>\n      </div>\n    </div>\n  </div>\n  <div class=\"l-navbar-dropdown__cta\">\n    <a href=\"{{cta_url}}\" class=\"button button--primary button--m\">\n      <span class=\"button__label\">{{cta}}</span>\n    </a>\n  </div>\n  <button class=\"l-navbar-dropdown__burger burger-icon\" data-menu-button=\"burger\" aria-label=\"Menu\" aria-expanded=\"false\">\n    <span class=\"burger-icon__line\"></span>\n    <span class=\"burger-icon__line\"></span>\n    <span class=\"burger-icon__line\"></span>\n  </button>\n</nav>`,\n  css: `/* Layout: navbar-dropdown — structure only */\n.l-navbar-dropdown {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n  padding: 16px 32px;\n  border-bottom: 1px solid #e5e5e5;\n}\n.l-navbar-dropdown__logo {\n  flex-shrink: 0;\n}\n.l-navbar-dropdown__menu {\n  display: flex;\n  gap: 24px;\n  align-items: center;\n}\n.l-navbar-dropdown__cta {\n  flex-shrink: 0;\n}\n.l-navbar-dropdown__burger {\n  display: none;\n}\n@media (max-width: 768px) {\n  .l-navbar-dropdown__menu,\n  .l-navbar-dropdown__cta {\n    display: none;\n  }\n  .l-navbar-dropdown__burger {\n    /* flex = display propio del atomo burger-icon; con block sus lineas colapsan a 0x0 */\n    display: flex;\n  }\n}`,\n};",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "standaloneCss": "/* Layout: navbar-dropdown — structure only */\n.l-navbar-dropdown {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n  padding: 16px 32px;\n  border-bottom: 1px solid #e5e5e5;\n}\n.l-navbar-dropdown__logo {\n  flex-shrink: 0;\n}\n.l-navbar-dropdown__menu {\n  display: flex;\n  gap: 24px;\n  align-items: center;\n}\n.l-navbar-dropdown__cta {\n  flex-shrink: 0;\n}\n.l-navbar-dropdown__burger {\n  display: none;\n}\n@media (max-width: 768px) {\n  .l-navbar-dropdown__menu,\n  .l-navbar-dropdown__cta {\n    display: none;\n  }\n  .l-navbar-dropdown__burger {\n    /* flex = display propio del atomo burger-icon; con block sus lineas colapsan a 0x0 */\n    display: flex;\n  }\n}\n",
+      "motion": []
     }
   }
 }
