@@ -11,7 +11,7 @@
     {
       "id": "F16-C2",
       "status": "pass-local",
-      "evidence": "Lotes from board queue. Agent-1: burger-icon, image, stepper, toggle-group, typography, whatsapp-button, combobox, field, slider, avatar, avatar-group, skeleton. Agent-2: spinner, breadcrumb, context-menu, dropdown-menu, nav-link, pagination, sidebar, tabs, alert-dialog, dialog, drawer, marquee. Agent-3: progress-nav, sheet, stats-card, toast, user-profile, video-player, calendar, table, divider, empty, item, resizable. Editorial-1: burger-icon, button-group, icon-button, image, link-button, stepper, toggle-group, typography, checkbox, combobox, field, radio."
+      "evidence": "Lotes from board queue. Agent-1..3 done. Editorial-1: burger-icon, button-group, icon-button, image, link-button, stepper, toggle-group, typography, checkbox, combobox, field, radio. Editorial-2: select, slider, textarea, toggle, avatar, avatar-group, badge, skeleton, spinner, tag, breadcrumb, context-menu."
     },
     {
       "id": "F16-C3",
@@ -21,12 +21,12 @@
     {
       "id": "F16-C4",
       "status": "in_progress",
-      "evidence": "After editorial-1 (Karen signed): 15/49 eligible (30.6%). Seed button/chip/input + 12 actions/forms. Need ≥90% (~3 more lotes)."
+      "evidence": "After editorial-2 (Karen signed): 27/49 eligible (55.1%). Need ≥90% (~2 more lotes: editorial-3 + editorial-4)."
     },
     {
       "id": "F16-C5",
       "status": "pass-local",
-      "evidence": "approved-by-karen: agent-1; agent-2; agent-3; editorial-1 (2026-08-03 'dale') — actions/forms. Local commits; push when asked."
+      "evidence": "approved-by-karen: agent-1..3; editorial-1; editorial-2 (2026-08-03 'dale') — forms/indicators/navigation. Local commits; push when asked."
     },
     {
       "id": "F16-C6",
