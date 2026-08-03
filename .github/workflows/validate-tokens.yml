@@ -34,11 +34,12 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       # Builds tokens (Style Dictionary) + emits public/r/tokens-nested.json
-      # El canal Webflow renderiza React de verdad para producir el XscpData, asi
-      # que sin components-react/dist emite cero artefactos. En local funciona por
-      # el dist de builds previos; en CI hay que construirlo o el check compara
-      # 36 archivos contra la nada. 2s con turbo.
-      - run: pnpm --filter @atom-uikit/components-react... build
+      # El registry lee dist de varios paquetes: components-react para renderizar
+      # el XscpData de Webflow, y animations para el js de los artefactos animados
+      # (button, icon-button, link-button, marquee, toggle-group). En local pasa
+      # desapercibido porque los dist sobreviven entre builds; en CI hay que
+      # construirlos todos o el check compara contra artefactos incompletos. 5s.
+      - run: pnpm build
       - run: pnpm build:registry
       # El build acaba de regenerar public/r. Si lo commiteado no coincide, main
       # esta sirviendo algo que su propio codigo no reproduce — que es como la
