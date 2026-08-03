@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T17:30:37.860Z",
+  "generatedAt": "2026-08-03T17:47:41.277Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -35,8 +35,6 @@
     },
     "aggregateScore": 50.5
   },
-  "previousAggregateScore": 48.5,
-  "deltaAggregateScore": 2,
   "batches": [],
   "items": [
     {
