@@ -5,6 +5,8 @@ Monorepo for the ATOM UIKit component library. Distributes via private registry 
 **Operación (release, deploy /v1, Webflow, registry, accesos):** seguir
 [`docs/RUNBOOK.md`](docs/RUNBOOK.md). Decisiones vigentes: [`docs/decisions/`](docs/decisions/).
 **Guía para agentes (consumir el DS o modificarlo):** [`docs/AGENTS.md`](docs/AGENTS.md).
+**Crear/editar componentes (procedimiento paso a paso, apto para agentes ligeros):**
+[`docs/component-agent-flow.md`](docs/component-agent-flow.md).
 **Publicar un organismo (card, hero, tabla…) de forma replicable:**
 [`docs/organism-pipeline.md`](docs/organism-pipeline.md) — proceso canónico y prueba de
 aceptación. Un organismo sin layout publicado NO está distribuido.

@@ -34,6 +34,11 @@ Reglas de consumo:
 
 ## Rol B — Modificas el DS (trabajas en ESTE repo)
 
+**Para crear o editar componentes, sigue el procedimiento paso a paso de
+[`docs/component-agent-flow.md`](component-agent-flow.md)** — está diseñado para
+que cualquier agente (incluidos modelos ligeros) produzca resultados correctos
+auditados por los gates. Lo de abajo es el contexto; aquél es el procedimiento.
+
 Lee en este orden: `CLAUDE.md` (reglas duras y flujo), `docs/RUNBOOK.md` (operación),
 `docs/decisions/` (por qué las cosas son como son). Resumen mínimo:
 
