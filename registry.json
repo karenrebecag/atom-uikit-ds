@@ -4079,9 +4079,18 @@
           "previewProps": {
             "idBase": "accordion-morph",
             "items": [
-              { "question": "Que hace diferentes a los marcos?", "answer": "Cada marco se lamina en carbono crudo en un molde propio y se termina a mano antes de encordar." },
-              { "question": "Fabrican para zurdos?", "answer": "Todo grip y balance se espeja bajo pedido sin costo extra." },
-              { "question": "Cual es la garantia por fisuras?", "answer": "Dos anos contra fallo estructural en juego normal, sin letra chica." }
+              {
+                "question": "Que hace diferentes a los marcos?",
+                "answer": "Cada marco se lamina en carbono crudo en un molde propio y se termina a mano antes de encordar."
+              },
+              {
+                "question": "Fabrican para zurdos?",
+                "answer": "Todo grip y balance se espeja bajo pedido sin costo extra."
+              },
+              {
+                "question": "Cual es la garantia por fisuras?",
+                "answer": "Dos anos contra fallo estructural en juego normal, sin letra chica."
+              }
             ],
             "startOpen": 0
           }
@@ -4132,7 +4141,7 @@
             },
             {
               "context": "css-modules",
-              "note": "Pildora y panel pintan su fondo con --primary y el texto usa --primary-foreground + opacity: en dark el bloque invierte solo. No sobreescribir esos fondos: son el rol crisp que tapa el wobble del filtro."
+              "note": "Pildora y panel pintan su fondo con --card + --border y el texto usa --card-foreground + opacity: siguen al tema (blanco en light, oscuro en dark). El liquido va en --secondary. No sobreescribir esos fondos: son el rol crisp que tapa el wobble del filtro."
             },
             {
               "context": "a11y",

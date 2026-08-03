@@ -1332,10 +1332,10 @@
           "name": "ds-accordion-morph__trigger",
           "namespace": "",
           "comb": "",
-          "styleLess": "position: relative; z-index: 2; display: flex; align-items: center; gap: var(--spacing-3); width: 100%; min-height: var(--spacing-14); padding: var(--spacing-4) var(--spacing-5); background-color: var(--primary); border: none; border-radius: var(--radius-full); cursor: pointer; text-align: left; color: var(--primary-foreground); font-family: inherit; box-sizing: border-box;",
+          "styleLess": "position: relative; z-index: 2; display: flex; align-items: center; gap: var(--spacing-3); width: 100%; min-height: var(--spacing-14); padding: var(--spacing-4) var(--spacing-5); background-color: var(--card); border: 1px solid var(--border); border-radius: var(--radius-full); cursor: pointer; text-align: left; color: var(--card-foreground); font-family: inherit; box-sizing: border-box;",
           "variants": {
             "main_hover": {
-              "styleLess": "background-color: var(--primary-hover);"
+              "styleLess": "background-color: var(--accent);"
             },
             "small": {
               "styleLess": "padding: var(--spacing-3) var(--spacing-4); gap: var(--spacing-3);"
@@ -1352,7 +1352,7 @@
           "name": "ds-accordion-morph__index",
           "namespace": "",
           "comb": "",
-          "styleLess": "flex-shrink: 0; min-width: var(--spacing-6); font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--primary-foreground); opacity: var(--opacity-50);",
+          "styleLess": "flex-shrink: 0; min-width: var(--spacing-6); font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--card-foreground); opacity: var(--opacity-50);",
           "variants": {
             "tiny": {
               "styleLess": "display: none;"
@@ -1369,7 +1369,7 @@
           "name": "ds-accordion-morph__question",
           "namespace": "",
           "comb": "",
-          "styleLess": "flex: 1; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); letter-spacing: var(--letter-spacing-tight, -0.01em); line-height: var(--line-height-sm); color: var(--primary-foreground);",
+          "styleLess": "flex: 1; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); letter-spacing: var(--letter-spacing-tight, -0.01em); line-height: var(--line-height-sm); color: var(--card-foreground);",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -1395,7 +1395,7 @@
           "name": "ds-accordion-morph__panel-inner",
           "namespace": "",
           "comb": "",
-          "styleLess": "margin-top: var(--spacing-3); padding: var(--spacing-5); background-color: var(--primary); border-radius: var(--radius-xl);",
+          "styleLess": "margin-top: var(--spacing-3); padding: var(--spacing-5); background-color: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl);",
           "variants": {
             "small": {
               "styleLess": "padding: var(--spacing-4);"
@@ -1412,7 +1412,7 @@
           "name": "ds-accordion-morph__answer",
           "namespace": "",
           "comb": "",
-          "styleLess": "margin: 0; font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); line-height: var(--line-height-lg); letter-spacing: var(--letter-spacing-tight, -0.01em); color: var(--primary-foreground); opacity: var(--opacity-80);",
+          "styleLess": "margin: 0; font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); line-height: var(--line-height-lg); letter-spacing: var(--letter-spacing-tight, -0.01em); color: var(--card-foreground); opacity: var(--opacity-80);",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -1435,9 +1435,13 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-accordion-morph__goo-pill,.ds-accordion-morph__goo-panel{background-color:var(--primary);will-change:transform;width:100%;position:absolute;top:0;left:0}.ds-accordion-morph__trigger:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:2px}",
-  "tokensCss": ":root {\n  --font-size-base: 16px;\n  --font-size-sm: 12.8px;\n  --font-weight-medium: 500;\n  --font-weight-regular: 400;\n  --letter-spacing-tight: -0.02em;\n  --line-height-lg: 1.45;\n  --line-height-sm: 1.45;\n  --opacity-50: 0.5;\n  --opacity-80: 0.8;\n  --primary: #0a0a0a;\n  --primary-foreground: #fafafa;\n  --primary-hover: #262626;\n  --radius-full: 9999px;\n  --radius-xl: 16px;\n  --spacing-14: 56px;\n  --spacing-2: 8px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n  --spacing-5: 20px;\n  --spacing-6: 24px;\n}",
+  "headCss": ".ds-accordion-morph__goo-pill,.ds-accordion-morph__goo-panel{background-color:var(--secondary);will-change:transform;width:100%;position:absolute;top:0;left:0}.ds-accordion-morph__trigger:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:2px}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --border: #e5e5e5;\n  --card: #ffffff;\n  --card-foreground: #0a0a0a;\n  --font-size-base: 16px;\n  --font-size-sm: 12.8px;\n  --font-weight-medium: 500;\n  --font-weight-regular: 400;\n  --letter-spacing-tight: -0.02em;\n  --line-height-lg: 1.45;\n  --line-height-sm: 1.45;\n  --opacity-50: 0.5;\n  --opacity-80: 0.8;\n  --radius-full: 9999px;\n  --radius-xl: 16px;\n  --secondary: #efefef;\n  --spacing-14: 56px;\n  --spacing-2: 8px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n  --spacing-5: 20px;\n  --spacing-6: 24px;\n}",
   "tokensResolved": [
+    "accent",
+    "border",
+    "card",
+    "card-foreground",
     "font-size-base",
     "font-size-sm",
     "font-weight-medium",
@@ -1447,11 +1451,9 @@
     "line-height-sm",
     "opacity-50",
     "opacity-80",
-    "primary",
-    "primary-foreground",
-    "primary-hover",
     "radius-full",
     "radius-xl",
+    "secondary",
     "spacing-14",
     "spacing-2",
     "spacing-3",
@@ -1474,6 +1476,10 @@
     ],
     "init": "window.__atomMotionCleanup = AtomMotion.initAll();",
     "tokens": [
+      "accent",
+      "border",
+      "card",
+      "card-foreground",
       "font-size-base",
       "font-size-sm",
       "font-weight-medium",
@@ -1483,11 +1489,9 @@
       "line-height-sm",
       "opacity-50",
       "opacity-80",
-      "primary",
-      "primary-foreground",
-      "primary-hover",
       "radius-full",
       "radius-xl",
+      "secondary",
       "spacing-14",
       "spacing-2",
       "spacing-3",

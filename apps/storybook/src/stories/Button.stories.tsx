@@ -6,6 +6,10 @@ import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
 import { initButtonHover } from '../../../../packages/animations/src/button-hover';
 import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel, useTransition } from '../utils/StoryPreviewLayout';
 import { IconLayers, IconRuler, IconActivity, IconSettings } from '../utils/SectionIcons';
+import { CopyToWebflow } from '../utils/CopyToWebflow';
+import buttonCss from '../../../../packages/css/src/components/buttons/button.css?raw';
+import buttonTextSwapCss from '../../../../packages/css/src/components/buttons/button-text-swap.css?raw';
+import buttonFocusRingCss from '../../../../packages/css/src/components/buttons/button-focus-ring.css?raw';
 
 const IconPlus = () => (
   <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -193,17 +197,19 @@ export const Default: Story = {
       >
         <div ref={ref} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
           <div style={transitionStyle}>
-            <Button
-              variant={variant}
-              size={size}
-              disabled={buttonState === 'disabled'}
-              loading={buttonState === 'loading'}
-              animated={animated}
-              iconLeft={iconLeft ? <IconPlus /> : undefined}
-              iconRight={iconRight ? <IconChevronDown /> : undefined}
-            >
-              Button
-            </Button>
+            <CopyToWebflow slug="button" css={[buttonCss, buttonTextSwapCss, buttonFocusRingCss].join('\n')}>
+              <Button
+                variant={variant}
+                size={size}
+                disabled={buttonState === 'disabled'}
+                loading={buttonState === 'loading'}
+                animated={animated}
+                iconLeft={iconLeft ? <IconPlus /> : undefined}
+                iconRight={iconRight ? <IconChevronDown /> : undefined}
+              >
+                Button
+              </Button>
+            </CopyToWebflow>
           </div>
         </div>
       </StoryPreviewLayout>

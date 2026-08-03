@@ -9,8 +9,9 @@
    La capa goo arranca invisible: solo el behavior la enciende. Sin JS (o con
    reduced-motion) el componente es un disclosure normal y completo.
 
-   Colores: superficie = primary (invierte sola en dark). Jerarquia del texto
-   sobre la pildora via opacity tokens, no colores nuevos.
+   Colores: superficie = card + border (blanco en light, oscuro en dark — el
+   bloque SIGUE al tema, decision Karen 2026-08-03; primary lo invertia).
+   Jerarquia del texto via opacity tokens, no colores nuevos.
 
    Parts: .accordion-morph, __list, __row, __goo, __goo-pill, __goo-panel,
           __trigger, __index, __question, __icon, __panel, __panel-inner,
@@ -52,13 +53,16 @@
   pointer-events: none;
 }
 
+/* El liquido va en secondary, un paso mas oscuro que card y background en
+   ambos temas: el cuello del vertido se lee como puente sutil, no invisible
+   (card sobre background casi no contrasta) ni como mancha (primary gritaba). */
 .accordion-morph__goo-pill,
 .accordion-morph__goo-panel {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   will-change: transform;
 }
 
@@ -79,18 +83,18 @@
   width: 100%;
   min-height: var(--spacing-14);
   padding: var(--spacing-4) var(--spacing-5);
-  background-color: var(--primary);
-  border: none;
+  background-color: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
   cursor: pointer;
   text-align: left;
-  color: var(--primary-foreground);
+  color: var(--card-foreground);
   font-family: inherit;
   box-sizing: border-box;
 }
 
 .accordion-morph__trigger:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--accent);
 }
 
 .accordion-morph__trigger:focus-visible {
@@ -103,7 +107,7 @@
   min-width: var(--spacing-6);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--primary-foreground);
+  color: var(--card-foreground);
   opacity: var(--opacity-50);
 }
 
@@ -113,14 +117,14 @@
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-tight, -0.01em);
   line-height: var(--line-height-sm);
-  color: var(--primary-foreground);
+  color: var(--card-foreground);
 }
 
 .accordion-morph__icon {
   width: var(--spacing-4);
   height: var(--spacing-4);
   flex-shrink: 0;
-  color: var(--primary-foreground);
+  color: var(--card-foreground);
   opacity: var(--opacity-80);
   transform-origin: 50% 50%;
   will-change: transform;
@@ -140,7 +144,8 @@
 .accordion-morph__panel-inner {
   margin-top: var(--spacing-3);
   padding: var(--spacing-5);
-  background-color: var(--primary);
+  background-color: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
 }
 
@@ -150,7 +155,7 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-lg);
   letter-spacing: var(--letter-spacing-tight, -0.01em);
-  color: var(--primary-foreground);
+  color: var(--card-foreground);
   opacity: var(--opacity-80);
 }
 
