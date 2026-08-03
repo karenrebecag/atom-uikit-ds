@@ -81,8 +81,8 @@
       "usage": "<!-- Prefer published CSS + anchor from the registry item for marketing pages -->\n<a class=\"whatsapp-button whatsapp-button--pill whatsapp-button--m\" href=\"https://wa.me/15551234567\">Chat on WhatsApp</a>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:21:40.982Z",
-      "sourceCommit": "28b696e",
+      "generatedAt": "2026-08-03T17:52:25.278Z",
+      "sourceCommit": "19faf2f",
       "install": {
         "peerDeps": [],
         "cssImports": [

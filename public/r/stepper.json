@@ -71,6 +71,24 @@
     }
   },
   "meta": {
+    "webflow": {
+      "previewProps": {
+        "steps": [
+          {
+            "title": "Cuenta",
+            "state": "completed"
+          },
+          {
+            "title": "Datos",
+            "state": "active"
+          },
+          {
+            "title": "Confirmación",
+            "state": "upcoming"
+          }
+        ]
+      }
+    },
     "agent": {
       "configurables": [],
       "gotchas": [
@@ -86,8 +104,8 @@
       "usage": "import { Stepper } from '@/components/atoms/Stepper';\n\n<Stepper\n  orientation=\"horizontal\"\n  steps={[\n    { state: 'completed', title: 'Account' },\n    { state: 'active', title: 'Plan' },\n    { state: 'upcoming', title: 'Pay' },\n  ]}\n/>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:21:40.982Z",
-      "sourceCommit": "28b696e",
+      "generatedAt": "2026-08-03T17:52:25.278Z",
+      "sourceCommit": "19faf2f",
       "install": {
         "peerDeps": [],
         "cssImports": [

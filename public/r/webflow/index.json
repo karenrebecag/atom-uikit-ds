@@ -32,10 +32,12 @@
     "slider",
     "spinner",
     "stats-card",
+    "stepper",
     "table",
     "tabs",
     "tag",
-    "toggle-group"
+    "toggle-group",
+    "user-profile"
   ],
   "emitted": [
     "accordion",
@@ -69,10 +71,12 @@
     "slider",
     "spinner",
     "stats-card",
+    "stepper",
     "table",
     "tabs",
     "tag",
-    "toggle-group"
+    "toggle-group",
+    "user-profile"
   ],
   "excluded": [
     {
@@ -113,7 +117,7 @@
     },
     {
       "name": "burger-icon",
-      "reason": "no CSS in registry item"
+      "reason": "declared: anatomía y motion pertenecen a menu-button (statesWrittenAsClasses, sin CSS propio) — pegar el patrón menu-button, no el icono suelto"
     },
     {
       "name": "icon",
@@ -129,27 +133,19 @@
     },
     {
       "name": "progress-nav",
-      "reason": "render error: Cannot read properties of undefined (reading 'map')"
+      "reason": "domContract fail: missing hook:data-progress-nav-anchor, statesWrittenAsClasses:true-excluded-wave1"
     },
     {
       "name": "resizable",
-      "reason": "render error: Resizable components must be used within <ResizablePanelGroup>"
-    },
-    {
-      "name": "stepper",
-      "reason": "render error: Cannot read properties of undefined (reading 'map')"
+      "reason": "declared: paneles interactivos con estado (PanelGroup + drag) — sin equivalente estático útil en el Designer; consumir vía React"
     },
     {
       "name": "toast",
-      "reason": "empty HTML from renderToStaticMarkup"
+      "reason": "declared: runtime-only (portal imperativo, no produce HTML estático) — las notificaciones en Webflow van con el patrón del sitio, no con paste"
     },
     {
       "name": "typography",
-      "reason": "no CSS in registry item"
-    },
-    {
-      "name": "user-profile",
-      "reason": "render error: Cannot read properties of undefined (reading 'split')"
+      "reason": "declared: las clases tipográficas viajan en foundation/embed CSS (/v1) y como estilos nativos del master — no es un paste de componente"
     },
     {
       "name": "video-player",
@@ -157,7 +153,7 @@
     },
     {
       "name": "sidebar",
-      "reason": "missing dist for components/molecules/sidebar/Sidebar.tsx"
+      "reason": "declared: app chrome con estado (SidebarProvider/useSidebar) — no es objetivo de paste en sitios de marketing; consumir vía React"
     },
     {
       "name": "tooltip",

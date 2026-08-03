@@ -59,6 +59,13 @@ export async function emitWebflowChannel(outDir, opts = {}) {
     }
     const item = JSON.parse(await fs.readFile(itemPath, 'utf8'));
 
+    // Exclusión declarada en la fuente: decisión, no error de pipeline.
+    const declaredExclude = item.meta?.webflow?.exclude;
+    if (typeof declaredExclude === 'string' && declaredExclude.length) {
+      excluded.push({ name: slug, reason: `declared: ${declaredExclude}` });
+      continue;
+    }
+
     // Layouts are kind:layout — not in this loop. Components only.
     const rendered = await renderAnatomy(item);
     if ('reason' in rendered && !('html' in rendered)) {

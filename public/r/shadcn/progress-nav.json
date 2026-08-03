@@ -25,6 +25,24 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "webflow": {
+      "previewProps": {
+        "items": [
+          {
+            "id": "intro",
+            "label": "Intro"
+          },
+          {
+            "id": "features",
+            "label": "Features"
+          },
+          {
+            "id": "pricing",
+            "label": "Pricing"
+          }
+        ]
+      }
+    },
     "agent": {
       "configurables": [],
       "gotchas": [
@@ -40,8 +58,8 @@
       "usage": "import { ProgressNav } from '@/components/atoms/ProgressNav';\n\n<ProgressNav\n  items={[{ id: 'features', label: 'Features' }, { id: 'pricing', label: 'Pricing' }]}\n  cta={{ label: 'Contact', href: '#contact' }}\n/>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:21:40.982Z",
-      "sourceCommit": "28b696e",
+      "generatedAt": "2026-08-03T17:52:25.278Z",
+      "sourceCommit": "19faf2f",
       "install": {
         "peerDeps": [
           "gsap"

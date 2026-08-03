@@ -1505,6 +1505,9 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "exclude": "anatomía y motion pertenecen a menu-button (statesWrittenAsClasses, sin CSS propio) — pegar el patrón menu-button, no el icono suelto"
+        },
         "agent": {
           "configurables": [],
           "gotchas": [
@@ -2393,6 +2396,15 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "previewProps": {
+            "items": [
+              { "id": "intro", "label": "Intro" },
+              { "id": "features", "label": "Features" },
+              { "id": "pricing", "label": "Pricing" }
+            ]
+          }
+        },
         "agent": {
           "configurables": [],
           "gotchas": [
@@ -2433,6 +2445,9 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "exclude": "paneles interactivos con estado (PanelGroup + drag) — sin equivalente estático útil en el Designer; consumir vía React"
+        },
         "agent": {
           "configurables": [
             {
@@ -2692,6 +2707,15 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "previewProps": {
+            "steps": [
+              { "title": "Cuenta", "state": "completed" },
+              { "title": "Datos", "state": "active" },
+              { "title": "Confirmación", "state": "upcoming" }
+            ]
+          }
+        },
         "agent": {
           "configurables": [],
           "gotchas": [
@@ -2821,6 +2845,9 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "exclude": "runtime-only (portal imperativo, no produce HTML estático) — las notificaciones en Webflow van con el patrón del sitio, no con paste"
+        },
         "agent": {
           "configurables": [],
           "gotchas": [
@@ -2967,6 +2994,9 @@
         "TypographyList"
       ],
       "meta": {
+        "webflow": {
+          "exclude": "las clases tipográficas viajan en foundation/embed CSS (/v1) y como estilos nativos del master — no es un paste de componente"
+        },
         "agent": {
           "configurables": [],
           "gotchas": [
@@ -3007,6 +3037,12 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "previewProps": {
+            "name": "Ada Lovelace",
+            "org": "Atom"
+          }
+        },
         "agent": {
           "configurables": [],
           "gotchas": [
@@ -3151,6 +3187,9 @@
         }
       ],
       "meta": {
+        "webflow": {
+          "exclude": "app chrome con estado (SidebarProvider/useSidebar) — no es objetivo de paste en sitios de marketing; consumir vía React"
+        },
         "agent": {
           "configurables": [
             {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T17:47:41.277Z",
+  "generatedAt": "2026-08-03T17:53:14.712Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -30,10 +30,10 @@
       "withSourceCommit": 120
     },
     "webflow": {
-      "emitted": 35,
-      "excluded": 24
+      "emitted": 37,
+      "excluded": 22
     },
-    "aggregateScore": 50.5
+    "aggregateScore": 50.6
   },
   "batches": [],
   "items": [
@@ -579,7 +579,7 @@
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
-      "webflowReason": "no CSS in registry item",
+      "webflowReason": "declared: anatomía y motion pertenecen a menu-button (statesWrittenAsClasses, sin CSS propio) — pegar el patrón menu-button, no el icono suelto",
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
@@ -853,7 +853,7 @@
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
-      "webflowReason": "render error: Cannot read properties of undefined (reading 'map')",
+      "webflowReason": "domContract fail: missing hook:data-progress-nav-anchor, statesWrittenAsClasses:true-excluded-wave1",
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
@@ -870,7 +870,7 @@
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
-      "webflowReason": "render error: Resizable components must be used within <ResizablePanelGroup>",
+      "webflowReason": "declared: paneles interactivos con estado (PanelGroup + drag) — sin equivalente estático útil en el Designer; consumir vía React",
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
@@ -937,12 +937,12 @@
       "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
-      "webflow": "excluded",
-      "webflowReason": "render error: Cannot read properties of undefined (reading 'map')",
+      "webflow": "emitted",
+      "webflowReason": null,
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 90
+      "contentScore": 95
     },
     {
       "slug": "tag",
@@ -972,7 +972,7 @@
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
-      "webflowReason": "empty HTML from renderToStaticMarkup",
+      "webflowReason": "declared: runtime-only (portal imperativo, no produce HTML estático) — las notificaciones en Webflow van con el patrón del sitio, no con paste",
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
@@ -1008,7 +1008,7 @@
       ],
       "derivedOk": true,
       "webflow": "excluded",
-      "webflowReason": "no CSS in registry item",
+      "webflowReason": "declared: las clases tipográficas viajan en foundation/embed CSS (/v1) y como estilos nativos del master — no es un paste de componente",
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
@@ -1024,12 +1024,12 @@
       "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
-      "webflow": "excluded",
-      "webflowReason": "render error: Cannot read properties of undefined (reading 'split')",
+      "webflow": "emitted",
+      "webflowReason": null,
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 90
+      "contentScore": 95
     },
     {
       "slug": "video-player",
@@ -1059,7 +1059,7 @@
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
-      "webflowReason": "missing dist for components/molecules/sidebar/Sidebar.tsx",
+      "webflowReason": "declared: app chrome con estado (SidebarProvider/useSidebar) — no es objetivo de paste en sitios de marketing; consumir vía React",
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,

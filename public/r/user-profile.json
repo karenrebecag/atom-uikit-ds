@@ -62,6 +62,12 @@
     }
   },
   "meta": {
+    "webflow": {
+      "previewProps": {
+        "name": "Ada Lovelace",
+        "org": "Atom"
+      }
+    },
     "agent": {
       "configurables": [],
       "gotchas": [
@@ -77,8 +83,8 @@
       "usage": "import { UserProfile } from '@/components/atoms/UserProfile';\n\n<UserProfile name=\"Ada Lovelace\" org=\"Analytical Engines\" avatar={{ type: 'initials', size: 's' }} />"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:21:40.982Z",
-      "sourceCommit": "28b696e",
+      "generatedAt": "2026-08-03T17:52:25.278Z",
+      "sourceCommit": "19faf2f",
       "install": {
         "peerDeps": [],
         "cssImports": [

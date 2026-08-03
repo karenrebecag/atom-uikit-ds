@@ -329,15 +329,6 @@ async function main() {
     console.log(`  [F12c] editorial: ${editorialCopied} markdown file(s) → public/r/docs/`);
   }
 
-  // F16a — content coverage board (reads public/r after items written)
-  try {
-    const { writeContentCoverage, formatCoverageTable } = await import('./content-coverage.mjs');
-    const cov = writeContentCoverage(ROOT);
-    process.stdout.write(formatCoverageTable(cov));
-  } catch (e) {
-    console.warn(`  [WARN] F16 content-coverage: ${e.message}`);
-  }
-
   console.log(`  Output: ${OUT_DIR}/`);
 
   // F5: derive official shadcn channel from canónico (no second source of truth)
@@ -355,6 +346,15 @@ async function main() {
   } catch (err) {
     console.error(`  [ERROR] webflow channel: ${err.message}`);
     process.exit(1);
+  }
+
+  // F16a — el tablero lee TODO lo emitido (items + canal webflow), por eso va al final
+  try {
+    const { writeContentCoverage, formatCoverageTable } = await import('./content-coverage.mjs');
+    const cov = writeContentCoverage(ROOT);
+    process.stdout.write(formatCoverageTable(cov));
+  } catch (e) {
+    console.warn(`  [WARN] F16 content-coverage: ${e.message}`);
   }
 
   console.log('');

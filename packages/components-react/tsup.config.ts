@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/atoms/*.tsx', 'src/molecules/*.tsx'],
+  entry: ['src/index.ts', 'src/atoms/*.tsx', 'src/molecules/*.tsx', 'src/molecules/sidebar/*.tsx'],
   format: ['esm'],
   dts: true,
   splitting: true,
