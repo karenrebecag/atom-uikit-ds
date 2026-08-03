@@ -67,9 +67,36 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "default",
+            "outline",
+            "filled"
+          ],
+          "what": "Surface style of the empty state container.",
+          "how": "default for page empties; outline inside cards; filled for soft callouts. Default: default."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Compose EmptyHeader/Media/Title/Description/Content. Media has its own variant (default|icon)."
+        },
+        {
+          "context": "a11y",
+          "note": "Title should explain the empty state; put recovery actions in EmptyContent."
+        }
+      ],
+      "usage": "import {\n  Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent,\n} from '@/components/atoms/Empty';\n\n<Empty variant=\"outline\">\n  <EmptyHeader>\n    <EmptyMedia variant=\"icon\">{/* icon */}</EmptyMedia>\n    <EmptyTitle>No projects</EmptyTitle>\n    <EmptyDescription>Create one to get started.</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent><button type=\"button\">New project</button></EmptyContent>\n</Empty>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

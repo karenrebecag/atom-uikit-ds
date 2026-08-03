@@ -88,9 +88,48 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "variant",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "default",
+            "outline",
+            "muted"
+          ],
+          "what": "Surface emphasis of the row.",
+          "how": "default lists; outline for bordered menus; muted for secondary rows. Default: default."
+        },
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "default",
+            "sm",
+            "xs"
+          ],
+          "what": "Vertical density of the item.",
+          "how": "default in main lists; sm/xs in sidebars and dense pickers. Default: default."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "With href, root renders <a>; otherwise <div>. Compose ItemMedia/Content/Title/Description/Actions; group with ItemGroup."
+        },
+        {
+          "context": "a11y",
+          "note": "If clickable without href, add keyboard handlers and role; prefer href for navigation."
+        }
+      ],
+      "usage": "import {\n  Item, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions,\n} from '@/components/atoms/Item';\n\n<Item variant=\"outline\" size=\"default\" href=\"/docs\">\n  <ItemMedia variant=\"icon\">{/* icon */}</ItemMedia>\n  <ItemContent>\n    <ItemTitle>Docs</ItemTitle>\n    <ItemDescription>Guides and API</ItemDescription>\n  </ItemContent>\n  <ItemActions>→</ItemActions>\n</Item>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

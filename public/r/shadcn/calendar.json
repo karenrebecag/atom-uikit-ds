@@ -22,9 +22,35 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "mode",
+          "type": "select",
+          "default": "single",
+          "options": [
+            "single",
+            "range"
+          ],
+          "what": "Selection model: one day or a from–to range.",
+          "how": "single for pickers; range for booking/filters. Wire onSelect vs onRangeSelect accordingly. Default: single."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Controlled via selected / rangeFrom+rangeTo. disabledDates is a predicate (date)=>boolean — not a list prop."
+        },
+        {
+          "context": "a11y",
+          "note": "Month nav uses IconButtons; keep adjacent text labels for the field that owns the calendar."
+        }
+      ],
+      "usage": "import { Calendar } from '@/components/atoms/Calendar';\n\n<Calendar mode=\"single\" selected={day} onSelect={setDay} />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

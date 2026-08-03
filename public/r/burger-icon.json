@@ -50,8 +50,8 @@
       "usage": "import { BurgerIcon } from '@/components/atoms/BurgerIcon';\nimport { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton aria-label=\"Open menu\" aria-expanded={open}>\n  <BurgerIcon />\n</IconButton>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": []

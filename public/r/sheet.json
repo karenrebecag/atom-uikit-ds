@@ -70,9 +70,30 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "open",
+          "type": "boolean",
+          "what": "Controlled visibility of the sheet panel.",
+          "how": "Omit for uncontrolled Trigger flow. Pass open + onOpenChange for filters/settings opened from app state."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "side (top|right|bottom|left, default right) and showCloseButton live on SheetContent, not the root."
+        },
+        {
+          "context": "a11y",
+          "note": "Modal sheet locks body scroll; Escape and overlay close. Prefer Sheet for side panels; Dialog for centered tasks."
+        }
+      ],
+      "usage": "import {\n  Sheet, SheetTrigger, SheetContent, SheetHeader,\n  SheetTitle, SheetDescription, SheetBody,\n} from '@/components/atoms/Sheet';\n\n<Sheet>\n  <SheetTrigger><button type=\"button\">Open</button></SheetTrigger>\n  <SheetContent side=\"right\">\n    <SheetHeader>\n      <SheetTitle>Settings</SheetTitle>\n      <SheetDescription>Tune preferences.</SheetDescription>\n    </SheetHeader>\n    <SheetBody>{/* fields */}</SheetBody>\n  </SheetContent>\n</Sheet>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

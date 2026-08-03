@@ -860,7 +860,31 @@
           "outputPath": "styles/components/divider.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "orientation",
+              "type": "select",
+              "default": "horizontal",
+              "options": [
+                "horizontal",
+                "vertical"
+              ],
+              "what": "Axis of the rule.",
+              "how": "horizontal between stacked blocks; vertical in toolbars/inline groups. Default: horizontal."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "a11y",
+              "note": "Vertical sets role=separator and aria-orientation=vertical; horizontal is a plain hr."
+            }
+          ],
+          "usage": "import { Divider } from '@/components/atoms/Divider';\n\n<section>…</section>\n<Divider orientation=\"horizontal\" />\n<section>…</section>"
+        }
+      }
     },
     {
       "name": "section-header",
@@ -1247,7 +1271,23 @@
           "outputPath": "styles/components/table.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Compose Table > TableHeader/Body/Footer + TableRow + TableHead/Cell. selected lives on TableRow, not the root table."
+            },
+            {
+              "context": "a11y",
+              "note": "Use TableHead for column headers and TableCaption for a summary; avoid layout tables."
+            }
+          ],
+          "usage": "import {\n  Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption,\n} from '@/components/atoms/Table';\n\n<Table>\n  <TableCaption>Invoices</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Customer</TableHead>\n      <TableHead>Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>Ada</TableCell>\n      <TableCell>$120</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>"
+        }
+      }
     },
     {
       "name": "accordion",
@@ -1503,7 +1543,35 @@
           "outputPath": "styles/components/calendar.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "mode",
+              "type": "select",
+              "default": "single",
+              "options": [
+                "single",
+                "range"
+              ],
+              "what": "Selection model: one day or a from–to range.",
+              "how": "single for pickers; range for booking/filters. Wire onSelect vs onRangeSelect accordingly. Default: single."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Controlled via selected / rangeFrom+rangeTo. disabledDates is a predicate (date)=>boolean — not a list prop."
+            },
+            {
+              "context": "a11y",
+              "note": "Month nav uses IconButtons; keep adjacent text labels for the field that owns the calendar."
+            }
+          ],
+          "usage": "import { Calendar } from '@/components/atoms/Calendar';\n\n<Calendar mode=\"single\" selected={day} onSelect={setDay} />"
+        }
+      }
     },
     {
       "name": "chip",
@@ -1816,7 +1884,36 @@
           "outputPath": "styles/components/empty.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "default",
+              "options": [
+                "default",
+                "outline",
+                "filled"
+              ],
+              "what": "Surface style of the empty state container.",
+              "how": "default for page empties; outline inside cards; filled for soft callouts. Default: default."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Compose EmptyHeader/Media/Title/Description/Content. Media has its own variant (default|icon)."
+            },
+            {
+              "context": "a11y",
+              "note": "Title should explain the empty state; put recovery actions in EmptyContent."
+            }
+          ],
+          "usage": "import {\n  Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent,\n} from '@/components/atoms/Empty';\n\n<Empty variant=\"outline\">\n  <EmptyHeader>\n    <EmptyMedia variant=\"icon\">{/* icon */}</EmptyMedia>\n    <EmptyTitle>No projects</EmptyTitle>\n    <EmptyDescription>Create one to get started.</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent><button type=\"button\">New project</button></EmptyContent>\n</Empty>"
+        }
+      }
     },
     {
       "name": "icon",
@@ -1993,7 +2090,48 @@
           "outputPath": "styles/components/item.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "variant",
+              "type": "select",
+              "default": "default",
+              "options": [
+                "default",
+                "outline",
+                "muted"
+              ],
+              "what": "Surface emphasis of the row.",
+              "how": "default lists; outline for bordered menus; muted for secondary rows. Default: default."
+            },
+            {
+              "prop": "size",
+              "type": "select",
+              "default": "default",
+              "options": [
+                "default",
+                "sm",
+                "xs"
+              ],
+              "what": "Vertical density of the item.",
+              "how": "default in main lists; sm/xs in sidebars and dense pickers. Default: default."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "With href, root renders <a>; otherwise <div>. Compose ItemMedia/Content/Title/Description/Actions; group with ItemGroup."
+            },
+            {
+              "context": "a11y",
+              "note": "If clickable without href, add keyboard handlers and role; prefer href for navigation."
+            }
+          ],
+          "usage": "import {\n  Item, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions,\n} from '@/components/atoms/Item';\n\n<Item variant=\"outline\" size=\"default\" href=\"/docs\">\n  <ItemMedia variant=\"icon\">{/* icon */}</ItemMedia>\n  <ItemContent>\n    <ItemTitle>Docs</ItemTitle>\n    <ItemDescription>Guides and API</ItemDescription>\n  </ItemContent>\n  <ItemActions>→</ItemActions>\n</Item>"
+        }
+      }
     },
     {
       "name": "marquee",
@@ -2253,7 +2391,23 @@
           "outputPath": "styles/components/progress-nav.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "items is required [{id,label}]. Anchors must match section ids on the page. Motion hooks read data-progress-nav-* attributes."
+            },
+            {
+              "context": "a11y",
+              "note": "Root is a nav; keep labels short. Logo links to topAnchor (default top); CTA is a plain href."
+            }
+          ],
+          "usage": "import { ProgressNav } from '@/components/atoms/ProgressNav';\n\n<ProgressNav\n  items={[{ id: 'features', label: 'Features' }, { id: 'pricing', label: 'Pricing' }]}\n  cta={{ label: 'Contact', href: '#contact' }}\n/>"
+        }
+      }
     },
     {
       "name": "resizable",
@@ -2277,7 +2431,46 @@
           "outputPath": "styles/components/resizable.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "orientation",
+              "type": "select",
+              "default": "horizontal",
+              "options": [
+                "horizontal",
+                "vertical"
+              ],
+              "what": "Split axis of the panel group.",
+              "how": "horizontal for side-by-side editors; vertical for stacked panes. Default: horizontal."
+            },
+            {
+              "prop": "panels",
+              "type": "number",
+              "default": "2",
+              "min": 2,
+              "max": 6,
+              "step": 1,
+              "unit": "count",
+              "what": "How many panels share the track (initial equal %).",
+              "how": "2 for master-detail; 3 for IDE-like columns. Must match ResizablePanel count/indexes. Default: 2."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Root API is ResizablePanelGroup + ResizablePanel + ResizableHandle. Panels need index 0..n-1; use outside group throws."
+            },
+            {
+              "context": "layout",
+              "note": "Min panel size is 10%. Give the group an explicit height/width or flex grow."
+            }
+          ],
+          "usage": "import {\n  ResizablePanelGroup, ResizablePanel, ResizableHandle,\n} from '@/components/atoms/Resizable';\n\n<ResizablePanelGroup orientation=\"horizontal\" panels={2}>\n  <ResizablePanel index={0}>Left</ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel index={1}>Right</ResizablePanel>\n</ResizablePanelGroup>"
+        }
+      }
     },
     {
       "name": "sheet",
@@ -2301,7 +2494,30 @@
           "outputPath": "styles/components/sheet.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "open",
+              "type": "boolean",
+              "what": "Controlled visibility of the sheet panel.",
+              "how": "Omit for uncontrolled Trigger flow. Pass open + onOpenChange for filters/settings opened from app state."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "side (top|right|bottom|left, default right) and showCloseButton live on SheetContent, not the root."
+            },
+            {
+              "context": "a11y",
+              "note": "Modal sheet locks body scroll; Escape and overlay close. Prefer Sheet for side panels; Dialog for centered tasks."
+            }
+          ],
+          "usage": "import {\n  Sheet, SheetTrigger, SheetContent, SheetHeader,\n  SheetTitle, SheetDescription, SheetBody,\n} from '@/components/atoms/Sheet';\n\n<Sheet>\n  <SheetTrigger><button type=\"button\">Open</button></SheetTrigger>\n  <SheetContent side=\"right\">\n    <SheetHeader>\n      <SheetTitle>Settings</SheetTitle>\n      <SheetDescription>Tune preferences.</SheetDescription>\n    </SheetHeader>\n    <SheetBody>{/* fields */}</SheetBody>\n  </SheetContent>\n</Sheet>"
+        }
+      }
     },
     {
       "name": "slider",
@@ -2410,7 +2626,47 @@
           "outputPath": "styles/components/stats-card.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "trend",
+              "type": "select",
+              "options": [
+                "up",
+                "down",
+                "neutral"
+              ],
+              "what": "Direction of the trend chip (with trendValue).",
+              "how": "up for positive KPIs; down for regressions; neutral for flat. Omit both trend and trendValue when no delta."
+            },
+            {
+              "prop": "compact",
+              "type": "boolean",
+              "what": "Denser padding and type scale.",
+              "how": "true in dense dashboards/tables; false for hero KPI strips."
+            },
+            {
+              "prop": "gradient",
+              "type": "boolean",
+              "what": "Gradient surface treatment.",
+              "how": "true sparingly for featured metrics; false for data-dense grids."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "value and label are required strings. Trend UI only renders when both trend and trendValue are set."
+            },
+            {
+              "context": "a11y",
+              "note": "Trend icons are aria-hidden; put meaning in trendValue text (e.g. +12%)."
+            }
+          ],
+          "usage": "import { StatsCard } from '@/components/atoms/StatsCard';\n\n<StatsCard value=\"12.4k\" label=\"Active users\" trend=\"up\" trendValue=\"+8%\" />"
+        }
+      }
     },
     {
       "name": "stepper",
@@ -2563,7 +2819,23 @@
           "outputPath": "styles/components/toast.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "Mount <Toaster position=\"bottom-right\" /> once at app root. Call toast()/toast.success|error|warning|info — not a declarative Toast tree."
+            },
+            {
+              "context": "a11y",
+              "note": "Each toast is role=status aria-live=polite; default duration 4000ms (0 = sticky until dismiss)."
+            }
+          ],
+          "usage": "import { Toaster, toast } from '@/components/atoms/Toast';\n\n// once in layout:\n<Toaster position=\"bottom-right\" />\n\n// on event:\ntoast.success('Saved', { description: 'Profile updated' });"
+        }
+      }
     },
     {
       "name": "toggle-group",
@@ -2733,7 +3005,23 @@
           "outputPath": "styles/components/user-profile.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "name is required. avatar spreads Avatar props; initials default from name words. org is optional subtitle."
+            },
+            {
+              "context": "a11y",
+              "note": "Ensure Avatar gets a meaningful alt/aria via avatar props when using image type."
+            }
+          ],
+          "usage": "import { UserProfile } from '@/components/atoms/UserProfile';\n\n<UserProfile name=\"Ada Lovelace\" org=\"Analytical Engines\" avatar={{ type: 'initials', size: 's' }} />"
+        }
+      }
     },
     {
       "name": "video-player",
@@ -2757,7 +3045,38 @@
           "outputPath": "styles/components/video-player.css",
           "type": "registry:file"
         }
-      ]
+      ],
+      "meta": {
+        "agent": {
+          "configurables": [
+            {
+              "prop": "autoplay",
+              "type": "boolean",
+              "default": "false",
+              "what": "Starts playback when the player activates.",
+              "how": "false by default. true only with muted (autoplay policies); sets data-video-muted when autoplay is on."
+            },
+            {
+              "prop": "muted",
+              "type": "boolean",
+              "default": "false",
+              "what": "Starts muted.",
+              "how": "true for autoplay heroes; false when sound is intentional. Default: false."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "videoId is required (provider id). customer/placeholder optional. Behavior is driven by data-video-* attributes + motion/controller hooks."
+            },
+            {
+              "context": "a11y",
+              "note": "Provide a real title/placeholder for the media region; do not autoplay with sound."
+            }
+          ],
+          "usage": "import { VideoPlayer } from '@/components/atoms/VideoPlayer';\n\n<VideoPlayer videoId=\"abc123\" muted autoplay={false} placeholder=\"/poster.jpg\" />"
+        }
+      }
     },
     {
       "name": "sidebar",

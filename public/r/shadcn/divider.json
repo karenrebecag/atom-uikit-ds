@@ -22,9 +22,31 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "orientation",
+          "type": "select",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ],
+          "what": "Axis of the rule.",
+          "how": "horizontal between stacked blocks; vertical in toolbars/inline groups. Default: horizontal."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Vertical sets role=separator and aria-orientation=vertical; horizontal is a plain hr."
+        }
+      ],
+      "usage": "import { Divider } from '@/components/atoms/Divider';\n\n<section>…</section>\n<Divider orientation=\"horizontal\" />\n<section>…</section>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

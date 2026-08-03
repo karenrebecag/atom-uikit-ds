@@ -11,39 +11,39 @@
     {
       "id": "F16-C2",
       "status": "pass-local",
-      "evidence": "Lotes executed from board queue. Lote1 (meta-agent-1): burger-icon, image, stepper, toggle-group, typography, whatsapp-button, combobox, field, slider, avatar, avatar-group, skeleton. Lote2 (meta-agent-2): spinner, breadcrumb, context-menu, dropdown-menu, nav-link, pagination, sidebar, tabs, alert-dialog, dialog, drawer, marquee."
+      "evidence": "Lotes from board queue. Agent-1: burger-icon, image, stepper, toggle-group, typography, whatsapp-button, combobox, field, slider, avatar, avatar-group, skeleton. Agent-2: spinner, breadcrumb, context-menu, dropdown-menu, nav-link, pagination, sidebar, tabs, alert-dialog, dialog, drawer, marquee. Agent-3: progress-nav, sheet, stats-card, toast, user-profile, video-player, calendar, table, divider, empty, item, resizable."
     },
     {
       "id": "F16-C3",
-      "status": "in_progress",
-      "evidence": "After lote2 (Karen signed): meta.agent full 37/49 eligible (75.5%). Need ≥90% — one more agent lote (~12 none remaining)."
+      "status": "pass-local",
+      "evidence": "After lote meta-agent-3 (Karen signed): meta.agent full 49/49 eligible (100%). Closes F10-C4 threshold (≥90%)."
     },
     {
       "id": "F16-C4",
       "status": "pending",
-      "evidence": "editorial still 3/49 eligible (6%). F16c not started this session."
+      "evidence": "editorial 3/49 eligible (6%) — seed only (button, chip, input). F16c lotes pending."
     },
     {
       "id": "F16-C5",
       "status": "pass-local",
-      "evidence": "approved-by-karen: lote meta-agent-1 (2026-08-03 'dale'); lote meta-agent-2 (2026-08-03 'aprueba, dale') — navigation/surfaces/indicators. Local commits only; push when asked."
+      "evidence": "approved-by-karen: agent-1; agent-2; agent-3 (2026-08-03 'dale'). Local commits; push when asked."
     },
     {
       "id": "F16-C6",
       "status": "pass-local",
-      "evidence": "smoke-publish.yml runs content-coverage.mjs --check-no-regression + GITHUB_STEP_SUMMARY. Live green/red proof after push. C6-negative (deleted manifest → red) still pending."
+      "evidence": "smoke-publish.yml no-regression + step summary. Live green/red after push. C6-negative (deleted manifest → red) still pending."
     }
   ],
   "verdict": "in_progress",
   "blocking": [
-    "F16b remaining batch (~12 none) to ≥90%",
-    "F16c editorial batches to ≥90%",
+    "F16c editorial batches 2–4 to ≥90%",
     "CI green link for F16d + C6-negative sim"
   ],
   "notes": [
-    "Eligible agent surface = kind component + hasReact derived from published files (49 after whatsapp-button fix).",
+    "Eligible agent surface = kind component + hasReact derived from published files (49).",
     "Layouts/hooks/foundation excluded with reasons in the board."
   ]
 }
+
 
 

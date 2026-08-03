@@ -22,9 +22,23 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "name is required. avatar spreads Avatar props; initials default from name words. org is optional subtitle."
+        },
+        {
+          "context": "a11y",
+          "note": "Ensure Avatar gets a meaningful alt/aria via avatar props when using image type."
+        }
+      ],
+      "usage": "import { UserProfile } from '@/components/atoms/UserProfile';\n\n<UserProfile name=\"Ada Lovelace\" org=\"Analytical Engines\" avatar={{ type: 'initials', size: 's' }} />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

@@ -22,9 +22,23 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Compose Table > TableHeader/Body/Footer + TableRow + TableHead/Cell. selected lives on TableRow, not the root table."
+        },
+        {
+          "context": "a11y",
+          "note": "Use TableHead for column headers and TableCaption for a summary; avoid layout tables."
+        }
+      ],
+      "usage": "import {\n  Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption,\n} from '@/components/atoms/Table';\n\n<Table>\n  <TableCaption>Invoices</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Customer</TableHead>\n      <TableHead>Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>Ada</TableCell>\n      <TableCell>$120</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

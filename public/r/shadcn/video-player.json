@@ -25,9 +25,38 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "autoplay",
+          "type": "boolean",
+          "default": "false",
+          "what": "Starts playback when the player activates.",
+          "how": "false by default. true only with muted (autoplay policies); sets data-video-muted when autoplay is on."
+        },
+        {
+          "prop": "muted",
+          "type": "boolean",
+          "default": "false",
+          "what": "Starts muted.",
+          "how": "true for autoplay heroes; false when sound is intentional. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "videoId is required (provider id). customer/placeholder optional. Behavior is driven by data-video-* attributes + motion/controller hooks."
+        },
+        {
+          "context": "a11y",
+          "note": "Provide a real title/placeholder for the media region; do not autoplay with sound."
+        }
+      ],
+      "usage": "import { VideoPlayer } from '@/components/atoms/VideoPlayer';\n\n<VideoPlayer videoId=\"abc123\" muted autoplay={false} placeholder=\"/poster.jpg\" />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [
           "gsap"

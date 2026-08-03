@@ -74,9 +74,23 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Mount <Toaster position=\"bottom-right\" /> once at app root. Call toast()/toast.success|error|warning|info — not a declarative Toast tree."
+        },
+        {
+          "context": "a11y",
+          "note": "Each toast is role=status aria-live=polite; default duration 4000ms (0 = sticky until dismiss)."
+        }
+      ],
+      "usage": "import { Toaster, toast } from '@/components/atoms/Toast';\n\n// once in layout:\n<Toaster position=\"bottom-right\" />\n\n// on event:\ntoast.success('Saved', { description: 'Profile updated' });"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [

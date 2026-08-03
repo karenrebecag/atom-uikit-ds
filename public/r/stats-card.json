@@ -83,9 +83,47 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "trend",
+          "type": "select",
+          "options": [
+            "up",
+            "down",
+            "neutral"
+          ],
+          "what": "Direction of the trend chip (with trendValue).",
+          "how": "up for positive KPIs; down for regressions; neutral for flat. Omit both trend and trendValue when no delta."
+        },
+        {
+          "prop": "compact",
+          "type": "boolean",
+          "what": "Denser padding and type scale.",
+          "how": "true in dense dashboards/tables; false for hero KPI strips."
+        },
+        {
+          "prop": "gradient",
+          "type": "boolean",
+          "what": "Gradient surface treatment.",
+          "how": "true sparingly for featured metrics; false for data-dense grids."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "value and label are required strings. Trend UI only renders when both trend and trendValue are set."
+        },
+        {
+          "context": "a11y",
+          "note": "Trend icons are aria-hidden; put meaning in trendValue text (e.g. +12%)."
+        }
+      ],
+      "usage": "import { StatsCard } from '@/components/atoms/StatsCard';\n\n<StatsCard value=\"12.4k\" label=\"Active users\" trend=\"up\" trendValue=\"+8%\" />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T17:17:27.240Z",
-      "sourceCommit": "5692459",
+      "generatedAt": "2026-08-03T17:21:40.982Z",
+      "sourceCommit": "28b696e",
       "install": {
         "peerDeps": [],
         "cssImports": [
