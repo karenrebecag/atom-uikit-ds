@@ -77,7 +77,7 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
     vi.restoreAllMocks();
   });
 
-  it('expone el global AtomMotion con los 9 init* y initAll', () => {
+  it('expone el global AtomMotion con los 10 init* y initAll', () => {
     const api = loadBundle();
     expect(api).toBeDefined();
     const keys = Object.keys(api).sort();
@@ -88,6 +88,7 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
       'initMenuButton',
       'initNavAutohide',
       'initProgressNav',
+      'initScrollReveal',
       'initSidebarAnimation',
       'initTableOfContents',
       'initTextReveal',
@@ -105,12 +106,22 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
 
   it('aisla cada modulo en su propio scope', () => {
     const src = readFileSync(BUNDLE, 'utf8');
-    // readMotionTokens existe en menu-button y nav-autohide con FIRMAS DISTINTAS
-    // (devuelven number vs string). En scope plano una pisa a la otra y el modulo
-    // perdedor recibe una duracion del tipo equivocado, sin error visible.
-    expect(src.match(/function readMotionTokens/g)?.length).toBe(2);
+    // readMotionTokens existe en varios modulos con FIRMAS DISTINTAS (number vs
+    // string). En scope plano una pisa a la otra y el modulo perdedor recibe una
+    // duracion del tipo equivocado, sin error visible. El conteo se deriva del
+    // source para que agregar un modulo nuevo no caduque el test.
+    const srcDir = resolve(__dirname, '../../../animations/src');
+    const { readdirSync } = require('node:fs') as typeof import('node:fs');
+    const moduleFiles = readdirSync(srcDir).filter(
+      (f: string) => f.endsWith('.ts') && f !== 'index.ts'
+    );
+    const sourcesWithHelper = moduleFiles.filter((f: string) =>
+      readFileSync(resolve(srcDir, f), 'utf8').includes('function readMotionTokens')
+    ).length;
+    expect(sourcesWithHelper).toBeGreaterThanOrEqual(2);
+    expect(src.match(/function readMotionTokens/g)?.length).toBe(sourcesWithHelper);
 
-    // No basta con que existan las dos: cada modulo tiene que estar ENVUELTO.
+    // No basta con que existan: cada modulo tiene que estar ENVUELTO.
     // Un wrapper por modulo, mas el IIFE externo que recibe `root`.
     const moduleWrappers = src.match(/\(function \(\) \{/g)?.length ?? 0;
     const exportedInits = src.match(/^\s{4}api\.init\w+ = /gm)?.length ?? 0;
@@ -118,7 +129,7 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
       moduleWrappers,
       'cada modulo debe ir en su propio IIFE: en scope compartido los helpers homonimos se pisan'
     ).toBe(exportedInits);
-    expect(exportedInits).toBe(9);
+    expect(exportedInits).toBe(moduleFiles.length);
 
     expect(() => loadBundle()).not.toThrow();
   });

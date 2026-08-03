@@ -2399,6 +2399,24 @@
     }
   },
   {
+    "name": "scroll-reveal",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Scroll Reveal",
+    "description": "Generic enter animation for sections/cards with optional stagger (W6a). Opt-in via data-reveal attributes; motion values from DS tokens.",
+    "discovery": {
+      "name": "Scroll Reveal",
+      "description": "Generic enter animation for sections/cards with optional stagger (W6a). Opt-in via data-reveal attributes; motion values from DS tokens.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
+  },
+  {
     "name": "marquee-draggable",
     "kind": "hook",
     "framework": "react",

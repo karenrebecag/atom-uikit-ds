@@ -129,8 +129,8 @@
       "usage": "import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/atoms/Marquee';\n\n<Marquee speed={75} fade pauseOnHover>\n  <MarqueeItem>Acme</MarqueeItem>\n  <MarqueeSeparator />\n  <MarqueeItem>Globex</MarqueeItem>\n</Marquee>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:52:25.278Z",
-      "sourceCommit": "19faf2f",
+      "generatedAt": "2026-08-03T19:10:51.785Z",
+      "sourceCommit": "af33f77",
       "install": {
         "peerDeps": [
           "gsap"

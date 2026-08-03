@@ -38,6 +38,7 @@ export const ALL_BEHAVIOR_MODULES = [
   'menu-button.js',
   'nav-autohide.js',
   'progress-nav.js',
+  'scroll-reveal.js',
   'sidebar.js',
   'table-of-contents.js',
   'text-reveal.js',

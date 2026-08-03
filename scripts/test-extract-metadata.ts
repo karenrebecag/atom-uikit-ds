@@ -2,15 +2,17 @@
  * test-extract-metadata.ts
  *
  * Unit tests for extract-component-metadata.ts
- * Uses Node assert (no external deps). Run: npx tsx scripts/test-extract-metadata.ts
+ * Uses Node assert (no external deps). Run: node scripts/test-extract-metadata.ts
+ * (Node >=22 hace type-stripping nativo; los imports llevan .ts explicito como
+ * en build-registry.mjs — sin la extension el resolver de ESM no los encuentra.)
  *
  * Tests each extraction function against known fixtures to catch regressions.
  */
 
 import { strict as assert } from 'node:assert';
 import { resolve } from 'node:path';
-import { extractMetadataForItem } from './extract-component-metadata';
-import type { AtomRegistryItem } from './registry-schema';
+import { extractMetadataForItem, extractAllMetadata } from './extract-component-metadata.ts';
+import type { AtomRegistryItem } from './registry-schema.ts';
 
 const DS_ROOT = resolve(import.meta.dirname, '..');
 let passed = 0;
@@ -460,6 +462,120 @@ test('chip: variantProp is type', () => {
 test('button: variantProp is undefined (uses standard variant)', () => {
   const result = extractMetadataForItem(BUTTON_ITEM, DS_ROOT)!;
   assert.strictEqual(result.discovery.variantProp, undefined);
+});
+
+// --- hasAnimation NO cascadea por registryDependencies (decision 2026-08-03) ---
+//
+// Se probo la cascada automatica y se descarto con evidencia: hasAnimation
+// significa "existe un modulo GSAP asociado al slug", no "esto se mueve".
+// Las animaciones de button y marquee son ENHANCEMENTS opcionales (el marquee
+// scrollea con CSS puro; button funciona sin text-swap), asi que heredar volteaba
+// 33 items a true — button solo contagiaba 29 — y emit-shadcn-registry fusionaba
+// peerDeps en dependencies: instalar un FAQ estatico exigia instalar gsap.
+//
+// La regla vigente (docs/component-agent-flow.md, Modo D): la declaracion de
+// motion en un organismo es DELIBERADA por item (registryDependencies apunta al
+// hook), nunca heredada. Estos tests fijan esa decision: si alguien reintroduce
+// la cascada, fallan.
+
+console.log('\nhasAnimation no cascadea (decision 2026-08-03):');
+
+const MARQUEE_ITEM: AtomRegistryItem = {
+  name: 'marquee',
+  kind: 'component',
+  title: 'Marquee',
+  description: 'Infinite scrolling track',
+  registryDependencies: ['tokens', 'foundation'],
+  files: [
+    {
+      sourcePath: 'packages/components-react/src/molecules/Marquee.tsx',
+      outputPath: 'components/atoms/Marquee.tsx',
+      type: 'registry:component',
+    },
+  ],
+} as AtomRegistryItem;
+
+const LAYOUT_BANNER_MARQUEE_ITEM: AtomRegistryItem = {
+  name: 'layout/banner-marquee',
+  kind: 'layout',
+  title: 'Banner Marquee',
+  description: 'Layout template: banner-marquee',
+  registryDependencies: ['tokens', 'foundation', 'marquee', 'typography'],
+  files: [
+    {
+      sourcePath: 'packages/layouts/src/banner-marquee.ts',
+      outputPath: 'layouts/banner-marquee.ts',
+      type: 'registry:file',
+    },
+  ],
+} as AtomRegistryItem;
+
+const STATIC_LAYOUT_ITEM: AtomRegistryItem = {
+  name: 'layout/faq-accordion',
+  kind: 'layout',
+  title: 'FAQ Accordion',
+  description: 'Layout template: faq-accordion',
+  registryDependencies: ['tokens', 'foundation', 'accordion', 'button'],
+  files: [
+    {
+      sourcePath: 'packages/layouts/src/faq-accordion.ts',
+      outputPath: 'layouts/faq-accordion.ts',
+      type: 'registry:file',
+    },
+  ],
+} as AtomRegistryItem;
+
+test('marquee (hijo): hasAnimation true — su modulo existe en ANIMATION_SLUG_MAP', () => {
+  const { results } = extractAllMetadata([MARQUEE_ITEM], DS_ROOT);
+  assert.strictEqual(results.get('marquee')!.discovery.hasAnimation, true);
+});
+
+test('layout/banner-marquee: NO hereda hasAnimation de marquee', () => {
+  const { results } = extractAllMetadata(
+    [MARQUEE_ITEM, LAYOUT_BANNER_MARQUEE_ITEM],
+    DS_ROOT,
+  );
+  assert.strictEqual(
+    results.get('layout/banner-marquee')!.discovery.hasAnimation,
+    false,
+    'la animacion del marquee es un enhancement opcional: heredar aqui contagiaba 33 items',
+  );
+});
+
+test('layout/banner-marquee: NO hereda gsap en peerDeps', () => {
+  const { results } = extractAllMetadata(
+    [MARQUEE_ITEM, LAYOUT_BANNER_MARQUEE_ITEM],
+    DS_ROOT,
+  );
+  assert.deepStrictEqual(
+    results.get('layout/banner-marquee')!.implementation.peerDeps,
+    [],
+    'peerDeps heredados fluyen a dependencies del canal shadcn: instalar el layout exigiria gsap',
+  );
+});
+
+test('layout/faq-accordion: false aunque dependa de button (que declara true)', () => {
+  const buttonItem = {
+    name: 'button',
+    kind: 'component',
+    title: 'Button',
+    description: 'Button',
+    registryDependencies: ['tokens', 'foundation'],
+    files: [
+      {
+        sourcePath: 'packages/components-react/src/atoms/Button.tsx',
+        outputPath: 'components/atoms/Button.tsx',
+        type: 'registry:component',
+      },
+    ],
+  } as AtomRegistryItem;
+  // Este era el caso que delato la cascada: button contagiaba a 29 layouts.
+  const { results } = extractAllMetadata([buttonItem, STATIC_LAYOUT_ITEM], DS_ROOT);
+  assert.strictEqual(results.get('button')!.discovery.hasAnimation, true);
+  assert.strictEqual(
+    results.get('layout/faq-accordion')!.discovery.hasAnimation,
+    false,
+  );
 });
 
 // Summary

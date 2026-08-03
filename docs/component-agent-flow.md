@@ -19,6 +19,7 @@ mal, se reporta a Karen con evidencia — no se decide solo.
 | "agrega gotchas / rangos / usage / editorial a X" | **A — Enriquecer contenido** |
 | "cambia el estilo / comportamiento / props de X" | **B — Editar componente** |
 | "crea el componente X" | **C — Crear componente** |
+| "crea la sección / la card / el bloque X" (pieza compuesta) | **D — Componer un organismo** |
 
 Antes de cualquier modo, punto de partida obligatorio:
 
@@ -146,6 +147,100 @@ Notas que evitan los errores ya vividos:
 - Motion: el behavior va en `packages/animations/src/` exportando
   `init*(): CleanupFn` + `REQUIRED_HOOKS`, consumiendo tokens de motion. El
   componente solo emite atributos `data-*`. Nada de GSAP inline en el .tsx.
+
+---
+
+## Modo D — Componer un organismo
+
+Un organismo es una pieza **compuesta**: una card de planes, un hero, un FAQ
+animado. No es un átomo grande — es una composición de átomos publicados más un
+layout que transporta la anatomía.
+
+El proceso canónico completo (7 pasos + prueba de aceptación) está en
+[`docs/organism-pipeline.md`](organism-pipeline.md). **Léelo antes de empezar.**
+Esta sección solo añade las tres decisiones que un agente resuelve mal.
+
+### D1. Los átomos primero, sin excepción
+
+Antes de escribir una línea del layout, haz el **inventario**: cada bloque
+visible del diseño mapeado a un componente publicado.
+
+| Pieza del diseño | Átomo del DS | Si no existe |
+|---|---|---|
+| número, eyebrow, etiqueta corta | `tag` (`tag--mono`, `tag--s`) | crear átomo ANTES del layout |
+| texto de título / cuerpo | `typography`, `prose` | — |
+| icono decorativo | `icon` | — |
+| icono que cambia de estado | `menu-button` + su hook | — |
+| botón | `button`, `icon-button`, `link-button` | — |
+
+Ojo al buscar: no todos viven en el mismo sitio. `tag`, `icon` y `button` tienen
+su CSS en `packages/css/src/components/**` y llevan clase BEM propia
+(`.tag--mono`); `typography` es global — su CSS está en
+`packages/css/src/foundation/typography.css` y no aporta una clase `.typography`
+que puedas buscar en el html. Por eso `typography`, `tokens` y `foundation` no
+cuentan como "componente usado" en ninguna auditoría de anatomía.
+
+Regla dura de `organism-pipeline.md` §1: **si en el markup aparece un `<span>`
+con estilos propios, falta un átomo.** Se crea, se importa en el entry de su
+categoría y se registra. Precedente: `feature`, `icon` y `section-header`
+nacieron extraídos de la card de planes.
+
+Lo que NO se hace: meter esos estilos en el CSS del layout. El layout es
+*structure-only* y `pnpm conformance` lo verifica (prohíbe color, `font-family`
+y motion en CSS de layout).
+
+### D2. La cascada del motion — baja como orquestación, sube como declaración
+
+Es la parte que más se confunde. Son **dos direcciones distintas** y mezclarlas
+produce animaciones que pelean entre sí:
+
+| Dirección | Qué viaja | Cómo |
+|---|---|---|
+| **Hacia abajo** (organismo → hijos) | orquestación | el timeline del organismo apunta a los hijos por `data-*`. Los hijos son CSS-only y **tontos**: no saben que los están animando. |
+| **Hacia arriba** (organismo → registry) | declaración | el organismo declara en `registryDependencies` el hook de animación que necesita, y el hook declara sus plugins GSAP en `GSAP_PLUGINS`. |
+
+Corolario que evita el error clásico: **un átomo no se anima a sí mismo porque
+su padre esté animado.** Añadirle motion propio "para que acompañe" duplica el
+timeline y compite con el del padre. El hijo se queda quieto; el padre lo mueve.
+
+Decisión registrada en `conformance/layout-contract.json` (2026-07-30): *"los
+layouts maquetan, no animan. El motion vive en los componentes inner o en
+behaviors de `packages/animations` enganchados por data-attrs."* Referenciar el
+behavior en un **comentario** del html sí es legítimo — y además es obligatorio
+declararlo, ver arriba.
+
+El canal Webflow ya resuelve esto bien y es el modelo a copiar
+(`public/r/webflow/marquee.json`): lista `manifest.js` con gsap + sus plugins +
+`animations.js`, un `init`, y el `domContract.hooks` completo.
+
+### D3. Lo que no puede ser átomo
+
+Hay una excepción real a "todo es un átomo": las **técnicas de render que operan
+sobre varios elementos a la vez** — un filtro SVG, una máscara, un blend mode.
+
+El caso testigo es el efecto goo de un accordion mórfico: el filtro **destruye el
+texto**, así que obliga a dos capas (formas sólidas filtradas detrás, texto real
+sin filtrar encima) que solo existen si se mueven juntas. Ese acoplamiento
+pertenece al organismo y no se puede repartir entre átomos.
+
+> **Regla**: si la técnica necesita que dos elementos se muevan juntos para
+> existir, es del organismo. Si el elemento se ve igual por su cuenta, es un
+> átomo.
+
+Documenta la excepción en el módulo con un comentario que diga POR QUÉ, no qué.
+
+### D4. Antes de entregar
+
+Además de la escalera completa:
+
+- [ ] Inventario D1 hecho: cada bloque visible es un componente publicado
+- [ ] `registryDependencies` lista **todos** los componentes del html **y** el
+      hook de animación si el organismo anima
+- [ ] `atom.discovery.hasAnimation` coherente entre organismo e hijos
+- [ ] Layout `structure-only`: sin color, tipografía ni motion en su CSS
+- [ ] Prueba de aceptación de `organism-pipeline.md` §7: **borrar el markup a
+      mano, instalar desde el registry, rellenar solo con datos, y que el render
+      sea idéntico.** Un organismo no está publicado hasta que pasa esto.
 
 ---
 
@@ -283,6 +378,8 @@ juicio del agente**. Pero no cubren todo.
 - **Decidir si hace falta un token nuevo.** Si para estilizar necesitas
   hardcodear, el diseño está pidiendo un token — y esa es una decisión de
   sistema, no un parche local.
+- **Decidir si una pieza es átomo u organismo** (Modo D). Marca mal la frontera
+  y el error se propaga a cada consumidor que instale el artefacto.
 - **Tocar `conformance/*.json`.** Regla 3 del `CLAUDE.md`: el contrato se cambia
   a la vista, nunca por conveniencia. Es exactamente el atajo que un modelo bajo
   presión toma para poner algo en verde.

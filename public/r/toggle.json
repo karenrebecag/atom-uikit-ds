@@ -108,8 +108,8 @@
       "usage": "import { Toggle } from '@/components/atoms/Toggle';\n\n<Toggle checked={on} onChange={setOn} label=\"Email alerts\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-03T17:52:25.278Z",
-      "sourceCommit": "19faf2f",
+      "generatedAt": "2026-08-03T19:10:51.785Z",
+      "sourceCommit": "af33f77",
       "install": {
         "peerDeps": [],
         "cssImports": [

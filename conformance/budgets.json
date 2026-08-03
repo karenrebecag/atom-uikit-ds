@@ -5,7 +5,11 @@
     "packages/css/dist/foundation.css": { "rawKb": 30, "gzipKb": 6 },
     "packages/css/dist/atom.css": { "rawKb": 185, "gzipKb": 24 },
     "packages/css/dist/embed.css": { "rawKb": 205, "gzipKb": 26 },
-    "packages/animations/dist/atom-animations.js": { "rawKb": 49, "gzipKb": 13 },
+    "packages/animations/dist/atom-animations.js": {
+      "rawKb": 60,
+      "gzipKb": 16,
+      "$comment": "W6a: +scroll-reveal module (initScrollReveal). Was 49/13 pre-W6a."
+    },
     "packages/css/dist/webflow.css": { "rawKb": 22, "gzipKb": 3 }
   },
   "directories": {

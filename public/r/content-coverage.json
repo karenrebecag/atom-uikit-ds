@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T17:53:14.712Z",
+  "generatedAt": "2026-08-03T19:11:16.482Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 120,
+    "items": 121,
     "eligibleAgent": 49,
     "metaAgent": {
       "full": 49,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 120
+      "withSourceCommit": 121
     },
     "webflow": {
       "emitted": 37,
       "excluded": 22
     },
-    "aggregateScore": 50.6
+    "aggregateScore": 50.4
   },
   "batches": [],
   "items": [
@@ -1697,6 +1697,25 @@
     },
     {
       "slug": "text-reveal",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": true,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 20
+    },
+    {
+      "slug": "scroll-reveal",
       "kind": "hook",
       "category": "hook",
       "hasReact": false,
