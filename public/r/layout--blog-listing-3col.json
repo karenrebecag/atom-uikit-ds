@@ -97,5 +97,29 @@
         "item"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutBlogListing3col\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: blog-listing-3col\n *\n * Posts en cards: imagen 3:2, categoria, titulo, resumen, meta de autor (avatar/nombre/fecha/lectura) y CTA global.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const blogListing3col = {\n  slug: 'blog-listing-3col',\n  name: 'Blog Listing 3col',\n  description:\n    'Posts en cards: imagen 3:2, categoria, titulo, resumen, meta de autor (avatar/nombre/fecha/lectura) y CTA global. Structure only.',\n  components: ['typography', 'image', 'tag', 'avatar', 'link-button', 'button', 'item'],\n  html: `<!-- Layout: blog-listing-3col -->\n<section class=\"l-blog-listing-3col\">\n  <div class=\"l-blog-listing-3col__header\">\n    <span class=\"l-blog-listing-3col__tagline\">{{tagline}}</span>\n    <h2 class=\"l-blog-listing-3col__headline\">{{headline}}</h2>\n    <p class=\"l-blog-listing-3col__description\">{{description}}</p>\n  </div>\n  <div class=\"l-blog-listing-3col__grid\">\n    <article class=\"l-blog-listing-3col__card\">\n      <img src=\"{{post1_image}}\" alt=\"\" class=\"image\" />\n      <span class=\"tag tag--s\">{{post1_category}}</span>\n      <h3 class=\"l-blog-listing-3col__card-title\">{{post1_title}}</h3>\n      <p class=\"l-blog-listing-3col__card-desc\">{{post1_description}}</p>\n      <div class=\"l-blog-listing-3col__meta\">\n        <img src=\"{{post1_avatar}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <span>{{post1_fullName}} · {{post1_date}} · {{post1_readTime}}</span>\n      </div>\n      <a href=\"{{post1_url}}\" class=\"link-button\">Leer más</a>\n    </article>\n    <!-- similar for post2, post3 (hardcoded for structure) -->\n    <article class=\"l-blog-listing-3col__card\">\n      <img src=\"{{post2_image}}\" alt=\"\" class=\"image\" />\n      <span class=\"tag tag--s\">{{post2_category}}</span>\n      <h3 class=\"l-blog-listing-3col__card-title\">{{post2_title}}</h3>\n      <p class=\"l-blog-listing-3col__card-desc\">{{post2_description}}</p>\n      <div class=\"l-blog-listing-3col__meta\">\n        <img src=\"{{post2_avatar}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <span>{{post2_fullName}} · {{post2_date}} · {{post2_readTime}}</span>\n      </div>\n      <a href=\"{{post2_url}}\" class=\"link-button\">Leer más</a>\n    </article>\n    <article class=\"l-blog-listing-3col__card\">\n      <img src=\"{{post3_image}}\" alt=\"\" class=\"image\" />\n      <span class=\"tag tag--s\">{{post3_category}}</span>\n      <h3 class=\"l-blog-listing-3col__card-title\">{{post3_title}}</h3>\n      <p class=\"l-blog-listing-3col__card-desc\">{{post3_description}}</p>\n      <div class=\"l-blog-listing-3col__meta\">\n        <img src=\"{{post3_avatar}}\" alt=\"\" class=\"avatar avatar--s\" />\n        <span>{{post3_fullName}} · {{post3_date}} · {{post3_readTime}}</span>\n      </div>\n      <a href=\"{{post3_url}}\" class=\"link-button\">Leer más</a>\n    </article>\n  </div>\n  <div class=\"l-blog-listing-3col__cta\">\n    <a href=\"{{ctaAll_url}}\" class=\"button button--secondary button--m\">\n      <span class=\"button__label\">{{ctaAll}}</span>\n    </a>\n  </div>\n</section>`,\n  css: `/* Layout: blog-listing-3col — structure only */\n.l-blog-listing-3col {\n  display: flex;\n  flex-direction: column;\n  gap: 32px;\n  padding: 48px 32px;\n}\n.l-blog-listing-3col__header {\n  text-align: center;\n}\n.l-blog-listing-3col__grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 24px;\n}\n@media (max-width: 1024px) {\n  .l-blog-listing-3col__grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n@media (max-width: 640px) {\n  .l-blog-listing-3col__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-blog-listing-3col__card {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n.l-blog-listing-3col__meta {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  font-size: var(--text-sm);\n}\n.l-blog-listing-3col__cta {\n  text-align: center;\n  margin-top: 16px;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

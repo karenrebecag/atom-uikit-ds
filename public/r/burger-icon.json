@@ -33,5 +33,29 @@
       "hasCss": false,
       "hasReact": true
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"burgerIcon\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "export function BurgerIcon() {\n  return (\n    <span className=\"burger-icon\">\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n      <span className=\"burger-icon__line\" />\n    </span>\n  );\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

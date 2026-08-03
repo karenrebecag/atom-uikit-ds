@@ -20,5 +20,76 @@
       "content": "/* -------------------------------------------------------------------------\n   Pagination\n\n   Page navigation: prev, page links, ellipsis, next.\n   Semantic <nav> + <ul> structure.\n\n   Parts: .pagination, .pagination__list, .pagination__item,\n          .pagination__link, .pagination__ellipsis\n   ------------------------------------------------------------------------- */\n\n/* ---- Nav ---- */\n\n.pagination {\n  display: flex;\n  justify-content: center;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- List ---- */\n\n.pagination__list {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-1, 4px);\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n/* ---- Link ---- */\n\n.pagination__link {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 36px;\n  height: 36px;\n  padding: 0 var(--spacing-2, 8px);\n  border: var(--stroke-hairline) solid transparent;\n  border-radius: var(--radius-md);\n  background: none;\n  color: var(--foreground);\n  font-family: inherit;\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  text-decoration: none;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition:\n    background-color var(--duration-100) var(--easing-in-out),\n    border-color var(--duration-100) var(--easing-in-out);\n}\n\n.pagination__link:hover {\n  background-color: var(--accent);\n  color: var(--accent-foreground);\n}\n\n.pagination__link:focus-visible {\n  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* Active page */\n.pagination__link--active {\n  border-color: var(--border);\n  background-color: var(--background);\n  font-weight: var(--font-weight-semibold);\n}\n\n/* Disabled (prev/next at bounds) */\n.pagination__link--disabled {\n  color: var(--muted-foreground);\n  opacity: var(--opacity-50);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Nav icon ---- */\n\n.pagination__link-icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 1em;\n  height: 1em;\n}\n\n.pagination__link-icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Ellipsis ---- */\n\n.pagination__ellipsis {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 36px;\n  height: 36px;\n  color: var(--muted-foreground);\n  font-size: var(--font-size-sm);\n  letter-spacing: var(--letter-spacing-wide);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .pagination__link {\n    transition-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"pagination\">\n  <span class=\"pagination__ellipsis\"></span>\n  <span class=\"pagination__item\"></span>\n  <span class=\"pagination__link\"></span>\n  <span class=\"pagination__link--active\"></span>\n  <span class=\"pagination__link--disabled\"></span>\n  <span class=\"pagination__link-icon\"></span>\n  <span class=\"pagination__list\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "pagination",
+            "purpose": "root"
+          },
+          {
+            "class": "pagination__ellipsis",
+            "purpose": "element"
+          },
+          {
+            "class": "pagination__item",
+            "purpose": "element"
+          },
+          {
+            "class": "pagination__link",
+            "purpose": "element"
+          },
+          {
+            "class": "pagination__link--active",
+            "purpose": "element"
+          },
+          {
+            "class": "pagination__link--disabled",
+            "purpose": "element"
+          },
+          {
+            "class": "pagination__link-icon",
+            "purpose": "element"
+          },
+          {
+            "class": "pagination__list",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Pagination\n\n   Page navigation: prev, page links, ellipsis, next.\n   Semantic <nav> + <ul> structure.\n\n   Parts: .pagination, .pagination__list, .pagination__item,\n          .pagination__link, .pagination__ellipsis\n   ------------------------------------------------------------------------- */\n\n/* ---- Nav ---- */\n\n.pagination {\n  display: flex;\n  justify-content: center;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- List ---- */\n\n.pagination__list {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n/* ---- Link ---- */\n\n.pagination__link {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 36px;\n  height: 36px;\n  padding: 0 8px;\n  border: 1px solid transparent;\n  border-radius: 8px;\n  background: none;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  text-decoration: none;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition:\n    background-color 100ms cubic-bezier(0.4, 0, 0.2, 1),\n    border-color 100ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.pagination__link:hover {\n  background-color: #f5f5f5;\n  color: #171717;\n}\n\n.pagination__link:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* Active page */\n.pagination__link--active {\n  border-color: #e5e5e5;\n  background-color: #fafafa;\n  font-weight: 600;\n}\n\n/* Disabled (prev/next at bounds) */\n.pagination__link--disabled {\n  color: #525252;\n  opacity: 0.5;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Nav icon ---- */\n\n.pagination__link-icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 1em;\n  height: 1em;\n}\n\n.pagination__link-icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Ellipsis ---- */\n\n.pagination__ellipsis {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 36px;\n  height: 36px;\n  color: #525252;\n  font-size: 12.8px;\n  letter-spacing: 0.04em;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .pagination__link {\n    transition-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "background-color",
+          "duration": "var(--duration-100)",
+          "easing": "var(--easing-in-out)"
+        },
+        {
+          "property": "border-color",
+          "duration": "var(--duration-100)",
+          "easing": "var(--easing-in-out)"
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
+  }
 }

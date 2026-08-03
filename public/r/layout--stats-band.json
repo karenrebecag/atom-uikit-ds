@@ -64,5 +64,29 @@
         "typography"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutStatsBand\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: stats-band\n *\n * Banda horizontal de 3-4 metricas grandes con label. Reusa stats-card.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const statsBand = {\n  slug: 'stats-band',\n  name: 'Stats Band',\n  description:\n    'Banda horizontal de 3-4 metricas grandes con label. Reusa stats-card. Structure only.',\n  components: ['stats-card', 'typography'],\n  html: `<!-- Layout: stats-band -->\n<section class=\"l-stats-band\">\n  <div class=\"l-stats-band__header\">\n    <h3 class=\"l-stats-band__headline\">{{headline}}</h3>\n  </div>\n  <div class=\"l-stats-band__stats\">\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat1_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat1_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat2_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat2_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat3_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat3_label}}</div>\n    </div>\n    <div class=\"stats-card\">\n      <div class=\"l-stats-band__value\">{{stat4_value}}</div>\n      <div class=\"l-stats-band__label\">{{stat4_label}}</div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: stats-band — structure only */\n.l-stats-band {\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n  padding: 32px;\n  background: #fafafa;\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n}\n.l-stats-band__header {\n  text-align: center;\n}\n.l-stats-band__stats {\n  display: flex;\n  justify-content: space-around;\n  gap: 16px;\n}\n@media (max-width: 768px) {\n  .l-stats-band__stats {\n    flex-direction: column;\n    align-items: center;\n  }\n}\n.l-stats-band__value {\n  font-size: var(--text-3xl);\n  font-weight: 700;\n  line-height: 1;\n}\n.l-stats-band__label {\n  font-size: var(--text-sm);\n  color: #525252;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

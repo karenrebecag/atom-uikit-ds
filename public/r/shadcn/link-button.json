@@ -72,6 +72,119 @@
       "previewProps": {
         "animated": true
       }
+    },
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [
+          "gsap"
+        ],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"link-button\">\n  <span class=\"link-button__text\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "link-button",
+            "purpose": "root"
+          },
+          {
+            "class": "link-button--animated",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button--default",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button--disabled",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button--lg",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button--sm",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button--xl",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button--xs",
+            "purpose": "modifier"
+          },
+          {
+            "class": "link-button__text",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "link.button.fg.disabled",
+            "hex": "#525252",
+            "tokenPath": "link.button.fg.disabled"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Link Button\n\n   Semantic link (<a>) for external navigation. Not a button.\n   Blue text with animated underline on hover. No background, no border.\n\n   Sizes:    xs, sm, default, lg, xl\n   States:   enabled, hover, focus, disabled\n   ------------------------------------------------------------------------- */\n\n.link-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5em;\n  padding: 0;\n  background: none;\n  border: none;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-weight: 500;\n  line-height: 1;\n  color: #0e7490;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  text-decoration: none;\n  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.link-button:hover:not(.link-button--disabled) {\n  color: #0a0a0a;\n}\n\n.link-button:active:not(.link-button--disabled) {\n  color: #0a0a0a;\n}\n\n.link-button:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n  border-radius: 0.125em;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .link-button {\n    transition-duration: 0ms;\n  }\n}\n\n/* ---- Sizes ---- */\n\n.link-button--xs      { font-size: 10.24px; }\n.link-button--sm      { font-size: 12.8px; }\n.link-button--default { font-size: 16px; }\n.link-button--lg      { font-size: 20px; }\n.link-button--xl      { font-size: 25px; }\n\n/* ---- States ---- */\n\n.link-button--disabled {\n  color: #525252;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Parts ---- */\n\n.link-button__text {\n  display: inline;\n  position: relative;\n}\n\n/* ---- Underline animation ---- */\n\n.link-button__text::before {\n  content: \"\";\n  position: absolute;\n  bottom: -0.0625em;\n  left: 0;\n  width: 100%;\n  height: 0.0625em;\n  background-color: currentColor;\n  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);\n  transform-origin: right;\n  transform: scaleX(0) rotate(0.001deg);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .link-button--animated:hover:not(.link-button--disabled) .link-button__text::before,\n  [data-hover]:hover .link-button--animated:not(.link-button--disabled) .link-button__text::before {\n    transform-origin: left;\n    transform: scaleX(1) rotate(0.001deg);\n  }\n}\n\n/* ---- Animated variant: persistent underline + text shimmer ---- */\n\n.link-button--animated:not(.link-button--disabled) .link-button__text::before {\n  transform-origin: left;\n  transform: scaleX(1) rotate(0.001deg);\n}\n\n.link-button--animated:not(.link-button--disabled) .link-button__text {\n  background: linear-gradient(\n    120deg,\n    currentColor 0%,\n    currentColor 35%,\n    color-mix(in srgb, currentColor 40%, white) 50%,\n    currentColor 65%,\n    currentColor 100%\n  );\n  background-size: 200% 100%;\n  background-clip: text;\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  animation: link-button-shimmer 3s ease-in-out infinite;\n}\n\n@keyframes link-button-shimmer {\n  0%, 100% { background-position: 200% center; }\n  50% { background-position: 0% center; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .link-button--animated:not(.link-button--disabled) .link-button__text {\n    animation: none;\n    background: none;\n    -webkit-text-fill-color: currentColor;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "color",
+          "duration": "0.3s",
+          "easing": "cubic-bezier(0.19"
+        },
+        {
+          "property": "1",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0.22",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "transform",
+          "duration": "0.735s",
+          "easing": "cubic-bezier(0.625"
+        },
+        {
+          "property": "0.05",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes link-button-shimmer",
+          "duration": "",
+          "easing": ""
+        }
+      ]
     }
   }
 }

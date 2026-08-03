@@ -52,5 +52,51 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"context-menu\">\n  <span class=\"context-menu__content\"></span>\n  <span class=\"context-menu__trigger\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "context-menu",
+            "purpose": "root"
+          },
+          {
+            "class": "context-menu__content",
+            "purpose": "element"
+          },
+          {
+            "class": "context-menu__trigger",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Context Menu\n\n   Right-click menu. Same visual as DropdownMenu, different trigger.\n   Positioned at mouse coordinates, not relative to trigger element.\n\n   Parts: .context-menu, .context-menu__trigger, .context-menu__content\n   Item styling reuses dropdown-menu classes for consistency.\n   ------------------------------------------------------------------------- */\n\n/* ---- Trigger zone ---- */\n\n.context-menu__trigger {\n  display: contents;\n}\n\n/* ---- Content (positioned at mouse coords via inline style) ---- */\n\n.context-menu__content {\n  position: fixed;\n  z-index: 20;\n  min-width: 192px;\n  overflow: hidden;\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);\n  padding: 4px;\n  animation: context-menu-in 200ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n@keyframes context-menu-in {\n  from {\n    opacity: 0;\n    transform: scale(0.96);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1);\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .context-menu__content {\n    animation-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "@keyframes context-menu-in",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

@@ -66,5 +66,29 @@
         "button"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutFeatureTabs\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: feature-tabs\n *\n * Tabs horizontales; cada tab muestra titulo + texto + imagen. Para comparar modos o casos de uso.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const featureTabs = {\n  slug: 'feature-tabs',\n  name: 'Features con tabs',\n  description:\n    'Tabs horizontales; cada tab muestra titulo + texto + imagen. Para comparar modos o casos de uso. Structure only.',\n  components: ['tabs', 'typography', 'image', 'button'],\n  html: `<!-- Layout: feature-tabs -->\n<section class=\"l-feature-tabs\">\n  <div class=\"l-feature-tabs__header\">\n    <h2 class=\"l-feature-tabs__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-feature-tabs__tabs\">\n    <button class=\"tab tab--active\">{{tab1_label}}</button>\n    <button class=\"tab\">{{tab2_label}}</button>\n    <button class=\"tab\">{{tab3_label}}</button>\n  </div>\n  <div class=\"l-feature-tabs__content\">\n    <div class=\"l-feature-tabs__panel\">\n      <h3 class=\"l-feature-tabs__title\">{{tab1_title}}</h3>\n      <p class=\"l-feature-tabs__body\">{{tab1_body}}</p>\n      <img src=\"{{tab1_image}}\" alt=\"\" class=\"image\" />\n      <a href=\"#\" class=\"button button--secondary button--m\">Ver más</a>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: feature-tabs — structure only */\n.l-feature-tabs {\n  padding: 48px 32px;\n}\n.l-feature-tabs__header {\n  text-align: center;\n  margin-bottom: 24px;\n}\n.l-feature-tabs__tabs {\n  display: flex;\n  gap: 8px;\n  justify-content: center;\n  margin-bottom: 24px;\n}\n.l-feature-tabs__tabs .tab {\n  padding: 8px 16px;\n  border: 1px solid #e5e5e5;\n  border-radius: 4px;\n  background: #fafafa;\n}\n.l-feature-tabs__tabs .tab--active {\n  border-color: #f5f5f5;\n  background: #f5f5f5;\n  color: white;\n}\n.l-feature-tabs__content {\n  max-width: 600px;\n  margin: 0 auto;\n}\n.l-feature-tabs__panel {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n.l-feature-tabs__title {\n  font-size: var(--text-xl);\n}\n.l-feature-tabs__body {\n  color: #525252;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

@@ -41,5 +41,57 @@
       "hasCss": true,
       "hasReact": false
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"logo\">\n  <span class=\"logo__dark\"></span>\n  <span class=\"logo__light\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "logo",
+            "purpose": "root"
+          },
+          {
+            "class": "logo--l",
+            "purpose": "modifier"
+          },
+          {
+            "class": "logo--m",
+            "purpose": "modifier"
+          },
+          {
+            "class": "logo--s",
+            "purpose": "modifier"
+          },
+          {
+            "class": "logo__dark",
+            "purpose": "element"
+          },
+          {
+            "class": "logo__light",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Logo\n\n   Marca oficial de Atom, theme-aware: el consumidor pone las DOS versiones y\n   el sistema muestra la correcta segun data-theme — el mismo mecanismo que\n   voltea el resto de los semantics. Nada de recolorear SVGs: son los archivos\n   oficiales tal cual.\n\n   Assets oficiales (R2, no re-hostear ni modificar):\n     light (logo oscuro, para fondos claros):\n       https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-light.svg\n     dark (logo blanco, para fondos oscuros):\n       https://pub-c8d801a0ff204d758910633021fa302b.r2.dev/ATOM-horizontal-dark.svg\n\n   Uso:\n     <a class=\"logo logo--m\" href=\"/\" aria-label=\"Atom\">\n       <img class=\"logo__light\" src=\".../ATOM-horizontal-light.svg\" alt=\"Atom\" />\n       <img class=\"logo__dark\"  src=\".../ATOM-horizontal-dark.svg\"  alt=\"Atom\" />\n     </a>\n\n   Sizes: s, m (default), l — el logo se dimensiona por ALTURA; el ancho lo da\n   la proporcion del SVG.\n   ------------------------------------------------------------------------- */\n\n.logo {\n  display: inline-flex;\n  align-items: center;\n  height: 1.5rem;\n  flex-shrink: 0;\n}\n\n.logo img,\n.logo svg {\n  display: block;\n  height: 100%;\n  width: auto;\n}\n\n/* ---- Sizes ---- */\n\n.logo--s { --logo-height: 1.25rem; }\n.logo--m { --logo-height: 1.5rem; }\n.logo--l { --logo-height: 2rem; }\n\n/* ---- Theming: una version visible a la vez ----\n   Ancladas a .logo (0,2,0+): la regla generica `.logo img` (0,1,1) las\n   ganaria a un selector de una sola clase. */\n\n.logo .logo__dark {\n  display: none;\n}\n\n[data-theme='dark'] .logo .logo__light {\n  display: none;\n}\n\n[data-theme='dark'] .logo .logo__dark {\n  display: block;\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

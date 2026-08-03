@@ -66,5 +66,29 @@
         "typography"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutContactCards\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: contact-cards\n *\n * Grid de 2-4 cards de canal (ventas, soporte, oficinas) con icono, texto y link.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const contactCards = {\n  slug: 'contact-cards',\n  name: 'Contacto en cards',\n  description:\n    'Grid de 2-4 cards de canal (ventas, soporte, oficinas) con icono, texto y link. Structure only.',\n  components: ['item', 'link-button', 'typography'],\n  html: `<!-- Layout: contact-cards -->\n<section class=\"l-contact-cards\">\n  <div class=\"l-contact-cards__header\">\n    <h2 class=\"l-contact-cards__headline\">{{headline}}</h2>\n  </div>\n  <div class=\"l-contact-cards__grid\">\n    <div class=\"item l-contact-cards__card\">\n      <div class=\"l-contact-cards__icon\"><!-- icon --></div>\n      <h3 class=\"l-contact-cards__title\">{{card1_title}}</h3>\n      <p class=\"l-contact-cards__body\">{{card1_body}}</p>\n      <a href=\"{{card1_url}}\" class=\"link-button\">{{card1_linkLabel}}</a>\n    </div>\n    <div class=\"item l-contact-cards__card\">\n      <div class=\"l-contact-cards__icon\"><!-- icon --></div>\n      <h3 class=\"l-contact-cards__title\">{{card2_title}}</h3>\n      <p class=\"l-contact-cards__body\">{{card2_body}}</p>\n      <a href=\"{{card2_url}}\" class=\"link-button\">{{card2_linkLabel}}</a>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: contact-cards — structure only */\n.l-contact-cards {\n  padding: 48px 32px;\n}\n.l-contact-cards__header {\n  text-align: center;\n  margin-bottom: 32px;\n}\n.l-contact-cards__grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 24px;\n}\n@media (max-width: 600px) {\n  .l-contact-cards__grid {\n    grid-template-columns: 1fr;\n  }\n}\n.l-contact-cards__card {\n  padding: 24px;\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n}\n.l-contact-cards__icon {\n  width: 32px;\n  height: 32px;\n  background: #f5f5f5;\n  border-radius: 50%;\n  margin-bottom: 12px;\n}\n.l-contact-cards__title {\n  font-size: var(--text-lg);\n  font-weight: 600;\n}\n.l-contact-cards__body {\n  color: #525252;\n  margin: 8px 0;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

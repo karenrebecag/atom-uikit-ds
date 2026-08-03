@@ -61,5 +61,29 @@
         "typography"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutBannerMarquee\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: banner-marquee\n *\n * Thin horizontal banner with repeated text in a seamless scrolling marquee,\n * with top and bottom borders.\n *\n * Structure-only, pure DS: BEM classes + DS tokens, no utility framework.\n * Staged for publishing in the DS registry (layout/banner-marquee).\n */\n\nexport const bannerMarquee = {\n  slug: 'banner-marquee',\n  name: 'Banner Marquee',\n  description:\n    'Barra delgada horizontal con texto repetido en marquee infinito, bordes superior e inferior. Efecto de scroll o auto-scroll para destacar un mensaje de marca.',\n  components: ['marquee', 'typography'],\n  html: `<!-- Layout: banner-marquee -->\n<!-- Get component CSS: atom_uikit_source(\"typography\") or marquee if available -->\n<!-- Get tokens: atom_uikit_source(\"tokens\") -->\n<!-- The horizontal scroll / marquee animation is powered by the DS marquee system or GSAP (scroll-linked or constant speed). The duplicated groups enable seamless looping. -->\n\n<section class=\"l-banner-marquee\" id=\"{{section_id}}\">\n  <div class=\"l-banner-marquee__bar\">\n    <div class=\"l-banner-marquee__track\" data-marquee>\n      <div class=\"l-banner-marquee__group\">\n        <div class=\"l-banner-marquee__item\">{{heading1}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading2}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading3}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading4}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading5}}</div>\n      </div>\n      <!-- duplicate for seamless loop -->\n      <div class=\"l-banner-marquee__group\" aria-hidden=\"true\">\n        <div class=\"l-banner-marquee__item\">{{heading1}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading2}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading3}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading4}}</div>\n        <div class=\"l-banner-marquee__item\">{{heading5}}</div>\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: banner-marquee — structure only, pure DS tokens */\n.l-banner-marquee {\n  overflow: hidden;\n}\n\n.l-banner-marquee__bar {\n  border-top: 1px solid #e5e5e5;\n  border-bottom: 1px solid #e5e5e5;\n}\n\n.l-banner-marquee__track {\n  display: flex;\n  align-items: center;\n  padding-block: 16px;\n}\n\n.l-banner-marquee__group {\n  display: flex;\n  align-items: center;\n  gap: 48px;\n  flex-shrink: 0;\n  padding-left: 48px;\n}\n\n.l-banner-marquee__item {\n  font-size: 16px;\n  font-weight: 700;\n  white-space: nowrap;\n  color: #0a0a0a;\n}\n\n@media (min-width: 768px) {\n  .l-banner-marquee__item {\n    font-size: 20px;\n  }\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

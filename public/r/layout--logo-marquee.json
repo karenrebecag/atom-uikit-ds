@@ -74,5 +74,29 @@
         "typography"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutLogoMarquee\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: logo-marquee\n *\n * Logos de clientes en marquee infinito con titular corto. Reusa el componente marquee.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const logoMarquee = {\n  slug: 'logo-marquee',\n  name: 'Logo Marquee',\n  description:\n    'Logos de clientes en marquee infinito con titular corto. Reusa el componente marquee. Structure only.',\n  components: ['marquee', 'image', 'typography'],\n  html: `<!-- Layout: logo-marquee -->\n<section class=\"l-logo-marquee\">\n  <h3 class=\"l-logo-marquee__headline\">{{headline}}</h3>\n  <div class=\"marquee l-logo-marquee__track\" data-marquee>\n    <div class=\"l-logo-marquee__logos\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n    <!-- duplicate for seamless loop -->\n    <div class=\"l-logo-marquee__logos\" aria-hidden=\"true\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: logo-marquee — structure only */\n.l-logo-marquee {\n  padding: 32px 32px;\n  overflow: hidden;\n}\n.l-logo-marquee__headline {\n  text-align: center;\n  margin-bottom: 24px;\n  font-size: var(--text-lg);\n}\n.l-logo-marquee__track {\n  display: flex;\n  gap: 48px;\n}\n.l-logo-marquee__logos {\n  display: flex;\n  align-items: center;\n  gap: 48px;\n  flex-shrink: 0;\n}\n.l-logo-marquee__logos img {\n  height: 32px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

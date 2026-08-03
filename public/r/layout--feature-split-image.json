@@ -75,5 +75,29 @@
         "image"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutFeatureSplitImage\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: feature-split-image\n *\n * Split features section: left column with header (tagline, headline, description),\n * two sub-features (icon + title + body), and buttons.\n * Right side: full image.\n * \n * Structure-only. Uses DS tokens and components.\n */\n\nexport const featureSplitImage = {\n  slug: 'feature-split-image',\n  name: 'Feature Split Image',\n  description:\n    'Seccion de features dividida: texto a la izquierda con encabezado y dos sub-features, imagen a la derecha. Ideal para resaltar capacidades clave con visual. Structure only.',\n  components: ['button', 'typography', 'image'],\n  html: `<!-- Layout: feature-split-image -->\n<!-- Get component CSS: atom_uikit_source(\"button\", [\"css\"]) -->\n<!-- Get tokens: atom_uikit_source(\"tokens\") -->\n\n<section class=\"l-feature-split-image\" id=\"{{section_id}}\">\n  <div class=\"container\">\n    <div class=\"grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20\">\n      <div>\n        <p class=\"l-feature-split-image__eyebrow mb-3 font-semibold md:mb-4\">{{tagline}}</p>\n        <h2 class=\"l-feature-split-image__headline mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl\">\n          {{heading}}\n        </h2>\n        <p class=\"l-feature-split-image__description mb-6 md:mb-8 md:text-md\">\n          {{description}}\n        </p>\n        <div class=\"l-feature-split-image__subfeatures grid grid-cols-1 gap-6 py-2 sm:grid-cols-2\">\n          <div class=\"l-feature-split-image__subfeature\">\n            <div class=\"l-feature-split-image__icon mb-3 md:mb-4\">\n              <img src=\"{{sub1_icon}}\" class=\"size-12\" alt=\"{{sub1_icon_alt}}\" />\n            </div>\n            <h3 class=\"l-feature-split-image__subfeature-title mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl\">\n              {{sub1_title}}\n            </h3>\n            <p class=\"l-feature-split-image__subfeature-body\">\n              {{sub1_body}}\n            </p>\n          </div>\n          <div class=\"l-feature-split-image__subfeature\">\n            <div class=\"l-feature-split-image__icon mb-3 md:mb-4\">\n              <img src=\"{{sub2_icon}}\" class=\"size-12\" alt=\"{{sub2_icon_alt}}\" />\n            </div>\n            <h3 class=\"l-feature-split-image__subfeature-title mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl\">\n              {{sub2_title}}\n            </h3>\n            <p class=\"l-feature-split-image__subfeature-body\">\n              {{sub2_body}}\n            </p>\n          </div>\n        </div>\n        <div class=\"l-feature-split-image__actions mt-6 flex flex-wrap items-center gap-4 md:mt-8\">\n          <a href=\"{{cta_primary_href}}\" class=\"button button--secondary button--l\">\n            <span class=\"button__label\">{{cta_primary}}</span>\n          </a>\n          <a href=\"{{cta_secondary_href}}\" class=\"link-button\">\n            {{cta_secondary}}\n            <span class=\"link-button__icon\">→</span>\n          </a>\n        </div>\n      </div>\n      <div class=\"l-feature-split-image__media\">\n        <img \n          src=\"{{image}}\" \n          class=\"w-full object-cover\" \n          alt=\"{{image_alt}}\" \n        />\n      </div>\n    </div>\n  </div>\n</section>`,\n\n  css: `/* Layout: feature-split-image — structure only */\n.l-feature-split-image {\n  padding: 80px 32px;\n}\n\n.l-feature-split-image__eyebrow {\n  font-size: 12.8px;\n  font-weight: 600;\n  color: #525252;\n}\n\n.l-feature-split-image__headline {\n  font-size: 39.06px;\n  line-height: 1.2;\n  font-weight: 700;\n  color: #0a0a0a;\n}\n\n@media (min-width: 768px) {\n  .l-feature-split-image__headline {\n    font-size: 48.83px;\n    line-height: 1.15;\n  }\n}\n\n.l-feature-split-image__description {\n  font-size: 16px;\n  line-height: 1.5;\n  color: #525252;\n}\n\n.l-feature-split-image__subfeatures {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 24px;\n  padding-block: 8px;\n}\n\n@media (min-width: 640px) {\n  .l-feature-split-image__subfeatures {\n    grid-template-columns: 1fr 1fr;\n  }\n}\n\n.l-feature-split-image__subfeature {\n  display: flex;\n  flex-direction: column;\n}\n\n.l-feature-split-image__icon {\n  width: 48px;\n  height: 48px;\n}\n\n.l-feature-split-image__subfeature-title {\n  font-size: 16px;\n  font-weight: 600;\n  color: #0a0a0a;\n  line-height: 1.4;\n}\n\n@media (min-width: 768px) {\n  .l-feature-split-image__subfeature-title {\n    font-size: 25px;\n  }\n}\n\n.l-feature-split-image__subfeature-body {\n  font-size: 12.8px;\n  color: #525252;\n  line-height: 1.6;\n}\n\n.l-feature-split-image__actions {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 16px;\n  margin-top: 24px;\n}\n\n@media (min-width: 768px) {\n  .l-feature-split-image__actions {\n    margin-top: 32px;\n  }\n}\n\n.l-feature-split-image__media img {\n  width: 100%;\n  height: auto;\n  object-fit: cover;\n  display: block;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

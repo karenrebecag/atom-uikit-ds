@@ -45,5 +45,73 @@
       "hasCss": true,
       "hasReact": false
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"icon\">\n\n</div>",
+        "classes": [
+          {
+            "class": "icon",
+            "purpose": "root"
+          },
+          {
+            "class": "icon--brand",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--l",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--leading",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--m",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--muted",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--s",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--success",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--xl",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon--xs",
+            "purpose": "modifier"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Icon\n\n   Contenedor de tamano para SVG inline. El DS no envia paths (los iconos son\n   contenido, no estilo): envia la ESCALA y el color, para que ningun consumidor\n   vuelva a dimensionar SVGs a mano.\n\n   Uso:  <svg class=\"icon icon--m icon--success\" viewBox=\"0 0 24 24\">…</svg>\n   Sizes:  xs 1em · s 1.25em · m 1.5em · l 2em · xl 2.5em  (relativos al\n           font-size del contexto: el icono acompana al texto y escala con el)\n   Intents: currentColor por defecto; success/brand/muted como atajos.\n   ------------------------------------------------------------------------- */\n\n.icon {\n  display: inline-block;\n  flex-shrink: 0;\n  width: 1.25em;\n  height: 1.25em;\n  color: currentcolor;\n  fill: currentcolor;\n  vertical-align: middle;\n}\n\n.icon--xs { --icon-size: 1em; }\n.icon--s  { --icon-size: 1.25em; }\n.icon--m  { --icon-size: 1.5em; }\n.icon--l  { --icon-size: 2em; }\n.icon--xl { --icon-size: 2.5em; }\n\n.icon--success { color: #25d366; }\n.icon--brand   { color: #ff6600; }\n.icon--muted   { color: #525252; }\n\n/* Alineacion optica con la primera linea cuando acompana texto multilinea */\n.icon--leading { margin-block-start: 0.2em; }\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

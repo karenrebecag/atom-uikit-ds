@@ -38,5 +38,32 @@
       "hasCss": true,
       "hasReact": false
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"utilities\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Brand gradients — composed from OSMO color tokens (no raw hex, no dead ramps).\n * Violet ramp was removed with Tailwind palette; gradient now uses forest → brand\n * (deep green into Atom orange) for the AI→results story.\n *\n * ALLOWED: hero headline keywords (.text-gradient) and section backgrounds (.bg-*).\n * FORBIDDEN: buttons and CTAs (use .button--primary/--secondary), icons, chips.\n */\n\n:root {\n  --gradient-brand: linear-gradient(135deg, #0a290f 0%, #ff6600 100%);\n  --gradient-brand-soft: linear-gradient(\n    135deg,\n    color-mix(in srgb, #25d366 12%, #fafafa) 0%,\n    #fafafa 55%,\n    #fff4ed 100%\n  );\n  --gradient-dark-glow:\n    radial-gradient(60% 80% at 85% 20%, color-mix(in srgb, #25d366 18%, transparent) 0%, transparent 70%),\n    radial-gradient(50% 70% at 10% 90%, color-mix(in srgb, #ff6600 14%, transparent) 0%, transparent 70%),\n    linear-gradient(135deg, #0a0a0a 0%, #171717 100%);\n}\n\n/* Keyword/headline emphasis. Brand rules: hero headlines only, max 2 highlight\n   colors per title, \"Atom\" stays orange. */\n.text-gradient {\n  background: var(--gradient-brand);\n  -webkit-background-clip: text;\n  background-clip: text;\n  color: transparent;\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }
