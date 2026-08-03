@@ -29,6 +29,7 @@ export type AccordionMorphProps = {
   startOpen?: number;
   gooStrength?: number;
   animated?: boolean;
+  idBase?: string;
   className?: string;
 };
 
@@ -51,9 +52,15 @@ export function AccordionMorph({
   startOpen = -1,
   gooStrength = 9,
   animated = true,
+  idBase,
   className,
 }: AccordionMorphProps) {
-  const uid = useId();
+  // useId depende del ORDEN GLOBAL de renders del proceso: en el emitter del
+  // registry eso hizo el artefacto no-reproducible entre maquinas (el gate de
+  // deriva lo cazo en CI). idBase explicito = ids deterministas para artefactos
+  // y SSR; useId queda como fallback comodo para apps React.
+  const reactId = useId();
+  const uid = idBase ?? reactId;
 
   return (
     <div

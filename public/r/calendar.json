@@ -121,8 +121,8 @@
       "usage": "import { Calendar } from '@/components/atoms/Calendar';\n\n<Calendar mode=\"single\" selected={day} onSelect={setDay} />"
     },
     "derived": {
-      "generatedAt": "2026-08-03T20:40:01.411Z",
-      "sourceCommit": "833148d",
+      "generatedAt": "2026-08-03T20:53:27.421Z",
+      "sourceCommit": "1e5298d",
       "install": {
         "peerDeps": [],
         "cssImports": [

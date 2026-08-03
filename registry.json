@@ -4077,6 +4077,7 @@
       "meta": {
         "webflow": {
           "previewProps": {
+            "idBase": "accordion-morph",
             "items": [
               { "question": "Que hace diferentes a los marcos?", "answer": "Cada marco se lamina en carbono crudo en un molde propio y se termina a mano antes de encordar." },
               { "question": "Fabrican para zurdos?", "answer": "Todo grip y balance se espeja bajo pedido sin costo extra." },

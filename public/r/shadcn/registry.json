@@ -92,8 +92,8 @@
           }
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -554,8 +554,8 @@
           }
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -1007,8 +1007,8 @@
           }
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -1169,8 +1169,8 @@
           "usage": "import { ButtonGroup } from '@/components/atoms/ButtonGroup';\nimport { Button } from '@/components/atoms/Button';\n\n<ButtonGroup orientation=\"horizontal\">\n  <Button variant=\"secondary\">Cancel</Button>\n  <Button variant=\"primary\">Save</Button>\n</ButtonGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1272,8 +1272,8 @@
           "usage": "import { Input } from '@/components/atoms/Input';\nimport { Field } from '@/components/atoms/Field';\n\n<Field label=\"Email\" error=\"Required\">\n  <Input type=\"email\" error placeholder=\"you@company.com\" />\n</Field>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1418,8 +1418,8 @@
           "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1540,8 +1540,8 @@
           "usage": "import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/atoms/Select';\n\n<Select value={v} onValueChange={setV}>\n  <SelectTrigger>Choose</SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"a\">A</SelectItem>\n  </SelectContent>\n</Select>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -1728,8 +1728,8 @@
           "usage": "import { Checkbox } from '@/components/atoms/Checkbox';\n\n<Checkbox checked={ok} onChange={setOk} label=\"I agree\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -1885,8 +1885,8 @@
           "usage": "import { Radio, RadioGroup } from '@/components/atoms/Radio';\n\n<RadioGroup value={v} onValueChange={setV}>\n  <Radio value=\"a\" label=\"A\" />\n  <Radio value=\"b\" label=\"B\" />\n</RadioGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2061,8 +2061,8 @@
           "usage": "import { Toggle } from '@/components/atoms/Toggle';\n\n<Toggle checked={on} onChange={setOn} label=\"Email alerts\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2237,8 +2237,8 @@
           "usage": "import { Field } from '@/components/atoms/Field';\nimport { Input } from '@/components/atoms/Input';\n\n<Field label=\"Email\" htmlFor=\"email\" error={err} required>\n  <Input id=\"email\" type=\"email\" error={!!err} />\n</Field>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2352,8 +2352,8 @@
           "usage": "import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/atoms/Tabs';\n\n<Tabs defaultValue=\"general\" orientation=\"horizontal\">\n  <TabsList>\n    <TabsTrigger value=\"general\">General</TabsTrigger>\n    <TabsTrigger value=\"billing\">Billing</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"general\">Profile settings</TabsContent>\n  <TabsContent value=\"billing\">Invoices</TabsContent>\n</Tabs>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2601,8 +2601,8 @@
           "usage": "import { Divider } from '@/components/atoms/Divider';\n\n<section>…</section>\n<Divider orientation=\"horizontal\" />\n<section>…</section>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2762,8 +2762,8 @@
           "usage": "import { Avatar } from '@/components/atoms/Avatar';\n\n<Avatar type=\"image-border\" size=\"m\" src=\"/u/a.jpg\" alt=\"Ada Lovelace\" status />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -2961,8 +2961,8 @@
           "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3136,8 +3136,8 @@
           "usage": "import { Spinner } from '@/components/atoms/Spinner';\n\n<Spinner size=\"m\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3242,8 +3242,8 @@
           "usage": "import { Skeleton } from '@/components/atoms/Skeleton';\n\n<div aria-busy=\"true\">\n  <Skeleton variant=\"circle\" className=\"w-10 h-10\" />\n  <Skeleton variant=\"text\" className=\"w-40\" />\n</div>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3334,8 +3334,8 @@
           "usage": "import {\n  Dialog, DialogTrigger, DialogContent, DialogHeader,\n  DialogTitle, DialogDescription, DialogBody, DialogFooter,\n} from '@/components/atoms/Dialog';\n\n<Dialog>\n  <DialogTrigger><button type=\"button\">Edit</button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Update your public name.</DialogDescription>\n    </DialogHeader>\n    <DialogBody>{/* fields */}</DialogBody>\n    <DialogFooter><button type=\"button\">Save</button></DialogFooter>\n  </DialogContent>\n</Dialog>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3478,8 +3478,8 @@
           "usage": "import {\n  Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption,\n} from '@/components/atoms/Table';\n\n<Table>\n  <TableCaption>Invoices</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Customer</TableHead>\n      <TableHead>Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>Ada</TableCell>\n      <TableCell>$120</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3573,8 +3573,8 @@
           "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3743,8 +3743,8 @@
           "usage": "import {\n  AlertDialog, AlertDialogTrigger, AlertDialogContent,\n  AlertDialogHeader, AlertDialogTitle, AlertDialogDescription,\n  AlertDialogFooter, AlertDialogCancel, AlertDialogAction,\n} from '@/components/atoms/AlertDialog';\n\n<AlertDialog>\n  <AlertDialogTrigger><button type=\"button\">Delete</button></AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Delete project?</AlertDialogTitle>\n      <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>\n    </AlertDialogHeader>\n    <AlertDialogFooter>\n      <AlertDialogCancel />\n      <AlertDialogAction variant=\"destructive-primary\" onAction={() => {}} />\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -3900,8 +3900,8 @@
           "usage": "import { Avatar, AvatarGroup } from '@/components/atoms/Avatar';\n\n<AvatarGroup size=\"s\" max={3}>\n  <Avatar type=\"initials\" initials=\"AL\" alt=\"Ada\" />\n  <Avatar type=\"initials\" initials=\"GR\" alt=\"Grace\" />\n  <Avatar type=\"initials\" initials=\"KT\" alt=\"Katherine\" />\n  <Avatar type=\"initials\" initials=\"XX\" alt=\"Extra\" />\n</AvatarGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4001,8 +4001,8 @@
           "usage": "import {\n  Breadcrumb, BreadcrumbItem, BreadcrumbLink,\n  BreadcrumbPage, BreadcrumbSeparator,\n} from '@/components/atoms/Breadcrumb';\n\n<Breadcrumb>\n  <BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem>\n  <BreadcrumbSeparator />\n  <BreadcrumbItem><BreadcrumbPage>Settings</BreadcrumbPage></BreadcrumbItem>\n</Breadcrumb>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4111,8 +4111,8 @@
           "usage": "import { BurgerIcon } from '@/components/atoms/BurgerIcon';\nimport { IconButton } from '@/components/atoms/IconButton';\n\n<IconButton aria-label=\"Open menu\" aria-expanded={open}>\n  <BurgerIcon />\n</IconButton>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": []
@@ -4201,8 +4201,8 @@
           "usage": "import { Calendar } from '@/components/atoms/Calendar';\n\n<Calendar mode=\"single\" selected={day} onSelect={setDay} />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4412,8 +4412,8 @@
           "usage": "import { Chip } from '@/components/atoms/Chip';\n\n<Chip type=\"filled\" size=\"s\" onClose={() => {}}>\n  Design\n</Chip>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4744,8 +4744,8 @@
           "usage": "import { Combobox, ComboboxInput, ComboboxContent, ComboboxItem } from '@/components/molecules/Combobox';\n\n<Combobox value={v} onValueChange={setV}>\n  <ComboboxInput placeholder=\"Search country\" />\n  <ComboboxContent>\n    <ComboboxItem value=\"mx\">Mexico</ComboboxItem>\n    <ComboboxItem value=\"us\">United States</ComboboxItem>\n  </ComboboxContent>\n</Combobox>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -4961,8 +4961,8 @@
           "usage": "import {\n  ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem,\n} from '@/components/atoms/ContextMenu';\n\n<ContextMenu>\n  <ContextMenuTrigger>Right-click me</ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem onSelect={() => {}}>Copy</ContextMenuItem>\n    <ContextMenuItem variant=\"destructive\" onSelect={() => {}}>Delete</ContextMenuItem>\n  </ContextMenuContent>\n</ContextMenu>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5069,8 +5069,8 @@
           "usage": "import {\n  Drawer, DrawerTrigger, DrawerContent, DrawerHeader,\n  DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter,\n} from '@/components/atoms/Drawer';\n\n<Drawer>\n  <DrawerTrigger><button type=\"button\">Filters</button></DrawerTrigger>\n  <DrawerContent direction=\"bottom\">\n    <DrawerHeader>\n      <DrawerTitle>Filters</DrawerTitle>\n      <DrawerDescription>Narrow the list.</DrawerDescription>\n    </DrawerHeader>\n    <DrawerBody>{/* controls */}</DrawerBody>\n    <DrawerFooter><button type=\"button\">Apply</button></DrawerFooter>\n  </DrawerContent>\n</Drawer>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5227,8 +5227,8 @@
           "usage": "import {\n  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem,\n} from '@/components/atoms/DropdownMenu';\n\n<DropdownMenu>\n  <DropdownMenuTrigger>Open</DropdownMenuTrigger>\n  <DropdownMenuContent side=\"bottom\" align=\"start\">\n    <DropdownMenuItem onSelect={() => {}}>Edit</DropdownMenuItem>\n    <DropdownMenuItem variant=\"destructive\" onSelect={() => {}}>Delete</DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5398,8 +5398,8 @@
           "usage": "import {\n  Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent,\n} from '@/components/atoms/Empty';\n\n<Empty variant=\"outline\">\n  <EmptyHeader>\n    <EmptyMedia variant=\"icon\">{/* icon */}</EmptyMedia>\n    <EmptyTitle>No projects</EmptyTitle>\n    <EmptyDescription>Create one to get started.</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent><button type=\"button\">New project</button></EmptyContent>\n</Empty>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5570,8 +5570,8 @@
           "usage": "import { Image } from '@/components/atoms/Image';\n\n<Image\n  src=\"/photos/hero.jpg\"\n  alt=\"Team workshop\"\n  size=\"l\"\n  ratio=\"16x9\"\n  fit=\"cover\"\n  radius=\"md\"\n/>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5752,8 +5752,8 @@
           "usage": "import {\n  Item, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions,\n} from '@/components/atoms/Item';\n\n<Item variant=\"outline\" size=\"default\" href=\"/docs\">\n  <ItemMedia variant=\"icon\">{/* icon */}</ItemMedia>\n  <ItemContent>\n    <ItemTitle>Docs</ItemTitle>\n    <ItemDescription>Guides and API</ItemDescription>\n  </ItemContent>\n  <ItemActions>→</ItemActions>\n</Item>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -5957,8 +5957,8 @@
           "usage": "import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/atoms/Marquee';\n\n<Marquee speed={75} fade pauseOnHover>\n  <MarqueeItem>Acme</MarqueeItem>\n  <MarqueeSeparator />\n  <MarqueeItem>Globex</MarqueeItem>\n</Marquee>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -6091,8 +6091,8 @@
           "usage": "import { NavLink } from '@/components/atoms/NavLink';\n\n<NavLink href=\"/docs\" size=\"default\" active>\n  Docs\n</NavLink>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6225,8 +6225,8 @@
           "usage": "import {\n  Pagination, PaginationItem, PaginationLink,\n  PaginationPrevious, PaginationNext, PaginationEllipsis,\n} from '@/components/atoms/Pagination';\n\n<Pagination>\n  <PaginationItem><PaginationPrevious href=\"?p=1\" disabled /></PaginationItem>\n  <PaginationItem><PaginationLink href=\"?p=1\" isActive>1</PaginationLink></PaginationItem>\n  <PaginationItem><PaginationEllipsis /></PaginationItem>\n  <PaginationItem><PaginationNext href=\"?p=2\" /></PaginationItem>\n</Pagination>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6380,8 +6380,8 @@
           "usage": "import { ProgressNav } from '@/components/atoms/ProgressNav';\n\n<ProgressNav\n  items={[{ id: 'features', label: 'Features' }, { id: 'pricing', label: 'Pricing' }]}\n  cta={{ label: 'Contact', href: '#contact' }}\n/>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -6573,8 +6573,8 @@
           "usage": "import {\n  ResizablePanelGroup, ResizablePanel, ResizableHandle,\n} from '@/components/atoms/Resizable';\n\n<ResizablePanelGroup orientation=\"horizontal\" panels={2}>\n  <ResizablePanel index={0}>Left</ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel index={1}>Right</ResizablePanel>\n</ResizablePanelGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6689,8 +6689,8 @@
           "usage": "import {\n  Sheet, SheetTrigger, SheetContent, SheetHeader,\n  SheetTitle, SheetDescription, SheetBody,\n} from '@/components/atoms/Sheet';\n\n<Sheet>\n  <SheetTrigger><button type=\"button\">Open</button></SheetTrigger>\n  <SheetContent side=\"right\">\n    <SheetHeader>\n      <SheetTitle>Settings</SheetTitle>\n      <SheetDescription>Tune preferences.</SheetDescription>\n    </SheetHeader>\n    <SheetBody>{/* fields */}</SheetBody>\n  </SheetContent>\n</Sheet>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -6922,8 +6922,8 @@
           "usage": "import { Slider } from '@/components/atoms/Slider';\n\n<Slider min={0} max={100} step={5} value={volume} onValueChange={setVolume} />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7054,8 +7054,8 @@
           "usage": "import { StatsCard } from '@/components/atoms/StatsCard';\n\n<StatsCard value=\"12.4k\" label=\"Active users\" trend=\"up\" trendValue=\"+8%\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7203,8 +7203,8 @@
           "usage": "import { Stepper } from '@/components/atoms/Stepper';\n\n<Stepper\n  orientation=\"horizontal\"\n  steps={[\n    { state: 'completed', title: 'Account' },\n    { state: 'active', title: 'Plan' },\n    { state: 'upcoming', title: 'Pay' },\n  ]}\n/>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7389,8 +7389,8 @@
           "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7621,8 +7621,8 @@
           "usage": "import { Toaster, toast } from '@/components/atoms/Toast';\n\n// once in layout:\n<Toaster position=\"bottom-right\" />\n\n// on event:\ntoast.success('Saved', { description: 'Profile updated' });"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -7865,8 +7865,8 @@
           "usage": "import { ToggleGroup, ToggleGroupItem } from '@/components/atoms/ToggleGroup';\n\n<ToggleGroup type=\"single\" value={view} onValueChange={setView} size=\"m\">\n  <ToggleGroupItem value=\"list\">List</ToggleGroupItem>\n  <ToggleGroupItem value=\"grid\">Grid</ToggleGroupItem>\n</ToggleGroup>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -8064,8 +8064,8 @@
           "usage": "import { TypographyH1, TypographyP } from '@/components/atoms/Typography';\n\n<TypographyH1>Ship faster with ATOM</TypographyH1>\n<TypographyP>Design-system components for product teams.</TypographyP>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": []
@@ -8124,8 +8124,8 @@
           "usage": "import { UserProfile } from '@/components/atoms/UserProfile';\n\n<UserProfile name=\"Ada Lovelace\" org=\"Analytical Engines\" avatar={{ type: 'initials', size: 's' }} />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [],
             "cssImports": [
@@ -8262,8 +8262,8 @@
           "usage": "import { VideoPlayer } from '@/components/atoms/VideoPlayer';\n\n<VideoPlayer videoId=\"abc123\" muted autoplay={false} placeholder=\"/poster.jpg\" />"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -8505,8 +8505,8 @@
           "usage": "import {\n  SidebarProvider, Sidebar, SidebarHeader, SidebarContent,\n  SidebarFooter, SidebarItem, SidebarTrigger,\n} from '@/components/molecules/sidebar';\n\n<SidebarProvider>\n  <Sidebar side=\"left\">\n    <SidebarHeader>\n      <SidebarTrigger />\n    </SidebarHeader>\n    <SidebarContent>\n      <SidebarItem href=\"/home\">Home</SidebarItem>\n    </SidebarContent>\n    <SidebarFooter>v1</SidebarFooter>\n  </Sidebar>\n</SidebarProvider>"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"
@@ -8853,6 +8853,7 @@
       "meta": {
         "webflow": {
           "previewProps": {
+            "idBase": "accordion-morph",
             "items": [
               {
                 "question": "Que hace diferentes a los marcos?",
@@ -8930,8 +8931,8 @@
           "usage": "<AccordionMorph items={[{ question: '...', answer: '...' }]} startOpen={0} />\n// + una vez por pagina:\nuseEffect(() => initAccordionMorph(), []);"
         },
         "derived": {
-          "generatedAt": "2026-08-03T20:40:01.411Z",
-          "sourceCommit": "833148d",
+          "generatedAt": "2026-08-03T20:53:27.421Z",
+          "sourceCommit": "1e5298d",
           "install": {
             "peerDeps": [
               "gsap"

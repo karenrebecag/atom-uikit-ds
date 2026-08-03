@@ -11,12 +11,12 @@
           "tag": "div",
           "classes": [],
           "children": [],
-          "v": "<svg class=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"_R_0_-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
+          "v": "<svg class=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"accordion-morph-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
           "data": {
             "embed": {
               "type": "html",
               "meta": {
-                "html": "<svg class=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"_R_0_-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
+                "html": "<svg class=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"accordion-morph-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
                 "div": false,
                 "iframe": false,
                 "script": false,
@@ -230,7 +230,7 @@
           "data": {
             "displayName": "",
             "attr": {
-              "id": "_R_0_-trigger-0"
+              "id": "accordion-morph-trigger-0"
             },
             "xattr": [
               {
@@ -239,7 +239,7 @@
               },
               {
                 "name": "aria-controls",
-                "value": "_R_0_-panel-0"
+                "value": "accordion-morph-panel-0"
               },
               {
                 "name": "aria-expanded",
@@ -341,7 +341,7 @@
             "text": false,
             "displayName": "",
             "attr": {
-              "id": "_R_0_-panel-0"
+              "id": "accordion-morph-panel-0"
             },
             "xattr": [
               {
@@ -354,7 +354,7 @@
               },
               {
                 "name": "aria-labelledby",
-                "value": "_R_0_-trigger-0"
+                "value": "accordion-morph-trigger-0"
               },
               {
                 "name": "aria-hidden",
@@ -595,7 +595,7 @@
           "data": {
             "displayName": "",
             "attr": {
-              "id": "_R_0_-trigger-1"
+              "id": "accordion-morph-trigger-1"
             },
             "xattr": [
               {
@@ -604,7 +604,7 @@
               },
               {
                 "name": "aria-controls",
-                "value": "_R_0_-panel-1"
+                "value": "accordion-morph-panel-1"
               },
               {
                 "name": "aria-expanded",
@@ -706,7 +706,7 @@
             "text": false,
             "displayName": "",
             "attr": {
-              "id": "_R_0_-panel-1"
+              "id": "accordion-morph-panel-1"
             },
             "xattr": [
               {
@@ -719,7 +719,7 @@
               },
               {
                 "name": "aria-labelledby",
-                "value": "_R_0_-trigger-1"
+                "value": "accordion-morph-trigger-1"
               },
               {
                 "name": "aria-hidden",
@@ -960,7 +960,7 @@
           "data": {
             "displayName": "",
             "attr": {
-              "id": "_R_0_-trigger-2"
+              "id": "accordion-morph-trigger-2"
             },
             "xattr": [
               {
@@ -969,7 +969,7 @@
               },
               {
                 "name": "aria-controls",
-                "value": "_R_0_-panel-2"
+                "value": "accordion-morph-panel-2"
               },
               {
                 "name": "aria-expanded",
@@ -1071,7 +1071,7 @@
             "text": false,
             "displayName": "",
             "attr": {
-              "id": "_R_0_-panel-2"
+              "id": "accordion-morph-panel-2"
             },
             "xattr": [
               {
@@ -1084,7 +1084,7 @@
               },
               {
                 "name": "aria-labelledby",
-                "value": "_R_0_-trigger-2"
+                "value": "accordion-morph-trigger-2"
               },
               {
                 "name": "aria-hidden",
@@ -1186,6 +1186,10 @@
               {
                 "name": "data-accordion-morph-start-open",
                 "value": "0"
+              },
+              {
+                "name": "data-accordion-morph-goo-strength",
+                "value": "9"
               }
             ],
             "search": {
