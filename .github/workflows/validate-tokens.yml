@@ -46,6 +46,13 @@ jobs:
       # capa derivada llego a produccion vacia el 2026-08-02.
       - name: Registry sin deriva
         run: node scripts/check-registry-drift.mjs
+      # Observabilidad, no gate: nunca tumba el job. Lee git y el registry, que
+      # ya registran todo — no instrumenta nada.
+      - name: Snapshot de metricas
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/collect-metrics.mjs
       # Layer rules (primitives literal / semantic refs / component refs)
       - run: pnpm validate
       # WCAG AA surface/foreground contrast (light + dark)

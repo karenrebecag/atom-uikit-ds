@@ -1,0 +1,76 @@
+{
+  "date": "2026-08-03",
+  "commit": "35626a8",
+  "timeToPublish": {
+    "measured": 61,
+    "medianDays": 13,
+    "maxDays": 15,
+    "sameDay": 9,
+    "slowest": [
+      {
+        "slug": "button-hover",
+        "source": "2026-05-14",
+        "published": "2026-05-29",
+        "days": 15
+      },
+      {
+        "slug": "sidebar",
+        "source": "2026-05-14",
+        "published": "2026-05-29",
+        "days": 15
+      },
+      {
+        "slug": "tooltip",
+        "source": "2026-05-14",
+        "published": "2026-05-29",
+        "days": 15
+      },
+      {
+        "slug": "accordion",
+        "source": "2026-05-14",
+        "published": "2026-05-28",
+        "days": 14
+      },
+      {
+        "slug": "avatar",
+        "source": "2026-05-14",
+        "published": "2026-05-28",
+        "days": 14
+      }
+    ]
+  },
+  "coverage": {
+    "available": true,
+    "source": "public/r/content-coverage.json",
+    "totals": {
+      "items": 120,
+      "eligibleAgent": 49,
+      "metaAgent": {
+        "full": 25,
+        "partial": 0,
+        "none": 24,
+        "fullPct": 51
+      },
+      "editorial": {
+        "yes": 3,
+        "eligible": 49,
+        "pct": 6.1
+      },
+      "derived": {
+        "withSourceCommit": 120
+      },
+      "webflow": {
+        "emitted": 35,
+        "excluded": 24
+      },
+      "aggregateScore": 33
+    }
+  },
+  "drift": {
+    "available": true,
+    "runs": 12,
+    "failures": 2,
+    "failureRate": 17,
+    "lastFailure": "2026-08-03T16:42:18Z"
+  }
+}

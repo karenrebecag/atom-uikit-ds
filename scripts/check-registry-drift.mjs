@@ -28,9 +28,13 @@ function git(args) {
 /**
  * Strip the fields that legitimately change on every build, wherever they sit.
  *
- * Recursive on purpose: shadcn/registry.json nests a full item under
- * items[].meta.derived, so a normaliser that only looked at the root reported
- * that file as drifting on every single run.
+ * Recursive and level-agnostic on purpose. Two files taught this the hard way:
+ * shadcn/registry.json nests them under items[].meta.derived, and
+ * content-coverage.json carries generatedAt at the root. A normaliser tied to a
+ * particular level reports those as drifting on every single run, which trains
+ * you to ignore the check — the worst possible outcome for a gate.
+ *
+ * Both names are build stamps by definition, so dropping them anywhere is safe.
  */
 function normalise(value) {
   if (Array.isArray(value)) {
@@ -39,9 +43,8 @@ function normalise(value) {
   }
   if (!value || typeof value !== 'object') return value;
 
-  const derived = value.derived;
-  if (derived && typeof derived === 'object') {
-    for (const key of VOLATILE) delete derived[key];
+  for (const key of VOLATILE) {
+    if (key in value) delete value[key];
   }
   for (const child of Object.values(value)) normalise(child);
   return value;
