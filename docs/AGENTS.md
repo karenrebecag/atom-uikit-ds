@@ -39,6 +39,13 @@ Reglas de consumo:
 que cualquier agente (incluidos modelos ligeros) produzca resultados correctos
 auditados por los gates. Lo de abajo es el contexto; aquél es el procedimiento.
 
+Para piezas **compuestas** (una card, un hero, una sección animada) el
+procedimiento es el Modo D de ese mismo doc, y el proceso canónico completo está
+en [`docs/organism-pipeline.md`](organism-pipeline.md). Regla que resume el
+Modo D: **el motion baja como orquestación** (el padre anima a los hijos por
+`data-*`, los hijos son tontos) **y sube como declaración** (el organismo declara
+el hook de animación en `registryDependencies`).
+
 Lee en este orden: `CLAUDE.md` (reglas duras y flujo), `docs/RUNBOOK.md` (operación),
 `docs/decisions/` (por qué las cosas son como son). Resumen mínimo:
 
