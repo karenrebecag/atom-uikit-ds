@@ -138,7 +138,7 @@ export function buildContentCoverage(root = ROOT) {
   const delta =
     prevScore == null ? null : Math.round((totals.aggregateScore - prevScore) * 10) / 10;
 
-  return {
+  const report = {
     generatedAt,
     source: 'public/r + docs/editorial + webflow index + animations dist',
     scoreRubric: {
@@ -153,11 +153,24 @@ export function buildContentCoverage(root = ROOT) {
       max: 100,
     },
     totals,
-    previousAggregateScore: prevScore,
-    deltaAggregateScore: delta,
     batches,
     items,
   };
+
+  // La comparacion contra la corrida anterior se calcula pero NO se serializa.
+  //
+  // Escribirla dentro del artefacto lo vuelve irreproducible por construccion:
+  // "lo de antes" no sale del codigo fuente, sale del propio historial del
+  // archivo, asi que cada build desplaza los dos campos y el check de deriva se
+  // pone rojo sin que nada haya cambiado de verdad. Un gate con falsos positivos
+  // entrena a ignorarlo.
+  //
+  // El gate de no-regresion (F16d) y la tabla las siguen leyendo igual: son
+  // propiedades normales, solo que invisibles para JSON.stringify.
+  Object.defineProperty(report, 'previousAggregateScore', { value: prevScore, enumerable: false });
+  Object.defineProperty(report, 'deltaAggregateScore', { value: delta, enumerable: false });
+
+  return report;
 }
 
 function classifyAgent(agent) {
