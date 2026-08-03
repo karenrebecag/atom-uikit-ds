@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T17:25:42.522Z",
+  "generatedAt": "2026-08-03T17:26:14.176Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -22,9 +22,9 @@
       "fullPct": 100
     },
     "editorial": {
-      "yes": 3,
+      "yes": 15,
       "eligible": 49,
-      "pct": 6.1
+      "pct": 30.6
     },
     "derived": {
       "withSourceCommit": 120
@@ -33,35 +33,13 @@
       "emitted": 35,
       "excluded": 24
     },
-    "aggregateScore": 41
+    "aggregateScore": 43.5
   },
-  "previousAggregateScore": 43.5,
-  "deltaAggregateScore": -2.5,
+  "previousAggregateScore": 41,
+  "deltaAggregateScore": 2.5,
   "batches": [
     {
       "id": "editorial-1",
-      "kind": "editorial",
-      "slugs": [
-        "burger-icon",
-        "button-group",
-        "icon-button",
-        "image",
-        "link-button",
-        "stepper",
-        "toggle-group",
-        "typography",
-        "checkbox",
-        "combobox",
-        "field",
-        "radio"
-      ],
-      "categories": [
-        "actions",
-        "forms"
-      ]
-    },
-    {
-      "id": "editorial-2",
       "kind": "editorial",
       "slugs": [
         "select",
@@ -84,7 +62,7 @@
       ]
     },
     {
-      "id": "editorial-3",
+      "id": "editorial-2",
       "kind": "editorial",
       "slugs": [
         "dropdown-menu",
@@ -106,7 +84,7 @@
       ]
     },
     {
-      "id": "editorial-4",
+      "id": "editorial-3",
       "kind": "editorial",
       "slugs": [
         "toast",
@@ -224,7 +202,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -232,7 +210,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 75
+      "contentScore": 100
     },
     {
       "slug": "link-button",
@@ -241,7 +219,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -249,7 +227,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 75
+      "contentScore": 100
     },
     {
       "slug": "button-group",
@@ -258,7 +236,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -266,7 +244,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "whatsapp-button",
@@ -343,7 +321,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -351,7 +329,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "radio",
@@ -360,7 +338,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -368,7 +346,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 65
+      "contentScore": 90
     },
     {
       "slug": "toggle",
@@ -394,7 +372,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -402,7 +380,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "tabs",
@@ -666,7 +644,7 @@
       "hasReact": true,
       "hasCss": false,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -674,7 +652,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 65
+      "contentScore": 90
     },
     {
       "slug": "calendar",
@@ -717,7 +695,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -725,7 +703,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "context-menu",
@@ -855,7 +833,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -863,7 +841,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "item",
@@ -1025,7 +1003,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -1033,7 +1011,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 65
+      "contentScore": 90
     },
     {
       "slug": "tag",
@@ -1076,7 +1054,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -1084,7 +1062,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "typography",
@@ -1093,7 +1071,7 @@
       "hasReact": true,
       "hasCss": false,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [
         "no-css-source"
       ],
@@ -1103,7 +1081,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 60
+      "contentScore": 85
     },
     {
       "slug": "user-profile",
