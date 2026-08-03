@@ -63,5 +63,29 @@
         "divider"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutFaqTwoCol\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: faq-two-col\n *\n * Titular + intro izquierda, preguntas expandidas (sin accordion) en grid derecha.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const faqTwoCol = {\n  slug: 'faq-two-col',\n  name: 'FAQ dos columnas',\n  description:\n    'Titular + intro izquierda, preguntas expandidas (sin accordion) en grid derecha. Structure only.',\n  components: ['typography', 'divider'],\n  html: `<!-- Layout: faq-two-col -->\n<section class=\"l-faq-two-col\">\n  <div class=\"l-faq-two-col__left\">\n    <h2 class=\"l-faq-two-col__headline\">{{headline}}</h2>\n    <p class=\"l-faq-two-col__intro\">{{intro}}</p>\n  </div>\n  <div class=\"l-faq-two-col__right\">\n    <div class=\"l-faq-two-col__item\">\n      <h4 class=\"l-faq-two-col__question\">{{faq1_question}}</h4>\n      <p class=\"l-faq-two-col__answer\">{{faq1_answer}}</p>\n    </div>\n    <div class=\"l-faq-two-col__item\">\n      <h4 class=\"l-faq-two-col__question\">{{faq2_question}}</h4>\n      <p class=\"l-faq-two-col__answer\">{{faq2_answer}}</p>\n    </div>\n    <div class=\"l-faq-two-col__item\">\n      <h4 class=\"l-faq-two-col__question\">{{faq3_question}}</h4>\n      <p class=\"l-faq-two-col__answer\">{{faq3_answer}}</p>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: faq-two-col — structure only */\n.l-faq-two-col {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 32px;\n  padding: 48px 32px;\n}\n@media (max-width: 768px) {\n  .l-faq-two-col {\n    grid-template-columns: 1fr;\n  }\n}\n.l-faq-two-col__headline {\n  font-size: var(--text-xl);\n}\n.l-faq-two-col__intro {\n  color: #525252;\n}\n.l-faq-two-col__item {\n  margin-bottom: 16px;\n}\n.l-faq-two-col__question {\n  font-weight: 600;\n  margin-bottom: 4px;\n}\n.l-faq-two-col__answer {\n  color: #525252;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

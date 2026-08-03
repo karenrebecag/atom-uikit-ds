@@ -108,6 +108,118 @@
         }
       ],
       "usage": "import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/atoms/Select';\n\n<Select value={v} onValueChange={setV}>\n  <SelectTrigger>Choose</SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"a\">A</SelectItem>\n  </SelectContent>\n</Select>"
+    },
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"select\">\n  <span class=\"select__content\"></span>\n  <span class=\"select__group-list\"></span>\n  <span class=\"select__icon\"></span>\n  <span class=\"select__item\"></span>\n  <span class=\"select__item--disabled\"></span>\n  <span class=\"select__item--highlighted\"></span>\n  <span class=\"select__item--selected\"></span>\n  <span class=\"select__label\"></span>\n  <span class=\"select__separator\"></span>\n  <span class=\"select__trigger\"></span>\n  <span class=\"select__trigger--disabled\"></span>\n  <span class=\"select__trigger--open\"></span>\n  <span class=\"select__value\"></span>\n  <span class=\"select__value--placeholder\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "select",
+            "purpose": "root"
+          },
+          {
+            "class": "select__content",
+            "purpose": "element"
+          },
+          {
+            "class": "select__group-list",
+            "purpose": "element"
+          },
+          {
+            "class": "select__icon",
+            "purpose": "element"
+          },
+          {
+            "class": "select__item",
+            "purpose": "element"
+          },
+          {
+            "class": "select__item--disabled",
+            "purpose": "element"
+          },
+          {
+            "class": "select__item--highlighted",
+            "purpose": "element"
+          },
+          {
+            "class": "select__item--selected",
+            "purpose": "element"
+          },
+          {
+            "class": "select__label",
+            "purpose": "element"
+          },
+          {
+            "class": "select__separator",
+            "purpose": "element"
+          },
+          {
+            "class": "select__trigger",
+            "purpose": "element"
+          },
+          {
+            "class": "select__trigger--disabled",
+            "purpose": "element"
+          },
+          {
+            "class": "select__trigger--open",
+            "purpose": "element"
+          },
+          {
+            "class": "select__value",
+            "purpose": "element"
+          },
+          {
+            "class": "select__value--placeholder",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Select\n\n   Dropdown picker. Trigger + floating list, no search.\n   Composable: Select > Trigger + Content > Group + Label + Item\n\n   Parts: .select, .select__trigger, .select__value, .select__content,\n          .select__item, .select__label, .select__separator\n   ------------------------------------------------------------------------- */\n\n/* ---- Root ---- */\n\n.select {\n  position: relative;\n  display: flex;\n  width: 100%;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- Trigger ---- */\n\n.select__trigger {\n  display: inline-flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  width: 100%;\n  height: 40px;\n  padding: 0 12px;\n  border: 1px solid #d4d4d4;\n  border-radius: 8px;\n  background-color: #fafafa;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: 12.8px;\n  font-weight: 400;\n  line-height: 1;\n  text-align: left;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition:\n    border-color 150ms cubic-bezier(0.4, 0, 0.2, 1),\n    box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.select__trigger:hover {\n  border-color: #171717;\n}\n\n.select__trigger:focus-visible {\n  border-color: #171717;\n  box-shadow: 0 0 0 2px var(--focus-ring-color);\n  outline: none;\n}\n\n.select__trigger--open {\n  border-color: #171717;\n  box-shadow: 0 0 0 2px var(--focus-ring-color);\n}\n\n.select__trigger--disabled {\n  background-color: #f5f5f5;\n  border-color: #f5f5f5;\n  color: #525252;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.select__trigger[aria-invalid=\"true\"] {\n  border-color: #f84131;\n  box-shadow: 0 0 2px 0 var(--focus-ring-error-color);\n}\n\n.select__trigger[aria-invalid=\"true\"]:focus-visible,\n.select__trigger[aria-invalid=\"true\"].select__trigger--open {\n  border-color: #f84131;\n  box-shadow: 0 0 0 2px var(--focus-ring-error-color);\n}\n\n/* ---- Value ---- */\n\n.select__value {\n  flex: 1;\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.select__value--placeholder {\n  color: #525252;\n}\n\n/* ---- Chevron ---- */\n\n.select__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1em;\n  height: 1em;\n  color: #525252;\n  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.select__trigger--open .select__icon {\n  transform: rotate(180deg);\n}\n\n/* ---- Content ---- */\n\n.select__content {\n  position: absolute;\n  top: calc(100% + 4px);\n  left: 0;\n  z-index: 20;\n  width: 100%;\n  min-width: 160px;\n  max-height: 256px;\n  overflow-y: auto;\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);\n  padding: 4px;\n  transform-origin: top;\n  animation: select-in 200ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n@keyframes select-in {\n  from {\n    opacity: 0;\n    transform: scale(0.96) translateY(-4px);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1) translateY(0);\n  }\n}\n\n/* ---- Label ---- */\n\n.select__label {\n  padding: 8px 8px 4px;\n  font-size: 10.24px;\n  font-weight: 500;\n  color: #525252;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n}\n\n/* ---- Group list ---- */\n\n.select__group-list {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n/* ---- Item ---- */\n\n.select__item {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  width: 100%;\n  padding: 8px;\n  border: none;\n  border-radius: 4px;\n  background: none;\n  color: #0a0a0a;\n  font-family: inherit;\n  font-size: 12.8px;\n  line-height: 1;\n  text-align: left;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.select__item:hover,\n.select__item--highlighted {\n  background-color: #f5f5f5;\n  color: #171717;\n}\n\n.select__item--selected {\n  font-weight: 500;\n}\n\n.select__item--disabled {\n  color: #525252;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.select__item:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: -2px;\n  border-radius: 4px;\n}\n\n/* ---- Separator ---- */\n\n.select__separator {\n  height: 1px;\n  margin: 4px calc(-1 * 4px);\n  background-color: #e5e5e5;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .select__trigger,\n  .select__icon,\n  .select__item {\n    transition-duration: 0ms;\n  }\n\n  .select__content {\n    animation-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "border-color",
+          "duration": "var(--duration-150)",
+          "easing": "var(--easing-in-out)"
+        },
+        {
+          "property": "box-shadow",
+          "duration": "var(--duration-150)",
+          "easing": "var(--easing-in-out)"
+        },
+        {
+          "property": "transform",
+          "duration": "var(--duration-200)",
+          "easing": "var(--easing-in-out)"
+        },
+        {
+          "property": "background-color",
+          "duration": "var(--duration-100)",
+          "easing": "var(--easing-in-out)"
+        },
+        {
+          "property": "@keyframes select-in",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
     }
   }
 }

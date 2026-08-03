@@ -110,6 +110,72 @@
         "Motion",
         "Webflow"
       ]
+    },
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [
+          "gsap"
+        ],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"marquee\">\n  <span class=\"marquee__collection\"></span>\n  <span class=\"marquee__item\"></span>\n  <span class=\"marquee__list\"></span>\n  <span class=\"marquee__separator\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "marquee",
+            "purpose": "root"
+          },
+          {
+            "class": "marquee--fade",
+            "purpose": "modifier"
+          },
+          {
+            "class": "marquee--pause-hover",
+            "purpose": "modifier"
+          },
+          {
+            "class": "marquee--reverse",
+            "purpose": "modifier"
+          },
+          {
+            "class": "marquee__collection",
+            "purpose": "element"
+          },
+          {
+            "class": "marquee__item",
+            "purpose": "element"
+          },
+          {
+            "class": "marquee__list",
+            "purpose": "element"
+          },
+          {
+            "class": "marquee__separator",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Marquee\n\n   Infinite horizontal scroll. CSS animation, JS for speed + duplication.\n   Pauses when out of viewport. Hover pauses optional.\n\n   Parts: .marquee, .marquee__list, .marquee__item\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.marquee {\n  display: flex;\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- Fade edges ---- */\n\n.marquee--fade {\n  mask-image: linear-gradient(\n    to right,\n    transparent,\n    black 40px,\n    black calc(100% - 40px),\n    transparent\n  );\n  -webkit-mask-image: linear-gradient(\n    to right,\n    transparent,\n    black 40px,\n    black calc(100% - 40px),\n    transparent\n  );\n}\n\n/* ---- List (duplicated by JS) ---- */\n\n.marquee__list {\n  flex: none;\n  display: flex;\n  align-items: center;\n  animation: marquee-scroll 30s linear infinite;\n  animation-play-state: running;\n}\n\n.marquee--reverse .marquee__list {\n  animation-direction: reverse;\n}\n\n.marquee--pause-hover:hover .marquee__list {\n  animation-play-state: paused;\n}\n\n@keyframes marquee-scroll {\n  to {\n    transform: translateX(-100%);\n  }\n}\n\n/* ---- Item ---- */\n\n.marquee__item {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  padding: 12px 16px;\n  flex-shrink: 0;\n  white-space: nowrap;\n}\n\n/* ---- Separator (optional decorative element between items) ---- */\n\n.marquee__separator {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  color: #525252;\n}\n\n.marquee__separator svg {\n  width: 1em;\n  height: 1em;\n}\n\n/* ---- Draggable mode (GSAP) ---- */\n\n.marquee__collection {\n  display: flex;\n  align-items: center;\n  flex: none;\n  will-change: transform;\n  cursor: grab;\n}\n\n.marquee__collection:active {\n  cursor: grabbing;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .marquee__list {\n    animation-play-state: paused;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "@keyframes marquee-scroll",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
     }
   }
 }

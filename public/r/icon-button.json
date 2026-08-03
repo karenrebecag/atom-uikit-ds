@@ -178,6 +178,219 @@
       "previewProps": {
         "animated": true
       }
+    },
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [
+          "gsap"
+        ],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"icon-button\">\n  <span class=\"icon-button__icon\"></span>\n  <span class=\"icon-button__spinner\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "icon-button",
+            "purpose": "root"
+          },
+          {
+            "class": "icon-button--destructive-primary",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--destructive-secondary",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--destructive-tertiary",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--disabled",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--l",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--loading",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--m",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--primary",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--s",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--secondary",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--tertiary",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--xl",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button--xs",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-button__icon",
+            "purpose": "element"
+          },
+          {
+            "class": "icon-button__spinner",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Icon Button\n\n   Square button with icon only, no label.\n   Shares color variants with Button. Own sizing and animation.\n\n   Variants: primary, secondary, tertiary,\n             destructive, destructive-secondary, destructive-tertiary\n   Sizes:    xs, sm, default (default), lg, xl\n   Animation: icon 360deg rotation on hover (opt-in via data-icon-button-animate)\n   ------------------------------------------------------------------------- */\n\n.icon-button {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  aspect-ratio: 1;\n  padding: 0;\n  border-radius: 0.625em;\n  border: 1px solid transparent;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  line-height: 1;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  text-decoration: none;\n  transition:\n    background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    border-color 0.3s cubic-bezier(0.19, 1, 0.22, 1),\n    scale 0.45s cubic-bezier(0.32, 0.72, 0, 1);\n  position: relative;\n}\n\n.icon-button:active:not(.icon-button--disabled):not(.icon-button--loading) {\n  scale: 0.925;\n}\n\n.icon-button:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n}\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  .icon-button[data-icon-button-animate]:hover:not(.icon-button--disabled):not(.icon-button--loading) {\n    scale: 1.095;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .icon-button {\n    transition-duration: 0ms;\n  }\n  .icon-button:active:not(.icon-button--disabled) {\n    scale: 1;\n  }\n}\n\n/* ---- Sizes (square: width = height) ---- */\n\n.icon-button--xs      { width: 28px; height: 28px; font-size: 12.8px; }\n.icon-button--s      { width: 32px; height: 32px; font-size: 12.8px; }\n.icon-button--m { width: 40px; height: 40px; font-size: 12.8px; }\n.icon-button--l      { width: 48px; height: 48px; font-size: 12.8px; }\n.icon-button--xl      { width: 52px; height: 52px; font-size: 12.8px; }\n\n/* ---- Variants (same tokens as Button) ---- */\n\n.icon-button--primary {\n  background-color: #0a0a0a;\n  color: #fafafa;\n}\n.icon-button--primary:hover:not(.icon-button--disabled) {\n  background-color: #262626;\n}\n.icon-button--primary:active:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n\n.icon-button--secondary {\n  background-color: #fafafa;\n  color: #0a0a0a;\n  border-color: #e5e5e5;\n}\n.icon-button--secondary:hover:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n.icon-button--secondary:active:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n\n.icon-button--tertiary {\n  background-color: #00000000;\n  color: #0a0a0a;\n}\n.icon-button--tertiary:hover:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n.icon-button--tertiary:active:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n\n.icon-button--destructive-primary {\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n.icon-button--destructive-primary:hover:not(.icon-button--disabled) {\n  background-color: #c21e12;\n}\n.icon-button--destructive-primary:active:not(.icon-button--disabled) {\n  background-color: #c21e12;\n}\n\n.icon-button--destructive-secondary {\n  background-color: #fafafa;\n  color: #f84131;\n  border-color: #f84131;\n}\n.icon-button--destructive-secondary:hover:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n.icon-button--destructive-secondary:active:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n\n.icon-button--destructive-tertiary {\n  background-color: #00000000;\n  color: #f84131;\n}\n.icon-button--destructive-tertiary:hover:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n.icon-button--destructive-tertiary:active:not(.icon-button--disabled) {\n  background-color: #f5f5f5;\n}\n\n/* ---- States ---- */\n\n.icon-button--disabled {\n  color: #525252;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.icon-button--disabled.icon-button--primary,\n.icon-button--disabled.icon-button--secondary,\n.icon-button--disabled.icon-button--destructive-primary,\n.icon-button--disabled.icon-button--destructive-secondary {\n  background-color: #f5f5f5;\n  border-color: transparent;\n}\n\n.icon-button--disabled.icon-button--tertiary,\n.icon-button--disabled.icon-button--destructive-tertiary {\n  background-color: transparent;\n  border-color: transparent;\n}\n\n.icon-button--loading {\n  cursor: wait;\n  pointer-events: none;\n}\n\n/* ---- Icon ---- */\n\n.icon-button__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1.25em;\n  height: 1.25em;\n  will-change: transform;\n  transition: rotate 0.5s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.icon-button__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {\n  .icon-button[data-icon-button-animate]:is(:hover, :focus-visible) .icon-button__icon,\n  [data-hover]:is(:hover, :focus-visible) .icon-button[data-icon-button-animate] .icon-button__icon {\n    rotate: 360deg;\n    transition: rotate 0.6s 0.05s cubic-bezier(0.19, 1, 0.22, 1);\n  }\n}\n\n/* ---- Spinner ---- */\n\n.icon-button__spinner {\n  display: none;\n}\n\n.icon-button--loading .icon-button__icon {\n  opacity: 0;\n}\n\n.icon-button--loading .icon-button__spinner {\n  display: flex;\n  position: absolute;\n  inset: 0;\n  align-items: center;\n  justify-content: center;\n}\n",
+      "motion": [
+        {
+          "property": "background-color",
+          "duration": "0.3s",
+          "easing": "cubic-bezier(0.19"
+        },
+        {
+          "property": "1",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0.22",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "color",
+          "duration": "0.3s",
+          "easing": "cubic-bezier(0.19"
+        },
+        {
+          "property": "1",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0.22",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "border-color",
+          "duration": "0.3s",
+          "easing": "cubic-bezier(0.19"
+        },
+        {
+          "property": "1",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0.22",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "scale",
+          "duration": "0.45s",
+          "easing": "cubic-bezier(0.32"
+        },
+        {
+          "property": "0.72",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "rotate",
+          "duration": "0.5s",
+          "easing": "cubic-bezier(0.19"
+        },
+        {
+          "property": "1",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0.22",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "rotate",
+          "duration": "0.6s",
+          "easing": "0.05s cubic-bezier(0.19"
+        },
+        {
+          "property": "1",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0.22",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
     }
   }
 }

@@ -40,5 +40,69 @@
       "hasCss": true,
       "hasReact": false
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"toc\">\n  <span class=\"toc__label\"></span>\n  <span class=\"toc__link\"></span>\n  <span class=\"toc__list\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "toc",
+            "purpose": "root"
+          },
+          {
+            "class": "toc--collapsible",
+            "purpose": "modifier"
+          },
+          {
+            "class": "toc__label",
+            "purpose": "element"
+          },
+          {
+            "class": "toc__link",
+            "purpose": "element"
+          },
+          {
+            "class": "toc__list",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Table of Contents\n\n   Indice de un documento largo: rail de links generados desde los headings del\n   contenido. A diferencia de `progress-nav` (secciones declaradas a mano, con\n   indicador deslizante), aqui los links NO se escriben: el behavior\n   `table-of-contents` de packages/animations los clona desde un template y\n   marca el activo al hacer scroll.\n\n   Contrato de estado (lo escribe el behavior, no el consumidor):\n     [data-toc-status=\"active\"]  link de la seccion visible\n     [data-toc-depth=\"2|3|4\"]    nivel del heading, para la indentacion\n\n   El scroll-spy es el behavior; este archivo solo pinta el estado.\n   ------------------------------------------------------------------------- */\n\n.toc {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.toc__label {\n  color: #525252;\n}\n\n.toc__list {\n  display: flex;\n  flex-direction: column;\n}\n\n.toc__link {\n  display: block;\n  padding-block: 8px;\n  padding-inline: 16px 8px;\n  /* El rail es un borde por link, no un borde en la lista: asi el tramo activo\n     se pinta sin que un pseudo-elemento tenga que medir posiciones. */\n  border-inline-start: 1.5px solid #e5e5e5;\n  color: #525252;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  font-size: 12.8px;\n  line-height: 1.45;\n  text-decoration: none;\n  text-wrap: pretty;\n  /* Un heading legal puede traer una palabra larguisima o una URL: en un rail de\n     15rem tiene que partir, no sobresalir. */\n  overflow-wrap: break-word;\n  transition:\n    color 200ms cubic-bezier(0.22, 1, 0.36, 1),\n    border-color 200ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .toc__link:hover {\n    color: #0a0a0a;\n    border-inline-start-color: #525252;\n  }\n}\n\n.toc__link[data-toc-status='active'] {\n  color: #0a0a0a;\n  font-weight: 500;\n  /* Naranja de marca como acento fino: 1.5px de rail, jamas relleno ni texto. */\n  border-inline-start-color: #ff6600;\n}\n\n.toc__link:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n  border-radius: 4px;\n}\n\n/* ---- Profundidad ----\n   Se indenta el padding, no el margen: el rail (borde) debe quedar alineado en\n   todos los niveles, si no la linea se rompe en cada sub-seccion. */\n\n.toc__link[data-toc-depth='3'] {\n  padding-inline-start: calc(16px + 16px);\n}\n\n.toc__link[data-toc-depth='4'] {\n  padding-inline-start: calc(16px + 32px);\n}\n\n/* ---- Colapsado (movil) ----\n   En pantallas angostas el indice no puede ocupar media pantalla antes del\n   texto. `<details class=\"toc toc--collapsible\">` lo cierra sin JS.  */\n\n.toc--collapsible > summary {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  cursor: pointer;\n  list-style: none;\n  color: #525252;\n}\n\n.toc--collapsible > summary::-webkit-details-marker {\n  display: none;\n}\n\n.toc--collapsible > summary::after {\n  content: '';\n  width: 0.5em;\n  height: 0.5em;\n  border-inline-end: 1.5px solid currentColor;\n  border-block-end: 1.5px solid currentColor;\n  rotate: 45deg;\n  transition: rotate 200ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.toc--collapsible[open] > summary::after {\n  rotate: 225deg;\n}\n\n.toc--collapsible > summary:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .toc__link,\n  .toc--collapsible > summary::after {\n    transition-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "color",
+          "duration": "var(--duration-200)",
+          "easing": "var(--easing-out)"
+        },
+        {
+          "property": "border-color",
+          "duration": "var(--duration-200)",
+          "easing": "var(--easing-out)"
+        },
+        {
+          "property": "rotate",
+          "duration": "var(--duration-200)",
+          "easing": "var(--easing-out)"
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

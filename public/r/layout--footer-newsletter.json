@@ -78,5 +78,29 @@
         "image"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutFooterNewsletter\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: footer-newsletter\n *\n * Footer de columnas + bloque de suscripcion (input email + boton) arriba.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const footerNewsletter = {\n  slug: 'footer-newsletter',\n  name: 'Footer con newsletter',\n  description:\n    'Footer de columnas + bloque de suscripcion (input email + boton) arriba. Structure only.',\n  components: ['nav-link', 'input', 'button', 'typography', 'divider', 'image'],\n  html: `<!-- Layout: footer-newsletter -->\n<footer class=\"l-footer-newsletter\">\n  <div class=\"l-footer-newsletter__newsletter\">\n    <h4 class=\"l-footer-newsletter__newsletter-heading\">{{newsletterHeading}}</h4>\n    <p class=\"l-footer-newsletter__newsletter-body\">{{newsletterBody}}</p>\n    <form class=\"l-footer-newsletter__form\">\n      <input type=\"email\" placeholder=\"tu@email.com\" class=\"input\" />\n      <button type=\"submit\" class=\"button button--primary button--m\">\n        <span class=\"button__label\">{{newsletterCta}}</span>\n      </button>\n    </form>\n  </div>\n  <div class=\"l-footer-newsletter__brand\">\n    <img src=\"{{logo}}\" alt=\"Logo\" class=\"image\" />\n  </div>\n  <div class=\"l-footer-newsletter__cols\">\n    <div class=\"l-footer-newsletter__col\">\n      <h4 class=\"l-footer-newsletter__col-title\">{{col1_title}}</h4>\n      <a href=\"{{link1_url}}\" class=\"nav-link\">{{link1_label}}</a>\n      <a href=\"{{link2_url}}\" class=\"nav-link\">{{link2_label}}</a>\n    </div>\n    <div class=\"l-footer-newsletter__col\">\n      <h4 class=\"l-footer-newsletter__col-title\">{{col2_title}}</h4>\n      <a href=\"{{link3_url}}\" class=\"nav-link\">{{link3_label}}</a>\n      <a href=\"{{link4_url}}\" class=\"nav-link\">{{link4_label}}</a>\n    </div>\n  </div>\n  <div class=\"l-footer-newsletter__legal\">\n    <hr class=\"divider\" />\n    <p>{{legal}}</p>\n  </div>\n</footer>`,\n  css: `/* Layout: footer-newsletter — structure only */\n.l-footer-newsletter {\n  display: flex;\n  flex-direction: column;\n  gap: 32px;\n  padding: 48px 32px;\n  border-top: 1px solid #e5e5e5;\n}\n.l-footer-newsletter__newsletter {\n  text-align: center;\n  max-width: 480px;\n  margin: 0 auto;\n}\n.l-footer-newsletter__newsletter-heading {\n  font-size: var(--text-lg);\n  font-weight: 600;\n}\n.l-footer-newsletter__form {\n  display: flex;\n  gap: 8px;\n  margin-top: 8px;\n}\n.l-footer-newsletter__brand {\n  max-width: 200px;\n}\n.l-footer-newsletter__cols {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 32px;\n}\n@media (max-width: 768px) {\n  .l-footer-newsletter__cols {\n    grid-template-columns: 1fr;\n  }\n}\n.l-footer-newsletter__col-title {\n  font-weight: 600;\n  margin-bottom: 8px;\n}\n.l-footer-newsletter__legal {\n  margin-top: 16px;\n}`,\n};",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

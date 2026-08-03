@@ -33,5 +33,73 @@
       "hasCss": true,
       "hasReact": false
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"tooltip\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Tooltip (CSS Only)\n\n   Small text hint on hover. Attach to any element.\n   Direction: top (default), bottom, left, right\n   Theme: dark (default), light\n\n   Usage: wrap trigger in [data-tooltip] with content as attribute value.\n   <button data-tooltip=\"Save changes\" data-tooltip-dir=\"top\">Save</button>\n   ------------------------------------------------------------------------- */\n\n[data-tooltip] {\n  position: relative;\n}\n\n[data-tooltip]::before,\n[data-tooltip]::after {\n  position: absolute;\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  transition:\n    opacity 0.25s cubic-bezier(0.625, 0.05, 0, 1),\n    transform 0.25s cubic-bezier(0.625, 0.05, 0, 1);\n  z-index: 70;\n}\n\n/* Text bubble */\n[data-tooltip]::before {\n  content: attr(data-tooltip);\n  padding: 4px 8px;\n  border-radius: 6px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 10.24px;\n  font-weight: 500;\n  line-height: 1.4;\n  white-space: nowrap;\n  max-width: 200px;\n}\n\n/* Arrow */\n[data-tooltip]::after {\n  content: '';\n  width: 6px;\n  height: 6px;\n  transform: rotate(45deg);\n}\n\n/* ---- Dark theme (default) ---- */\n\n[data-tooltip]::before {\n  background-color: #171717;\n  color: #fafafa;\n}\n\n[data-tooltip]::after {\n  background-color: #171717;\n}\n\n/* ---- Light theme ---- */\n\n[data-tooltip-theme=\"light\"]::before {\n  background-color: #fafafa;\n  color: #0a0a0a;\n  border: 1px solid #e5e5e5;\n  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);\n}\n\n[data-tooltip-theme=\"light\"]::after {\n  background-color: #fafafa;\n  border: 1px solid #e5e5e5;\n  border-top: none;\n  border-left: none;\n}\n\n/* ---- Show on hover ---- */\n\n[data-tooltip]:hover::before,\n[data-tooltip]:hover::after {\n  opacity: 1;\n  visibility: visible;\n}\n\n/* ---- Top (default) ---- */\n\n[data-tooltip]::before,\n[data-tooltip-dir=\"top\"]::before {\n  bottom: calc(100% + 8px);\n  left: 50%;\n  transform: translateX(-50%) translateY(4px);\n}\n\n[data-tooltip]:hover::before,\n[data-tooltip-dir=\"top\"]:hover::before {\n  transform: translateX(-50%) translateY(0);\n}\n\n[data-tooltip]::after,\n[data-tooltip-dir=\"top\"]::after {\n  bottom: calc(100% + 5px);\n  left: 50%;\n  transform: translateX(-50%) rotate(45deg);\n}\n\n/* ---- Bottom ---- */\n\n[data-tooltip-dir=\"bottom\"]::before {\n  bottom: auto;\n  top: calc(100% + 8px);\n  left: 50%;\n  transform: translateX(-50%) translateY(-4px);\n}\n\n[data-tooltip-dir=\"bottom\"]:hover::before {\n  transform: translateX(-50%) translateY(0);\n}\n\n[data-tooltip-dir=\"bottom\"]::after {\n  bottom: auto;\n  top: calc(100% + 5px);\n  left: 50%;\n  transform: translateX(-50%) rotate(225deg);\n}\n\n/* ---- Left ---- */\n\n[data-tooltip-dir=\"left\"]::before {\n  bottom: auto;\n  top: 50%;\n  right: calc(100% + 8px);\n  left: auto;\n  transform: translateY(-50%) translateX(4px);\n}\n\n[data-tooltip-dir=\"left\"]:hover::before {\n  transform: translateY(-50%) translateX(0);\n}\n\n[data-tooltip-dir=\"left\"]::after {\n  bottom: auto;\n  top: 50%;\n  right: calc(100% + 5px);\n  left: auto;\n  transform: translateY(-50%) rotate(315deg);\n}\n\n/* ---- Right ---- */\n\n[data-tooltip-dir=\"right\"]::before {\n  bottom: auto;\n  top: 50%;\n  left: calc(100% + 8px);\n  transform: translateY(-50%) translateX(-4px);\n}\n\n[data-tooltip-dir=\"right\"]:hover::before {\n  transform: translateY(-50%) translateX(0);\n}\n\n[data-tooltip-dir=\"right\"]::after {\n  bottom: auto;\n  top: 50%;\n  left: calc(100% + 5px);\n  transform: translateY(-50%) rotate(135deg);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  [data-tooltip]::before,\n  [data-tooltip]::after {\n    transition-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "opacity",
+          "duration": "0.25s",
+          "easing": "cubic-bezier(0.625"
+        },
+        {
+          "property": "0.05",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "transform",
+          "duration": "0.25s",
+          "easing": "cubic-bezier(0.625"
+        },
+        {
+          "property": "0.05",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "0",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "1)",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

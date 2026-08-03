@@ -35,5 +35,31 @@
       "hasCss": false,
       "hasReact": true
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [
+          "gsap"
+        ],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"textReveal\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "// Tipos locales (no importar de './index'): este archivo se distribuye SOLO\n// como artefacto del registry y debe ser auto-contenido en el consumidor.\n// Mismo patron que marquee-draggable/progress-nav/video-player.\n\n/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */\nexport const REQUIRED_HOOKS = [\n  \"data-split\"\n] as const;\n\nexport const REQUIRED_ANATOMY = [\n  \"[data-split=\\\"heading\\\"]\"\n] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\nexport type CleanupFn = () => void;\nexport interface AnimationConfig {\n  scope?: HTMLElement | string;\n  debug?: boolean;\n}\n\n/**\n * Text reveal — masked split-text animation triggered by IntersectionObserver.\n *\n * Contract:\n *   [data-split=\"heading\"]         → elements to animate\n *   [data-split-reveal=\"lines\"]    → split type: \"lines\" | \"words\" | \"chars\"\n *                                    defaults to \"lines\" if omitted\n *\n * 3 animation types:\n *   lines → split by lines, animate yPercent per line\n *   words → split by lines+words, animate yPercent per word\n *   chars → split by lines+words+chars, animate yPercent per char\n *\n * Requires: gsap, SplitText (registered externally)\n * Respects: prefers-reduced-motion (skips animation, shows content)\n */\n\ntype SplitType = 'lines' | 'words' | 'chars';\n\nconst splitConfig: Record<SplitType, { duration: number; stagger: number }> = {\n  lines: { duration: 0.8, stagger: 0.08 },\n  words: { duration: 0.6, stagger: 0.06 },\n  chars: { duration: 0.4, stagger: 0.01 },\n};\n\nexport function initTextReveal(config: AnimationConfig = {}): CleanupFn {\n  const gsap = (globalThis as any).gsap;\n  const SplitText = (globalThis as any).SplitText;\n\n  if (!gsap || !SplitText) {\n    console.warn('[atom-uikit] initTextReveal: gsap or SplitText not found');\n    return () => {};\n  }\n\n  const prefersReducedMotion = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;\n\n  const scope = config.scope\n    ? typeof config.scope === 'string'\n      ? document.querySelector(config.scope)\n      : config.scope\n    : document;\n\n  if (!scope) return () => {};\n\n  const selector = '[data-split=\"heading\"]';\n  const headings = (scope as Element).querySelectorAll\n    ? (scope as Element).querySelectorAll(selector)\n    : document.querySelectorAll(selector);\n\n  if (headings.length === 0) return () => {};\n\n  const splits: any[] = [];\n  const tweens: any[] = [];\n  const observers: IntersectionObserver[] = [];\n\n  headings.forEach((heading: Element) => {\n    if ((heading as HTMLElement).dataset.motionExempt !== undefined) return;\n\n    if (prefersReducedMotion) return;\n\n    const type = ((heading as HTMLElement).dataset.splitReveal || 'lines') as SplitType;\n    const typesToSplit =\n      type === 'lines' ? 'lines' :\n      type === 'words' ? 'lines, words' :\n      'lines, words, chars';\n\n    const splitInstance = SplitText.create(heading, {\n      type: typesToSplit,\n      mask: 'lines',\n      autoSplit: true,\n      linesClass: 'line',\n      wordsClass: 'word',\n      charsClass: 'letter',\n      onSplit(instance: any) {\n        const targets = instance[type];\n        const cfg = splitConfig[type];\n\n        // Set initial hidden state\n        gsap.set(targets, { yPercent: 110 });\n\n        // Observe visibility\n        const observer = new IntersectionObserver(\n          (entries) => {\n            entries.forEach((entry) => {\n              if (entry.isIntersecting) {\n                const tween = gsap.to(targets, {\n                  yPercent: 0,\n                  duration: cfg.duration,\n                  stagger: cfg.stagger,\n                  ease: 'expo.out',\n                });\n                tweens.push(tween);\n                observer.disconnect();\n              }\n            });\n          },\n          { threshold: 0.1 },\n        );\n\n        observer.observe(heading);\n        observers.push(observer);\n        return null;\n      },\n    });\n\n    splits.push(splitInstance);\n  });\n\n  return () => {\n    observers.forEach((o) => o.disconnect());\n    tweens.forEach((t) => t.kill?.());\n    splits.forEach((s) => s.revert?.());\n  };\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

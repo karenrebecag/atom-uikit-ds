@@ -59,5 +59,29 @@
         "button"
       ]
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutCtaBanner\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/**\n * Layout: cta-banner\n *\n * Compact horizontal CTA strip: heading left, buttons right.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const ctaBanner = {\n  slug: 'cta-banner',\n  name: 'CTA Banner',\n  description:\n    'Compact horizontal banner: heading + body left, CTA buttons right. Collapses to stacked on mobile. Structure only.',\n  components: ['button'],\n  html: `<!-- Layout: cta-banner -->\n<section class=\"l-cta-banner\">\n  <div class=\"l-cta-banner__content\">\n    <h2 class=\"l-cta-banner__heading\">{{heading}}</h2>\n    <p class=\"l-cta-banner__body\">{{body}}</p>\n  </div>\n  <div class=\"l-cta-banner__actions\">\n    <a href=\"{{cta_primary_href}}\" class=\"button button--primary button--l\">\n      <span class=\"button__label\">{{cta_primary}}</span>\n    </a>\n    <a href=\"{{cta_secondary_href}}\" class=\"button button--secondary button--m\">\n      <span class=\"button__label\">{{cta_secondary}}</span>\n    </a>\n  </div>\n</section>`,\n\n  css: `/* Layout: cta-banner — structure only */\n.l-cta-banner {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 32px;\n  padding: 40px 32px;\n  border-radius: 12px;\n  border: 1px solid #e5e5e5;\n}\n@media (max-width: 640px) {\n  .l-cta-banner {\n    flex-direction: column;\n    text-align: center;\n  }\n}\n.l-cta-banner__content {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  max-width: 480px;\n}\n.l-cta-banner__actions {\n  display: flex;\n  gap: 12px;\n  flex-shrink: 0;\n  flex-wrap: wrap;\n}`,\n};\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

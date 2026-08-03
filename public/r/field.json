@@ -82,5 +82,57 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"field\">\n  <span class=\"field__description\"></span>\n  <span class=\"field__error\"></span>\n  <span class=\"field__label\"></span>\n  <span class=\"field__label--required\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "field",
+            "purpose": "root"
+          },
+          {
+            "class": "field--disabled",
+            "purpose": "modifier"
+          },
+          {
+            "class": "field__description",
+            "purpose": "element"
+          },
+          {
+            "class": "field__error",
+            "purpose": "element"
+          },
+          {
+            "class": "field__label",
+            "purpose": "element"
+          },
+          {
+            "class": "field__label--required",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Field\n\n   Wrapper for form controls: label + input + description + error.\n   Composes with Input, Textarea, Select, Checkbox, etc.\n   Colors matched to Figma atom-text-field.\n\n   Orientation: vertical (default)\n   ------------------------------------------------------------------------- */\n\n.field {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  width: 100%;\n}\n\n.field__label {\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 10.24px;\n  font-weight: 500;\n  line-height: 1;\n  color: #0a0a0a;\n}\n\n.field__label--required::after {\n  content: \" *\";\n  color: #f84131;\n}\n\n.field__description {\n  margin-top: 4px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 10.24px;\n  line-height: 1.4;\n  color: #525252;\n}\n\n.field__error {\n  margin-top: 4px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 10.24px;\n  line-height: 1.4;\n  color: #f84131;\n}\n\n/* Error state — label turns red */\n.field[data-invalid] .field__label {\n  color: #f84131;\n}\n\n/* Disabled state — label grays out */\n.field--disabled .field__label {\n  color: #525252;\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

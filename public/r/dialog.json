@@ -67,5 +67,98 @@
       "hasCss": true,
       "hasReact": true
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"dialog\">\n  <span class=\"dialog__body\"></span>\n  <span class=\"dialog__close\"></span>\n  <span class=\"dialog__content\"></span>\n  <span class=\"dialog__content--exiting\"></span>\n  <span class=\"dialog__description\"></span>\n  <span class=\"dialog__footer\"></span>\n  <span class=\"dialog__footer--sticky\"></span>\n  <span class=\"dialog__header\"></span>\n  <span class=\"dialog__overlay\"></span>\n  <span class=\"dialog__overlay--exiting\"></span>\n  <span class=\"dialog__title\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "dialog__body",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__close",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__content",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__content--exiting",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__description",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__footer",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__footer--sticky",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__header",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__overlay",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__overlay--exiting",
+            "purpose": "element"
+          },
+          {
+            "class": "dialog__title",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Dialog\n\n   Modal window with overlay. Focus-trapped, scroll-locked.\n   Composable: Dialog > Trigger + Content > Header + Footer\n\n   Parts: .dialog__overlay, .dialog__content, .dialog__header,\n          .dialog__title, .dialog__description, .dialog__footer,\n          .dialog__close\n   ------------------------------------------------------------------------- */\n\n/* ---- Overlay ---- */\n\n.dialog__overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 40;\n  background-color: #00000080;\n  animation: dialog-overlay-in 200ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.dialog__overlay--exiting {\n  animation: dialog-overlay-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n@keyframes dialog-overlay-in {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n\n@keyframes dialog-overlay-out {\n  from { opacity: 1; }\n  to { opacity: 0; }\n}\n\n/* ---- Content ---- */\n\n.dialog__content {\n  position: fixed;\n  z-index: 50;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 32px);\n  max-width: 512px;\n  max-height: calc(100vh - 32px);\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #e5e5e5;\n  border-radius: 16px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  animation: dialog-content-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.dialog__content--exiting {\n  animation: dialog-content-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n@keyframes dialog-content-in {\n  from {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n  to {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n}\n\n@keyframes dialog-content-out {\n  from {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n}\n\n/* ---- Header ---- */\n\n.dialog__header {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 24px;\n  padding-bottom: 0;\n}\n\n/* ---- Title ---- */\n\n.dialog__title {\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.dialog__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n  margin: 0;\n}\n\n/* ---- Body (scrollable) ---- */\n\n.dialog__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: 24px;\n}\n\n/* ---- Footer ---- */\n\n.dialog__footer {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 12px;\n  padding: 24px;\n  padding-top: 0;\n}\n\n.dialog__footer--sticky {\n  border-top: 1px solid #e5e5e5;\n  padding-top: 24px;\n}\n\n/* ---- Close button ---- */\n\n.dialog__close {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .dialog__overlay,\n  .dialog__overlay--exiting,\n  .dialog__content,\n  .dialog__content--exiting {\n    animation-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "@keyframes dialog-overlay-in",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes dialog-overlay-out",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes dialog-content-in",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes dialog-content-out",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

@@ -30,5 +30,29 @@
       "hasCss": false,
       "hasReact": true
     }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"navAutohide\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "// Nav auto-hide — la barra se esconde al bajar y reaparece al subir o en top.\n//\n// DOM contract: [data-nav-autohide] en el nav (sticky/fixed, el layout pone el\n// position; este modulo solo mueve). Estado expuesto en data-nav-hidden\n// (\"true\"/\"false\") por si un consumidor quiere reaccionar.\n//\n// Vanilla a proposito (sin GSAP): un translateY con transicion tomada de los\n// MOTION TOKENS del propio elemento (patron readMotionTokens de menu-button) —\n// cero cubic-bezier/ms hardcodeados, y cambiar los tokens re-tematiza el\n// comportamiento en todos los consumidores sin tocar este modulo.\n//\n// prefers-reduced-motion: el ocultarse SI ocurre (es funcion: devolver espacio\n// de lectura), pero SIN transicion — la barra aparece/desaparece al corte.\n// data-motion-exempt en el nav: el modulo lo ignora por completo.\n\n// Tipos locales: este archivo se distribuye como artefacto del registry y debe\n// ser auto-contenido en el consumidor.\n\n/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */\nexport const REQUIRED_HOOKS = [\n  \"data-nav-autohide\"\n] as const;\n\nexport const REQUIRED_ANATOMY = [] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\nexport type CleanupFn = () => void;\n\nconst TOLERANCE = 8; // px de scroll antes de reaccionar: evita jitter en trackpads\n\n/** OSMO --animation-default: duration-default (0.6s) + cubic-default (la\n *  firma). Citado de su export; los tokens ya viven en el DS. */\nfunction readMotionTokens(el: Element): { ease: string; duration: string } {\n  const styles = getComputedStyle(el);\n  const ease = styles.getPropertyValue('--easing-osmo').trim() || 'cubic-bezier(0.625, 0.05, 0, 1)';\n  const duration = styles.getPropertyValue('--duration-600').trim() || '0.6s';\n  return { ease, duration };\n}\n\nexport function initNavAutohide(): CleanupFn {\n  const navs = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-autohide]')).filter(\n    (nav) => nav.dataset.motionExempt === undefined,\n  );\n  if (navs.length === 0) return () => {};\n\n  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n\n  // Un nav flotante (sticky con top > 0, ej. la pildora OSMO) necesita\n  // desplazarse su altura MAS ese offset para despejar el viewport.\n  const hideOffset = new Map<HTMLElement, string>();\n  for (const nav of navs) {\n    if (!reduced) {\n      const motion = readMotionTokens(nav);\n      nav.style.transition = `translate ${motion.duration} ${motion.ease}`;\n    }\n    const top = getComputedStyle(nav).top;\n    hideOffset.set(nav, /^\\d/.test(top) ? `0 calc(-100% - ${top})` : '0 -110%');\n    nav.setAttribute('data-nav-hidden', 'false');\n  }\n\n  let lastY = window.scrollY;\n  let ticking = false;\n\n  function update(): void {\n    ticking = false;\n    const y = window.scrollY;\n    const delta = y - lastY;\n    if (Math.abs(delta) < TOLERANCE) return;\n\n    // Regla de Karen: oculta en scroll-down fuera del top; muestra en\n    // scroll-up y siempre en top 0.\n    const hide = delta > 0 && y > 0;\n    for (const nav of navs) {\n      nav.style.translate = hide ? hideOffset.get(nav) ?? '0 -110%' : '0 0';\n      nav.setAttribute('data-nav-hidden', String(hide));\n    }\n    lastY = y;\n  }\n\n  function onScroll(): void {\n    if (window.scrollY <= 0) {\n      // top 0: mostrar sin esperar el umbral\n      for (const nav of navs) {\n        nav.style.translate = '0 0';\n        nav.setAttribute('data-nav-hidden', 'false');\n      }\n      lastY = 0;\n      return;\n    }\n    if (!ticking) {\n      ticking = true;\n      requestAnimationFrame(update);\n    }\n  }\n\n  window.addEventListener('scroll', onScroll, { passive: true });\n\n  return () => {\n    window.removeEventListener('scroll', onScroll);\n    for (const nav of navs) {\n      nav.style.removeProperty('translate');\n      nav.style.removeProperty('transition');\n      nav.removeAttribute('data-nav-hidden');\n    }\n  };\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
   }
 }

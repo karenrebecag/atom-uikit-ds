@@ -20,5 +20,111 @@
       "content": "/* -------------------------------------------------------------------------\n   Drawer\n\n   Touch-dismissible panel. Extends Sheet with drag gesture.\n   Swipe to dismiss. Visual drag indicator.\n\n   Directions: bottom (default), top, left, right\n   Parts: .drawer, .drawer__handle, .drawer__header, .drawer__title,\n          .drawer__description, .drawer__body, .drawer__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.drawer {\n  position: fixed;\n  z-index: var(--z-index-50);\n  display: flex;\n  flex-direction: column;\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-xl);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  touch-action: none;\n}\n\n/* ---- Directions ---- */\n\n.drawer--bottom {\n  bottom: 0; left: 0; right: 0;\n  max-height: 85vh;\n  border-top-left-radius: var(--radius-xl);\n  border-top-right-radius: var(--radius-xl);\n  animation: drawer-bottom-in var(--duration-300) var(--easing-out);\n}\n.drawer--bottom.drawer--exiting {\n  animation: drawer-bottom-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.drawer--top {\n  top: 0; left: 0; right: 0;\n  max-height: 85vh;\n  border-bottom-left-radius: var(--radius-xl);\n  border-bottom-right-radius: var(--radius-xl);\n  animation: drawer-top-in var(--duration-300) var(--easing-out);\n}\n.drawer--top.drawer--exiting {\n  animation: drawer-top-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.drawer--left {\n  top: 0; left: 0; bottom: 0;\n  max-width: 400px;\n  width: 100%;\n  animation: sheet-left-in var(--duration-300) var(--easing-out);\n}\n.drawer--left.drawer--exiting {\n  animation: sheet-left-out var(--duration-200) var(--easing-in) forwards;\n}\n\n.drawer--right {\n  top: 0; right: 0; bottom: 0;\n  max-width: 400px;\n  width: 100%;\n  animation: sheet-right-in var(--duration-300) var(--easing-out);\n}\n.drawer--right.drawer--exiting {\n  animation: sheet-right-out var(--duration-200) var(--easing-in) forwards;\n}\n\n/* Slide animations for top/bottom */\n@keyframes drawer-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }\n@keyframes drawer-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }\n@keyframes drawer-top-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }\n@keyframes drawer-top-out { from { transform: translateY(0); } to { transform: translateY(-100%); } }\n\n/* ---- Drag handle ---- */\n\n.drawer__handle {\n  display: flex;\n  justify-content: center;\n  padding: var(--spacing-3, 12px) 0 var(--spacing-1, 4px);\n  cursor: grab;\n}\n\n.drawer__handle::after {\n  content: \"\";\n  width: var(--spacing-10, 40px);\n  height: var(--spacing-1, 4px);\n  border-radius: var(--radius-full);\n  background-color: var(--muted-foreground);\n  opacity: var(--opacity-30);\n}\n\n.drawer__handle:active {\n  cursor: grabbing;\n}\n\n/* ---- Drag state ---- */\n\n.drawer--dragging {\n  transition: none !important;\n  animation: none !important;\n}\n\n/* ---- Header ---- */\n\n.drawer__header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2, 8px);\n  padding: var(--spacing-4, 16px) var(--spacing-6, 24px);\n  text-align: center;\n}\n\n.drawer__title {\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  color: var(--foreground);\n  margin: 0;\n}\n\n.drawer__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Body ---- */\n\n.drawer__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0 var(--spacing-6, 24px);\n}\n\n/* ---- Footer ---- */\n\n.drawer__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .drawer,\n  .drawer--exiting {\n    animation-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present."
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T04:26:19.572Z",
+      "sourceCommit": "ad1888a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"drawer\">\n  <span class=\"drawer__body\"></span>\n  <span class=\"drawer__description\"></span>\n  <span class=\"drawer__footer\"></span>\n  <span class=\"drawer__handle\"></span>\n  <span class=\"drawer__header\"></span>\n  <span class=\"drawer__title\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "drawer",
+            "purpose": "root"
+          },
+          {
+            "class": "drawer--bottom",
+            "purpose": "modifier"
+          },
+          {
+            "class": "drawer--dragging",
+            "purpose": "modifier"
+          },
+          {
+            "class": "drawer--exiting",
+            "purpose": "modifier"
+          },
+          {
+            "class": "drawer--left",
+            "purpose": "modifier"
+          },
+          {
+            "class": "drawer--right",
+            "purpose": "modifier"
+          },
+          {
+            "class": "drawer--top",
+            "purpose": "modifier"
+          },
+          {
+            "class": "drawer__body",
+            "purpose": "element"
+          },
+          {
+            "class": "drawer__description",
+            "purpose": "element"
+          },
+          {
+            "class": "drawer__footer",
+            "purpose": "element"
+          },
+          {
+            "class": "drawer__handle",
+            "purpose": "element"
+          },
+          {
+            "class": "drawer__header",
+            "purpose": "element"
+          },
+          {
+            "class": "drawer__title",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Drawer\n\n   Touch-dismissible panel. Extends Sheet with drag gesture.\n   Swipe to dismiss. Visual drag indicator.\n\n   Directions: bottom (default), top, left, right\n   Parts: .drawer, .drawer__handle, .drawer__header, .drawer__title,\n          .drawer__description, .drawer__body, .drawer__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.drawer {\n  position: fixed;\n  z-index: 50;\n  display: flex;\n  flex-direction: column;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  touch-action: none;\n}\n\n/* ---- Directions ---- */\n\n.drawer--bottom {\n  bottom: 0; left: 0; right: 0;\n  max-height: 85vh;\n  border-top-left-radius: 16px;\n  border-top-right-radius: 16px;\n  animation: drawer-bottom-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.drawer--bottom.drawer--exiting {\n  animation: drawer-bottom-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.drawer--top {\n  top: 0; left: 0; right: 0;\n  max-height: 85vh;\n  border-bottom-left-radius: 16px;\n  border-bottom-right-radius: 16px;\n  animation: drawer-top-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.drawer--top.drawer--exiting {\n  animation: drawer-top-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.drawer--left {\n  top: 0; left: 0; bottom: 0;\n  max-width: 400px;\n  width: 100%;\n  animation: sheet-left-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.drawer--left.drawer--exiting {\n  animation: sheet-left-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.drawer--right {\n  top: 0; right: 0; bottom: 0;\n  max-width: 400px;\n  width: 100%;\n  animation: sheet-right-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n.drawer--right.drawer--exiting {\n  animation: sheet-right-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n/* Slide animations for top/bottom */\n@keyframes drawer-bottom-in { from { transform: translateY(100%); } to { transform: translateY(0); } }\n@keyframes drawer-bottom-out { from { transform: translateY(0); } to { transform: translateY(100%); } }\n@keyframes drawer-top-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }\n@keyframes drawer-top-out { from { transform: translateY(0); } to { transform: translateY(-100%); } }\n\n/* ---- Drag handle ---- */\n\n.drawer__handle {\n  display: flex;\n  justify-content: center;\n  padding: 12px 0 4px;\n  cursor: grab;\n}\n\n.drawer__handle::after {\n  content: \"\";\n  width: 40px;\n  height: 4px;\n  border-radius: 9999px;\n  background-color: #525252;\n  opacity: 0.3;\n}\n\n.drawer__handle:active {\n  cursor: grabbing;\n}\n\n/* ---- Drag state ---- */\n\n.drawer--dragging {\n  transition: none !important;\n  animation: none !important;\n}\n\n/* ---- Header ---- */\n\n.drawer__header {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 16px 24px;\n  text-align: center;\n}\n\n.drawer__title {\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n}\n\n.drawer__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n  margin: 0;\n}\n\n/* ---- Body ---- */\n\n.drawer__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0 24px;\n}\n\n/* ---- Footer ---- */\n\n.drawer__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n  padding: 24px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .drawer,\n  .drawer--exiting {\n    animation-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "none",
+          "duration": "!important",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes drawer-bottom-in",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes drawer-bottom-out",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes drawer-top-in",
+          "duration": "",
+          "easing": ""
+        },
+        {
+          "property": "@keyframes drawer-top-out",
+          "duration": "",
+          "easing": ""
+        }
+      ],
+      "degraded": true,
+      "degradeReasons": [
+        "no-component-tokens"
+      ]
+    }
+  }
 }
