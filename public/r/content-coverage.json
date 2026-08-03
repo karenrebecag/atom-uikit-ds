@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T17:27:29.608Z",
+  "generatedAt": "2026-08-03T17:28:56.057Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -22,9 +22,9 @@
       "fullPct": 100
     },
     "editorial": {
-      "yes": 27,
+      "yes": 39,
       "eligible": 49,
-      "pct": 55.1
+      "pct": 79.6
     },
     "derived": {
       "withSourceCommit": 120
@@ -33,35 +33,13 @@
       "emitted": 35,
       "excluded": 24
     },
-    "aggregateScore": 46
+    "aggregateScore": 48.5
   },
-  "previousAggregateScore": 43.5,
+  "previousAggregateScore": 46,
   "deltaAggregateScore": 2.5,
   "batches": [
     {
       "id": "editorial-1",
-      "kind": "editorial",
-      "slugs": [
-        "dropdown-menu",
-        "nav-link",
-        "pagination",
-        "sidebar",
-        "tabs",
-        "alert-dialog",
-        "dialog",
-        "drawer",
-        "marquee",
-        "progress-nav",
-        "sheet",
-        "stats-card"
-      ],
-      "categories": [
-        "navigation",
-        "surfaces"
-      ]
-    },
-    {
-      "id": "editorial-2",
       "kind": "editorial",
       "slugs": [
         "toast",
@@ -366,7 +344,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -374,7 +352,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "divider",
@@ -519,7 +497,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -527,7 +505,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "table",
@@ -570,7 +548,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -578,7 +556,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "avatar-group",
@@ -706,7 +684,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -714,7 +692,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "dropdown-menu",
@@ -723,7 +701,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -731,7 +709,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "empty",
@@ -844,7 +822,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -852,7 +830,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 75
+      "contentScore": 100
     },
     {
       "slug": "nav-link",
@@ -861,7 +839,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -869,7 +847,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "pagination",
@@ -878,7 +856,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -886,7 +864,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "progress-nav",
@@ -895,7 +873,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -903,7 +881,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "resizable",
@@ -929,7 +907,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -937,7 +915,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "slider",
@@ -963,7 +941,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "emitted",
@@ -971,7 +949,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "stepper",
@@ -1101,7 +1079,7 @@
       "hasReact": true,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -1109,7 +1087,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 70
+      "contentScore": 95
     },
     {
       "slug": "tooltip",
