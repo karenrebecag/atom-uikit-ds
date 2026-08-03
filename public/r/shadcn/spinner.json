@@ -23,8 +23,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -58,7 +58,14 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "currentColor",
+            "tokenPath": "(literal)"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Spinner\n\n   Loading indicator. Rotating circle with partial stroke.\n   Sizes: xs, s, m, l. Inherits color from parent.\n\n   Parts: .spinner\n   ------------------------------------------------------------------------- */\n\n.spinner {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: currentColor;\n  animation: spinner-rotate 700ms linear infinite;\n}\n\n/* ---- Sizes ---- */\n\n.spinner--xs { width: 0.875rem; height: 0.875rem; }\n.spinner--s  { width: 1.125rem; height: 1.125rem; }\n.spinner--m  { width: 1.5rem; height: 1.5rem; }\n.spinner--l  { width: 2rem; height: 2rem; }\n\n.spinner svg {\n  width: 100%;\n  height: 100%;\n}\n\n@keyframes spinner-rotate {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .spinner {\n    animation-duration: 0ms;\n  }\n}\n",
@@ -68,10 +75,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

@@ -23,8 +23,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -78,7 +78,32 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#ffffff",
+            "tokenPath": "card"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "gradient",
+            "prop": "bg",
+            "hex": "var(--gradient-brand)",
+            "tokenPath": "--gradient-brand"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* ============================================================\n   StatsCard — metric number + label + optional trend indicator\n   ============================================================ */\n\n.stats-card {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n  padding: 32px;\n  border-radius: 16px;\n  background-color: #ffffff;\n  border: 1px solid #e5e5e5;\n  transition: border-color 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.stats-card--compact {\n  padding: 16px;\n  gap: 8px;\n  border-radius: 12px;\n}\n\n/* ---- Value (big number) ---- */\n.stats-card__value {\n  font-size: 48.83px;\n  font-weight: 700;\n  line-height: 1;\n  letter-spacing: -0.03em;\n  color: #0a0a0a;\n  font-variant-numeric: tabular-nums;\n}\n\n.stats-card--compact .stats-card__value {\n  font-size: 31.25px;\n}\n\n.stats-card--gradient .stats-card__value {\n  /* fallback keeps standalone installs working without the utilities item */\n  background: linear-gradient(135deg, var(--color-forest 0%, #ff6600 100%));\n  -webkit-background-clip: text;\n  background-clip: text;\n  -webkit-text-fill-color: transparent;\n}\n\n/* ---- Label ---- */\n.stats-card__label {\n  font-size: 12.8px;\n  font-weight: 500;\n  color: #525252;\n  line-height: 1.4;\n}\n\n/* ---- Trend indicator ---- */\n.stats-card__trend {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 10.24px;\n  font-weight: 500;\n  line-height: 1;\n  margin-top: 4px;\n}\n\n.stats-card__trend--up {\n  color: #25d366;\n}\n\n.stats-card__trend--down {\n  color: #f84131;\n}\n\n.stats-card__trend--neutral {\n  color: #525252;\n}\n\n.stats-card__trend-icon {\n  display: flex;\n  width: 1em;\n  height: 1em;\n}\n\n.stats-card__trend-icon svg {\n  width: 100%;\n  height: 100%;\n}\n",
@@ -88,10 +113,6 @@
           "duration": "var(--duration-150)",
           "easing": "var(--easing-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

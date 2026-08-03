@@ -89,8 +89,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -128,7 +128,20 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#fafafa",
+            "tokenPath": "background"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "2px",
+            "tokenPath": "stroke.medium"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Slider\n\n   Range input. Drag thumb along track to select value.\n   Supports single value and range (two thumbs).\n\n   Parts: .slider, .slider__track, .slider__range, .slider__thumb\n   ------------------------------------------------------------------------- */\n\n/* ---- Root ---- */\n\n.slider {\n  position: relative;\n  display: flex;\n  align-items: center;\n  width: 100%;\n  touch-action: none;\n  user-select: none;\n  cursor: pointer;\n}\n\n/* ---- Track ---- */\n\n.slider__track {\n  position: relative;\n  width: 100%;\n  height: 8px;\n  border-radius: 9999px;\n  background-color: #f5f5f5;\n  overflow: hidden;\n}\n\n/* ---- Range (filled portion) ---- */\n\n.slider__range {\n  position: absolute;\n  height: 100%;\n  background-color: #0a0a0a;\n  border-radius: 9999px;\n}\n\n/* ---- Thumb ---- */\n\n.slider__thumb {\n  position: absolute;\n  top: 50%;\n  width: 20px;\n  height: 20px;\n  border-radius: 9999px;\n  border: 2px solid #0a0a0a;\n  background-color: #fafafa;\n  transform: translate(-50%, -50%);\n  cursor: grab;\n  transition:\n    box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1),\n    scale 150ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.slider__thumb:hover {\n  box-shadow: 0 0 0 8px color-mix(in srgb, #0a0a0a 4%, transparent);\n}\n\n.slider__thumb:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: 2px;\n}\n\n.slider__thumb:active,\n.slider__thumb--dragging {\n  cursor: grabbing;\n  scale: 1.1;\n}\n\n/* ---- Disabled ---- */\n\n.slider--disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .slider__thumb {\n    transition-duration: 0ms;\n  }\n}\n",
@@ -143,10 +156,6 @@
           "duration": "var(--duration-150)",
           "easing": "var(--easing-in-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

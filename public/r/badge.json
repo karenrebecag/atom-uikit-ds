@@ -109,8 +109,8 @@
       "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -152,15 +152,84 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "neutral",
+            "prop": "bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          },
+          {
+            "variant": "neutral",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "neutral",
+            "prop": "focused-bg",
+            "hex": "#0a0a0a",
+            "tokenPath": "primary"
+          },
+          {
+            "variant": "neutral",
+            "prop": "focused-fg",
+            "hex": "#fafafa",
+            "tokenPath": "primary.foreground"
+          },
+          {
+            "variant": "neutral",
+            "prop": "subtle-bg",
+            "hex": "#262626",
+            "tokenPath": "color.neutral800"
+          },
+          {
+            "variant": "neutral",
+            "prop": "subtle-fg",
+            "hex": "#fafafa",
+            "tokenPath": "color.neutral50"
+          },
+          {
+            "variant": "inbox",
+            "prop": "bg",
+            "hex": "#fb7a6e",
+            "tokenPath": "color.coral300"
+          },
+          {
+            "variant": "inbox",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "color.neutral950"
+          },
+          {
+            "variant": "inbox",
+            "prop": "focused-bg",
+            "hex": "#c21e12",
+            "tokenPath": "color.coral700"
+          },
+          {
+            "variant": "inbox",
+            "prop": "focused-fg",
+            "hex": "#fafafa",
+            "tokenPath": "color.neutral50"
+          },
+          {
+            "variant": "inbox",
+            "prop": "subtle-bg",
+            "hex": "#f84131",
+            "tokenPath": "destructive"
+          },
+          {
+            "variant": "inbox",
+            "prop": "subtle-fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "destructive.foreground"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Badge\n\n   Numeric counter pill. Compact indicator for counts and notifications.\n   Non-interactive. Fixed height (16px), pill shape, truncates with ellipsis.\n\n   Variants: neutral, inbox\n   States:   enabled, focused, subtle\n   ------------------------------------------------------------------------- */\n\n.badge {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 1rem;\n  max-width: 2.25rem;\n  height: 1rem;\n  padding: 0 4px;\n  border-radius: 9999px;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  font-size: 10.24px;\n  font-weight: 500;\n  line-height: 1;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.badge__label {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  text-align: center;\n  min-width: 1px;\n}\n\n/* ---- Neutral ---- */\n\n.badge--neutral.badge--enabled {\n  background-color: #f5f5f5;\n  color: #0a0a0a;\n}\n\n.badge--neutral.badge--focused {\n  background-color: #0a0a0a;\n  color: #fafafa;\n}\n\n.badge--neutral.badge--subtle {\n  background-color: #262626;\n  color: #fafafa;\n}\n\n/* ---- Inbox ---- */\n\n.badge--inbox.badge--enabled {\n  background-color: #fb7a6e;\n  color: #0a0a0a;\n}\n\n.badge--inbox.badge--focused {\n  background-color: #c21e12;\n  color: #fafafa;\n}\n\n.badge--inbox.badge--subtle {\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Badge\n\n   Numeric counter pill. Compact indicator for counts and notifications.\n   Non-interactive. Fixed height (16px), pill shape, truncates with ellipsis.\n\n   Variants: neutral, inbox\n   States:   enabled, focused, subtle\n   ------------------------------------------------------------------------- */\n\n.badge {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 1rem;\n  max-width: 2.25rem;\n  height: 1rem;\n  padding: 0 4px;\n  border-radius: 9999px;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 10.24px;\n  font-weight: 500;\n  line-height: 1;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.badge__label {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  text-align: center;\n  min-width: 1px;\n}\n\n/* ---- Neutral ---- */\n\n.badge--neutral.badge--enabled {\n  background-color: #f5f5f5;\n  color: #0a0a0a;\n}\n\n.badge--neutral.badge--focused {\n  background-color: #0a0a0a;\n  color: #fafafa;\n}\n\n.badge--neutral.badge--subtle {\n  background-color: #262626;\n  color: #fafafa;\n}\n\n/* ---- Inbox ---- */\n\n.badge--inbox.badge--enabled {\n  background-color: #fb7a6e;\n  color: #0a0a0a;\n}\n\n.badge--inbox.badge--focused {\n  background-color: #c21e12;\n  color: #fafafa;\n}\n\n.badge--inbox.badge--subtle {\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n",
+      "motion": []
     }
   }
 }

@@ -48,8 +48,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -103,15 +103,42 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "currentColor",
+            "tokenPath": "(literal)"
+          },
+          {
+            "variant": "all",
+            "prop": "fill",
+            "hex": "currentColor",
+            "tokenPath": "(literal)"
+          },
+          {
+            "variant": "success",
+            "prop": "fg",
+            "hex": "#25d366",
+            "tokenPath": "success"
+          },
+          {
+            "variant": "brand",
+            "prop": "fg",
+            "hex": "#ff6600",
+            "tokenPath": "brand"
+          },
+          {
+            "variant": "muted",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Icon\n\n   Contenedor de tamano para SVG inline. El DS no envia paths (los iconos son\n   contenido, no estilo): envia la ESCALA y el color, para que ningun consumidor\n   vuelva a dimensionar SVGs a mano.\n\n   Uso:  <svg class=\"icon icon--m icon--success\" viewBox=\"0 0 24 24\">…</svg>\n   Sizes:  xs 1em · s 1.25em · m 1.5em · l 2em · xl 2.5em  (relativos al\n           font-size del contexto: el icono acompana al texto y escala con el)\n   Intents: currentColor por defecto; success/brand/muted como atajos.\n   ------------------------------------------------------------------------- */\n\n.icon {\n  display: inline-block;\n  flex-shrink: 0;\n  width: 1.25em;\n  height: 1.25em;\n  color: currentcolor;\n  fill: currentcolor;\n  vertical-align: middle;\n}\n\n.icon--xs { --icon-size: 1em; }\n.icon--s  { --icon-size: 1.25em; }\n.icon--m  { --icon-size: 1.5em; }\n.icon--l  { --icon-size: 2em; }\n.icon--xl { --icon-size: 2.5em; }\n\n.icon--success { color: #25d366; }\n.icon--brand   { color: #ff6600; }\n.icon--muted   { color: #525252; }\n\n/* Alineacion optica con la primera linea cuando acompana texto multilinea */\n.icon--leading { margin-block-start: 0.2em; }\n",
-      "motion": [],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
-      ]
+      "motion": []
     }
   }
 }

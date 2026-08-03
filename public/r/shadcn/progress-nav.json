@@ -26,8 +26,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [
           "gsap"
@@ -83,7 +83,26 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#fafafa",
+            "tokenPath": "primary.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#0a0a0a",
+            "tokenPath": "primary"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-bg",
+            "hex": "#262626",
+            "tokenPath": "primary.hover"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* ============================================================\n   ProgressNav — fixed one-page navigation with scroll indicator\n   Uses GSAP ScrollTrigger via @atom-uikit/animations\n   ============================================================ */\n\n.progress-nav {\n  width: 100%;\n  padding: 24px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 30;\n}\n\n.progress-nav__inner {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  position: relative;\n}\n\n/* ---- Logo ---- */\n.progress-nav__logo {\n  color: inherit;\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n}\n\n.progress-nav__logo-svg {\n  width: 8em;\n  height: auto;\n}\n\n/* ---- Pill wrapper (contains the nav list) ---- */\n.progress-nav__wrapper {\n  background-color: #f5f5f5;\n  border-radius: 9999px;\n  padding: 4px;\n}\n\n/* ---- Nav list ---- */\n.progress-nav__list {\n  border-radius: 9999px;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n}\n\n/* ---- Sliding indicator ---- */\n.progress-nav__indicator {\n  z-index: 2;\n  background-color: #ffffff;\n  border-radius: 9999px;\n  width: 2.5em;\n  height: 2.5em;\n  position: absolute;\n  left: -2.5em;\n  transition: all 700ms cubic-bezier(0.16, 1, 0.3, 1);\n  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);\n}\n\n/* ---- Nav buttons ---- */\n.progress-nav__btn {\n  z-index: 3;\n  cursor: pointer;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 2.5em;\n  padding-left: 1em;\n  padding-right: 1em;\n  text-decoration: none;\n  position: relative;\n  overflow: hidden;\n}\n\n/* Hidden sentinel buttons (before/after) */\n.progress-nav__btn.is--before {\n  z-index: 1;\n  width: 2.5em;\n  height: 2.5em;\n  padding: 0;\n  position: absolute;\n  right: 100%;\n}\n\n.progress-nav__btn.is--after {\n  z-index: 1;\n  width: 2.5em;\n  height: 2.5em;\n  padding: 0;\n  position: absolute;\n  left: 100%;\n}\n\n/* ---- Text with hover slide animation ---- */\n.progress-nav__btn-text {\n  white-space: nowrap;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n  font-size: 16px;\n  font-weight: 500;\n  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);\n  transform: translateY(0%) rotate(0.001deg);\n}\n\n.progress-nav__btn-text.is--duplicate {\n  position: absolute;\n  top: 100%;\n}\n\n.progress-nav__btn:hover .progress-nav__btn-text,\n.progress-nav__contact-btn:hover .progress-nav__btn-text {\n  transform: translateY(-100%) rotate(0.001deg);\n}\n\n/* ---- CTA button ---- */\n.progress-nav__contact-btn {\n  color: #fafafa;\n  background-color: #0a0a0a;\n  border-radius: 9999px;\n  height: 3.5em;\n  padding-left: 24px;\n  padding-right: 24px;\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.progress-nav__contact-btn:hover {\n  background-color: #262626;\n}\n\n/* ---- Reduced motion ---- */\n@media (prefers-reduced-motion: reduce) {\n  .progress-nav__indicator {\n    transition-duration: 0ms;\n  }\n  .progress-nav__btn-text {\n    transition-duration: 0ms;\n  }\n  .progress-nav__contact-btn {\n    transition-duration: 0ms;\n  }\n}\n",
@@ -133,10 +152,6 @@
           "duration": "var(--duration-200)",
           "easing": "var(--easing-in-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

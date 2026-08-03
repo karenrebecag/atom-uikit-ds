@@ -108,8 +108,8 @@
       "usage": "import { Toggle } from '@/components/atoms/Toggle';\n\n<Toggle checked={on} onChange={setOn} label=\"Email alerts\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -151,10 +151,47 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-bg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "disabled-bg",
+            "hex": "#e5e5e5",
+            "tokenPath": "border"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "disabled-fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Toggle (Switch)\n\n   Single size. Track + thumb that slides on checked.\n   Native <input type=\"checkbox\" role=\"switch\"> hidden.\n\n   Off:      muted track, white thumb with shadow\n   On:       primary track, white thumb with shadow\n   States:   unchecked, checked, disabled\n   Figma:    Size=s (36x20), Size=m (44x24) — we use s (web standard)\n   ------------------------------------------------------------------------- */\n\n.toggle {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5em;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  position: relative;\n}\n\n.toggle--disabled {\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* Hidden native input with touch target */\n.toggle__input {\n  position: absolute;\n  width: 2.75rem;\n  height: 2.5rem;\n  margin: 0;\n  padding: 0;\n  opacity: 0;\n  cursor: inherit;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n/* Track */\n.toggle__track {\n  position: relative;\n  width: 2.25rem;\n  height: 1.25rem;\n  flex-shrink: 0;\n  border-radius: 9999px;\n  border: 1px solid #e5e5e5;\n  background-color: #f5f5f5;\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);\n  transition:\n    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),\n    border-color 200ms cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n/* Thumb — absolute positioned for pixel-perfect alignment */\n.toggle__thumb {\n  position: absolute;\n  top: 0.125rem;\n  left: 0.125rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 9999px;\n  background-color: #fafafa;\n  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);\n  transform: translateX(0) rotate(0.001deg);\n}\n\n/* Animated toggle: smooth slide with bounce overshoot */\n.toggle--animated .toggle__thumb {\n  transition: transform 500ms cubic-bezier(0.35, 1.5, 0.6, 1);\n}\n\n/* ---- Hover ---- */\n\n.toggle__input:hover:not(:disabled) ~ .toggle__track {\n  background-color: #e5e5e5;\n}\n\n.toggle__input:checked:hover:not(:disabled) ~ .toggle__track {\n  background-color: #0a0a0a;\n}\n\n/* ---- Checked ---- */\n\n.toggle__input:checked ~ .toggle__track {\n  background-color: #0a0a0a;\n  border-color: #0a0a0a;\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);\n}\n\n.toggle__input:checked ~ .toggle__track .toggle__thumb {\n  transform: translateX(calc(2.25rem - 0.25rem - 1rem));\n}\n\n/* ---- Focus ---- */\n\n.toggle__input:focus-visible ~ .toggle__track {\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 2px var(--focus-ring-color);\n}\n\n/* ---- Disabled ---- */\n\n.toggle__input:disabled ~ .toggle__track {\n  background-color: #f5f5f5;\n}\n\n.toggle__input:disabled:checked ~ .toggle__track {\n  background-color: #f5f5f5;\n}\n\n.toggle__input:disabled ~ .toggle__track .toggle__thumb {\n  background-color: #e5e5e5;\n  box-shadow: none;\n}\n\n/* ---- Label ---- */\n\n.toggle__label {\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  line-height: 1;\n  color: #0a0a0a;\n}\n\n.toggle--disabled .toggle__label {\n  color: #525252;\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Toggle (Switch)\n\n   Single size. Track + thumb that slides on checked.\n   Native <input type=\"checkbox\" role=\"switch\"> hidden.\n\n   Off:      muted track, white thumb with shadow\n   On:       primary track, white thumb with shadow\n   States:   unchecked, checked, disabled\n   Figma:    Size=s (36x20), Size=m (44x24) — we use s (web standard)\n   ------------------------------------------------------------------------- */\n\n.toggle {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5em;\n  cursor: pointer;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent;\n  position: relative;\n}\n\n.toggle--disabled {\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* Hidden native input with touch target */\n.toggle__input {\n  position: absolute;\n  width: 2.75rem;\n  height: 2.5rem;\n  margin: 0;\n  padding: 0;\n  opacity: 0;\n  cursor: inherit;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n/* Track */\n.toggle__track {\n  position: relative;\n  width: 2.25rem;\n  height: 1.25rem;\n  flex-shrink: 0;\n  border-radius: 9999px;\n  border: 1px solid #e5e5e5;\n  background-color: #f5f5f5;\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);\n  transition:\n    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),\n    border-color 200ms cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n/* Thumb — absolute positioned for pixel-perfect alignment */\n.toggle__thumb {\n  position: absolute;\n  top: 0.125rem;\n  left: 0.125rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 9999px;\n  background-color: #fafafa;\n  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);\n  transform: translateX(0) rotate(0.001deg);\n}\n\n/* Animated toggle: smooth slide with bounce overshoot */\n.toggle--animated .toggle__thumb {\n  transition: transform 500ms cubic-bezier(0.35, 1.5, 0.6, 1);\n}\n\n/* ---- Hover ---- */\n\n.toggle__input:hover:not(:disabled) ~ .toggle__track {\n  background-color: #e5e5e5;\n}\n\n.toggle__input:checked:hover:not(:disabled) ~ .toggle__track {\n  background-color: #0a0a0a;\n}\n\n/* ---- Checked ---- */\n\n.toggle__input:checked ~ .toggle__track {\n  background-color: #0a0a0a;\n  border-color: #0a0a0a;\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);\n}\n\n.toggle__input:checked ~ .toggle__track .toggle__thumb {\n  transform: translateX(calc(2.25rem - 0.25rem - 1rem));\n}\n\n/* ---- Focus ---- */\n\n.toggle__input:focus-visible ~ .toggle__track {\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 2px var(--focus-ring-color);\n}\n\n/* ---- Disabled ---- */\n\n.toggle__input:disabled ~ .toggle__track {\n  background-color: #f5f5f5;\n}\n\n.toggle__input:disabled:checked ~ .toggle__track {\n  background-color: #f5f5f5;\n}\n\n.toggle__input:disabled ~ .toggle__track .toggle__thumb {\n  background-color: #e5e5e5;\n  box-shadow: none;\n}\n\n/* ---- Label ---- */\n\n.toggle__label {\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-size: 12.8px;\n  line-height: 1;\n  color: #0a0a0a;\n}\n\n.toggle--disabled .toggle__label {\n  color: #525252;\n}\n",
       "motion": [
         {
           "property": "background-color",
@@ -191,10 +228,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

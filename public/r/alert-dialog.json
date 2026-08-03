@@ -75,8 +75,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -126,10 +126,29 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#f84131",
+            "tokenPath": "destructive"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Alert Dialog\n\n   Non-dismissible confirmation modal. No overlay close, no X button.\n   Requires explicit Cancel or Action to close.\n\n   Sizes: default (512px), sm (400px)\n   Parts: .alert-dialog, .alert-dialog__header, .alert-dialog__media,\n          .alert-dialog__title, .alert-dialog__description,\n          .alert-dialog__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.alert-dialog {\n  position: fixed;\n  z-index: 50;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 32px);\n  max-width: 512px;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #e5e5e5;\n  border-radius: 16px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  animation: alert-dialog-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.alert-dialog--sm {\n  max-width: 400px;\n}\n\n.alert-dialog--exiting {\n  animation: alert-dialog-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n@keyframes alert-dialog-in {\n  from {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n  to {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n}\n\n@keyframes alert-dialog-out {\n  from {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n}\n\n/* ---- Header ---- */\n\n.alert-dialog__header {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 12px;\n  padding: 24px;\n  padding-bottom: 0;\n  text-align: center;\n}\n\n/* ---- Media ---- */\n\n.alert-dialog__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 48px;\n  height: 48px;\n  border-radius: 9999px;\n  background-color: #f5f5f5;\n  color: #525252;\n  padding: 12px;\n}\n\n.alert-dialog__media--destructive {\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n\n.alert-dialog__media svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Title ---- */\n\n.alert-dialog__title {\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.alert-dialog__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n  margin: 0;\n}\n\n/* ---- Footer ---- */\n\n.alert-dialog__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n  padding: 24px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .alert-dialog,\n  .alert-dialog--exiting {\n    animation-duration: 0ms;\n  }\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Alert Dialog\n\n   Non-dismissible confirmation modal. No overlay close, no X button.\n   Requires explicit Cancel or Action to close.\n\n   Sizes: default (512px), sm (400px)\n   Parts: .alert-dialog, .alert-dialog__header, .alert-dialog__media,\n          .alert-dialog__title, .alert-dialog__description,\n          .alert-dialog__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.alert-dialog {\n  position: fixed;\n  z-index: 50;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 32px);\n  max-width: 512px;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #e5e5e5;\n  border-radius: 16px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  animation: alert-dialog-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.alert-dialog--sm {\n  max-width: 400px;\n}\n\n.alert-dialog--exiting {\n  animation: alert-dialog-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n@keyframes alert-dialog-in {\n  from {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n  to {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n}\n\n@keyframes alert-dialog-out {\n  from {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n}\n\n/* ---- Header ---- */\n\n.alert-dialog__header {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 12px;\n  padding: 24px;\n  padding-bottom: 0;\n  text-align: center;\n}\n\n/* ---- Media ---- */\n\n.alert-dialog__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 48px;\n  height: 48px;\n  border-radius: 9999px;\n  background-color: #f5f5f5;\n  color: #525252;\n  padding: 12px;\n}\n\n.alert-dialog__media--destructive {\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n\n.alert-dialog__media svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Title ---- */\n\n.alert-dialog__title {\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  color: #0a0a0a;\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.alert-dialog__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  color: #525252;\n  margin: 0;\n}\n\n/* ---- Footer ---- */\n\n.alert-dialog__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n  padding: 24px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .alert-dialog,\n  .alert-dialog--exiting {\n    animation-duration: 0ms;\n  }\n}\n",
       "motion": [
         {
           "property": "@keyframes alert-dialog-in",
@@ -141,10 +160,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

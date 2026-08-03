@@ -111,8 +111,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -186,20 +186,65 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#25d366",
+            "tokenPath": "success"
+          },
+          {
+            "variant": "image",
+            "prop": "bg",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "initials",
+            "prop": "fg",
+            "hex": "#171717",
+            "tokenPath": "border.focus"
+          },
+          {
+            "variant": "initials",
+            "prop": "border",
+            "hex": "2px",
+            "tokenPath": "stroke.medium"
+          },
+          {
+            "variant": "icon",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "icon",
+            "prop": "border",
+            "hex": "2px",
+            "tokenPath": "stroke.medium"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "#fafafa",
+            "tokenPath": "background"
+          },
+          {
+            "variant": "skeleton",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Avatar\n\n   User representation: image, initials, or icon placeholder.\n   Optional status dot (online indicator).\n\n   Types:   image, image-border, initials, icon\n   Shapes:  circle, square\n   Sizes:   xs (24px), s (32px), m (40px), l (48px)\n   ------------------------------------------------------------------------- */\n\n.avatar {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  position: relative;\n  background-color: #f5f5f5;\n}\n\n.avatar__image {\n  overflow: hidden;\n}\n\n/* ---- Sizes ---- */\n\n.avatar--xs { width: 1.5rem; height: 1.5rem; }\n.avatar--s  { width: 2rem; height: 2rem; }\n.avatar--m  { width: 2.5rem; height: 2.5rem; }\n.avatar--l  { width: 3rem; height: 3rem; }\n\n/* ---- Shapes ---- */\n\n.avatar--circle { border-radius: 9999px; }\n\n.avatar--square.avatar--xs { border-radius: 8px; }\n.avatar--square.avatar--s  { border-radius: 8px; }\n.avatar--square.avatar--m  { border-radius: 12px; }\n.avatar--square.avatar--l  { border-radius: 16px; }\n\n/* ---- Types ---- */\n\n/* Image (no border) */\n.avatar--image {\n  background: none;\n  padding: 0;\n}\n\n/* Image with border ring */\n.avatar--image-border {\n  padding: 0.125rem;\n}\n.avatar--image-border.avatar--m,\n.avatar--image-border.avatar--l {\n  padding: 0.25rem;\n}\n\n/* Initials */\n.avatar--initials {\n  border: 2px solid #e5e5e5;\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-weight: 400;\n  color: #171717;\n  font-size: 12.8px;\n  line-height: 1;\n}\n.avatar--initials.avatar--l {\n  font-size: 16px;\n}\n\n/* Icon */\n.avatar--icon {\n  border: 2px solid #e5e5e5;\n  color: #525252;\n}\n\n/* ---- Image element ---- */\n\n.avatar__image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  display: block;\n  border-radius: inherit;\n}\n\n.avatar--circle .avatar__image {\n  border-radius: 9999px;\n}\n\n/* ---- Icon element ---- */\n\n.avatar__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.avatar--xs .avatar__icon { width: 0.75rem; height: 0.75rem; }\n.avatar--s .avatar__icon  { width: 1rem; height: 1rem; }\n.avatar--m .avatar__icon  { width: 1.25rem; height: 1.25rem; }\n.avatar--l .avatar__icon  { width: 1.5rem; height: 1.5rem; }\n\n.avatar__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Status dot ---- */\n\n.avatar__status {\n  position: absolute;\n  background-color: #25d366;\n  border-radius: 9999px;\n  border-style: solid;\n  border-color: #fafafa;\n}\n\n.avatar--xs .avatar__status { width: 0.5rem; height: 0.5rem; border-width: 1px; bottom: -0.0625rem; right: -0.0625rem; }\n.avatar--s .avatar__status  { width: 0.5rem; height: 0.5rem; border-width: 1px; bottom: 0; right: 0; }\n.avatar--m .avatar__status  { width: 0.75rem; height: 0.75rem; border-width: 1.5px; bottom: 0; right: 0; }\n.avatar--l .avatar__status  { width: 1rem; height: 1rem; border-width: 2px; bottom: 0; right: 0; }\n\n/* ---- Skeleton ---- */\n\n.avatar--skeleton {\n  border: none;\n  animation: avatar-skeleton-pulse 1.5s ease-in-out infinite;\n}\n\n.avatar--skeleton * {\n  display: none;\n}\n\n@keyframes avatar-skeleton-pulse {\n  0%, 100% { opacity: 1; }\n  50% { opacity: 0.5; }\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Avatar\n\n   User representation: image, initials, or icon placeholder.\n   Optional status dot (online indicator).\n\n   Types:   image, image-border, initials, icon\n   Shapes:  circle, square\n   Sizes:   xs (24px), s (32px), m (40px), l (48px)\n   ------------------------------------------------------------------------- */\n\n.avatar {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  position: relative;\n  background-color: #f5f5f5;\n}\n\n.avatar__image {\n  overflow: hidden;\n}\n\n/* ---- Sizes ---- */\n\n.avatar--xs { width: 1.5rem; height: 1.5rem; }\n.avatar--s  { width: 2rem; height: 2rem; }\n.avatar--m  { width: 2.5rem; height: 2.5rem; }\n.avatar--l  { width: 3rem; height: 3rem; }\n\n/* ---- Shapes ---- */\n\n.avatar--circle { border-radius: 9999px; }\n\n.avatar--square.avatar--xs { border-radius: 8px; }\n.avatar--square.avatar--s  { border-radius: 8px; }\n.avatar--square.avatar--m  { border-radius: 12px; }\n.avatar--square.avatar--l  { border-radius: 16px; }\n\n/* ---- Types ---- */\n\n/* Image (no border) */\n.avatar--image {\n  background: none;\n  padding: 0;\n}\n\n/* Image with border ring */\n.avatar--image-border {\n  padding: 0.125rem;\n}\n.avatar--image-border.avatar--m,\n.avatar--image-border.avatar--l {\n  padding: 0.25rem;\n}\n\n/* Initials */\n.avatar--initials {\n  border: 2px solid #e5e5e5;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  font-weight: 400;\n  color: #171717;\n  font-size: 12.8px;\n  line-height: 1;\n}\n.avatar--initials.avatar--l {\n  font-size: 16px;\n}\n\n/* Icon */\n.avatar--icon {\n  border: 2px solid #e5e5e5;\n  color: #525252;\n}\n\n/* ---- Image element ---- */\n\n.avatar__image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  display: block;\n  border-radius: inherit;\n}\n\n.avatar--circle .avatar__image {\n  border-radius: 9999px;\n}\n\n/* ---- Icon element ---- */\n\n.avatar__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.avatar--xs .avatar__icon { width: 0.75rem; height: 0.75rem; }\n.avatar--s .avatar__icon  { width: 1rem; height: 1rem; }\n.avatar--m .avatar__icon  { width: 1.25rem; height: 1.25rem; }\n.avatar--l .avatar__icon  { width: 1.5rem; height: 1.5rem; }\n\n.avatar__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Status dot ---- */\n\n.avatar__status {\n  position: absolute;\n  background-color: #25d366;\n  border-radius: 9999px;\n  border-style: solid;\n  border-color: #fafafa;\n}\n\n.avatar--xs .avatar__status { width: 0.5rem; height: 0.5rem; border-width: 1px; bottom: -0.0625rem; right: -0.0625rem; }\n.avatar--s .avatar__status  { width: 0.5rem; height: 0.5rem; border-width: 1px; bottom: 0; right: 0; }\n.avatar--m .avatar__status  { width: 0.75rem; height: 0.75rem; border-width: 1.5px; bottom: 0; right: 0; }\n.avatar--l .avatar__status  { width: 1rem; height: 1rem; border-width: 2px; bottom: 0; right: 0; }\n\n/* ---- Skeleton ---- */\n\n.avatar--skeleton {\n  border: none;\n  animation: avatar-skeleton-pulse 1.5s ease-in-out infinite;\n}\n\n.avatar--skeleton * {\n  display: none;\n}\n\n@keyframes avatar-skeleton-pulse {\n  0%, 100% { opacity: 1; }\n  50% { opacity: 0.5; }\n}\n",
       "motion": [
         {
           "property": "@keyframes avatar-skeleton-pulse",
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

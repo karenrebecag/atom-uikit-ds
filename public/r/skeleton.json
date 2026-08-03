@@ -56,8 +56,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -83,7 +83,14 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#e5e5e5",
+            "tokenPath": "border"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* -------------------------------------------------------------------------\n   Skeleton\n\n   Loading placeholder. Pulse animation on muted background.\n   Consumer sets width/height/border-radius via style or className.\n\n   Parts: .skeleton\n   ------------------------------------------------------------------------- */\n\n.skeleton {\n  display: block;\n  background-color: #e5e5e5;\n  border-radius: 8px;\n  animation: skeleton-pulse 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite;\n}\n\n@keyframes skeleton-pulse {\n  0%, 100% { opacity: 1; }\n  50% { opacity: 0.5; }\n}\n\n/* ---- Shape helpers ---- */\n\n.skeleton--circle {\n  border-radius: 9999px;\n}\n\n.skeleton--text {\n  height: 1em;\n  border-radius: 4px;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .skeleton {\n    animation: none;\n  }\n}\n",
@@ -93,10 +100,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

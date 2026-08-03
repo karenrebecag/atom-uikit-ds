@@ -109,6 +109,7 @@ try {
 
 import { validateAgentMeta } from './validate-agent-meta.mjs';
 import { emitShadcnChannel } from './emit-shadcn-registry.mjs';
+import { deriveItemDoc, loadResolvedTokens, getSourceCommit } from './derive-doc.mjs';
 
 async function main() {
   const registry = JSON.parse(await fs.readFile(REGISTRY_PATH, 'utf8'));
@@ -150,6 +151,19 @@ async function main() {
   let built = 0;
   let enriched = 0;
   let errors = 0;
+  let derivedCount = 0;
+  let derivedPartial = 0;
+
+  // F12a — mechanical doc layer (meta.derived). Fail soft if tokens missing.
+  let resolvedTokens = null;
+  let sourceCommit = 'unknown';
+  try {
+    resolvedTokens = loadResolvedTokens();
+    sourceCommit = getSourceCommit();
+  } catch (e) {
+    console.warn(`  [WARN] F12a derive-doc unavailable: ${e.message}`);
+  }
+  const derivedAt = new Date().toISOString();
 
   for (const item of registry.items) {
     try {
@@ -190,12 +204,41 @@ async function main() {
 
       // F3: passthrough meta (shadcn free-form) including meta.agent
       if (item.meta && typeof item.meta === 'object') {
-        output.meta = item.meta;
+        output.meta = { ...item.meta };
       }
 
-      // Layouts se publican autodescriptivos: html/css planos + contrato de slots
+      // Layouts first so F14 can read extracted plain CSS from files[]
       if (item.kind === 'layout') {
         await enrichLayout(item, output);
+      }
+
+      // F12a/F14: meta.derived — after layout enrich so CSS content is available
+      if (resolvedTokens) {
+        try {
+          const derived = deriveItemDoc(
+            { name: item.name, atom: output.atom, files: output.files },
+            { tokens: resolvedTokens, sourceCommit, now: derivedAt },
+          );
+          output.meta = { ...(output.meta || {}), derived };
+          derivedCount++;
+          if (derived.degraded) derivedPartial++;
+        } catch (derr) {
+          output.meta = {
+            ...(output.meta || {}),
+            derived: {
+              generatedAt: derivedAt,
+              sourceCommit,
+              degraded: true,
+              degradeReasons: [`derive-error:${derr.message}`],
+              install: { peerDeps: [], cssImports: [] },
+              anatomy: { bem: '', classes: [] },
+              tokens: { resolved: [], sizes: [] },
+              motion: [],
+            },
+          };
+          derivedCount++;
+          derivedPartial++;
+        }
       }
 
       // Flatten slashes in name for output filename (layout/hero-centered → layout--hero-centered)
@@ -272,7 +315,18 @@ async function main() {
     process.exit(1);
   }
 
+  // F12c — editorial markdown → public/r/docs/{slug}.md (MCP + docs loadEditorialMarkdown)
+  const editorialCopied = await emitEditorialDocs(ROOT, OUT_DIR);
+
   console.log(`\n  Registry built: ${built} items (${enriched} enriched), ${errors} errors`);
+  if (resolvedTokens) {
+    console.log(
+      `  [F12a] meta.derived: ${derivedCount} items (${derivedPartial} partial/degraded), sourceCommit=${sourceCommit}`,
+    );
+  }
+  if (editorialCopied >= 0) {
+    console.log(`  [F12c] editorial: ${editorialCopied} markdown file(s) → public/r/docs/`);
+  }
   console.log(`  Output: ${OUT_DIR}/`);
 
   // F5: derive official shadcn channel from canónico (no second source of truth)
@@ -306,6 +360,64 @@ async function main() {
       console.warn(`  Deploy hook: failed (${e.message})`);
     }
   }
+}
+
+/**
+ * F12c — copy editorial markdown into the published registry channel.
+ * Sources (first wins per slug):
+ *   1. docs/editorial/{slug}.md
+ *   2. packages/**\/docs/{slug}.md
+ */
+async function emitEditorialDocs(root, outDir) {
+  const destDir = path.join(outDir, 'docs');
+  await fs.mkdir(destDir, { recursive: true });
+
+  /** @type {Map<string, string>} slug → abs path */
+  const found = new Map();
+
+  const editorialRoot = path.join(root, 'docs', 'editorial');
+  try {
+    for (const f of await fs.readdir(editorialRoot)) {
+      if (!f.endsWith('.md')) continue;
+      found.set(f.replace(/\.md$/, ''), path.join(editorialRoot, f));
+    }
+  } catch {
+    // optional directory
+  }
+
+  async function walk(dir) {
+    let entries;
+    try {
+      entries = await fs.readdir(dir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const ent of entries) {
+      if (ent.name === 'node_modules' || ent.name === 'dist' || ent.name === '.git') continue;
+      const p = path.join(dir, ent.name);
+      if (ent.isDirectory()) {
+        if (ent.name === 'docs') {
+          for (const f of await fs.readdir(p)) {
+            if (!f.endsWith('.md')) continue;
+            const slug = f.replace(/\.md$/, '');
+            if (!found.has(slug)) found.set(slug, path.join(p, f));
+          }
+        } else {
+          await walk(p);
+        }
+      }
+    }
+  }
+  await walk(path.join(root, 'packages'));
+
+  let n = 0;
+  for (const [slug, src] of found) {
+    const safe = slug.replace(/\//g, '--');
+    const body = await fs.readFile(src, 'utf8');
+    await fs.writeFile(path.join(destDir, `${safe}.md`), body, 'utf8');
+    n++;
+  }
+  return n;
 }
 
 main();

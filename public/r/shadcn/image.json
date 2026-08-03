@@ -23,8 +23,8 @@
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -122,7 +122,14 @@
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#f5f5f5",
+            "tokenPath": "muted"
+          }
+        ],
         "sizes": []
       },
       "standaloneCss": "/* ============================================================\n   Image — responsive image with sizing variants and aspect ratios\n   ============================================================ */\n\n.image {\n  display: block;\n  width: 100%;\n  max-width: 100%;\n  height: auto;\n  object-fit: cover;\n  border-radius: 8px;\n  background-color: #f5f5f5;\n  transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n/* ---- Sizing variants ---- */\n.image--xs {\n  width: 3rem; /* 48px */\n  height: 3rem;\n  border-radius: 4px;\n}\n\n.image--s {\n  width: 6rem; /* 96px */\n  height: 6rem;\n  border-radius: 8px;\n}\n\n.image--m {\n  width: 12.5rem; /* 200px */\n  height: auto;\n}\n\n.image--l {\n  width: 25rem; /* 400px */\n  height: auto;\n}\n\n.image--hero {\n  width: 100%;\n  max-height: 30rem; /* 480px */\n  object-fit: cover;\n  border-radius: 16px;\n}\n\n.image--full {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  border-radius: 0;\n}\n\n/* ---- Aspect ratios ---- */\n.image--ratio-1x1 { aspect-ratio: 1 / 1; }\n.image--ratio-4x3 { aspect-ratio: 4 / 3; }\n.image--ratio-16x9 { aspect-ratio: 16 / 9; }\n.image--ratio-21x9 { aspect-ratio: 21 / 9; }\n\n/* ---- Object fit variants ---- */\n.image--contain { object-fit: contain; }\n.image--cover { object-fit: cover; }\n\n/* ---- Border radius variants ---- */\n.image--rounded-none { border-radius: 0; }\n.image--rounded-sm { border-radius: 4px; }\n.image--rounded-md { border-radius: 8px; }\n.image--rounded-lg { border-radius: 12px; }\n.image--rounded-xl { border-radius: 16px; }\n.image--rounded-full { border-radius: 9999px; }\n\n/* ---- Loading state (skeleton placeholder) ---- */\n.image--loading {\n  opacity: 0;\n}\n\n.image--loaded {\n  opacity: 1;\n}\n\n/* ---- Reduced motion ---- */\n@media (prefers-reduced-motion: reduce) {\n  .image {\n    transition-duration: 0ms;\n  }\n}\n",
@@ -132,10 +139,6 @@
           "duration": "var(--duration-300)",
           "easing": "var(--easing-out)"
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }

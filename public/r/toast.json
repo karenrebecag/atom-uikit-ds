@@ -75,8 +75,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-03T04:26:19.572Z",
-      "sourceCommit": "ad1888a",
+      "generatedAt": "2026-08-03T04:59:37.770Z",
+      "sourceCommit": "2fa6b41",
       "install": {
         "peerDeps": [],
         "cssImports": [
@@ -85,63 +85,134 @@
         ]
       },
       "anatomy": {
-        "bem": "<div class=\"toast\">\n  <span class=\"toast__action\"></span>\n  <span class=\"toast__close\"></span>\n  <span class=\"toast__content\"></span>\n  <span class=\"toast__description\"></span>\n  <span class=\"toast__icon\"></span>\n  <span class=\"toast__title\"></span>\n</div>",
+        "bem": "<div class=\"toaster\">\n\n</div>",
         "classes": [
           {
-            "class": "toast",
+            "class": "toaster",
             "purpose": "root"
           },
           {
-            "class": "toast--error",
+            "class": "toaster--bottom-center",
             "purpose": "modifier"
           },
           {
-            "class": "toast--exiting",
+            "class": "toaster--bottom-left",
             "purpose": "modifier"
           },
           {
-            "class": "toast--info",
+            "class": "toaster--bottom-right",
             "purpose": "modifier"
           },
           {
-            "class": "toast--success",
+            "class": "toaster--top-center",
             "purpose": "modifier"
           },
           {
-            "class": "toast--warning",
+            "class": "toaster--top-left",
             "purpose": "modifier"
           },
           {
-            "class": "toast__action",
-            "purpose": "element"
-          },
-          {
-            "class": "toast__close",
-            "purpose": "element"
-          },
-          {
-            "class": "toast__content",
-            "purpose": "element"
-          },
-          {
-            "class": "toast__description",
-            "purpose": "element"
-          },
-          {
-            "class": "toast__icon",
-            "purpose": "element"
-          },
-          {
-            "class": "toast__title",
-            "purpose": "element"
+            "class": "toaster--top-right",
+            "purpose": "modifier"
           }
         ]
       },
       "tokens": {
-        "resolved": [],
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#ffffff",
+            "tokenPath": "popover"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "inherit",
+            "tokenPath": "(literal)"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "1px",
+            "tokenPath": "stroke.hairline"
+          },
+          {
+            "variant": "success",
+            "prop": "bg",
+            "hex": "#25d366",
+            "tokenPath": "success"
+          },
+          {
+            "variant": "success",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "success.foreground"
+          },
+          {
+            "variant": "success",
+            "prop": "border",
+            "hex": "#25d366",
+            "tokenPath": "success"
+          },
+          {
+            "variant": "all",
+            "prop": "error-bg",
+            "hex": "#f84131",
+            "tokenPath": "destructive"
+          },
+          {
+            "variant": "all",
+            "prop": "error-fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "destructive.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "error-border",
+            "hex": "#f84131",
+            "tokenPath": "destructive"
+          },
+          {
+            "variant": "warning",
+            "prop": "bg",
+            "hex": "#fe9900",
+            "tokenPath": "warning"
+          },
+          {
+            "variant": "warning",
+            "prop": "fg",
+            "hex": "#471901",
+            "tokenPath": "warning.foreground"
+          },
+          {
+            "variant": "warning",
+            "prop": "border",
+            "hex": "#fe9900",
+            "tokenPath": "warning"
+          },
+          {
+            "variant": "info",
+            "prop": "bg",
+            "hex": "#22d3ee",
+            "tokenPath": "info"
+          },
+          {
+            "variant": "info",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "info.foreground"
+          },
+          {
+            "variant": "info",
+            "prop": "border",
+            "hex": "#22d3ee",
+            "tokenPath": "info"
+          }
+        ],
         "sizes": []
       },
-      "standaloneCss": "/* -------------------------------------------------------------------------\n   Toast (Sonner)\n\n   Notification toasts. Fixed container, imperative API.\n   Auto-dismiss, close button, description, action support.\n\n   Variants: default, success, info, warning, error\n   Positions: top-left, top-center, top-right,\n              bottom-left, bottom-center, bottom-right\n\n   Parts: .toaster, .toast, .toast__content, .toast__title,\n          .toast__description, .toast__close, .toast__action\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.toaster {\n  position: fixed;\n  z-index: 60;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  pointer-events: none;\n  max-width: 420px;\n  width: 100%;\n  padding: 16px;\n}\n\n.toaster--top-left      { top: 0; left: 0; align-items: flex-start; }\n.toaster--top-center    { top: 0; left: 50%; transform: translateX(-50%); align-items: center; }\n.toaster--top-right     { top: 0; right: 0; align-items: flex-end; }\n.toaster--bottom-left   { bottom: 0; left: 0; align-items: flex-start; }\n.toaster--bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }\n.toaster--bottom-right  { bottom: 0; right: 0; align-items: flex-end; }\n\n/* ---- Toast ---- */\n\n.toast {\n  display: flex;\n  align-items: flex-start;\n  gap: 12px;\n  width: 100%;\n  max-width: 380px;\n  padding: 16px;\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);\n  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  pointer-events: auto;\n  animation: toast-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.toast--exiting {\n  animation: toast-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n/* ---- Variants ---- */\n\n.toast--success {\n  border-color: #25d366;\n  background-color: #25d366;\n  color: #0a0a0a;\n}\n\n.toast--error {\n  border-color: #f84131;\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n\n.toast--warning {\n  border-color: #fe9900;\n  background-color: #fe9900;\n  color: #471901;\n}\n\n.toast--info {\n  border-color: #22d3ee;\n  background-color: #22d3ee;\n  color: #0a0a0a;\n}\n\n/* ---- Icon ---- */\n\n.toast__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1.25em;\n  height: 1.25em;\n}\n\n.toast__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Content ---- */\n\n.toast__content {\n  flex: 1;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n/* ---- Title ---- */\n\n.toast__title {\n  font-size: 12.8px;\n  font-weight: 600;\n  line-height: 1.45;\n}\n\n/* ---- Description ---- */\n\n.toast__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  opacity: 0.8;\n}\n\n/* ---- Close button (IconButton override) ---- */\n\n.toast__close {\n  flex-shrink: 0;\n  color: inherit;\n  opacity: 0.5;\n}\n\n.toast__close:hover {\n  opacity: 1;\n}\n\n/* ---- Action button (Button override) ---- */\n\n.toast__action {\n  align-self: flex-start;\n  margin-top: 4px;\n}\n\n/* ---- Animations ---- */\n\n@keyframes toast-in {\n  from {\n    opacity: 0;\n    transform: translateY(8px) scale(0.96);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n}\n\n@keyframes toast-out {\n  from {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translateY(-8px) scale(0.96);\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .toast,\n  .toast--exiting {\n    animation-duration: 0ms;\n  }\n\n  .toast__close,\n  .toast__action {\n    transition-duration: 0ms;\n  }\n}\n",
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Toast (Sonner)\n\n   Notification toasts. Fixed container, imperative API.\n   Auto-dismiss, close button, description, action support.\n\n   Variants: default, success, info, warning, error\n   Positions: top-left, top-center, top-right,\n              bottom-left, bottom-center, bottom-right\n\n   Parts: .toaster, .toast, .toast__content, .toast__title,\n          .toast__description, .toast__close, .toast__action\n   ------------------------------------------------------------------------- */\n\n/* ---- Container ---- */\n\n.toaster {\n  position: fixed;\n  z-index: 60;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  pointer-events: none;\n  max-width: 420px;\n  width: 100%;\n  padding: 16px;\n}\n\n.toaster--top-left      { top: 0; left: 0; align-items: flex-start; }\n.toaster--top-center    { top: 0; left: 50%; transform: translateX(-50%); align-items: center; }\n.toaster--top-right     { top: 0; right: 0; align-items: flex-end; }\n.toaster--bottom-left   { bottom: 0; left: 0; align-items: flex-start; }\n.toaster--bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }\n.toaster--bottom-right  { bottom: 0; right: 0; align-items: flex-end; }\n\n/* ---- Toast ---- */\n\n.toast {\n  display: flex;\n  align-items: flex-start;\n  gap: 12px;\n  width: 100%;\n  max-width: 380px;\n  padding: 16px;\n  border: 1px solid #e5e5e5;\n  border-radius: 12px;\n  background-color: #ffffff;\n  color: #0a0a0a;\n  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n  pointer-events: auto;\n  animation: toast-in 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.toast--exiting {\n  animation: toast-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n/* ---- Variants ---- */\n\n.toast--success {\n  border-color: #25d366;\n  background-color: #25d366;\n  color: #0a0a0a;\n}\n\n.toast--error {\n  border-color: #f84131;\n  background-color: #f84131;\n  color: #0a0a0a;\n}\n\n.toast--warning {\n  border-color: #fe9900;\n  background-color: #fe9900;\n  color: #471901;\n}\n\n.toast--info {\n  border-color: #22d3ee;\n  background-color: #22d3ee;\n  color: #0a0a0a;\n}\n\n/* ---- Icon ---- */\n\n.toast__icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  width: 1.25em;\n  height: 1.25em;\n}\n\n.toast__icon svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Content ---- */\n\n.toast__content {\n  flex: 1;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n/* ---- Title ---- */\n\n.toast__title {\n  font-size: 12.8px;\n  font-weight: 600;\n  line-height: 1.45;\n}\n\n/* ---- Description ---- */\n\n.toast__description {\n  font-size: 12.8px;\n  line-height: 1.45;\n  opacity: 0.8;\n}\n\n/* ---- Close button (IconButton override) ---- */\n\n.toast__close {\n  flex-shrink: 0;\n  color: inherit;\n  opacity: 0.5;\n}\n\n.toast__close:hover {\n  opacity: 1;\n}\n\n/* ---- Action button (Button override) ---- */\n\n.toast__action {\n  align-self: flex-start;\n  margin-top: 4px;\n}\n\n/* ---- Animations ---- */\n\n@keyframes toast-in {\n  from {\n    opacity: 0;\n    transform: translateY(8px) scale(0.96);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n}\n\n@keyframes toast-out {\n  from {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translateY(-8px) scale(0.96);\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .toast,\n  .toast--exiting {\n    animation-duration: 0ms;\n  }\n\n  .toast__close,\n  .toast__action {\n    transition-duration: 0ms;\n  }\n}\n",
       "motion": [
         {
           "property": "@keyframes toast-in",
@@ -153,10 +224,6 @@
           "duration": "",
           "easing": ""
         }
-      ],
-      "degraded": true,
-      "degradeReasons": [
-        "no-component-tokens"
       ]
     }
   }
