@@ -17,6 +17,9 @@ concurrency:
   group: sync-docs
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   redeploy-docs:
     name: Rebuild docs (registry sync -> MCP)

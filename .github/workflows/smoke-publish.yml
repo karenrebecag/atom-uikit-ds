@@ -21,6 +21,9 @@ concurrency:
   group: smoke-publish-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   smoke:
     name: smoke:publish canary
