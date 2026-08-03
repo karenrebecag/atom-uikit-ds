@@ -53,17 +53,28 @@
  * F10b — Webflow/domContract single source: contrato ESTRUCTURAL (siempre
  * presente en el markup). Config opcional por dataset — multiple, start-open,
  * goo-strength — queda fuera a proposito, como en marquee-draggable.
+ *
+ * TODO por data-*, NUNCA por clase: el canal Webflow prefija toda clase con
+ * `ds-`, asi que un querySelector('.accordion-morph__x') encuentra NADA en el
+ * paste y el componente muere en silencio (bug real, E2E 2026-08-03 — los
+ * estilos llegaban, los clicks no). Las clases son pintura prefijable; la
+ * estructura viaja por atributos, que el prefijador no toca.
  */
 export const REQUIRED_HOOKS = [
   'data-accordion-morph',
   'data-accordion-morph-row',
   'data-accordion-morph-trigger',
   'data-accordion-morph-panel',
+  'data-accordion-morph-inner',
   'data-accordion-morph-answer',
   'data-accordion-morph-icon',
   'data-accordion-morph-goo',
+  'data-accordion-morph-goo-pill',
+  'data-accordion-morph-goo-panel',
+  'data-accordion-morph-filter',
 ] as const;
 
+/** Solo pintura (documentacion de anatomia CSS) — el JS no las consulta. */
 export const REQUIRED_ANATOMY = [
   '.accordion-morph__goo-pill',
   '.accordion-morph__goo-panel',
@@ -212,7 +223,7 @@ function initContainer(
 ): CleanupFn {
   const { gsap, CustomEase, SplitText, instant } = ctx;
 
-  const svg = container.querySelector<SVGElement>('.accordion-morph__filter-svg');
+  const svg = container.querySelector<SVGElement>('[data-accordion-morph-filter]');
   const filterTemplate = svg?.querySelector('filter') ?? null;
   const defs = svg?.querySelector('defs') ?? null;
   const rowEls = container.querySelectorAll<HTMLElement>('[data-accordion-morph-row]');
@@ -296,6 +307,12 @@ function initContainer(
       mask: 'lines',
       linesClass: 'accordion-morph__answer-line',
       onSplit: (instance: any) => {
+        // Clase generada EN RUNTIME: el prefijador ds- del canal Webflow no
+        // puede verla, asi que se anade la variante prefijada a mano — sin
+        // esto la mascara de linea no aplica sobre el paste.
+        for (const line of instance.lines as Element[]) {
+          line.classList.add('ds-accordion-morph__answer-line');
+        }
         gsap.set(instance.lines, { yPercent: 100, force3D: true });
         r.answerTl = gsap.timeline();
         r.answerTl.to(instance.lines, {
@@ -455,7 +472,7 @@ function initContainer(
   rowEls.forEach((rowEl, i) => {
     const trigger = rowEl.querySelector<HTMLElement>('[data-accordion-morph-trigger]');
     const panel = rowEl.querySelector<HTMLElement>('[data-accordion-morph-panel]');
-    const panelInner = rowEl.querySelector<HTMLElement>('.accordion-morph__panel-inner');
+    const panelInner = rowEl.querySelector<HTMLElement>('[data-accordion-morph-inner]');
     const gooEl = rowEl.querySelector<HTMLElement>('[data-accordion-morph-goo]');
     if (!trigger || !panel || !panelInner || !gooEl) return;
 
@@ -473,8 +490,8 @@ function initContainer(
     const r: Row = {
       el: rowEl,
       gooEl,
-      gooPill: rowEl.querySelector<HTMLElement>('.accordion-morph__goo-pill'),
-      gooPanel: rowEl.querySelector<HTMLElement>('.accordion-morph__goo-panel'),
+      gooPill: rowEl.querySelector<HTMLElement>('[data-accordion-morph-goo-pill]'),
+      gooPanel: rowEl.querySelector<HTMLElement>('[data-accordion-morph-goo-panel]'),
       trigger,
       panel,
       panelInner,

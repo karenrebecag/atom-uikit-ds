@@ -110,7 +110,7 @@
 .accordion-morph__question {
   flex: 1;
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-tight, -0.01em);
   line-height: var(--line-height-sm);
   color: var(--primary-foreground);
