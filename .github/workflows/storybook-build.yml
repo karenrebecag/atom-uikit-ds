@@ -28,6 +28,9 @@ concurrency:
   group: storybook-build-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   storybook-build:
     name: storybook build + preview smoke (static)

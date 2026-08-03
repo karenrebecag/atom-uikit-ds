@@ -21,6 +21,9 @@ concurrency:
   group: visual-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   snapshots:
     name: Storybook image snapshots

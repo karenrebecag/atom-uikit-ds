@@ -18,6 +18,9 @@ concurrency:
   group: component-tests-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   unit:
     name: Vitest P0 components
