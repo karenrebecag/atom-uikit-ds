@@ -9,6 +9,7 @@ on:
       - 'public/r/**'
       - 'registry.json'
       - 'scripts/smoke-publish.mjs'
+      - 'scripts/content-coverage.mjs'
       - '.github/workflows/smoke-publish.yml'
   workflow_dispatch:
     inputs:
@@ -40,6 +41,17 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+
+      # F16d — content coverage board + no-regression (aggregateScore must not drop)
+      - name: Content coverage board
+        run: |
+          node scripts/content-coverage.mjs --check-no-regression | tee coverage-board.txt
+          {
+            echo "## F16 content coverage"
+            echo '```'
+            cat coverage-board.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       # Docs rebuild + registry sync takes minutes after public/r lands on main.
       - name: Wait for docs/registry propagation

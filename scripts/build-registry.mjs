@@ -289,6 +289,7 @@ async function main() {
     ...registry.items.map((i) => `${i.name.replace(/\//g, '--')}.json`),
     'index.json',
     'tokens-nested.json',
+    'content-coverage.json',
   ]);
   let removed = 0;
   for (const file of await fs.readdir(OUT_DIR)) {
@@ -327,6 +328,16 @@ async function main() {
   if (editorialCopied >= 0) {
     console.log(`  [F12c] editorial: ${editorialCopied} markdown file(s) → public/r/docs/`);
   }
+
+  // F16a — content coverage board (reads public/r after items written)
+  try {
+    const { writeContentCoverage, formatCoverageTable } = await import('./content-coverage.mjs');
+    const cov = writeContentCoverage(ROOT);
+    process.stdout.write(formatCoverageTable(cov));
+  } catch (e) {
+    console.warn(`  [WARN] F16 content-coverage: ${e.message}`);
+  }
+
   console.log(`  Output: ${OUT_DIR}/`);
 
   // F5: derive official shadcn channel from canónico (no second source of truth)
