@@ -202,11 +202,104 @@ dist, CSS faltante): arréglalo antes de entregar.
 | `check-contrast` | par de color nuevo sin registrar — agrégalo a `scripts/check-contrast.mjs` |
 | `test:visual` | cambio visual intencional ⇒ `pnpm test:visual:update` + commitea PNGs; no intencional ⇒ tu CSS rompió algo |
 
+## Dónde se ve lo que estás haciendo
+
+Hay tres superficies y **no muestran lo mismo**. Confundirlas es la causa
+número uno de "pero si en mi máquina se veía bien".
+
+| Superficie | Qué refleja | Cuándo mirarla |
+|---|---|---|
+| **Storybook local** (`pnpm dev` en `apps/storybook`, `:6006`) | tu working tree | mientras iteras — es LA superficie de trabajo |
+| **Storybook desplegado** (`atom-uikit-ds-storybook.vercel.app`) | lo que hay en `main` | tras mergear |
+| **La docu** (`uikit.atomchat.io`) | embebe el Storybook **desplegado** por iframe | nunca para iterar: va un deploy por detrás |
+
+### La trampa del token
+
+`apps/storybook/.storybook/preview.ts` importa así:
+
+```ts
+import '../../../packages/tokens/build/css/tokens.css';   // ← BUILD (generado)
+import '../../../packages/css/src/index.css';             // ← SOURCE (fuente)
+```
+
+Consecuencia práctica, y es asimétrica:
+
+- **Editas CSS de un componente** → hot reload al guardar. Fiel al instante.
+- **Editas un token JSON** → Storybook sigue mostrando el valor **viejo** hasta
+  que corras `pnpm --filter @atom-uikit/tokens build`.
+
+Si cambiaste un token y "no se ve el cambio", casi siempre es esto y no un bug.
+Deja el build de tokens en watch, o reconstruye antes de juzgar lo que ves.
+
+**Sí puedes confiar en el Storybook local** una vez reconstruidos los tokens: es
+la misma cadena que consume el desplegado, y es exactamente contra lo que corre
+la regresión visual.
+
+## El registry se commitea
+
+`pnpm build:registry` (paso 3 de la escalera) regenera `public/r/`. **Eso entra
+en el commit.**
+
+Desde el 2026-08-03 hay un gate que lo verifica: `check-registry-drift.mjs`
+compara lo commiteado contra lo que produce el build y pone el PR en rojo si no
+coinciden. Existe porque la capa derivada se generó una vez sin commitearse y
+producción sirvió `_not derived_` durante días sin que nadie lo notara.
+
+Si el emisor cambió, **el emisor también va en el commit**. Publicar la salida
+sin su generador deja `main` sirviendo algo que no puede reproducir.
+
+## Qué cubre CI y qué no
+
+La escalera local cubre casi todo, pero dos gates **solo existen en CI**:
+
+- **Regresión visual** (`visual-regression.yml`) — snapshots de imagen. Desde el
+  2026-08-03 dispara también al tocar `packages/components-react/**`, porque
+  reordenar un span mueve píxeles sin tocar tokens ni CSS.
+- **Build de Storybook** — que las stories compilen y los previews respondan.
+
+Localmente los aproximas con `pnpm test:visual`. Un cambio visual **intencional**
+hará fallar los snapshots: eso es la feature, no un bug. Se regeneran con
+`pnpm test:visual:update` en local, o con el `workflow_dispatch` + `update=true`
+del workflow en CI.
+
+## Qué modelo usar para qué
+
+La infraestructura está diseñada para que un modelo ligero pueda contribuir sin
+romper nada: **los gates verifican corrección mecánica, así que no dependen del
+juicio del agente**. Pero no cubren todo.
+
+**Seguro para un modelo ligero** — hay un gate que lo caza si se equivoca:
+
+- Modo A completo (`meta.agent`, editorial). El tablero de cobertura lo mide.
+- Cambiar el VALOR de un token existente. `validate` + `validate:contrast` +
+  regresión visual lo verifican.
+- Correr la escalera y arreglar lo que un gate reporte por su nombre.
+- Tokenizar CSS: sustituir un literal por la variable que ya existe.
+
+**Necesita criterio, no lo dejes a un modelo ligero** — ningún gate lo cubre:
+
+- **Decidir si algo se ve bien.** No hay test para el gusto. La regresión visual
+  te dice que cambió, no que mejoró.
+- **Decidir si hace falta un token nuevo.** Si para estilizar necesitas
+  hardcodear, el diseño está pidiendo un token — y esa es una decisión de
+  sistema, no un parche local.
+- **Tocar `conformance/*.json`.** Regla 3 del `CLAUDE.md`: el contrato se cambia
+  a la vista, nunca por conveniencia. Es exactamente el atajo que un modelo bajo
+  presión toma para poner algo en verde.
+- Marcar un `HACK:` y decidir su techo de escalado.
+- Cualquier cosa con auth, secretos o el canal Webflow en producción.
+
+**La señal de alarma**: si el agente propone editar un gate, un baseline o una
+excepción de conformance para que su propio cambio pase, para y súbelo de
+modelo. Eso no es un obstáculo técnico, es la pregunta que el gate estaba
+haciendo.
+
 ## Definition of done
 
 - [ ] Escalera completa en verde (6 comandos)
 - [ ] Slug con `metaAgent: full` + `editorial: true` en el tablero
 - [ ] Canal Webflow: emitido o excluido con `declared:`
-- [ ] Story visible en Storybook local
+- [ ] Story visible en Storybook local **con los tokens reconstruidos**
+- [ ] `public/r/` regenerado Y commiteado (el gate de deriva lo verifica)
 - [ ] Tabla de rangos firmada por Karen (si aplica)
 - [ ] Commit `feat(x): …` — un cambio lógico por commit, mensaje = POR QUÉ
