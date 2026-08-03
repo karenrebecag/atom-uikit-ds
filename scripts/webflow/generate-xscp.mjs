@@ -364,7 +364,21 @@ export function generateXscp(html, css, opts = {}) {
   // El head viaja por el MISMO transform ds- que webflow.css (AST, ADR 006):
   // selectores compuestos, custom props y svg matchean las clases prefijadas.
   const rawHead = [keyframes.trim(), ...headChunks].filter(Boolean).join('\n\n');
-  const headCss = rawHead ? prefixWebflowCss(rawHead) : '';
+  let headCss = '';
+  if (rawHead) {
+    try {
+      headCss = prefixWebflowCss(rawHead);
+    } catch {
+      // Navegador (playground de Storybook): lightningcss es binding nativo y
+      // no existe alli. El headCss no depende de la variante — el consumidor
+      // lo copia del artefacto de la docu, que es identico.
+      unsupported.push({
+        prop: 'headCss',
+        selector: '(todas las reglas de head)',
+        reason: 'prefijado ds- no disponible en este entorno — copia el headCss del artefacto de la docu (identico para toda variante)',
+      });
+    }
+  }
   const footerNote =
     'Load Atom foundation/tokens on the site if this component uses CSS variables ' +
     '(prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). ' +

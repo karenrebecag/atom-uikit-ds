@@ -5,6 +5,8 @@ import { initAccordionMorph } from '../../../../packages/animations/src/accordio
 import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
 import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel } from '../utils/StoryPreviewLayout';
 import { IconSettings } from '../utils/SectionIcons';
+import { CopyToWebflow } from '../utils/CopyToWebflow';
+import accordionMorphCss from '../../../../packages/css/src/components/layout/accordion-morph.css?raw';
 
 /**
  * Estandar de stories (Button es el canonico): behavior REAL con el GSAP que
@@ -46,7 +48,9 @@ function MorphDemo({ multiple, animated }: { multiple: boolean; animated: boolea
 
   return (
     <div ref={ref} style={{ width: '100%', maxWidth: 560 }}>
-      <AccordionMorph items={ITEMS} startOpen={0} multiple={multiple} animated={animated} />
+      <CopyToWebflow slug="accordion-morph" css={accordionMorphCss}>
+        <AccordionMorph items={ITEMS} startOpen={0} multiple={multiple} animated={animated} />
+      </CopyToWebflow>
     </div>
   );
 }

@@ -37,8 +37,8 @@
       "usage": "import {\n  Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption,\n} from '@/components/atoms/Table';\n\n<Table>\n  <TableCaption>Invoices</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Customer</TableHead>\n      <TableHead>Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>Ada</TableCell>\n      <TableCell>$120</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T21:17:56.996Z",
-      "sourceCommit": "871b053",
+      "generatedAt": "2026-08-03T21:54:28.995Z",
+      "sourceCommit": "435e4f8",
       "install": {
         "peerDeps": [],
         "cssImports": [
