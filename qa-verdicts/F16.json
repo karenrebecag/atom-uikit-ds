@@ -11,12 +11,12 @@
     {
       "id": "F16-C2",
       "status": "pass-local",
-      "evidence": "batches[0]=meta-agent-1 slugs: burger-icon, image, stepper, toggle-group, typography, whatsapp-button, combobox, field, slider, avatar, avatar-group, skeleton. F16b lote1 content drafted for exactly those slugs."
+      "evidence": "Lotes executed from board queue. Lote1 (meta-agent-1): burger-icon, image, stepper, toggle-group, typography, whatsapp-button, combobox, field, slider, avatar, avatar-group, skeleton. Lote2 (meta-agent-2): spinner, breadcrumb, context-menu, dropdown-menu, nav-link, pagination, sidebar, tabs, alert-dialog, dialog, drawer, marquee."
     },
     {
       "id": "F16-C3",
       "status": "in_progress",
-      "evidence": "After lote1 (Karen signed): meta.agent full 25/49 eligible (51%). Need ≥90% — more lotes required."
+      "evidence": "After lote2 (Karen signed): meta.agent full 37/49 eligible (75.5%). Need ≥90% — one more agent lote (~12 none remaining)."
     },
     {
       "id": "F16-C4",
@@ -26,23 +26,24 @@
     {
       "id": "F16-C5",
       "status": "pass-local",
-      "evidence": "approved-by-karen 2026-08-03 — 'dale' on lote meta-agent-1 + coverage hasReact fix; two local commits, no push until asked."
+      "evidence": "approved-by-karen: lote meta-agent-1 (2026-08-03 'dale'); lote meta-agent-2 (2026-08-03 'aprueba, dale') — navigation/surfaces/indicators. Local commits only; push when asked."
     },
     {
       "id": "F16-C6",
       "status": "pass-local",
-      "evidence": "smoke-publish.yml runs content-coverage.mjs --check-no-regression + GITHUB_STEP_SUMMARY. Live green/red proof after push."
+      "evidence": "smoke-publish.yml runs content-coverage.mjs --check-no-regression + GITHUB_STEP_SUMMARY. Live green/red proof after push. C6-negative (deleted manifest → red) still pending."
     }
   ],
   "verdict": "in_progress",
   "blocking": [
-    "F16b remaining batches to ≥90%",
+    "F16b remaining batch (~12 none) to ≥90%",
     "F16c editorial batches to ≥90%",
-    "CI green link for F16d"
+    "CI green link for F16d + C6-negative sim"
   ],
   "notes": [
     "Eligible agent surface = kind component + hasReact derived from published files (49 after whatsapp-button fix).",
     "Layouts/hooks/foundation excluded with reasons in the board."
   ]
 }
+
 

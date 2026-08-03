@@ -38,9 +38,99 @@
         "Webflow"
       ]
     },
+    "agent": {
+      "configurables": [
+        {
+          "prop": "speed",
+          "type": "number",
+          "default": "75",
+          "min": 20,
+          "max": 200,
+          "step": 5,
+          "unit": "px/s",
+          "what": "CSS-mode scroll speed used to derive animation duration from content width.",
+          "how": "75 for logo bars; 40–60 for dense text; 100–150 for punchy hero strips. Default: 75. Ignored when draggable."
+        },
+        {
+          "prop": "reverse",
+          "type": "boolean",
+          "default": "false",
+          "what": "Reverses travel direction.",
+          "how": "true for opposing dual marquees. Default: false."
+        },
+        {
+          "prop": "pauseOnHover",
+          "type": "boolean",
+          "default": "false",
+          "what": "Pauses CSS animation while hovered.",
+          "how": "true when items are links users must click. Default: false."
+        },
+        {
+          "prop": "fade",
+          "type": "boolean",
+          "default": "true",
+          "what": "Edge fade masks on the track.",
+          "how": "true for polished marketing; false when the track is full-bleed. Default: true."
+        },
+        {
+          "prop": "draggable",
+          "type": "boolean",
+          "default": "false",
+          "what": "Switches to GSAP draggable marquee contract instead of CSS loop.",
+          "how": "true only when the animations package + data-draggable-marquee hooks are installed. Default: false."
+        },
+        {
+          "prop": "duration",
+          "type": "number",
+          "min": 5,
+          "max": 60,
+          "step": 1,
+          "unit": "s",
+          "what": "Draggable-mode loop duration (data-duration).",
+          "how": "15–25 for logos; higher = slower. Source default is 20 when draggable. Only when draggable."
+        },
+        {
+          "prop": "multiplier",
+          "type": "number",
+          "default": "35",
+          "min": 10,
+          "max": 80,
+          "step": 1,
+          "unit": "unit",
+          "what": "Draggable inertia multiplier (data-multiplier).",
+          "how": "30–40 default feel; lower for tighter control. Default: 35. Only when draggable."
+        },
+        {
+          "prop": "sensitivity",
+          "type": "number",
+          "default": "0.01",
+          "min": 0.001,
+          "max": 0.1,
+          "step": 0.001,
+          "unit": "unit",
+          "what": "Draggable drag sensitivity (data-sensitivity).",
+          "how": "0.01 default; raise slightly for touch-first UIs. Default: 0.01. Only when draggable."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "CSS mode duplicates children for seamless loop. Wrap each logo/line in MarqueeItem; use MarqueeSeparator between marks."
+        },
+        {
+          "context": "a11y",
+          "note": "Duplicated list is aria-hidden; keep meaningful text in the first list only. Prefer pauseOnHover when content is interactive."
+        },
+        {
+          "context": "react",
+          "note": "draggable requires the motion package hooks that read data-draggable-marquee attributes — without them the track will not move."
+        }
+      ],
+      "usage": "import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/atoms/Marquee';\n\n<Marquee speed={75} fade pauseOnHover>\n  <MarqueeItem>Acme</MarqueeItem>\n  <MarqueeSeparator />\n  <MarqueeItem>Globex</MarqueeItem>\n</Marquee>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [
           "gsap"

@@ -22,9 +22,50 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "default",
+          "options": [
+            "sm",
+            "default",
+            "lg"
+          ],
+          "what": "Text and hit-target scale of the link.",
+          "how": "default in main nav; sm in dense side lists; lg for marketing nav. Default: default."
+        },
+        {
+          "prop": "active",
+          "type": "boolean",
+          "default": "false",
+          "what": "Marks the link as the current page.",
+          "how": "true only for the matching route (sets aria-current=page). Default: false."
+        },
+        {
+          "prop": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "what": "Visually disables the link.",
+          "how": "true for unavailable destinations; still provide href or omit navigation in the router layer. Default: false."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "children must be a string label; active sets aria-current=page — keep one active link per nav section."
+        },
+        {
+          "context": "react",
+          "note": "Requires href + children. For SPA routers, wrap or pass the framework Link via className/href patterns your app uses."
+        }
+      ],
+      "usage": "import { NavLink } from '@/components/atoms/NavLink';\n\n<NavLink href=\"/docs\" size=\"default\" active>\n  Docs\n</NavLink>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [

@@ -75,9 +75,30 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "open",
+          "type": "boolean",
+          "what": "Controlled open state of the menu.",
+          "how": "Omit for uncontrolled (internal state). Pass open + onOpenChange when a parent must sync (toolbars, command palettes)."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Controlled: open + onOpenChange together. Content side/align live on DropdownMenuContent (bottom/start defaults), not on the root."
+        },
+        {
+          "context": "a11y",
+          "note": "Trigger exposes aria-expanded and aria-haspopup=menu; keep menu items keyboard Enter/Space activatable."
+        }
+      ],
+      "usage": "import {\n  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem,\n} from '@/components/atoms/DropdownMenu';\n\n<DropdownMenu>\n  <DropdownMenuTrigger>Open</DropdownMenuTrigger>\n  <DropdownMenuContent side=\"bottom\" align=\"start\">\n    <DropdownMenuItem onSelect={() => {}}>Edit</DropdownMenuItem>\n    <DropdownMenuItem variant=\"destructive\" onSelect={() => {}}>Delete</DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [

@@ -22,9 +22,35 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "orientation",
+          "type": "select",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ],
+          "what": "Axis of the tab list and arrow-key navigation.",
+          "how": "horizontal for page sections; vertical for settings side-tabs. Default: horizontal."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Uncontrolled: defaultValue. Controlled: value + onValueChange. Each TabsTrigger value must match a TabsContent value."
+        },
+        {
+          "context": "a11y",
+          "note": "Arrow keys move selection along orientation; keep one selected tab and associate panels via matching value strings."
+        }
+      ],
+      "usage": "import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/atoms/Tabs';\n\n<Tabs defaultValue=\"general\" orientation=\"horizontal\">\n  <TabsList>\n    <TabsTrigger value=\"general\">General</TabsTrigger>\n    <TabsTrigger value=\"billing\">Billing</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"general\">Profile settings</TabsContent>\n  <TabsContent value=\"billing\">Invoices</TabsContent>\n</Tabs>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [

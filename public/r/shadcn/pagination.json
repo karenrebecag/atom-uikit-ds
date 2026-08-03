@@ -22,9 +22,23 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Root nav has aria-label=Pagination; only one PaginationLink should set isActive (aria-current=page)."
+        },
+        {
+          "context": "react",
+          "note": "Compose Pagination > PaginationItem > PaginationLink|Previous|Next|Ellipsis. isActive/disabled live on link-level pieces, not the root nav."
+        }
+      ],
+      "usage": "import {\n  Pagination, PaginationItem, PaginationLink,\n  PaginationPrevious, PaginationNext, PaginationEllipsis,\n} from '@/components/atoms/Pagination';\n\n<Pagination>\n  <PaginationItem><PaginationPrevious href=\"?p=1\" disabled /></PaginationItem>\n  <PaginationItem><PaginationLink href=\"?p=1\" isActive>1</PaginationLink></PaginationItem>\n  <PaginationItem><PaginationEllipsis /></PaginationItem>\n  <PaginationItem><PaginationNext href=\"?p=2\" /></PaginationItem>\n</Pagination>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [

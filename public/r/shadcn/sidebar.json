@@ -70,9 +70,35 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "side",
+          "type": "select",
+          "default": "left",
+          "options": [
+            "left",
+            "right"
+          ],
+          "what": "Which edge of the layout the sidebar docks to.",
+          "how": "left for app chrome; right for inspector panels. Default: left."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "Must wrap with SidebarProvider (collapsed state). Compose SidebarHeader/Content/Footer + SidebarItem/Trigger; useSidebar() outside provider throws."
+        },
+        {
+          "context": "layout",
+          "note": "collapsed class is driven by provider state, not a Sidebar prop — toggle via SidebarTrigger or useSidebar().toggle."
+        }
+      ],
+      "usage": "import {\n  SidebarProvider, Sidebar, SidebarHeader, SidebarContent,\n  SidebarFooter, SidebarItem, SidebarTrigger,\n} from '@/components/molecules/sidebar';\n\n<SidebarProvider>\n  <Sidebar side=\"left\">\n    <SidebarHeader>\n      <SidebarTrigger />\n    </SidebarHeader>\n    <SidebarContent>\n      <SidebarItem href=\"/home\">Home</SidebarItem>\n    </SidebarContent>\n    <SidebarFooter>v1</SidebarFooter>\n  </Sidebar>\n</SidebarProvider>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [
           "gsap"

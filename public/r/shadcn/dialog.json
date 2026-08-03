@@ -22,9 +22,30 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "open",
+          "type": "boolean",
+          "what": "Controlled visibility of the modal dialog.",
+          "how": "Omit for uncontrolled Trigger flow. Pass open + onOpenChange for forms opened from tables/rows."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "role=dialog aria-modal with Escape + overlay click to close; body scroll locks while mounted. Always include DialogTitle for accessible name."
+        },
+        {
+          "context": "react",
+          "note": "showCloseButton lives on DialogContent (default true). Prefer Dialog for multi-field tasks; use AlertDialog for binary confirms."
+        }
+      ],
+      "usage": "import {\n  Dialog, DialogTrigger, DialogContent, DialogHeader,\n  DialogTitle, DialogDescription, DialogBody, DialogFooter,\n} from '@/components/atoms/Dialog';\n\n<Dialog>\n  <DialogTrigger><button type=\"button\">Edit</button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Update your public name.</DialogDescription>\n    </DialogHeader>\n    <DialogBody>{/* fields */}</DialogBody>\n    <DialogFooter><button type=\"button\">Save</button></DialogFooter>\n  </DialogContent>\n</Dialog>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [

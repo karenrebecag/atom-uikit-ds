@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T16:58:21.516Z",
+  "generatedAt": "2026-08-03T17:17:27.445Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -16,10 +16,10 @@
     "items": 120,
     "eligibleAgent": 49,
     "metaAgent": {
-      "full": 25,
+      "full": 37,
       "partial": 0,
-      "none": 24,
-      "fullPct": 51
+      "none": 12,
+      "fullPct": 75.5
     },
     "editorial": {
       "yes": 3,
@@ -33,36 +33,13 @@
       "emitted": 35,
       "excluded": 24
     },
-    "aggregateScore": 33
+    "aggregateScore": 37
   },
-  "previousAggregateScore": 33,
+  "previousAggregateScore": 37,
   "deltaAggregateScore": 0,
   "batches": [
     {
       "id": "meta-agent-1",
-      "kind": "meta.agent",
-      "slugs": [
-        "spinner",
-        "breadcrumb",
-        "context-menu",
-        "dropdown-menu",
-        "nav-link",
-        "pagination",
-        "sidebar",
-        "tabs",
-        "alert-dialog",
-        "dialog",
-        "drawer",
-        "marquee"
-      ],
-      "categories": [
-        "indicators",
-        "navigation",
-        "surfaces"
-      ]
-    },
-    {
-      "id": "meta-agent-2",
       "kind": "meta.agent",
       "slugs": [
         "progress-nav",
@@ -456,7 +433,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -465,7 +442,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "divider",
@@ -575,7 +552,7 @@
       "category": "indicators",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -584,7 +561,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "skeleton",
@@ -609,7 +586,7 @@
       "category": "surfaces",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -618,7 +595,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "table",
@@ -660,7 +637,7 @@
       "category": "surfaces",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -669,7 +646,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "avatar-group",
@@ -694,7 +671,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -703,7 +680,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "burger-icon",
@@ -779,7 +756,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -788,7 +765,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "drawer",
@@ -796,7 +773,7 @@
       "category": "surfaces",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -805,7 +782,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "dropdown-menu",
@@ -813,7 +790,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -822,7 +799,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "empty",
@@ -934,7 +911,7 @@
       "category": "surfaces",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -943,7 +920,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 35
+      "contentScore": 75
     },
     {
       "slug": "nav-link",
@@ -951,7 +928,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -960,7 +937,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "pagination",
@@ -968,7 +945,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -977,7 +954,7 @@
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "progress-nav",
@@ -1191,7 +1168,7 @@
       "category": "navigation",
       "hasReact": true,
       "hasCss": true,
-      "metaAgent": "none",
+      "metaAgent": "full",
       "editorial": false,
       "derivedPartials": [],
       "derivedOk": true,
@@ -1200,7 +1177,7 @@
       "motionContract": true,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 30
+      "contentScore": 70
     },
     {
       "slug": "tooltip",

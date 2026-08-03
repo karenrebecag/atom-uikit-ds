@@ -22,9 +22,37 @@
   ],
   "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "size",
+          "type": "select",
+          "default": "m",
+          "options": [
+            "xs",
+            "s",
+            "m",
+            "l"
+          ],
+          "what": "Visual scale of the spinner mark.",
+          "how": "m inside buttons and default UI; xs/s for dense tables; l for page-level loading. Default: m."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "a11y",
+          "note": "Root already exposes role=status and aria-label=Loading; do not nest another live region around it."
+        },
+        {
+          "context": "react",
+          "note": "Decorative only — pair with disabled buttons or skeleton content so users know what is loading."
+        }
+      ],
+      "usage": "import { Spinner } from '@/components/atoms/Spinner';\n\n<Spinner size=\"m\" />"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [

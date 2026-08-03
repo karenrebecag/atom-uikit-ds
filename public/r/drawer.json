@@ -71,9 +71,34 @@
     }
   },
   "meta": {
+    "agent": {
+      "configurables": [
+        {
+          "prop": "open",
+          "type": "boolean",
+          "what": "Controlled visibility of the drawer.",
+          "how": "Omit for uncontrolled Trigger flow. Pass open + onOpenChange for mobile nav or filter panels from app state."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "direction (top|right|bottom|left, default bottom) is on DrawerContent, not the root. Drag handle dismisses past 100px threshold."
+        },
+        {
+          "context": "a11y",
+          "note": "role=dialog aria-modal; Escape and overlay click close. Prefer bottom drawers on mobile, side drawers for desktop filters."
+        },
+        {
+          "context": "layout",
+          "note": "Locks body scroll while open; avoid nesting another scroll-lock modal without testing."
+        }
+      ],
+      "usage": "import {\n  Drawer, DrawerTrigger, DrawerContent, DrawerHeader,\n  DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter,\n} from '@/components/atoms/Drawer';\n\n<Drawer>\n  <DrawerTrigger><button type=\"button\">Filters</button></DrawerTrigger>\n  <DrawerContent direction=\"bottom\">\n    <DrawerHeader>\n      <DrawerTitle>Filters</DrawerTitle>\n      <DrawerDescription>Narrow the list.</DrawerDescription>\n    </DrawerHeader>\n    <DrawerBody>{/* controls */}</DrawerBody>\n    <DrawerFooter><button type=\"button\">Apply</button></DrawerFooter>\n  </DrawerContent>\n</Drawer>"
+    },
     "derived": {
-      "generatedAt": "2026-08-03T16:50:08.749Z",
-      "sourceCommit": "c7ff145",
+      "generatedAt": "2026-08-03T17:17:27.240Z",
+      "sourceCommit": "5692459",
       "install": {
         "peerDeps": [],
         "cssImports": [
