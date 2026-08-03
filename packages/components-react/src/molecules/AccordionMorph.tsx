@@ -73,7 +73,7 @@ export function AccordionMorph({
     >
       {/* Template del filtro goo: el behavior clona uno POR FILA para que
           transiciones concurrentes no compartan rampa de blur. */}
-      <svg className="accordion-morph__filter-svg" width="0" height="0" aria-hidden="true" focusable="false">
+      <svg className="accordion-morph__filter-svg" data-accordion-morph-filter="" width="0" height="0" aria-hidden="true" focusable="false">
         <defs>
           <filter
             id={`${uid}-goo`}
@@ -102,8 +102,8 @@ export function AccordionMorph({
           return (
             <div className="accordion-morph__row" data-accordion-morph-row key={triggerId}>
               <div className="accordion-morph__goo" data-accordion-morph-goo aria-hidden="true">
-                <div className="accordion-morph__goo-pill" />
-                <div className="accordion-morph__goo-panel" />
+                <div className="accordion-morph__goo-pill" data-accordion-morph-goo-pill="" />
+                <div className="accordion-morph__goo-panel" data-accordion-morph-goo-panel="" />
               </div>
               <button
                 type="button"
@@ -125,7 +125,7 @@ export function AccordionMorph({
                 aria-labelledby={triggerId}
                 aria-hidden={!open}
               >
-                <div className="accordion-morph__panel-inner">
+                <div className="accordion-morph__panel-inner" data-accordion-morph-inner="">
                   <p className="accordion-morph__answer" data-accordion-morph-answer>
                     {item.answer}
                   </p>

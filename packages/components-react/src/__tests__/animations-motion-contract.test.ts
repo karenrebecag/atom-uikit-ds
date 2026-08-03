@@ -575,8 +575,8 @@ describe('accordion-morph (FUNCIONAL: disclosure; el goo es decoracion encima)',
     return `
       <div class="accordion-morph__row" data-accordion-morph-row>
         <div class="accordion-morph__goo" data-accordion-morph-goo aria-hidden="true">
-          <div class="accordion-morph__goo-pill"></div>
-          <div class="accordion-morph__goo-panel"></div>
+          <div class="accordion-morph__goo-pill" data-accordion-morph-goo-pill></div>
+          <div class="accordion-morph__goo-panel" data-accordion-morph-goo-panel></div>
         </div>
         <button class="accordion-morph__trigger" data-accordion-morph-trigger
                 id="am-t-${i}" aria-controls="am-p-${i}" aria-expanded="false">
@@ -585,7 +585,7 @@ describe('accordion-morph (FUNCIONAL: disclosure; el goo es decoracion encima)',
         </button>
         <div class="accordion-morph__panel" data-accordion-morph-panel id="am-p-${i}"
              role="region" aria-labelledby="am-t-${i}" aria-hidden="true">
-          <div class="accordion-morph__panel-inner">
+          <div class="accordion-morph__panel-inner" data-accordion-morph-inner>
             <p class="accordion-morph__answer" data-accordion-morph-answer>Respuesta ${i + 1}</p>
           </div>
         </div>
@@ -595,7 +595,7 @@ describe('accordion-morph (FUNCIONAL: disclosure; el goo es decoracion encima)',
   function mountMorph(attrs = '', rowCount = 2) {
     document.body.innerHTML = `
       <div class="accordion-morph" data-accordion-morph ${attrs}>
-        <svg class="accordion-morph__filter-svg" width="0" height="0" aria-hidden="true">
+        <svg class="accordion-morph__filter-svg" data-accordion-morph-filter width="0" height="0" aria-hidden="true">
           <defs>
             <filter id="am-goo-template">
               <feGaussianBlur in="SourceGraphic" stdDeviation="0" />

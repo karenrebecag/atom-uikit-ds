@@ -96,8 +96,8 @@
       "usage": "import {\n  AlertDialog, AlertDialogTrigger, AlertDialogContent,\n  AlertDialogHeader, AlertDialogTitle, AlertDialogDescription,\n  AlertDialogFooter, AlertDialogCancel, AlertDialogAction,\n} from '@/components/atoms/AlertDialog';\n\n<AlertDialog>\n  <AlertDialogTrigger><button type=\"button\">Delete</button></AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Delete project?</AlertDialogTitle>\n      <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>\n    </AlertDialogHeader>\n    <AlertDialogFooter>\n      <AlertDialogCancel />\n      <AlertDialogAction variant=\"destructive-primary\" onAction={() => {}} />\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T20:53:27.421Z",
-      "sourceCommit": "1e5298d",
+      "generatedAt": "2026-08-03T21:17:56.996Z",
+      "sourceCommit": "871b053",
       "install": {
         "peerDeps": [],
         "cssImports": [

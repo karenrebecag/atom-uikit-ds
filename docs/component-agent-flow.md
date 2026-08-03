@@ -147,6 +147,15 @@ Notas que evitan los errores ya vividos:
 - Motion: el behavior va en `packages/animations/src/` exportando
   `init*(): CleanupFn` + `REQUIRED_HOOKS`, consumiendo tokens de motion. El
   componente solo emite atributos `data-*`. Nada de GSAP inline en el .tsx.
+- **El behavior consulta SOLO `data-*`, jamas clases** (regla dura, E2E
+  2026-08-03): el canal Webflow prefija toda clase con `ds-`, asi que un
+  `querySelector('.x__inner')` encuentra NADA en el paste y el componente
+  muere en silencio — los estilos llegan, los clicks no. Aplica tambien a
+  clases GENERADAS en runtime (`linesClass` de SplitText y similares): el
+  prefijador no puede verlas, el modulo debe anadir la variante `ds-` a mano.
+  `REQUIRED_ANATOMY` queda solo como documentacion de pintura. Deuda latente
+  conocida: `menu-button` (`.burger-icon__line`) y `marquee-draggable`
+  (`.marquee__item`) consultan clases — migrar al tocarlos.
 
 ---
 
@@ -229,7 +238,39 @@ pertenece al organismo y no se puede repartir entre átomos.
 
 Documenta la excepción en el módulo con un comentario que diga POR QUÉ, no qué.
 
-### D4. Antes de entregar
+### D4. Donde se valida cada cosa (behaviors GSAP)
+
+La story de un behavior GSAP corre en **modo instantaneo** (Storybook no carga
+GSAP; el camino sin-motion del behavior es DOM directo). Eso valida contrato,
+anatomia, disclosure y snapshot — **no** valida el motion. La coreografia real
+solo se ve donde hay GSAP de verdad:
+
+| Que | Donde se valida |
+|---|---|
+| contrato data-*, aria, teclado, estados | tests de `animations-motion-contract` |
+| anatomia + estatico (ambos temas) | story + regresion visual |
+| la animacion real (goo, spring, reveal) | **E2E en ds-lab**: paste desde la docu + staging |
+
+No reportes "la animacion funciona" desde la story: ahi no existe.
+
+### D5. Adaptar de fuente externa: el mapeo cercano tiene dos trampas
+
+Al adaptar un componente ajeno con la politica valor-mas-cercano:
+
+1. **Tipografia — el mapeo AMPLIFICA contrastes.** La escala Major Third no
+   tiene 14 ni 15: un original con question 15px / answer 14px (1px de
+   diferencia) mapea a base 16 / sm 12.8 — 3.2px. La jerarquia resultante es
+   OTRA, no una aproximacion. Tras mapear, revisar la jerarquia completa en la
+   story (pesos incluidos) como decision propia, no como consecuencia.
+2. **Dark mode no es automatico en todos los canales.** Usar semanticos
+   (`--primary`, `--card`) da dark gratis en React/Storybook/docs. En Webflow
+   `[data-theme=dark]` SI viaja en `/v1/tokens.css`, pero nadie lo activa:
+   se enciende poniendo el atributo `data-theme="dark"` en la seccion o el
+   body (panel Settings → Custom attributes). `section-theme` (W6a sesion 2)
+   lo automatizara al cruzar secciones. Hasta entonces: documentarlo en el
+   gotcha webflow del componente, no asumirlo.
+
+### D6. Antes de entregar
 
 Además de la escalera completa:
 

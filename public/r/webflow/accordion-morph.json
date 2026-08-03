@@ -11,12 +11,12 @@
           "tag": "div",
           "classes": [],
           "children": [],
-          "v": "<svg class=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"accordion-morph-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
+          "v": "<svg class=\"accordion-morph__filter-svg\" data-accordion-morph-filter=\"\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"accordion-morph-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
           "data": {
             "embed": {
               "type": "html",
               "meta": {
-                "html": "<svg class=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"accordion-morph-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
+                "html": "<svg class=\"accordion-morph__filter-svg\" data-accordion-morph-filter=\"\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\"><defs><filter id=\"accordion-morph-goo\" color-interpolation-filters=\"sRGB\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\"></feGaussianBlur><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\" result=\"goo\"></feColorMatrix></filter></defs></svg>",
                 "div": false,
                 "iframe": false,
                 "script": false,
@@ -52,7 +52,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-goo-pill",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -76,7 +81,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-goo-panel",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -317,7 +327,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-inner",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -417,7 +432,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-goo-pill",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -441,7 +461,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-goo-panel",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -682,7 +707,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-inner",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -782,7 +812,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-goo-pill",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -806,7 +841,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-goo-panel",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1047,7 +1087,12 @@
             "attr": {
               "id": ""
             },
-            "xattr": [],
+            "xattr": [
+              {
+                "name": "data-accordion-morph-inner",
+                "value": ""
+              }
+            ],
             "search": {
               "exclude": false
             },
@@ -1324,7 +1369,7 @@
           "name": "ds-accordion-morph__question",
           "namespace": "",
           "comb": "",
-          "styleLess": "flex: 1; font-size: var(--font-size-base); font-weight: var(--font-weight-regular); letter-spacing: var(--letter-spacing-tight, -0.01em); line-height: var(--line-height-sm); color: var(--primary-foreground);",
+          "styleLess": "flex: 1; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); letter-spacing: var(--letter-spacing-tight, -0.01em); line-height: var(--line-height-sm); color: var(--primary-foreground);",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -1456,9 +1501,13 @@
         "data-accordion-morph-row",
         "data-accordion-morph-trigger",
         "data-accordion-morph-panel",
+        "data-accordion-morph-inner",
         "data-accordion-morph-answer",
         "data-accordion-morph-icon",
-        "data-accordion-morph-goo"
+        "data-accordion-morph-goo",
+        "data-accordion-morph-goo-pill",
+        "data-accordion-morph-goo-panel",
+        "data-accordion-morph-filter"
       ],
       "anatomy": [
         ".accordion-morph__goo-pill",
