@@ -31,12 +31,19 @@ export const Default: Story = {
 
     const [mode, setMode] = useState<Mode>('single');
     const [disabled, setDisabled] = useState<Disabled>('none');
-    const [preselected, setPreselected] = useState(false);
+    const [preselected, setPreselected] = useState(true);
+
+    // Fecha ANCLADA, no new Date(): el componente marca "hoy" con su propio
+    // reloj, asi que un baseline sobre el mes corriente caduca cada dia (el
+    // ring se mueve) y cada mes (el header cambia). Los linux del 29-jul
+    // fallaron el 1-ago exactamente por esto. Mes futuro fijo => cero "hoy"
+    // visible, snapshot estable para siempre.
+    const PINNED = new Date(2027, 2, 10);
 
     // Single mode state
-    const [date, setDate] = useState<Date | null>(null);
+    const [date, setDate] = useState<Date | null>(PINNED);
     // Range mode state
-    const [from, setFrom] = useState<Date | null>(null);
+    const [from, setFrom] = useState<Date | null>(PINNED);
     const [to, setTo] = useState<Date | null>(null);
 
     const { animateTransition, transitionStyle } = useTransition();
@@ -95,11 +102,11 @@ export const Default: Story = {
               <div style={sectionLabelRow}><IconSettings />Propiedades</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 <div style={switchRow}>
-                  <span style={switchLabel}>Preseleccionado (hoy)</span>
+                  <span style={switchLabel}>Preseleccionado</span>
                   <Toggle animated checked={preselected} onChange={(v) => {
                     animateTransition(() => {
                       setPreselected(v);
-                      if (v) { setDate(new Date()); setFrom(new Date()); setTo(null); }
+                      if (v) { setDate(PINNED); setFrom(PINNED); setTo(null); }
                       else { setDate(null); setFrom(null); setTo(null); }
                     });
                   }} />
