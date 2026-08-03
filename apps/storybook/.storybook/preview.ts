@@ -4,6 +4,21 @@ import '../../../packages/tokens/build/css/tokens.css';
 import '../../../packages/tokens/build/css/dark.css';
 import '../../../packages/css/src/index.css';
 
+// GSAP real en el preview (estandar de stories 2026-08-03): los behaviors del
+// DS leen globalThis.gsap/CustomEase/SplitText, asi que las stories muestran
+// el motion VERDADERO — antes el toggle "animated" era un placebo (init hacia
+// warn+noop sin gsap). Los snapshots siguen deterministas porque el
+// test-runner emula prefers-reduced-motion y todos los behaviors degradan a
+// su camino instantaneo (contrato verificado en animations-motion-contract).
+import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(CustomEase, SplitText);
+(globalThis as Record<string, unknown>).gsap = gsap;
+(globalThis as Record<string, unknown>).CustomEase = CustomEase;
+(globalThis as Record<string, unknown>).SplitText = SplitText;
+
 const preview: Preview = {
   globalTypes: {
     theme: {

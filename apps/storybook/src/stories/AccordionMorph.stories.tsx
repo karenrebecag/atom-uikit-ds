@@ -7,16 +7,13 @@ import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel } from '../
 import { IconSettings } from '../utils/SectionIcons';
 
 /**
- * La story ejecuta el behavior REAL contra la anatomia REAL del componente.
+ * Estandar de stories (Button es el canonico): behavior REAL con el GSAP que
+ * carga preview.ts, toggle de animacion, y el theme lo pone el visor
+ * (decorator global + &globals=theme:X desde la docu).
  *
- * En Storybook no hay GSAP, asi que se monta en modo instantaneo
- * (data-motion-exempt via animated=false): el camino sin-motion del behavior
- * es DOM directo y no toca gsap — el disclosure funciona de verdad al click y
- * el snapshot es determinista. El goo (blur+threshold) exige gsap+CustomEase
- * y navegador real: se valida en el E2E de ds-lab, no aqui.
- *
- * El stub de gsap solo satisface el guard del init; el camino instantaneo
- * jamas lo invoca.
+ * El goo se ve DE VERDAD aqui. Los baselines visuales no se mueven: el
+ * test-runner emula prefers-reduced-motion y el behavior degrada a su camino
+ * instantaneo (disclosure funcional, cero filtro).
  */
 
 const ITEMS = [
@@ -37,32 +34,19 @@ const ITEMS = [
   },
 ];
 
-function installGsapStub(): () => void {
-  const host = globalThis as typeof globalThis & { gsap?: unknown };
-  const previous = host.gsap;
-  host.gsap = { set: () => {}, to: () => ({ kill: () => {} }), timeline: () => ({}), killTweensOf: () => {} };
-  return () => {
-    host.gsap = previous;
-  };
-}
-
-function MorphDemo({ multiple }: { multiple: boolean }) {
+function MorphDemo({ multiple, animated }: { multiple: boolean; animated: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
-    const restore = installGsapStub();
     const cleanup = initAccordionMorph({ scope: root });
-    return () => {
-      cleanup();
-      restore();
-    };
-  }, [multiple]);
+    return cleanup;
+  }, [multiple, animated]);
 
   return (
     <div ref={ref} style={{ width: '100%', maxWidth: 560 }}>
-      <AccordionMorph items={ITEMS} startOpen={0} multiple={multiple} animated={false} />
+      <AccordionMorph items={ITEMS} startOpen={0} multiple={multiple} animated={animated} />
     </div>
   );
 }
@@ -77,6 +61,7 @@ type Story = StoryObj;
 export const Default: Story = {
   render: function Render() {
     const [multiple, setMultiple] = useState(false);
+    const [animated, setAnimated] = useState(true);
 
     return (
       <StoryPreviewLayout
@@ -85,13 +70,17 @@ export const Default: Story = {
           <div>
             <div style={sectionLabelRow}><IconSettings />Propiedades</div>
             <div style={switchRow}>
+              <span style={switchLabel}>Animado (goo)</span>
+              <Toggle animated checked={animated} onChange={setAnimated} />
+            </div>
+            <div style={switchRow}>
               <span style={switchLabel}>Varias abiertas</span>
               <Toggle animated checked={multiple} onChange={setMultiple} />
             </div>
           </div>
         }
       >
-        <MorphDemo key={String(multiple)} multiple={multiple} />
+        <MorphDemo key={`${animated}-${multiple}`} multiple={multiple} animated={animated} />
       </StoryPreviewLayout>
     );
   },
