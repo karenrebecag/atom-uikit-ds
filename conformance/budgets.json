@@ -6,9 +6,9 @@
     "packages/css/dist/atom.css": { "rawKb": 185, "gzipKb": 24 },
     "packages/css/dist/embed.css": { "rawKb": 205, "gzipKb": 26 },
     "packages/animations/dist/atom-animations.js": {
-      "rawKb": 60,
-      "gzipKb": 16,
-      "$comment": "W6a: +scroll-reveal module (initScrollReveal). Was 49/13 pre-W6a."
+      "rawKb": 78,
+      "gzipKb": 20,
+      "$comment": "accordion-morph (goo, el modulo mas grande del bundle): 74.8/18.7 medidos. Was 60/16 (W6a scroll-reveal), 49/13 pre-W6a."
     },
     "packages/css/dist/webflow.css": { "rawKb": 22, "gzipKb": 3 }
   },

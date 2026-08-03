@@ -27,12 +27,14 @@ const SLUG_TO_MODULE = {
   'progress-nav': 'progress-nav.js',
   toc: 'table-of-contents.js',
   'video-player': 'video-player.js',
+  'accordion-morph': 'accordion-morph.js',
   // text-reveal is attribute-driven on headings, not a component slug
   // nav-autohide similarly layout-level
 };
 
 /** Modules that must export contracts (F10-C5) — all behavior files */
 export const ALL_BEHAVIOR_MODULES = [
+  'accordion-morph.js',
   'button-hover.js',
   'marquee-draggable.js',
   'menu-button.js',

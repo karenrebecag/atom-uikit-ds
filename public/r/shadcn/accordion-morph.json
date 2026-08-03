@@ -1,0 +1,217 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-morph",
+  "type": "registry:component",
+  "title": "Accordion Morph",
+  "description": "FAQ accordion where each answer pours out of its question pill like liquid (SVG goo filter), settling into a clean rounded panel. Pair with the accordion-morph-animation hook.",
+  "categories": [
+    "layout"
+  ],
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "components/molecules/AccordionMorph.tsx",
+      "type": "registry:component",
+      "content": "import { useId, type ReactNode } from 'react';\n\nfunction cn(...classes: (string | false | undefined | null)[]) {\n  return classes.filter(Boolean).join(' ');\n}\n\n/**\n * Morphing accordion — anatomia completa del organismo goo (filtro SVG, capa\n * liquida, pildoras y paneles con fondo propio). Este componente NO anima:\n * emite el contrato data-* y la interactividad la pone\n * `initAccordionMorph()` de @atom-uikit/animations (patron del DS: el\n * componente es tonto, el behavior orquesta por data-attrs).\n *\n * D5 (defaults por canal): en codigo el motion es prop editable — `animated`\n * default true; false emite data-motion-exempt y el behavior abre/cierra\n * instantaneo (disclosure funcional intacto, cero goo).\n */\n\nexport type AccordionMorphItem = {\n  question: string;\n  answer: ReactNode;\n};\n\n// Sin JSDoc por prop a proposito: what/how/rangos viven en meta.agent del\n// registry (SSOT) y el extractor de props no soporta comentarios inline.\nexport type AccordionMorphProps = {\n  items: AccordionMorphItem[];\n  multiple?: boolean;\n  startOpen?: number;\n  gooStrength?: number;\n  animated?: boolean;\n  idBase?: string;\n  className?: string;\n};\n\nconst PlusIcon = () => (\n  <svg\n    className=\"accordion-morph__icon\"\n    data-accordion-morph-icon\n    viewBox=\"0 0 16 16\"\n    fill=\"none\"\n    aria-hidden=\"true\"\n  >\n    <path d=\"M8 1V15\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" />\n    <path d=\"M1 8H15\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" />\n  </svg>\n);\n\nexport function AccordionMorph({\n  items,\n  multiple = false,\n  startOpen = -1,\n  gooStrength = 9,\n  animated = true,\n  idBase,\n  className,\n}: AccordionMorphProps) {\n  // useId depende del ORDEN GLOBAL de renders del proceso: en el emitter del\n  // registry eso hizo el artefacto no-reproducible entre maquinas (el gate de\n  // deriva lo cazo en CI). idBase explicito = ids deterministas para artefactos\n  // y SSR; useId queda como fallback comodo para apps React.\n  const reactId = useId();\n  const uid = idBase ?? reactId;\n\n  return (\n    <div\n      className={cn('accordion-morph', className)}\n      data-accordion-morph\n      data-accordion-morph-multiple={multiple ? 'true' : undefined}\n      data-accordion-morph-start-open={startOpen >= 0 ? String(startOpen) : undefined}\n      data-accordion-morph-goo-strength={String(gooStrength)}\n      data-motion-exempt={animated ? undefined : ''}\n    >\n      {/* Template del filtro goo: el behavior clona uno POR FILA para que\n          transiciones concurrentes no compartan rampa de blur. */}\n      <svg className=\"accordion-morph__filter-svg\" width=\"0\" height=\"0\" aria-hidden=\"true\" focusable=\"false\">\n        <defs>\n          <filter\n            id={`${uid}-goo`}\n            colorInterpolationFilters=\"sRGB\"\n            x=\"-50%\"\n            y=\"-50%\"\n            width=\"200%\"\n            height=\"200%\"\n          >\n            <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"0\" result=\"blur\" />\n            <feColorMatrix\n              in=\"blur\"\n              mode=\"matrix\"\n              values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10\"\n              result=\"goo\"\n            />\n          </filter>\n        </defs>\n      </svg>\n\n      <div className=\"accordion-morph__list\">\n        {items.map((item, i) => {\n          const triggerId = `${uid}-trigger-${i}`;\n          const panelId = `${uid}-panel-${i}`;\n          const open = startOpen === i;\n          return (\n            <div className=\"accordion-morph__row\" data-accordion-morph-row key={triggerId}>\n              <div className=\"accordion-morph__goo\" data-accordion-morph-goo aria-hidden=\"true\">\n                <div className=\"accordion-morph__goo-pill\" />\n                <div className=\"accordion-morph__goo-panel\" />\n              </div>\n              <button\n                type=\"button\"\n                className=\"accordion-morph__trigger\"\n                data-accordion-morph-trigger\n                id={triggerId}\n                aria-controls={panelId}\n                aria-expanded={open}\n              >\n                <span className=\"accordion-morph__index\">{String(i + 1).padStart(2, '0')}</span>\n                <span className=\"accordion-morph__question\">{item.question}</span>\n                <PlusIcon />\n              </button>\n              <div\n                className=\"accordion-morph__panel\"\n                data-accordion-morph-panel\n                id={panelId}\n                role=\"region\"\n                aria-labelledby={triggerId}\n                aria-hidden={!open}\n              >\n                <div className=\"accordion-morph__panel-inner\">\n                  <p className=\"accordion-morph__answer\" data-accordion-morph-answer>\n                    {item.answer}\n                  </p>\n                </div>\n              </div>\n            </div>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "styles/components/accordion-morph.css",
+      "type": "registry:file",
+      "target": "styles/atom-uikit/accordion-morph.css",
+      "content": "/* -------------------------------------------------------------------------\n   Accordion Morph\n\n   FAQ accordion donde la respuesta \"se vierte\" de la pildora como liquido\n   (filtro goo). CSS es dueno del estado ESTATICO: pildora y panel pintan su\n   propio fondo (por eso no hay twins \"crisp\" — ver accordion-morph.ts). El\n   motion vive integro en packages/animations/src/accordion-morph.ts.\n\n   La capa goo arranca invisible: solo el behavior la enciende. Sin JS (o con\n   reduced-motion) el componente es un disclosure normal y completo.\n\n   Colores: superficie = primary (invierte sola en dark). Jerarquia del texto\n   sobre la pildora via opacity tokens, no colores nuevos.\n\n   Parts: .accordion-morph, __list, __row, __goo, __goo-pill, __goo-panel,\n          __trigger, __index, __question, __icon, __panel, __panel-inner,\n          __answer, __answer-line, __filter-svg\n   ------------------------------------------------------------------------- */\n\n/* Sin max-width propio: el ancho lo decide el layout que lo contenga\n   (structure-only) — el 560px del original era el marco de su demo. */\n.accordion-morph {\n  position: relative;\n  width: 100%;\n}\n\n.accordion-morph__filter-svg {\n  position: absolute;\n  width: 0;\n  height: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n\n.accordion-morph__list {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2);\n}\n\n.accordion-morph__row {\n  position: relative;\n}\n\n/* Capa filtrada: SOLO formas solidas — el filtro goo destruye el texto.\n   Invisible hasta que el behavior la enciende (estado estatico sin halos). */\n.accordion-morph__goo {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  opacity: 0;\n  pointer-events: none;\n}\n\n.accordion-morph__goo-pill,\n.accordion-morph__goo-panel {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  background-color: var(--primary);\n  will-change: transform;\n}\n\n/* Radio constante — NUNCA se anima; el behavior lo aparca con inset detras\n   de la capsula para que sus esquinas no asomen en reposo. */\n.accordion-morph__goo-panel {\n  border-radius: var(--radius-xl);\n}\n\n/* La pildora pinta su propio fondo: elemento real y opaco ENCIMA del filtro,\n   asi el wobble del blur queda tapado salvo en el cuello liquido. */\n.accordion-morph__trigger {\n  position: relative;\n  z-index: 2;\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-3);\n  width: 100%;\n  min-height: var(--spacing-14);\n  padding: var(--spacing-4) var(--spacing-5);\n  background-color: var(--primary);\n  border: none;\n  border-radius: var(--radius-full);\n  cursor: pointer;\n  text-align: left;\n  color: var(--primary-foreground);\n  font-family: inherit;\n  box-sizing: border-box;\n}\n\n.accordion-morph__trigger:hover {\n  background-color: var(--primary-hover);\n}\n\n.accordion-morph__trigger:focus-visible {\n  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);\n  outline-offset: 2px;\n}\n\n.accordion-morph__index {\n  flex-shrink: 0;\n  min-width: var(--spacing-6);\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  color: var(--primary-foreground);\n  opacity: var(--opacity-50);\n}\n\n.accordion-morph__question {\n  flex: 1;\n  font-size: var(--font-size-base);\n  font-weight: var(--font-weight-regular);\n  letter-spacing: var(--letter-spacing-tight, -0.01em);\n  line-height: var(--line-height-sm);\n  color: var(--primary-foreground);\n}\n\n.accordion-morph__icon {\n  width: var(--spacing-4);\n  height: var(--spacing-4);\n  flex-shrink: 0;\n  color: var(--primary-foreground);\n  opacity: var(--opacity-80);\n  transform-origin: 50% 50%;\n  will-change: transform;\n}\n\n.accordion-morph__panel {\n  position: relative;\n  z-index: 1;\n  height: 0;\n  overflow: hidden;\n  will-change: height;\n}\n\n/* El panel tambien pinta su fondo (mismo rol crisp que la pildora). El\n   margin-top ES el gap que el goo puentea — el behavior lo lee de\n   --spacing-3 en runtime: cambiar el token mueve ambos a la vez. */\n.accordion-morph__panel-inner {\n  margin-top: var(--spacing-3);\n  padding: var(--spacing-5);\n  background-color: var(--primary);\n  border-radius: var(--radius-xl);\n}\n\n.accordion-morph__answer {\n  margin: 0;\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-regular);\n  line-height: var(--line-height-lg);\n  letter-spacing: var(--letter-spacing-tight, -0.01em);\n  color: var(--primary-foreground);\n  opacity: var(--opacity-80);\n}\n\n/* Mascara de linea para el reveal de SplitText: el clip vertical corta el\n   texto que sube; el respiro em evita decapitar descendentes. */\n.accordion-morph__answer-line {\n  overflow-x: visible;\n  overflow-y: clip;\n  padding-bottom: 0.18em;\n  margin-bottom: -0.18em;\n}\n\n@media (max-width: 767px) {\n  .accordion-morph__trigger {\n    padding: var(--spacing-3) var(--spacing-4);\n    gap: var(--spacing-3);\n  }\n\n  .accordion-morph__panel-inner {\n    padding: var(--spacing-4);\n  }\n}\n\n@media (max-width: 479px) {\n  .accordion-morph__index {\n    display: none;\n  }\n}\n"
+    }
+  ],
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "meta": {
+    "webflow": {
+      "previewProps": {
+        "idBase": "accordion-morph",
+        "items": [
+          {
+            "question": "Que hace diferentes a los marcos?",
+            "answer": "Cada marco se lamina en carbono crudo en un molde propio y se termina a mano antes de encordar."
+          },
+          {
+            "question": "Fabrican para zurdos?",
+            "answer": "Todo grip y balance se espeja bajo pedido sin costo extra."
+          },
+          {
+            "question": "Cual es la garantia por fisuras?",
+            "answer": "Dos anos contra fallo estructural en juego normal, sin letra chica."
+          }
+        ],
+        "startOpen": 0
+      }
+    },
+    "agent": {
+      "configurables": [
+        {
+          "prop": "gooStrength",
+          "type": "number",
+          "default": 9,
+          "min": 4,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "what": "stdDeviation del blur goo — que tan espeso se ve el liquido al verter.",
+          "how": "9 es el balance firma; 4-6 para un vertido sutil en secciones densas; 12-16 solo en heros con una sola instancia (el blur alto cuesta GPU por fila)."
+        },
+        {
+          "prop": "multiple",
+          "type": "boolean",
+          "default": false,
+          "what": "Permite varias respuestas abiertas a la vez.",
+          "how": "false para FAQs de marketing (foco en una respuesta); true solo en documentacion de referencia donde el lector compara respuestas."
+        },
+        {
+          "prop": "startOpen",
+          "type": "number",
+          "default": -1,
+          "min": -1,
+          "max": 20,
+          "step": 1,
+          "unit": "index",
+          "what": "Indice de la fila abierta al montar (-1 = ninguna).",
+          "how": "0 cuando la primera pregunta ES el mensaje (pricing, objecion principal); -1 en FAQs largas para no empujar el fold."
+        },
+        {
+          "prop": "animated",
+          "type": "boolean",
+          "default": true,
+          "what": "D5 canal codigo: false emite data-motion-exempt — disclosure instantaneo sin goo.",
+          "how": "true salvo listas dentro de dashboards o tablas (el goo es protagonista, no acompanante); reduced-motion ya degrada solo, no uses false para eso."
+        }
+      ],
+      "gotchas": [
+        {
+          "context": "react",
+          "note": "El componente NO anima solo: emparejar con initAccordionMorph() de @atom-uikit/animations (gsap + CustomEase + SplitText globales). Sin el behavior es un disclosure estatico cerrado."
+        },
+        {
+          "context": "css-modules",
+          "note": "Pildora y panel pintan su fondo con --primary y el texto usa --primary-foreground + opacity: en dark el bloque invierte solo. No sobreescribir esos fondos: son el rol crisp que tapa el wobble del filtro."
+        },
+        {
+          "context": "a11y",
+          "note": "FUNCIONAL: reduced-motion y data-motion-exempt abren/cierran instantaneo via DOM directo — el disclosure jamas depende de gsap. aria-expanded/aria-hidden/inert los escribe el behavior."
+        },
+        {
+          "context": "layout",
+          "note": "El filtro SVG viaja como HtmlEmbed en el paste. El goo exige gsap+CustomEase en el footer del site; SplitText es opcional (sin el, la respuesta hace fade en vez de reveal por lineas)."
+        }
+      ],
+      "usage": "<AccordionMorph items={[{ question: '...', answer: '...' }]} startOpen={0} />\n// + una vez por pagina:\nuseEffect(() => initAccordionMorph(), []);"
+    },
+    "derived": {
+      "generatedAt": "2026-08-03T20:53:27.421Z",
+      "sourceCommit": "1e5298d",
+      "install": {
+        "peerDeps": [
+          "gsap"
+        ],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"accordion-morph\">\n  <span class=\"accordion-morph__answer\"></span>\n  <span class=\"accordion-morph__answer-line\"></span>\n  <span class=\"accordion-morph__filter-svg\"></span>\n  <span class=\"accordion-morph__goo\"></span>\n  <span class=\"accordion-morph__goo-panel\"></span>\n  <span class=\"accordion-morph__goo-pill\"></span>\n  <span class=\"accordion-morph__icon\"></span>\n  <span class=\"accordion-morph__index\"></span>\n  <span class=\"accordion-morph__list\"></span>\n  <span class=\"accordion-morph__panel\"></span>\n  <span class=\"accordion-morph__panel-inner\"></span>\n  <span class=\"accordion-morph__question\"></span>\n  <span class=\"accordion-morph__row\"></span>\n  <span class=\"accordion-morph__trigger\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "accordion-morph",
+            "purpose": "root"
+          },
+          {
+            "class": "accordion-morph__answer",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__answer-line",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__filter-svg",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__goo",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__goo-panel",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__goo-pill",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__icon",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__index",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__list",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__panel",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__panel-inner",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__question",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__row",
+            "purpose": "element"
+          },
+          {
+            "class": "accordion-morph__trigger",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#0a0a0a",
+            "tokenPath": "primary"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#fafafa",
+            "tokenPath": "primary.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "hover-bg",
+            "hex": "#262626",
+            "tokenPath": "primary.hover"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Accordion Morph\n\n   FAQ accordion donde la respuesta \"se vierte\" de la pildora como liquido\n   (filtro goo). CSS es dueno del estado ESTATICO: pildora y panel pintan su\n   propio fondo (por eso no hay twins \"crisp\" — ver accordion-morph.ts). El\n   motion vive integro en packages/animations/src/accordion-morph.ts.\n\n   La capa goo arranca invisible: solo el behavior la enciende. Sin JS (o con\n   reduced-motion) el componente es un disclosure normal y completo.\n\n   Colores: superficie = primary (invierte sola en dark). Jerarquia del texto\n   sobre la pildora via opacity tokens, no colores nuevos.\n\n   Parts: .accordion-morph, __list, __row, __goo, __goo-pill, __goo-panel,\n          __trigger, __index, __question, __icon, __panel, __panel-inner,\n          __answer, __answer-line, __filter-svg\n   ------------------------------------------------------------------------- */\n\n/* Sin max-width propio: el ancho lo decide el layout que lo contenga\n   (structure-only) — el 560px del original era el marco de su demo. */\n.accordion-morph {\n  position: relative;\n  width: 100%;\n}\n\n.accordion-morph__filter-svg {\n  position: absolute;\n  width: 0;\n  height: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n\n.accordion-morph__list {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.accordion-morph__row {\n  position: relative;\n}\n\n/* Capa filtrada: SOLO formas solidas — el filtro goo destruye el texto.\n   Invisible hasta que el behavior la enciende (estado estatico sin halos). */\n.accordion-morph__goo {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  opacity: 0;\n  pointer-events: none;\n}\n\n.accordion-morph__goo-pill,\n.accordion-morph__goo-panel {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  background-color: #0a0a0a;\n  will-change: transform;\n}\n\n/* Radio constante — NUNCA se anima; el behavior lo aparca con inset detras\n   de la capsula para que sus esquinas no asomen en reposo. */\n.accordion-morph__goo-panel {\n  border-radius: 16px;\n}\n\n/* La pildora pinta su propio fondo: elemento real y opaco ENCIMA del filtro,\n   asi el wobble del blur queda tapado salvo en el cuello liquido. */\n.accordion-morph__trigger {\n  position: relative;\n  z-index: 2;\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  width: 100%;\n  min-height: 56px;\n  padding: 16px 20px;\n  background-color: #0a0a0a;\n  border: none;\n  border-radius: 9999px;\n  cursor: pointer;\n  text-align: left;\n  color: #fafafa;\n  font-family: inherit;\n  box-sizing: border-box;\n}\n\n.accordion-morph__trigger:hover {\n  background-color: #262626;\n}\n\n.accordion-morph__trigger:focus-visible {\n  outline: 2px solid var(--focus-ring-color);\n  outline-offset: 2px;\n}\n\n.accordion-morph__index {\n  flex-shrink: 0;\n  min-width: 24px;\n  font-size: 12.8px;\n  font-weight: 500;\n  color: #fafafa;\n  opacity: 0.5;\n}\n\n.accordion-morph__question {\n  flex: 1;\n  font-size: 16px;\n  font-weight: 400;\n  letter-spacing: -0.02em;\n  line-height: 1.45;\n  color: #fafafa;\n}\n\n.accordion-morph__icon {\n  width: 16px;\n  height: 16px;\n  flex-shrink: 0;\n  color: #fafafa;\n  opacity: 0.8;\n  transform-origin: 50% 50%;\n  will-change: transform;\n}\n\n.accordion-morph__panel {\n  position: relative;\n  z-index: 1;\n  height: 0;\n  overflow: hidden;\n  will-change: height;\n}\n\n/* El panel tambien pinta su fondo (mismo rol crisp que la pildora). El\n   margin-top ES el gap que el goo puentea — el behavior lo lee de\n   --spacing-3 en runtime: cambiar el token mueve ambos a la vez. */\n.accordion-morph__panel-inner {\n  margin-top: 12px;\n  padding: 20px;\n  background-color: #0a0a0a;\n  border-radius: 16px;\n}\n\n.accordion-morph__answer {\n  margin: 0;\n  font-size: 12.8px;\n  font-weight: 400;\n  line-height: 1.45;\n  letter-spacing: -0.02em;\n  color: #fafafa;\n  opacity: 0.8;\n}\n\n/* Mascara de linea para el reveal de SplitText: el clip vertical corta el\n   texto que sube; el respiro em evita decapitar descendentes. */\n.accordion-morph__answer-line {\n  overflow-x: visible;\n  overflow-y: clip;\n  padding-bottom: 0.18em;\n  margin-bottom: -0.18em;\n}\n\n@media (max-width: 767px) {\n  .accordion-morph__trigger {\n    padding: 12px 16px;\n    gap: 12px;\n  }\n\n  .accordion-morph__panel-inner {\n    padding: 16px;\n  }\n}\n\n@media (max-width: 479px) {\n  .accordion-morph__index {\n    display: none;\n  }\n}\n",
+      "motion": []
+    }
+  }
+}

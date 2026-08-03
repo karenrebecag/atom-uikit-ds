@@ -2399,6 +2399,47 @@
     }
   },
   {
+    "name": "accordion-morph",
+    "kind": "component",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Accordion Morph",
+    "description": "FAQ accordion where each answer pours out of its question pill like liquid (SVG goo filter), settling into a clean rounded panel. Pair with the accordion-morph-animation hook.",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "accordion-morph-animation"
+    ],
+    "discovery": {
+      "name": "Accordion Morph",
+      "description": "FAQ accordion where each answer pours out of its question pill like liquid (SVG goo filter), settling into a clean rounded panel. Pair with the accordion-morph-animation hook.",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true
+    }
+  },
+  {
+    "name": "accordion-morph-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Accordion Morph Animation",
+    "description": "Goo morph behavior for accordion-morph: liquid pour on open (blur+threshold filter), token-driven motion, functional reduced-motion.",
+    "discovery": {
+      "name": "Accordion Morph Animation",
+      "description": "Goo morph behavior for accordion-morph: liquid pour on open (blur+threshold filter), token-driven motion, functional reduced-motion.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "scroll-reveal",
     "kind": "hook",
     "framework": "react",

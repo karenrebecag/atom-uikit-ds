@@ -8,6 +8,7 @@ export interface AnimationConfig {
 export { initButtonHover } from './button-hover';
 export { initTextReveal } from './text-reveal';
 export { initScrollReveal } from './scroll-reveal';
+export { initAccordionMorph } from './accordion-morph';
 export { initSidebarAnimation } from './sidebar';
 export { initProgressNav } from './progress-nav';
 export { initTableOfContents } from './table-of-contents';

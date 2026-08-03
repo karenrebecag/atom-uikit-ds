@@ -34,6 +34,7 @@ export {
   EmptyContent,
 } from './atoms/Empty';
 export { Accordion, AccordionItem, type AccordionProps, type AccordionItemProps } from './atoms/Accordion';
+export { AccordionMorph, type AccordionMorphProps, type AccordionMorphItem } from './molecules/AccordionMorph';
 export {
   Select, type SelectProps,
   SelectTrigger, type SelectTriggerProps,
