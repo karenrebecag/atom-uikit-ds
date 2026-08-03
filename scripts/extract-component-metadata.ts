@@ -400,6 +400,7 @@ function detectHasAnimation(sources: string[], slug: string, dsRoot: string): bo
     combined.includes('@atom-uikit/animations') ||
     combined.includes('initButtonHover') ||
     combined.includes('initTextReveal') ||
+    combined.includes('initScrollReveal') ||
     combined.includes('initSidebarAnimation') ||
     combined.includes('initProgressNav') ||
     combined.includes('initMarqueeDraggable') ||

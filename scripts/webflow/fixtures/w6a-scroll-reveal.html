@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>W6a — scroll-reveal E2E fixture</title>
+    <!-- Load DS tokens (must include --stagger-*, --duration-600, --easing-osmo) then GSAP then atom-animations.js -->
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; }
+      .pad { height: 110vh; }
+      .card {
+        padding: 1.5rem;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        margin: 0.75rem 0;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Scroll down — cards should enter with OSMO ease + stagger-2.</p>
+    <div class="pad" aria-hidden="true"></div>
+
+    <!-- D5 no-code: data-reveal present → initScrollReveal animates (opt-out: remove attr or data-motion-exempt) -->
+    <section data-reveal data-reveal-stagger="2" aria-label="Reveal demo">
+      <div class="card" data-reveal-item>Card one</div>
+      <div class="card" data-reveal-item>Card two</div>
+      <div class="card" data-reveal-item>Card three</div>
+    </section>
+
+    <h2 data-split="heading" data-split-reveal="lines">Tokenized text reveal heading</h2>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+    <!-- In real paste: tokens.css + https://…/v1/animations.js then: -->
+    <!-- <script>window.__atomMotionCleanup = AtomMotion.initAll();</script> -->
+  </body>
+</html>

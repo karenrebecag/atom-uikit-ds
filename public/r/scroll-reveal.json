@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-reveal",
+  "type": "registry:file",
+  "title": "Scroll Reveal",
+  "description": "Generic enter animation for sections/cards with optional stagger (W6a). Opt-in via data-reveal attributes; motion values from DS tokens.",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "animations/scroll-reveal.ts",
+      "type": "registry:file",
+      "content": "// Tipos locales: artefacto del registry auto-contenido (mismo patrón que nav-autohide).\n\n/**\n * Scroll reveal — generic enter animation for sections/cards with optional stagger.\n *\n * Contract (W6a):\n *   [data-reveal]                 → root to observe (self or container of items)\n *   [data-reveal-item]            → optional children to stagger (else direct element children, else self)\n *   [data-reveal-stagger=\"1|2|3\"] → maps to --stagger-1/2/3 (default 2)\n *   [data-reveal-delay]           → extra delay in ms before the tween (instance, not a token scale)\n *\n * Motion from tokens (readMotionTokens):\n *   duration → --duration-600 (macro enter)\n *   ease     → --easing-osmo (firma)\n *   stagger  → --stagger-{n}\n *\n * Canal D5 (no-code): paste HTML includes data-reveal when the consumer wants\n * motion; initAll picks it up. CLI/código: the app opts in by placing attributes.\n *\n * Requires: gsap (globalThis)\n * Respects: prefers-reduced-motion (instant visible state), data-motion-exempt\n */\n\n/** F10b — Webflow/domContract single source; must cover data-* queried in this module. */\nexport const REQUIRED_HOOKS = [\n  'data-reveal',\n  'data-reveal-item',\n  'data-reveal-stagger',\n  'data-reveal-delay',\n] as const;\n\nexport const REQUIRED_ANATOMY = [] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\nexport type CleanupFn = () => void;\nexport interface AnimationConfig {\n  scope?: HTMLElement | string;\n  debug?: boolean;\n}\n\nfunction parseCssTime(raw: string, fallbackSec: number): number {\n  if (!raw) return fallbackSec;\n  if (raw.endsWith('ms')) {\n    const n = parseFloat(raw);\n    return Number.isFinite(n) ? n / 1000 : fallbackSec;\n  }\n  if (raw.endsWith('s')) {\n    const n = parseFloat(raw);\n    return Number.isFinite(n) ? n : fallbackSec;\n  }\n  const n = parseFloat(raw);\n  return Number.isFinite(n) ? n : fallbackSec;\n}\n\n/**\n * Motion values from DS tokens at runtime. Fallbacks mirror published token values.\n */\nfunction readMotionTokens(\n  el: Element,\n  staggerKey: '1' | '2' | '3',\n): { duration: number; stagger: number; ease: string } {\n  const styles = getComputedStyle(el);\n  const duration = parseCssTime(styles.getPropertyValue('--duration-600').trim(), 0.6);\n  const staggerFallbacks = { '1': 0.03, '2': 0.05, '3': 0.075 } as const;\n  const stagger = parseCssTime(\n    styles.getPropertyValue(`--stagger-${staggerKey}`).trim(),\n    staggerFallbacks[staggerKey],\n  );\n  const easeRaw = styles.getPropertyValue('--easing-osmo').trim();\n  const ease = easeRaw || 'cubic-bezier(0.625, 0.05, 0, 1)';\n  return { duration, stagger, ease };\n}\n\nfunction resolveStaggerKey(el: HTMLElement): '1' | '2' | '3' {\n  const raw = (el.dataset.revealStagger || '2').trim();\n  if (raw === '1' || raw === '2' || raw === '3') return raw;\n  return '2';\n}\n\nfunction resolveTargets(root: HTMLElement): HTMLElement[] {\n  const items = root.querySelectorAll<HTMLElement>(':scope > [data-reveal-item], :scope [data-reveal-item]');\n  if (items.length > 0) return Array.from(items);\n  const kids = Array.from(root.children).filter((n): n is HTMLElement => n instanceof HTMLElement);\n  if (kids.length > 1) return kids;\n  return [root];\n}\n\nexport function initScrollReveal(config: AnimationConfig = {}): CleanupFn {\n  const gsap = (globalThis as any).gsap;\n  const CustomEase = (globalThis as any).CustomEase;\n\n  if (!gsap) {\n    console.warn('[atom-uikit] initScrollReveal: gsap not found');\n    return () => {};\n  }\n\n  const prefersReducedMotion = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;\n\n  const scope = config.scope\n    ? typeof config.scope === 'string'\n      ? document.querySelector(config.scope)\n      : config.scope\n    : document;\n\n  if (!scope) return () => {};\n\n  const roots = Array.from(\n    (scope as Element).querySelectorAll\n      ? (scope as Element).querySelectorAll<HTMLElement>('[data-reveal]')\n      : document.querySelectorAll<HTMLElement>('[data-reveal]'),\n  ).filter((el) => el.dataset.motionExempt === undefined);\n\n  if (roots.length === 0) return () => {};\n\n  const tweens: any[] = [];\n  const observers: IntersectionObserver[] = [];\n\n  roots.forEach((root) => {\n    const targets = resolveTargets(root);\n    if (targets.length === 0) return;\n\n    if (prefersReducedMotion) {\n      gsap.set(targets, { clearProps: 'opacity,transform' });\n      return;\n    }\n\n    const motion = readMotionTokens(root, resolveStaggerKey(root));\n    const delayMs = parseFloat(root.dataset.revealDelay || '0');\n    const delay = Number.isFinite(delayMs) ? Math.max(0, delayMs) / 1000 : 0;\n\n    let gsapEase = 'power2.out';\n    if (CustomEase && motion.ease.includes('cubic-bezier')) {\n      const bezier = /cubic-bezier\\(([^)]+)\\)/.exec(motion.ease)?.[1];\n      if (bezier) {\n        CustomEase.create('scroll-reveal-ease', bezier);\n        gsapEase = 'scroll-reveal-ease';\n      }\n    } else if (motion.ease.includes('0.625')) {\n      // firma osmo sin CustomEase — expo.out es el vecino GSAP más cercano\n      gsapEase = 'expo.out';\n    }\n\n    // yPercent (not px) so motion scale stays independent of root font size\n    gsap.set(targets, { opacity: 0, yPercent: 12 });\n\n    const observer = new IntersectionObserver(\n      (entries) => {\n        entries.forEach((entry) => {\n          if (!entry.isIntersecting) return;\n          const tween = gsap.to(targets, {\n            opacity: 1,\n            yPercent: 0,\n            duration: motion.duration,\n            stagger: targets.length > 1 ? motion.stagger : 0,\n            delay,\n            ease: gsapEase,\n            overwrite: 'auto',\n          });\n          tweens.push(tween);\n          observer.disconnect();\n        });\n      },\n      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },\n    );\n\n    observer.observe(root);\n    observers.push(observer);\n  });\n\n  return () => {\n    observers.forEach((o) => o.disconnect());\n    tweens.forEach((t) => t.kill?.());\n  };\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Scroll Reveal",
+      "description": "Generic enter animation for sections/cards with optional stagger (W6a). Opt-in via data-reveal attributes; motion values from DS tokens.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": true,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [
+        "gsap"
+      ],
+      "hasCss": false,
+      "hasReact": true
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-03T19:10:51.785Z",
+      "sourceCommit": "af33f77",
+      "install": {
+        "peerDeps": [
+          "gsap"
+        ],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-css-source"
+      ]
+    }
+  }
+}

@@ -387,3 +387,157 @@ describe('nav-autohide (funcional con motion opcional)', () => {
     expect(nav.hasAttribute('data-nav-hidden')).toBe(false);
   });
 });
+
+describe('scroll-reveal (W6a, decorativo: entrada de secciones/cards)', () => {
+  // jsdom no trae IntersectionObserver: doble sincrono, mismo espiritu que la
+  // story (dispara isIntersecting en observe y registra el disconnect).
+  function installIO() {
+    const disconnect = vi.fn();
+    g.IntersectionObserver = class {
+      cb: (entries: Array<{ isIntersecting: boolean }>) => void;
+      constructor(cb: (entries: Array<{ isIntersecting: boolean }>) => void) {
+        this.cb = cb;
+      }
+      observe() {
+        this.cb([{ isIntersecting: true }]);
+      }
+      disconnect = disconnect;
+    };
+    return { disconnect };
+  }
+
+  function mountSection(attrs = '') {
+    document.body.innerHTML = `
+      <section data-reveal ${attrs}>
+        <div data-reveal-item>uno</div>
+        <div data-reveal-item>dos</div>
+        <div data-reveal-item>tres</div>
+      </section>`;
+    return document.querySelector<HTMLElement>('[data-reveal]')!;
+  }
+
+  afterEach(() => {
+    delete g.IntersectionObserver;
+  });
+
+  it('sin gsap: avisa y devuelve cleanup inerte', async () => {
+    const { initScrollReveal } = await import('../../../animations/src/scroll-reveal');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mountSection();
+    const cleanup = initScrollReveal();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('gsap not found'));
+    expect(() => cleanup()).not.toThrow();
+    warn.mockRestore();
+  });
+
+  it('entrada: oculta los items, revela al intersectar y el cleanup mata todo', async () => {
+    const { initScrollReveal } = await import('../../../animations/src/scroll-reveal');
+    g.gsap = gsapMock();
+    const { disconnect } = installIO();
+    mountSection('data-reveal-stagger="2"');
+
+    const cleanup = initScrollReveal();
+    // estado inicial oculto…
+    expect(g.gsap.set).toHaveBeenCalledWith(expect.any(Array), { opacity: 0, yPercent: 12 });
+    // …y el tween usa fallbacks espejo de los tokens (jsdom no resuelve CSS vars)
+    const vars = g.gsap.to.mock.calls[0][1];
+    expect(vars.duration).toBe(0.6); // --duration-600
+    expect(vars.stagger).toBe(0.05); // --stagger-2
+    cleanup();
+    expect(disconnect).toHaveBeenCalled();
+    expect(g.gsap._tween.kill).toHaveBeenCalled();
+  });
+
+  it('reduced-motion: contenido visible al instante, cero observer y cero tween', async () => {
+    const { initScrollReveal } = await import('../../../animations/src/scroll-reveal');
+    setReducedMotion(true);
+    g.gsap = gsapMock();
+    installIO();
+    mountSection();
+
+    const cleanup = initScrollReveal();
+    expect(g.gsap.set).toHaveBeenCalledWith(expect.any(Array), { clearProps: 'opacity,transform' });
+    expect(g.gsap.to).not.toHaveBeenCalled();
+    expect(() => cleanup()).not.toThrow();
+  });
+
+  it('data-motion-exempt en el root: esa seccion no se toca', async () => {
+    const { initScrollReveal } = await import('../../../animations/src/scroll-reveal');
+    g.gsap = gsapMock();
+    installIO();
+    mountSection('data-motion-exempt');
+
+    initScrollReveal();
+    expect(g.gsap.set).not.toHaveBeenCalled();
+    expect(g.gsap.to).not.toHaveBeenCalled();
+  });
+});
+
+describe('text-reveal (W6a: tokenizado, decorativo)', () => {
+  function installIO() {
+    g.IntersectionObserver = class {
+      cb: (entries: Array<{ isIntersecting: boolean }>) => void;
+      constructor(cb: (entries: Array<{ isIntersecting: boolean }>) => void) {
+        this.cb = cb;
+      }
+      observe() {
+        this.cb([{ isIntersecting: true }]);
+      }
+      disconnect = vi.fn();
+    };
+  }
+
+  /** Doble de SplitText.create: entrega lineas fake via onSplit, como el real. */
+  function splitTextDouble() {
+    const revert = vi.fn();
+    const create = vi.fn((_el: Element, cfg: { onSplit?: (i: unknown) => void }) => {
+      cfg.onSplit?.({ lines: [document.createElement('div')], words: [], chars: [] });
+      return { revert };
+    });
+    return { create, revert };
+  }
+
+  function mountHeading(attrs = '') {
+    document.body.innerHTML = `<h2 data-split="heading" ${attrs}>Titular de prueba</h2>`;
+  }
+
+  afterEach(() => {
+    delete g.IntersectionObserver;
+  });
+
+  it('tween con fallbacks espejo de los tokens (lines: 0.9s / 0.075s)', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    mountHeading();
+
+    const cleanup = initTextReveal();
+    const vars = g.gsap.to.mock.calls[0][1];
+    expect(vars.duration).toBe(0.9); // --duration-900
+    expect(vars.stagger).toBe(0.075); // --stagger-3
+    cleanup();
+  });
+
+  it('reduced-motion: no divide y el titular queda intacto', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    setReducedMotion(true);
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    mountHeading();
+
+    const cleanup = initTextReveal();
+    expect(g.SplitText.create).not.toHaveBeenCalled();
+    expect(() => cleanup()).not.toThrow();
+  });
+
+  it('data-motion-exempt: ese titular no se divide', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    mountHeading('data-motion-exempt');
+
+    initTextReveal();
+    expect(g.SplitText.create).not.toHaveBeenCalled();
+  });
+});

@@ -1,0 +1,52 @@
+{
+  "feature": "W6a",
+  "date": "2026-08-03",
+  "commit": "pending",
+  "scope": "session-1: stagger tokens + text-reveal tokenize + scroll-reveal (section-theme deferred to session-2)",
+  "checks": [
+    {
+      "id": "W6-C1",
+      "status": "pass-local",
+      "evidence": "packages/tokens/src/primitives/motion.json → --stagger-1/2/3 (30/50/75ms) in tokens.css. text-reveal.ts uses readMotionTokens (duration/stagger/ease CSS vars); no duration:0.x / stagger:0.x literals in tween path. Fallbacks mirror token values when stylesheet missing."
+    },
+    {
+      "id": "W6-C2-partial",
+      "status": "pass-local",
+      "evidence": "scroll-reveal.ts exports REQUIRED_HOOKS [data-reveal, data-reveal-item, data-reveal-stagger, data-reveal-delay], STATES_WRITTEN_AS_CLASSES=false. dom-contract F10-C5 green (10 modules). In ALL_BEHAVIOR_MODULES; AtomMotion.initScrollReveal in browser bundle (10 inits). Registry item scroll-reveal (kind hook, deps gsap) published → public/r/scroll-reveal.json, 121 items. DEFERRED to session-2: section-theme.ts AND D6 paste integration (today no webflow artifact carries data-reveal — the paste does not animate yet)."
+    },
+    {
+      "id": "W6-C3",
+      "status": "pending",
+      "evidence": "Await Karen E2E in ds-lab: paste/HTML with [data-reveal] + tokens.css + gsap + atom-animations.js → ease firma. Fixture notes in docs/specs/wave-6-motion.md § W6a or pilot HTML."
+    },
+    {
+      "id": "W6-C4",
+      "status": "pass-local",
+      "evidence": "scroll-reveal + text-reveal: prefers-reduced-motion short-circuit; data-motion-exempt skips nodes. Now under executable contract: animations-motion-contract.test.ts +7 cases (26 total) — reduced-motion, motion-exempt, cleanup, and token-fallback values (0.6/0.05 scroll-reveal, 0.9/0.075 text-reveal lines) asserted for both W6a behaviors, same pattern as the four pre-existing behaviors."
+    },
+    {
+      "id": "W6-C5",
+      "status": "pass-local",
+      "evidence": "ScrollReveal.stories.tsx (Behaviors/Scroll Reveal): runs the REAL initScrollReveal against its data-attr contract, gsap+IntersectionObserver doubles for deterministic snapshots (ArticleToc precedent), StoryPreviewLayout controls for the stagger token, readout shows duration/stagger/ease the behavior resolved. Baselines: darwin regenerated locally; linux bootstraps in CI."
+    },
+    {
+      "id": "W6-C6",
+      "status": "pass-local",
+      "evidence": "No layout modules touched; layout-contract unchanged."
+    },
+    {
+      "id": "W6-C7",
+      "status": "pass-local",
+      "evidence": "pnpm validate tokens OK; pnpm conformance full green (budgets animations raised 49/13→60/16 for scroll-reveal). D5: attribute opt-in for CLI; no-code paste gets motion when data-reveal present + initAll (default animated surface once hooks in markup)."
+    }
+  ],
+  "verdict": "in_progress",
+  "blocking": [
+    "W6-C3 Karen E2E signature in ds-lab (fixture: scripts/webflow/fixtures/w6a-scroll-reveal.html)",
+    "W6a session-2: section-theme.ts + D6 paste integration (data-reveal into webflow artifacts)"
+  ],
+  "notes": [
+    "D5 applied as attribute-driven channel policy: no-code includes data-reveal in paste when motion desired (default on product side); CLI exposes attributes as consumer choice.",
+    "Budget bump for atom-animations.js is conscious W6a cost of new module."
+  ]
+}

@@ -11,7 +11,7 @@ export const REQUIRED_ANATOMY = [
   "[data-split=\"heading\"]"
 ] as const;
 
-export const GSAP_PLUGINS = [] as const;
+export const GSAP_PLUGINS = ['SplitText'] as const;
 
 export const STATES_WRITTEN_AS_CLASSES = false;
 
@@ -29,26 +29,89 @@ export interface AnimationConfig {
  *   [data-split-reveal="lines"]    → split type: "lines" | "words" | "chars"
  *                                    defaults to "lines" if omitted
  *
- * 3 animation types:
- *   lines → split by lines, animate yPercent per line
- *   words → split by lines+words, animate yPercent per word
- *   chars → split by lines+words+chars, animate yPercent per char
+ * Motion values from DS tokens (readMotionTokens, same idea as menu-button):
+ *   lines → --duration-900 + --stagger-3 + --easing-out
+ *   words → --duration-600 + --stagger-2 + --easing-out
+ *   chars → --duration-500 + --stagger-1 + --easing-out
  *
  * Requires: gsap, SplitText (registered externally)
  * Respects: prefers-reduced-motion (skips animation, shows content)
+ *           data-motion-exempt on the heading
  */
 
 type SplitType = 'lines' | 'words' | 'chars';
 
-const splitConfig: Record<SplitType, { duration: number; stagger: number }> = {
-  lines: { duration: 0.8, stagger: 0.08 },
-  words: { duration: 0.6, stagger: 0.06 },
-  chars: { duration: 0.4, stagger: 0.01 },
+/** Token var names per split type — no duration/stagger literals in the tween path. */
+const TOKEN_VARS: Record<
+  SplitType,
+  { duration: string; stagger: string; ease: string; fallbackDuration: number; fallbackStagger: number }
+> = {
+  lines: {
+    duration: '--duration-900',
+    stagger: '--stagger-3',
+    ease: '--easing-out',
+    fallbackDuration: 0.9,
+    fallbackStagger: 0.075,
+  },
+  words: {
+    duration: '--duration-600',
+    stagger: '--stagger-2',
+    ease: '--easing-out',
+    fallbackDuration: 0.6,
+    fallbackStagger: 0.05,
+  },
+  chars: {
+    duration: '--duration-500',
+    stagger: '--stagger-1',
+    ease: '--easing-out',
+    fallbackDuration: 0.5,
+    fallbackStagger: 0.03,
+  },
 };
+
+/**
+ * Motion values come from the DS tokens at runtime so a token change re-tunes
+ * every consumer without touching this module. Fallbacks mirror published
+ * token values when the stylesheet has not loaded yet.
+ */
+function readMotionTokens(
+  scope: Element,
+  type: SplitType,
+): { duration: number; stagger: number; ease: string } {
+  const vars = TOKEN_VARS[type];
+  const styles = getComputedStyle(scope);
+  const duration = parseCssTime(
+    styles.getPropertyValue(vars.duration).trim(),
+    vars.fallbackDuration,
+  );
+  const stagger = parseCssTime(
+    styles.getPropertyValue(vars.stagger).trim(),
+    vars.fallbackStagger,
+  );
+  const easeRaw = styles.getPropertyValue(vars.ease).trim();
+  // GSAP accepts cubic-bezier via CustomEase when present; otherwise named fall-back.
+  const ease = easeRaw || 'expo.out';
+  return { duration, stagger, ease };
+}
+
+function parseCssTime(raw: string, fallbackSec: number): number {
+  if (!raw) return fallbackSec;
+  if (raw.endsWith('ms')) {
+    const n = parseFloat(raw);
+    return Number.isFinite(n) ? n / 1000 : fallbackSec;
+  }
+  if (raw.endsWith('s')) {
+    const n = parseFloat(raw);
+    return Number.isFinite(n) ? n : fallbackSec;
+  }
+  const n = parseFloat(raw);
+  return Number.isFinite(n) ? n : fallbackSec;
+}
 
 export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
   const gsap = (globalThis as any).gsap;
   const SplitText = (globalThis as any).SplitText;
+  const CustomEase = (globalThis as any).CustomEase;
 
   if (!gsap || !SplitText) {
     console.warn('[atom-uikit] initTextReveal: gsap or SplitText not found');
@@ -75,6 +138,7 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
   const splits: any[] = [];
   const tweens: any[] = [];
   const observers: IntersectionObserver[] = [];
+  let easeName = 'text-reveal-ease';
 
   headings.forEach((heading: Element) => {
     if ((heading as HTMLElement).dataset.motionExempt !== undefined) return;
@@ -82,10 +146,25 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
     if (prefersReducedMotion) return;
 
     const type = ((heading as HTMLElement).dataset.splitReveal || 'lines') as SplitType;
+    const safeType: SplitType =
+      type === 'lines' || type === 'words' || type === 'chars' ? type : 'lines';
     const typesToSplit =
-      type === 'lines' ? 'lines' :
-      type === 'words' ? 'lines, words' :
+      safeType === 'lines' ? 'lines' :
+      safeType === 'words' ? 'lines, words' :
       'lines, words, chars';
+
+    const motion = readMotionTokens(heading, safeType);
+    let gsapEase: string = motion.ease;
+    if (CustomEase && motion.ease.includes('cubic-bezier')) {
+      const bezier = /cubic-bezier\(([^)]+)\)/.exec(motion.ease)?.[1];
+      if (bezier) {
+        CustomEase.create(easeName, bezier);
+        gsapEase = easeName;
+      }
+    } else if (motion.ease.startsWith('cubic-bezier')) {
+      // No CustomEase: named ease that matches easing-out character (expo.out).
+      gsapEase = 'expo.out';
+    }
 
     const splitInstance = SplitText.create(heading, {
       type: typesToSplit,
@@ -95,22 +174,20 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
       wordsClass: 'word',
       charsClass: 'letter',
       onSplit(instance: any) {
-        const targets = instance[type];
-        const cfg = splitConfig[type];
+        const targets = instance[safeType];
+        if (!targets?.length) return null;
 
-        // Set initial hidden state
         gsap.set(targets, { yPercent: 110 });
 
-        // Observe visibility
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const tween = gsap.to(targets, {
                   yPercent: 0,
-                  duration: cfg.duration,
-                  stagger: cfg.stagger,
-                  ease: 'expo.out',
+                  duration: motion.duration,
+                  stagger: motion.stagger,
+                  ease: gsapEase,
                 });
                 tweens.push(tween);
                 observer.disconnect();
