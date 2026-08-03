@@ -63,8 +63,8 @@
       "usage": "import {\n  ResizablePanelGroup, ResizablePanel, ResizableHandle,\n} from '@/components/atoms/Resizable';\n\n<ResizablePanelGroup orientation=\"horizontal\" panels={2}>\n  <ResizablePanel index={0}>Left</ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel index={1}>Right</ResizablePanel>\n</ResizablePanelGroup>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T19:10:51.785Z",
-      "sourceCommit": "af33f77",
+      "generatedAt": "2026-08-03T20:40:01.411Z",
+      "sourceCommit": "833148d",
       "install": {
         "peerDeps": [],
         "cssImports": [

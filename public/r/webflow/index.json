@@ -2,6 +2,7 @@
   "format": "webflow-xscp",
   "pilots": [
     "accordion",
+    "accordion-morph",
     "alert-dialog",
     "avatar",
     "avatar-group",
@@ -41,6 +42,7 @@
   ],
   "emitted": [
     "accordion",
+    "accordion-morph",
     "alert-dialog",
     "avatar",
     "avatar-group",

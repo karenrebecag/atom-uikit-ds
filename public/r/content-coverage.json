@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T19:11:16.482Z",
+  "generatedAt": "2026-08-03T20:40:11.992Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,27 +13,27 @@
     "max": 100
   },
   "totals": {
-    "items": 121,
-    "eligibleAgent": 49,
+    "items": 123,
+    "eligibleAgent": 50,
     "metaAgent": {
-      "full": 49,
+      "full": 50,
       "partial": 0,
       "none": 0,
       "fullPct": 100
     },
     "editorial": {
-      "yes": 49,
-      "eligible": 49,
+      "yes": 50,
+      "eligible": 50,
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 121
+      "withSourceCommit": 123
     },
     "webflow": {
-      "emitted": 37,
+      "emitted": 38,
       "excluded": 22
     },
-    "aggregateScore": 50.4
+    "aggregateScore": 50.5
   },
   "batches": [],
   "items": [
@@ -1713,6 +1713,42 @@
       "eligibleAgent": false,
       "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
       "contentScore": 20
+    },
+    {
+      "slug": "accordion-morph",
+      "kind": "component",
+      "category": "layout",
+      "hasReact": true,
+      "hasCss": true,
+      "metaAgent": "full",
+      "editorial": true,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "emitted",
+      "webflowReason": null,
+      "motionContract": true,
+      "eligibleAgent": true,
+      "excludedAgent": null,
+      "contentScore": 100
+    },
+    {
+      "slug": "accordion-morph-animation",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
     },
     {
       "slug": "scroll-reveal",

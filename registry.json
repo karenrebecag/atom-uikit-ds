@@ -2399,9 +2399,18 @@
         "webflow": {
           "previewProps": {
             "items": [
-              { "id": "intro", "label": "Intro" },
-              { "id": "features", "label": "Features" },
-              { "id": "pricing", "label": "Pricing" }
+              {
+                "id": "intro",
+                "label": "Intro"
+              },
+              {
+                "id": "features",
+                "label": "Features"
+              },
+              {
+                "id": "pricing",
+                "label": "Pricing"
+              }
             ]
           }
         },
@@ -2710,9 +2719,18 @@
         "webflow": {
           "previewProps": {
             "steps": [
-              { "title": "Cuenta", "state": "completed" },
-              { "title": "Datos", "state": "active" },
-              { "title": "Confirmación", "state": "upcoming" }
+              {
+                "title": "Cuenta",
+                "state": "completed"
+              },
+              {
+                "title": "Datos",
+                "state": "active"
+              },
+              {
+                "title": "Confirmación",
+                "state": "upcoming"
+              }
             ]
           }
         },
@@ -4028,6 +4046,120 @@
         {
           "sourcePath": "packages/animations/src/text-reveal.ts",
           "outputPath": "animations/text-reveal.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "accordion-morph",
+      "kind": "component",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Accordion Morph",
+      "description": "FAQ accordion where each answer pours out of its question pill like liquid (SVG goo filter), settling into a clean rounded panel. Pair with the accordion-morph-animation hook.",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "accordion-morph-animation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/components-react/src/molecules/AccordionMorph.tsx",
+          "outputPath": "components/molecules/AccordionMorph.tsx",
+          "type": "registry:component"
+        },
+        {
+          "sourcePath": "packages/css/src/components/layout/accordion-morph.css",
+          "outputPath": "styles/components/accordion-morph.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "webflow": {
+          "previewProps": {
+            "items": [
+              { "question": "Que hace diferentes a los marcos?", "answer": "Cada marco se lamina en carbono crudo en un molde propio y se termina a mano antes de encordar." },
+              { "question": "Fabrican para zurdos?", "answer": "Todo grip y balance se espeja bajo pedido sin costo extra." },
+              { "question": "Cual es la garantia por fisuras?", "answer": "Dos anos contra fallo estructural en juego normal, sin letra chica." }
+            ],
+            "startOpen": 0
+          }
+        },
+        "agent": {
+          "configurables": [
+            {
+              "prop": "gooStrength",
+              "type": "number",
+              "default": 9,
+              "min": 4,
+              "max": 16,
+              "step": 1,
+              "unit": "px",
+              "what": "stdDeviation del blur goo — que tan espeso se ve el liquido al verter.",
+              "how": "9 es el balance firma; 4-6 para un vertido sutil en secciones densas; 12-16 solo en heros con una sola instancia (el blur alto cuesta GPU por fila)."
+            },
+            {
+              "prop": "multiple",
+              "type": "boolean",
+              "default": false,
+              "what": "Permite varias respuestas abiertas a la vez.",
+              "how": "false para FAQs de marketing (foco en una respuesta); true solo en documentacion de referencia donde el lector compara respuestas."
+            },
+            {
+              "prop": "startOpen",
+              "type": "number",
+              "default": -1,
+              "min": -1,
+              "max": 20,
+              "step": 1,
+              "unit": "index",
+              "what": "Indice de la fila abierta al montar (-1 = ninguna).",
+              "how": "0 cuando la primera pregunta ES el mensaje (pricing, objecion principal); -1 en FAQs largas para no empujar el fold."
+            },
+            {
+              "prop": "animated",
+              "type": "boolean",
+              "default": true,
+              "what": "D5 canal codigo: false emite data-motion-exempt — disclosure instantaneo sin goo.",
+              "how": "true salvo listas dentro de dashboards o tablas (el goo es protagonista, no acompanante); reduced-motion ya degrada solo, no uses false para eso."
+            }
+          ],
+          "gotchas": [
+            {
+              "context": "react",
+              "note": "El componente NO anima solo: emparejar con initAccordionMorph() de @atom-uikit/animations (gsap + CustomEase + SplitText globales). Sin el behavior es un disclosure estatico cerrado."
+            },
+            {
+              "context": "css-modules",
+              "note": "Pildora y panel pintan su fondo con --primary y el texto usa --primary-foreground + opacity: en dark el bloque invierte solo. No sobreescribir esos fondos: son el rol crisp que tapa el wobble del filtro."
+            },
+            {
+              "context": "a11y",
+              "note": "FUNCIONAL: reduced-motion y data-motion-exempt abren/cierran instantaneo via DOM directo — el disclosure jamas depende de gsap. aria-expanded/aria-hidden/inert los escribe el behavior."
+            },
+            {
+              "context": "layout",
+              "note": "El filtro SVG viaja como HtmlEmbed en el paste. El goo exige gsap+CustomEase en el footer del site; SplitText es opcional (sin el, la respuesta hace fade en vez de reveal por lineas)."
+            }
+          ],
+          "usage": "<AccordionMorph items={[{ question: '...', answer: '...' }]} startOpen={0} />\n// + una vez por pagina:\nuseEffect(() => initAccordionMorph(), []);"
+        }
+      }
+    },
+    {
+      "name": "accordion-morph-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Accordion Morph Animation",
+      "description": "Goo morph behavior for accordion-morph: liquid pour on open (blur+threshold filter), token-driven motion, functional reduced-motion.",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/accordion-morph.ts",
+          "outputPath": "animations/accordion-morph.ts",
           "type": "registry:file"
         }
       ]

@@ -1,0 +1,181 @@
+/* -------------------------------------------------------------------------
+   Accordion Morph
+
+   FAQ accordion donde la respuesta "se vierte" de la pildora como liquido
+   (filtro goo). CSS es dueno del estado ESTATICO: pildora y panel pintan su
+   propio fondo (por eso no hay twins "crisp" — ver accordion-morph.ts). El
+   motion vive integro en packages/animations/src/accordion-morph.ts.
+
+   La capa goo arranca invisible: solo el behavior la enciende. Sin JS (o con
+   reduced-motion) el componente es un disclosure normal y completo.
+
+   Colores: superficie = primary (invierte sola en dark). Jerarquia del texto
+   sobre la pildora via opacity tokens, no colores nuevos.
+
+   Parts: .accordion-morph, __list, __row, __goo, __goo-pill, __goo-panel,
+          __trigger, __index, __question, __icon, __panel, __panel-inner,
+          __answer, __answer-line, __filter-svg
+   ------------------------------------------------------------------------- */
+
+/* Sin max-width propio: el ancho lo decide el layout que lo contenga
+   (structure-only) — el 560px del original era el marco de su demo. */
+.accordion-morph {
+  position: relative;
+  width: 100%;
+}
+
+.accordion-morph__filter-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.accordion-morph__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.accordion-morph__row {
+  position: relative;
+}
+
+/* Capa filtrada: SOLO formas solidas — el filtro goo destruye el texto.
+   Invisible hasta que el behavior la enciende (estado estatico sin halos). */
+.accordion-morph__goo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.accordion-morph__goo-pill,
+.accordion-morph__goo-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary);
+  will-change: transform;
+}
+
+/* Radio constante — NUNCA se anima; el behavior lo aparca con inset detras
+   de la capsula para que sus esquinas no asomen en reposo. */
+.accordion-morph__goo-panel {
+  border-radius: var(--radius-xl);
+}
+
+/* La pildora pinta su propio fondo: elemento real y opaco ENCIMA del filtro,
+   asi el wobble del blur queda tapado salvo en el cuello liquido. */
+.accordion-morph__trigger {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  min-height: var(--spacing-14);
+  padding: var(--spacing-4) var(--spacing-5);
+  background-color: var(--primary);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  text-align: left;
+  color: var(--primary-foreground);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.accordion-morph__trigger:hover {
+  background-color: var(--primary-hover);
+}
+
+.accordion-morph__trigger:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.accordion-morph__index {
+  flex-shrink: 0;
+  min-width: var(--spacing-6);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary-foreground);
+  opacity: var(--opacity-50);
+}
+
+.accordion-morph__question {
+  flex: 1;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-tight, -0.01em);
+  line-height: var(--line-height-sm);
+  color: var(--primary-foreground);
+}
+
+.accordion-morph__icon {
+  width: var(--spacing-4);
+  height: var(--spacing-4);
+  flex-shrink: 0;
+  color: var(--primary-foreground);
+  opacity: var(--opacity-80);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.accordion-morph__panel {
+  position: relative;
+  z-index: 1;
+  height: 0;
+  overflow: hidden;
+  will-change: height;
+}
+
+/* El panel tambien pinta su fondo (mismo rol crisp que la pildora). El
+   margin-top ES el gap que el goo puentea — el behavior lo lee de
+   --spacing-3 en runtime: cambiar el token mueve ambos a la vez. */
+.accordion-morph__panel-inner {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-5);
+  background-color: var(--primary);
+  border-radius: var(--radius-xl);
+}
+
+.accordion-morph__answer {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-lg);
+  letter-spacing: var(--letter-spacing-tight, -0.01em);
+  color: var(--primary-foreground);
+  opacity: var(--opacity-80);
+}
+
+/* Mascara de linea para el reveal de SplitText: el clip vertical corta el
+   texto que sube; el respiro em evita decapitar descendentes. */
+.accordion-morph__answer-line {
+  overflow-x: visible;
+  overflow-y: clip;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+@media (max-width: 767px) {
+  .accordion-morph__trigger {
+    padding: var(--spacing-3) var(--spacing-4);
+    gap: var(--spacing-3);
+  }
+
+  .accordion-morph__panel-inner {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 479px) {
+  .accordion-morph__index {
+    display: none;
+  }
+}

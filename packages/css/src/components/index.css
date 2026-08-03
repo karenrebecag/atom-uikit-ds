@@ -38,6 +38,7 @@
 @import './layout/section-header.css';
 @import './layout/prose.css';
 @import './layout/accordion.css';
+@import './layout/accordion-morph.css';
 @import './layout/table.css';
 @import './layout/empty.css';
 @import './layout/dialog.css';

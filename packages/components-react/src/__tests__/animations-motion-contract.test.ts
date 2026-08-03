@@ -541,3 +541,187 @@ describe('text-reveal (W6a: tokenizado, decorativo)', () => {
     expect(g.SplitText.create).not.toHaveBeenCalled();
   });
 });
+
+describe('accordion-morph (FUNCIONAL: disclosure; el goo es decoracion encima)', () => {
+  // Doble de gsap con timeline encadenable que CAPTURA vars: el contrato de
+  // tokens se verifica sobre lo que el modulo le pasa a gsap, no sobre pixeles.
+  function morphGsap() {
+    const captured: Array<{ vars: Record<string, unknown> }> = [];
+    let timelines = 0;
+    const tl: any = {
+      to: (_t: unknown, vars: Record<string, unknown>) => {
+        captured.push({ vars });
+        return tl;
+      },
+      call: (fn?: () => void) => {
+        fn?.();
+        return tl;
+      },
+      kill: vi.fn(),
+    };
+    const mock = {
+      set: vi.fn(),
+      to: vi.fn(() => ({ kill: vi.fn() })),
+      timeline: vi.fn(() => {
+        timelines++;
+        return tl;
+      }),
+      killTweensOf: vi.fn(),
+    };
+    return { mock, captured, count: () => timelines };
+  }
+
+  function row(i: number) {
+    return `
+      <div class="accordion-morph__row" data-accordion-morph-row>
+        <div class="accordion-morph__goo" data-accordion-morph-goo aria-hidden="true">
+          <div class="accordion-morph__goo-pill"></div>
+          <div class="accordion-morph__goo-panel"></div>
+        </div>
+        <button class="accordion-morph__trigger" data-accordion-morph-trigger
+                id="am-t-${i}" aria-controls="am-p-${i}" aria-expanded="false">
+          <span class="accordion-morph__index">0${i + 1}</span>
+          <span class="accordion-morph__question">Pregunta ${i + 1}</span>
+        </button>
+        <div class="accordion-morph__panel" data-accordion-morph-panel id="am-p-${i}"
+             role="region" aria-labelledby="am-t-${i}" aria-hidden="true">
+          <div class="accordion-morph__panel-inner">
+            <p class="accordion-morph__answer" data-accordion-morph-answer>Respuesta ${i + 1}</p>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function mountMorph(attrs = '', rowCount = 2) {
+    document.body.innerHTML = `
+      <div class="accordion-morph" data-accordion-morph ${attrs}>
+        <svg class="accordion-morph__filter-svg" width="0" height="0" aria-hidden="true">
+          <defs>
+            <filter id="am-goo-template">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0" />
+            </filter>
+          </defs>
+        </svg>
+        <div class="accordion-morph__list">
+          ${Array.from({ length: rowCount }, (_, i) => row(i)).join('')}
+        </div>
+      </div>`;
+    return {
+      triggers: Array.from(document.querySelectorAll<HTMLButtonElement>('[data-accordion-morph-trigger]')),
+      panels: Array.from(document.querySelectorAll<HTMLElement>('[data-accordion-morph-panel]')),
+      defs: document.querySelector('defs')!,
+    };
+  }
+
+  it('sin gsap: avisa y devuelve cleanup inerte', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mountMorph();
+    const cleanup = initAccordionMorph();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('gsap not found'));
+    expect(() => cleanup()).not.toThrow();
+    warn.mockRestore();
+  });
+
+  it('click abre: aria completo y tween con tokens (0.7s, spring)', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    const { mock, captured } = morphGsap();
+    g.gsap = mock;
+    const { triggers, panels } = mountMorph();
+
+    const cleanup = initAccordionMorph();
+    triggers[0].click();
+
+    expect(triggers[0].getAttribute('aria-expanded')).toBe('true');
+    expect(panels[0].getAttribute('aria-hidden')).toBe('false');
+    expect(panels[0].hasAttribute('inert')).toBe(false);
+    // jsdom no resuelve CSS vars: el tween usa los fallbacks espejo de tokens
+    const open = captured.find((c) => c.vars.duration === 0.7);
+    expect(open, 'tween de apertura con --duration-700 (fallback 0.7)').toBeTruthy();
+    expect(open!.vars.ease).toBe('back.out(1.7)'); // vecino nombrado de --easing-spring sin CustomEase
+    cleanup();
+  });
+
+  it('single-open por default: abrir la fila 2 cierra la 1', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    g.gsap = morphGsap().mock;
+    const { triggers } = mountMorph();
+
+    const cleanup = initAccordionMorph();
+    triggers[0].click();
+    triggers[1].click();
+    expect(triggers[0].getAttribute('aria-expanded')).toBe('false');
+    expect(triggers[1].getAttribute('aria-expanded')).toBe('true');
+    cleanup();
+  });
+
+  it('data-accordion-morph-multiple="true": conviven abiertas', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    g.gsap = morphGsap().mock;
+    const { triggers } = mountMorph('data-accordion-morph-multiple="true"');
+
+    const cleanup = initAccordionMorph();
+    triggers[0].click();
+    triggers[1].click();
+    expect(triggers[0].getAttribute('aria-expanded')).toBe('true');
+    expect(triggers[1].getAttribute('aria-expanded')).toBe('true');
+    cleanup();
+  });
+
+  it('reduced-motion: FUNCIONAL — abre instantaneo, cero timelines', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    setReducedMotion(true);
+    const { mock, count } = morphGsap();
+    g.gsap = mock;
+    const { triggers, panels } = mountMorph();
+
+    const cleanup = initAccordionMorph();
+    triggers[0].click();
+    // un accordion es disclosure: reduced-motion quita el motion, NUNCA la funcion
+    expect(triggers[0].getAttribute('aria-expanded')).toBe('true');
+    expect(panels[0].getAttribute('aria-hidden')).toBe('false');
+    expect(count()).toBe(0);
+    cleanup();
+  });
+
+  it('data-motion-exempt: mismo camino instantaneo, funcion intacta', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    const { mock, count } = morphGsap();
+    g.gsap = mock;
+    const { triggers } = mountMorph('data-motion-exempt');
+
+    const cleanup = initAccordionMorph();
+    triggers[0].click();
+    expect(triggers[0].getAttribute('aria-expanded')).toBe('true');
+    expect(count()).toBe(0);
+    cleanup();
+  });
+
+  it('flechas mueven el foco entre triggers (con wrap)', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    g.gsap = morphGsap().mock;
+    const { triggers } = mountMorph();
+
+    const cleanup = initAccordionMorph();
+    triggers[0].focus();
+    triggers[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+    expect(document.activeElement).toBe(triggers[1]);
+    triggers[1].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+    expect(document.activeElement).toBe(triggers[0]); // wrap
+    cleanup();
+  });
+
+  it('cleanup: desengancha listeners y retira los clones del filtro', async () => {
+    const { initAccordionMorph } = await import('../../../animations/src/accordion-morph');
+    g.gsap = morphGsap().mock;
+    const { triggers, defs } = mountMorph();
+
+    const before = defs.querySelectorAll('filter').length;
+    const cleanup = initAccordionMorph();
+    expect(defs.querySelectorAll('filter').length).toBeGreaterThan(before); // un clon por fila
+    cleanup();
+    expect(defs.querySelectorAll('filter').length).toBe(before);
+    triggers[0].click();
+    expect(triggers[0].getAttribute('aria-expanded')).toBe('false'); // listener fuera
+  });
+});

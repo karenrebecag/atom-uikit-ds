@@ -32,6 +32,14 @@ const CASES: Record<string, { el: () => ReactElement; covers?: string[] }> = {
     ),
     covers: ['AccordionItem'],
   },
+  AccordionMorph: {
+    el: () => (
+      <C.AccordionMorph
+        items={[{ question: 'Pregunta', answer: 'Respuesta' }]}
+        startOpen={0}
+      />
+    ),
+  },
   AlertDialog: {
     el: () => (
       <C.AlertDialog defaultOpen>
