@@ -44,8 +44,8 @@
       "usage": "import {\n  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem,\n} from '@/components/atoms/DropdownMenu';\n\n<DropdownMenu>\n  <DropdownMenuTrigger>Open</DropdownMenuTrigger>\n  <DropdownMenuContent side=\"bottom\" align=\"start\">\n    <DropdownMenuItem onSelect={() => {}}>Edit</DropdownMenuItem>\n    <DropdownMenuItem variant=\"destructive\" onSelect={() => {}}>Delete</DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>"
     },
     "derived": {
-      "generatedAt": "2026-08-04T02:49:23.039Z",
-      "sourceCommit": "22745fc",
+      "generatedAt": "2026-08-04T02:56:32.482Z",
+      "sourceCommit": "a9a279b",
       "install": {
         "peerDeps": [],
         "cssImports": [

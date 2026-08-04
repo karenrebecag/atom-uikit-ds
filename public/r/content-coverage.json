@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T02:49:25.662Z",
+  "generatedAt": "2026-08-04T02:56:32.825Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -30,8 +30,8 @@
       "withSourceCommit": 124
     },
     "webflow": {
-      "emitted": 38,
-      "excluded": 22
+      "emitted": 37,
+      "excluded": 23
     },
     "aggregateScore": 50.4
   },
@@ -595,12 +595,12 @@
       "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
-      "webflow": "emitted",
-      "webflowReason": null,
+      "webflow": "excluded",
+      "webflowReason": "declared: render depende de new Date() (mes visible + ring de hoy): el artefacto cambiaba cada dia y el gate de deriva fallaba solo — el canal exige render determinista; un calendar interactivo se consume via React",
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 95
+      "contentScore": 90
     },
     {
       "slug": "chip",

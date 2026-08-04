@@ -120,9 +120,12 @@
       ],
       "usage": "import { Calendar } from '@/components/atoms/Calendar';\n\n<Calendar mode=\"single\" selected={day} onSelect={setDay} />"
     },
+    "webflow": {
+      "exclude": "render depende de new Date() (mes visible + ring de hoy): el artefacto cambiaba cada dia y el gate de deriva fallaba solo — el canal exige render determinista; un calendar interactivo se consume via React"
+    },
     "derived": {
-      "generatedAt": "2026-08-04T02:49:23.039Z",
-      "sourceCommit": "22745fc",
+      "generatedAt": "2026-08-04T02:56:32.482Z",
+      "sourceCommit": "a9a279b",
       "install": {
         "peerDeps": [],
         "cssImports": [

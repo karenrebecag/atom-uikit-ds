@@ -10,7 +10,6 @@
     "breadcrumb",
     "button",
     "button-group",
-    "calendar",
     "chip",
     "combobox",
     "context-menu",
@@ -50,7 +49,6 @@
     "breadcrumb",
     "button",
     "button-group",
-    "calendar",
     "chip",
     "combobox",
     "context-menu",
@@ -120,6 +118,10 @@
     {
       "name": "burger-icon",
       "reason": "declared: anatomía y motion pertenecen a menu-button (statesWrittenAsClasses, sin CSS propio) — pegar el patrón menu-button, no el icono suelto"
+    },
+    {
+      "name": "calendar",
+      "reason": "declared: render depende de new Date() (mes visible + ring de hoy): el artefacto cambiaba cada dia y el gate de deriva fallaba solo — el canal exige render determinista; un calendar interactivo se consume via React"
     },
     {
       "name": "icon",
