@@ -27,3 +27,14 @@ import {
 
 - Always-visible primary actions → toolbar `Button` / `DropdownMenu` on a trigger.
 - Mobile-first UIs where long-press is unreliable — prefer an explicit overflow menu.
+
+## Criterio de uso
+
+- Usa ContextMenu solo como ATAJO de acciones que tambien existen en la interfaz visible: es descubrible por accidente, nunca por diseno.
+- Util en superficies densas (tablas, canvas, listas) donde poner un boton por fila satura.
+- Repite en el menu la accion primaria de la fila para que quien lo abre no tenga que salir a buscarla.
+
+## Gotchas
+
+- No tiene prop `open`: el disparador es el click derecho del navegador, y esa es toda su superficie de activacion.
+- En tactil no existe el click derecho: si una accion solo vive aqui, en movil es inalcanzable.

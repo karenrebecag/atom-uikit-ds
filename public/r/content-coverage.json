@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T17:00:05.336Z",
+  "generatedAt": "2026-08-04T18:16:35.452Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -33,7 +33,7 @@
       "emitted": 37,
       "excluded": 23
     },
-    "aggregateScore": 50.4
+    "aggregateScore": 50.8
   },
   "batches": [],
   "items": [
@@ -184,7 +184,7 @@
       "hasReact": false,
       "hasCss": true,
       "metaAgent": "full",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -192,7 +192,7 @@
       "motionContract": false,
       "eligibleAgent": false,
       "excludedAgent": "no React source",
-      "contentScore": 65
+      "contentScore": 90
     },
     {
       "slug": "input",
@@ -1776,7 +1776,7 @@
       "hasReact": false,
       "hasCss": false,
       "metaAgent": "none",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [
         "no-css-source"
       ],
@@ -1786,7 +1786,7 @@
       "motionContract": true,
       "eligibleAgent": false,
       "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
-      "contentScore": 20
+      "contentScore": 45
     },
     {
       "slug": "marquee-draggable",

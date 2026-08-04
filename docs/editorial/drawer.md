@@ -32,3 +32,14 @@ import {
 
 - Centered multi-field tasks → `Dialog`.
 - Permanent app navigation → `Sidebar`.
+
+## Criterio de uso
+
+- Usa Drawer cuando el panel es el foco principal de la interaccion y puede ocupar casi toda la pantalla: formularios largos, listas filtrables.
+- Es la eleccion natural en movil donde Dialog resulta estrecho y Sheet corto.
+- Mantén el encabezado y las acciones visibles mientras el cuerpo hace scroll.
+
+## Gotchas
+
+- El contenido largo necesita scroll en el cuerpo, no en toda la pagina: si el fondo tambien se desplaza, cerrar devuelve al usuario a otra posicion.
+- Comparte contrato controlado con Dialog y Sheet; el criterio de eleccion es de tamano y foco, no tecnico.

@@ -27,3 +27,14 @@ import {
 
 - Always-visible primary actions → toolbar `Button`s.
 - Right-click-only row menus → `ContextMenu` (still offer a visible alternative).
+
+## Criterio de uso
+
+- Usa DropdownMenu para acciones sobre un objeto, no para elegir un valor de formulario — para eso existe `Select`.
+- Agrupa por consecuencia y deja las destructivas al final, separadas; el orden importa mas que el icono.
+- Cierra el menu al ejecutar una accion salvo que sea un toggle que el usuario querra repetir.
+
+## Gotchas
+
+- Es controlado: si `onOpenChange` no actualiza el estado, el menu queda abierto tras seleccionar.
+- Un item que abre otro overlay debe cerrar el menu primero; encadenarlos deja dos capas compitiendo por el foco.

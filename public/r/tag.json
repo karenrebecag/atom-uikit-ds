@@ -171,8 +171,8 @@
       "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
     },
     "derived": {
-      "generatedAt": "2026-08-04T17:00:04.963Z",
-      "sourceCommit": "897a62d",
+      "generatedAt": "2026-08-04T18:16:35.001Z",
+      "sourceCommit": "7a9dab7",
       "install": {
         "peerDeps": [],
         "cssImports": [

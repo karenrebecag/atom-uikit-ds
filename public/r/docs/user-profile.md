@@ -23,3 +23,14 @@ import { UserProfile } from '@/components/atoms/UserProfile';
 
 - Single avatar without name/org → `Avatar`.
 - Dense assignee stacks → `AvatarGroup`.
+
+## Criterio de uso
+
+- Usa UserProfile como identidad, no como menu: si necesita acciones, envuelvelo en `DropdownMenu`.
+- El nombre es lo minimo indispensable; `org` solo aporta cuando el usuario pertenece a varias.
+- En sidebar colapsado se reduce a avatar: la inicial o imagen debe seguir identificando sin el texto.
+
+## Gotchas
+
+- Sin imagen cae a iniciales: nombres de una sola palabra dan una inicial, y con pocos usuarios eso deja de distinguir.
+- El avatar no es un boton: si es clickeable, el elemento interactivo lo pone el contenedor.
