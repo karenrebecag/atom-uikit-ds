@@ -355,6 +355,10 @@ dist, CSS faltante): arréglalo antes de entregar.
 | `F16d FAIL: aggregateScore dropped` | borraste contenido — restáuralo o declara la exclusión |
 | `check-contrast` | par de color nuevo sin registrar — agrégalo a `scripts/check-contrast.mjs` |
 | `test:visual` | cambio visual intencional ⇒ `pnpm test:visual:update` + commitea PNGs; no intencional ⇒ tu CSS rompió algo |
+| El paste de Webflow se ve bien pero no responde | consultaste por CLASE en el behavior: el canal prefija a `ds-`. Migra a `data-*` (Modo C) |
+| El agente ve datos viejos y la web los nuevos | cache del MCP (5 min) o la docu no ha rebuildeado — comprueba con otro slug antes de debuggear |
+| El editorial no sale en la página del componente | ¿existe `public/r/docs/{slug}.md`? Lo emite `build:registry` desde `docs/editorial/` — si falta, es que no lo escribiste |
+| Baseline visual que falla sin que nadie tocara nada | la story usa `new Date()`/random: ancla el valor (precedente calendar) |
 
 ## Dónde se ve lo que estás haciendo
 
@@ -388,6 +392,36 @@ Deja el build de tokens en watch, o reconstruye antes de juzgar lo que ves.
 **Sí puedes confiar en el Storybook local** una vez reconstruidos los tokens: es
 la misma cadena que consume el desplegado, y es exactamente contra lo que corre
 la regresión visual.
+
+## De tu commit a los tres canales
+
+Lo que pasa despues de mergear, sin que nadie toque nada:
+
+```
+merge a main (toca public/r/** o registry.json)
+   ↓  workflow sync-docs
+deploy hook de la docu
+   ↓  su build sincroniza public/r del DS por la GitHub Contents API
+docu (paginas F9a + editorial) · MCP · CLI       ~5 min
+```
+
+**El MCP y el CLI NO leen el DS**: leen `uikit.atomchat.io/api/r`, o sea la
+docu es su servidor de registry. Consecuencia practica: un bug en esa ruta
+rompe los dos canales a la vez, y el DS puede estar perfecto mientras el
+agente ve datos viejos. Si algo no aparece donde deberia, la pregunta no es
+"¿se publico?" sino "¿por cual de los tres caminos se pierde?".
+
+Al verificar el MCP: **cachea 5 minutos en memoria**. Una instancia caliente
+sigue sirviendo lo anterior — comprueba con OTRO slug antes de declarar un
+bug.
+
+Los tres canales sirven la misma verdad del artefacto:
+
+| Canal | Que consume | Donde aparece |
+|---|---|---|
+| Web (docs) | `atom.*` + `meta.agent` + `meta.derived` + editorial `.md` | pagina F9a del slug |
+| MCP | lo mismo, en markdown por secciones | `atom_uikit_get` / `component` / `source` |
+| CLI | `files[].content` + `registryDependencies` | `add <slug>` copia el source |
 
 ## El registry se commitea
 
