@@ -21,3 +21,14 @@ import { Divider } from '@/components/atoms/Divider';
 
 - Spacing alone without a rule → margin/gap utilities.
 - Interactive split panes → `Resizable`, not a static divider.
+
+## Criterio de uso
+
+- Usa Divider cuando una regla visible ayude a separar grupos que ya tienen estructura; no intentes construir jerarquía sólo con líneas.
+- Usa orientación horizontal entre bloques apilados y vertical dentro de toolbars o grupos inline.
+- Si la separación no aporta información, prefiere `gap` o margen para reducir ruido visual.
+
+## Gotchas
+
+- La orientación vertical tiene semántica de separator; la horizontal se comporta como `hr`.
+- No uses Divider como control interactivo ni como sustituto de un heading o label.

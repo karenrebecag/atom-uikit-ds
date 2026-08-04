@@ -28,3 +28,14 @@ import {
 
 - Primary app sections switching in-place → `Tabs` or sidebar nav.
 - A single-level page with no hierarchy — omit breadcrumbs.
+
+## Criterio de uso
+
+- Úsalo cuando la página pertenece a una jerarquía navegable y los ancestros son destinos útiles.
+- Los ancestros son enlaces; la página actual es texto no enlazado y debe anunciarse como tal con `aria-current="page"`.
+- Mantén la ruta corta. Si la profundidad no ayuda a orientarse, reduce niveles en lugar de truncar nombres esenciales.
+
+## Gotchas
+
+- El contenedor debe ser un `nav` con `aria-label="Breadcrumb"`.
+- No uses breadcrumbs como sustituto de la navegación principal ni para representar pasos lineales de un formulario.

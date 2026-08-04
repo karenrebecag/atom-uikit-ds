@@ -28,3 +28,14 @@ import {
 
 - Loading placeholders → `Skeleton` / `Spinner`.
 - Error failures with retry of a failed request → error banner/toast + retry, not a first-run empty.
+
+## Criterio de uso
+
+- Usa Empty cuando el estado es válido pero todavía no hay contenido: primer uso, cero resultados o una colección que quedó vacía.
+- Explica qué está vacío y ofrece una acción de recuperación o creación cuando exista; el CTA debe estar en `EmptyContent`.
+- Distingue “no hay datos” de “no pudimos cargar”: el segundo caso necesita error y retry, no un mensaje neutro.
+
+## Gotchas
+
+- El título debe nombrar el estado, no sólo decir “sin resultados”; la descripción puede explicar el siguiente paso.
+- La media decorativa no debe competir con el mensaje ni repetirlo para tecnologías asistivas.
