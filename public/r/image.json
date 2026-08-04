@@ -157,8 +157,8 @@
       "usage": "import { Image } from '@/components/atoms/Image';\n\n<Image\n  src=\"/photos/hero.jpg\"\n  alt=\"Team workshop\"\n  size=\"l\"\n  ratio=\"16x9\"\n  fit=\"cover\"\n  radius=\"md\"\n/>"
     },
     "derived": {
-      "generatedAt": "2026-08-04T02:56:32.482Z",
-      "sourceCommit": "a9a279b",
+      "generatedAt": "2026-08-04T17:00:04.963Z",
+      "sourceCommit": "897a62d",
       "install": {
         "peerDeps": [],
         "cssImports": [
