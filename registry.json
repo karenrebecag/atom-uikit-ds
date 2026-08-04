@@ -3244,7 +3244,8 @@
       "title": "Tooltip",
       "description": "Hover or focus and a short hint appears beside the control. Labels for icon-only actions.",
       "registryDependencies": [
-        "tokens"
+        "tokens",
+        "tooltip-animation"
       ],
       "files": [
         {
@@ -4170,6 +4171,24 @@
         {
           "sourcePath": "packages/animations/src/accordion-morph.ts",
           "outputPath": "animations/accordion-morph.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Tooltip Animation",
+      "description": "Smart tooltip behavior: edge detection, hover/focus delays, and Flip travel between grouped triggers. Functional under reduced-motion; adds aria-describedby and Escape dismissal.",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/tooltip.ts",
+          "outputPath": "animations/tooltip.ts",
           "type": "registry:file"
         }
       ]

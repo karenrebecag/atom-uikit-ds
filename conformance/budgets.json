@@ -6,9 +6,9 @@
     "packages/css/dist/atom.css": { "rawKb": 185, "gzipKb": 24 },
     "packages/css/dist/embed.css": { "rawKb": 205, "gzipKb": 26 },
     "packages/animations/dist/atom-animations.js": {
-      "rawKb": 78,
-      "gzipKb": 20,
-      "$comment": "accordion-morph (goo, el modulo mas grande del bundle): 74.8/18.7 medidos. Was 60/16 (W6a scroll-reveal), 49/13 pre-W6a."
+      "rawKb": 93,
+      "gzipKb": 24,
+      "$comment": "tooltip smart (Flip + edge detection): 89.3/22.4 medidos. Was 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
     },
     "packages/css/dist/webflow.css": { "rawKb": 22, "gzipKb": 3 }
   },
@@ -17,6 +17,9 @@
   },
   "registry": {
     "$comment": "El index es el warm-start del MCP (63kb con 110 items, 2026-07-29). El budget vigila crecimiento desbocado, no bloquea un componente nuevo.",
-    "public/r/index.json": { "rawKb": 80 }
+    "public/r/index.json": {
+      "rawKb": 90,
+      "$comment": "124 items (tooltip-animation empujo 81kb). Was 80."
+    }
   }
 }

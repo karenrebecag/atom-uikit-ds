@@ -725,3 +725,175 @@ describe('accordion-morph (FUNCIONAL: disclosure; el goo es decoracion encima)',
     expect(triggers[0].getAttribute('aria-expanded')).toBe('false'); // listener fuera
   });
 });
+
+describe('tooltip-smart (FUNCIONAL: contenido bajo hover/focus; el motion es acompanante)', () => {
+  function tooltipGsap() {
+    const fromToCalls: Array<Record<string, unknown>> = [];
+    const mock = {
+      set: vi.fn(),
+      to: vi.fn((_t: unknown, vars: Record<string, unknown>) => {
+        (vars.onComplete as (() => void) | undefined)?.();
+        return { kill: vi.fn() };
+      }),
+      fromTo: vi.fn((_t: unknown, _from: unknown, to: Record<string, unknown>) => {
+        fromToCalls.push(to);
+        return { kill: vi.fn() };
+      }),
+      killTweensOf: vi.fn(),
+    };
+    return { mock, fromToCalls };
+  }
+
+  function flipDouble() {
+    return {
+      getState: vi.fn(() => ({})),
+      from: vi.fn(),
+    };
+  }
+
+  function mountTriggers(containerAttrs = '') {
+    document.body.innerHTML = `
+      <div data-tooltip-smart ${containerAttrs}>
+        <button data-tooltip-trigger data-tooltip-content="Filtra por color"
+                data-tooltip-group="filters">Color</button>
+        <button data-tooltip-trigger data-tooltip-content="Solo ofertas"
+                data-tooltip-group="filters">Sale</button>
+      </div>`;
+    return Array.from(document.querySelectorAll<HTMLElement>('[data-tooltip-trigger]'));
+  }
+
+  const popup = () => document.querySelector<HTMLElement>('[role="tooltip"]');
+
+  afterEach(() => {
+    delete g.Flip;
+    vi.useRealTimers();
+  });
+
+  it('sin gsap: avisa y devuelve cleanup inerte', async () => {
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mountTriggers();
+    const cleanup = initTooltipSmart();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('gsap not found'));
+    expect(() => cleanup()).not.toThrow();
+    warn.mockRestore();
+  });
+
+  it('hover: crea el popup con role, texto, aria-describedby y anima con tokens', async () => {
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    const { mock, fromToCalls } = tooltipGsap();
+    g.gsap = mock;
+    const [color] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+
+    const p = popup()!;
+    expect(p).toBeTruthy();
+    expect(p.textContent).toContain('Filtra por color');
+    // el trigger queda vinculado al popup para lectores de pantalla
+    expect(color.getAttribute('aria-describedby')).toBe(p.id);
+    // clase runtime con AMBAS variantes: el canal Webflow prefija ds- y el
+    // popup se crea en runtime, donde el prefijador no llega
+    expect(p.className).toContain('tooltip__popup');
+    expect(p.className).toContain('ds-tooltip__popup');
+    // fallbacks espejo de tokens (jsdom no resuelve vars): 0.3s
+    expect(fromToCalls[0]?.duration).toBe(0.3);
+    cleanup();
+  });
+
+  it('mouseleave: esconde tras hideDelay y suelta aria-describedby', async () => {
+    vi.useFakeTimers();
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    g.gsap = tooltipGsap().mock;
+    const [color] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+    color.dispatchEvent(new MouseEvent('mouseleave'));
+    vi.advanceTimersByTime(200);
+    expect(color.hasAttribute('aria-describedby')).toBe(false);
+    cleanup();
+  });
+
+  it('mismo grupo: viaja con Flip en vez de re-entrar', async () => {
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    const { mock, fromToCalls } = tooltipGsap();
+    g.gsap = mock;
+    const flip = flipDouble();
+    g.Flip = flip;
+    const [color, sale] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+    const entradas = fromToCalls.length;
+    sale.dispatchEvent(new MouseEvent('mouseenter'));
+
+    expect(flip.getState).toHaveBeenCalled();
+    expect(flip.from).toHaveBeenCalled();
+    expect(fromToCalls.length).toBe(entradas); // sin segunda entrada
+    expect(popup()!.textContent).toContain('Solo ofertas');
+    cleanup();
+  });
+
+  it('Escape cierra el tooltip (WCAG 1.4.13)', async () => {
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    g.gsap = tooltipGsap().mock;
+    const [color] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+    expect(color.hasAttribute('aria-describedby')).toBe(true);
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    expect(color.hasAttribute('aria-describedby')).toBe(false);
+    cleanup();
+  });
+
+  it('reduced-motion: FUNCIONAL — el tooltip aparece instantaneo, cero tweens', async () => {
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    setReducedMotion(true);
+    const { mock, fromToCalls } = tooltipGsap();
+    g.gsap = mock;
+    const [color] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+    // el original de Annnimate hacia return total con reduced-motion: tooltip
+    // MUERTO. Aqui el contenido es funcion, el motion es acompanante.
+    const p = popup()!;
+    expect(p).toBeTruthy();
+    expect(p.textContent).toContain('Filtra por color');
+    expect(fromToCalls.length).toBe(0);
+    cleanup();
+  });
+
+  it('focus/blur: teclado equivale a hover', async () => {
+    vi.useFakeTimers();
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    g.gsap = tooltipGsap().mock;
+    const [color] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new FocusEvent('focus'));
+    expect(popup()!.textContent).toContain('Filtra por color');
+    color.dispatchEvent(new FocusEvent('blur'));
+    vi.advanceTimersByTime(200);
+    expect(color.hasAttribute('aria-describedby')).toBe(false);
+    cleanup();
+  });
+
+  it('cleanup: retira popup, listeners y timeouts', async () => {
+    vi.useFakeTimers();
+    const { initTooltipSmart } = await import('../../../animations/src/tooltip');
+    g.gsap = tooltipGsap().mock;
+    const [color] = mountTriggers();
+
+    const cleanup = initTooltipSmart();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+    expect(popup()).toBeTruthy();
+    cleanup();
+    expect(popup()).toBeNull();
+    color.dispatchEvent(new MouseEvent('mouseenter'));
+    expect(popup()).toBeNull(); // listener fuera
+  });
+});
