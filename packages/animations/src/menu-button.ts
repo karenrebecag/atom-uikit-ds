@@ -8,9 +8,11 @@
 
 /** F10b — Webflow/domContract single source; must cover data-* queried in this module. */
 export const REQUIRED_HOOKS = [
-  "data-menu-button-animate"
+  "data-menu-button-animate",
+  "data-menu-button-line"
 ] as const;
 
+/** Solo pintura: el JS consulta por data-*, no por esta clase. */
 export const REQUIRED_ANATOMY = [
   ".burger-icon__line"
 ] as const;
@@ -54,7 +56,14 @@ export function initMenuButton(): CleanupFn {
   const cleanups: CleanupFn[] = [];
 
   buttons.forEach((button) => {
-    const lines = button.querySelectorAll<HTMLElement>('.burger-icon__line');
+    // Por data-*, NUNCA por clase: el canal Webflow prefija toda clase con
+    // `ds-`, asi que '.burger-icon__line' encuentra 0 lineas en el paste y el
+    // burger queda muerto sin un solo error (misma clase de bug que mato a
+    // accordion-morph el 2026-08-04). Fallback a la clase para markup viejo
+    // que aun no lleve el atributo.
+    const lines = button.querySelectorAll<HTMLElement>(
+      '[data-menu-button-line], .burger-icon__line',
+    );
     if (lines.length < 3) return;
 
     const [line1, line2, line3] = Array.from(lines);

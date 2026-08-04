@@ -21,6 +21,11 @@ export const REQUIRED_HOOKS = [
   'data-draggable-marquee-list',
 ] as const;
 
+/**
+ * Solo pintura. El modulo NO consulta estas clases: clona la lista entera con
+ * cloneNode, asi que el prefijo ds- del canal Webflow le es indiferente
+ * (auditado 2026-08-04 al migrar menu-button).
+ */
 export const REQUIRED_ANATOMY = [
   '[data-draggable-marquee-collection]',
   '[data-draggable-marquee-list]',
