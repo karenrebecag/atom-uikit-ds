@@ -77,7 +77,7 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
     vi.restoreAllMocks();
   });
 
-  it('expone el global AtomMotion con los 11 init* y initAll', () => {
+  it('expone el global AtomMotion con los 12 init* y initAll', () => {
     const api = loadBundle();
     expect(api).toBeDefined();
     const keys = Object.keys(api).sort();
@@ -93,6 +93,7 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
       'initSidebarAnimation',
       'initTableOfContents',
       'initTextReveal',
+      'initTooltipSmart',
       'initVideoPlayer',
     ]);
   });

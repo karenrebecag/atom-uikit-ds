@@ -1,6 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '../../../../packages/components-react/src/atoms/Button';
 import { IconButton } from '../../../../packages/components-react/src/atoms/IconButton';
+import { Tabs, TabsList, TabsTrigger } from '../../../../packages/components-react/src/atoms/Tabs';
+import { Toggle } from '../../../../packages/components-react/src/atoms/Toggle';
+import { initTooltipSmart } from '../../../../packages/animations/src/tooltip';
+import { StoryPreviewLayout, sectionLabelRow, switchRow, switchLabel } from '../utils/StoryPreviewLayout';
+import { IconActivity, IconSettings } from '../utils/SectionIcons';
+import { CopyToWebflow } from '../utils/CopyToWebflow';
+import tooltipCss from '../../../../packages/css/src/components/indicators/tooltip.css?raw';
 
 const IconPlus = () => (
   <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -78,4 +86,90 @@ export const OnIconButtons: Story = {
       </span>
     </div>
   ),
+};
+
+/**
+ * Estandar D4 (Button canonico): behavior REAL con el GSAP del preview,
+ * toggle de animacion, theme del visor. Pasa el cursor rapido entre los
+ * filtros del mismo grupo: el tooltip VIAJA con Flip en vez de re-entrar.
+ * Escape lo cierra (WCAG 1.4.13); Tab/focus equivale a hover.
+ */
+const FILTERS = [
+  { label: 'Running', content: 'Explora la coleccion de running' },
+  { label: 'Color', content: 'Filtra por color' },
+  { label: 'Genero', content: 'Filtra por genero' },
+  { label: 'Sale', content: 'Solo articulos en oferta' },
+];
+
+function SmartDemo({ placement, animated }: { placement: string; animated: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    return initTooltipSmart({ scope: root });
+  }, [placement, animated]);
+
+  return (
+    <div ref={ref}>
+      <CopyToWebflow slug="tooltip" css={tooltipCss}>
+        <div
+          data-tooltip-smart
+          data-tooltip-placement={placement}
+          data-motion-exempt={animated ? undefined : ''}
+          style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-2, 8px)', justifyContent: 'center' }}
+        >
+          {FILTERS.map((f, i) => (
+            <Button
+              key={f.label}
+              variant={i === 0 ? 'primary' : 'secondary'}
+              size="m"
+              data-tooltip-trigger
+              data-tooltip-group="filters"
+              data-tooltip-content={f.content}
+            >
+              {f.label}
+            </Button>
+          ))}
+        </div>
+      </CopyToWebflow>
+    </div>
+  );
+}
+
+export const Smart: Story = {
+  render: function Render() {
+    const [placement, setPlacement] = useState('top');
+    const [animated, setAnimated] = useState(true);
+
+    return (
+      <StoryPreviewLayout
+        minHeight={320}
+        controls={
+          <>
+            <div>
+              <div style={sectionLabelRow}><IconActivity />Placement</div>
+              <Tabs value={placement} onValueChange={setPlacement}>
+                <TabsList animated>
+                  <TabsTrigger value="top">Top</TabsTrigger>
+                  <TabsTrigger value="bottom">Bottom</TabsTrigger>
+                  <TabsTrigger value="left">Left</TabsTrigger>
+                  <TabsTrigger value="right">Right</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            <div>
+              <div style={sectionLabelRow}><IconSettings />Propiedades</div>
+              <div style={switchRow}>
+                <span style={switchLabel}>Animado (Flip)</span>
+                <Toggle animated checked={animated} onChange={setAnimated} />
+              </div>
+            </div>
+          </>
+        }
+      >
+        <SmartDemo key={`${placement}-${animated}`} placement={placement} animated={animated} />
+      </StoryPreviewLayout>
+    );
+  },
 };

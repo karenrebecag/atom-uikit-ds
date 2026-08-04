@@ -1487,7 +1487,8 @@
     "title": "Tooltip",
     "description": "Hover or focus and a short hint appears beside the control. Labels for icon-only actions.",
     "registryDependencies": [
-      "tokens"
+      "tokens",
+      "tooltip-animation"
     ],
     "discovery": {
       "name": "Tooltip",
@@ -2431,6 +2432,24 @@
     "discovery": {
       "name": "Accordion Morph Animation",
       "description": "Goo morph behavior for accordion-morph: liquid pour on open (blur+threshold filter), token-driven motion, functional reduced-motion.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "tooltip-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Tooltip Animation",
+    "description": "Smart tooltip behavior: edge detection, hover/focus delays, and Flip travel between grouped triggers. Functional under reduced-motion; adds aria-describedby and Escape dismissal.",
+    "discovery": {
+      "name": "Tooltip Animation",
+      "description": "Smart tooltip behavior: edge detection, hover/focus delays, and Flip travel between grouped triggers. Functional under reduced-motion; adds aria-describedby and Escape dismissal.",
       "category": "hook",
       "variants": [],
       "sizes": [],

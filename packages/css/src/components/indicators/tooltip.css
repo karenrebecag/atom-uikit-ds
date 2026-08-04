@@ -172,3 +172,64 @@
     transition-duration: 0ms;
   }
 }
+
+/* -------------------------------------------------------------------------
+   Smart tooltip (behavior tooltip.ts) — popup real en portal
+
+   El popup lo crea el behavior en runtime (por eso el JS le pone la clase en
+   ambas variantes, con y sin ds-). Edge detection, delays y el viaje con
+   Flip entre triggers del mismo grupo viven en
+   packages/animations/src/tooltip.ts; aqui SOLO pintura.
+
+   Colores: --primary/--primary-foreground = el inverso clasico de tooltip,
+   theme-aware gratis (oscuro sobre light, claro sobre dark) — mejora el
+   contraste en dark frente al CSS-only de arriba (neutral-900 fijo).
+   ------------------------------------------------------------------------- */
+
+.tooltip__popup {
+  position: fixed;
+  z-index: var(--z-index-70, 70);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.tooltip__popup-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--primary);
+  border-radius: var(--radius-md);
+  will-change: transform;
+}
+
+.tooltip__popup-text {
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-1) var(--spacing-2);
+  color: var(--primary-foreground);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* transform-origin por placement: la entrada escala DESDE el trigger */
+.tooltip__popup.is-top {
+  transform-origin: bottom center;
+}
+.tooltip__popup.is-bottom {
+  transform-origin: top center;
+}
+.tooltip__popup.is-left {
+  transform-origin: right center;
+}
+.tooltip__popup.is-right {
+  transform-origin: left center;
+}
+
+@media (max-width: 479px) {
+  .tooltip__popup-text {
+    max-width: calc(100vw - var(--spacing-8));
+    white-space: normal;
+  }
+}

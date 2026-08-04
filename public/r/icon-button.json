@@ -180,8 +180,8 @@
       }
     },
     "derived": {
-      "generatedAt": "2026-08-03T21:54:28.995Z",
-      "sourceCommit": "435e4f8",
+      "generatedAt": "2026-08-04T02:56:32.482Z",
+      "sourceCommit": "a9a279b",
       "install": {
         "peerDeps": [
           "gsap"

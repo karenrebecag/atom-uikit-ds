@@ -13,11 +13,13 @@ import '../../../packages/css/src/index.css';
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import { SplitText } from 'gsap/SplitText';
+import { Flip } from 'gsap/Flip';
 
-gsap.registerPlugin(CustomEase, SplitText);
+gsap.registerPlugin(CustomEase, SplitText, Flip);
 (globalThis as Record<string, unknown>).gsap = gsap;
 (globalThis as Record<string, unknown>).CustomEase = CustomEase;
 (globalThis as Record<string, unknown>).SplitText = SplitText;
+(globalThis as Record<string, unknown>).Flip = Flip;
 
 const preview: Preview = {
   globalTypes: {

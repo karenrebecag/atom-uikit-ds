@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T21:54:29.350Z",
+  "generatedAt": "2026-08-04T02:56:32.825Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 123,
+    "items": 124,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 123
+      "withSourceCommit": 124
     },
     "webflow": {
-      "emitted": 38,
-      "excluded": 22
+      "emitted": 37,
+      "excluded": 23
     },
-    "aggregateScore": 50.5
+    "aggregateScore": 50.4
   },
   "batches": [],
   "items": [
@@ -595,12 +595,12 @@
       "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
-      "webflow": "emitted",
-      "webflowReason": null,
+      "webflow": "excluded",
+      "webflowReason": "declared: render depende de new Date() (mes visible + ring de hoy): el artefacto cambiaba cada dia y el gate de deriva fallaba solo — el canal exige render determinista; un calendar interactivo se consume via React",
       "motionContract": false,
       "eligibleAgent": true,
       "excludedAgent": null,
-      "contentScore": 95
+      "contentScore": 90
     },
     {
       "slug": "chip",
@@ -1072,7 +1072,7 @@
       "hasReact": false,
       "hasCss": true,
       "metaAgent": "none",
-      "editorial": false,
+      "editorial": true,
       "derivedPartials": [],
       "derivedOk": true,
       "webflow": "excluded",
@@ -1080,7 +1080,7 @@
       "motionContract": false,
       "eligibleAgent": false,
       "excludedAgent": "no React source",
-      "contentScore": 25
+      "contentScore": 50
     },
     {
       "slug": "menu-button",
@@ -1733,6 +1733,25 @@
     },
     {
       "slug": "accordion-morph-animation",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
+    },
+    {
+      "slug": "tooltip-animation",
       "kind": "hook",
       "category": "hook",
       "hasReact": false,

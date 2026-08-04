@@ -44,8 +44,8 @@
       "usage": "import {\n  Sheet, SheetTrigger, SheetContent, SheetHeader,\n  SheetTitle, SheetDescription, SheetBody,\n} from '@/components/atoms/Sheet';\n\n<Sheet>\n  <SheetTrigger><button type=\"button\">Open</button></SheetTrigger>\n  <SheetContent side=\"right\">\n    <SheetHeader>\n      <SheetTitle>Settings</SheetTitle>\n      <SheetDescription>Tune preferences.</SheetDescription>\n    </SheetHeader>\n    <SheetBody>{/* fields */}</SheetBody>\n  </SheetContent>\n</Sheet>"
     },
     "derived": {
-      "generatedAt": "2026-08-03T21:54:28.995Z",
-      "sourceCommit": "435e4f8",
+      "generatedAt": "2026-08-04T02:56:32.482Z",
+      "sourceCommit": "a9a279b",
       "install": {
         "peerDeps": [],
         "cssImports": [
