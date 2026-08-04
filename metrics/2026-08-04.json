@@ -1,0 +1,73 @@
+{
+  "date": "2026-08-04",
+  "commit": "ce0366b",
+  "timeToPublish": {
+    "measured": 63,
+    "medianDays": 13,
+    "maxDays": 15,
+    "sameDay": 11,
+    "slowest": [
+      {
+        "slug": "button-hover",
+        "source": "2026-05-14",
+        "published": "2026-05-29",
+        "days": 15
+      },
+      {
+        "slug": "sidebar",
+        "source": "2026-05-14",
+        "published": "2026-05-29",
+        "days": 15
+      },
+      {
+        "slug": "tooltip",
+        "source": "2026-05-14",
+        "published": "2026-05-29",
+        "days": 15
+      },
+      {
+        "slug": "accordion",
+        "source": "2026-05-14",
+        "published": "2026-05-28",
+        "days": 14
+      },
+      {
+        "slug": "avatar",
+        "source": "2026-05-14",
+        "published": "2026-05-28",
+        "days": 14
+      }
+    ]
+  },
+  "coverage": {
+    "available": true,
+    "source": "public/r/content-coverage.json",
+    "totals": {
+      "items": 124,
+      "eligibleAgent": 50,
+      "metaAgent": {
+        "full": 50,
+        "partial": 0,
+        "none": 0,
+        "fullPct": 100
+      },
+      "editorial": {
+        "yes": 50,
+        "eligible": 50,
+        "pct": 100
+      },
+      "derived": {
+        "withSourceCommit": 124
+      },
+      "webflow": {
+        "emitted": 37,
+        "excluded": 23
+      },
+      "aggregateScore": 50.8
+    }
+  },
+  "drift": {
+    "available": false,
+    "reason": "sin GITHUB_TOKEN — se omite"
+  }
+}

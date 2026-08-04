@@ -542,6 +542,78 @@ describe('text-reveal (W6a: tokenizado, decorativo)', () => {
   });
 });
 
+describe('menu-button (burger↔X; el canal Webflow prefija clases)', () => {
+  // Mock propio: menu-button encadena tl.clear()/kill(), que el gsapMock
+  // compartido no expone (lo usan modulos con timelines mas simples).
+  function menuGsap() {
+    const tl: any = {};
+    for (const m of ['to', 'clear', 'set', 'fromTo']) tl[m] = vi.fn(() => tl);
+    tl.kill = vi.fn();
+    return {
+      registerPlugin: vi.fn(),
+      set: vi.fn(),
+      to: vi.fn(() => tl),
+      timeline: vi.fn(() => tl),
+      killTweensOf: vi.fn(),
+    };
+  }
+
+  function mountBurger(opts: { prefixed?: boolean; exempt?: boolean } = {}) {
+    // `prefixed` simula el paste de Webflow: las clases llegan como ds-*, los
+    // data-* intactos. Un modulo que consulte por clase encuentra NADA ahi.
+    const cls = opts.prefixed ? 'ds-burger-icon__line' : 'burger-icon__line';
+    document.body.innerHTML = `
+      <button data-menu-button-animate ${opts.exempt ? 'data-motion-exempt' : ''}>
+        <span class="${opts.prefixed ? 'ds-burger-icon' : 'burger-icon'}">
+          <span class="${cls}" data-menu-button-line></span>
+          <span class="${cls}" data-menu-button-line></span>
+          <span class="${cls}" data-menu-button-line></span>
+        </span>
+      </button>`;
+    return document.querySelector<HTMLElement>('[data-menu-button-animate]')!;
+  }
+
+  it('sin gsap: cleanup inerte', async () => {
+    const { initMenuButton } = await import('../../../animations/src/menu-button');
+    mountBurger();
+    expect(() => initMenuButton()()).not.toThrow();
+  });
+
+  it('engancha el burger y arma el timeline', async () => {
+    const { initMenuButton } = await import('../../../animations/src/menu-button');
+    g.gsap = menuGsap();
+    g.CustomEase = { create: vi.fn() };
+    mountBurger();
+    const cleanup = initMenuButton();
+    expect(g.gsap.timeline).toHaveBeenCalled();
+    cleanup();
+  });
+
+  it('CANAL WEBFLOW: con las clases prefijadas ds- sigue enganchando', async () => {
+    const { initMenuButton } = await import('../../../animations/src/menu-button');
+    g.gsap = menuGsap();
+    g.CustomEase = { create: vi.fn() };
+    mountBurger({ prefixed: true });
+    const cleanup = initMenuButton();
+    // Consultar por clase daria 0 lineas aqui y el burger quedaria muerto en el
+    // paste — estilos perfectos, clicks sin efecto (bug real de accordion-morph
+    // el 2026-08-04). La estructura debe viajar por data-*.
+    expect(g.gsap.timeline).toHaveBeenCalled();
+    cleanup();
+  });
+
+  it('reduced-motion: el CSS ya transiciona, GSAP no re-anima', async () => {
+    const { initMenuButton } = await import('../../../animations/src/menu-button');
+    setReducedMotion(true);
+    g.gsap = menuGsap();
+    g.CustomEase = { create: vi.fn() };
+    mountBurger();
+    const cleanup = initMenuButton();
+    expect(g.gsap.timeline).not.toHaveBeenCalled();
+    expect(() => cleanup()).not.toThrow();
+  });
+});
+
 describe('accordion-morph (FUNCIONAL: disclosure; el goo es decoracion encima)', () => {
   // Doble de gsap con timeline encadenable que CAPTURA vars: el contrato de
   // tokens se verifica sobre lo que el modulo le pasa a gsap, no sobre pixeles.
