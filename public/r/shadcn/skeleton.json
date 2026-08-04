@@ -50,8 +50,8 @@
       "usage": "import { Skeleton } from '@/components/atoms/Skeleton';\n\n<div aria-busy=\"true\">\n  <Skeleton variant=\"circle\" className=\"w-10 h-10\" />\n  <Skeleton variant=\"text\" className=\"w-40\" />\n</div>"
     },
     "derived": {
-      "generatedAt": "2026-08-04T17:00:04.963Z",
-      "sourceCommit": "897a62d",
+      "generatedAt": "2026-08-04T18:16:35.001Z",
+      "sourceCommit": "7a9dab7",
       "install": {
         "peerDeps": [],
         "cssImports": [

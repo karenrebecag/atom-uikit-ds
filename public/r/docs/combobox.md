@@ -27,3 +27,14 @@ import {
 
 - Fewer than ~5 fixed options with no search need → `Select` / radio list.
 - Free-form text without a closed list → `Input` / `Textarea`.
+
+## Criterio de uso
+
+- Usa Combobox cuando la lista es larga o desconocida y escribir es mas rapido que buscar; por debajo de ~7 opciones, `Select` es mejor.
+- `autoHighlight` acelera al usuario que escribe y confirma con Enter; desactivalo si una seleccion accidental es costosa.
+- Muestra siempre un estado vacio util: "sin resultados para X" con la opcion de limpiar.
+
+## Gotchas
+
+- Tiene DOS estados controlados independientes (`value` y `open`): confundirlos deja el panel abierto tras elegir o el valor congelado.
+- El filtrado es responsabilidad del consumidor: el componente no decide que coincide.
