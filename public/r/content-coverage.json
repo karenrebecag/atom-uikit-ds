@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T18:31:23.228Z",
+  "generatedAt": "2026-08-05T16:12:24.336Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 124,
+    "items": 126,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 124
+      "withSourceCommit": 126
     },
     "webflow": {
       "emitted": 37,
       "excluded": 23
     },
-    "aggregateScore": 50.8
+    "aggregateScore": 50.2
   },
   "batches": [],
   "items": [
@@ -1414,6 +1414,23 @@
       "contentScore": 20
     },
     {
+      "slug": "layout/navbar-mega",
+      "kind": "layout",
+      "category": "layout",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "layout",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "layout — composition block; agent manifest deferred",
+      "contentScore": 20
+    },
+    {
       "slug": "layout/footer-simple",
       "kind": "layout",
       "category": "layout",
@@ -1809,6 +1826,25 @@
     },
     {
       "slug": "menu-button-animation",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
+    },
+    {
+      "slug": "mega-nav-animation",
       "kind": "hook",
       "category": "hook",
       "hasReact": false,
