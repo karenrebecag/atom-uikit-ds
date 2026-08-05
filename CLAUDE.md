@@ -676,6 +676,29 @@ Enforced by Turborepo. Never build components before tokens + css.
 - Support `data-motion-exempt` to skip animation per-element
 - GSAP is a peer dependency, not bundled
 
+### Añadir un behavior: lo que el flujo exige (checklist)
+
+`build-browser.mjs` recolecta automáticamente cualquier `export function init*`
+de `dist/`, así que un módulo nuevo entra al bundle **solo. Sin avisar.** Por eso
+el sistema tiene gates que hay que atender, no rodear:
+
+1. **Export en `packages/animations/src/index.ts`.**
+2. **Declararlo en la allowlist** de `packages/components-react/src/__tests__/animations-bundle-contract.test.ts`.
+   Ese test existe para que ningún behavior entre al bundle sin declararse: si
+   falla al añadir uno, está funcionando. Se actualiza la lista, no se relaja.
+3. **Correr `pnpm --filter @atom-uikit/components-react test`**, no solo
+   `pnpm conformance`. Son suites distintas y el contrato del bundle vive en la
+   segunda (precedente: `initMegaNav` llegó a un PR con ese test en rojo).
+4. **Revisar el budget** de `atom-animations.js` en `conformance/budgets.json`.
+   Subirlo es un cambio consciente de ese archivo, justificado en el PR.
+5. **Item `<slug>-animation`** en `registry.json` con `dependencies: ["gsap"]`.
+
+Nota sobre CI: `component-tests.yml` corre con filtros de path. **No convertirlo
+en check requerido** — con filtros de path el check no corre en PRs que no
+tocan esas rutas y el PR queda colgado en pending para siempre (ver
+`reference_atomuikit_branch_protection`). La cobertura se arregla ampliando
+`paths`, que es donde `packages/animations/**` tuvo que entrar.
+
 ---
 
 ## Releasing (sin npm)

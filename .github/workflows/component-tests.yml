@@ -5,6 +5,12 @@ on:
     paths:
       - 'packages/components-react/**'
       - 'packages/cli/**'
+      # animations: aqui vive animations-bundle-contract, que asegura que ningun
+      # behavior entre al bundle sin declararse. Sin esta ruta, un PR que solo
+      # agregue un modulo a packages/animations NO dispara el gate y el contrato
+      # se salta en silencio (paso con initMegaNav: solo corrio porque el PR
+      # tocaba tambien public/r).
+      - 'packages/animations/**'
       - 'public/r/**'
       - '.github/workflows/component-tests.yml'
   push:
@@ -12,6 +18,7 @@ on:
     paths:
       - 'packages/components-react/**'
       - 'packages/cli/**'
+      - 'packages/animations/**'
       - 'public/r/**'
 
 concurrency:
