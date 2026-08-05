@@ -256,6 +256,18 @@
         "$type": "color",
         "$value": "#371600"
       }
+    },
+    "violet": {
+      "400": {
+        "$type": "color",
+        "$value": "#bf44ff",
+        "$description": "Violeta claro — stop intermedio del gradient-highlight de marca"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#8023ff",
+        "$description": "Violeta de marca (brandbook). Reinstalado 2026-08-05: la migracion OSMO lo habia retirado, pero el highlight tipografico violeta->naranja es de marca y se usa en las homes"
+      }
     }
   }
 }

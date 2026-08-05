@@ -32,6 +32,23 @@
 .tag--s  { height: 1.25rem; padding: 0 var(--spacing-2); font-size: var(--font-size-xs); }
 .tag--m  { height: 1.5rem; padding: 0 var(--spacing-2); font-size: var(--font-size-sm); }
 
+/* ---- l: eyebrow de hero ----
+   El unico tamano pensado para FRASE, no para etiqueta de estado: por eso
+   levanta el max-width de 12.5rem y el nowrap del bloque base. Sin esto una
+   frase como "Inteligencia de Conversion para WhatsApp" se corta con ellipsis. */
+
+.tag--l {
+  height: auto;
+  max-width: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--font-weight-semibold);
+  white-space: normal;
+  overflow: visible;
+}
+
 /* ---- Mono (patron OSMO: etiqueta tecnica) ---- */
 /* Tipografia mono en caja recta. Combina con --inverse o cualquier intent. */
 
@@ -42,6 +59,23 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   border-radius: var(--radius-sm);
+}
+
+/* ---- Gradient (borde degradado de marca) ----
+   Highlight tipografico del sistema: el mismo --gradient-highlight del
+   .text-gradient, aqui como CONTORNO. El borde degradado se hace con dos capas
+   de background y distintos clip boxes — un border-image no permite radio, y
+   este pill es radius-full. Por eso el border va transparent: es la ventana por
+   la que se ve la capa de gradiente. */
+
+.tag--gradient {
+  border-color: transparent;
+  background-image:
+    linear-gradient(var(--background), var(--background)),
+    var(--gradient-highlight);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: var(--foreground);
 }
 
 /* ---- Inverse (relleno con los semantics del contexto: flipa en dark) ---- */

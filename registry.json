@@ -3682,6 +3682,34 @@
       ]
     },
     {
+      "name": "layout/navbar-mega",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
+      "title": "Navbar Mega",
+      "description": "Navbar con mega-dropdowns morficos: paneles multi-columna, quick links y card promo. El motion vive en mega-nav-animation (initMegaNav); sin el behavior los paneles quedan cerrados.",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "logo",
+        "nav-link",
+        "button",
+        "burger-icon",
+        "item",
+        "dropdown-menu",
+        "image",
+        "menu-button",
+        "mega-nav-animation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/navbar-mega.ts",
+          "outputPath": "layouts/navbar-mega.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "layout/footer-simple",
       "kind": "layout",
       "framework": "css",
@@ -4246,6 +4274,24 @@
         {
           "sourcePath": "packages/animations/src/menu-button.ts",
           "outputPath": "animations/menu-button.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "mega-nav-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Mega Nav Animation",
+      "description": "Dropdown morfico con hover intent direccional (desktop) y slide-over por panel (movil). Funcional: reduced-motion/data-motion-exempt colapsan duraciones a 0, el menu sigue operando. Motion por tokens (--easing-osmo, --duration-300/200). El burger delega en el CSS de menu-button via data-menu-button.",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/mega-nav.ts",
+          "outputPath": "animations/mega-nav.ts",
           "type": "registry:file"
         }
       ]

@@ -1,14 +1,32 @@
 /**
- * Brand gradients — composed from OSMO color tokens (no raw hex, no dead ramps).
- * Violet ramp was removed with Tailwind palette; gradient now uses forest → brand
- * (deep green into Atom orange) for the AI→results story.
+ * Brand gradients — composed from color tokens (no raw hex, no dead ramps).
  *
- * ALLOWED: hero headline keywords (.text-gradient) and section backgrounds (.bg-*).
- * FORBIDDEN: buttons and CTAs (use .button--primary/--secondary), icons, chips.
+ * DOS gradientes con roles distintos, no uno:
+ *
+ *   --gradient-brand      forest → naranja. SUPERFICIES: fondos de seccion.
+ *   --gradient-highlight  violeta → naranja. TIPOGRAFIA: keywords de titular
+ *                         y el borde del eyebrow pill (.tag--gradient).
+ *
+ * REVERSION CONSCIENTE (2026-08-05, decision de Karen). La migracion a OSMO
+ * retiro la rampa violeta junto con la paleta Tailwind y dejo el highlight en
+ * forest → brand. Pero el violeta #8023FF sigue vigente en el brandbook y el
+ * highlight violeta → naranja es el que viven las tres homes. Se reinstala como
+ * primitive (color.violet.400/500) y se declara aqui con su propio rol, en vez
+ * de repintar --gradient-brand: el fondo de seccion sigue siendo forest.
+ *
+ * ALLOWED: keywords de titular (.text-gradient), fondos de seccion (.bg-*),
+ *          borde del eyebrow pill.
+ * FORBIDDEN: botones y CTAs (usa .button--primary/--secondary), iconos, chips.
  */
 
 :root {
   --gradient-brand: linear-gradient(135deg, var(--color-forest) 0%, var(--brand) 100%);
+  --gradient-highlight: linear-gradient(
+    90deg,
+    var(--color-violet-500) 0%,
+    var(--color-violet-400) 50%,
+    var(--brand) 100%
+  );
   --gradient-brand-soft: linear-gradient(
     135deg,
     color-mix(in srgb, var(--color-green-electric) 12%, var(--background)) 0%,
@@ -22,9 +40,11 @@
 }
 
 /* Keyword/headline emphasis. Brand rules: hero headlines only, max 2 highlight
-   colors per title, "Atom" stays orange. */
+   colors per title, "Atom" stays orange.
+   Usa --gradient-highlight: el highlight tipografico es violeta → naranja; el
+   forest → naranja es para superficies. */
 .text-gradient {
-  background: var(--gradient-brand);
+  background: var(--gradient-highlight);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

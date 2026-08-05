@@ -74,7 +74,12 @@ export function initNavAutohide(): CleanupFn {
     // scroll-up y siempre en top 0.
     const hide = delta > 0 && y > 0;
     for (const nav of navs) {
-      nav.style.translate = hide ? hideOffset.get(nav) ?? '0 -110%' : '0 0';
+      // En reposo se QUITA la propiedad, no se pone en 0: cualquier valor
+      // distinto de none convierte al nav en containing block y sus
+      // descendientes position:fixed (paneles de menu movil) pasan a
+      // posicionarse contra la barra en vez del viewport.
+      if (hide) nav.style.translate = hideOffset.get(nav) ?? '0 -110%';
+      else nav.style.removeProperty('translate');
       nav.setAttribute('data-nav-hidden', String(hide));
     }
     lastY = y;
@@ -84,7 +89,7 @@ export function initNavAutohide(): CleanupFn {
     if (window.scrollY <= 0) {
       // top 0: mostrar sin esperar el umbral
       for (const nav of navs) {
-        nav.style.translate = '0 0';
+        nav.style.removeProperty('translate');
         nav.setAttribute('data-nav-hidden', 'false');
       }
       lastY = 0;
