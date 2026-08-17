@@ -27,6 +27,10 @@ export const marqueeFeatures = {
   data-direction    sentido inicial; el modulo lo mantiene actualizado al arrastrar
   data-autoplay     "false" = la tira arranca quieta y solo se mueve al arrastrar.
                     Quitarlo devuelve el avance continuo.
+  data-lag          arrastre-retardo: cada card se queda atras en proporcion a
+                    la velocidad y vuelve con power3.out. 0 lo apaga; 3 es el
+                    valor de referencia. Es lo que hace que el contenido pese
+                    en vez de ir clavado al contenedor.
 
   Sin el modificador marquee--fade a proposito: el degradado lateral se ve raro
   cuando la tira esta quieta, porque insinua un movimiento que no hay. Con
@@ -47,6 +51,7 @@ export const marqueeFeatures = {
     data-multiplier="35"
     data-sensitivity="0.01"
     data-autoplay="false"
+    data-lag="3"
   >
     <div class="marquee__collection" data-draggable-marquee-collection>
       <div class="marquee__list" data-draggable-marquee-list>

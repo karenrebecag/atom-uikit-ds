@@ -23,6 +23,8 @@ export type MarqueeProps = {
   sensitivity?: number;
   /** Solo en draggable: false deja la tira quieta hasta que la arrastren. */
   autoplay?: boolean;
+  /** Solo en draggable: arrastre-retardo de los items. 0 = sin retardo. */
+  lag?: number;
   children: ReactNode;
   className?: string;
 };
@@ -37,6 +39,7 @@ export function Marquee({
   multiplier = 35,
   sensitivity = 0.01,
   autoplay = true,
+  lag = 0,
   children,
   className,
 }: MarqueeProps) {
@@ -85,6 +88,7 @@ export function Marquee({
         data-multiplier={multiplier}
         data-sensitivity={sensitivity}
         data-autoplay={autoplay ? 'true' : 'false'}
+        data-lag={lag}
         className={cn('marquee', 'marquee--draggable', fade && 'marquee--fade', className)}
       >
         <div data-draggable-marquee-collection="" className="marquee__collection">

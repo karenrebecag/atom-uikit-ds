@@ -36,6 +36,9 @@ function gsapMock() {
     fromTo: vi.fn(),
     timeline: vi.fn(() => timeline),
     killTweensOf: vi.fn(),
+    ticker: { add: vi.fn(), remove: vi.fn() },
+    quickTo: vi.fn(() => vi.fn()),
+    getProperty: vi.fn(() => 0),
     utils: {
       wrap: () => (x: number) => x,
       clamp: (_min: number, _max: number, v: number) => v,
@@ -211,6 +214,24 @@ describe('marquee-draggable (decorativo: loop infinito)', () => {
     initDraggableMarquee();
     expect(g.gsap._tween.timeScale).toHaveBeenCalledWith(0);
     expect(g.gsap._tween.timeScale).not.toHaveBeenCalledWith(1);
+  });
+
+  it('data-lag: engancha el ticker del retardo y el cleanup lo suelta', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-lag', '3');
+    const cleanup = initDraggableMarquee();
+    expect(g.gsap.quickTo).toHaveBeenCalled();
+    expect(g.gsap.ticker.add).toHaveBeenCalled();
+    cleanup();
+    expect(g.gsap.ticker.remove).toHaveBeenCalled();
+  });
+
+  it('sin data-lag no se engancha ningun ticker', () => {
+    mountGlobals();
+    mountMarquee();
+    initDraggableMarquee();
+    expect(g.gsap.ticker.add).not.toHaveBeenCalled();
   });
 
   it('quieta no tiene sentido: data-direction no parpadea a left al detenerse', () => {
