@@ -25,6 +25,8 @@ export type MarqueeProps = {
   autoplay?: boolean;
   /** Solo en draggable: arrastre-retardo de los items. 0 = sin retardo. */
   lag?: number;
+  /** Solo en draggable sin autoplay: imanta a limite de item al soltar. */
+  snap?: 'true' | 'auto' | 'false';
   children: ReactNode;
   className?: string;
 };
@@ -40,6 +42,7 @@ export function Marquee({
   sensitivity = 0.01,
   autoplay = true,
   lag = 0,
+  snap = 'false',
   children,
   className,
 }: MarqueeProps) {
@@ -89,6 +92,7 @@ export function Marquee({
         data-sensitivity={sensitivity}
         data-autoplay={autoplay ? 'true' : 'false'}
         data-lag={lag}
+        data-snap={snap}
         className={cn('marquee', 'marquee--draggable', fade && 'marquee--fade', className)}
       >
         <div data-draggable-marquee-collection="" className="marquee__collection">

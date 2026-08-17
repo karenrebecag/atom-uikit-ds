@@ -7,6 +7,14 @@
 //   data-sensitivity="0.01"  (velocity to timescale ratio)
 //   data-autoplay="false"    (sin avance propio: solo se mueve al arrastrar)
 //   data-lag="3"             (arrastre-retardo de los items; 0 = sin retardo)
+//   data-snap="auto"         (imanta a limite de item: "true" | "auto" | "false")
+//
+// Sobre data-snap: una card asomando por el borde COMUNICA que hay mas, y en
+// pantallas anchas es deseable. Deja de serlo cuando una card ocupa casi todo
+// el ancho: ahi el recorte se lee como un fallo de maquetacion, no como una
+// pista. Por eso "auto" no mira breakpoints sino cuantas caben — si entran
+// menos de dos, imanta. El DS no publica breakpoints como tokens a proposito.
+// Solo aplica sin autoplay: imantar una tira que avanza sola es contradictorio.
 //
 // Sobre data-autoplay: la velocidad de REPOSO del loop es lo unico que cambia.
 // Con autoplay la tira descansa a ±1 y avanza sola; sin autoplay descansa a 0,
@@ -28,6 +36,7 @@ export const REQUIRED_HOOKS = [
   'data-draggable-marquee-list',
   'data-autoplay',
   'data-lag',
+  'data-snap',
 ] as const;
 
 /**
@@ -137,6 +146,37 @@ export function initDraggableMarquee(): CleanupFn {
 
     applyTimeScale();
 
+    // Imantado a limite de item. La distancia entre inicios de item (pitch) sale
+    // de listWidth/n en vez de medir un item: los clones ya estan en el DOM y
+    // medir "el primero" daria el mismo numero con mas trabajo y mas supuestos.
+    const snapMode = (wrapper.getAttribute('data-snap') || 'false').toLowerCase();
+    const itemCount = list.children.length;
+    const pitch = itemCount > 0 ? listWidth / itemCount : 0;
+    const itemsThatFit = pitch > 0 ? wrapperWidth / pitch : Infinity;
+    const shouldSnap =
+      restingScale === 0 &&
+      pitch > 0 &&
+      (snapMode === 'true' || (snapMode === 'auto' && itemsThatFit < 2));
+
+    function snapToNearestItem() {
+      const x = gsap.getProperty(collection, 'x') as number;
+      const snapped = Math.round(x / pitch) * pitch;
+      // El loop mapea progress 0..1 sobre x 0..-listWidth, asi que la posicion
+      // se corrige moviendo progress, no x: x lo escribe el propio tween.
+      const current = marqueeLoop.progress();
+      let target = (((-snapped / listWidth) % 1) + 1) % 1;
+      // Elegir el equivalente mas cercano: sin esto, imantar cerca de la costura
+      // 0/1 hace dar la vuelta entera a la tira.
+      if (target - current > 0.5) target -= 1;
+      else if (current - target > 0.5) target += 1;
+      gsap.to(marqueeLoop, {
+        progress: target,
+        duration: 0.45,
+        ease: 'power2.out',
+        overwrite: true,
+      });
+    }
+
     // Drag observer
     const marqueeObserver = Observer.create({
       target: wrapper,
@@ -158,7 +198,14 @@ export function initDraggableMarquee(): CleanupFn {
         // defecto (power1) la tira se frena de golpe y parece ligera.
         gsap.timeline({ onUpdate: applyTimeScale })
           .to(timeScale, { value: velocityTS, duration: 0.1, overwrite: true })
-          .to(timeScale, { value: restingDir, duration: 1.2, ease: 'power3.out' });
+          .to(timeScale, {
+            value: restingDir,
+            duration: 1.2,
+            ease: 'power3.out',
+            onComplete: () => {
+              if (shouldSnap) snapToNearestItem();
+            },
+          });
       },
     });
 

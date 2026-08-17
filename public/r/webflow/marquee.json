@@ -241,6 +241,10 @@
               {
                 "name": "data-lag",
                 "value": "0"
+              },
+              {
+                "name": "data-snap",
+                "value": "false"
               }
             ],
             "search": {
@@ -386,7 +390,8 @@
         "data-draggable-marquee-collection",
         "data-draggable-marquee-list",
         "data-autoplay",
-        "data-lag"
+        "data-lag",
+        "data-snap"
       ],
       "anatomy": [
         "[data-draggable-marquee-collection]",
