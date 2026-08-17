@@ -26,7 +26,7 @@ function setReducedMotion(reduced: boolean) {
 }
 
 function gsapMock() {
-  const tween = { kill: vi.fn(), progress: vi.fn(), timeScale: vi.fn(), pause: vi.fn(), resume: vi.fn() };
+  const tween = { kill: vi.fn(), progress: vi.fn(() => 0), timeScale: vi.fn(), pause: vi.fn(), resume: vi.fn() };
   const timeline: any = { to: vi.fn() };
   timeline.to.mockReturnValue(timeline);
   return {
@@ -232,6 +232,43 @@ describe('marquee-draggable (decorativo: loop infinito)', () => {
     mountMarquee();
     initDraggableMarquee();
     expect(g.gsap.ticker.add).not.toHaveBeenCalled();
+  });
+
+  // Simula soltar tras un arrastre: dispara el observer y ejecuta el onComplete
+  // del tramo de deceleracion, que es donde vive el imantado.
+  function dragAndSettle() {
+    const cfg = g.Observer.create.mock.calls[0][0];
+    cfg.onChangeX({ velocityX: 100 });
+    const tl = g.gsap.timeline.mock.results[0].value;
+    const settleVars = tl.to.mock.calls[1][1];
+    g.gsap.to.mockClear();
+    settleVars.onComplete?.();
+    return g.gsap.to.mock.calls.find((c: unknown[]) => 'progress' in ((c[1] ?? {}) as object));
+  }
+
+  it('data-snap="auto" con una card mas ancha que el viewport: imanta al soltar', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-autoplay', 'false');
+    wrapper.setAttribute('data-snap', 'auto');
+    initDraggableMarquee();
+    expect(dragAndSettle()).toBeTruthy();
+  });
+
+  it('sin data-snap la tira queda donde la soltaron', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-autoplay', 'false');
+    initDraggableMarquee();
+    expect(dragAndSettle()).toBeUndefined();
+  });
+
+  it('imantar con autoplay seria contradictorio: no se aplica', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-snap', 'true');
+    initDraggableMarquee();
+    expect(dragAndSettle()).toBeUndefined();
   });
 
   it('quieta no tiene sentido: data-direction no parpadea a left al detenerse', () => {

@@ -31,6 +31,10 @@ export const marqueeFeatures = {
                     la velocidad y vuelve con power3.out. 0 lo apaga; 3 es el
                     valor de referencia. Es lo que hace que el contenido pese
                     en vez de ir clavado al contenedor.
+  data-snap         "auto" imanta a limite de card SOLO cuando caben menos de
+                    dos: en pantallas anchas una card asomando comunica que hay
+                    mas, pero si ocupa casi todo el ancho el recorte se lee como
+                    un fallo. No mira breakpoints, mide cuantas entran.
 
   Sin el modificador marquee--fade a proposito: el degradado lateral se ve raro
   cuando la tira esta quieta, porque insinua un movimiento que no hay. Con
@@ -52,6 +56,7 @@ export const marqueeFeatures = {
     data-sensitivity="0.01"
     data-autoplay="false"
     data-lag="3"
+    data-snap="auto"
   >
     <div class="marquee__collection" data-draggable-marquee-collection>
       <div class="marquee__list" data-draggable-marquee-list>
