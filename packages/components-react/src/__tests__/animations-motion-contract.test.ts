@@ -540,6 +540,153 @@ describe('text-reveal (W6a: tokenizado, decorativo)', () => {
     initTextReveal();
     expect(g.SplitText.create).not.toHaveBeenCalled();
   });
+
+  it('gradiente descendiente: es otro componente, no se divide', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    document.body.innerHTML =
+      '<h2 data-split="heading">Un motor <span class="text-gradient">de IA</span></h2>';
+
+    initTextReveal();
+    expect(g.SplitText.create).not.toHaveBeenCalled();
+  });
+
+  it('gradiente en el propio titular: tampoco se divide', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    document.body.innerHTML = '<h2 data-split="heading" class="text-gradient-relume">Titular</h2>';
+
+    initTextReveal();
+    expect(g.SplitText.create).not.toHaveBeenCalled();
+  });
+
+  it('espera a document.fonts.ready para medir las lineas con la fuente real', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    mountHeading();
+
+    let loadFonts: () => void = () => {};
+    const ready = new Promise<void>((resolve) => {
+      loadFonts = resolve;
+    });
+    Object.defineProperty(document, 'fonts', {
+      value: { status: 'loading', ready },
+      configurable: true,
+    });
+
+    const cleanup = initTextReveal();
+    expect(g.SplitText.create).not.toHaveBeenCalled();
+
+    loadFonts();
+    await ready;
+    await Promise.resolve();
+    expect(g.SplitText.create).toHaveBeenCalled();
+
+    cleanup();
+    delete (document as unknown as { fonts?: unknown }).fonts;
+  });
+
+  it('cleanup antes de que carguen las fuentes: ya no divide', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    mountHeading();
+
+    let loadFonts: () => void = () => {};
+    const ready = new Promise<void>((resolve) => {
+      loadFonts = resolve;
+    });
+    Object.defineProperty(document, 'fonts', {
+      value: { status: 'loading', ready },
+      configurable: true,
+    });
+
+    initTextReveal()();
+    loadFonts();
+    await ready;
+    await Promise.resolve();
+    expect(g.SplitText.create).not.toHaveBeenCalled();
+    // Un cleanup temprano no puede dejar el titular escondido para siempre.
+    expect((document.querySelector('h2') as HTMLElement).style.visibility).toBe('');
+
+    delete (document as unknown as { fonts?: unknown }).fonts;
+  });
+
+  it('esconde el titular mientras espera las fuentes y lo devuelve al dividir', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    mountHeading();
+
+    let loadFonts: () => void = () => {};
+    const ready = new Promise<void>((resolve) => {
+      loadFonts = resolve;
+    });
+    Object.defineProperty(document, 'fonts', {
+      value: { status: 'loading', ready },
+      configurable: true,
+    });
+
+    const cleanup = initTextReveal();
+    const heading = document.querySelector('h2') as HTMLElement;
+    expect(heading.style.visibility).toBe('hidden');
+
+    loadFonts();
+    await ready;
+    await Promise.resolve();
+    expect(heading.style.visibility).toBe('');
+
+    cleanup();
+    delete (document as unknown as { fonts?: unknown }).fonts;
+  });
+
+  it('un titular que no se anima nunca se esconde', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    document.body.innerHTML =
+      '<h2 id="grad" data-split="heading" class="text-gradient-relume">Gradiente</h2>' +
+      '<h2 id="exempt" data-split="heading" data-motion-exempt>Exento</h2>';
+
+    initTextReveal();
+    expect((document.getElementById('grad') as HTMLElement).style.visibility).toBe('');
+    expect((document.getElementById('exempt') as HTMLElement).style.visibility).toBe('');
+  });
+
+  it('re-split de autoSplit tras revelar: no vuelve a esconder el titular', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    let captured: { onSplit?: (i: unknown) => void } = {};
+    g.SplitText = {
+      create: vi.fn((_el: Element, cfg: { onSplit?: (i: unknown) => void }) => {
+        captured = cfg;
+        cfg.onSplit?.({ lines: [document.createElement('div')], words: [], chars: [] });
+        return { revert: vi.fn() };
+      }),
+    };
+    installIO();
+    mountHeading();
+
+    const hides = () =>
+      g.gsap.set.mock.calls.filter(
+        (call: unknown[]) => (call[1] as { yPercent?: number })?.yPercent === 110,
+      ).length;
+
+    initTextReveal();
+    expect(hides()).toBe(1);
+
+    captured.onSplit?.({ lines: [document.createElement('div')], words: [], chars: [] });
+    expect(hides()).toBe(1);
+  });
 });
 
 describe('menu-button (burger↔X; el canal Webflow prefija clases)', () => {

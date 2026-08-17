@@ -37,6 +37,14 @@ export interface AnimationConfig {
  * Requires: gsap, SplitText (registered externally)
  * Respects: prefers-reduced-motion (skips animation, shows content)
  *           data-motion-exempt on the heading
+ *
+ * Does NOT animate gradient headings (decision Karen 2026-08-17): a headline
+ * painted with background-clip:text is a different component with its own
+ * motion story, not a split-text case. See the guard below for the mechanics.
+ *
+ * Owns its own FOUC window: the headings it will animate are hidden from JS at
+ * init and restored once split. No stylesheet does this — a CSS-side hide keeps
+ * the text invisible on any page where the module fails to run.
  */
 
 type SplitType = 'lines' | 'words' | 'chars';
@@ -139,12 +147,38 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
   const tweens: any[] = [];
   const observers: IntersectionObserver[] = [];
   let easeName = 'text-reveal-ease';
+  let disposed = false;
 
-  headings.forEach((heading: Element) => {
-    if ((heading as HTMLElement).dataset.motionExempt !== undefined) return;
+  // Resolved synchronously so the FOUC hide below covers exactly the headings
+  // this module will animate, and nothing else.
+  const eligible = Array.from(headings as ArrayLike<Element>).filter((heading) => {
+    if ((heading as HTMLElement).dataset.motionExempt !== undefined) return false;
 
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion) return false;
 
+    // A gradient headline paints background-clip:text against its own box.
+    // SplitText gives every line its own box, so the sweep restarts per piece
+    // and the gradient breaks into steps. Left intact on purpose.
+    return !(
+      heading.matches('[class*="gradient"]') || heading.querySelector('[class*="gradient"]')
+    );
+  });
+
+  if (eligible.length === 0) return () => {};
+
+  // The split lands after paint because it waits for the webfont, so without
+  // this the heading shows at rest and then jumps down to animate in. Hidden
+  // from JS rather than CSS: if this module never runs — no gsap, no call —
+  // there is no stylesheet left holding the text invisible.
+  eligible.forEach((heading) => {
+    (heading as HTMLElement).style.visibility = 'hidden';
+  });
+
+  const restore = (heading: Element) => {
+    (heading as HTMLElement).style.visibility = '';
+  };
+
+  const splitOne = (heading: Element) => {
     const type = ((heading as HTMLElement).dataset.splitReveal || 'lines') as SplitType;
     const safeType: SplitType =
       type === 'lines' || type === 'words' || type === 'chars' ? type : 'lines';
@@ -166,49 +200,82 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
       gsapEase = 'expo.out';
     }
 
-    const splitInstance = SplitText.create(heading, {
-      type: typesToSplit,
-      mask: 'lines',
-      autoSplit: true,
-      linesClass: 'line',
-      wordsClass: 'word',
-      charsClass: 'letter',
-      onSplit(instance: any) {
-        const targets = instance[safeType];
-        if (!targets?.length) return null;
+    // autoSplit re-runs onSplit on font load and on resize. Re-hiding a heading
+    // the reader has already seen would drop it back below the mask mid-scroll,
+    // so once revealed the fresh lines are left at rest.
+    let revealed = false;
 
-        gsap.set(targets, { yPercent: 110 });
+    let splitInstance: any;
+    try {
+      splitInstance = SplitText.create(heading, {
+        type: typesToSplit,
+        mask: 'lines',
+        autoSplit: true,
+        linesClass: 'line',
+        wordsClass: 'word',
+        charsClass: 'letter',
+        onSplit(instance: any) {
+          const targets = instance[safeType];
+          if (!targets?.length) return null;
+          if (revealed) return null;
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const tween = gsap.to(targets, {
-                  yPercent: 0,
-                  duration: motion.duration,
-                  stagger: motion.stagger,
-                  ease: gsapEase,
-                });
-                tweens.push(tween);
-                observer.disconnect();
-              }
-            });
-          },
-          { threshold: 0.1 },
-        );
+          gsap.set(targets, { yPercent: 110 });
 
-        observer.observe(heading);
-        observers.push(observer);
-        return null;
-      },
-    });
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  revealed = true;
+                  const tween = gsap.to(targets, {
+                    yPercent: 0,
+                    duration: motion.duration,
+                    stagger: motion.stagger,
+                    ease: gsapEase,
+                  });
+                  tweens.push(tween);
+                  observer.disconnect();
+                }
+              });
+            },
+            { threshold: 0.1 },
+          );
+
+          observer.observe(heading);
+          observers.push(observer);
+          return null;
+        },
+      });
+    } finally {
+      // The lines are inside overflow-clip masks and translated down by now, so
+      // the heading is still visually empty. Restoring here — and in finally —
+      // means a SplitText that throws leaves readable text, never a blank block.
+      restore(heading);
+    }
 
     splits.push(splitInstance);
-  });
+  };
+
+  const splitAll = () => {
+    if (disposed) return;
+    eligible.forEach(splitOne);
+  };
+
+  // Splitting before the webfont lands measures line breaks against the
+  // fallback face, so the masked lines get cut in the wrong places. Deferred
+  // rather than awaited: init*(): CleanupFn has to stay synchronous.
+  const fonts = (document as any).fonts;
+  if (fonts?.status !== 'loaded' && typeof fonts?.ready?.then === 'function') {
+    fonts.ready.then(splitAll);
+  } else {
+    splitAll();
+  }
 
   return () => {
+    disposed = true;
     observers.forEach((o) => o.disconnect());
     tweens.forEach((t) => t.kill?.());
     splits.forEach((s) => s.revert?.());
+    // Covers teardown before the fonts resolved, when nothing was split yet.
+    eligible.forEach(restore);
   };
 }
