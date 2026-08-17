@@ -92,5 +92,13 @@
     "why": "un subdirectorio nuevo bajo components-react/src no compila a dist si nadie agrega el glob, y el canal Webflow lo excluye en silencio (leccion sidebar)",
     "config": "packages/components-react/tsup.config.ts",
     "sourceDir": "packages/components-react/src"
+  },
+  "registryResolves": {
+    "why": "un item que apunta a un archivo borrado rompe build:registry y deja el item vacio en el consumidor. Los artefactos generados son otra cosa: su directorio esta gitignored y en CI —que corre sin build— faltar es lo esperado",
+    "generatedPrefixes": [
+      "packages/tokens/build/",
+      "packages/css/dist/",
+      "packages/animations/dist/"
+    ]
   }
 }

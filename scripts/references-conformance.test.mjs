@@ -359,6 +359,23 @@ describe('registry sin colgar (R4)', () => {
     assert.deepEqual(result.missingFiles, []);
   });
 
+  it('un artefacto generado ausente es nota, no fallo: en CI no hay build', () => {
+    const registry = {
+      items: [{ name: 'tokens', files: [{ sourcePath: 'packages/tokens/build/css/tokens.css' }] }],
+    };
+    const result = findDanglingRegistry(registry, ctx({ 'r/x': 'x' }), ['packages/tokens/build/']);
+    assert.deepEqual(result.missingFiles, [], 'gitignored: faltar es lo esperado sin build');
+    assert.equal(result.unbuilt.length, 1);
+  });
+
+  it('sin la lista de generados, ese mismo artefacto si falla', () => {
+    const registry = {
+      items: [{ name: 'tokens', files: [{ sourcePath: 'packages/tokens/build/css/tokens.css' }] }],
+    };
+    const result = findDanglingRegistry(registry, ctx({ 'r/x': 'x' }));
+    assert.equal(result.missingFiles.length, 1, 'el prefijo declarado es lo que lo distingue');
+  });
+
   it('marca la registryDependency que ya no es un item', () => {
     const registry = {
       items: [{ name: 'hero', files: [], registryDependencies: ['tokens', 'video-player'] }, { name: 'tokens', files: [] }],

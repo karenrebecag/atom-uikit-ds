@@ -280,24 +280,32 @@ export function findUncoveredEntries(rule, ctx) {
  * Borrar un componente y olvidar su item deja `files[].sourcePath` colgando: el
  * build sale en rojo, pero solo si alguien lo corre. Aqui cae en el PR.
  */
-export function findDanglingRegistry(registry, ctx) {
+export function findDanglingRegistry(registry, ctx, generatedPrefixes = []) {
   const { fs, path, root } = ctx;
   const names = new Set((registry.items ?? []).map((i) => i.name));
   const missingFiles = [];
+  const unbuilt = [];
   const missingDeps = [];
   for (const item of registry.items ?? []) {
     for (const file of item.files ?? []) {
       if (!file.sourcePath) continue;
-      if (!fs.existsSync(path.join(root, file.sourcePath))) {
-        missingFiles.push(`${item.name} → ${file.sourcePath}`);
+      if (fs.existsSync(path.join(root, file.sourcePath))) continue;
+      // Algunos items distribuyen ARTEFACTOS (tokens compilados), no fuentes.
+      // Su directorio esta gitignored, asi que en CI —que corre sin build— faltar
+      // es lo normal, no un item colgando. Distinguirlos es lo que separa "nadie
+      // lo ha construido aun" de "el componente se borro y el item sobrevivio".
+      if (generatedPrefixes.some((p) => file.sourcePath.startsWith(p))) {
+        unbuilt.push(`${item.name} → ${file.sourcePath}`);
+        continue;
       }
+      missingFiles.push(`${item.name} → ${file.sourcePath}`);
     }
     for (const dep of item.registryDependencies ?? []) {
       if (names.has(dep) || /^https?:/.test(dep)) continue;
       missingDeps.push(`${item.name} → "${dep}"`);
     }
   }
-  return { missingFiles, missingDeps, items: (registry.items ?? []).length };
+  return { missingFiles, unbuilt, missingDeps, items: (registry.items ?? []).length };
 }
 
 // ---------------------------------------------------------------------------
@@ -507,15 +515,19 @@ export function runReferenceChecks({ contract, registry, root }, fs, path, today
   }
 
   // R4
-  const dangling = findDanglingRegistry(registry, ctx);
+  const dangling = findDanglingRegistry(registry, ctx, contract.registryResolves?.generatedPrefixes ?? []);
   for (const entry of dangling.missingFiles) {
     push('fail', 'registry-files', `item con archivo inexistente (rompe build:registry y deja el item vacio): ${entry}`);
   }
   for (const entry of dangling.missingDeps) {
     push('fail', 'registry-files', `registryDependencies sin resolver: ${entry}`);
   }
+  for (const entry of dangling.unbuilt) {
+    push('note', 'registry-files', `artefacto no construido (normal sin build): ${entry}`);
+  }
   if (!dangling.missingFiles.length && !dangling.missingDeps.length) {
-    push('ok', 'registry-files', `${dangling.items} items: todo sourcePath existe y toda registryDependency resuelve`);
+    const suffix = dangling.unbuilt.length ? ` · ${dangling.unbuilt.length} artefactos pendientes de build` : '';
+    push('ok', 'registry-files', `${dangling.items} items: todo sourcePath de fuente existe y toda registryDependency resuelve${suffix}`);
   }
 
   // R5
