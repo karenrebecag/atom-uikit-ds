@@ -6,6 +6,7 @@
 //   data-multiplier="35"     (max drag speed multiplier)
 //   data-sensitivity="0.01"  (velocity to timescale ratio)
 //   data-autoplay="false"    (sin avance propio: solo se mueve al arrastrar)
+//   data-lag="3"             (arrastre-retardo de los items; 0 = sin retardo)
 //
 // Sobre data-autoplay: la velocidad de REPOSO del loop es lo unico que cambia.
 // Con autoplay la tira descansa a ±1 y avanza sola; sin autoplay descansa a 0,
@@ -26,6 +27,7 @@ export const REQUIRED_HOOKS = [
   'data-draggable-marquee-collection',
   'data-draggable-marquee-list',
   'data-autoplay',
+  'data-lag',
 ] as const;
 
 /**
@@ -151,11 +153,45 @@ export function initDraggableMarquee(): CleanupFn {
         // sentido que le imprimio el ultimo arrastre.
         const restingDir = restingScale === 0 ? 0 : velocityTS < 0 ? -1 : 1;
 
+        // El impulso entra rapido y la deceleracion sale con power3: la cola
+        // larga de esa curva es lo que se lee como peso. Con la ease por
+        // defecto (power1) la tira se frena de golpe y parece ligera.
         gsap.timeline({ onUpdate: applyTimeScale })
           .to(timeScale, { value: velocityTS, duration: 0.1, overwrite: true })
-          .to(timeScale, { value: restingDir, duration: 1.0 });
+          .to(timeScale, { value: restingDir, duration: 1.2, ease: 'power3.out' });
       },
     });
+
+    // Arrastre-retardo: cada item se queda atras en proporcion a la velocidad
+    // del frame y vuelve a su sitio con power3.out. El contenido "pesa" y
+    // alcanza al contenedor, en vez de ir clavado a el.
+    //
+    // El wrap de GSAP devuelve x al origen de golpe, y ese salto vale el ancho
+    // entero de la lista: sin descartarlo, cada vuelta dispararia un tiron.
+    const lag = getNumberAttr(wrapper, 'data-lag', 0);
+    let removeLagTicker: (() => void) | null = null;
+
+    if (lag > 0) {
+      // Por estructura y no por clase: el canal de Webflow renombra
+      // .marquee__item a .ds-marquee__item, y este modulo tiene que seguir
+      // siendo indiferente al prefijo (es lo que documenta REQUIRED_ANATOMY).
+      const items = collection.querySelectorAll<HTMLElement>(
+        '[data-draggable-marquee-list] > *',
+      );
+      if (items.length) {
+        const setLag = gsap.quickTo(items, 'xPercent', { duration: 0.7, ease: 'power3.out' });
+        let lastX = gsap.getProperty(collection, 'x') as number;
+        const onTick = () => {
+          const x = gsap.getProperty(collection, 'x') as number;
+          const delta = x - lastX;
+          lastX = x;
+          if (Math.abs(delta) > listWidth / 2) return; // salto de wrap, no movimiento
+          setLag(gsap.utils.clamp(-24, 24, -delta * lag));
+        };
+        gsap.ticker.add(onTick);
+        removeLagTicker = () => gsap.ticker.remove(onTick);
+      }
+    }
 
     // Viewport observer
     const scrollTrigger = ScrollTrigger.create({
@@ -171,6 +207,7 @@ export function initDraggableMarquee(): CleanupFn {
     wrapper.dataset.draggableMarquee = 'initialized';
 
     cleanups.push(() => {
+      removeLagTicker?.();
       marqueeLoop.kill();
       marqueeObserver.kill();
       scrollTrigger.kill();

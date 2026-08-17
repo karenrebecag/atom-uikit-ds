@@ -237,6 +237,10 @@
               {
                 "name": "data-autoplay",
                 "value": "true"
+              },
+              {
+                "name": "data-lag",
+                "value": "0"
               }
             ],
             "search": {
@@ -381,7 +385,8 @@
         "data-draggable-marquee",
         "data-draggable-marquee-collection",
         "data-draggable-marquee-list",
-        "data-autoplay"
+        "data-autoplay",
+        "data-lag"
       ],
       "anatomy": [
         "[data-draggable-marquee-collection]",
