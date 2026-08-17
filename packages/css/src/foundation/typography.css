@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------------
-   Typography — OSMO/academy language
+   Typography — ATOM/academy language
 
    Type scale lives in token CSS custom properties (packages/tokens).
    Fluid sizing is handled by scaling.css via root --size-font; rem values
@@ -208,7 +208,7 @@ body {
   padding: 0.2em 0.4em;
 }
 
-/* Eyebrow / overline — etiqueta tecnica de seccion (patron OSMO) */
+/* Eyebrow / overline — etiqueta tecnica de seccion (patron ATOM) */
 .eyebrow {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-xs);

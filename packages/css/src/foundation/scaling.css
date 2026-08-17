@@ -17,7 +17,7 @@
      .container-md { max-width: calc(var(--size-container) * 0.85); }
      .container-sm { max-width: calc(var(--size-container) * 0.7); }
 
-   Type scale: see tokens/primitives/typography.json (OSMO rem scale)
+   Type scale: see tokens/primitives/typography.json (ATOM rem scale)
    ------------------------------------------------------------------------- */
 
 
@@ -42,13 +42,13 @@
      font-size local, a diferencia de em. */
   --u: calc(var(--size-font) / 16);
   /* Margen LATERAL del contenido — eje distinto al ritmo vertical de seccion.
-     Patron OSMO: 30px desktop, 10px bajo 991 (casi full-bleed en movil). */
+     Patron ATOM: 30px desktop, 10px bajo 991 (casi full-bleed en movil). */
   --container-padding: calc(30 * var(--u));
   /* Optional content max (academy often uses ~1280) — evaluate vs ideal in PR */
   --size-container-content: calc(1280 * var(--u)); /* fluido: crece con el sistema */
 }
 
-/* Tablet — tighten section padding (OSMO media overrides) */
+/* Tablet — tighten section padding (ATOM media overrides) */
 @media screen and (max-width: 991px) {
   :root {
     --size-container-ideal: 834;

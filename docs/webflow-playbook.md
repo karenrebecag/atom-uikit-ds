@@ -170,7 +170,7 @@ W6 spec.
 | Channel | Visible in canvas? | Role |
 |---|---|---|
 | Shared Library (variables + components) | Yes | Design-time tokens + canonical anatomy for Relume styling |
-| External CSS `/v1/foundation.css` | No (published only) | Typography classes, utilities, exact OSMO parity, fonts |
+| External CSS `/v1/foundation.css` | No (published only) | Typography classes, utilities, exact ATOM parity, fonts |
 
 ## Token change workflow
 

@@ -25,7 +25,7 @@ Reglas de consumo:
    primitives (`--color-neutral-500`) ni hex. Si un semantic no cubre tu caso, es un
    cambio al DS (rol B), no un hex inline.
 3. Dark mode = `data-theme="dark"` en el elemento raíz. No dupliques paletas.
-4. El lenguaje es OSMO/academy: neutral 13 pasos, acentos contados
+4. El lenguaje es ATOM/academy: neutral 13 pasos, acentos contados
    (green-electric/coral/sky/forest), brand `#ff6600` solo acento, Inter Tight/Grift.
    Botones brand y destructive llevan texto oscuro POR DISEÑO (WCAG, ADR 004) — no lo
    "corrijas" a blanco.

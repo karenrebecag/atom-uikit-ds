@@ -10,7 +10,7 @@
   PASS means BOTH directions hold:
     1. Host content below keeps ITS OWN look (Times serif, red button, wide
        spacing). If it turns into Inter Tight, embed.css leaked outward.
-    2. Embed content looks OSMO (Inter Tight, dark neutral, tight reset)
+    2. Embed content looks ATOM (Inter Tight, dark neutral, tight reset)
        despite the host's aggressive `*` rules. If it inherits the host's
        serif/line-height, the scoped reset is too weak.
 -->
@@ -44,7 +44,7 @@
 <button>Host button — red, dashed border</button>
 
 <div class="frame">
-  <p><strong>Below is the embed.</strong> It must look OSMO regardless of the host CSS above.</p>
+  <p><strong>Below is the embed.</strong> It must look ATOM regardless of the host CSS above.</p>
 
   <div class="atom-embed" data-theme="light">
     <h1 class="h1">Embed heading — Inter Tight</h1>

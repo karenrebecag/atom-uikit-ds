@@ -7,7 +7,7 @@
  *   --gradient-highlight  violeta → naranja. TIPOGRAFIA: keywords de titular
  *                         y el borde del eyebrow pill (.tag--gradient).
  *
- * REVERSION CONSCIENTE (2026-08-05, decision de Karen). La migracion a OSMO
+ * REVERSION CONSCIENTE (2026-08-05, decision de Karen). La migracion a ATOM
  * retiro la rampa violeta junto con la paleta Tailwind y dejo el highlight en
  * forest → brand. Pero el violeta #8023FF sigue vigente en el brandbook y el
  * highlight violeta → naranja es el que viven las tres homes. Se reinstala como

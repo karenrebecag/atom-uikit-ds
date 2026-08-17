@@ -4,7 +4,7 @@
  * Navbar con mega-dropdowns morficos (paneles de columnas + card promo).
  * Para sitios con arquitectura de contenido profunda. Structure-only.
  *
- * Citado del mega-nav de OSMO; misma pildora sticky de navbar-simple.
+ * Citado del mega-nav de ATOM; misma pildora sticky de navbar-simple.
  * El MOTION completo (morph de altura, hover intent direccional, slide-over
  * movil) vive en el behavior `mega-nav-animation` (initMegaNav), enganchado
  * por los data-* de este markup — este css NO anima (ley: layouts sin motion).

@@ -68,8 +68,8 @@
       "usage": "import { Avatar, AvatarGroup } from '@/components/atoms/Avatar';\n\n<AvatarGroup size=\"s\" max={3}>\n  <Avatar type=\"initials\" initials=\"AL\" alt=\"Ada\" />\n  <Avatar type=\"initials\" initials=\"GR\" alt=\"Grace\" />\n  <Avatar type=\"initials\" initials=\"KT\" alt=\"Katherine\" />\n  <Avatar type=\"initials\" initials=\"XX\" alt=\"Extra\" />\n</AvatarGroup>"
     },
     "derived": {
-      "generatedAt": "2026-08-17T19:27:50.542Z",
-      "sourceCommit": "7f861da",
+      "generatedAt": "2026-08-17T21:26:29.678Z",
+      "sourceCommit": "4c5c1f2",
       "install": {
         "peerDeps": [],
         "cssImports": [

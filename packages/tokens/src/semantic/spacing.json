@@ -32,26 +32,26 @@
   "gap-xl": {
     "$type": "dimension",
     "$value": "{spacing.14}",
-    "$description": "OSMO component gap XL — 56px"
+    "$description": "ATOM component gap XL — 56px"
   },
   "gap-l": {
     "$type": "dimension",
     "$value": "{spacing.10}",
-    "$description": "OSMO component gap L — 40px"
+    "$description": "ATOM component gap L — 40px"
   },
   "gap-m": {
     "$type": "dimension",
     "$value": "{spacing.6}",
-    "$description": "OSMO component gap M — 24px"
+    "$description": "ATOM component gap M — 24px"
   },
   "gap-s": {
     "$type": "dimension",
     "$value": "{spacing.4}",
-    "$description": "OSMO component gap S — 16px"
+    "$description": "ATOM component gap S — 16px"
   },
   "gap-xs": {
     "$type": "dimension",
     "$value": "{spacing.3}",
-    "$description": "OSMO component gap XS — 12px"
+    "$description": "ATOM component gap XS — 12px"
   }
 }

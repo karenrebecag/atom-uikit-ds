@@ -41,7 +41,7 @@
     "layouts": ["layout/pricing-tiers"]
   },
   "legacy": {
-    "$comment": "catálogo pre-OSMO: exento del contrato hasta modernizarse BAJO DEMANDA (cuando un layout se vaya a usar de verdad, se moderniza como pricing-tiers → pricing-plans y se saca de aquí). Un layout NUEVO jamás entra a esta lista. Motivos registrados al auditar 2026-07-29.",
+    "$comment": "catálogo pre-ATOM: exento del contrato hasta modernizarse BAJO DEMANDA (cuando un layout se vaya a usar de verdad, se moderniza como pricing-tiers → pricing-plans y se saca de aquí). Un layout NUEVO jamás entra a esta lista. Motivos registrados al auditar 2026-07-29.",
     "layouts": [
       "layout/feature-split-image",
       "layout/feature-stats-video",

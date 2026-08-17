@@ -1,7 +1,7 @@
 // Mega nav — dropdown morfico con hover intent direccional (desktop) y
 // slide-over por panel (movil <=991px, el limite tablet de scaling.css).
 //
-// Adaptado del mega-nav de OSMO a las convenciones del DS:
+// Adaptado del mega-nav de ATOM a las convenciones del DS:
 //   - Motion por tokens en runtime (--easing-osmo, --duration-300/--duration-200),
 //     cero curvas/duraciones inventadas. Los micro-offsets de coreografia se
 //     derivan como fracciones de esos tokens, asi reduced-motion los colapsa

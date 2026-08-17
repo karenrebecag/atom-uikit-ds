@@ -15,11 +15,11 @@ aceptación. Un organismo sin layout publicado NO está distribuido.
 
 ## Scope
 
-Web development components for landing pages, web apps, and marketing sites. Este es EL ÚNICO design system de Atom (ADR 007): el antiguo `ATOM_DS` (`@atomchat.io/*`, pre-OSMO) está deprecado y archivado en GitHub como referencia histórica.
+Web development components for landing pages, web apps, and marketing sites. Este es EL ÚNICO design system de Atom (ADR 007): el antiguo `ATOM_DS` (`@atomchat.io/*`, pre-ATOM) está deprecado y archivado en GitHub como referencia histórica.
 
 ## Lenguaje visual y flujo end-to-end (LEER ANTES DE CUALQUIER CAMBIO DE ESTILO)
 
-El lenguaje visual oficial web es **OSMO/academy** (aprobado por marketing 2026-07-28):
+El lenguaje visual oficial web es **ATOM/academy** (aprobado por marketing 2026-07-28):
 neutral ramp de 13 pasos (con 150/850), acentos `green-electric`/`forest`/`coral`/`sky`,
 brand `#ff6600`, tipografías Inter Tight (sans), Grift (display), Interval (mono),
 Gantol (scribble), ease firma `cubic-bezier(0.625, 0.05, 0, 1)`.
@@ -365,18 +365,18 @@ Base-4 geometric scale (composición de componente).
 | `spacing-10` | 40 | Section gap |
 | `spacing-12` | 48 | Large section gap |
 | `spacing-16` | 64 | Section padding |
-| `spacing-14` | 56 | OSMO gap-xl |
-| `spacing-20` | 80 | OSMO section m |
+| `spacing-14` | 56 | ATOM gap-xl |
+| `spacing-20` | 80 | ATOM section m |
 | `spacing-24` | 96 | Intermedio |
-| `spacing-30` | 120 | OSMO section l |
+| `spacing-30` | 120 | ATOM section l |
 | `spacing-32` | 128 | Intermedio |
-| `spacing-40` | 160 | OSMO section xl |
-| `spacing-50` | 200 | OSMO section xxl |
+| `spacing-40` | 160 | ATOM section xl |
+| `spacing-50` | 200 | ATOM section xxl |
 
 **Rule:** Token number x 4 = pixel value. No exceptions.
 
 **Aliases semánticos** (`src/semantic/spacing.json`): `section-padding-{xxl..s}` =
-200/160/120/80/48px (escala OSMO real, recalibrada 2026-07-28 — la original venía de la
+200/160/120/80/48px (escala ATOM real, recalibrada 2026-07-28 — la original venía de la
 campaña calc y era 1-2 pasos más apretada) y `gap-{xl..xs}` para ritmo de componente.
 Overrides responsivos viven en `packages/css/foundation/scaling.css`, no en tokens.
 
@@ -486,13 +486,13 @@ banda densa=`.section--dense` (s).
 | `duration-700` | 700ms | Entrance animations, stagger |
 | `duration-1000` | 1000ms | Skeleton shimmer, loaders |
 
-### Easing (sistema OSMO)
+### Easing (sistema ATOM)
 
 | Token | Value | Usage |
 |-------|-------|-------|
 | `easing-linear` | `linear` | Progress bars |
 | `easing-in` | `cubic-bezier(0.4, 0, 1, 1)` | Elements exiting view |
-| `easing-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | OSMO expo-out — elements entering view |
+| `easing-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | ATOM expo-out — elements entering view |
 | `easing-in-out` | `cubic-bezier(0.4, 0, 0.2, 1)` | Neutral transitions |
 | `easing-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Bouncy, playful interactions |
 | `easing-osmo` | `cubic-bezier(0.625, 0.05, 0, 1)` | Ease firma — motion de marca (W6) |
@@ -503,7 +503,7 @@ Duraciones largas para motion: `duration-1200`, `duration-1800` (reservadas W6).
 
 ## Typography & Scaling
 
-### Type Scale (OSMO, en rem — pendiente calibración F3 en Storybook)
+### Type Scale (ATOM, en rem — pendiente calibración F3 en Storybook)
 
 Base: 1rem. Familias: sans = Inter Tight (UI/body), display = Grift (heros),
 mono = Interval, scribble = Gantol. Weights 400-800.

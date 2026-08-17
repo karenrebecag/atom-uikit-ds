@@ -36,7 +36,7 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
 - Edits solo en `packages/tokens/src/**` (o CSS foundation que **referencia** semantics).
 - Cero hex en components CSS; contrast pairs actualizados en `scripts/check-contrast.mjs`
   si hay texto nuevo.
-- Ver `docs/decisions/` (OSMO, foregrounds oscuros, npm off).
+- Ver `docs/decisions/` (ATOM, foregrounds oscuros, npm off).
 
 ### Pasos
 1. Branch desde `main`.
@@ -85,7 +85,7 @@ por convención. Verificar nombres cargados: `gh secret list --repo karenrebecag
    gate **F4** (¿algún producto consumidor NO debe cambiar de look todavía?) se confirma
    EN EL PR REVIEW, antes del merge — main ya propaga a `/v1` automáticamente, así que el
    merge ES la aprobación. Re-disparo manual si hace falta: `gh workflow run sync-docs`.
-10. Esperar ≥5 min → validar MCP tokens (OSMO, sin zinc, `--link` presente).
+10. Esperar ≥5 min → validar MCP tokens (ATOM, sin zinc, `--link` presente).
 
 ### Verificación
 - `curl -sI https://atom-web-ds.vercel.app/v1/tokens.css` → 200, ACAO `*`.
@@ -191,7 +191,7 @@ Ver `docs/decisions/`:
 | ADR | Tema |
 |---|---|
 | 006 | `embed.css`: variante scopeada para hosts ajenos |
-| 001 | OSMO/academy es el lenguaje web oficial |
+| 001 | ATOM/academy es el lenguaje web oficial |
 | 002 | npm desconectado; canales privados + /v1 browser-facing |
 | 003 | Webflow Variables vía plan + MCP, no REST |
 | 004 | Foregrounds oscuros en brand/destructive (WCAG) |

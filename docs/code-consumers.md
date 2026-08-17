@@ -1,4 +1,4 @@
-# Code consumers — OSMO language
+# Code consumers — ATOM language
 
 How apps that **install packages or fetch the registry** pick up the new web language
 without contract changes.
@@ -39,7 +39,7 @@ Replace `<atom-web-ds>` with the Vercel host from W3 (e.g. `atom-web-ds.vercel.a
    - `background` `#fafafa`, `primary` `#0a0a0a`, `success` `#25d366`
    - `font-family.sans` contains `Inter Tight`
    - `easing.osmo` present; no `color.zinc`
-3. Export `DESIGN.md` → should list OSMO type stack and neutral ramp.
+3. Export `DESIGN.md` → should list ATOM type stack and neutral ramp.
 
 ## Storybook local QA checklist
 

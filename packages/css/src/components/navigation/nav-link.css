@@ -22,7 +22,7 @@
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
-  /* OSMO --animation-ease (0.2s ease) para color; tracking de su nav-menu__label */
+  /* ATOM --animation-ease (0.2s ease) para color; tracking de su nav-menu__label */
   letter-spacing: var(--letter-spacing-tight);
   transition: color var(--duration-200) ease;
   position: relative;
@@ -120,7 +120,7 @@
 
 /* ---- Underline ---- */
 
-/* Contrato citado de OSMO [data-underline-link]: offset -0.0625em, alto
+/* Contrato citado de ATOM [data-underline-link]: offset -0.0625em, alto
    0.0625em, transform 0.6s con la cubica firma, origen right->left. */
 .nav-link__text::before {
   content: "";
@@ -135,7 +135,7 @@
   transform: scaleX(0) rotate(0.001deg);
 }
 
-/* ---- Underline alt (OSMO [data-underline-link="alt"]) ----
+/* ---- Underline alt (ATOM [data-underline-link="alt"]) ----
    Para links que YA estan subrayados (footers, listas): al hover la linea sale
    por la derecha y una segunda reentra por la izquierda con 0.3s de delay. */
 

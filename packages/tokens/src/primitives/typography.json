@@ -3,7 +3,7 @@
     "$type": "fontFamilies",
     "sans": {
       "$value": "'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-      "$description": "Primary UI and body — Inter Tight (OSMO/academy)"
+      "$description": "Primary UI and body — Inter Tight (ATOM/academy)"
     },
     "display": {
       "$value": "'Grift', 'Inter Tight', Georgia, serif",

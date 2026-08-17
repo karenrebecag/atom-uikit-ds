@@ -17,7 +17,7 @@
       "50": {
         "$type": "color",
         "$value": "#fafafa",
-        "$description": "OSMO neutral ramp"
+        "$description": "ATOM neutral ramp"
       },
       "100": {
         "$type": "color",
@@ -26,7 +26,7 @@
       "150": {
         "$type": "color",
         "$value": "#efefef",
-        "$description": "OSMO mid-step between 100 and 200"
+        "$description": "ATOM mid-step between 100 and 200"
       },
       "200": {
         "$type": "color",
@@ -59,7 +59,7 @@
       "850": {
         "$type": "color",
         "$value": "#1a1a1a",
-        "$description": "OSMO mid-step between 800 and 900"
+        "$description": "ATOM mid-step between 800 and 900"
       },
       "900": {
         "$type": "color",
@@ -127,7 +127,7 @@
     "green-electric": {
       "$type": "color",
       "$value": "#25d366",
-      "$description": "OSMO electric green accent (academy)"
+      "$description": "ATOM electric green accent (academy)"
     },
     "forest": {
       "$type": "color",
@@ -143,7 +143,7 @@
       "500": {
         "$type": "color",
         "$value": "#f84131",
-        "$description": "OSMO coral — destructive base"
+        "$description": "ATOM coral — destructive base"
       },
       "700": {
         "$type": "color",
@@ -155,7 +155,7 @@
       "500": {
         "$type": "color",
         "$value": "#22d3ee",
-        "$description": "OSMO sky accent — info surfaces, link text on dark"
+        "$description": "ATOM sky accent — info surfaces, link text on dark"
       },
       "700": {
         "$type": "color",
@@ -266,7 +266,7 @@
       "500": {
         "$type": "color",
         "$value": "#8023ff",
-        "$description": "Violeta de marca (brandbook). Reinstalado 2026-08-05: la migracion OSMO lo habia retirado, pero el highlight tipografico violeta->naranja es de marca y se usa en las homes"
+        "$description": "Violeta de marca (brandbook). Reinstalado 2026-08-05: la migracion ATOM lo habia retirado, pero el highlight tipografico violeta->naranja es de marca y se usa en las homes"
       }
     }
   }
