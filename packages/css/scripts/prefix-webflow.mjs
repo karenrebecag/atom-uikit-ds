@@ -29,6 +29,11 @@ const STATE_RENAMES = new Map([
   ['is--hover', 'is-hover'],
   ['is--static', 'is-static'],
   ['button__label-inner', 'button__inner'],
+  // whatsapp-button-motion: el patron button-009 necesita los dos iconos, y sus
+  // posiciones son estado, no variante.
+  ['is--left', 'is-left'],
+  ['is--right', 'is-right'],
+  ['atom-wa-btn--animated', 'atom-wa-btn-animated'],
 ]);
 
 /** Un estado del DS que llegue aqui sin renombrar deja un `ds-is--x` feo en Webflow. */

@@ -26,7 +26,8 @@
     }
   },
   "exemptFiles": {
-    "buttons/whatsapp-button.css": "GENERADO desde atom-whatsapp-buttons (sync:whatsapp) — se audita en su repo de origen"
+    "buttons/whatsapp-button.css": "GENERADO desde atom-whatsapp-buttons (sync:whatsapp) — se audita en su repo de origen",
+    "buttons/whatsapp-button-motion.css": "Extraido de whatsapp-button.css (ya exento, GENERADO desde atom-whatsapp-buttons) para que el canal de Webflow pueda llevar solo la interaccion. Las 4 curvas y 4 duraciones son las mismas del origen, no motion inventado: se auditan en su repo, igual que el archivo del que salen"
   },
   "baseline": {
     "buttons/button.css": {

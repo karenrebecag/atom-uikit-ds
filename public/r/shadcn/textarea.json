@@ -33,8 +33,8 @@
       "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-17T18:46:52.374Z",
-      "sourceCommit": "cff81b1",
+      "generatedAt": "2026-08-17T19:27:50.542Z",
+      "sourceCommit": "7f861da",
       "install": {
         "peerDeps": [],
         "cssImports": [

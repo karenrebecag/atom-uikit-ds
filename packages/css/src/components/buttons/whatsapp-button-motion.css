@@ -1,0 +1,73 @@
+/* -------------------------------------------------------------------------
+   WhatsApp Button — MOTION (patron button-009)
+
+   Solo la interaccion, separada de la pintura a proposito: es la parte que el
+   panel de estilos de Webflow no puede declarar (dos translate coordinados con
+   retardo distinto y una curva firmada), y por eso viaja en el canal
+   `webflow.css` igual que button-text-swap. La pintura del boton se resuelve
+   alla con Variables nativas.
+
+   Reposo: [texto] [icono-derecha visible]
+   Hover:  [icono-izquierda entra] [texto se desplaza]
+
+   EXIGE la anatomia completa: __inner con __icon.is--left + __label +
+   __icon.is--right. Con un solo icono no hay nada que deslizar — reconstruir el
+   boton con un icono suelto es lo que dejaba el hover muerto en Webflow.
+   ------------------------------------------------------------------------- */
+
+.atom-wa-btn--animated {
+  transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.atom-wa-btn--animated:active:not([aria-busy='true']) {
+  scale: 0.955 0.925;
+}
+
+.atom-wa-btn--animated .atom-wa-btn__icon {
+  transition:
+    translate 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 0.15s ease-out;
+}
+
+.atom-wa-btn--animated .atom-wa-btn__label {
+  transition: translate 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.atom-wa-btn--animated .atom-wa-btn__icon.is--left {
+  position: absolute;
+  left: 1em;
+  opacity: 0;
+  translate: -1.5em 0 0;
+}
+
+.atom-wa-btn--animated .atom-wa-btn__icon.is--right {
+  opacity: 1;
+  translate: 0 0 0;
+}
+
+.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__label {
+  translate: calc(0.875em + 0.375em + 0.75em - 1em) 0 0;
+  transition: translate 0.5s 0.075s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__icon.is--left {
+  translate: 0 0 0;
+  opacity: 1;
+}
+
+/* El icono derecho sale por donde entro el izquierdo: el retardo los encadena. */
+.atom-wa-btn--animated:is(:hover, :focus-visible) .atom-wa-btn__icon.is--right {
+  translate: 1.5em 0 0;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atom-wa-btn--animated,
+  .atom-wa-btn--animated .atom-wa-btn__icon,
+  .atom-wa-btn--animated .atom-wa-btn__label {
+    transition: none;
+  }
+  .atom-wa-btn--animated:active:not([aria-busy='true']) {
+    scale: 1;
+  }
+}

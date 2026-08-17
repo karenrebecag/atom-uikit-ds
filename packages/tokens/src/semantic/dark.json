@@ -223,5 +223,15 @@
     "$type": "color",
     "$value": "{color.neutral.400}",
     "$description": "Input placeholder text (dark)"
+  },
+  "whatsapp": {
+    "$type": "color",
+    "$value": "{color.green-electric}",
+    "$description": "Verde de marca de WhatsApp. NO es success: coincide hoy en valor pero responde a la marca del canal, no al estado semantico — si success cambia, este no"
+  },
+  "whatsapp-foreground": {
+    "$type": "color",
+    "$value": "{color.neutral.50}",
+    "$description": "Texto sobre el verde de WhatsApp. Blanco por marca del canal (la guia de WhatsApp lo fija), no por calculo de contraste"
   }
 }

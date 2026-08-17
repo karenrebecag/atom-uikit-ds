@@ -283,6 +283,8 @@
   "sidebar-active": "#fff4ed",
   "sidebar-active-foreground": "#a44200",
   "placeholder": "#525252",
+  "whatsapp": "#25d366",
+  "whatsapp-foreground": "#fafafa",
   "section-padding-xxl": "195.31px",
   "section-padding-xl": "156.25px",
   "section-padding-l": "125px",

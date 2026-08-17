@@ -21,4 +21,5 @@
  */
 @import '../foundation/webflow-reset.css';
 @import '../components/buttons/button-text-swap.css';
+@import '../components/buttons/whatsapp-button-motion.css';
 @import '../components/buttons/button-focus-ring.css';

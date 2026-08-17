@@ -440,6 +440,11 @@
           "sourcePath": "packages/whatsapp/src/config.ts",
           "outputPath": "whatsapp/config.ts",
           "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/whatsapp-button-motion.css",
+          "outputPath": "styles/components/whatsapp-button-motion.css",
+          "type": "registry:file"
         }
       ],
       "cssClassPrefixes": [
