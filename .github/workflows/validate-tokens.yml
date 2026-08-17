@@ -60,3 +60,10 @@ jobs:
       # Validates the artifact the MCP consumes: required categories, semantic
       # palette, no unresolved references. Self-contained (no MCP, no network).
       - run: pnpm validate:published
+
+      # La logica de los gates tambien se verifica, no solo su veredicto sobre el
+      # repo. Va despues del build porque 10 de estos tests leen artefactos
+      # construidos: en conformance.yml, que corre sin build, fallaban en verde local.
+      - name: Gate logic (scripts)
+        run: node --test "scripts/**/*.test.mjs"
+

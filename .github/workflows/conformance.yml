@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/conformance.mjs
-      # La logica de los gates tambien se verifica: 95 tests con fixtures sinteticas
-      # que corren con node puro, sin install. Sin esto el contrato vigila el repo
-      # pero nada vigila que los checks sigan siendo correctos.
-      - run: node --test "scripts/**/*.test.mjs"
+      # Los tests de scripts/ NO van aqui: 10 de ellos necesitan artefactos
+      # construidos, y este workflow corre sin install ni build a proposito (es lo
+      # que lo hace rapido y sin filtros de path, o sea apto como check requerido).
+      # Viven en validate-tokens.yml, que si construye.
