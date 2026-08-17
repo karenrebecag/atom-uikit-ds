@@ -45,7 +45,31 @@ export interface AnimationConfig {
  * Owns its own FOUC window: the headings it will animate are hidden from JS at
  * init and restored once split. No stylesheet does this — a CSS-side hide keeps
  * the text invisible on any page where the module fails to run.
+ *
+ * Above the fold that JS hide is not enough: init runs on `load` (GSAP and
+ * SplitText arrive deferred), so a heading the reader can already see would
+ * paint, vanish and animate back in. For those, the page hides before first
+ * paint with a class this module then drops — on EVERY exit path, so a page
+ * that opts in never keeps its text hidden:
+ *
+ *   <script>
+ *     var root = document.documentElement;
+ *     root.classList.add('atom-split-pending');
+ *     setTimeout(function drop() { root.classList.remove('atom-split-pending'); }, 2000);
+ *   </script>
+ *   <style>.atom-split-pending [data-split="heading"]{visibility:hidden}</style>
+ *
+ * (the snippet names that callback on purpose: the bundle-contract test counts
+ * anonymous function-expression wrappers to prove every module got its own IIFE,
+ * and it scans the built file, comments included — an unnamed one here would
+ * read as a fourteenth module.)
+ *
+ * The timeout is the failsafe: if this bundle never loads, the text still shows.
+ * Below the fold the class is unnecessary — the reader is not looking there yet.
  */
+
+/** Root class a page may set pre-paint; cleared once this module has run. */
+const PENDING_CLASS = 'atom-split-pending';
 
 type SplitType = 'lines' | 'words' | 'chars';
 
@@ -121,8 +145,15 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
   const SplitText = (globalThis as any).SplitText;
   const CustomEase = (globalThis as any).CustomEase;
 
+  // Every early return below has to drop it too: the page hid its headings on
+  // our promise to run, so bailing without clearing leaves them invisible.
+  const clearPending = () => {
+    document.documentElement?.classList.remove(PENDING_CLASS);
+  };
+
   if (!gsap || !SplitText) {
     console.warn('[atom-uikit] initTextReveal: gsap or SplitText not found');
+    clearPending();
     return () => {};
   }
 
@@ -134,14 +165,20 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
       : config.scope
     : document;
 
-  if (!scope) return () => {};
+  if (!scope) {
+    clearPending();
+    return () => {};
+  }
 
   const selector = '[data-split="heading"]';
   const headings = (scope as Element).querySelectorAll
     ? (scope as Element).querySelectorAll(selector)
     : document.querySelectorAll(selector);
 
-  if (headings.length === 0) return () => {};
+  if (headings.length === 0) {
+    clearPending();
+    return () => {};
+  }
 
   const splits: any[] = [];
   const tweens: any[] = [];
@@ -164,7 +201,10 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
     );
   });
 
-  if (eligible.length === 0) return () => {};
+  if (eligible.length === 0) {
+    clearPending();
+    return () => {};
+  }
 
   // The split lands after paint because it waits for the webfont, so without
   // this the heading shows at rest and then jumps down to animate in. Hidden
@@ -258,6 +298,9 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
   const splitAll = () => {
     if (disposed) return;
     eligible.forEach(splitOne);
+    // The lines are split and parked under their masks, so the pre-paint hide
+    // has nothing left to protect against.
+    clearPending();
   };
 
   // Splitting before the webfont lands measures line breaks against the
@@ -272,6 +315,7 @@ export function initTextReveal(config: AnimationConfig = {}): CleanupFn {
 
   return () => {
     disposed = true;
+    clearPending();
     observers.forEach((o) => o.disconnect());
     tweens.forEach((t) => t.kill?.());
     splits.forEach((s) => s.revert?.());

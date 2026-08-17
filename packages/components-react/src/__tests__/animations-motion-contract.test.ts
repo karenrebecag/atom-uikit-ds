@@ -662,6 +662,40 @@ describe('text-reveal (W6a: tokenizado, decorativo)', () => {
     expect((document.getElementById('exempt') as HTMLElement).style.visibility).toBe('');
   });
 
+  it('atom-split-pending: se retira cuando el modulo ya dividio', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    installIO();
+    mountHeading();
+    document.documentElement.classList.add('atom-split-pending');
+
+    initTextReveal();
+    expect(document.documentElement.classList.contains('atom-split-pending')).toBe(false);
+  });
+
+  it('sin gsap: retira atom-split-pending en vez de dejar el texto escondido', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    delete g.gsap;
+    delete g.SplitText;
+    mountHeading();
+    document.documentElement.classList.add('atom-split-pending');
+
+    initTextReveal();
+    expect(document.documentElement.classList.contains('atom-split-pending')).toBe(false);
+  });
+
+  it('sin titulares que animar: tampoco deja la pagina escondida', async () => {
+    const { initTextReveal } = await import('../../../animations/src/text-reveal');
+    g.gsap = gsapMock();
+    g.SplitText = splitTextDouble();
+    document.body.innerHTML = '<h2 data-split="heading" class="text-gradient-relume">Solo gradiente</h2>';
+    document.documentElement.classList.add('atom-split-pending');
+
+    initTextReveal();
+    expect(document.documentElement.classList.contains('atom-split-pending')).toBe(false);
+  });
+
   it('re-split de autoSplit tras revelar: no vuelve a esconder el titular', async () => {
     const { initTextReveal } = await import('../../../animations/src/text-reveal');
     g.gsap = gsapMock();
