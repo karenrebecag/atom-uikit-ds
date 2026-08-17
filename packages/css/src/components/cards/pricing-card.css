@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------
    Pricing Card
 
-   Anatomía espejo de las cards de OSMO /plans (docs/osmo-reference: padding
+   Anatomía espejo de las cards de ATOM /plans (docs/osmo-reference: padding
    60px, radio contenedor, título enorme en peso regular, divider con tags,
    benefits con hairlines translúcidas, scribble decorativo), con los valores
    del sistema Atom.
@@ -154,7 +154,7 @@
   --button-fg-primary: var(--background);
 }
 
-/* ---- Divider con etiquetas (patrón tag-row de OSMO) ---- */
+/* ---- Divider con etiquetas (patrón tag-row de ATOM) ---- */
 
 /* ---- Benefits ---- */
 

@@ -3,14 +3,14 @@
 
    The tokens define WHICH steps exist; this file defines WHERE each step
    goes, so nobody (human or agent) picks values by eye again. The rule,
-   mirrored from how OSMO applies its own scale:
+   mirrored from how ATOM applies its own scale:
 
      hero / statement piece  → .section--hero     (xl top, l bottom)
      standard section        → .section           (l top and bottom)
      compact section         → .section--compact  (m)
      dense block / band      → .section--dense    (s)
 
-   Asymmetry on the hero is deliberate: OSMO consistently pairs a larger
+   Asymmetry on the hero is deliberate: ATOM consistently pairs a larger
    top with one step less at the bottom, which pulls the next section up.
 
    The values already shrink per breakpoint via the ladder in scaling.css —

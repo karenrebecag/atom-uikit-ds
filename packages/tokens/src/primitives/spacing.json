@@ -43,7 +43,7 @@
     },
     "14": {
       "$value": "56px",
-      "$description": "OSMO gap-xl (3.5rem)"
+      "$description": "ATOM gap-xl (3.5rem)"
     },
     "16": {
       "$value": "64px",
@@ -59,7 +59,7 @@
     },
     "30": {
       "$value": "120px",
-      "$description": "OSMO section m (7.5rem)"
+      "$description": "ATOM section m (7.5rem)"
     },
     "32": {
       "$value": "128px",
@@ -67,11 +67,11 @@
     },
     "40": {
       "$value": "160px",
-      "$description": "OSMO section l (10rem)"
+      "$description": "ATOM section l (10rem)"
     },
     "50": {
       "$value": "200px",
-      "$description": "OSMO section xl (12.5rem)"
+      "$description": "ATOM section xl (12.5rem)"
     }
   }
 }

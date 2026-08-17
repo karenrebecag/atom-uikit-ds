@@ -58,12 +58,12 @@ for (const p of paths) {
   if (!ok) failed++;
 }
 
-// Body checks on tokens.css (OSMO markers + AA link token when present)
+// Body checks on tokens.css (ATOM markers + AA link token when present)
 const cssUrl = busted(new URL('/v1/tokens.css', base).href);
 const css = await fetch(cssUrl).then((r) => r.text());
 for (const marker of ['green-electric', 'neutral-150', 'Inter Tight', 'easing-osmo']) {
   if (!css.includes(marker)) {
-    console.log(`FAIL tokens.css missing OSMO marker: ${marker}`);
+    console.log(`FAIL tokens.css missing ATOM marker: ${marker}`);
     failed++;
   } else {
     console.log(`OK  tokens.css has ${marker}`);

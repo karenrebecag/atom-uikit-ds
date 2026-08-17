@@ -31,7 +31,7 @@ export type CleanupFn = () => void;
 
 const TOLERANCE = 8; // px de scroll antes de reaccionar: evita jitter en trackpads
 
-/** OSMO --animation-default: duration-default (0.6s) + cubic-default (la
+/** ATOM --animation-default: duration-default (0.6s) + cubic-default (la
  *  firma). Citado de su export; los tokens ya viven en el DS. */
 function readMotionTokens(el: Element): { ease: string; duration: string } {
   const styles = getComputedStyle(el);
@@ -48,7 +48,7 @@ export function initNavAutohide(): CleanupFn {
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Un nav flotante (sticky con top > 0, ej. la pildora OSMO) necesita
+  // Un nav flotante (sticky con top > 0, ej. la pildora ATOM) necesita
   // desplazarse su altura MAS ese offset para despejar el viewport.
   const hideOffset = new Map<HTMLElement, string>();
   for (const nav of navs) {

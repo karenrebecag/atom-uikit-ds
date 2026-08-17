@@ -3,15 +3,15 @@
     "$type": "duration",
     "1": {
       "$value": "30ms",
-      "$description": "W6 D3 — OSMO micro stagger (cards/list items, dense sequences)"
+      "$description": "W6 D3 — ATOM micro stagger (cards/list items, dense sequences)"
     },
     "2": {
       "$value": "50ms",
-      "$description": "W6 D3 — OSMO default stagger (section children, words)"
+      "$description": "W6 D3 — ATOM default stagger (section children, words)"
     },
     "3": {
       "$value": "75ms",
-      "$description": "W6 D3 — OSMO loose stagger (lines, large reveals)"
+      "$description": "W6 D3 — ATOM loose stagger (lines, large reveals)"
     }
   }
 }

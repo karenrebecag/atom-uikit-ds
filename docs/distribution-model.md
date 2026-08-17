@@ -101,7 +101,7 @@ tienen pipeline de build ni pueden "reinstalar" un cambio de marca sitio por sit
   Todo lo demás (html/css planos, contrato de slots, categoría, index) lo genera
   `build:registry` solo.
 - **Deuda existente**: los 46 layouts del catálogo ya viajan por el canal nuevo
-  automáticamente, pero muchos son pre-OSMO y definen anatomías propias en vez de
+  automáticamente, pero muchos son pre-ATOM y definen anatomías propias en vez de
   consumir componentes (el patrón `pricing-tiers`). Se migran **bajo demanda** — cuando
   un layout se vaya a usar de verdad, se moderniza como se hizo con pricing — no en un
   big-bang.

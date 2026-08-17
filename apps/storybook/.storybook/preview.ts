@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-// Live token build (OSMO language) — do not snapshot into this app
+// Live token build (ATOM language) — do not snapshot into this app
 import '../../../packages/tokens/build/css/tokens.css';
 import '../../../packages/tokens/build/css/dark.css';
 import '../../../packages/css/src/index.css';

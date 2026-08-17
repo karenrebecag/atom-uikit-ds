@@ -49,7 +49,7 @@
   height: auto;
 }
 
-/* Guardas anti-FOUC del host: sitios con su propio text-reveal (patron OSMO)
+/* Guardas anti-FOUC del host: sitios con su propio text-reveal (patron ATOM)
    esconden [data-split] via visibility y confian en SU js para revelar — que
    nunca procesa nodos montados despues por un embed async. Dentro del embed
    la visibilidad la gobierna NUESTRO behavior (yPercent en mascaras), asi que

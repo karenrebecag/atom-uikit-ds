@@ -5,7 +5,7 @@
 
 Reinstala el violeta de marca y declara el highlight tipografico como token.
 
-CAMBIO DE CONTRATO DECLARADO (decision de Karen 2026-08-05): la migracion a OSMO
+CAMBIO DE CONTRATO DECLARADO (decision de Karen 2026-08-05): la migracion a ATOM
 retiro la rampa violeta junto con la paleta Tailwind y dejo `.text-gradient` en
 forest -> naranja. Pero el violeta #8023FF sigue vigente en el brandbook y el
 highlight violeta -> naranja es el que viven las tres homes de atomchat.io, sin

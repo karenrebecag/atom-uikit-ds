@@ -66,7 +66,7 @@ export const footerColumns = {
   </div>
 </footer>`,
   css: `/* Layout: footer-columns — structure only.
-   Distribucion citada del footer de OSMO: marca separada de las columnas por
+   Distribucion citada del footer de ATOM: marca separada de las columnas por
    un vacio grande (8.5em entre bloques), columnas cap a 13.375em con listas
    APRETADAS (0.3125em entre links — la densidad es parte del look), y fila
    legal en grid de 3 columnas. El lateral lo gobierna .container. */
@@ -80,7 +80,7 @@ export const footerColumns = {
 .l-footer-columns__top {
   display: flex;
   justify-content: space-between;
-  /* separacion marca <-> columnas del footer-top__links de OSMO */
+  /* separacion marca <-> columnas del footer-top__links de ATOM */
   gap: 8.5em;
 }
 
@@ -97,7 +97,7 @@ export const footerColumns = {
 
 .l-footer-columns__cols {
   display: flex;
-  /* gap-sm de OSMO entre columnas; cada una cap a su 13.375em */
+  /* gap-sm de ATOM entre columnas; cada una cap a su 13.375em */
   gap: var(--spacing-5);
   flex-wrap: wrap;
 }
@@ -113,14 +113,14 @@ export const footerColumns = {
 
 .l-footer-columns__col-title {
   color: var(--muted-foreground);
-  /* footer-link__col-top de OSMO: aire grande titulo -> lista */
+  /* footer-link__col-top de ATOM: aire grande titulo -> lista */
   margin-block-end: var(--spacing-6);
 }
 
 .l-footer-columns__col-links {
   display: flex;
   flex-direction: column;
-  /* lista apretada de OSMO (footer-link__col-ul: 0.3125em) */
+  /* lista apretada de ATOM (footer-link__col-ul: 0.3125em) */
   gap: 0.3125em;
   align-items: flex-start;
 }

@@ -1,4 +1,4 @@
-# Storybook QA — OSMO reskin (W5)
+# Storybook QA — ATOM reskin (W5)
 
 **Date:** 2026-07-28  
 **Branch:** `feat/code-consumers-reskin`  

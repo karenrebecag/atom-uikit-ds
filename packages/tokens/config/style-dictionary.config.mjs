@@ -5,10 +5,10 @@ import StyleDictionary from 'style-dictionary';
  * (1 "design pixel", declared in foundation/scaling.css as
  * `calc(var(--size-font) / 16)` — an absolute length that follows the fluid
  * scale). This is what makes the whole system breathe with the viewport, like
- * OSMO — WITHOUT the em trap: em resolves against the local font-size (a
+ * ATOM — WITHOUT the em trap: em resolves against the local font-size (a
  * padding token used inside an h1 would triple), --u is immune to it.
  *
- * Deliberately NOT fluid: stroke (1px hairlines blur at 1.33px — OSMO keeps
+ * Deliberately NOT fluid: stroke (1px hairlines blur at 1.33px — ATOM keeps
  * theirs fixed too), z-index/opacity/duration (not lengths), radius-full.
  */
 const FLUID_CATEGORIES = new Set(['spacing', 'font-size', 'radius', 'rhythm']);

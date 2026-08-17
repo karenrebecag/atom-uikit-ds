@@ -58,7 +58,7 @@ export const navbarSimple = {
   </a>
 </div>`,
   css: `/* Layout: navbar-simple — structure only.
-   Pildora flotante citada del nav-bar de OSMO: barra centrada sobre el
+   Pildora flotante citada del nav-bar de ATOM: barra centrada sobre el
    contenido con radio 0.375em, contorno hairline translucido (su
    nav-bar__outline) y controles de 2.5em con padding 0.4375em. sticky, no
    fixed (fixed se rompe dentro de hosts con transform en un ancestro). El
@@ -87,7 +87,7 @@ export const navbarSimple = {
   display: flex;
   align-items: center;
   height: 2.5em;
-  /* aire lateral del nav-logo de OSMO */
+  /* aire lateral del nav-logo de ATOM */
   padding-inline: 0.5em;
 }
 .l-navbar-simple__links {
@@ -109,7 +109,7 @@ export const navbarSimple = {
   cursor: pointer;
 }
 .l-navbar-simple__panel {
-  /* mismo tratamiento de pildora; separado 0.375em (gap del nav-bar__width OSMO) */
+  /* mismo tratamiento de pildora; separado 0.375em (gap del nav-bar__width ATOM) */
   width: calc(100% - 2 * var(--container-padding));
   max-width: var(--size-container-content);
   margin-inline: auto;

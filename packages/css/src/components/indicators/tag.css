@@ -49,7 +49,7 @@
   overflow: visible;
 }
 
-/* ---- Mono (patron OSMO: etiqueta tecnica) ---- */
+/* ---- Mono (patron ATOM: etiqueta tecnica) ---- */
 /* Tipografia mono en caja recta. Combina con --inverse o cualquier intent. */
 
 .tag--mono {

@@ -1,15 +1,15 @@
-# Wave 6 — Motion firma OSMO
+# Wave 6 — Motion firma ATOM
 
 **Estado: APROBADO 2026-08-03 — decisiones D1-D6 firmadas por Karen (§4).**
 Reemplaza al spec diferido que vivía en `~/Desktop/atom-web-ds-specs` (carpeta
 perdida); este vive en el repo para que no vuelva a pasar. Con esta firma, la
 regla "W6 no arranca sin spec aprobado" de CLAUDE.md queda satisfecha.
 
-Objetivo: que el DS **se sienta** OSMO — la dirección visual ya aprobada
+Objetivo: que el DS **se sienta** ATOM — la dirección visual ya aprobada
 (2026-07-28) — sin romper ninguna ley del repo: tokens-only, layouts no animan,
 `prefers-reduced-motion`, contratos DOM para el canal Webflow.
 
-## 1. Inventario medido (espejo local de OSMO, `js/main.js` + `css/main.css`)
+## 1. Inventario medido (espejo local de ATOM, `js/main.js` + `css/main.css`)
 
 Valores extraídos del código real, no de impresiones:
 
@@ -33,13 +33,13 @@ sliders, modales con clip-path, detección de dirección de scroll.
 
 ## 2. Cruce contra el DS (qué existe, qué falta)
 
-| Pattern OSMO | En el DS | Gap |
+| Pattern ATOM | En el DS | Gap |
 |---|---|---|
 | Ease/duraciones firma | tokens `easing-osmo`, `duration-1200/1800` | aplicarlos: hoy casi nada los consume |
 | Text reveal | `text-reveal.ts` funcional | literales hardcodeados (0.8/0.08…) → tokenizar |
 | Marquee | `marquee-draggable.ts` completo | ninguno |
 | Scroll direction / nav | `nav-autohide.ts` | ninguno |
-| Hover botones | `button-hover.ts` | enriquecer al carácter OSMO (decisión de valores) |
+| Hover botones | `button-hover.ts` | enriquecer al carácter ATOM (decisión de valores) |
 | Reveal de secciones/cards con stagger | **no existe** | behavior nuevo `scroll-reveal` (el de mayor impacto) |
 | Tema por sección al scroll | **no existe** | behavior nuevo `section-theme` |
 | Transiciones de página | **no existe** | `page-transition` — **View Transitions API nativa, no Barba** (regla reuse: plataforma antes que dep) |
@@ -49,7 +49,7 @@ sliders, modales con clip-path, detección de dirección de scroll.
 
 ## 3. Plan por sub-waves
 
-### W6a — Fundamentos (el 80% del "se siente OSMO")
+### W6a — Fundamentos (el 80% del "se siente ATOM")
 
 1. **Tokens nuevos** (`packages/tokens/src/primitives/motion.json`):
    `stagger-1/2/3` (D3) y — si D2 lo aprueba — `duration-250`/`duration-400`.
@@ -73,7 +73,7 @@ sliders, modales con clip-path, detección de dirección de scroll.
 6. **Micro-detalle CSS** (sin JS): `::selection`, focus rings con
    `easing-osmo`, scrollbar, `transition` de hovers de cards/links a
    `var(--duration-*) var(--easing-osmo)`.
-7. **Enriquecer `button-hover`** al carácter OSMO (valores D5).
+7. **Enriquecer `button-hover`** al carácter ATOM (valores D5).
 
 ### W6c — Decorativos (posterior, cada uno con gate propio)
 
@@ -86,7 +86,7 @@ sliders, modales con clip-path, detección de dirección de scroll.
 | # | Decisión | Resolución firmada |
 |---|---|---|
 | D1 | Smooth scroll | CSS `scroll-behavior` + GSAP existente primero. Lenis SOLO si el feel no alcanza, como decisión nueva (es dep) |
-| D2 | Duraciones 0.25/0.4 de OSMO | Mapear a `duration-200/300/500` existentes. Tokens nuevos solo si el oído lo exige al calibrar (decisión nueva) |
+| D2 | Duraciones 0.25/0.4 de ATOM | Mapear a `duration-200/300/500` existentes. Tokens nuevos solo si el oído lo exige al calibrar (decisión nueva) |
 | D3 | Tokens de stagger | Aprobados: `stagger-1: 30ms`, `stagger-2: 50ms`, `stagger-3: 75ms` |
 | D4 | Cursor custom | **Sí, como componente opcional independiente, SIEMPRE desactivado por default (accesibilidad)**. Nunca viaja ON en ningún canal |
 | D5 | Defaults de motion por canal | **Canales no-code (Webflow paste + MCP): animado `true` por default, opt-out explícito con `false`** (extiende F10-C6). **Canal CLI/código: siempre editable como prop `animated: boolean`** — el consumidor decide |
