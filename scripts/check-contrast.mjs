@@ -30,6 +30,16 @@ const PAIRS = [
   ['info', 'info-foreground'],
   // Text-on-background tokens (not a surface pair, same AA rule applies)
   ['background', 'link'],
+  // Texto de intent sobre la pagina. El acento puro (success, warning, info…) es
+  // color de SUPERFICIE: como texto falla en uno de los dos temas — forest da
+  // 1.3:1 en dark y green-electric 1.9:1 en light. Por eso cada intent tiene su
+  // paso legible, igual que link.
+  ['background', 'success-text'],
+  ['background', 'warning-text'],
+  ['background', 'destructive-text'],
+  ['background', 'info-text'],
+  ['background', 'brand-text'],
+  ['background', 'ai-text'],
   // prose pone `code` a contraste pleno sobre la superficie muted (el par
   // muted/muted-foreground se ve apagado dentro de un parrafo de texto normal).
   ['muted', 'foreground'],
