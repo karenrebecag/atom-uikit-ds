@@ -229,6 +229,29 @@ describe('clases alcanzables (R2)', () => {
     assert.equal(result.perFile.size, 0);
   });
 
+  it('is--/has-- son estado del consumidor: la politica del extractor manda, no se marcan', () => {
+    const withPolicy = { ...rule, statePrefixes: ['is--', 'has--'] };
+    const io = fakeIo({
+      'r/css/components/x.css': '.x {} .x.is--static {} .x.has--icon {} .x.is-left {}',
+      'r/react/X.tsx': '<div className="x" />',
+    });
+    const result = findUnreachableClasses(withPolicy, { items: [] }, { fs: io, path: fakePath, root: 'r' });
+    const flagged = (result.perFile.get('x.css') ?? []).map((f) => f.cls);
+    assert.deepEqual(flagged, ['is-left'], 'is-- y has-- exentos; is- de guion simple NO es la utilidad y si se marca');
+  });
+
+  it('lo publicado se lee del artefacto de public/r, no solo del registry interno', () => {
+    const artifact = JSON.stringify({ atom: { implementation: { cssClasses: ['card--brand'] } } });
+    const io = fakeIo({
+      'r/css/components/x.css': '.card--brand {}',
+      'r/react/X.tsx': 'export const X = () => null;',
+      'r/public/r/card.json': artifact,
+    });
+    const withDir = { ...rule, publishedDir: 'public/r' };
+    const result = findUnreachableClasses(withDir, { items: [] }, { fs: io, path: fakePath, root: 'r' });
+    assert.equal(result.perFile.size, 0, 'el campo atom lo inyecta el extractor en el build: 20 falsos positivos por leer solo registry.json');
+  });
+
   it('lee cssClasses de todos los items', () => {
     const published = collectPublishedClasses({
       items: [

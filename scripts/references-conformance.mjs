@@ -154,10 +154,31 @@ export function collectClassDefinitions(cssFiles, ctx, scanRoot) {
   return byClass;
 }
 
-export function collectPublishedClasses(registry) {
+/**
+ * Lo publicado NO vive en registry.json: el campo `atom` lo inyecta el extractor
+ * al construir public/r/*.json, que es lo que consumen MCP, CLI y docs. Leer solo
+ * el registry interno marcaba como sin declarar API que ya se distribuia — 15 de
+ * las 16 clases del boton de WhatsApp eran falso positivo por esto.
+ * public/r se commitea, asi que sigue siendo CI-safe.
+ */
+export function collectPublishedClasses(registry, ctx, publishedDir) {
   const published = new Set();
   for (const item of registry.items ?? []) {
     for (const cls of item.atom?.implementation?.cssClasses ?? []) published.add(cls);
+  }
+  if (!publishedDir) return published;
+  const { fs, path, root } = ctx;
+  const dir = path.join(root, publishedDir);
+  if (!fs.existsSync(dir)) return published;
+  for (const file of fs.readdirSync(dir)) {
+    if (!file.endsWith('.json')) continue;
+    let artifact;
+    try {
+      artifact = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+    } catch {
+      continue;
+    }
+    for (const cls of artifact.atom?.implementation?.cssClasses ?? []) published.add(cls);
   }
   return published;
 }
@@ -193,14 +214,20 @@ export function findUnreachableClasses(rule, registry, ctx) {
     ['.tsx', '.ts', '.html', '.astro'].flatMap((ext) => walk(path.join(root, d), ext, fs, path)),
   );
   const emitterSource = readAll(emitterFiles, fs);
-  const published = collectPublishedClasses(registry);
+  const published = collectPublishedClasses(registry, ctx, rule.publishedDir);
   const perFile = new Map();
   const files = cssFiles
     .filter((f) => !f.endsWith('index.css'))
     .map((f) => path.relative(scanRoot, f));
 
+  // Politica del extractor (extract-component-metadata.ts): las clases de estado
+  // is--*/has--* son utilidades transversales que APLICA EL CONSUMIDOR y se
+  // excluyen de cssClasses a proposito. Exigirles emisor o publicacion es exigir
+  // lo imposible — el gate replica la politica en vez de contradecirla.
+  const statePrefixes = rule.statePrefixes ?? [];
   const sourceOf = new Map();
   for (const [cls, rel] of collectClassDefinitions(cssFiles, ctx, scanRoot)) {
+    if (statePrefixes.some((p) => cls.startsWith(p))) continue;
     if (emitterSource.includes(cls)) continue;
     if (published.has(cls)) continue;
     if (rule.dynamicPrefixes && isDynamicallyEmitted(cls, emitterSource)) continue;

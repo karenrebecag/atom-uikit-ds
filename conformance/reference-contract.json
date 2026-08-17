@@ -2,8 +2,13 @@
   "$comment": "Integridad referencial: que cada referencia que SALE de un archivo aterrice. Runner: scripts/references-conformance.mjs. Ver conformance/README.md.",
   "varsResolve": {
     "why": "una var() que no resuelve descarta la declaracion COMPLETA y el componente se publica sin pintar; el contrato podia cerrar en verde con el player sin accent ni glass",
-    "scanDirs": ["packages/css/src"],
-    "definitionSources": ["packages/css/src", "packages/tokens/src"],
+    "scanDirs": [
+      "packages/css/src"
+    ],
+    "definitionSources": [
+      "packages/css/src",
+      "packages/tokens/src"
+    ],
     "fallbackIsKnob": true,
     "runtimeProvided": {
       "--char": "la setea GSAP SplitText con propIndex:true en animations/src/button-hover.ts; el stagger por caracter es CSS-driven sobre ese indice"
@@ -18,8 +23,10 @@
     }
   },
   "classesReachable": {
-    "why": "una clase que ningun emisor escribe y que el item no publica en atom.implementation.cssClasses esta SIN DECLARAR: puede ser pintura muerta o API del consumidor sin anunciar, y el gate no puede distinguirlas. Por eso no afirma cual es — exige que alguien lo declare con un resolution verificable",
-    "scanDirs": ["packages/css/src/components"],
+    "why": "una clase que ningun emisor escribe y que el artefacto publicado no declara en atom.implementation.cssClasses esta SIN DECLARAR: puede ser pintura muerta o API sin anunciar, y el gate no afirma cual es — exige un resolution verificable. Dos lecciones 2026-08-17: lo publicado vive en public/r/*.json (el campo atom lo inyecta el extractor; leer solo registry.json dio 20 falsos positivos), y las clases de estado is--/has-- las aplica el consumidor y el extractor las excluye de cssClasses a proposito (statePrefixes)",
+    "scanDirs": [
+      "packages/css/src/components"
+    ],
     "emitterDirs": [
       "packages/components-react/src",
       "packages/layouts/src",
@@ -29,74 +36,53 @@
     ],
     "dynamicPrefixes": true,
     "baseline": {
-      "buttons/whatsapp-button.css": {
-        "count": 16,
-        "resolution": "triage",
-        "why": "NO es codigo muerto: el paquete esta deprecado (2026-07-22) pero el CSS sigue vivo como capa visual del widget de AtomGrowth/atom_whatsapp_buttons, y su cabecera documenta el markup que un landing escribe a mano con estas clases. 11 de las 16 aparecen en esa documentacion. El remedio es publish -> declararlas en cssClasses del item; queda en triage porque publicar API soportada lo decide Karen",
-        "until": "2026-09-30"
-      },
-      "cards/pricing-card.css": {
-        "count": 2,
-        "resolution": "triage",
-        "why": "pricing-card--brand esta documentada en el archivo (candidata a publish); pricing-card__scribble no aparece en ningun lado (candidata a wire o delete). Dos remedios distintos en el mismo archivo: hay que separarlas",
-        "until": "2026-09-30"
-      },
       "indicators/tooltip.css": {
         "count": 2,
         "resolution": "wire",
-        "why": "is-left/is-right: el behavior pone is-top/is-bottom y no las laterales. El placement esta a medio cablear, no es API: o lo completa el modulo de animacion o se recortan las reglas",
-        "until": "2026-09-30"
-      },
-      "layout/table.css": {
-        "count": 2,
-        "resolution": "triage",
-        "why": "table__head--center y table__cell--center: alineacion sin emisor y sin documentar. Table SI se usa en un layout, asi que lo probable es publish (utilidad del consumidor), pero nadie lo ha declarado",
-        "until": "2026-09-30"
-      },
-      "atoms/feature.css": {
-        "count": 1,
-        "resolution": "triage",
-        "why": "feature--compact esta documentada en el propio archivo: es un modificador del consumidor y su remedio evidente es publish. Queda en triage porque declarar API soportada lo decide Karen, no el gate",
-        "until": "2026-09-30"
-      },
-      "buttons/button-text-swap.css": {
-        "count": 1,
-        "resolution": "triage",
-        "why": "is--static: sin emisor y sin documentar. Ni siquiera tiene item de registry propio, asi que decidir su remedio pasa por decidir si el componente existe",
-        "until": "2026-09-30"
-      },
-      "molecules/progress-nav.css": {
-        "count": 1,
-        "resolution": "triage",
-        "why": "progress-nav__logo-svg: sin emisor y sin documentar. El componente ademas incumple su domContract por un hook que emite el consumidor, no el: su triaje es el del componente entero",
+        "why": "is-left/is-right (guion simple: NO son la utilidad is--* del sistema): el behavior de animations pone is-top/is-bottom y nunca las laterales. Placement a medio cablear — o lo completa el modulo o se recortan las reglas",
         "until": "2026-09-30"
       }
-    }
+    },
+    "publishedDir": "public/r",
+    "statePrefixes": [
+      "is--",
+      "has--"
+    ]
   },
   "contractsResolve": {
     "why": "borrar un componente es donde mas se pudre el repo: baselines, exenciones y mapas slug->modulo sobreviven al componente que los justificaba, y ningun runner los visita porque todos recorren el disco y no el contrato",
     "filePaths": [
       {
         "file": "conformance/css-contract.json",
-        "at": ["baseline", "exemptFiles"],
+        "at": [
+          "baseline",
+          "exemptFiles"
+        ],
         "relativeTo": "packages/css/src/components"
       }
     ],
     "itemNames": [
       {
         "file": "conformance/layout-contract.json",
-        "at": ["deprecated.layouts", "legacy.layouts"]
+        "at": [
+          "deprecated.layouts",
+          "legacy.layouts"
+        ]
       }
     ],
     "modulePaths": [
       {
         "file": "scripts/extract-component-metadata.ts",
-        "extensions": [".ts"],
+        "extensions": [
+          ".ts"
+        ],
         "relativeTo": "packages/animations/src"
       },
       {
         "file": "scripts/webflow/dom-contract.mjs",
-        "extensions": [".js"],
+        "extensions": [
+          ".js"
+        ],
         "rewriteExtension": ".ts",
         "relativeTo": "packages/animations/src"
       }
