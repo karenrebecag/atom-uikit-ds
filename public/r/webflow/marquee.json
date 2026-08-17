@@ -6,19 +6,19 @@
     "payload": {
       "nodes": [
         {
-          "_id": "02ace84b-000a-46c8-8b14-6c8b145202ac",
+          "_id": "02ace84b-000b-46d8-8b15-6d8b15e502ac",
           "text": true,
           "v": "Atom"
         },
         {
-          "_id": "02ace84b-0008-40e9-8323-0e9323c102ac",
+          "_id": "02ace84b-0009-40d9-8322-0d93222e02ac",
           "type": "Block",
           "tag": "div",
           "classes": [
-            "02ace84b-0009-40d9-8322-0d93222e02ac"
+            "02ace84b-000a-46c8-8b14-6c8b145202ac"
           ],
           "children": [
-            "02ace84b-000a-46c8-8b14-6c8b145202ac"
+            "02ace84b-000b-46d8-8b15-6d8b15e502ac"
           ],
           "data": {
             "tag": "div",
@@ -37,19 +37,19 @@
           }
         },
         {
-          "_id": "02ace84b-000c-46a8-8b11-6a8b112c02ac",
+          "_id": "02ace84b-000d-46b8-8b12-6b8b12bf02ac",
           "text": true,
           "v": "UIKit"
         },
         {
-          "_id": "02ace84b-000b-46d8-8b15-6d8b15e502ac",
+          "_id": "02ace84b-000c-46a8-8b11-6a8b112c02ac",
           "type": "Block",
           "tag": "div",
           "classes": [
-            "02ace84b-0009-40d9-8322-0d93222e02ac"
+            "02ace84b-000a-46c8-8b14-6c8b145202ac"
           ],
           "children": [
-            "02ace84b-000c-46a8-8b11-6a8b112c02ac"
+            "02ace84b-000d-46b8-8b12-6b8b12bf02ac"
           ],
           "data": {
             "tag": "div",
@@ -68,19 +68,19 @@
           }
         },
         {
-          "_id": "02ace84b-000e-4688-8b0e-688b0e0602ac",
+          "_id": "02ace84b-000f-4698-8b0f-698b0f9902ac",
           "text": true,
           "v": "Motion"
         },
         {
-          "_id": "02ace84b-000d-46b8-8b12-6b8b12bf02ac",
+          "_id": "02ace84b-000e-4688-8b0e-688b0e0602ac",
           "type": "Block",
           "tag": "div",
           "classes": [
-            "02ace84b-0009-40d9-8322-0d93222e02ac"
+            "02ace84b-000a-46c8-8b14-6c8b145202ac"
           ],
           "children": [
-            "02ace84b-000e-4688-8b0e-688b0e0602ac"
+            "02ace84b-000f-4698-8b0f-698b0f9902ac"
           ],
           "data": {
             "tag": "div",
@@ -99,19 +99,19 @@
           }
         },
         {
-          "_id": "02ace84b-0010-4668-8b0a-668b0ae002ac",
+          "_id": "02ace84b-0011-4678-8b0c-678b0c7302ac",
           "text": true,
           "v": "Webflow"
         },
         {
-          "_id": "02ace84b-000f-4698-8b0f-698b0f9902ac",
+          "_id": "02ace84b-0010-4668-8b0a-668b0ae002ac",
           "type": "Block",
           "tag": "div",
           "classes": [
-            "02ace84b-0009-40d9-8322-0d93222e02ac"
+            "02ace84b-000a-46c8-8b14-6c8b145202ac"
           ],
           "children": [
-            "02ace84b-0010-4668-8b0a-668b0ae002ac"
+            "02ace84b-0011-4678-8b0c-678b0c7302ac"
           ],
           "data": {
             "tag": "div",
@@ -130,17 +130,17 @@
           }
         },
         {
-          "_id": "02ace84b-0006-4089-831a-08931a4f02ac",
+          "_id": "02ace84b-0007-4079-8318-079318bc02ac",
           "type": "Block",
           "tag": "div",
           "classes": [
-            "02ace84b-0007-4079-8318-079318bc02ac"
+            "02ace84b-0008-40e9-8323-0e9323c102ac"
           ],
           "children": [
-            "02ace84b-0008-40e9-8323-0e9323c102ac",
-            "02ace84b-000b-46d8-8b15-6d8b15e502ac",
-            "02ace84b-000d-46b8-8b12-6b8b12bf02ac",
-            "02ace84b-000f-4698-8b0f-698b0f9902ac"
+            "02ace84b-0009-40d9-8322-0d93222e02ac",
+            "02ace84b-000c-46a8-8b11-6a8b112c02ac",
+            "02ace84b-000e-4688-8b0e-688b0e0602ac",
+            "02ace84b-0010-4668-8b0a-668b0ae002ac"
           ],
           "data": {
             "tag": "div",
@@ -164,14 +164,14 @@
           }
         },
         {
-          "_id": "02ace84b-0004-40a9-831d-0a931d7502ac",
+          "_id": "02ace84b-0005-4099-831b-09931be202ac",
           "type": "Block",
           "tag": "div",
           "classes": [
-            "02ace84b-0005-4099-831b-09931be202ac"
+            "02ace84b-0006-4089-831a-08931a4f02ac"
           ],
           "children": [
-            "02ace84b-0006-4089-831a-08931a4f02ac"
+            "02ace84b-0007-4079-8318-079318bc02ac"
           ],
           "data": {
             "tag": "div",
@@ -200,10 +200,11 @@
           "tag": "div",
           "classes": [
             "02ace84b-0002-4049-8314-0493140302ac",
-            "02ace84b-0003-4039-8312-0393127002ac"
+            "02ace84b-0003-4039-8312-0393127002ac",
+            "02ace84b-0004-40a9-831d-0a931d7502ac"
           ],
           "children": [
-            "02ace84b-0004-40a9-831d-0a931d7502ac"
+            "02ace84b-0005-4099-831b-09931be202ac"
           ],
           "data": {
             "tag": "div",
@@ -232,6 +233,10 @@
               {
                 "name": "data-sensitivity",
                 "value": "0.01"
+              },
+              {
+                "name": "data-autoplay",
+                "value": "true"
               }
             ],
             "search": {
@@ -261,6 +266,19 @@
           "_id": "02ace84b-0003-4039-8312-0393127002ac",
           "fake": false,
           "type": "class",
+          "name": "ds-marquee--draggable",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0004-40a9-831d-0a931d7502ac",
+          "fake": false,
+          "type": "class",
           "name": "ds-marquee--fade",
           "namespace": "",
           "comb": "",
@@ -271,7 +289,7 @@
           "selector": null
         },
         {
-          "_id": "02ace84b-0005-4099-831b-09931be202ac",
+          "_id": "02ace84b-0006-4089-831a-08931a4f02ac",
           "fake": false,
           "type": "class",
           "name": "ds-marquee__collection",
@@ -288,7 +306,7 @@
           "selector": null
         },
         {
-          "_id": "02ace84b-0007-4079-8318-079318bc02ac",
+          "_id": "02ace84b-0008-40e9-8323-0e9323c102ac",
           "fake": false,
           "type": "class",
           "name": "ds-marquee__list",
@@ -301,7 +319,7 @@
           "selector": null
         },
         {
-          "_id": "02ace84b-0009-40d9-8322-0d93222e02ac",
+          "_id": "02ace84b-000a-46c8-8b14-6c8b145202ac",
           "fake": false,
           "type": "class",
           "name": "ds-marquee__item",
@@ -362,7 +380,8 @@
       "hooks": [
         "data-draggable-marquee",
         "data-draggable-marquee-collection",
-        "data-draggable-marquee-list"
+        "data-draggable-marquee-list",
+        "data-autoplay"
       ],
       "anatomy": [
         "[data-draggable-marquee-collection]",

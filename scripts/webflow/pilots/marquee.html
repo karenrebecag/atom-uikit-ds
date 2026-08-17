@@ -1,14 +1,20 @@
 <!--
   F7 pilot — matches Marquee.tsx draggable mode + marquee-draggable.ts DOM contract.
   Paint classes (.marquee*) come from components.css; motion hooks are data-*.
+
+  marquee--draggable no es decorativo aqui: sin el, la animacion CSS de __list
+  sigue corriendo mientras GSAP mueve __collection sobre el mismo eje, y la tira
+  avanza al doble. data-autoplay="true" es el valor por defecto, explicito para
+  que el piloto ejercite el hook.
 -->
 <div
-  class="marquee marquee--fade"
+  class="marquee marquee--draggable marquee--fade"
   data-draggable-marquee=""
   data-direction="left"
   data-duration="20"
   data-multiplier="35"
   data-sensitivity="0.01"
+  data-autoplay="true"
 >
   <div data-draggable-marquee-collection="" class="marquee__collection">
     <div data-draggable-marquee-list="" class="marquee__list">

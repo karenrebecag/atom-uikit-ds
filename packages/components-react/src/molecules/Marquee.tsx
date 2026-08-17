@@ -21,6 +21,8 @@ export type MarqueeProps = {
   duration?: number;
   multiplier?: number;
   sensitivity?: number;
+  /** Solo en draggable: false deja la tira quieta hasta que la arrastren. */
+  autoplay?: boolean;
   children: ReactNode;
   className?: string;
 };
@@ -34,6 +36,7 @@ export function Marquee({
   duration: draggableDuration = 20,
   multiplier = 35,
   sensitivity = 0.01,
+  autoplay = true,
   children,
   className,
 }: MarqueeProps) {
@@ -68,7 +71,10 @@ export function Marquee({
 
   const listContent = Children.toArray(children);
 
-  // Draggable mode: GSAP animation via data-attribute contract
+  // Draggable mode: GSAP animation via data-attribute contract.
+  // marquee--draggable no es decorativo: apaga la animacion CSS de __list. En
+  // este modo el desplazamiento lo pone GSAP sobre __collection, y con las dos
+  // vivas la tira avanza al doble sobre el mismo eje.
   if (draggable) {
     return (
       <div
@@ -78,7 +84,8 @@ export function Marquee({
         data-duration={draggableDuration}
         data-multiplier={multiplier}
         data-sensitivity={sensitivity}
-        className={cn('marquee', fade && 'marquee--fade', className)}
+        data-autoplay={autoplay ? 'true' : 'false'}
+        className={cn('marquee', 'marquee--draggable', fade && 'marquee--fade', className)}
       >
         <div data-draggable-marquee-collection="" className="marquee__collection">
           <div data-draggable-marquee-list="" className="marquee__list">

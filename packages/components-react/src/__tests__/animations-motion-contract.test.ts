@@ -196,6 +196,31 @@ describe('marquee-draggable (decorativo: loop infinito)', () => {
     expect(wrapper.dataset.draggableMarquee).not.toBe('initialized');
     expect(g.gsap.to).not.toHaveBeenCalled();
   });
+
+  it('por defecto la tira avanza sola: reposo a velocidad ±1', () => {
+    mountGlobals();
+    mountMarquee();
+    initDraggableMarquee();
+    expect(g.gsap._tween.timeScale).toHaveBeenCalledWith(1);
+  });
+
+  it('data-autoplay="false": arranca quieta, reposo a 0', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-autoplay', 'false');
+    initDraggableMarquee();
+    expect(g.gsap._tween.timeScale).toHaveBeenCalledWith(0);
+    expect(g.gsap._tween.timeScale).not.toHaveBeenCalledWith(1);
+  });
+
+  it('quieta no tiene sentido: data-direction no parpadea a left al detenerse', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-direction', 'right');
+    wrapper.setAttribute('data-autoplay', 'false');
+    initDraggableMarquee();
+    expect(wrapper.getAttribute('data-direction')).toBe('right');
+  });
 });
 
 describe('video-player (funcional: reduced-motion solo anula autoplay)', () => {
