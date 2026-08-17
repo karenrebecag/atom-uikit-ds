@@ -114,8 +114,8 @@
       "usage": "import { Field } from '@/components/atoms/Field';\nimport { Input } from '@/components/atoms/Input';\n\n<Field label=\"Email\" htmlFor=\"email\" error={err} required>\n  <Input id=\"email\" type=\"email\" error={!!err} />\n</Field>"
     },
     "derived": {
-      "generatedAt": "2026-08-17T17:40:15.872Z",
-      "sourceCommit": "1decaa0",
+      "generatedAt": "2026-08-17T18:46:52.374Z",
+      "sourceCommit": "cff81b1",
       "install": {
         "peerDeps": [],
         "cssImports": [

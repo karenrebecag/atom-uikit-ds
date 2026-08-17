@@ -171,8 +171,8 @@
       "usage": "<AccordionMorph items={[{ question: '...', answer: '...' }]} startOpen={0} />\n// + una vez por pagina:\nuseEffect(() => initAccordionMorph(), []);"
     },
     "derived": {
-      "generatedAt": "2026-08-17T17:40:15.872Z",
-      "sourceCommit": "1decaa0",
+      "generatedAt": "2026-08-17T18:46:52.374Z",
+      "sourceCommit": "cff81b1",
       "install": {
         "peerDeps": [
           "gsap"

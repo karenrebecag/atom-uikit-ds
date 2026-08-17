@@ -128,6 +128,10 @@
       "reason": "no React source (css-only / no-tsx)"
     },
     {
+      "name": "icon-row",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
       "name": "logo",
       "reason": "no React source (css-only / no-tsx)"
     },

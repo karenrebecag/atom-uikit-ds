@@ -54,6 +54,7 @@
 @import './sidebar/sidebar.css';
 @import './atoms/feature.css';
 @import './atoms/icon.css';
+@import './atoms/icon-row.css';
 @import './atoms/image.css';
 @import './atoms/logo.css';
 @import './atoms/stepper.css';

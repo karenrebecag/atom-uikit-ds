@@ -1,0 +1,53 @@
+/* -------------------------------------------------------------------------
+   Icon Row
+
+   Fila de SVGs alineados: canales, logos de integracion, badges de pago.
+   El DS ya enviaba la ESCALA de un icono suelto (.icon) pero no el CONTENEDOR
+   que los pone en linea, asi que cada card se lo reimplementaba: pricing-card
+   lo resolvia DOS veces (__channels y __logos) con gaps y alturas propias, y
+   hasta con un caso especial por logo. Este atomo es ese contenedor.
+
+   Uso:  <div class="icon-row icon-row--m">
+           <svg class="icon" …>…</svg>
+           <svg class="icon" …>…</svg>
+         </div>
+
+   Gaps:   xs .5em · s .75em · m 1em · l 1.5em  (en em: la fila escala con el
+           texto que la acompana, igual que .icon)
+   Tamano: el de los hijos. `--icon-row-size` los normaliza de una vez cuando
+           vienen de fuentes distintas (logos de terceros con cajas dispares).
+   Wrap:   `--wrap` para filas largas que deben plegarse (logos), no para
+           canales, que son pocos y viajan en una sola linea.
+   ------------------------------------------------------------------------- */
+
+.icon-row {
+  display: flex;
+  align-items: center;
+  gap: var(--icon-row-gap, 1em);
+  color: currentcolor;
+}
+
+/* Normaliza por ALTURA y deja el ancho libre: los logos de terceros no
+   comparten caja, forzar el ancho los deforma. */
+.icon-row > svg,
+.icon-row > .icon {
+  height: var(--icon-row-size, 1.25em);
+  width: auto;
+  flex-shrink: 0;
+}
+
+.icon-row--xs { --icon-row-gap: 0.5em; }
+.icon-row--s  { --icon-row-gap: 0.75em; }
+.icon-row--m  { --icon-row-gap: 1em; }
+.icon-row--l  { --icon-row-gap: 1.5em; }
+
+.icon-row--wrap {
+  flex-wrap: wrap;
+  row-gap: var(--icon-row-gap, 1em);
+}
+
+/* Sangria opcional para alinear la fila con el texto de un label que lleva
+   icono delante (1em de glifo + su gap), sin calcularlo en cada consumidor. */
+.icon-row--indented {
+  padding-inline-start: calc(1em + var(--spacing-3));
+}

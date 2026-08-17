@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T17:40:16.228Z",
+  "generatedAt": "2026-08-17T18:46:52.713Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 126,
+    "items": 127,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 126
+      "withSourceCommit": 127
     },
     "webflow": {
       "emitted": 37,
-      "excluded": 23
+      "excluded": 24
     },
-    "aggregateScore": 50.2
+    "aggregateScore": 50
   },
   "batches": [],
   "items": [
@@ -706,6 +706,23 @@
     },
     {
       "slug": "icon",
+      "kind": "component",
+      "category": "actions",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "excluded",
+      "webflowReason": "no React source (css-only / no-tsx)",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "no React source",
+      "contentScore": 25
+    },
+    {
+      "slug": "icon-row",
       "kind": "component",
       "category": "actions",
       "hasReact": false,

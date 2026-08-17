@@ -125,8 +125,8 @@
       "usage": "import { VideoPlayer } from '@/components/atoms/VideoPlayer';\n\n<VideoPlayer videoId=\"abc123\" muted autoplay={false} placeholder=\"/poster.jpg\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-17T17:40:15.872Z",
-      "sourceCommit": "1decaa0",
+      "generatedAt": "2026-08-17T18:46:52.374Z",
+      "sourceCommit": "cff81b1",
       "install": {
         "peerDeps": [
           "gsap"

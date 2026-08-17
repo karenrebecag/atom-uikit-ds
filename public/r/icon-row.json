@@ -1,0 +1,106 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-row",
+  "type": "registry:component",
+  "title": "Icon Row",
+  "description": "Fila de SVGs alineados: canales, logos de integracion, badges. Normaliza por altura y da el gap en em, para que ninguna card vuelva a resolver la fila a mano.",
+  "registryDependencies": [
+    "tokens",
+    "foundation",
+    "icon"
+  ],
+  "files": [
+    {
+      "path": "styles/components/icon-row.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Icon Row\n\n   Fila de SVGs alineados: canales, logos de integracion, badges de pago.\n   El DS ya enviaba la ESCALA de un icono suelto (.icon) pero no el CONTENEDOR\n   que los pone en linea, asi que cada card se lo reimplementaba: pricing-card\n   lo resolvia DOS veces (__channels y __logos) con gaps y alturas propias, y\n   hasta con un caso especial por logo. Este atomo es ese contenedor.\n\n   Uso:  <div class=\"icon-row icon-row--m\">\n           <svg class=\"icon\" …>…</svg>\n           <svg class=\"icon\" …>…</svg>\n         </div>\n\n   Gaps:   xs .5em · s .75em · m 1em · l 1.5em  (en em: la fila escala con el\n           texto que la acompana, igual que .icon)\n   Tamano: el de los hijos. `--icon-row-size` los normaliza de una vez cuando\n           vienen de fuentes distintas (logos de terceros con cajas dispares).\n   Wrap:   `--wrap` para filas largas que deben plegarse (logos), no para\n           canales, que son pocos y viajan en una sola linea.\n   ------------------------------------------------------------------------- */\n\n.icon-row {\n  display: flex;\n  align-items: center;\n  gap: var(--icon-row-gap, 1em);\n  color: currentcolor;\n}\n\n/* Normaliza por ALTURA y deja el ancho libre: los logos de terceros no\n   comparten caja, forzar el ancho los deforma. */\n.icon-row > svg,\n.icon-row > .icon {\n  height: var(--icon-row-size, 1.25em);\n  width: auto;\n  flex-shrink: 0;\n}\n\n.icon-row--xs { --icon-row-gap: 0.5em; }\n.icon-row--s  { --icon-row-gap: 0.75em; }\n.icon-row--m  { --icon-row-gap: 1em; }\n.icon-row--l  { --icon-row-gap: 1.5em; }\n\n.icon-row--wrap {\n  flex-wrap: wrap;\n  row-gap: var(--icon-row-gap, 1em);\n}\n\n/* Sangria opcional para alinear la fila con el texto de un label que lleva\n   icono delante (1em de glifo + su gap), sin calcularlo en cada consumidor. */\n.icon-row--indented {\n  padding-inline-start: calc(1em + var(--spacing-3));\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Icon Row",
+      "description": "Fila de SVGs alineados: canales, logos de integracion, badges. Normaliza por altura y da el gap en em, para que ninguna card vuelva a resolver la fila a mano.",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "icon-row",
+      "cssClasses": [
+        "icon-row",
+        "icon-row--xs",
+        "icon-row--s",
+        "icon-row--m",
+        "icon-row--l",
+        "icon-row--wrap",
+        "icon-row--indented"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-17T18:46:52.374Z",
+      "sourceCommit": "cff81b1",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"icon-row\">\n\n</div>",
+        "classes": [
+          {
+            "class": "icon-row",
+            "purpose": "root"
+          },
+          {
+            "class": "icon-row--indented",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-row--l",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-row--m",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-row--s",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-row--wrap",
+            "purpose": "modifier"
+          },
+          {
+            "class": "icon-row--xs",
+            "purpose": "modifier"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "currentColor",
+            "tokenPath": "(literal)"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Icon Row\n\n   Fila de SVGs alineados: canales, logos de integracion, badges de pago.\n   El DS ya enviaba la ESCALA de un icono suelto (.icon) pero no el CONTENEDOR\n   que los pone en linea, asi que cada card se lo reimplementaba: pricing-card\n   lo resolvia DOS veces (__channels y __logos) con gaps y alturas propias, y\n   hasta con un caso especial por logo. Este atomo es ese contenedor.\n\n   Uso:  <div class=\"icon-row icon-row--m\">\n           <svg class=\"icon\" …>…</svg>\n           <svg class=\"icon\" …>…</svg>\n         </div>\n\n   Gaps:   xs .5em · s .75em · m 1em · l 1.5em  (en em: la fila escala con el\n           texto que la acompana, igual que .icon)\n   Tamano: el de los hijos. `--icon-row-size` los normaliza de una vez cuando\n           vienen de fuentes distintas (logos de terceros con cajas dispares).\n   Wrap:   `--wrap` para filas largas que deben plegarse (logos), no para\n           canales, que son pocos y viajan en una sola linea.\n   ------------------------------------------------------------------------- */\n\n.icon-row {\n  display: flex;\n  align-items: center;\n  gap: 1em;\n  color: currentcolor;\n}\n\n/* Normaliza por ALTURA y deja el ancho libre: los logos de terceros no\n   comparten caja, forzar el ancho los deforma. */\n.icon-row > svg,\n.icon-row > .icon {\n  height: 1.25em;\n  width: auto;\n  flex-shrink: 0;\n}\n\n.icon-row--xs { --icon-row-gap: 0.5em; }\n.icon-row--s  { --icon-row-gap: 0.75em; }\n.icon-row--m  { --icon-row-gap: 1em; }\n.icon-row--l  { --icon-row-gap: 1.5em; }\n\n.icon-row--wrap {\n  flex-wrap: wrap;\n  row-gap: 1em;\n}\n\n/* Sangria opcional para alinear la fila con el texto de un label que lleva\n   icono delante (1em de glifo + su gap), sin calcularlo en cada consumidor. */\n.icon-row--indented {\n  padding-inline-start: calc(1em + 12px);\n}\n",
+      "motion": []
+    }
+  }
+}

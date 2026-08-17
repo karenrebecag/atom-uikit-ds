@@ -70,7 +70,7 @@ function cardHtml(prefix, theme, channels, logos) {
             <p class="pricing-card__price-note body-sm">{{${prefix}_priceNote}}</p>
           </div>
           <!-- Canales FIJOS de la posicion (activos de marca, sin slots) -->
-          <div class="pricing-card__channels" role="img" aria-label="{{${prefix}_channelsLabel}}">
+          <div class="icon-row icon-row--s pricing-card__channels" role="img" aria-label="{{${prefix}_channelsLabel}}">
             ${channels.join('\n            ')}
           </div>
           <div class="pricing-card__cta">
@@ -106,7 +106,7 @@ function cardHtml(prefix, theme, channels, logos) {
               <span class="feature__icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="${CHECK_PATH}"/></svg></span>
               <span class="feature__text">{{${prefix}_crmLabel}}</span>
             </span>
-            <div class="pricing-card__logos">
+            <div class="icon-row icon-row--wrap icon-row--indented pricing-card__logos">
               ${logos.join('\n              ')}
             </div>
           </div>
