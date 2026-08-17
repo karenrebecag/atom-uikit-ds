@@ -303,6 +303,76 @@ Además de la escalera completa:
 
 ---
 
+## Modo E — Retirar un componente
+
+Crear son 6 piezas; retirar toca **12 archivos fuente, 2 mapas hardcodeados, 2
+contratos y 4 repos**. Sin esta lista, un borrado normal deja el contrato en verde
+con la mitad del componente colgando — medido el 2026-08-17 borrando `video-player`:
+5 fuentes fuera y la suite seguía en verde antes de que existieran los gates de abajo.
+
+**Paso 0 — ¿se puede?** Nadie debe depender de él:
+
+```bash
+node -e "const r=require('./registry.json');console.log(r.items.filter(i=>(i.registryDependencies??[]).includes('SLUG')).map(i=>i.name))"
+grep -rl "SLUG" packages/layouts/src
+```
+
+Con dependientes, primero se migran. Y recuerda que el canal es **copia**: quien ya
+hizo `atom-uikit add SLUG` se queda con el archivo. Retirar del registry frena
+instalaciones nuevas, no desinstala las viejas.
+
+**Paso 1 — fuentes** (a mano, ninguna se regenera):
+
+| Archivo | |
+|---|---|
+| `packages/css/src/components/{cat}/{slug}.css` | borrar |
+| `packages/css/src/components/index.css` | quitar el import |
+| `packages/components-react/src/{atoms,molecules}/X.tsx` | borrar |
+| `packages/components-react/src/index.ts` | quitar el export |
+| `packages/animations/src/{slug}.ts` | borrar si tiene behavior |
+| `packages/animations/src/index.ts` | quitar el export |
+| `apps/storybook/src/stories/X.stories.tsx` | borrar |
+| `docs/editorial/{slug}.md` | borrar |
+| `registry.json` | **todos** sus items: el componente, el `-animation`, el `-controller` |
+| `__tests__/animations-bundle-contract.test.ts` | quitar del allowlist |
+| `__tests__/animations-motion-contract.test.ts` | idem |
+| `__tests__/render-smoke.test.tsx` | quitar la entrada |
+
+**Paso 2 — mapas hardcodeados** (nadie los recuerda, por eso hay gate):
+
+- `scripts/extract-component-metadata.ts` — el mapa slug → módulo de animación
+- `scripts/webflow/dom-contract.mjs` — el mapa slug → módulo y `ALL_BEHAVIOR_MODULES`
+
+**Paso 3 — contratos**: quitar sus entradas de `conformance/css-contract.json`
+(baseline, `exemptFiles`), `conformance/reference-contract.json` (baselines) y
+`conformance/layout-contract.json` (`deprecated`/`legacy`) si aparece.
+
+**Paso 4 — regenerar y COMMITEAR**: `pnpm build:registry` limpia `public/r`. La
+sección `registry` del contrato falla si queda un huérfano.
+
+**Paso 5 — cross-repo**: la docu y el MCP se corrigen solos al sincronizar (cache de
+5 min). A mano: el artículo en `atom-uikit-cms` y el manifest + migration en
+`atom-uikit-db`.
+
+### Qué te caza si te saltas un paso
+
+| Olvido | Quién lo caza |
+|---|---|
+| Item de registry vivo, archivo borrado | conformance `references` (R4) — y `build:registry` sale 1 |
+| CSS vivo sin item | conformance `registry`: "CSS de componente sin item" |
+| `public/r/*.json` sobrante | conformance `registry`: "huérfanos en public/r" |
+| Story viva | el build de Storybook rompe al importar |
+| Entrada en `render-smoke` | vitest en rojo |
+| Allowlist del bundle sin actualizar | `animations-bundle-contract` compara el array exacto |
+| Baseline o exención de un archivo borrado | conformance `references` (R5) |
+| Mapa hardcodeado apuntando al módulo borrado | conformance `references` (R5) |
+| Clase o `var()` que queda huérfana | conformance `references` (R1/R2) |
+
+Lo único que sigue sin gate: el `docs/editorial/{slug}.md` huérfano y los dos repos
+de contenido. Revísalos a ojo.
+
+---
+
 ## La escalera de verificación (correr SIEMPRE, en este orden)
 
 ```bash

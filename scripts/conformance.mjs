@@ -3,13 +3,13 @@
  * Conformance suite — ejecuta el contrato de conformance/*.json.
  *
  *   node scripts/conformance.mjs            # todo
- *   node scripts/conformance.mjs tokens     # tokens | css | layouts | registry | budgets
+ *   node scripts/conformance.mjs tokens     # tokens | css | layouts | registry | budgets | references
  *
  * El runner es deliberadamente tonto: las reglas y sus valores viven en los JSON
  * de conformance/ (modelo Willison: el contrato es data). Ver conformance/README.md.
  */
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { checkDistribution } from './check-distribution.mjs';
@@ -22,6 +22,10 @@ import {
   getDomContractSync,
   validateHtmlAgainstContract,
 } from './webflow/dom-contract.mjs';
+import {
+  runReferenceChecks,
+  formatReport as formatReferenceReport,
+} from './references-conformance.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const CONF = join(ROOT, 'conformance');
@@ -473,6 +477,25 @@ function sectionWebflowDom() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// references — R1/R2/R3: que las referencias que salen de un archivo aterricen
+// ---------------------------------------------------------------------------
+
+function sectionReferences() {
+  const contract = readJson(join(CONF, 'reference-contract.json'));
+  const registry = readJson(join(ROOT, 'registry.json'));
+  const { reports } = runReferenceChecks(
+    { contract, registry, root: ROOT },
+    { readFileSync, readdirSync, statSync, existsSync },
+    { join, relative, dirname },
+  );
+  for (const r of reports) {
+    if (r.level === 'fail') fail('references', formatReferenceReport(r));
+    else if (r.level === 'note') note('references', formatReferenceReport(r));
+    else ok('references', formatReferenceReport(r));
+  }
+}
+
 const SECTIONS = {
   tokens: sectionTokens,
   css: sectionCss,
@@ -482,6 +505,7 @@ const SECTIONS = {
   distribution: () => checkDistribution({ fail, ok, note }),
   'agent-meta': sectionAgentMeta,
   'webflow-dom': sectionWebflowDom,
+  references: sectionReferences,
 };
 
 const pick = process.argv[2];

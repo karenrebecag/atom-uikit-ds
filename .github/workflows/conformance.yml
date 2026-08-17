@@ -29,3 +29,7 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/conformance.mjs
+      # La logica de los gates tambien se verifica: 95 tests con fixtures sinteticas
+      # que corren con node puro, sin install. Sin esto el contrato vigila el repo
+      # pero nada vigila que los checks sigan siendo correctos.
+      - run: node --test "scripts/**/*.test.mjs"

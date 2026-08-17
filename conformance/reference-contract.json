@@ -1,0 +1,102 @@
+{
+  "$comment": "Integridad referencial: que cada referencia que SALE de un archivo aterrice. Runner: scripts/references-conformance.mjs. Ver conformance/README.md.",
+  "varsResolve": {
+    "why": "una var() que no resuelve descarta la declaracion COMPLETA y el componente se publica sin pintar; el contrato podia cerrar en verde con el player sin accent ni glass",
+    "scanDirs": ["packages/css/src"],
+    "definitionSources": ["packages/css/src", "packages/tokens/src"],
+    "fallbackIsKnob": true,
+    "runtimeProvided": {
+      "--char": "la setea GSAP SplitText con propIndex:true en animations/src/button-hover.ts; el stagger por caracter es CSS-driven sobre ese indice"
+    },
+    "baseline": {
+      "components/molecules/video-player.css": {
+        "count": 6,
+        "why": "el header del archivo documenta --surface-glass/-blur, --surface-dark, --player-accent/-foreground/-progress-bg como tokens que nunca se crearon. Declararlos es decision de diseno (que paso de la rampa, que semantico), no limpieza: sale en su propio PR de tokens",
+        "until": "2026-11-30"
+      }
+    }
+  },
+  "classesReachable": {
+    "why": "una clase sin emisor y sin publicar en atom.implementation.cssClasses no es API: nadie puede llegar a ella y viaja igual en atom.css y embed.css",
+    "scanDirs": ["packages/css/src/components"],
+    "emitterDirs": [
+      "packages/components-react/src",
+      "packages/layouts/src",
+      "packages/animations/src",
+      "scripts/webflow/pilots",
+      "apps/storybook/src"
+    ],
+    "dynamicPrefixes": true,
+    "baseline": {
+      "buttons/whatsapp-button.css": {
+        "count": 16,
+        "why": "packages/whatsapp esta DEPRECADO desde 2026-07-22 y su CSS es GENERADO desde AtomGrowth/atom_whatsapp_buttons. El fix real es borrar el archivo y su story, no tolerar las clases: va en un PR de borrado aparte para no mezclarlo con el gate",
+        "until": "2026-10-31"
+      },
+      "cards/pricing-card.css": {
+        "count": 2,
+        "why": "pricing-card--brand y pricing-card__scribble: pintura sin emisor ni publicar. Triaje pendiente — o las emite el layout de pricing, o se borran",
+        "until": "2026-09-30"
+      },
+      "indicators/tooltip.css": {
+        "count": 2,
+        "why": "is-left/is-right: el behavior pone is-top/is-bottom pero no las laterales. Placement a medio cablear, decidir si se completa o se recorta",
+        "until": "2026-09-30"
+      },
+      "layout/table.css": {
+        "count": 2,
+        "why": "table__head--center y table__cell--center: alineacion sin emisor ni publicar. Triaje pendiente",
+        "until": "2026-09-30"
+      },
+      "atoms/feature.css": {
+        "count": 1,
+        "why": "feature--compact: modificador sin emisor ni publicar. Triaje pendiente",
+        "until": "2026-09-30"
+      },
+      "buttons/button-text-swap.css": {
+        "count": 1,
+        "why": "is--static: variante sin emisor. Triaje pendiente",
+        "until": "2026-09-30"
+      },
+      "molecules/progress-nav.css": {
+        "count": 1,
+        "why": "progress-nav__logo-svg: hook de pintura sin emisor ni publicar. Triaje pendiente",
+        "until": "2026-09-30"
+      }
+    }
+  },
+  "contractsResolve": {
+    "why": "borrar un componente es donde mas se pudre el repo: baselines, exenciones y mapas slug->modulo sobreviven al componente que los justificaba, y ningun runner los visita porque todos recorren el disco y no el contrato",
+    "filePaths": [
+      {
+        "file": "conformance/css-contract.json",
+        "at": ["baseline", "exemptFiles"],
+        "relativeTo": "packages/css/src/components"
+      }
+    ],
+    "itemNames": [
+      {
+        "file": "conformance/layout-contract.json",
+        "at": ["deprecated.layouts", "legacy.layouts"]
+      }
+    ],
+    "modulePaths": [
+      {
+        "file": "scripts/extract-component-metadata.ts",
+        "extensions": [".ts"],
+        "relativeTo": "packages/animations/src"
+      },
+      {
+        "file": "scripts/webflow/dom-contract.mjs",
+        "extensions": [".js"],
+        "rewriteExtension": ".ts",
+        "relativeTo": "packages/animations/src"
+      }
+    ]
+  },
+  "entryCoversSource": {
+    "why": "un subdirectorio nuevo bajo components-react/src no compila a dist si nadie agrega el glob, y el canal Webflow lo excluye en silencio (leccion sidebar)",
+    "config": "packages/components-react/tsup.config.ts",
+    "sourceDir": "packages/components-react/src"
+  }
+}
