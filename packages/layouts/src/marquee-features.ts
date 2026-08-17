@@ -25,6 +25,12 @@ export const marqueeFeatures = {
   data-multiplier   tope de velocidad que puede imprimir un arrastre
   data-sensitivity  cuanto pesa la velocidad del puntero (mas alto = mas nervioso)
   data-direction    sentido inicial; el modulo lo mantiene actualizado al arrastrar
+  data-autoplay     "false" = la tira arranca quieta y solo se mueve al arrastrar.
+                    Quitarlo devuelve el avance continuo.
+
+  Sin el modificador marquee--fade a proposito: el degradado lateral se ve raro
+  cuando la tira esta quieta, porque insinua un movimiento que no hay. Con
+  autoplay si tiene sentido, y entonces se anade.
 -->
 
 <section class="l-marquee-features" id="{{section_id}}">
@@ -34,12 +40,13 @@ export const marqueeFeatures = {
   </div>
 
   <div
-    class="marquee marquee--draggable marquee--fade"
+    class="marquee marquee--draggable"
     data-draggable-marquee
     data-direction="left"
     data-duration="20"
     data-multiplier="35"
     data-sensitivity="0.01"
+    data-autoplay="false"
   >
     <div class="marquee__collection" data-draggable-marquee-collection>
       <div class="marquee__list" data-draggable-marquee-list>

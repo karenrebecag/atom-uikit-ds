@@ -5,6 +5,12 @@
 //   data-duration="20"       (seconds for one loop)
 //   data-multiplier="35"     (max drag speed multiplier)
 //   data-sensitivity="0.01"  (velocity to timescale ratio)
+//   data-autoplay="false"    (sin avance propio: solo se mueve al arrastrar)
+//
+// Sobre data-autoplay: la velocidad de REPOSO del loop es lo unico que cambia.
+// Con autoplay la tira descansa a ±1 y avanza sola; sin autoplay descansa a 0,
+// asi que arranca quieta y vuelve a quedarse quieta despues de cada arrastre.
+// El resto del gesto (impulso, tope por multiplier, inercia) es identico.
 //
 // Structure expected:
 //   [data-draggable-marquee]
@@ -19,6 +25,7 @@ export const REQUIRED_HOOKS = [
   'data-draggable-marquee',
   'data-draggable-marquee-collection',
   'data-draggable-marquee-list',
+  'data-autoplay',
 ] as const;
 
 /**
@@ -106,13 +113,24 @@ export function initDraggableMarquee(): CleanupFn {
     // Direction
     const initialDir = (wrapper.getAttribute('data-direction') || 'left').toLowerCase();
     const baseDirection = initialDir === 'right' ? -1 : 1;
-    const timeScale = { value: baseDirection };
+    // Velocidad de reposo: ±1 avanza sola, 0 deja la tira quieta hasta que la
+    // arrastren. Es el unico valor que separa un marquee de un carrusel a mano.
+    const restingScale =
+      (wrapper.getAttribute('data-autoplay') || 'true').toLowerCase() === 'false'
+        ? 0
+        : baseDirection;
+    const timeScale = { value: restingScale };
 
     if (baseDirection < 0) marqueeLoop.progress(1);
 
     function applyTimeScale() {
       marqueeLoop.timeScale(timeScale.value);
-      wrapper.setAttribute('data-direction', timeScale.value < 0 ? 'right' : 'left');
+      // En reposo sin autoplay el valor es 0, que no es un sentido: se conserva
+      // el ultimo, porque data-direction existe para que el CSS pueda reaccionar
+      // a hacia donde va la tira y no debe parpadear a "left" al detenerse.
+      if (timeScale.value !== 0) {
+        wrapper.setAttribute('data-direction', timeScale.value < 0 ? 'right' : 'left');
+      }
     }
 
     applyTimeScale();
@@ -129,7 +147,9 @@ export function initDraggableMarquee(): CleanupFn {
 
         gsap.killTweensOf(timeScale);
 
-        const restingDir = velocityTS < 0 ? -1 : 1;
+        // Sin autoplay la tira vuelve a quedarse quieta; con autoplay retoma el
+        // sentido que le imprimio el ultimo arrastre.
+        const restingDir = restingScale === 0 ? 0 : velocityTS < 0 ? -1 : 1;
 
         gsap.timeline({ onUpdate: applyTimeScale })
           .to(timeScale, { value: velocityTS, duration: 0.1, overwrite: true })
