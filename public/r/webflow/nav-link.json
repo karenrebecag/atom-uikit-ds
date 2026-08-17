@@ -102,7 +102,7 @@
           "name": "ds-nav-link__text",
           "namespace": "",
           "comb": "",
-          "styleLess": "display: inline; position: relative;",
+          "styleLess": "display: inline; position: relative; position: relative;",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
@@ -125,7 +125,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-nav-link:hover:not(.ds-nav-link--disabled):not(.ds-nav-link--active){color:var(--nav-link-fg-hover)}.ds-nav-link--active .ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}.ds-nav-link__caret svg{width:100%;height:100%}.ds-nav-link--dropdown[aria-expanded=true]{color:var(--nav-link-fg-active)}.ds-nav-link--dropdown[aria-expanded=true] .ds-nav-link__caret{rotate:180deg}.ds-nav-link--dropdown[aria-expanded=true] .ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}.ds-nav-link__text:before{content:\"\";background-color:var(--nav-link-indicator-active);width:100%;height:.0625em;transition:transform var(--duration-600) var(--easing-osmo);transform-origin:100%;position:absolute;bottom:-.0625em;left:0;transform:scaleX(0)rotate(.001deg)}.ds-nav-link--underline-alt .ds-nav-link__text:before{transform-origin:0;transition-delay:var(--duration-300);transform:scaleX(1)rotate(.001deg)}.ds-nav-link--underline-alt .ds-nav-link__text:after{content:\"\";background-color:var(--nav-link-indicator-active);width:100%;height:.0625em;transition:transform var(--duration-600) var(--easing-osmo);transform-origin:100%;position:absolute;bottom:-.0625em;left:0;transform:scaleX(0)rotate(.001deg)}.ds-nav-link:focus-visible{outline:var(--ring-width) solid var(--ring);outline-offset:var(--ring-offset);border-radius:.125em}@media (prefers-reduced-motion:reduce){.ds-nav-link,.ds-nav-link__caret{transition-duration:0s}}@media (hover:hover) and (pointer:fine){.ds-nav-link--underline-alt:hover:not(.ds-nav-link--disabled) .ds-nav-link__text:before{transform-origin:100%;transition-delay:0s;transform:scaleX(0)rotate(.001deg)}.ds-nav-link--underline-alt:hover:not(.ds-nav-link--disabled) .ds-nav-link__text:after{transform-origin:0;transition-delay:var(--duration-300);transform:scaleX(1)rotate(.001deg)}.ds-nav-link:hover:not(.ds-nav-link--disabled):not(.ds-nav-link--active) .ds-nav-link__text:before,[data-hover]:hover .ds-nav-link:not(.ds-nav-link--disabled):not(.ds-nav-link--active) .ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}}",
+  "headCss": ".ds-nav-link:hover:not(.ds-nav-link--disabled):not(.ds-nav-link--active){color:var(--nav-link-fg-hover)}.ds-nav-link--active .ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}.ds-nav-link__caret svg{width:100%;height:100%}.ds-nav-link--dropdown[aria-expanded=true]{color:var(--nav-link-fg-active)}.ds-nav-link--dropdown[aria-expanded=true] .ds-nav-link__caret{rotate:180deg}.ds-nav-link--dropdown[aria-expanded=true] .ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}.ds-nav-link__text:before{content:\"\";background-color:var(--nav-link-indicator-active);width:100%;height:.0625em;transition:transform var(--duration-600) var(--easing-osmo);transform-origin:100%;position:absolute;bottom:-.0625em;left:0;transform:scaleX(0)rotate(.001deg)}.ds-nav-link--underline-alt .ds-nav-link__text:before{transform-origin:0;transition-delay:var(--duration-300);transform:scaleX(1)rotate(.001deg)}.ds-nav-link--underline-alt .ds-nav-link__text:after,.ds-nav-link__text:before{content:\"\";background-color:var(--nav-link-indicator-active);width:100%;height:.0625em;transition:transform var(--duration-600) var(--easing-osmo);transform-origin:100%;position:absolute;bottom:-.0625em;left:0;transform:scaleX(0)rotate(.001deg)}:hover>.ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}.ds-nav-link:focus-visible{outline:var(--ring-width) solid var(--ring);outline-offset:var(--ring-offset);border-radius:.125em}@media (prefers-reduced-motion:reduce){.ds-nav-link,.ds-nav-link__caret{transition-duration:0s}}@media (hover:hover) and (pointer:fine){.ds-nav-link--underline-alt:hover:not(.ds-nav-link--disabled) .ds-nav-link__text:before{transform-origin:100%;transition-delay:0s;transform:scaleX(0)rotate(.001deg)}.ds-nav-link--underline-alt:hover:not(.ds-nav-link--disabled) .ds-nav-link__text:after{transform-origin:0;transition-delay:var(--duration-300);transform:scaleX(1)rotate(.001deg)}.ds-nav-link:hover:not(.ds-nav-link--disabled):not(.ds-nav-link--active) .ds-nav-link__text:before,[data-hover]:hover .ds-nav-link:not(.ds-nav-link--disabled):not(.ds-nav-link--active) .ds-nav-link__text:before{transform-origin:0;transform:scaleX(1)rotate(.001deg)}}@media (prefers-reduced-motion:reduce){.ds-nav-link__text:before{transition-duration:0s}}",
   "tokensCss": ":root {\n  --duration-200: 200ms;\n  --duration-300: 300ms;\n  --duration-600: 600ms;\n  --easing-osmo: cubic-bezier(0.625, 0.05, 0, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --font-size-sm: 12.8px;\n  --font-weight-medium: 500;\n  --letter-spacing-tight: -0.02em;\n  --nav-link-fg-active: #0a0a0a;\n  --nav-link-fg-default: #525252;\n  --nav-link-fg-hover: #0a0a0a;\n  --nav-link-indicator-active: #0a0a0a;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n}",
   "tokensResolved": [
     "duration-200",
@@ -223,6 +223,16 @@
     },
     {
       "prop": "selector",
+      "selector": ".nav-link__text::before",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ":hover > .nav-link__text::before",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
       "selector": ".nav-link:focus-visible",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
@@ -239,6 +249,11 @@
     {
       "prop": "@media",
       "selector": "(hover: hover) and (pointer: fine)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
       "reason": "not a Designer breakpoint — moved to head Custom Code block"
     }
   ]

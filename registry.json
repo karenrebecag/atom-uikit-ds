@@ -2317,6 +2317,11 @@
           "sourcePath": "packages/css/src/components/navigation/nav-link.css",
           "outputPath": "styles/components/nav-link.css",
           "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/components/navigation/nav-link-motion.css",
+          "outputPath": "styles/components/nav-link-motion.css",
+          "type": "registry:file"
         }
       ],
       "meta": {

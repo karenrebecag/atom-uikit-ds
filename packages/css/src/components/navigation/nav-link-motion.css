@@ -1,0 +1,52 @@
+/* -------------------------------------------------------------------------
+   Nav Link — MOTION (subrayado)
+
+   Separado de la pintura a proposito: es la parte que el panel de estilos de
+   Webflow no puede declarar. Necesita un pseudo-elemento y un estado de
+   ANCESTRO (`:hover > hijo`), y el panel no expresa ninguno de los dos. Por eso
+   viaja en el canal `webflow.css`, igual que button-text-swap y
+   whatsapp-button-motion. Color, tamano y tracking del link si se declaran alla
+   como Variables nativas.
+
+   El indicador se ancla al PROPIO __text (position: relative), no al link como
+   en nav-link.css. Esa es la diferencia que hace consumible este subrayado
+   desde un mega-nav: su boton lleva caret y padding propio, asi que anclarlo al
+   link subrayaria tambien la flecha y obligaria al host a declarar `position`
+   en el padre. Anclado al texto, el host no declara nada.
+
+   EXIGE la anatomia: un contenedor cualquiera > .nav-link__text. Sin ese hijo
+   no hay nada que subrayar — reimplementar el link con una clase de etiqueta
+   propia es lo que dejaba el mega-nav sin animacion.
+   ------------------------------------------------------------------------- */
+
+.nav-link__text {
+  position: relative;
+}
+
+/* Contrato citado de ATOM [data-underline-link]: offset -0.0625em, alto
+   0.0625em, transform 0.6s con la cubica firma, origen right->left. */
+.nav-link__text::before {
+  content: "";
+  position: absolute;
+  bottom: -0.0625em;
+  left: 0;
+  width: 100%;
+  height: 0.0625em;
+  background-color: var(--nav-link-indicator-active);
+  transition: transform var(--duration-600) var(--easing-osmo);
+  transform-origin: right;
+  transform: scaleX(0) rotate(0.001deg);
+}
+
+/* El hover vive en el ancestro para que el area sensible sea el control entero
+   (boton + caret), no solo la caja del texto. */
+:hover > .nav-link__text::before {
+  transform-origin: left;
+  transform: scaleX(1) rotate(0.001deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link__text::before {
+    transition-duration: 0ms;
+  }
+}

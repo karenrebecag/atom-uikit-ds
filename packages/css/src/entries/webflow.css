@@ -8,7 +8,8 @@
  * propiedades con retardos distintos.
  *
  * Lleva dos cosas y nada más:
- *   - las interacciones que el panel no puede declarar (button-text-swap)
+ *   - las interacciones que el panel no puede declarar (button-text-swap,
+ *     nav-link-motion: pseudo-elemento + estado de ancestro `:hover > hijo`)
  *   - la neutralización de guardas anti-FOUC ajenas (webflow-reset), porque el
  *     host puede esconder `[data-split]` esperando a SU js
  *
@@ -23,3 +24,4 @@
 @import '../components/buttons/button-text-swap.css';
 @import '../components/buttons/whatsapp-button-motion.css';
 @import '../components/buttons/button-focus-ring.css';
+@import '../components/navigation/nav-link-motion.css';
