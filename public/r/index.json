@@ -976,6 +976,29 @@
     }
   },
   {
+    "name": "icon-row",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "Icon Row",
+    "description": "Fila de SVGs alineados: canales, logos de integracion, badges. Normaliza por altura y da el gap en em, para que ninguna card vuelva a resolver la fila a mano.",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "icon"
+    ],
+    "discovery": {
+      "name": "Icon Row",
+      "description": "Fila de SVGs alineados: canales, logos de integracion, badges. Normaliza por altura y da el gap en em, para que ninguna card vuelva a resolver la fila a mano.",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "logo",
     "kind": "component",
     "framework": "css",
@@ -1533,7 +1556,8 @@
     "registryDependencies": [
       "tokens",
       "foundation",
-      "button"
+      "button",
+      "icon-row"
     ],
     "discovery": {
       "name": "PricingCard",
@@ -1766,7 +1790,8 @@
       "divider",
       "tag",
       "button",
-      "icon"
+      "icon",
+      "icon-row"
     ],
     "discovery": {
       "name": "Pricing Plans",

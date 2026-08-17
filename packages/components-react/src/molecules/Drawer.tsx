@@ -83,6 +83,18 @@ export type DrawerContentProps = {
 
 const DISMISS_THRESHOLD = 100;
 
+// Debe coincidir con la animacion de salida de drawer--exiting en el CSS.
+const EXIT_DURATION_MS = 200;
+
+const FOCUSABLE = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
 export function DrawerContent({ direction = 'bottom', children, className }: DrawerContentProps) {
   const { open, setOpen } = useDrawer();
   const [exiting, setExiting] = useState(false);
@@ -92,13 +104,28 @@ export function DrawerContent({ direction = 'bottom', children, className }: Dra
   const startPos = useRef(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // `open` es lo unico que decide si el drawer esta abierto. Si el consumidor lo
+  // controla y veta el cierre, el contenido tiene que quedarse: desmontar desde
+  // aqui lo dejaba cerrado para siempre, porque `open` ya nunca vuelve a cambiar.
+  // `mounted` solo estira la vida en el DOM lo que dura la animacion de salida.
   useEffect(() => {
-    if (open) { setMounted(true); setExiting(false); setDragOffset(0); }
-  }, [open]);
+    if (open) {
+      setMounted(true);
+      setExiting(false);
+      setDragOffset(0);
+      return;
+    }
+    if (!mounted) return;
+    setExiting(true);
+    const timer = setTimeout(() => {
+      setMounted(false);
+      setExiting(false);
+    }, EXIT_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [open, mounted]);
 
   const handleClose = useCallback(() => {
-    setExiting(true);
-    setTimeout(() => { setOpen(false); setMounted(false); }, 200);
+    setOpen(false);
   }, [setOpen]);
 
   // Escape
@@ -115,6 +142,50 @@ export function DrawerContent({ direction = 'bottom', children, className }: Dra
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prev; };
+  }, [mounted]);
+
+  // Al abrir, el foco entra al drawer; al cerrar vuelve a quien lo abrio. Antes no
+  // se movia en absoluto: el foco se quedaba en el disparador, detras del overlay.
+  useEffect(() => {
+    if (!mounted) return;
+    const opener = document.activeElement as HTMLElement | null;
+    contentRef.current?.focus();
+    return () => {
+      if (opener && document.contains(opener)) opener.focus();
+    };
+  }, [mounted]);
+
+  // Focus trap real: con aria-modal el lector de pantalla ya ignora el fondo, pero
+  // el Tab del navegador no, y sin esto el foco se escapa a la pagina de atras.
+  useEffect(() => {
+    if (!mounted) return;
+    const node = contentRef.current;
+    if (!node) return;
+
+    const handler = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusables = Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (focusables.length === 0) {
+        e.preventDefault();
+        node.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      const outside = !node.contains(active);
+
+      if (e.shiftKey && (active === first || active === node || outside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || outside)) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
   }, [mounted]);
 
   // Drag helpers

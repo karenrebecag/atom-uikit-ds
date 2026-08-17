@@ -110,8 +110,8 @@
       "usage": "import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/atoms/Select';\n\n<Select value={v} onValueChange={setV}>\n  <SelectTrigger>Choose</SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"a\">A</SelectItem>\n  </SelectContent>\n</Select>"
     },
     "derived": {
-      "generatedAt": "2026-08-05T16:12:23.990Z",
-      "sourceCommit": "9bb0d93",
+      "generatedAt": "2026-08-17T19:27:50.542Z",
+      "sourceCommit": "7f861da",
       "install": {
         "peerDeps": [],
         "cssImports": [

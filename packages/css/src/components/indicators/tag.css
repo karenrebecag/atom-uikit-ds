@@ -87,51 +87,57 @@
 
 /* ---- Ghost (text only, no bg) ---- */
 
-.tag--ghost.tag--success   { color: var(--color-forest); }
-.tag--ghost.tag--warning   { color: var(--color-amber-700); }
-.tag--ghost.tag--danger    { color: var(--color-coral-700); }
-.tag--ghost.tag--info      { color: var(--color-sky); }
+.tag--ghost.tag--success   { color: var(--success-text); }
+.tag--ghost.tag--warning   { color: var(--warning-text); }
+.tag--ghost.tag--danger    { color: var(--destructive-text); }
+.tag--ghost.tag--info      { color: var(--info-text); }
 .tag--ghost.tag--neutral   { color: var(--foreground); }
-.tag--ghost.tag--brand     { color: var(--color-orange-700); }
-.tag--ghost.tag--ai        { color: var(--color-green-electric); }
+.tag--ghost.tag--brand     { color: var(--brand-text); }
+.tag--ghost.tag--ai        { color: var(--ai-text); }
 .tag--ghost.tag--disabled  { color: var(--muted-foreground); }
 
 /* ---- Filled (bg + text) ---- */
 
 .tag--filled.tag--success   {
-  background-color: color-mix(in srgb, var(--color-green-electric) 18%, var(--background));
-  color: var(--color-forest);
+  background-color: color-mix(in srgb, var(--success) 18%, var(--background));
+  color: var(--success-text);
 }
-.tag--filled.tag--warning   { background-color: var(--color-amber-50); color: var(--color-amber-700); }
+.tag--filled.tag--warning   {
+  background-color: color-mix(in srgb, var(--warning) 18%, var(--background));
+  color: var(--warning-text);
+}
 .tag--filled.tag--danger    {
-  background-color: color-mix(in srgb, var(--color-coral-500) 16%, var(--background));
-  color: var(--color-coral-700);
+  background-color: color-mix(in srgb, var(--destructive) 16%, var(--background));
+  color: var(--destructive-text);
 }
 .tag--filled.tag--info      {
-  background-color: color-mix(in srgb, var(--color-sky) 18%, var(--background));
-  color: var(--color-neutral-900);
+  background-color: color-mix(in srgb, var(--info) 18%, var(--background));
+  color: var(--info-text);
 }
-.tag--filled.tag--neutral   { background-color: var(--color-neutral-200); color: var(--foreground); }
-.tag--filled.tag--brand     { background-color: var(--color-orange-50); color: var(--color-orange-700); }
+.tag--filled.tag--neutral   { background-color: var(--muted); color: var(--foreground); }
+.tag--filled.tag--brand     {
+  background-color: color-mix(in srgb, var(--brand) 18%, var(--background));
+  color: var(--brand-text);
+}
 .tag--filled.tag--ai        {
   background: linear-gradient(
     136deg,
-    color-mix(in srgb, var(--color-green-electric) 20%, var(--background)),
-    color-mix(in srgb, var(--color-forest) 12%, var(--background))
+    color-mix(in srgb, var(--success) 20%, var(--background)),
+    color-mix(in srgb, var(--ai-text) 12%, var(--background))
   );
-  color: var(--color-forest);
+  color: var(--ai-text);
 }
 .tag--filled.tag--disabled  { background-color: var(--muted); color: var(--muted-foreground); }
 
 /* ---- Outlined (border + text) ---- */
 
-.tag--outlined.tag--success   { border-color: var(--color-forest); color: var(--color-forest); }
-.tag--outlined.tag--warning   { border-color: var(--color-amber-700); color: var(--color-amber-700); }
-.tag--outlined.tag--danger    { border-color: var(--color-coral-700); color: var(--color-coral-700); }
-.tag--outlined.tag--info      { border-color: var(--color-sky); color: var(--color-neutral-900); }
+.tag--outlined.tag--success   { border-color: var(--success-text); color: var(--success-text); }
+.tag--outlined.tag--warning   { border-color: var(--warning-text); color: var(--warning-text); }
+.tag--outlined.tag--danger    { border-color: var(--destructive-text); color: var(--destructive-text); }
+.tag--outlined.tag--info      { border-color: var(--info-text); color: var(--info-text); }
 .tag--outlined.tag--neutral   { border-color: var(--border); color: var(--foreground); }
-.tag--outlined.tag--brand     { border-color: var(--color-orange-700); color: var(--color-orange-700); }
-.tag--outlined.tag--ai        { border-color: var(--color-green-electric); color: var(--color-forest); }
+.tag--outlined.tag--brand     { border-color: var(--brand-text); color: var(--brand-text); }
+.tag--outlined.tag--ai        { border-color: var(--ai-text); color: var(--ai-text); }
 .tag--outlined.tag--disabled  { border-color: var(--muted); color: var(--muted-foreground); }
 
 /* ---- Parts ---- */

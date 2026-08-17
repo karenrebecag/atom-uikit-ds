@@ -20,6 +20,18 @@ type AlertDialogContextValue = {
   setOpen: (v: boolean) => void;
 };
 
+// Debe coincidir con la animacion de salida de alert-dialog--exiting en el CSS.
+const EXIT_DURATION_MS = 200;
+
+const FOCUSABLE = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
 const AlertDialogContext = createContext<AlertDialogContextValue | null>(null);
 
 function useAlertDialog() {
@@ -88,21 +100,30 @@ export function AlertDialogContent({ size = 'default', children, className }: Al
   const [mounted, setMounted] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // `open` es lo unico que decide si el dialogo esta abierto. Si el consumidor lo
+  // controla y veta el cierre, el contenido tiene que quedarse: desmontar desde
+  // aqui lo dejaba cerrado para siempre, porque `open` ya nunca vuelve a cambiar.
+  // `mounted` solo estira la vida en el DOM lo que dura la animacion de salida.
   useEffect(() => {
     if (open) {
       setMounted(true);
       setExiting(false);
+      return;
     }
-  }, [open]);
+    if (!mounted) return;
+    setExiting(true);
+    const timer = setTimeout(() => {
+      setMounted(false);
+      setExiting(false);
+    }, EXIT_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [open, mounted]);
 
   // Escape triggers cancel (closes)
   useEffect(() => {
     if (!mounted) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setExiting(true);
-        setTimeout(() => { setOpen(false); setMounted(false); }, 200);
-      }
+      if (e.key === 'Escape') setOpen(false);
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
@@ -116,9 +137,49 @@ export function AlertDialogContent({ size = 'default', children, className }: Al
     return () => { document.body.style.overflow = prev; };
   }, [mounted]);
 
-  // Focus
+  // Al abrir, el foco entra al dialogo; al cerrar vuelve a quien lo abrio, que es
+  // donde estaba el usuario antes de la interrupcion.
   useEffect(() => {
-    if (mounted && contentRef.current) contentRef.current.focus();
+    if (!mounted) return;
+    const opener = document.activeElement as HTMLElement | null;
+    contentRef.current?.focus();
+    return () => {
+      if (opener && document.contains(opener)) opener.focus();
+    };
+  }, [mounted]);
+
+  // Focus trap real: con aria-modal el lector de pantalla ya ignora el fondo, pero
+  // el Tab del navegador no. En un alertdialog importa aun mas: es una decision
+  // que el usuario tiene que resolver antes de seguir.
+  useEffect(() => {
+    if (!mounted) return;
+    const node = contentRef.current;
+    if (!node) return;
+
+    const handler = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusables = Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (focusables.length === 0) {
+        e.preventDefault();
+        node.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      const outside = !node.contains(active);
+
+      if (e.shiftKey && (active === first || active === node || outside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || outside)) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
   }, [mounted]);
 
   if (!mounted) return null;

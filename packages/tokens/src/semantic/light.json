@@ -129,6 +129,36 @@
     "$value": "{color.sky.700}",
     "$description": "Link text on default background — dark sky, AA on neutral-50"
   },
+  "success-text": {
+    "$type": "color",
+    "$value": "{color.forest}",
+    "$description": "Success text on default background — 15.1:1. NO es success (ese es superficie): el acento puro no se lee sobre claro"
+  },
+  "warning-text": {
+    "$type": "color",
+    "$value": "{color.amber.800}",
+    "$description": "Warning text on default background — 6.8:1. amber.700 da 4.8:1 sobre el fondo pero solo 4.2:1 sobre el relleno tintado del tag: un paso mas para que sirva en los dos usos"
+  },
+  "destructive-text": {
+    "$type": "color",
+    "$value": "{color.coral.700}",
+    "$description": "Destructive text on default background — 5.8:1"
+  },
+  "info-text": {
+    "$type": "color",
+    "$value": "{color.sky.700}",
+    "$description": "Info text on default background — 5.1:1. Mismo paso que link por la misma razon: sky.500 da 1.7:1 sobre claro"
+  },
+  "brand-text": {
+    "$type": "color",
+    "$value": "{color.orange.700}",
+    "$description": "Brand text on default background — 6.0:1. El brand puro (#ff6600) da 2.8:1 y no es legible como texto"
+  },
+  "ai-text": {
+    "$type": "color",
+    "$value": "{color.forest}",
+    "$description": "AI accent text on default background — 15.1:1. green-electric da 1.9:1 sobre claro"
+  },
   "border": {
     "$type": "color",
     "$value": "{color.neutral.200}",
@@ -193,5 +223,15 @@
     "$type": "color",
     "$value": "{color.neutral.600}",
     "$description": "Input placeholder text"
+  },
+  "whatsapp": {
+    "$type": "color",
+    "$value": "{color.green-electric}",
+    "$description": "Verde de marca de WhatsApp. NO es success: coincide hoy en valor pero responde a la marca del canal, no al estado semantico — si success cambia, este no"
+  },
+  "whatsapp-foreground": {
+    "$type": "color",
+    "$value": "{color.neutral.50}",
+    "$description": "Texto sobre el verde de WhatsApp. Blanco por marca del canal (la guia de WhatsApp lo fija), no por calculo de contraste"
   }
 }

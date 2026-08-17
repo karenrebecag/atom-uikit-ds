@@ -13,6 +13,18 @@ function cn(...classes: (string | false | undefined | null)[]) {
   return classes.filter(Boolean).join(' ');
 }
 
+// Debe coincidir con la animacion de salida de dialog__content--exiting en el CSS.
+const EXIT_DURATION_MS = 200;
+
+const FOCUSABLE = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
 const CloseIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="18" y1="6" x2="6" y2="18" />
@@ -95,19 +107,27 @@ export function DialogContent({ showCloseButton = true, children, className }: D
   const [mounted, setMounted] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // `open` es lo unico que decide si el dialogo esta abierto. Si el consumidor lo
+  // controla y veta el cierre, el contenido tiene que quedarse: desmontar desde
+  // aqui lo dejaba cerrado para siempre, porque `open` ya nunca vuelve a cambiar.
+  // `mounted` solo estira la vida en el DOM lo que dura la animacion de salida.
   useEffect(() => {
     if (open) {
       setMounted(true);
       setExiting(false);
+      return;
     }
-  }, [open]);
+    if (!mounted) return;
+    setExiting(true);
+    const timer = setTimeout(() => {
+      setMounted(false);
+      setExiting(false);
+    }, EXIT_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [open, mounted]);
 
   const handleClose = useCallback(() => {
-    setExiting(true);
-    setTimeout(() => {
-      setOpen(false);
-      setMounted(false);
-    }, 200);
+    setOpen(false);
   }, [setOpen]);
 
   // Escape key
@@ -128,11 +148,49 @@ export function DialogContent({ showCloseButton = true, children, className }: D
     return () => { document.body.style.overflow = prev; };
   }, [mounted]);
 
-  // Focus trap — basic: focus content on open
+  // Al abrir, el foco entra al dialogo; al cerrar vuelve a quien lo abrio, que es
+  // donde estaba el usuario antes de la interrupcion. Sin esta vuelta, el foco cae
+  // al principio del documento y quien navega con teclado pierde el sitio.
   useEffect(() => {
-    if (mounted && contentRef.current) {
-      contentRef.current.focus();
-    }
+    if (!mounted) return;
+    const opener = document.activeElement as HTMLElement | null;
+    contentRef.current?.focus();
+    return () => {
+      if (opener && document.contains(opener)) opener.focus();
+    };
+  }, [mounted]);
+
+  // Focus trap real: con aria-modal el lector de pantalla ya ignora el fondo, pero
+  // el Tab del navegador no, y sin esto el foco se escapa a la pagina de atras.
+  useEffect(() => {
+    if (!mounted) return;
+    const node = contentRef.current;
+    if (!node) return;
+
+    const handler = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusables = Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (focusables.length === 0) {
+        e.preventDefault();
+        node.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      const outside = !node.contains(active);
+
+      if (e.shiftKey && (active === first || active === node || outside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || outside)) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
   }, [mounted]);
 
   if (!mounted) return null;

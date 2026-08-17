@@ -36,10 +36,11 @@
    modo attach. Sin el, el boton sigue funcionando pero el lead no se atribuye.
    ------------------------------------------------------------------------- */
 
-:root {
-  --whatsapp: #25d366; /* verde de marca de WhatsApp — el color del boton */
-  --whatsapp-foreground: #ffffff;
-}
+/* --whatsapp y --whatsapp-foreground viven en la capa semantica desde 2026-08-17
+   (semantic/light.json y dark.json). Estaban declarados aqui como literales, asi
+   que no entraban en el plan de sync y no existian como Variables en Webflow: el
+   canal reconstruia el boton con success/success-foreground y el texto salia
+   negro. Los fallbacks conservan el boton si alguien carga SOLO este archivo. */
 
 /* -- Blindaje contra kits de tema --
    Los site kits (Elementor: `.elementor-kit-N a:hover`, etc.) estilan TODOS los <a> del sitio con
@@ -51,13 +52,13 @@ a.atom-wa-btn.atom-wa-btn:hover,
 a.atom-wa-btn.atom-wa-btn:focus,
 a.atom-wa-btn.atom-wa-btn:active,
 a.atom-wa-btn.atom-wa-btn:visited {
-  color: var(--whatsapp-foreground);
+  color: var(--whatsapp-foreground, #ffffff);
   text-decoration: none;
 }
 
 /* -- Base: grid para la capa de fondo -- */
 .atom-wa-btn {
-  color: var(--whatsapp-foreground);
+  color: var(--whatsapp-foreground, #ffffff);
   -webkit-user-select: none;
   user-select: none;
   background-color: transparent;
@@ -86,12 +87,12 @@ a.atom-wa-btn.atom-wa-btn:visited {
   z-index: 1;
 }
 .atom-wa-btn:focus-visible::after {
-  box-shadow: 0 0 0 2px var(--whatsapp);
+  box-shadow: 0 0 0 2px var(--whatsapp, #25d366);
 }
 
 /* -- Capa de fondo -- */
 .atom-wa-btn__bg {
-  background-color: var(--whatsapp);
+  background-color: var(--whatsapp, #25d366);
   border-radius: 0.625em;
   grid-area: 1 / 1;
   width: 100%;
@@ -99,10 +100,10 @@ a.atom-wa-btn.atom-wa-btn:visited {
   transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 .atom-wa-btn:hover .atom-wa-btn__bg {
-  background-color: color-mix(in srgb, var(--whatsapp) 88%, #000);
+  background-color: color-mix(in srgb, var(--whatsapp, #25d366) 88%, #000);
 }
 .atom-wa-btn:active:not([aria-busy='true']) .atom-wa-btn__bg {
-  background-color: color-mix(in srgb, var(--whatsapp) 78%, #000);
+  background-color: color-mix(in srgb, var(--whatsapp, #25d366) 78%, #000);
 }
 
 /* -- Inner: contenedor del contenido con recorte -- */

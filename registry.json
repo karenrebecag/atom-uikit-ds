@@ -440,6 +440,11 @@
           "sourcePath": "packages/whatsapp/src/config.ts",
           "outputPath": "whatsapp/config.ts",
           "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/css/src/components/buttons/whatsapp-button-motion.css",
+          "outputPath": "styles/components/whatsapp-button-motion.css",
+          "type": "registry:file"
         }
       ],
       "cssClassPrefixes": [
@@ -1941,6 +1946,29 @@
       ]
     },
     {
+      "name": "icon-row",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Icon Row",
+      "description": "Fila de SVGs alineados: canales, logos de integracion, badges. Normaliza por altura y da el gap en em, para que ninguna card vuelva a resolver la fila a mano.",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "icon"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/atoms/icon-row.css",
+          "outputPath": "styles/components/icon-row.css",
+          "type": "registry:file"
+        }
+      ],
+      "cssClassPrefixes": [
+        "icon-row"
+      ]
+    },
+    {
       "name": "logo",
       "kind": "component",
       "framework": "css",
@@ -3287,7 +3315,8 @@
       "registryDependencies": [
         "tokens",
         "foundation",
-        "button"
+        "button",
+        "icon-row"
       ],
       "files": [
         {
@@ -3493,7 +3522,8 @@
         "divider",
         "tag",
         "button",
-        "icon"
+        "icon",
+        "icon-row"
       ],
       "files": [
         {

@@ -129,6 +129,36 @@
     "$value": "{color.sky.500}",
     "$description": "Link text on dark background — bright sky, 10.9:1"
   },
+  "success-text": {
+    "$type": "color",
+    "$value": "{color.green-electric}",
+    "$description": "Success text on dark background — 10.0:1. forest sobre oscuro da 1.3:1"
+  },
+  "warning-text": {
+    "$type": "color",
+    "$value": "{color.amber.500}",
+    "$description": "Warning text on dark background — 9.2:1"
+  },
+  "destructive-text": {
+    "$type": "color",
+    "$value": "{color.coral.500}",
+    "$description": "Destructive text on dark background — 5.5:1"
+  },
+  "info-text": {
+    "$type": "color",
+    "$value": "{color.sky.500}",
+    "$description": "Info text on dark background — 11.0:1"
+  },
+  "brand-text": {
+    "$type": "color",
+    "$value": "{color.brand}",
+    "$description": "Brand text on dark background — 6.7:1. En dark el brand puro SI se lee"
+  },
+  "ai-text": {
+    "$type": "color",
+    "$value": "{color.green-electric}",
+    "$description": "AI accent text on dark background — 10.0:1"
+  },
   "border": {
     "$type": "color",
     "$value": "{color.neutral.800}",
@@ -193,5 +223,15 @@
     "$type": "color",
     "$value": "{color.neutral.400}",
     "$description": "Input placeholder text (dark)"
+  },
+  "whatsapp": {
+    "$type": "color",
+    "$value": "{color.green-electric}",
+    "$description": "Verde de marca de WhatsApp. NO es success: coincide hoy en valor pero responde a la marca del canal, no al estado semantico — si success cambia, este no"
+  },
+  "whatsapp-foreground": {
+    "$type": "color",
+    "$value": "{color.neutral.50}",
+    "$description": "Texto sobre el verde de WhatsApp. Blanco por marca del canal (la guia de WhatsApp lo fija), no por calculo de contraste"
   }
 }

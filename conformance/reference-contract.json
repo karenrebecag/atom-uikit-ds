@@ -1,0 +1,104 @@
+{
+  "$comment": "Integridad referencial: que cada referencia que SALE de un archivo aterrice. Runner: scripts/references-conformance.mjs. Ver conformance/README.md.",
+  "varsResolve": {
+    "why": "una var() que no resuelve descarta la declaracion COMPLETA y el componente se publica sin pintar; el contrato podia cerrar en verde con el player sin accent ni glass",
+    "scanDirs": [
+      "packages/css/src"
+    ],
+    "definitionSources": [
+      "packages/css/src",
+      "packages/tokens/src"
+    ],
+    "fallbackIsKnob": true,
+    "runtimeProvided": {
+      "--char": "la setea GSAP SplitText con propIndex:true en animations/src/button-hover.ts; el stagger por caracter es CSS-driven sobre ese indice"
+    },
+    "baseline": {
+      "components/molecules/video-player.css": {
+        "count": 6,
+        "resolution": "triage",
+        "why": "el header del archivo documenta --surface-glass/-blur, --surface-dark, --player-accent/-foreground/-progress-bg como tokens que nunca se crearon. Declararlos es decision de diseno (que paso de la rampa, que semantico), no limpieza: o salen en un PR de tokens o el componente se retira con el Modo E",
+        "until": "2026-11-30"
+      }
+    }
+  },
+  "classesReachable": {
+    "why": "una clase que ningun emisor escribe y que el artefacto publicado no declara en atom.implementation.cssClasses esta SIN DECLARAR: puede ser pintura muerta o API sin anunciar, y el gate no afirma cual es — exige un resolution verificable. Dos lecciones 2026-08-17: lo publicado vive en public/r/*.json (el campo atom lo inyecta el extractor; leer solo registry.json dio 20 falsos positivos), y las clases de estado is--/has-- las aplica el consumidor y el extractor las excluye de cssClasses a proposito (statePrefixes)",
+    "scanDirs": [
+      "packages/css/src/components"
+    ],
+    "emitterDirs": [
+      "packages/components-react/src",
+      "packages/layouts/src",
+      "packages/animations/src",
+      "scripts/webflow/pilots",
+      "apps/storybook/src"
+    ],
+    "dynamicPrefixes": true,
+    "baseline": {
+      "indicators/tooltip.css": {
+        "count": 2,
+        "resolution": "wire",
+        "why": "is-left/is-right (guion simple: NO son la utilidad is--* del sistema): el behavior de animations pone is-top/is-bottom y nunca las laterales. Placement a medio cablear — o lo completa el modulo o se recortan las reglas",
+        "until": "2026-09-30"
+      }
+    },
+    "publishedDir": "public/r",
+    "statePrefixes": [
+      "is--",
+      "has--"
+    ]
+  },
+  "contractsResolve": {
+    "why": "borrar un componente es donde mas se pudre el repo: baselines, exenciones y mapas slug->modulo sobreviven al componente que los justificaba, y ningun runner los visita porque todos recorren el disco y no el contrato",
+    "filePaths": [
+      {
+        "file": "conformance/css-contract.json",
+        "at": [
+          "baseline",
+          "exemptFiles"
+        ],
+        "relativeTo": "packages/css/src/components"
+      }
+    ],
+    "itemNames": [
+      {
+        "file": "conformance/layout-contract.json",
+        "at": [
+          "deprecated.layouts",
+          "legacy.layouts"
+        ]
+      }
+    ],
+    "modulePaths": [
+      {
+        "file": "scripts/extract-component-metadata.ts",
+        "extensions": [
+          ".ts"
+        ],
+        "relativeTo": "packages/animations/src"
+      },
+      {
+        "file": "scripts/webflow/dom-contract.mjs",
+        "extensions": [
+          ".js"
+        ],
+        "rewriteExtension": ".ts",
+        "relativeTo": "packages/animations/src"
+      }
+    ]
+  },
+  "entryCoversSource": {
+    "why": "un subdirectorio nuevo bajo components-react/src no compila a dist si nadie agrega el glob, y el canal Webflow lo excluye en silencio (leccion sidebar)",
+    "config": "packages/components-react/tsup.config.ts",
+    "sourceDir": "packages/components-react/src"
+  },
+  "registryResolves": {
+    "why": "un item que apunta a un archivo borrado rompe build:registry y deja el item vacio en el consumidor. Los artefactos generados son otra cosa: su directorio esta gitignored y en CI —que corre sin build— faltar es lo esperado",
+    "generatedPrefixes": [
+      "packages/tokens/build/",
+      "packages/css/dist/",
+      "packages/animations/dist/"
+    ]
+  }
+}

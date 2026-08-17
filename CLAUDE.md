@@ -966,8 +966,10 @@ Solo Storybook (privado) no necesita release. Si CSS o React cambiaron:
 ### Paso 7: Release interno (sin npm)
 
 ```bash
-# Crear changeset manual (CLI interactivo no funciona)
-# Escribir .changeset/{nombre}.md con frontmatter:
+# Si el prompt interactivo de `pnpm changeset` da guerra, no hace falta escribir el
+# archivo a mano: `pnpm exec changeset add --message "texto"` hace lo mismo sin
+# prompt (verificado 2026-08-09; el CLI responde y expone add/version/status).
+# La forma manual sigue valiendo — escribir .changeset/{nombre}.md con frontmatter:
 # ---
 # "@atom-uikit/components-react": patch
 # "@atom-uikit/css": patch
@@ -1028,6 +1030,21 @@ Pipeline de documentacion: atom-uikit-ds (crear) → UIKitCMS_ATOM (articulo Pay
 Radio, Chip, Tag, Slider, Divider, Skeleton, Spinner, Field, Accordion, Avatar, AvatarGroup, Breadcrumb, BurgerIcon, Calendar, Empty, Item, NavLink, Pagination, Resizable, Table, Typography.
 
 ---
+
+### `cn()` se repite en cada componente A PROPÓSITO — no lo centralices
+
+Los 51 componentes React declaran su propia copia de `cn()`. Parece deuda y no lo es:
+el registry distribuye **archivos sueltos** que se copian al proyecto del consumidor
+(`npx atom-uikit add button` deja `components/atoms/Button.tsx` y nada más — mira
+`files[]` de `button` en `registry.json`). Un `import { cn } from '../utils/cn'`
+llegaría al consumidor apuntando a un archivo que nunca se copió: import roto en
+cada proyecto que instale el componente, y el canal privado es el canal principal.
+
+Centralizarlo exige antes: item de registry para el util, `registryDependencies` en
+los 51 componentes y resolución de alias en el CLI. Es una spec, no un refactor de
+limpieza. Hasta entonces, cada archivo se vale por sí mismo.
+
+Mismo criterio para cualquier helper compartido dentro de `components-react`.
 
 ## Prohibited
 

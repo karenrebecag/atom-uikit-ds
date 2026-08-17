@@ -104,16 +104,11 @@
 
 /* ---- Canales (fila de iconos bajo el precio) ---- */
 
+/* La fila la resuelve el atomo icon-row (icon-row--s + --icon-row-size);
+   aqui solo queda el color, que es decision de la card. */
 .pricing-card__channels {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-3);
   color: var(--foreground);
-}
-
-.pricing-card__channels .icon {
-  width: 1.5em;
-  height: 1.5em;
+  --icon-row-size: 1.5em;
 }
 
 /* ---- Integraciones CRM: label estilo feature + logos debajo ---- */
@@ -125,23 +120,15 @@
   padding-block-start: var(--spacing-5);
 }
 
+/* icon-row--wrap --indented resuelve la fila y la sangria; la card solo
+   declara color y la normalizacion de altura de los logos de terceros. */
 .pricing-card__logos {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--spacing-3) var(--spacing-5);
-  /* alineado con el texto del label (icono 1em + gap spacing-3) */
-  padding-inline-start: calc(1em + var(--spacing-3));
+  color: var(--foreground);
+  --icon-row-size: 1.25em;
 }
 
-.pricing-card__logos svg {
-  /* SVG monocromos en currentColor: voltean con el tema de la card solos.
-     ALTO CONTRASTE (foreground, no muted). Alturas dispares: se normalizan
-     por altura; salesforce (nube compacta) va un paso mas alto. */
-  height: 1.25em;
-  width: auto;
+.pricing-card__logos > svg {
   max-width: 8em;
-  color: var(--foreground);
 }
 
 .pricing-card__logos svg[aria-label='salesforce'] {
