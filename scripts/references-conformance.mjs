@@ -173,6 +173,18 @@ export function isDynamicallyEmitted(cls, emitterSource) {
   return emitterSource.includes(`${cls.slice(0, cut + 2)}\${`);
 }
 
+/**
+ * ¿La clase aparece en un comentario de su propio archivo? Es la unica pista
+ * barata de INTENCION que existe: 11 de las 25 clases sin emisor estaban
+ * documentadas ahi (medido 2026-08-17), o sea que el gate no puede afirmar
+ * "muerta" sin mentir en el 44% de los casos. La pista viaja con el hallazgo
+ * para que el humano confirme, no adivine.
+ */
+export function documentedInFile(css, cls) {
+  const comments = (css.match(/\/\*[\s\S]*?\*\//g) ?? []).join('\n');
+  return comments.includes(cls);
+}
+
 export function findUnreachableClasses(rule, registry, ctx) {
   const { fs, path, root } = ctx;
   const scanRoot = path.join(root, rule.scanDirs[0]);
@@ -187,12 +199,14 @@ export function findUnreachableClasses(rule, registry, ctx) {
     .filter((f) => !f.endsWith('index.css'))
     .map((f) => path.relative(scanRoot, f));
 
+  const sourceOf = new Map();
   for (const [cls, rel] of collectClassDefinitions(cssFiles, ctx, scanRoot)) {
     if (emitterSource.includes(cls)) continue;
     if (published.has(cls)) continue;
     if (rule.dynamicPrefixes && isDynamicallyEmitted(cls, emitterSource)) continue;
+    if (!sourceOf.has(rel)) sourceOf.set(rel, fs.readFileSync(path.join(scanRoot, rel), 'utf8'));
     if (!perFile.has(rel)) perFile.set(rel, []);
-    perFile.get(rel).push(cls);
+    perFile.get(rel).push({ cls, documented: documentedInFile(sourceOf.get(rel), cls) });
   }
   return { perFile, files, scanned: cssFiles.length, emitters: emitterFiles.length };
 }
@@ -323,10 +337,42 @@ export function findStaleContractEntries(rule, registry, ctx) {
 // runner
 // ---------------------------------------------------------------------------
 
-/** El baseline acepta un numero suelto o {count, why, until} cuando hay deuda declarada. */
+/** El baseline acepta un numero suelto o {count, resolution, why, until}. */
 export function baselineCount(entry) {
   if (entry == null) return 0;
   return typeof entry === 'number' ? entry : (entry.count ?? 0);
+}
+
+/**
+ * Remedios posibles. Lista CERRADA a proposito: la prosa libre fue lo que fallo.
+ * Un baseline que decia "el fix real es borrar" congelo como codigo muerto 16
+ * clases que eran la API publica del boton de WhatsApp — el gate no puede saber
+ * la intencion, asi que obliga a declararla en un vocabulario que el si verifica.
+ */
+export const RESOLUTIONS = {
+  publish: 'es API del consumidor: va en atom.implementation.cssClasses',
+  wire: 'falta el emisor: el componente o el behavior debe escribirla',
+  delete: 'no la quiere nadie: se borra el CSS',
+  triage: 'nadie lo ha decidido todavia (exige until)',
+};
+
+export function checkBaselineResolutions(baseline = {}, check, push) {
+  for (const [rel, entry] of Object.entries(baseline)) {
+    if (typeof entry !== 'object' || entry === null) {
+      push('fail', check, `${rel}: baseline sin remedio — usa {count, resolution: ${Object.keys(RESOLUTIONS).join('|')}, why}`);
+      continue;
+    }
+    if (!(entry.resolution in RESOLUTIONS)) {
+      push('fail', check, `${rel}: resolution "${entry.resolution ?? '—'}" no existe. Elige ${Object.keys(RESOLUTIONS).join('|')}`);
+      continue;
+    }
+    if (entry.resolution === 'triage' && !entry.until) {
+      push('fail', check, `${rel}: resolution "triage" exige until — una decision sin fecha no se toma`);
+    }
+    if (!entry.why) {
+      push('note', check, `${rel}: el baseline no dice por que`);
+    }
+  }
 }
 
 const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
@@ -360,6 +406,7 @@ export function runReferenceChecks({ contract, registry, root }, fs, path, today
     push('note', 'vars', `sin verificar: ${vars.skipped}`);
   } else {
     const varsBaseline = contract.varsResolve.baseline ?? {};
+    checkBaselineResolutions(varsBaseline, 'vars', push);
     let clean = true;
     // Recorre TODOS los archivos escaneados, no solo los que tienen hallazgos: un
     // archivo que se limpia del todo desaparece de perFile y su baseline se quedaria
@@ -390,13 +437,25 @@ export function runReferenceChecks({ contract, registry, root }, fs, path, today
   // R2
   const classes = findUnreachableClasses(contract.classesReachable, registry, ctx);
   const classesBaseline = contract.classesReachable.baseline ?? {};
+  checkBaselineResolutions(classesBaseline, 'classes', push);
   let classesClean = true;
   for (const rel of classes.files) {
-    const list = classes.perFile.get(rel) ?? [];
+    const found = classes.perFile.get(rel) ?? [];
+    const list = found.map((f) => f.cls);
     const allowed = baselineCount(classesBaseline[rel]);
+    const entry = classesBaseline[rel];
+    // "publish" es verificable: si sigue habiendo hallazgos, no se publico.
+    if (typeof entry === 'object' && entry?.resolution === 'publish' && found.length) {
+      classesClean = false;
+      push('fail', 'classes', `${rel}: declara resolution "publish" pero ${plural(found.length, 'clase sigue', 'clases siguen')} fuera de atom.implementation.cssClasses`);
+    }
     if (list.length > allowed) {
       classesClean = false;
-      push('fail', 'classes', `${rel}: ${plural(list.length, 'clase', 'clases')} sin emisor ni publicar > baseline ${allowed} — ${list.join(' ')}`);
+      const documented = found.filter((f) => f.documented).map((f) => f.cls);
+      const hint = documented.length
+        ? ` · ${documented.length} documentadas en el propio archivo (${documented.join(' ')}): probablemente API, resolution "publish"`
+        : '';
+      push('fail', 'classes', `${rel}: ${plural(list.length, 'clase', 'clases')} sin declarar > baseline ${allowed} — ${list.join(' ')}${hint}`);
     } else if (list.length < allowed) {
       push('note', 'classes', `${rel}: bajó a ${list.length} (baseline ${allowed}) — baja el baseline en reference-contract.json`);
     }

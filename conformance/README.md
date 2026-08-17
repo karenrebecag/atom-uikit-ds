@@ -72,7 +72,7 @@ publicados (auditoría 2026-08-17).
 |---|---|
 | `var()` sin fallback resuelve | `video-player.css` usa 6 custom properties que nunca se crearon: el `backdrop-filter`, el accent y la barra de progreso no pintan nada, en `atom.css` Y en `embed.css` |
 | idem | `tag.css` usaba `var(--color-sky)` y el ramp real es `--color-sky-500`/`-700`: `.tag--info` en ghost y outlined salía sin color, y `color-mix()` con un valor inválido tira la declaración completa |
-| Toda clase tiene emisor o está publicada | 25 clases en 7 archivos que ningún componente, layout, behavior o pilot emite y que no aparecen en `atom.implementation.cssClasses`: nadie puede llegar a ellas y viajan igual en el bundle |
+| Toda clase tiene emisor o está declarada | 25 clases en 7 archivos que ningún componente, layout, behavior o pilot emite y que el registry no publica en `atom.implementation.cssClasses` |
 | El `entry` de tsup cubre cada subdirectorio | `sidebar` no compilaba a `dist` y el canal Webflow lo excluía en silencio |
 | Todo `sourcePath` del registry existe | borrar un componente y olvidar su item deja el `files[]` colgando: `build:registry` sale 1, pero solo si alguien lo corre — así cae en el PR |
 | Baselines, exenciones y mapas apuntan a archivos vivos | donde más se pudre un borrado. Simulacro del 2026-08-17: quitar 5 fuentes de `video-player` dejaba la suite EN VERDE; con estas dos reglas salen 6 violaciones que nombran exactamente qué falta limpiar (`Modo E` de `docs/component-agent-flow.md`) |
@@ -92,6 +92,34 @@ Tres reglas de precisión, todas por un falso positivo real de la sonda que lo m
 **Prueba de aceptación:** el gate se corrió quitando cada red por separado y falló las 5
 veces — sin la allowlist de `--char`, sin el baseline del player, sin los baselines de
 clases, tratando los fallbacks como bug, y con deuda nueva junto a deuda declarada.
+
+#### El hallazgo no adivina intención: la exige
+
+Una clase sin emisor puede ser pintura muerta **o** API del consumidor sin anunciar, y
+nada en el código las distingue. De las 25 que encontró el gate, **11 estaban documentadas
+en un comentario de su propio archivo** — entre ellas las del botón de WhatsApp, cuya
+cabecera trae el markup exacto que un landing escribe a mano. Leerlas como código muerto
+habría borrado API real (pasó: el primer `why` de ese baseline decía "el fix real es
+borrar").
+
+Por eso el baseline no admite prosa libre. Cada entrada elige un remedio de una lista
+cerrada, y el gate lo verifica:
+
+| `resolution` | Qué declara | Cómo lo verifica el gate |
+|---|---|---|
+| `publish` | es API del consumidor | exige que las clases estén en `cssClasses`; si no, falla |
+| `wire` | falta el emisor | el componente o el behavior debe escribirla |
+| `delete` | no la quiere nadie | se borra el CSS |
+| `triage` | nadie lo ha decidido | exige `until`: una decisión sin fecha no se toma |
+
+Un baseline sin `resolution` **falla**, y el hallazgo dice "sin declarar", nunca "muerta".
+Cuando la clase aparece documentada en su archivo, el mensaje lo dice y sugiere `publish`
+— el humano confirma, no adivina.
+
+**Lo que este gate NO hace:** puntuar. No existe un score que mezcle defectos con ausencias.
+Que un átomo no tenga dependientes, test o story no es un hallazgo de nada: si no es un
+defecto verificable, no se emite. Un positivo que hay que aprender a ignorar destruye el
+valor de todos los demás.
 
 ## Contrato con los agentes
 

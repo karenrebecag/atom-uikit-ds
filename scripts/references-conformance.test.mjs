@@ -12,6 +12,7 @@ import assert from 'node:assert/strict';
 import {
   baselineCount,
   collectPublishedClasses,
+  documentedInFile,
   findDanglingRegistry,
   findStaleContractEntries,
   findUncoveredEntries,
@@ -199,9 +200,9 @@ describe('clases alcanzables (R2)', () => {
       },
     );
 
-  it('marca la clase que nadie emite ni publica', () => {
+  it('marca la clase que nadie emite ni publica, con su pista de intencion', () => {
     const result = run('.card--brand { color: red; }', 'export const X = () => null;');
-    assert.deepEqual(result.perFile.get('x.css'), ['card--brand']);
+    assert.deepEqual(result.perFile.get('x.css'), [{ cls: 'card--brand', documented: false }]);
   });
 
   it('no marca la que un emisor escribe literal', () => {
@@ -262,6 +263,59 @@ describe('entry de tsup (R3)', () => {
     });
     const result = findUncoveredEntries(rule, { fs: io, path: fakePath, root: 'r' });
     assert.deepEqual(result.uncovered, ['src/molecules/sidebar']);
+  });
+});
+
+describe('el hallazgo obliga a declarar un remedio, no lo adivina', () => {
+  const rule = { scanDirs: ['css/components'], emitterDirs: ['react'], dynamicPrefixes: true, baseline: {} };
+  const build = (css, registry = { items: [] }, baseline = {}) => {
+    const io = fakeIo({ 'r/css/components/x.css': css, 'r/react/X.tsx': 'export const X = () => null;' });
+    const contract = {
+      varsResolve: { scanDirs: ['none'], definitionSources: [], runtimeProvided: {}, baseline: {} },
+      classesReachable: { ...rule, baseline },
+      entryCoversSource: { config: 'nope' },
+    };
+    return runReferenceChecks({ contract, registry, root: 'r' }, io, fakePath);
+  };
+  const messages = (res, level) => res.reports.filter((r) => r.level === level).map((r) => r.message);
+
+  it('distingue la clase documentada en el archivo de la que no lo esta', () => {
+    assert.equal(documentedInFile('/* usa .card--brand para la variante */\n.card--brand {}', 'card--brand'), true);
+    assert.equal(documentedInFile('.card--brand {}', 'card--brand'), false);
+  });
+
+  it('el hallazgo dice "sin declarar", nunca "muerta", y sugiere publish si esta documentada', () => {
+    const res = build('/* El landing escribe .card--brand a mano */\n.card--brand {}');
+    const fail = messages(res, 'fail').join(' ');
+    assert.match(fail, /sin declarar/);
+    assert.doesNotMatch(fail, /muerta|inalcanzable/);
+    assert.match(fail, /probablemente API, resolution "publish"/);
+  });
+
+  it('rechaza el baseline sin remedio: es el que se malinterpreta', () => {
+    const res = build('.card--brand {}', { items: [] }, { 'x.css': 1 });
+    assert.match(messages(res, 'fail').join(' '), /baseline sin remedio/);
+  });
+
+  it('rechaza un remedio que no esta en la lista cerrada', () => {
+    const res = build('.card--brand {}', { items: [] }, { 'x.css': { count: 1, resolution: 'ya-veremos' } });
+    assert.match(messages(res, 'fail').join(' '), /resolution "ya-veremos" no existe/);
+  });
+
+  it('exige fecha a triage: una decision sin fecha no se toma', () => {
+    const res = build('.card--brand {}', { items: [] }, { 'x.css': { count: 1, resolution: 'triage', why: 'x' } });
+    assert.match(messages(res, 'fail').join(' '), /"triage" exige until/);
+  });
+
+  it('publish sin publicar falla: el remedio no se puede declarar y olvidar', () => {
+    const res = build('.card--brand {}', { items: [] }, { 'x.css': { count: 1, resolution: 'publish', why: 'API' } });
+    assert.match(messages(res, 'fail').join(' '), /declara resolution "publish" pero 1 clase sigue fuera/);
+  });
+
+  it('publish cumplido pasa en verde', () => {
+    const registry = { items: [{ atom: { implementation: { cssClasses: ['card--brand'] } } }] };
+    const res = build('.card--brand {}', registry, { 'x.css': { count: 1, resolution: 'publish', why: 'API' } });
+    assert.equal(res.failures, 0);
   });
 });
 
@@ -365,7 +419,7 @@ describe('baseline y deuda declarada', () => {
       'r/css/deuda.css': '.a { color: var(--vieja); }',
       'r/css/nueva.css': '.b { color: var(--nueva); }',
     });
-    const rule = { ...varsRule, baseline: { 'deuda.css': { count: 1, why: 'declarada' } } };
+    const rule = { ...varsRule, baseline: { 'deuda.css': { count: 1, resolution: 'triage', why: 'declarada', until: '2027-01-01' } } };
     const result = findUnresolvedVars(rule, { fs: io, path: fakePath, root: 'r' });
     assert.equal(result.perFile.get('deuda.css').size, 1);
     assert.equal(result.perFile.get('nueva.css').size, 1);
@@ -384,7 +438,7 @@ describe('baseline y deuda declarada', () => {
       'r/tokens/semantic/light.json': SEMANTIC,
     });
     const contract = {
-      varsResolve: { ...varsRule, baseline: { 'limpio.css': 2 } },
+      varsResolve: { ...varsRule, baseline: { 'limpio.css': { count: 2, resolution: 'triage', why: 'deuda vieja', until: '2027-01-01' } } },
       classesReachable: { scanDirs: ['css/none'], emitterDirs: [], baseline: {} },
       entryCoversSource: { config: 'nope' },
     };
@@ -419,7 +473,7 @@ describe('baseline y deuda declarada', () => {
     const contract = {
       varsResolve: {
         ...varsRule,
-        baseline: { 'deuda.css': { count: 1, why: 'pendiente', until: '2026-01-01' } },
+        baseline: { 'deuda.css': { count: 1, resolution: 'triage', why: 'pendiente', until: '2026-01-01' } },
       },
       classesReachable: { scanDirs: ['css/none'], emitterDirs: [], baseline: {} },
       entryCoversSource: { config: 'nope' },
