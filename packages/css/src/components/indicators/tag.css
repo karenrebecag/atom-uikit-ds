@@ -119,10 +119,13 @@
   background-color: color-mix(in srgb, var(--brand) 18%, var(--background));
   color: var(--brand-text);
 }
+/* El stop de arranque era --success: mientras ai no tuvo superficie propia, el
+   intent se pintaba de verde y no se distinguia del de exito. Ahora arranca en
+   su propio violeta. */
 .tag--filled.tag--ai        {
   background: linear-gradient(
     136deg,
-    color-mix(in srgb, var(--success) 20%, var(--background)),
+    color-mix(in srgb, var(--ai) 20%, var(--background)),
     color-mix(in srgb, var(--ai-text) 12%, var(--background))
   );
   color: var(--ai-text);

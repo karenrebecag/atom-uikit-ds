@@ -3311,6 +3311,47 @@
       ]
     },
     {
+      "name": "feature-card",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "FeatureCard",
+      "description": "Card de feature con media, titulo y texto para tiras horizontales. Un solo componente con variantes de color (green/purple/orange/blue) que por dentro apuntan a intents del sistema.",
+      "registryDependencies": [
+        "tokens",
+        "foundation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/cards/feature-card.css",
+          "outputPath": "styles/components/feature-card.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/marquee-features",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
+      "title": "Marquee de Features",
+      "description": "Layout template: marquee-features",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "feature-card",
+        "marquee",
+        "marquee-draggable"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/marquee-features.ts",
+          "outputPath": "layouts/marquee-features.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "pricing-card",
       "kind": "component",
       "framework": "css",

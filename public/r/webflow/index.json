@@ -172,6 +172,10 @@
       "reason": "no React source (css-only / no-tsx)"
     },
     {
+      "name": "feature-card",
+      "reason": "no React source (css-only / no-tsx)"
+    },
+    {
       "name": "pricing-card",
       "reason": "no React source (css-only / no-tsx)"
     }

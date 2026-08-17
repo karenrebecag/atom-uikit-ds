@@ -28,6 +28,7 @@ const PAIRS = [
   ['success', 'success-foreground'],
   ['warning', 'warning-foreground'],
   ['info', 'info-foreground'],
+  ['ai', 'ai-foreground'],
   // Text-on-background tokens (not a surface pair, same AA rule applies)
   ['background', 'link'],
   // Texto de intent sobre la pagina. El acento puro (success, warning, info…) es

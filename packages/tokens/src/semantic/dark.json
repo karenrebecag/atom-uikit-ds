@@ -154,10 +154,20 @@
     "$value": "{color.brand}",
     "$description": "Brand text on dark background — 6.7:1. En dark el brand puro SI se lee"
   },
+  "ai": {
+    "$type": "color",
+    "$value": "{color.violet.400}",
+    "$description": "AI accent surface en dark — el paso claro del violeta de marca; violet.500 sobre neutral.950 da 3.4:1"
+  },
+  "ai-foreground": {
+    "$type": "color",
+    "$value": "{color.neutral.950}",
+    "$description": "On ai en dark — 5.2:1 sobre violet.400"
+  },
   "ai-text": {
     "$type": "color",
-    "$value": "{color.green-electric}",
-    "$description": "AI accent text on dark background — 10.0:1"
+    "$value": "{color.violet.400}",
+    "$description": "AI accent text on dark background — 5.2:1. Mismo flip que link: el paso 500 se lee en claro y el 400 en oscuro"
   },
   "border": {
     "$type": "color",

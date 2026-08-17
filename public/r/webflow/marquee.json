@@ -330,7 +330,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee__separator svg{width:1em;height:1em}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}}",
+  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee__separator svg{width:1em;height:1em}.ds-marquee--draggable .ds-marquee__list{animation:none}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}}",
   "tokensCss": ":root {\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --spacing-10: 40px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n}",
   "tokensResolved": [
     "font-family-sans",
@@ -387,6 +387,11 @@
     {
       "prop": "selector",
       "selector": ".marquee__separator svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".marquee--draggable .marquee__list",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {
