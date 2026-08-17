@@ -88,6 +88,14 @@
 
 /* ---- Draggable mode (GSAP) ---- */
 
+/* En modo draggable el desplazamiento lo pone GSAP sobre __collection. La
+   animacion CSS de __list seguiria corriendo sobre el MISMO eje y sumaria un
+   segundo movimiento: la tira avanza al doble y el wrap de GSAP deja de cuadrar
+   con el ancho real. Se apaga aqui, no en el behavior, porque es pintura. */
+.marquee--draggable .marquee__list {
+  animation: none;
+}
+
 .marquee__collection {
   display: flex;
   align-items: center;

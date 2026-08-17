@@ -1547,6 +1547,53 @@
     }
   },
   {
+    "name": "feature-card",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "FeatureCard",
+    "description": "Card de feature con media, titulo y texto para tiras horizontales. Un solo componente con variantes de color (green/purple/orange/blue) que por dentro apuntan a intents del sistema.",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "FeatureCard",
+      "description": "Card de feature con media, titulo y texto para tiras horizontales. Un solo componente con variantes de color (green/purple/orange/blue) que por dentro apuntan a intents del sistema.",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/marquee-features",
+    "kind": "layout",
+    "framework": "css",
+    "installGroup": "layouts",
+    "title": "Marquee de Features",
+    "description": "Layout template: marquee-features",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "feature-card",
+      "marquee",
+      "marquee-draggable"
+    ],
+    "discovery": {
+      "name": "Marquee de Features",
+      "description": "Layout template: marquee-features",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "pricing-card",
     "kind": "component",
     "framework": "css",

@@ -1,0 +1,104 @@
+/* -------------------------------------------------------------------------
+   Feature Card
+
+   Card de feature: media + titulo + texto. Pensada para tiras horizontales
+   (marquee, carruseles) donde cada card se lee de un vistazo.
+
+   No confundir con `feature` (atoms/feature.css): aquel es una FILA de
+   "icono + texto + valor" para listas de beneficios dentro de un pricing-card.
+   Esto es una card por derecho propio.
+
+   Estructura:  .feature-card > .feature-card__media
+                              > .feature-card__body > .feature-card__title
+                                                    > .feature-card__text
+
+   El media y el cuerpo son SLOTS: la card no decide si dentro va un <img>, un
+   <svg> o un embed — solo la caja, el radio y el recorte.
+
+   Variantes de color: --green --purple --orange --blue
+
+   Los nombres son de COLOR a proposito (asi los nombra diseno) pero por dentro
+   cada uno apunta a un intent del sistema, nunca a un hex. Si el DS reafina
+   --success o --brand, la card sigue sin tocarla. Y es UN componente con
+   variantes, no cuatro componentes de colores distintos.
+   ------------------------------------------------------------------------- */
+
+.feature-card {
+  /* Un solo mando para la intensidad del tinte; el tono lo pone el intent.
+     4% reproduce los tintes de diseno con desvio maximo de 5/255 por canal. */
+  --feature-card-tint: 4%;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: var(--feature-card-width, 20rem);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-xl);
+  background-color: color-mix(
+    in srgb,
+    var(--feature-card-accent, var(--muted)) var(--feature-card-tint),
+    var(--background)
+  );
+  color: var(--card-foreground);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  /* .marquee__item va en nowrap para tiras de texto; aqui el texto es parrafo. */
+  white-space: normal;
+  text-align: start;
+}
+
+/* ---- Media (slot) ---- */
+
+.feature-card__media {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.feature-card__media > * {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Cuerpo (slot) ---- */
+
+.feature-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.feature-card__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  letter-spacing: var(--letter-spacing-tight);
+  text-wrap: balance;
+}
+
+.feature-card__text {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* ---- Acentos ---- */
+
+.feature-card--green {
+  --feature-card-accent: var(--success);
+}
+
+.feature-card--purple {
+  --feature-card-accent: var(--ai);
+}
+
+.feature-card--orange {
+  --feature-card-accent: var(--brand);
+}
+
+.feature-card--blue {
+  --feature-card-accent: var(--info);
+}

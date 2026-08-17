@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T21:26:30.070Z",
+  "generatedAt": "2026-08-17T22:08:55.882Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 127,
+    "items": 129,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 127
+      "withSourceCommit": 129
     },
     "webflow": {
       "emitted": 37,
-      "excluded": 24
+      "excluded": 25
     },
-    "aggregateScore": 50
+    "aggregateScore": 49.6
   },
   "batches": [],
   "items": [
@@ -1115,6 +1115,40 @@
       "eligibleAgent": false,
       "excludedAgent": "no React source",
       "contentScore": 30
+    },
+    {
+      "slug": "feature-card",
+      "kind": "component",
+      "category": "actions",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "excluded",
+      "webflowReason": "no React source (css-only / no-tsx)",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "no React source",
+      "contentScore": 25
+    },
+    {
+      "slug": "layout/marquee-features",
+      "kind": "layout",
+      "category": "layout",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "layout",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "layout — composition block; agent manifest deferred",
+      "contentScore": 20
     },
     {
       "slug": "pricing-card",

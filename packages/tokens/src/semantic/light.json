@@ -154,10 +154,20 @@
     "$value": "{color.orange.700}",
     "$description": "Brand text on default background — 6.0:1. El brand puro (#ff6600) da 2.8:1 y no es legible como texto"
   },
+  "ai": {
+    "$type": "color",
+    "$value": "{color.violet.500}",
+    "$description": "AI accent surface — el violeta de marca del gradient-highlight. Antes el intent ai no tenia color de superficie y ai-text apuntaba a forest, o sea que ai se pintaba de verde y era indistinguible de success"
+  },
+  "ai-foreground": {
+    "$type": "color",
+    "$value": "{color.neutral.50}",
+    "$description": "On ai — 5.8:1 sobre violet.500"
+  },
   "ai-text": {
     "$type": "color",
-    "$value": "{color.forest}",
-    "$description": "AI accent text on default background — 15.1:1. green-electric da 1.9:1 sobre claro"
+    "$value": "{color.violet.500}",
+    "$description": "AI accent text on default background — 5.6:1. violet.400 da 3.7:1 sobre claro, por eso el paso 500 aqui y el 400 en dark (mismo criterio que link)"
   },
   "border": {
     "$type": "color",
