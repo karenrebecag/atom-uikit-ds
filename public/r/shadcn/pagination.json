@@ -37,8 +37,8 @@
       "usage": "import {\n  Pagination, PaginationItem, PaginationLink,\n  PaginationPrevious, PaginationNext, PaginationEllipsis,\n} from '@/components/atoms/Pagination';\n\n<Pagination>\n  <PaginationItem><PaginationPrevious href=\"?p=1\" disabled /></PaginationItem>\n  <PaginationItem><PaginationLink href=\"?p=1\" isActive>1</PaginationLink></PaginationItem>\n  <PaginationItem><PaginationEllipsis /></PaginationItem>\n  <PaginationItem><PaginationNext href=\"?p=2\" /></PaginationItem>\n</Pagination>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T20:35:28.347Z",
-      "sourceCommit": "8f0a082",
+      "generatedAt": "2026-08-18T20:58:13.228Z",
+      "sourceCommit": "f4df79f",
       "install": {
         "peerDeps": [],
         "cssImports": [

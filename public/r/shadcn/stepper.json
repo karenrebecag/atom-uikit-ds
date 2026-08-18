@@ -55,8 +55,8 @@
       "usage": "import { Stepper } from '@/components/atoms/Stepper';\n\n<Stepper\n  orientation=\"horizontal\"\n  steps={[\n    { state: 'completed', title: 'Account' },\n    { state: 'active', title: 'Plan' },\n    { state: 'upcoming', title: 'Pay' },\n  ]}\n/>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T20:35:28.347Z",
-      "sourceCommit": "8f0a082",
+      "generatedAt": "2026-08-18T20:58:13.228Z",
+      "sourceCommit": "f4df79f",
       "install": {
         "peerDeps": [],
         "cssImports": [
