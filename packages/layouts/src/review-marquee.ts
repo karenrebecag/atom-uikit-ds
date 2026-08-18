@@ -163,11 +163,9 @@ export const reviewMarquee = {
   margin-block-start: var(--spacing-6);
 }
 
-/* Las cards se estiran a la altura de la fila para que las atribuciones queden
-   alineadas entre si: con altura por contenido, cada pie cae donde acabe su
-   cita y la fila se lee como un serrucho. */
+/* El estirado de las cards NO va aqui: lo trae review-card.css, para que
+   funcione igual en un host que no use este layout. */
 .l-review-marquee .marquee__item {
-  align-items: stretch;
   padding: var(--spacing-2);
   white-space: normal;
 }`,

@@ -27,12 +27,20 @@
 .review-card {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--spacing-6);
   width: var(--review-card-width, 24rem);
+  /* Todas las cards de una fila miden lo mismo: la mas alta manda y el resto
+     rellena. Con altura por contenido, cada atribucion cae donde acabe su cita
+     y la fila se lee como un serrucho. */
+  height: 100%;
+  /* Se estira ella misma en vez de pedirle al carril que cambie: .marquee__item
+     va en align-items:center y es una clase COMPARTIDA con la tira de features.
+     align-self gana sobre el align-items del padre sin tocar a nadie mas. */
+  align-self: stretch;
   margin: 0;
   padding: var(--spacing-8);
-  border: var(--stroke-hairline) solid var(--border);
   border-radius: var(--radius-xl);
   background-color: var(--card);
   color: var(--card-foreground);
@@ -44,6 +52,8 @@
 
 .review-card__quote {
   margin: 0;
+  width: 100%;
+  text-align: left;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-lg);
@@ -64,8 +74,11 @@
 
 .review-card__author {
   display: flex;
+  width: 100%;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--spacing-1);
+  text-align: left;
 }
 
 .review-card__name {
@@ -79,6 +92,14 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-sm);
+}
+
+/* El eslabon que falta: la lista centra sus items, asi que sin esto el item se
+   ajusta al contenido y el height:100% de la card no tiene referencia. Se hace
+   con :has para que el marquee siga sin saber nada de review-card — la regla la
+   trae quien la necesita. */
+.marquee__item:has(> .review-card) {
+  align-items: stretch;
 }
 
 @media (max-width: 767px) {
