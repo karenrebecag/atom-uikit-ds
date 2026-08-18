@@ -92,6 +92,7 @@ export function Marquee({
   // vivas la tira avanza al doble sobre el mismo eje.
   if (draggable) {
     return (
+      <>
       <div
         ref={containerRef}
         data-draggable-marquee=""
@@ -109,23 +110,24 @@ export function Marquee({
             {listContent}
           </div>
         </div>
-        {controls && (
-          <>
-            <button
-              type="button"
-              className="marquee__control marquee__control--prev"
-              data-draggable-marquee-control="prev"
-              aria-label={prevLabel}
-            />
-            <button
-              type="button"
-              className="marquee__control marquee__control--next"
-              data-draggable-marquee-control="next"
-              aria-label={nextLabel}
-            />
-          </>
-        )}
       </div>
+      {controls && (
+        <div className="marquee__controls">
+          <button
+            type="button"
+            className="marquee__control marquee__control--prev"
+            data-draggable-marquee-control="prev"
+            aria-label={prevLabel}
+          />
+          <button
+            type="button"
+            className="marquee__control marquee__control--next"
+            data-draggable-marquee-control="next"
+            aria-label={nextLabel}
+          />
+        </div>
+      )}
+      </>
     );
   }
 
