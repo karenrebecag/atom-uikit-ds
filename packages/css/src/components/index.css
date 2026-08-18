@@ -28,6 +28,7 @@
 @import './indicators/chip.css';
 @import './indicators/tag.css';
 @import './cards/feature-card.css';
+@import './cards/review-card.css';
 @import './cards/pricing-card.css';
 @import './indicators/badge.css';
 @import './indicators/avatar.css';

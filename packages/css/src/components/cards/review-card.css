@@ -1,0 +1,91 @@
+/* -------------------------------------------------------------------------
+   Review Card
+
+   Testimonio de cliente: la cita y quien la firma. Pensada para tiras
+   horizontales (marquee) donde varias se leen de pasada.
+
+   Estructura:  .review-card            <figure>
+                  > .review-card__quote   <blockquote>
+                  > .review-card__author  <figcaption>
+                      > .review-card__name
+                      > .review-card__role
+
+   SEMANTICA, y no es decoracion: un testimonio es una cita con atribucion, asi
+   que el par correcto es <figure><blockquote> + <figcaption>. <blockquote> a
+   secas NO admite <cite> como hermano dentro de si mismo — la atribucion vive
+   FUERA de la cita, y <figure> es lo que las une. Con divs sueltos un lector de
+   pantalla no puede anunciar "cita" ni decir de quien es.
+
+   La cita va PRIMERO y la atribucion despues: se lee la frase y luego quien la
+   dijo. Al reves obliga a encabezar un blockquote que todavia no ha empezado.
+
+   Las comillas las pone el CSS (::before/::after con open-quote), no el
+   contenido. Escribirlas a mano acaba mezclando " rectas y “ tipograficas
+   segun quien edite, y ademas un lector de pantalla las deletrea.
+   ------------------------------------------------------------------------- */
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+  width: var(--review-card-width, 24rem);
+  margin: 0;
+  padding: var(--spacing-8);
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: var(--radius-xl);
+  background-color: var(--card);
+  color: var(--card-foreground);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  /* .marquee__item va en nowrap para tiras de texto; aqui la cita es parrafo. */
+  white-space: normal;
+  text-align: left;
+}
+
+.review-card__quote {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-lg);
+  letter-spacing: var(--letter-spacing-snug);
+  text-wrap: pretty;
+}
+
+/* Las comillas cuelgan del flujo para que la primera letra siga alineada con
+   el resto de la card: sin esto la cita entera parece sangrada un caracter. */
+.review-card__quote::before {
+  content: open-quote;
+  margin-inline-start: -0.4em;
+}
+
+.review-card__quote::after {
+  content: close-quote;
+}
+
+.review-card__author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.review-card__name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-base);
+}
+
+.review-card__role {
+  color: var(--muted-foreground);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-sm);
+}
+
+@media (max-width: 767px) {
+  .review-card {
+    /* En movil la card ocupa casi todo el carril: el ancho fijo de escritorio
+       dejaria una segunda card asomando media pantalla. */
+    width: var(--review-card-width-mobile, 18rem);
+    padding: var(--spacing-6);
+  }
+}
