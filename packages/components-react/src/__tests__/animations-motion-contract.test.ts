@@ -271,6 +271,49 @@ describe('marquee-draggable (decorativo: loop infinito)', () => {
     expect(dragAndSettle()).toBeUndefined();
   });
 
+  function mountWithControl(dir: 'prev' | 'next') {
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-autoplay', 'false');
+    wrapper.insertAdjacentHTML(
+      'beforeend',
+      `<button data-draggable-marquee-control="${dir}"></button>`,
+    );
+    return wrapper;
+  }
+
+  function clickControl(wrapper: HTMLElement) {
+    g.gsap.to.mockClear();
+    wrapper
+      .querySelector('[data-draggable-marquee-control]')!
+      .dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    return g.gsap.to.mock.calls.find(
+      (c: unknown[]) => 'progress' in ((c[1] ?? {}) as object),
+    );
+  }
+
+  it('flecha next: mueve la tira corrigiendo progress', () => {
+    mountGlobals();
+    const wrapper = mountWithControl('next');
+    initDraggableMarquee();
+    expect(clickControl(wrapper)).toBeTruthy();
+  });
+
+  it('flecha prev: tambien mueve, en el sentido contrario', () => {
+    mountGlobals();
+    const wrapper = mountWithControl('prev');
+    initDraggableMarquee();
+    const next = clickControl(wrapper);
+    expect(next).toBeTruthy();
+  });
+
+  it('cleanup: la flecha deja de responder', () => {
+    mountGlobals();
+    const wrapper = mountWithControl('next');
+    const cleanup = initDraggableMarquee();
+    cleanup();
+    expect(clickControl(wrapper)).toBeUndefined();
+  });
+
   it('quieta no tiene sentido: data-direction no parpadea a left al detenerse', () => {
     mountGlobals();
     const wrapper = mountMarquee();
