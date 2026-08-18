@@ -51,7 +51,14 @@
 }
 
 .review-card__quote {
+  /* <blockquote> llega con estilos de TAG puestos por el navegador y por el
+     host: Webflow le da border-left gris y padding propios. Como esos van por
+     etiqueta y esto va por clase, la clase gana — pero SOLO en lo que declara.
+     Sin resetear borde y padding aqui, la cita sale con una barra vertical
+     gris a la izquierda que nadie pidio. */
+  border: 0;
   margin: 0;
+  padding: 0;
   width: 100%;
   text-align: left;
   font-size: var(--font-size-lg);
@@ -97,9 +104,14 @@
 /* El eslabon que falta: la lista centra sus items, asi que sin esto el item se
    ajusta al contenido y el height:100% de la card no tiene referencia. Se hace
    con :has para que el marquee siga sin saber nada de review-card — la regla la
-   trae quien la necesita. */
+   trae quien la necesita.
+
+   align-SELF, no align-items: align-items alinearia a los HIJOS del item, que no
+   es el problema; lo que hace falta es que el item se estire EL a la altura de
+   la fila. Con align-items el item seguia midiendo su contenido y las cards
+   quedaban desiguales igual. */
 .marquee__item:has(> .review-card) {
-  align-items: stretch;
+  align-self: stretch;
 }
 
 @media (max-width: 767px) {
