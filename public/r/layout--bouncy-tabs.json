@@ -1,0 +1,120 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/bouncy-tabs",
+  "type": "registry:block",
+  "title": "Bouncy Tabs",
+  "description": "Layout template: bouncy-tabs",
+  "registryDependencies": [
+    "tokens",
+    "foundation",
+    "bouncy-tabs",
+    "bouncy-tabs-animation"
+  ],
+  "files": [
+    {
+      "path": "layouts/bouncy-tabs.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: bouncy-tabs\n *\n * Pestañas con indicador elastico sobre una card que se comprime al conmutar.\n *\n * Publica la anatomia del behavior `bouncy-tabs`. Existe porque el patron tiene\n * dos partes que a mano se ponen mal: el indicador y el ghost son hermanos de\n * los botones (no envoltorios), y el panel activo se marca con data-active en\n * DOS sitios — boton y panel — o el modulo arranca sin estado inicial.\n *\n * Structure-only, pure DS: BEM classes + DS tokens, no utility framework.\n */\n\nexport const bouncyTabs = {\n  slug: 'bouncy-tabs',\n  name: 'Bouncy Tabs',\n  description:\n    'Pestañas con indicador que se estira al viajar entre botones de anchos distintos, se pasa unos pixeles y vuelve. La card se comprime en el cambio y su alto se anima al del panel entrante. Pensada para paneles con media pesada (video, imagen) donde el corte seco se nota.',\n  components: ['bouncy-tabs', 'bouncy-tabs-animation'],\n  html: `<!-- Layout: bouncy-tabs -->\n<!-- Get component CSS: atom_uikit_source(\"bouncy-tabs\") -->\n<!-- Behavior: atom_uikit_source(\"bouncy-tabs-animation\") — requiere gsap (sin plugins) -->\n<!--\n  ANATOMIA, en el orden que importa:\n\n  El indicador y el ghost van ANTES de los botones en el DOM. No es estetico:\n  se posicionan en absoluto y el orden de pintado lo fija el z-index, asi que\n  ponerlos primero deja los role=\"tab\" seguidos y un lector de pantalla\n  recorre las pestañas sin dos divs decorativos intercalados.\n\n  data-active viaja en DOS sitios y los dos hacen falta: en el boton inicial\n  (de ahi sale la posicion de arranque del indicador) y en su panel (de ahi\n  sale el alto inicial de la card). Marcar solo uno deja el indicador en 0,0\n  o la card en alto 0 hasta el primer clic.\n\n  Los tiempos NO se declaran aqui. El modulo los lee de --duration-300/200/150\n  y --easing-spring en runtime, asi que un cambio de token mueve la animacion\n  sin tocar este markup.\n\n  aria-controls / id: el modulo no los inyecta. Si el panel lleva contenido\n  interactivo (un video con controles, un enlace), la relacion tiene que estar\n  escrita o el foco de teclado se pierde entre nav y panel.\n\n  Media dentro del panel: el alto lo mide el modulo sobre el panel entrante,\n  asi que un <video> sin width/height intrinsecos hace medir de menos en el\n  primer cambio. Reservar la proporcion en CSS (aspect-ratio), no esperar al\n  loadedmetadata.\n-->\n\n<section class=\"l-bouncy-tabs\" id=\"{{section_id}}\">\n  <div class=\"l-bouncy-tabs__header\">\n    <div class=\"l-bouncy-tabs__eyebrow\">{{eyebrow}}</div>\n    <h2 class=\"h2 l-bouncy-tabs__title\" data-split=\"heading\">{{heading}}</h2>\n  </div>\n\n  <div class=\"bouncy-tabs\" data-bouncy-tabs>\n    <div class=\"bouncy-tabs__nav\" data-bouncy-tabs-nav role=\"tablist\" aria-label=\"{{tablist_label}}\">\n      <div class=\"bouncy-tabs__ghost\" data-bouncy-tabs-ghost aria-hidden=\"true\"></div>\n      <div class=\"bouncy-tabs__indicator\" data-bouncy-tabs-indicator aria-hidden=\"true\"></div>\n\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button data-active\n              role=\"tab\" id=\"tab-1\" aria-controls=\"panel-1\" aria-selected=\"true\">{{tab_1_label}}</button>\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button\n              role=\"tab\" id=\"tab-2\" aria-controls=\"panel-2\" aria-selected=\"false\">{{tab_2_label}}</button>\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button\n              role=\"tab\" id=\"tab-3\" aria-controls=\"panel-3\" aria-selected=\"false\">{{tab_3_label}}</button>\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button\n              role=\"tab\" id=\"tab-4\" aria-controls=\"panel-4\" aria-selected=\"false\">{{tab_4_label}}</button>\n    </div>\n\n    <div class=\"bouncy-tabs__card\" data-bouncy-tabs-card>\n      <div class=\"bouncy-tabs__panels\" data-bouncy-tabs-panels>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel data-active\n             role=\"tabpanel\" id=\"panel-1\" aria-labelledby=\"tab-1\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_1_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_1_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_1_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel\n             role=\"tabpanel\" id=\"panel-2\" aria-labelledby=\"tab-2\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_2_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_2_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_2_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel\n             role=\"tabpanel\" id=\"panel-3\" aria-labelledby=\"tab-3\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_3_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_3_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_3_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel\n             role=\"tabpanel\" id=\"panel-4\" aria-labelledby=\"tab-4\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_4_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_4_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_4_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `.l-bouncy-tabs {\n  padding-block: var(--section-padding-l);\n}\n\n.l-bouncy-tabs__header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-4);\n  align-items: center;\n  text-align: center;\n  margin-inline: auto;\n  margin-block-end: var(--rhythm-s);\n  padding-inline: var(--spacing-6);\n  max-width: 42rem;\n}\n\n.l-bouncy-tabs__eyebrow {\n  color: var(--muted-foreground);\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n}\n\n.l-bouncy-tabs__title {\n  margin: 0;\n}\n\n/* El video reserva su proporcion antes de cargar: el modulo mide el alto del\n   panel entrante y un video sin dimensiones intrinsecas mide 0 en ese momento. */\n.l-bouncy-tabs .bouncy-tabs__panel-visual video {\n  aspect-ratio: 16 / 10;\n}`,\n};\n"
+    },
+    {
+      "path": "layouts/bouncy-tabs.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: bouncy-tabs -->\n<!-- Get component CSS: atom_uikit_source(\"bouncy-tabs\") -->\n<!-- Behavior: atom_uikit_source(\"bouncy-tabs-animation\") — requiere gsap (sin plugins) -->\n<!--\n  ANATOMIA, en el orden que importa:\n\n  El indicador y el ghost van ANTES de los botones en el DOM. No es estetico:\n  se posicionan en absoluto y el orden de pintado lo fija el z-index, asi que\n  ponerlos primero deja los role=\"tab\" seguidos y un lector de pantalla\n  recorre las pestañas sin dos divs decorativos intercalados.\n\n  data-active viaja en DOS sitios y los dos hacen falta: en el boton inicial\n  (de ahi sale la posicion de arranque del indicador) y en su panel (de ahi\n  sale el alto inicial de la card). Marcar solo uno deja el indicador en 0,0\n  o la card en alto 0 hasta el primer clic.\n\n  Los tiempos NO se declaran aqui. El modulo los lee de --duration-300/200/150\n  y --easing-spring en runtime, asi que un cambio de token mueve la animacion\n  sin tocar este markup.\n\n  aria-controls / id: el modulo no los inyecta. Si el panel lleva contenido\n  interactivo (un video con controles, un enlace), la relacion tiene que estar\n  escrita o el foco de teclado se pierde entre nav y panel.\n\n  Media dentro del panel: el alto lo mide el modulo sobre el panel entrante,\n  asi que un <video> sin width/height intrinsecos hace medir de menos en el\n  primer cambio. Reservar la proporcion en CSS (aspect-ratio), no esperar al\n  loadedmetadata.\n-->\n\n<section class=\"l-bouncy-tabs\" id=\"{{section_id}}\">\n  <div class=\"l-bouncy-tabs__header\">\n    <div class=\"l-bouncy-tabs__eyebrow\">{{eyebrow}}</div>\n    <h2 class=\"h2 l-bouncy-tabs__title\" data-split=\"heading\">{{heading}}</h2>\n  </div>\n\n  <div class=\"bouncy-tabs\" data-bouncy-tabs>\n    <div class=\"bouncy-tabs__nav\" data-bouncy-tabs-nav role=\"tablist\" aria-label=\"{{tablist_label}}\">\n      <div class=\"bouncy-tabs__ghost\" data-bouncy-tabs-ghost aria-hidden=\"true\"></div>\n      <div class=\"bouncy-tabs__indicator\" data-bouncy-tabs-indicator aria-hidden=\"true\"></div>\n\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button data-active\n              role=\"tab\" id=\"tab-1\" aria-controls=\"panel-1\" aria-selected=\"true\">{{tab_1_label}}</button>\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button\n              role=\"tab\" id=\"tab-2\" aria-controls=\"panel-2\" aria-selected=\"false\">{{tab_2_label}}</button>\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button\n              role=\"tab\" id=\"tab-3\" aria-controls=\"panel-3\" aria-selected=\"false\">{{tab_3_label}}</button>\n      <button type=\"button\" class=\"bouncy-tabs__button\" data-bouncy-tabs-button\n              role=\"tab\" id=\"tab-4\" aria-controls=\"panel-4\" aria-selected=\"false\">{{tab_4_label}}</button>\n    </div>\n\n    <div class=\"bouncy-tabs__card\" data-bouncy-tabs-card>\n      <div class=\"bouncy-tabs__panels\" data-bouncy-tabs-panels>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel data-active\n             role=\"tabpanel\" id=\"panel-1\" aria-labelledby=\"tab-1\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_1_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_1_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_1_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel\n             role=\"tabpanel\" id=\"panel-2\" aria-labelledby=\"tab-2\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_2_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_2_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_2_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel\n             role=\"tabpanel\" id=\"panel-3\" aria-labelledby=\"tab-3\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_3_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_3_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_3_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n        <div class=\"bouncy-tabs__panel\" data-bouncy-tabs-panel\n             role=\"tabpanel\" id=\"panel-4\" aria-labelledby=\"tab-4\">\n          <div class=\"bouncy-tabs__panel-text\">\n            <h3 class=\"bouncy-tabs__heading\">{{tab_4_label}}</h3>\n            <p class=\"bouncy-tabs__para\">{{tab_4_body}}</p>\n          </div>\n          <div class=\"bouncy-tabs__panel-visual\">\n            <video src=\"{{tab_4_video}}\" autoplay loop muted playsinline preload=\"metadata\"></video>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</section>\n"
+    },
+    {
+      "path": "layouts/bouncy-tabs.css",
+      "type": "registry:file",
+      "content": ".l-bouncy-tabs {\n  padding-block: var(--section-padding-l);\n}\n\n.l-bouncy-tabs__header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-4);\n  align-items: center;\n  text-align: center;\n  margin-inline: auto;\n  margin-block-end: var(--rhythm-s);\n  padding-inline: var(--spacing-6);\n  max-width: 42rem;\n}\n\n.l-bouncy-tabs__eyebrow {\n  color: var(--muted-foreground);\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n}\n\n.l-bouncy-tabs__title {\n  margin: 0;\n}\n\n/* El video reserva su proporcion antes de cargar: el modulo mide el alto del\n   panel entrante y un video sin dimensiones intrinsecas mide 0 en ese momento. */\n.l-bouncy-tabs .bouncy-tabs__panel-visual video {\n  aspect-ratio: 16 / 10;\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Bouncy Tabs",
+      "description": "Layout template: bouncy-tabs",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "section_id",
+        "eyebrow",
+        "heading",
+        "tablist_label",
+        "tab_1_label",
+        "tab_2_label",
+        "tab_3_label",
+        "tab_4_label",
+        "tab_1_body",
+        "tab_1_video",
+        "tab_2_body",
+        "tab_2_video",
+        "tab_3_body",
+        "tab_3_video",
+        "tab_4_body",
+        "tab_4_video"
+      ],
+      "repeats": {},
+      "components": [
+        "bouncy-tabs",
+        "bouncy-tabs-animation"
+      ]
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-18T18:47:58.835Z",
+      "sourceCommit": "9d5bfd1",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutBouncyTabs\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#ffffff",
+            "tokenPath": "card"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Bouncy Tabs\n\n   Pestañas con indicador elastico: la pastilla viaja entre botones estirandose\n   entre anchos distintos, se pasa unos pixeles y vuelve. Al conmutar, la card\n   se comprime hacia el sentido del viaje y se re-infla con muelle.\n\n   Estructura:  .bouncy-tabs > .bouncy-tabs__nav > __ghost + __indicator + __button xN\n                             > .bouncy-tabs__card > .bouncy-tabs__panels\n                                                  > .bouncy-tabs__panel xN\n\n   El indicador y el ghost van DEBAJO de los botones en orden de apilado: el\n   texto del boton cambia de color por [data-active], no por estar encima.\n\n   NOTA WEBFLOW: dentro del Designer no corre JS, asi que los paneles absolutos\n   nunca reciben altura y la card se colapsa en el canvas. El host lo resuelve\n   con `.wf-design-mode [data-bouncy-tabs-panel][data-active] { position: relative }`\n   en su propio codigo — no aqui: esa clase es del anfitrion y este paquete no\n   debe conocerla.\n   ------------------------------------------------------------------------- */\n\n.bouncy-tabs {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 40px;\n  width: 100%;\n}\n\n/* ---- Nav ---- */\n\n.bouncy-tabs__nav {\n  position: relative;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 4px;\n  border-radius: 9999px;\n  background-color: #f5f5f5;\n}\n\n.bouncy-tabs__ghost {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 2em;\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  border-radius: 9999px;\n  background-color: color-mix(in srgb, #0a0a0a 8%, transparent);\n}\n\n.bouncy-tabs__indicator {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  width: 3em;\n  pointer-events: none;\n  border-radius: 9999px;\n  background-color: #0a0a0a;\n}\n\n.bouncy-tabs__button {\n  position: relative;\n  z-index: 3;\n  appearance: none;\n  border: none;\n  border-radius: 9999px;\n  padding: 12px 20px;\n  background-color: transparent;\n  color: #525252;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  letter-spacing: -0.02em;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: color 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n[data-bouncy-tabs-button][data-active] {\n  color: #fafafa;\n}\n\n.bouncy-tabs__button:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n}\n\n/* ---- Card ---- */\n\n.bouncy-tabs__card {\n  width: 100%;\n  padding: 40px;\n  border-radius: 24px;\n  background-color: #ffffff;\n  /* El recorte es del borde redondeado de la card: el panel entrante se desliza\n     y debe cortarse ahi, no en el viewport. */\n  overflow: hidden;\n}\n\n.bouncy-tabs__panels {\n  position: relative;\n  width: 100%;\n}\n\n/* Los paneles se apilan en la misma caja para poder cruzarse; la altura la\n   anima el behavior sobre __panels. */\n.bouncy-tabs__panel {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  display: flex;\n  align-items: center;\n  gap: 32px;\n}\n\n[data-bouncy-tabs-panel]:not([data-active]) {\n  opacity: 0;\n  visibility: hidden;\n}\n\n.bouncy-tabs__panel-text {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: center;\n  gap: 16px;\n}\n\n.bouncy-tabs__panel-visual {\n  width: 45%;\n  flex: none;\n  border-radius: 12px;\n  overflow: hidden;\n}\n\n.bouncy-tabs__panel-visual > * {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.bouncy-tabs__heading {\n  margin: 0;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 25px;\n  font-weight: 600;\n  line-height: 1.3;\n  letter-spacing: -0.02em;\n  text-wrap: balance;\n}\n\n.bouncy-tabs__para {\n  margin: 0;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 16px;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #525252;\n  text-wrap: pretty;\n}\n\n@media (max-width: 767px) {\n  .bouncy-tabs__nav {\n    border-radius: 16px;\n  }\n\n  .bouncy-tabs__card {\n    padding: 24px;\n  }\n\n  .bouncy-tabs__panel {\n    flex-direction: column;\n    align-items: stretch;\n  }\n\n  .bouncy-tabs__panel-visual {\n    width: 100%;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .bouncy-tabs__button {\n    transition-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "color",
+          "duration": "var(--duration-300)",
+          "easing": "var(--easing-out)"
+        }
+      ]
+    }
+  }
+}

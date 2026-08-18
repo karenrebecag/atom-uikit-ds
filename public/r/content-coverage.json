@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T22:08:55.882Z",
+  "generatedAt": "2026-08-18T18:47:59.172Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 129,
+    "items": 132,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 129
+      "withSourceCommit": 132
     },
     "webflow": {
       "emitted": 37,
-      "excluded": 25
+      "excluded": 26
     },
-    "aggregateScore": 49.6
+    "aggregateScore": 48.9
   },
   "batches": [],
   "items": [
@@ -1117,6 +1117,42 @@
       "contentScore": 30
     },
     {
+      "slug": "bouncy-tabs",
+      "kind": "component",
+      "category": "surfaces",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "excluded",
+      "webflowReason": "no React source (css-only / no-tsx)",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "no React source",
+      "contentScore": 25
+    },
+    {
+      "slug": "bouncy-tabs-animation",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
+    },
+    {
       "slug": "feature-card",
       "kind": "component",
       "category": "actions",
@@ -1132,6 +1168,23 @@
       "eligibleAgent": false,
       "excludedAgent": "no React source",
       "contentScore": 25
+    },
+    {
+      "slug": "layout/bouncy-tabs",
+      "kind": "layout",
+      "category": "layout",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "layout",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "layout — composition block; agent manifest deferred",
+      "contentScore": 20
     },
     {
       "slug": "layout/marquee-features",

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bouncy-tabs",
+  "type": "registry:component",
+  "title": "BouncyTabs",
+  "description": "Pestañas con indicador elastico y card que se comprime al conmutar. El indicador viaja entre botones estirandose entre anchos distintos, se pasa unos pixeles y vuelve.",
+  "registryDependencies": [
+    "tokens",
+    "foundation",
+    "bouncy-tabs-animation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/bouncy-tabs.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Bouncy Tabs\n\n   Pestañas con indicador elastico: la pastilla viaja entre botones estirandose\n   entre anchos distintos, se pasa unos pixeles y vuelve. Al conmutar, la card\n   se comprime hacia el sentido del viaje y se re-infla con muelle.\n\n   Estructura:  .bouncy-tabs > .bouncy-tabs__nav > __ghost + __indicator + __button xN\n                             > .bouncy-tabs__card > .bouncy-tabs__panels\n                                                  > .bouncy-tabs__panel xN\n\n   El indicador y el ghost van DEBAJO de los botones en orden de apilado: el\n   texto del boton cambia de color por [data-active], no por estar encima.\n\n   NOTA WEBFLOW: dentro del Designer no corre JS, asi que los paneles absolutos\n   nunca reciben altura y la card se colapsa en el canvas. El host lo resuelve\n   con `.wf-design-mode [data-bouncy-tabs-panel][data-active] { position: relative }`\n   en su propio codigo — no aqui: esa clase es del anfitrion y este paquete no\n   debe conocerla.\n   ------------------------------------------------------------------------- */\n\n.bouncy-tabs {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: var(--spacing-10);\n  width: 100%;\n}\n\n/* ---- Nav ---- */\n\n.bouncy-tabs__nav {\n  position: relative;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: flex-start;\n  padding: var(--spacing-1);\n  border-radius: var(--radius-full);\n  background-color: var(--muted);\n}\n\n.bouncy-tabs__ghost {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 2em;\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  border-radius: var(--radius-full);\n  background-color: color-mix(in srgb, var(--foreground) 8%, transparent);\n}\n\n.bouncy-tabs__indicator {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  width: 3em;\n  pointer-events: none;\n  border-radius: var(--radius-full);\n  background-color: var(--primary);\n}\n\n.bouncy-tabs__button {\n  position: relative;\n  z-index: 3;\n  appearance: none;\n  border: none;\n  border-radius: var(--radius-full);\n  padding: var(--spacing-3) var(--spacing-5);\n  background-color: transparent;\n  color: var(--muted-foreground);\n  font-family: var(--font-family-sans);\n  font-size: var(--font-size-sm);\n  font-weight: var(--font-weight-medium);\n  line-height: 1;\n  letter-spacing: var(--letter-spacing-tight);\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: color var(--duration-300) var(--easing-out);\n}\n\n[data-bouncy-tabs-button][data-active] {\n  color: var(--primary-foreground);\n}\n\n.bouncy-tabs__button:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n}\n\n/* ---- Card ---- */\n\n.bouncy-tabs__card {\n  width: 100%;\n  padding: var(--spacing-10);\n  border-radius: var(--radius-2xl);\n  background-color: var(--card);\n  /* El recorte es del borde redondeado de la card: el panel entrante se desliza\n     y debe cortarse ahi, no en el viewport. */\n  overflow: hidden;\n}\n\n.bouncy-tabs__panels {\n  position: relative;\n  width: 100%;\n}\n\n/* Los paneles se apilan en la misma caja para poder cruzarse; la altura la\n   anima el behavior sobre __panels. */\n.bouncy-tabs__panel {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-8);\n}\n\n[data-bouncy-tabs-panel]:not([data-active]) {\n  opacity: 0;\n  visibility: hidden;\n}\n\n.bouncy-tabs__panel-text {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: center;\n  gap: var(--spacing-4);\n}\n\n.bouncy-tabs__panel-visual {\n  width: 45%;\n  flex: none;\n  border-radius: var(--radius-lg);\n  overflow: hidden;\n}\n\n.bouncy-tabs__panel-visual > * {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.bouncy-tabs__heading {\n  margin: 0;\n  font-family: var(--font-family-sans);\n  font-size: var(--font-size-xl);\n  font-weight: var(--font-weight-semibold);\n  line-height: 1.3;\n  letter-spacing: var(--letter-spacing-tight);\n  text-wrap: balance;\n}\n\n.bouncy-tabs__para {\n  margin: 0;\n  font-family: var(--font-family-sans);\n  font-size: var(--font-size-base);\n  font-weight: var(--font-weight-regular);\n  line-height: 1.5;\n  color: var(--muted-foreground);\n  text-wrap: pretty;\n}\n\n@media (max-width: 767px) {\n  .bouncy-tabs__nav {\n    border-radius: var(--radius-xl);\n  }\n\n  .bouncy-tabs__card {\n    padding: var(--spacing-6);\n  }\n\n  .bouncy-tabs__panel {\n    flex-direction: column;\n    align-items: stretch;\n  }\n\n  .bouncy-tabs__panel-visual {\n    width: 100%;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .bouncy-tabs__button {\n    transition-duration: 0ms;\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "BouncyTabs",
+      "description": "Pestañas con indicador elastico y card que se comprime al conmutar. El indicador viaja entre botones estirandose entre anchos distintos, se pasa unos pixeles y vuelve.",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "bouncy-tabs",
+      "cssClasses": [
+        "bouncy-tabs",
+        "bouncy-tabs__nav",
+        "bouncy-tabs__card",
+        "bouncy-tabs__panels",
+        "bouncy-tabs__panel",
+        "bouncy-tabs__ghost",
+        "bouncy-tabs__indicator",
+        "bouncy-tabs__button",
+        "bouncy-tabs__panel-text",
+        "bouncy-tabs__panel-visual",
+        "bouncy-tabs__heading",
+        "bouncy-tabs__para"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-18T18:47:58.835Z",
+      "sourceCommit": "9d5bfd1",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"wf-design-mode\">\n\n</div>",
+        "classes": [
+          {
+            "class": "wf-design-mode",
+            "purpose": "root"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "#ffffff",
+            "tokenPath": "card"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Bouncy Tabs\n\n   Pestañas con indicador elastico: la pastilla viaja entre botones estirandose\n   entre anchos distintos, se pasa unos pixeles y vuelve. Al conmutar, la card\n   se comprime hacia el sentido del viaje y se re-infla con muelle.\n\n   Estructura:  .bouncy-tabs > .bouncy-tabs__nav > __ghost + __indicator + __button xN\n                             > .bouncy-tabs__card > .bouncy-tabs__panels\n                                                  > .bouncy-tabs__panel xN\n\n   El indicador y el ghost van DEBAJO de los botones en orden de apilado: el\n   texto del boton cambia de color por [data-active], no por estar encima.\n\n   NOTA WEBFLOW: dentro del Designer no corre JS, asi que los paneles absolutos\n   nunca reciben altura y la card se colapsa en el canvas. El host lo resuelve\n   con `.wf-design-mode [data-bouncy-tabs-panel][data-active] { position: relative }`\n   en su propio codigo — no aqui: esa clase es del anfitrion y este paquete no\n   debe conocerla.\n   ------------------------------------------------------------------------- */\n\n.bouncy-tabs {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 40px;\n  width: 100%;\n}\n\n/* ---- Nav ---- */\n\n.bouncy-tabs__nav {\n  position: relative;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 4px;\n  border-radius: 9999px;\n  background-color: #f5f5f5;\n}\n\n.bouncy-tabs__ghost {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 2em;\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  border-radius: 9999px;\n  background-color: color-mix(in srgb, #0a0a0a 8%, transparent);\n}\n\n.bouncy-tabs__indicator {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  width: 3em;\n  pointer-events: none;\n  border-radius: 9999px;\n  background-color: #0a0a0a;\n}\n\n.bouncy-tabs__button {\n  position: relative;\n  z-index: 3;\n  appearance: none;\n  border: none;\n  border-radius: 9999px;\n  padding: 12px 20px;\n  background-color: transparent;\n  color: #525252;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 12.8px;\n  font-weight: 500;\n  line-height: 1;\n  letter-spacing: -0.02em;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: color 300ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n[data-bouncy-tabs-button][data-active] {\n  color: #fafafa;\n}\n\n.bouncy-tabs__button:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n}\n\n/* ---- Card ---- */\n\n.bouncy-tabs__card {\n  width: 100%;\n  padding: 40px;\n  border-radius: 24px;\n  background-color: #ffffff;\n  /* El recorte es del borde redondeado de la card: el panel entrante se desliza\n     y debe cortarse ahi, no en el viewport. */\n  overflow: hidden;\n}\n\n.bouncy-tabs__panels {\n  position: relative;\n  width: 100%;\n}\n\n/* Los paneles se apilan en la misma caja para poder cruzarse; la altura la\n   anima el behavior sobre __panels. */\n.bouncy-tabs__panel {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  display: flex;\n  align-items: center;\n  gap: 32px;\n}\n\n[data-bouncy-tabs-panel]:not([data-active]) {\n  opacity: 0;\n  visibility: hidden;\n}\n\n.bouncy-tabs__panel-text {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: center;\n  gap: 16px;\n}\n\n.bouncy-tabs__panel-visual {\n  width: 45%;\n  flex: none;\n  border-radius: 12px;\n  overflow: hidden;\n}\n\n.bouncy-tabs__panel-visual > * {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.bouncy-tabs__heading {\n  margin: 0;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 25px;\n  font-weight: 600;\n  line-height: 1.3;\n  letter-spacing: -0.02em;\n  text-wrap: balance;\n}\n\n.bouncy-tabs__para {\n  margin: 0;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif;\n  font-size: 16px;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #525252;\n  text-wrap: pretty;\n}\n\n@media (max-width: 767px) {\n  .bouncy-tabs__nav {\n    border-radius: 16px;\n  }\n\n  .bouncy-tabs__card {\n    padding: 24px;\n  }\n\n  .bouncy-tabs__panel {\n    flex-direction: column;\n    align-items: stretch;\n  }\n\n  .bouncy-tabs__panel-visual {\n    width: 100%;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .bouncy-tabs__button {\n    transition-duration: 0ms;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "color",
+          "duration": "var(--duration-300)",
+          "easing": "var(--easing-out)"
+        }
+      ]
+    }
+  }
+}

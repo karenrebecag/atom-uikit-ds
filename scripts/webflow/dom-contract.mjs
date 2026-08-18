@@ -16,6 +16,7 @@ const ANIM_DIST = path.join(ROOT, 'packages/animations/dist');
  */
 const SLUG_TO_MODULE = {
   marquee: 'marquee-draggable.js',
+  'bouncy-tabs': 'bouncy-tabs.js',
   button: 'button-hover.js',
   'icon-button': 'button-hover.js',
   'link-button': 'button-hover.js',
@@ -36,6 +37,7 @@ const SLUG_TO_MODULE = {
 /** Modules that must export contracts (F10-C5) — all behavior files */
 export const ALL_BEHAVIOR_MODULES = [
   'accordion-morph.js',
+  'bouncy-tabs.js',
   'tooltip.js',
   'button-hover.js',
   'marquee-draggable.js',

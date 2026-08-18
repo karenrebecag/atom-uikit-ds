@@ -50,6 +50,7 @@
 @import './layout/drawer.css';
 @import './feedback/toast.css';
 @import './molecules/user-profile.css';
+@import './molecules/bouncy-tabs.css';
 @import './molecules/marquee.css';
 @import './molecules/video-player.css';
 @import './sidebar/sidebar.css';

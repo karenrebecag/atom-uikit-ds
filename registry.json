@@ -3312,6 +3312,44 @@
       ]
     },
     {
+      "name": "bouncy-tabs",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "BouncyTabs",
+      "description": "Pestañas con indicador elastico y card que se comprime al conmutar. El indicador viaja entre botones estirandose entre anchos distintos, se pasa unos pixeles y vuelve.",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "bouncy-tabs-animation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/molecules/bouncy-tabs.css",
+          "outputPath": "styles/components/bouncy-tabs.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "bouncy-tabs-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Bouncy Tabs Animation",
+      "description": "Behavior de las pestañas: indicador elastico con sobrepaso recortado contra el nav, ghost que sigue al cursor, squash de la card y altura animada del panel. Tiempos desde tokens; navegacion por flechas y respeto de reduced-motion.",
+      "dependencies": [
+        "gsap"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/bouncy-tabs.ts",
+          "outputPath": "animations/bouncy-tabs.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "feature-card",
       "kind": "component",
       "framework": "css",
@@ -3326,6 +3364,27 @@
         {
           "sourcePath": "packages/css/src/components/cards/feature-card.css",
           "outputPath": "styles/components/feature-card.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/bouncy-tabs",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
+      "title": "Bouncy Tabs",
+      "description": "Layout template: bouncy-tabs",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "bouncy-tabs",
+        "bouncy-tabs-animation"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/bouncy-tabs.ts",
+          "outputPath": "layouts/bouncy-tabs.ts",
           "type": "registry:file"
         }
       ]

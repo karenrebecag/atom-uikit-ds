@@ -6,9 +6,9 @@
     "packages/css/dist/atom.css": { "rawKb": 185, "gzipKb": 24 },
     "packages/css/dist/embed.css": { "rawKb": 205, "gzipKb": 26 },
     "packages/animations/dist/atom-animations.js": {
-      "rawKb": 140,
-      "gzipKb": 36,
-      "$comment": "text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
+      "rawKb": 155,
+      "gzipKb": 40,
+      "$comment": "bouncy-tabs (indicador elastico + squash de card + altura animada, el segundo behavior mas grande tras mega-nav): 147/37 medidos. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
     },
     "packages/css/dist/webflow.css": { "rawKb": 22, "gzipKb": 3 }
   },

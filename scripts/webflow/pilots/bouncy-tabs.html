@@ -1,0 +1,34 @@
+<!--
+  F7 pilot — bouncy-tabs.ts DOM contract.
+  Pintura (.bouncy-tabs*) desde components.css; los enganches de motion son data-*.
+
+  El indicador y el ghost van ANTES de los botones a proposito: el orden de
+  apilado lo fija el z-index, pero en el DOM van primero para que un lector de
+  pantalla encuentre los tabs seguidos, sin dos divs decorativos en medio.
+-->
+<div data-bouncy-tabs class="bouncy-tabs">
+  <div data-bouncy-tabs-nav role="tablist" class="bouncy-tabs__nav">
+    <div data-bouncy-tabs-ghost class="bouncy-tabs__ghost"></div>
+    <div data-bouncy-tabs-indicator class="bouncy-tabs__indicator"></div>
+    <button type="button" data-bouncy-tabs-button data-active role="tab" class="bouncy-tabs__button">Uno</button>
+    <button type="button" data-bouncy-tabs-button role="tab" class="bouncy-tabs__button">Dos</button>
+  </div>
+  <div data-bouncy-tabs-card class="bouncy-tabs__card">
+    <div data-bouncy-tabs-panels class="bouncy-tabs__panels">
+      <div data-active data-bouncy-tabs-panel role="tabpanel" class="bouncy-tabs__panel">
+        <div class="bouncy-tabs__panel-text">
+          <h3 class="bouncy-tabs__heading">Panel uno</h3>
+          <p class="bouncy-tabs__para">Contenido del primer panel.</p>
+        </div>
+        <div class="bouncy-tabs__panel-visual"></div>
+      </div>
+      <div data-bouncy-tabs-panel role="tabpanel" class="bouncy-tabs__panel">
+        <div class="bouncy-tabs__panel-text">
+          <h3 class="bouncy-tabs__heading">Panel dos</h3>
+          <p class="bouncy-tabs__para">Contenido del segundo panel.</p>
+        </div>
+        <div class="bouncy-tabs__panel-visual"></div>
+      </div>
+    </div>
+  </div>
+</div>
