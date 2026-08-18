@@ -85,8 +85,8 @@
       "usage": "import { Avatar } from '@/components/atoms/Avatar';\n\n<Avatar type=\"image-border\" size=\"m\" src=\"/u/a.jpg\" alt=\"Ada Lovelace\" status />"
     },
     "derived": {
-      "generatedAt": "2026-08-18T20:58:13.228Z",
-      "sourceCommit": "f4df79f",
+      "generatedAt": "2026-08-18T21:55:42.750Z",
+      "sourceCommit": "2d228b3",
       "install": {
         "peerDeps": [],
         "cssImports": [
