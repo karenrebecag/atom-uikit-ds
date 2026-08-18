@@ -144,8 +144,8 @@
       "usage": "import { Slider } from '@/components/atoms/Slider';\n\n<Slider min={0} max={100} step={5} value={volume} onValueChange={setVolume} />"
     },
     "derived": {
-      "generatedAt": "2026-08-18T18:47:58.835Z",
-      "sourceCommit": "9d5bfd1",
+      "generatedAt": "2026-08-18T19:17:41.266Z",
+      "sourceCommit": "802ed3d",
       "install": {
         "peerDeps": [],
         "cssImports": [

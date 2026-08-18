@@ -41,10 +41,20 @@ export const bouncyTabs = {
   interactivo (un video con controles, un enlace), la relacion tiene que estar
   escrita o el foco de teclado se pierde entre nav y panel.
 
-  Media dentro del panel: el alto lo mide el modulo sobre el panel entrante,
-  asi que un <video> sin width/height intrinsecos hace medir de menos en el
-  primer cambio. Reservar la proporcion en CSS (aspect-ratio), no esperar al
-  loadedmetadata.
+  TEMA: data-theme="dark" en el root del componente (o en cualquier ancestro)
+  cambia el bloque entero. tokens.css declara [data-theme=dark] como selector
+  generico, asi que reasigna los tokens solo dentro de ese subarbol — no hace
+  falta clase ni modificador. El componente no pinta --background: en dark queda
+  como isla oscura sobre el fondo de la pagina. Si se quiere la banda entera
+  oscura, el fondo lo pone esta seccion, no el componente.
+
+  Media dentro del panel: el hueco ya reserva proporcion (aspect-ratio) y recorta
+  con object-fit, asi que el alto del panel no depende de cuando cargue el
+  archivo ni de las dimensiones que traiga.
+
+  Los <video> llevan autoplay/muted/playsinline, pero eso NO basta: el modulo
+  reproduce el del panel activo y pausa el resto, porque un panel oculto puede
+  no arrancar nunca y aparecer congelado al conmutar.
 -->
 
 <section class="l-bouncy-tabs" id="{{section_id}}">
@@ -146,10 +156,5 @@ export const bouncyTabs = {
 .l-bouncy-tabs__title {
   margin: 0;
 }
-
-/* El video reserva su proporcion antes de cargar: el modulo mide el alto del
-   panel entrante y un video sin dimensiones intrinsecas mide 0 en ese momento. */
-.l-bouncy-tabs .bouncy-tabs__panel-visual video {
-  aspect-ratio: 16 / 10;
-}`,
+`,
 };

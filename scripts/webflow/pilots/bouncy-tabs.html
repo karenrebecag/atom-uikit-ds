@@ -6,7 +6,9 @@
   apilado lo fija el z-index, pero en el DOM van primero para que un lector de
   pantalla encuentre los tabs seguidos, sin dos divs decorativos en medio.
 -->
-<div data-bouncy-tabs class="bouncy-tabs">
+<!-- data-theme aqui mismo: tokens.css lo declara como selector generico,
+     asi que oscurece SOLO este subarbol. Es la variante que usa el sitio. -->
+<div data-theme="dark" data-bouncy-tabs class="bouncy-tabs">
   <div data-bouncy-tabs-nav role="tablist" class="bouncy-tabs__nav">
     <div data-bouncy-tabs-ghost class="bouncy-tabs__ghost"></div>
     <div data-bouncy-tabs-indicator class="bouncy-tabs__indicator"></div>

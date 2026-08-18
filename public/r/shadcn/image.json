@@ -88,8 +88,8 @@
       "usage": "import { Image } from '@/components/atoms/Image';\n\n<Image\n  src=\"/photos/hero.jpg\"\n  alt=\"Team workshop\"\n  size=\"l\"\n  ratio=\"16x9\"\n  fit=\"cover\"\n  radius=\"md\"\n/>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T18:47:58.835Z",
-      "sourceCommit": "9d5bfd1",
+      "generatedAt": "2026-08-18T19:17:41.266Z",
+      "sourceCommit": "802ed3d",
       "install": {
         "peerDeps": [],
         "cssImports": [
