@@ -31,7 +31,9 @@ export const marqueeFeatures = {
                     la velocidad y vuelve con power3.out. 0 lo apaga; 3 es el
                     valor de referencia. Es lo que hace que el contenido pese
                     en vez de ir clavado al contenedor.
-  Los controles prev/next son opcionales y van DENTRO del wrapper. Cada
+  Los controles prev/next son opcionales y van FUERA del carril, como fila
+  propia debajo: .marquee tiene overflow hidden y meterlos dentro los ataria a
+  su alto. Cada
   pulsacion avanza un item exacto desde el limite mas cercano. Como la tira es
   un loop infinito nunca se deshabilitan: no hay primer ni ultimo item.
   Sus aria-label son variables a proposito — el modulo no los inyecta, porque
@@ -119,6 +121,9 @@ export const marqueeFeatures = {
            data-draggable-marquee-clone y aria-hidden. -->
     </div>
 
+  </div>
+
+  <div class="marquee__controls">
     <button
       type="button"
       class="marquee__control marquee__control--prev"

@@ -9,8 +9,12 @@
 //   data-lag="3"             (arrastre-retardo de los items; 0 = sin retardo)
 //   data-snap="auto"         (imanta a limite de item: "true" | "auto" | "false")
 //
-// Controles opcionales (prev/next), dentro del wrapper:
+// Controles opcionales (prev/next):
 //   [data-draggable-marquee-control="prev"|"next"]
+//
+// Pueden vivir DENTRO del wrapper o como fila hermana debajo. Lo segundo suele
+// ser lo correcto: el wrapper es el carril de recorte (overflow: hidden), y una
+// fila propia fuera de el no queda atada al alto de la tira.
 //
 // Cada pulsacion avanza UN item exacto desde el limite mas cercano, no desde la
 // posicion cruda: pulsar a mitad de un arrastre no debe acumular medio item de
@@ -216,9 +220,23 @@ export function initDraggableMarquee(): CleanupFn {
       });
     }
 
+    // Dentro primero y solo despues en el padre: si cada marquee lleva los suyos
+    // dentro, dos hermanos no se roban los botones. Con los controles fuera y
+    // dos marquees bajo el mismo padre la asociacion si es ambigua — ese caso
+    // pide un contenedor por marquee, no una heuristica mas lista.
+    const insideControls = Array.from(
+      wrapper.querySelectorAll<HTMLElement>('[data-draggable-marquee-control]'),
+    );
+    const controlNodes = insideControls.length
+      ? insideControls
+      : Array.from(
+          wrapper.parentElement?.querySelectorAll<HTMLElement>(
+            '[data-draggable-marquee-control]',
+          ) ?? [],
+        );
+
     const controlCleanups: Array<() => void> = [];
-    wrapper
-      .querySelectorAll<HTMLElement>('[data-draggable-marquee-control]')
+    controlNodes
       .forEach((btn) => {
         const dir =
           btn.getAttribute('data-draggable-marquee-control') === 'prev' ? 'prev' : 'next';

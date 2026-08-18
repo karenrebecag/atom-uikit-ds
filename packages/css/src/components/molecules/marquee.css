@@ -117,21 +117,26 @@
 }
 
 /* ---- Controles prev/next ----
-   Van DENTRO de .marquee, que ya es position:relative. Se apoyan en el borde y
-   no en el flujo: la tira es un carril continuo y meterlos en el layout la
-   partiria en tres columnas.
+   Van FUERA de .marquee, no dentro: .marquee es el carril de recorte
+   (overflow: hidden) y meterlos ahi los ataria al alto de la tira. Como fila
+   propia debajo, el recorte sigue siendo solo del carril.
 
    El loop es infinito, asi que no hay estado deshabilitado: no existe un primer
    ni un ultimo item que alcanzar. Un carrusel acotado si lo necesitaria. */
 
+.marquee__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-block-start: var(--spacing-6);
+}
+
 .marquee__control {
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: none;
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
@@ -155,9 +160,6 @@
   outline: var(--ring-width) solid var(--ring);
   outline-offset: var(--ring-offset);
 }
-
-.marquee__control--prev { left: var(--spacing-4); }
-.marquee__control--next { right: var(--spacing-4); }
 
 .marquee__control svg {
   width: 1em;

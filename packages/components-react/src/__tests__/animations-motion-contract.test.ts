@@ -306,6 +306,24 @@ describe('marquee-draggable (decorativo: loop infinito)', () => {
     expect(next).toBeTruthy();
   });
 
+  it('controles fuera del carril: los encuentra como fila hermana', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    wrapper.setAttribute('data-autoplay', 'false');
+    wrapper.insertAdjacentHTML(
+      'afterend',
+      '<div class="marquee__controls"><button data-draggable-marquee-control="next"></button></div>',
+    );
+    initDraggableMarquee();
+    g.gsap.to.mockClear();
+    document
+      .querySelector('[data-draggable-marquee-control]')!
+      .dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(
+      g.gsap.to.mock.calls.find((c: unknown[]) => 'progress' in ((c[1] ?? {}) as object)),
+    ).toBeTruthy();
+  });
+
   it('cleanup: la flecha deja de responder', () => {
     mountGlobals();
     const wrapper = mountWithControl('next');
