@@ -70,8 +70,8 @@
       "usage": "import {\n  Breadcrumb, BreadcrumbItem, BreadcrumbLink,\n  BreadcrumbPage, BreadcrumbSeparator,\n} from '@/components/atoms/Breadcrumb';\n\n<Breadcrumb>\n  <BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem>\n  <BreadcrumbSeparator />\n  <BreadcrumbItem><BreadcrumbPage>Settings</BreadcrumbPage></BreadcrumbItem>\n</Breadcrumb>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T19:17:41.266Z",
-      "sourceCommit": "802ed3d",
+      "generatedAt": "2026-08-18T19:26:53.822Z",
+      "sourceCommit": "5b1d364",
       "install": {
         "peerDeps": [],
         "cssImports": [

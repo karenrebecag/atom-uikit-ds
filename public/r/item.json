@@ -128,8 +128,8 @@
       "usage": "import {\n  Item, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions,\n} from '@/components/atoms/Item';\n\n<Item variant=\"outline\" size=\"default\" href=\"/docs\">\n  <ItemMedia variant=\"icon\">{/* icon */}</ItemMedia>\n  <ItemContent>\n    <ItemTitle>Docs</ItemTitle>\n    <ItemDescription>Guides and API</ItemDescription>\n  </ItemContent>\n  <ItemActions>→</ItemActions>\n</Item>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T19:17:41.266Z",
-      "sourceCommit": "802ed3d",
+      "generatedAt": "2026-08-18T19:26:53.822Z",
+      "sourceCommit": "5b1d364",
       "install": {
         "peerDeps": [],
         "cssImports": [

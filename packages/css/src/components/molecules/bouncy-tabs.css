@@ -112,6 +112,11 @@
   padding: var(--spacing-10);
   border-radius: var(--radius-2xl);
   background-color: var(--card);
+  /* La superficie va con SU foreground, no con el heredado. Sin esto, cualquier
+     texto que no declare color propio (un heading, un <strong>) hereda el de la
+     pagina: con la card en dark sobre una pagina light sale casi negro sobre
+     #171717. El parrafo y los botones se salvaban solo porque declaran color. */
+  color: var(--card-foreground);
   /* El recorte es del borde redondeado de la card: el panel entrante se desliza
      y debe cortarse ahi, no en el viewport. */
   overflow: hidden;
