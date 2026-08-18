@@ -83,8 +83,8 @@
       "usage": "import { UserProfile } from '@/components/atoms/UserProfile';\n\n<UserProfile name=\"Ada Lovelace\" org=\"Analytical Engines\" avatar={{ type: 'initials', size: 's' }} />"
     },
     "derived": {
-      "generatedAt": "2026-08-18T18:47:58.835Z",
-      "sourceCommit": "9d5bfd1",
+      "generatedAt": "2026-08-18T19:17:41.266Z",
+      "sourceCommit": "802ed3d",
       "install": {
         "peerDeps": [],
         "cssImports": [

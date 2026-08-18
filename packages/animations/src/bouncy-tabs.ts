@@ -161,6 +161,35 @@ export function initBouncyTabs(): CleanupFn {
       renderIndicator();
     }
 
+    /**
+     * Reproduce el video del panel activo y pausa los demas.
+     *
+     * Sin esto el autoplay NO es fiable: los paneles inactivos llevan
+     * `visibility: hidden`, y un elemento oculto puede no arrancar nunca — al
+     * conmutar aparece congelado en el primer frame. De paso evita tener los
+     * cuatro videos decodificando a la vez, que es puro gasto de CPU en movil.
+     *
+     * Se busca por ETIQUETA, no por un data-* nuevo: el contrato F8b solo debe
+     * listar los enganches que el modulo necesita que el consumidor declare, y
+     * un <video> dentro del panel no es una decision del consumidor.
+     */
+    function syncMedia() {
+      panels.forEach((panel, i) => {
+        const media = panel.querySelectorAll('video');
+        media.forEach((video) => {
+          if (i === activeIndex) {
+            // play() devuelve una promesa que el navegador rechaza si la
+            // politica de autoplay lo bloquea (video con sonido, ahorro de
+            // energia). Es un caso esperado, no un error que reportar.
+            const played = video.play();
+            if (played?.catch) played.catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      });
+    }
+
     function syncPanelsHeight() {
       if (hasCard) gsap.set(panelsWrap, { height: panels[activeIndex].offsetHeight });
     }
@@ -220,6 +249,8 @@ export function initBouncyTabs(): CleanupFn {
       const movingRight = index > activeIndex;
       activeIndex = index;
       syncButtons();
+
+      syncMedia();
 
       if (reduced.matches) {
         placeIndicator(index);
@@ -346,6 +377,7 @@ export function initBouncyTabs(): CleanupFn {
     panels.forEach((p, i) => gsap.set(p, { autoAlpha: i === activeIndex ? 1 : 0 }));
 
     syncButtons();
+    syncMedia();
     refreshLayout();
 
     cleanups.push(() => listeners.forEach((fn) => fn()));

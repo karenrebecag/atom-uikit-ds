@@ -12,6 +12,17 @@
    El indicador y el ghost van DEBAJO de los botones en orden de apilado: el
    texto del boton cambia de color por [data-active], no por estar encima.
 
+   TEMA: `data-theme="dark"` en CUALQUIER ancestro — incluido el propio root del
+   componente — basta. tokens.css declara `[data-theme=dark]` como selector
+   generico, no `:root[data-theme=dark]`, asi que reasigna los tokens solo dentro
+   de ese subarbol. Por eso aqui no hay ni una regla de tema: anadir un
+   modificador propio seria duplicar un contrato que el DS ya publica, y quedaria
+   desincronizado en cuanto cambie un token.
+
+   El componente NO pinta --background a proposito: en dark queda como una isla
+   oscura sobre el fondo de la pagina. Si alguna vez se quiere la banda entera
+   oscura, eso es responsabilidad del layout que lo envuelve, no de la pintura.
+
    NOTA WEBFLOW: dentro del Designer no corre JS, asi que los paneles absolutos
    nunca reciben altura y la card se colapsa en el canvas. El host lo resuelve
    con `.wf-design-mode [data-bouncy-tabs-panel][data-active] { position: relative }`
@@ -21,6 +32,7 @@
 
 .bouncy-tabs {
   display: flex;
+  font-family: var(--font-family-sans);
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-10);
@@ -73,9 +85,10 @@
   padding: var(--spacing-3) var(--spacing-5);
   background-color: transparent;
   color: var(--muted-foreground);
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
+  /* line-height 1 es la convencion del DS para componentes interactivos: es lo
+     que hace que la altura del boton la fije el padding y no la fuente. */
   line-height: 1;
   letter-spacing: var(--letter-spacing-tight);
   cursor: pointer;
@@ -138,6 +151,10 @@
 .bouncy-tabs__panel-visual {
   width: 45%;
   flex: none;
+  /* La proporcion la fija el hueco, no el archivo. Sin esto cada video impone su
+     alto natural al panel y el salto de altura entre pestanas es mayor de lo que
+     el contenido justifica; ademas object-fit no tiene contra que recortar. */
+  aspect-ratio: 16 / 10;
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -146,24 +163,23 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .bouncy-tabs__heading {
   margin: 0;
-  font-family: var(--font-family-sans);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
-  line-height: 1.3;
+  line-height: var(--line-height-xl);
   letter-spacing: var(--letter-spacing-tight);
   text-wrap: balance;
 }
 
 .bouncy-tabs__para {
   margin: 0;
-  font-family: var(--font-family-sans);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
-  line-height: 1.5;
+  line-height: var(--line-height-base);
   color: var(--muted-foreground);
   text-wrap: pretty;
 }
