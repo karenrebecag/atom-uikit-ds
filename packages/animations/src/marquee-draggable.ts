@@ -99,7 +99,31 @@ export function initDraggableMarquee(): CleanupFn {
   const wrappers = document.querySelectorAll<HTMLElement>('[data-draggable-marquee]');
   const cleanups: CleanupFn[] = [];
 
-  wrappers.forEach((wrapper) => {
+  /**
+   * Reintenta el montaje cuando el wrapper deje de medir 0.
+   *
+   * Un marquee dentro de una seccion que arranca en display:none — el switch de
+   * seccion por viewport del sitio, un tab, un acordeon — no tiene caja al
+   * cargar. Rendirse ahi lo deja muerto PARA SIEMPRE, porque initDraggableMarquee
+   * corre una sola vez: la tira no se mueve y, peor, los controles prev/next
+   * nunca llegan a engancharse, asi que parecen rotos en vez de inertes.
+   *
+   * ResizeObserver es exactamente la herramienta: un elemento en display:none no
+   * tiene box, y en cuanto la tiene dispara el callback.
+   */
+  function deferUntilMeasurable(wrapper: HTMLElement) {
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(() => {
+      if (wrapper.getBoundingClientRect().width > 0) {
+        observer.disconnect();
+        setup(wrapper);
+      }
+    });
+    observer.observe(wrapper);
+    cleanups.push(() => observer.disconnect());
+  }
+
+  function setup(wrapper: HTMLElement) {
     if (wrapper.dataset.motionExempt !== undefined) return;
     if (wrapper.dataset.draggableMarquee === 'initialized') return;
 
@@ -113,7 +137,10 @@ export function initDraggableMarquee(): CleanupFn {
 
     const wrapperWidth = wrapper.getBoundingClientRect().width;
     const listWidth = list.scrollWidth || list.getBoundingClientRect().width;
-    if (!wrapperWidth || !listWidth) return;
+    if (!wrapperWidth || !listWidth) {
+      deferUntilMeasurable(wrapper);
+      return;
+    }
 
     // Duplicate lists to fill container
     const minRequired = wrapperWidth + listWidth + 2;
@@ -331,7 +358,9 @@ export function initDraggableMarquee(): CleanupFn {
       collection.querySelectorAll('[aria-hidden="true"]').forEach((el) => el.remove());
       delete wrapper.dataset.draggableMarquee;
     });
-  });
+  }
+
+  wrappers.forEach((wrapper) => setup(wrapper));
 
   return () => cleanups.forEach((fn) => fn());
 }
