@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T19:26:54.194Z",
+  "generatedAt": "2026-08-18T19:47:14.235Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 132,
+    "items": 134,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 132
+      "withSourceCommit": 134
     },
     "webflow": {
       "emitted": 37,
-      "excluded": 26
+      "excluded": 27
     },
-    "aggregateScore": 48.9
+    "aggregateScore": 48.5
   },
   "batches": [],
   "items": [
@@ -1168,6 +1168,40 @@
       "eligibleAgent": false,
       "excludedAgent": "no React source",
       "contentScore": 25
+    },
+    {
+      "slug": "review-card",
+      "kind": "component",
+      "category": "actions",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "excluded",
+      "webflowReason": "no React source (css-only / no-tsx)",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "no React source",
+      "contentScore": 25
+    },
+    {
+      "slug": "layout/review-marquee",
+      "kind": "layout",
+      "category": "layout",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "layout",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "layout — composition block; agent manifest deferred",
+      "contentScore": 20
     },
     {
       "slug": "layout/bouncy-tabs",

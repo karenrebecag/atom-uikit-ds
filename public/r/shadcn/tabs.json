@@ -49,8 +49,8 @@
       "usage": "import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/atoms/Tabs';\n\n<Tabs defaultValue=\"general\" orientation=\"horizontal\">\n  <TabsList>\n    <TabsTrigger value=\"general\">General</TabsTrigger>\n    <TabsTrigger value=\"billing\">Billing</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"general\">Profile settings</TabsContent>\n  <TabsContent value=\"billing\">Invoices</TabsContent>\n</Tabs>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T19:26:53.822Z",
-      "sourceCommit": "5b1d364",
+      "generatedAt": "2026-08-18T19:47:13.826Z",
+      "sourceCommit": "806781f",
       "install": {
         "peerDeps": [],
         "cssImports": [

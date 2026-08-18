@@ -1610,6 +1610,53 @@
     }
   },
   {
+    "name": "review-card",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "ReviewCard",
+    "description": "Testimonio de cliente: la cita y quien la firma, como figure + blockquote + figcaption. Pensada para tiras horizontales donde varias se leen de pasada.",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "ReviewCard",
+      "description": "Testimonio de cliente: la cita y quien la firma, como figure + blockquote + figcaption. Pensada para tiras horizontales donde varias se leen de pasada.",
+      "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/review-marquee",
+    "kind": "layout",
+    "framework": "css",
+    "installGroup": "layouts",
+    "title": "Marquee de Reviews",
+    "description": "Layout template: review-marquee",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "review-card",
+      "marquee",
+      "marquee-draggable"
+    ],
+    "discovery": {
+      "name": "Marquee de Reviews",
+      "description": "Layout template: review-marquee",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "layout/bouncy-tabs",
     "kind": "layout",
     "framework": "css",
