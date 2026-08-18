@@ -195,6 +195,90 @@
           }
         },
         {
+          "_id": "02ace84b-0012-4748-8b20-748b20ea02ac",
+          "type": "Link",
+          "tag": "a",
+          "classes": [
+            "02ace84b-0013-4758-8b22-758b227d02ac",
+            "02ace84b-0014-4668-88cc-6688cc4902ac"
+          ],
+          "children": [],
+          "data": {
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-draggable-marquee-control",
+                "value": "prev"
+              },
+              {
+                "name": "aria-label",
+                "value": "Previous"
+              },
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            },
+            "button": true,
+            "block": "",
+            "link": {
+              "mode": "external",
+              "url": "#"
+            }
+          }
+        },
+        {
+          "_id": "02ace84b-0015-4658-88ca-6588cab602ac",
+          "type": "Link",
+          "tag": "a",
+          "classes": [
+            "02ace84b-0013-4758-8b22-758b227d02ac",
+            "02ace84b-0016-4648-88c9-6488c92302ac"
+          ],
+          "children": [],
+          "data": {
+            "displayName": "",
+            "attr": {
+              "id": ""
+            },
+            "xattr": [
+              {
+                "name": "data-draggable-marquee-control",
+                "value": "next"
+              },
+              {
+                "name": "aria-label",
+                "value": "Next"
+              },
+              {
+                "name": "role",
+                "value": "button"
+              }
+            ],
+            "search": {
+              "exclude": false
+            },
+            "visibility": {
+              "conditions": []
+            },
+            "button": true,
+            "block": "",
+            "link": {
+              "mode": "external",
+              "url": "#"
+            }
+          }
+        },
+        {
           "_id": "02ace84b-0001-4059-8315-0593159602ac",
           "type": "Block",
           "tag": "div",
@@ -204,7 +288,9 @@
             "02ace84b-0004-40a9-831d-0a931d7502ac"
           ],
           "children": [
-            "02ace84b-0005-4099-831b-09931be202ac"
+            "02ace84b-0005-4099-831b-09931be202ac",
+            "02ace84b-0012-4748-8b20-748b20ea02ac",
+            "02ace84b-0015-4658-88ca-6588cab602ac"
           ],
           "data": {
             "tag": "div",
@@ -338,6 +424,49 @@
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
           "selector": null
+        },
+        {
+          "_id": "02ace84b-0013-4758-8b22-758b227d02ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee__control",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "position: absolute; top: 50%; translate: 0 -50%; z-index: 1; display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; padding: 0; border: var(--stroke-thin) solid var(--border); border-radius: var(--radius-full); background-color: var(--card); color: var(--foreground); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-200) var(--easing-out),\n    border-color var(--duration-200) var(--easing-out);",
+          "variants": {
+            "main_hover": {
+              "styleLess": "background-color: var(--accent); border-color: var(--border-focus);"
+            }
+          },
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0014-4668-88cc-6688cc4902ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee__control--prev",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "left: var(--spacing-4);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
+        },
+        {
+          "_id": "02ace84b-0016-4648-88c9-6488c92302ac",
+          "fake": false,
+          "type": "class",
+          "name": "ds-marquee__control--next",
+          "namespace": "",
+          "comb": "",
+          "styleLess": "right: var(--spacing-4);",
+          "variants": {},
+          "children": [],
+          "createdBy": "590cdb22ed5bf253e056f0a7",
+          "selector": null
         }
       ],
       "assets": [],
@@ -356,13 +485,25 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee__separator svg{width:1em;height:1em}.ds-marquee--draggable .ds-marquee__list{animation:none}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}}",
-  "tokensCss": ":root {\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --spacing-10: 40px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n}",
+  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee__separator svg{width:1em;height:1em}.ds-marquee--draggable .ds-marquee__list{animation:none}.ds-marquee__control svg{width:1em;height:1em}.ds-marquee__control:focus-visible{outline:var(--ring-width) solid var(--ring);outline-offset:var(--ring-offset)}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}.ds-marquee__control{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --border: #e5e5e5;\n  --border-focus: #171717;\n  --card: #ffffff;\n  --duration-200: 200ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --foreground: #0a0a0a;\n  --radius-full: 9999px;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n  --spacing-10: 40px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n  --stroke-thin: 1.5px;\n}",
   "tokensResolved": [
+    "accent",
+    "border",
+    "border-focus",
+    "card",
+    "duration-200",
+    "easing-out",
     "font-family-sans",
+    "foreground",
+    "radius-full",
+    "ring",
+    "ring-offset",
+    "ring-width",
     "spacing-10",
     "spacing-3",
-    "spacing-4"
+    "spacing-4",
+    "stroke-thin"
   ],
   "manifest": {
     "channelVersion": "v1",
@@ -379,10 +520,22 @@
     ],
     "init": "window.__atomMotionCleanup = AtomMotion.initAll();",
     "tokens": [
+      "accent",
+      "border",
+      "border-focus",
+      "card",
+      "duration-200",
+      "easing-out",
       "font-family-sans",
+      "foreground",
+      "radius-full",
+      "ring",
+      "ring-offset",
+      "ring-width",
       "spacing-10",
       "spacing-3",
-      "spacing-4"
+      "spacing-4",
+      "stroke-thin"
     ],
     "domContract": {
       "hooks": [
@@ -391,7 +544,8 @@
         "data-draggable-marquee-list",
         "data-autoplay",
         "data-lag",
-        "data-snap"
+        "data-snap",
+        "data-draggable-marquee-control"
       ],
       "anatomy": [
         "[data-draggable-marquee-collection]",
@@ -403,6 +557,11 @@
   },
   "footerNote": "Load Atom foundation/tokens on the site if this component uses CSS variables (prefer /v1/embed.css scoped under .atom-embed for partial migrations — see docs/webflow-playbook.md). GSAP: enable Webflow site-wide GSAP only if the component requires it; Atom motion may use CDN /v1/animations.js instead.",
   "unsupported": [
+    {
+      "prop": ":focus-visible",
+      "selector": ".marquee__control:focus-visible",
+      "reason": "pseudo-class not a safe Designer variant — moved to head Custom Code"
+    },
     {
       "prop": "selector",
       "selector": ".marquee--reverse .marquee__list",
@@ -422,6 +581,21 @@
       "prop": "selector",
       "selector": ".marquee--draggable .marquee__list",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".marquee__control svg",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".marquee__control:focus-visible",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "@media",
+      "selector": "(prefers-reduced-motion: reduce)",
+      "reason": "not a Designer breakpoint — moved to head Custom Code block"
     },
     {
       "prop": "@media",

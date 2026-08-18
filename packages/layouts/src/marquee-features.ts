@@ -31,6 +31,12 @@ export const marqueeFeatures = {
                     la velocidad y vuelve con power3.out. 0 lo apaga; 3 es el
                     valor de referencia. Es lo que hace que el contenido pese
                     en vez de ir clavado al contenedor.
+  Los controles prev/next son opcionales y van DENTRO del wrapper. Cada
+  pulsacion avanza un item exacto desde el limite mas cercano. Como la tira es
+  un loop infinito nunca se deshabilitan: no hay primer ni ultimo item.
+  Sus aria-label son variables a proposito — el modulo no los inyecta, porque
+  una etiqueta fija seria incorrecta en dos de los tres idiomas del sitio.
+
   data-snap         "auto" imanta a limite de card SOLO cuando caben menos de
                     dos: en pantallas anchas una card asomando comunica que hay
                     mas, pero si ocupa casi todo el ancho el recorte se lee como
@@ -112,6 +118,19 @@ export const marqueeFeatures = {
            ancho del viewport. No duplicar a mano: los clones llevan
            data-draggable-marquee-clone y aria-hidden. -->
     </div>
+
+    <button
+      type="button"
+      class="marquee__control marquee__control--prev"
+      data-draggable-marquee-control="prev"
+      aria-label="{{prev_label}}"
+    ></button>
+    <button
+      type="button"
+      class="marquee__control marquee__control--next"
+      data-draggable-marquee-control="next"
+      aria-label="{{next_label}}"
+    ></button>
   </div>
 </section>`,
   css: `/* Layout: marquee-features — structure only, pure DS tokens */

@@ -2193,10 +2193,11 @@
       "meta": {
         "webflow": {
           "previewProps": {
-            "draggable": true,
-            "fade": true,
-            "duration": 20
-          },
+          "draggable": true,
+          "fade": true,
+          "duration": 20,
+          "controls": true
+        },
           "previewChildren": [
             "Atom",
             "UIKit",

@@ -27,6 +27,12 @@ export type MarqueeProps = {
   lag?: number;
   /** Solo en draggable sin autoplay: imanta a limite de item al soltar. */
   snap?: 'true' | 'auto' | 'false';
+  /** Solo en draggable: flechas prev/next a los costados. */
+  controls?: boolean;
+  /** Etiquetas accesibles de las flechas. El DS no las inyecta: este sitio
+      corre en tres idiomas y una etiqueta fija seria incorrecta en dos. */
+  prevLabel?: string;
+  nextLabel?: string;
   children: ReactNode;
   className?: string;
 };
@@ -43,6 +49,9 @@ export function Marquee({
   autoplay = true,
   lag = 0,
   snap = 'false',
+  controls = false,
+  prevLabel = 'Previous',
+  nextLabel = 'Next',
   children,
   className,
 }: MarqueeProps) {
@@ -100,6 +109,22 @@ export function Marquee({
             {listContent}
           </div>
         </div>
+        {controls && (
+          <>
+            <button
+              type="button"
+              className="marquee__control marquee__control--prev"
+              data-draggable-marquee-control="prev"
+              aria-label={prevLabel}
+            />
+            <button
+              type="button"
+              className="marquee__control marquee__control--next"
+              data-draggable-marquee-control="next"
+              aria-label={nextLabel}
+            />
+          </>
+        )}
       </div>
     );
   }

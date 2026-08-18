@@ -9,6 +9,18 @@
 //   data-lag="3"             (arrastre-retardo de los items; 0 = sin retardo)
 //   data-snap="auto"         (imanta a limite de item: "true" | "auto" | "false")
 //
+// Controles opcionales (prev/next), dentro del wrapper:
+//   [data-draggable-marquee-control="prev"|"next"]
+//
+// Cada pulsacion avanza UN item exacto desde el limite mas cercano, no desde la
+// posicion cruda: pulsar a mitad de un arrastre no debe acumular medio item de
+// desfase. La tira es un loop infinito, asi que los controles nunca se
+// deshabilitan — no hay primer ni ultimo item que alcanzar.
+//
+// El modulo NO inyecta aria-label: este DS sirve un sitio en tres idiomas y una
+// etiqueta en español sobre la home inglesa es peor que ninguna. La etiqueta la
+// pone el consumidor (el layout la expone como variable).
+//
 // Sobre data-snap: una card asomando por el borde COMUNICA que hay mas, y en
 // pantallas anchas es deseable. Deja de serlo cuando una card ocupa casi todo
 // el ancho: ahi el recorte se lee como un fallo de maquetacion, no como una
@@ -37,6 +49,7 @@ export const REQUIRED_HOOKS = [
   'data-autoplay',
   'data-lag',
   'data-snap',
+  'data-draggable-marquee-control',
 ] as const;
 
 /**
@@ -158,24 +171,61 @@ export function initDraggableMarquee(): CleanupFn {
       pitch > 0 &&
       (snapMode === 'true' || (snapMode === 'auto' && itemsThatFit < 2));
 
-    function snapToNearestItem() {
-      const x = gsap.getProperty(collection, 'x') as number;
-      const snapped = Math.round(x / pitch) * pitch;
-      // El loop mapea progress 0..1 sobre x 0..-listWidth, asi que la posicion
-      // se corrige moviendo progress, no x: x lo escribe el propio tween.
+    // El loop mapea progress 0..1 sobre x 0..-listWidth, asi que cualquier
+    // correccion de posicion se hace moviendo progress y no x: la x la escribe
+    // el propio tween en cada frame, y escribirla por fuera duraria un frame.
+    function glideToX(targetX: number, duration: number, onComplete?: () => void) {
       const current = marqueeLoop.progress();
-      let target = (((-snapped / listWidth) % 1) + 1) % 1;
-      // Elegir el equivalente mas cercano: sin esto, imantar cerca de la costura
-      // 0/1 hace dar la vuelta entera a la tira.
+      let target = (((-targetX / listWidth) % 1) + 1) % 1;
+      // Elegir el equivalente mas cercano: sin esto, corregir cerca de la
+      // costura 0/1 hace dar la vuelta entera a la tira.
       if (target - current > 0.5) target -= 1;
       else if (current - target > 0.5) target += 1;
       gsap.to(marqueeLoop, {
         progress: target,
-        duration: 0.45,
+        duration,
         ease: 'power2.out',
         overwrite: true,
+        onComplete,
       });
     }
+
+    function nearestItemX() {
+      const x = gsap.getProperty(collection, 'x') as number;
+      return Math.round(x / pitch) * pitch;
+    }
+
+    function snapToNearestItem() {
+      glideToX(nearestItemX(), 0.45);
+    }
+
+    function stepTo(direction: 'prev' | 'next') {
+      if (!pitch) return;
+      // Un paso es una POSICION, no una velocidad: se congela el avance
+      // mientras dura para que el loop no siga sumando por debajo, y se
+      // restituye al terminar. Sin esto, con autoplay el paso queda corto.
+      gsap.killTweensOf(timeScale);
+      timeScale.value = 0;
+      applyTimeScale();
+      // Desde el limite mas cercano y no desde la x cruda: pulsar a mitad de un
+      // arrastre no debe acumular medio item de desfase.
+      const base = nearestItemX();
+      glideToX(direction === 'next' ? base - pitch : base + pitch, 0.5, () => {
+        timeScale.value = restingScale;
+        applyTimeScale();
+      });
+    }
+
+    const controlCleanups: Array<() => void> = [];
+    wrapper
+      .querySelectorAll<HTMLElement>('[data-draggable-marquee-control]')
+      .forEach((btn) => {
+        const dir =
+          btn.getAttribute('data-draggable-marquee-control') === 'prev' ? 'prev' : 'next';
+        const onClick = () => stepTo(dir);
+        btn.addEventListener('click', onClick);
+        controlCleanups.push(() => btn.removeEventListener('click', onClick));
+      });
 
     // Drag observer
     const marqueeObserver = Observer.create({
@@ -254,6 +304,7 @@ export function initDraggableMarquee(): CleanupFn {
     wrapper.dataset.draggableMarquee = 'initialized';
 
     cleanups.push(() => {
+      controlCleanups.forEach((fn) => fn());
       removeLagTicker?.();
       marqueeLoop.kill();
       marqueeObserver.kill();

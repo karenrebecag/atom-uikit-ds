@@ -115,3 +115,57 @@
     animation-play-state: paused;
   }
 }
+
+/* ---- Controles prev/next ----
+   Van DENTRO de .marquee, que ya es position:relative. Se apoyan en el borde y
+   no en el flujo: la tira es un carril continuo y meterlos en el layout la
+   partiria en tres columnas.
+
+   El loop es infinito, asi que no hay estado deshabilitado: no existe un primer
+   ni un ultimo item que alcanzar. Un carrusel acotado si lo necesitaria. */
+
+.marquee__control {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: var(--stroke-thin) solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--card);
+  color: var(--foreground);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-200) var(--easing-out),
+    border-color var(--duration-200) var(--easing-out);
+}
+
+.marquee__control:hover {
+  background-color: var(--accent);
+  border-color: var(--border-focus);
+}
+
+.marquee__control:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+}
+
+.marquee__control--prev { left: var(--spacing-4); }
+.marquee__control--next { right: var(--spacing-4); }
+
+.marquee__control svg {
+  width: 1em;
+  height: 1em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__control {
+    transition-duration: 0ms;
+  }
+}
