@@ -1547,6 +1547,47 @@
     }
   },
   {
+    "name": "bouncy-tabs",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "BouncyTabs",
+    "description": "Pestañas con indicador elastico y card que se comprime al conmutar. El indicador viaja entre botones estirandose entre anchos distintos, se pasa unos pixeles y vuelve.",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "bouncy-tabs-animation"
+    ],
+    "discovery": {
+      "name": "BouncyTabs",
+      "description": "Pestañas con indicador elastico y card que se comprime al conmutar. El indicador viaja entre botones estirandose entre anchos distintos, se pasa unos pixeles y vuelve.",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "bouncy-tabs-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Bouncy Tabs Animation",
+    "description": "Behavior de las pestañas: indicador elastico con sobrepaso recortado contra el nav, ghost que sigue al cursor, squash de la card y altura animada del panel. Tiempos desde tokens; navegacion por flechas y respeto de reduced-motion.",
+    "discovery": {
+      "name": "Bouncy Tabs Animation",
+      "description": "Behavior de las pestañas: indicador elastico con sobrepaso recortado contra el nav, ghost que sigue al cursor, squash de la card y altura animada del panel. Tiempos desde tokens; navegacion por flechas y respeto de reduced-motion.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "feature-card",
     "kind": "component",
     "framework": "css",
@@ -1561,6 +1602,30 @@
       "name": "FeatureCard",
       "description": "Card de feature con media, titulo y texto para tiras horizontales. Un solo componente con variantes de color (green/purple/orange/blue) que por dentro apuntan a intents del sistema.",
       "category": "actions",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/bouncy-tabs",
+    "kind": "layout",
+    "framework": "css",
+    "installGroup": "layouts",
+    "title": "Bouncy Tabs",
+    "description": "Layout template: bouncy-tabs",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "bouncy-tabs",
+      "bouncy-tabs-animation"
+    ],
+    "discovery": {
+      "name": "Bouncy Tabs",
+      "description": "Layout template: bouncy-tabs",
+      "category": "layout",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
