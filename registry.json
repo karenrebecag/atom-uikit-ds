@@ -3453,6 +3453,27 @@
       ]
     },
     {
+      "name": "layout/metrics-grid",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
+      "title": "Metrics Grid",
+      "description": "Layout template: metrics-grid",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "feature-card",
+        "typography"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/metrics-grid.ts",
+          "outputPath": "layouts/metrics-grid.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "pricing-card",
       "kind": "component",
       "framework": "css",

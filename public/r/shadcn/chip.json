@@ -91,8 +91,8 @@
       "usage": "import { Chip } from '@/components/atoms/Chip';\n\n<Chip type=\"filled\" size=\"s\" onClose={() => {}}>\n  Design\n</Chip>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T19:18:10.461Z",
-      "sourceCommit": "018d0f0",
+      "generatedAt": "2026-08-19T19:30:31.522Z",
+      "sourceCommit": "66bf6e6",
       "install": {
         "peerDeps": [],
         "cssImports": [

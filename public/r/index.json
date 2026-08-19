@@ -1706,6 +1706,30 @@
     }
   },
   {
+    "name": "layout/metrics-grid",
+    "kind": "layout",
+    "framework": "css",
+    "installGroup": "layouts",
+    "title": "Metrics Grid",
+    "description": "Layout template: metrics-grid",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "feature-card",
+      "typography"
+    ],
+    "discovery": {
+      "name": "Metrics Grid",
+      "description": "Layout template: metrics-grid",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "pricing-card",
     "kind": "component",
     "framework": "css",

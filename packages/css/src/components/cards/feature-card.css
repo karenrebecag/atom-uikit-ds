@@ -85,20 +85,52 @@
   text-wrap: pretty;
 }
 
-/* ---- Acentos ---- */
+/* ---- Valor (slot opcional) ----
+
+   Una metrica en el sitio del gancho: la card no cambia, cambia que lo que
+   engancha es un numero en vez de una imagen. Va ANTES del cuerpo y el <h3>
+   se queda en la etiqueta: un numero no titula nada, y meterlo en un heading
+   ensucia el esquema de encabezados de la pagina para un lector de pantalla.
+
+   El color NO sale de --feature-card-accent. Ese es el intent saturado, que
+   sirve para tenir un fondo al 4% pero no para pintar texto: --brand sobre su
+   propio tinte da 2.71:1, por debajo del 3:1 que pide AA hasta para texto
+   grande. Por eso el DS publica el par *-text de cada intent, ya oscurecido
+   para leerse. Con el, los cuatro acentos pasan de 4.6:1 para arriba. */
+
+.feature-card__value {
+  margin: 0;
+  color: var(--feature-card-accent-text, var(--foreground));
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: var(--letter-spacing-tight);
+  /* Cifras de ancho fijo: sin esto, dos metricas apiladas bailan al alinearse. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Acentos ----
+
+   Dos variables por acento, no una: el intent tine la superficie y su par
+   -text pinta el valor. Separarlas es lo que permite que el mismo acento sea
+   fondo suave y texto legible sin que ninguno de los dos ceda. */
 
 .feature-card--green {
   --feature-card-accent: var(--success);
+  --feature-card-accent-text: var(--success-text);
 }
 
 .feature-card--purple {
   --feature-card-accent: var(--ai);
+  --feature-card-accent-text: var(--ai-text);
 }
 
 .feature-card--orange {
   --feature-card-accent: var(--brand);
+  --feature-card-accent-text: var(--brand-text);
 }
 
 .feature-card--blue {
   --feature-card-accent: var(--info);
+  --feature-card-accent-text: var(--info-text);
 }
