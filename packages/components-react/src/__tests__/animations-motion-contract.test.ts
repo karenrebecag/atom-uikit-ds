@@ -12,6 +12,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { initButtonHover } from '../../../animations/src/button-hover';
 import { initSidebarAnimation } from '../../../animations/src/sidebar';
 import { initDraggableMarquee } from '../../../animations/src/marquee-draggable';
+import { initCssMarquee } from '../../../animations/src/marquee-css';
 import { initVideoPlayer } from '../../../animations/src/video-player';
 
 const g = globalThis as any;
@@ -1292,5 +1293,127 @@ describe('tooltip-smart (FUNCIONAL: contenido bajo hover/focus; el motion es aco
     expect(popup()).toBeNull();
     color.dispatchEvent(new MouseEvent('mouseenter'));
     expect(popup()).toBeNull(); // listener fuera
+  });
+});
+
+
+describe('marquee-css (decorativo: loop infinito por CSS)', () => {
+  /** Callbacks de los ResizeObserver vivos, para poder dispararlos a mano. */
+  let resizeCallbacks: Array<() => void> = [];
+  const RealResizeObserver = (globalThis as any).ResizeObserver;
+
+  beforeEach(() => {
+    resizeCallbacks = [];
+    class ResizeObserverSpy {
+      constructor(cb: () => void) {
+        resizeCallbacks.push(cb);
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    }
+    (globalThis as any).ResizeObserver = ResizeObserverSpy;
+  });
+
+  afterEach(() => {
+    (globalThis as any).ResizeObserver = RealResizeObserver;
+  });
+
+  /**
+   * jsdom no mide layout. `hidden` simula una seccion en display:none — el
+   * switch de seccion por viewport del sitio — que no tiene caja al cargar.
+   */
+  function mountMarquee({ exempt = false, hidden = false, speed = '' } = {}) {
+    document.body.innerHTML = `
+      <div class="marquee" data-marquee ${speed ? `data-speed="${speed}"` : ''} ${exempt ? 'data-motion-exempt' : ''}>
+        <div class="marquee__list"><span class="marquee__item">A</span></div>
+      </div>`;
+    const root = document.querySelector<HTMLElement>('[data-marquee]')!;
+    const list = document.querySelector<HTMLElement>('.marquee__list')!;
+    root.getBoundingClientRect = () => ({ width: hidden ? 0 : 500 }) as DOMRect;
+    list.getBoundingClientRect = () => ({ width: hidden ? 0 : 300 }) as DOMRect;
+    Object.defineProperty(list, 'scrollWidth', { value: hidden ? 0 : 300, configurable: true });
+    return root;
+  }
+
+  function clones() {
+    return document.querySelectorAll('[data-marquee-clone]');
+  }
+
+  it('deriva la duracion del ancho y clona hasta tapar el carril', () => {
+    const root = mountMarquee();
+    const cleanup = initCssMarquee();
+
+    // 300px a 75px/s = 4s por vuelta. La vuelta mide UNA lista, no el total.
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('4s');
+    // carril 500 + lista 300 => 3 listas; la de autor ya cuenta.
+    expect(clones()).toHaveLength(2);
+    expect(clones()[0].getAttribute('aria-hidden')).toBe('true');
+    expect(root.dataset.marquee).toBe('initialized');
+
+    cleanup();
+    expect(clones()).toHaveLength(0);
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('');
+    expect(root.dataset.marquee).toBeUndefined();
+  });
+
+  it('data-speed cambia la velocidad, no la duracion declarada', () => {
+    const root = mountMarquee({ speed: '150' });
+    initCssMarquee();
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('2s');
+  });
+
+  it('oculto al cargar: ni duracion cero ni clones, y se monta al aparecer', () => {
+    // La regresion de PR #48 en su forma CSS: rendirse cuando la seccion mide 0
+    // dejaria --marquee-duration en 0s y la tira congelada PARA SIEMPRE, porque
+    // initCssMarquee corre una sola vez.
+    const root = mountMarquee({ hidden: true });
+    initCssMarquee();
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('');
+    expect(clones()).toHaveLength(0);
+
+    const list = document.querySelector<HTMLElement>('.marquee__list')!;
+    root.getBoundingClientRect = () => ({ width: 500 }) as DOMRect;
+    Object.defineProperty(list, 'scrollWidth', { value: 300, configurable: true });
+    resizeCallbacks.forEach((cb) => cb());
+
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('4s');
+    expect(clones()).toHaveLength(2);
+  });
+
+  it('el resize no acumula copias: solo anade las que falten', () => {
+    mountMarquee();
+    initCssMarquee();
+    resizeCallbacks.forEach((cb) => cb());
+    resizeCallbacks.forEach((cb) => cb());
+    expect(clones()).toHaveLength(2);
+  });
+
+  it('reduced-motion: la tira queda estatica y sin contenido repetido', () => {
+    setReducedMotion(true);
+    const root = mountMarquee();
+    const cleanup = initCssMarquee();
+    expect(clones()).toHaveLength(0);
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('');
+    expect(() => cleanup()).not.toThrow();
+  });
+
+  it('data-motion-exempt: ese marquee no se inicializa', () => {
+    const root = mountMarquee({ exempt: true });
+    initCssMarquee();
+    expect(root.dataset.marquee).toBe('');
+    expect(clones()).toHaveLength(0);
+  });
+
+  it('no toca un marquee draggable: GSAP ya mueve ese mismo eje', () => {
+    document.body.innerHTML = `
+      <div class="marquee" data-marquee data-draggable-marquee>
+        <div class="marquee__list"><span class="marquee__item">A</span></div>
+      </div>`;
+    const root = document.querySelector<HTMLElement>('[data-marquee]')!;
+    root.getBoundingClientRect = () => ({ width: 500 }) as DOMRect;
+    initCssMarquee();
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('');
+    expect(clones()).toHaveLength(0);
   });
 });

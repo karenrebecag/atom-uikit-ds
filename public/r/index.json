@@ -2043,17 +2043,17 @@
     "kind": "layout",
     "framework": "css",
     "installGroup": "layouts",
-    "title": "Logo Marquee",
+    "title": "Logos Marquee",
     "description": "Layout template: logo-marquee",
     "registryDependencies": [
       "tokens",
       "foundation",
       "marquee",
-      "image",
+      "marquee-css",
       "typography"
     ],
     "discovery": {
-      "name": "Logo Marquee",
+      "name": "Logos Marquee",
       "description": "Layout template: logo-marquee",
       "category": "layout",
       "variants": [],
@@ -2701,6 +2701,24 @@
     "discovery": {
       "name": "Marquee Draggable",
       "description": "Infinite marquee with drag-to-accelerate",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "marquee-css",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Marquee CSS",
+    "description": "Infinite marquee driven by CSS keyframes: duration from list width, auto-clone to fill the rail, pause out of view. No GSAP.",
+    "discovery": {
+      "name": "Marquee CSS",
+      "description": "Infinite marquee driven by CSS keyframes: duration from list width, auto-clone to fill the rail, pause out of view. No GSAP.",
       "category": "hook",
       "variants": [],
       "sizes": [],

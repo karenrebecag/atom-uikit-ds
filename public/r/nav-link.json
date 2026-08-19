@@ -131,8 +131,8 @@
       "usage": "import { NavLink } from '@/components/atoms/NavLink';\n\n<NavLink href=\"/docs\" size=\"default\" active>\n  Docs\n</NavLink>"
     },
     "derived": {
-      "generatedAt": "2026-08-18T21:55:42.750Z",
-      "sourceCommit": "2d228b3",
+      "generatedAt": "2026-08-19T17:02:53.764Z",
+      "sourceCommit": "6c4a046",
       "install": {
         "peerDeps": [],
         "cssImports": [

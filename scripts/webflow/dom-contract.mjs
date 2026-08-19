@@ -24,6 +24,7 @@ const SLUG_TO_MODULE = {
   'menu-button': 'menu-button.js',
   'burger-icon': 'menu-button.js',
   // layout-ish hooks (no single registry component, but modules exist)
+  'logos-marquee': 'marquee-css.js',
   sidebar: 'sidebar.js',
   'progress-nav': 'progress-nav.js',
   toc: 'table-of-contents.js',
@@ -40,6 +41,7 @@ export const ALL_BEHAVIOR_MODULES = [
   'bouncy-tabs.js',
   'tooltip.js',
   'button-hover.js',
+  'marquee-css.js',
   'marquee-draggable.js',
   'menu-button.js',
   'nav-autohide.js',
