@@ -1,0 +1,27 @@
+<!--
+  F7 pilot — matches marquee-css.ts DOM contract (modo CSS del componente marquee).
+  Paint classes (.marquee*) come from components.css; motion hooks are data-*.
+
+  Una sola .marquee__list a proposito: el behavior clona las que hagan falta
+  para tapar el carril. Duplicarla aqui a mano probaria el caso equivocado.
+
+  marquee--fade no es decorativo en una tira de logos: sin la mascara, el corte
+  lateral se lee como un logo mal recortado en vez de como "la lista sigue".
+-->
+<div class="marquee marquee--fade" data-marquee="" data-speed="75">
+  <div class="marquee__list">
+    <div class="marquee__item">
+      <img class="marquee__logo" src="/logos/ford.svg" alt="Ford" loading="lazy" />
+    </div>
+    <div class="marquee__item">
+      <img class="marquee__logo" src="/logos/toyota.svg" alt="Toyota" loading="lazy"
+           style="--marquee-logo-scale: 0.76" />
+    </div>
+    <div class="marquee__item">
+      <img class="marquee__logo" src="/logos/berlitz.svg" alt="Berlitz" loading="lazy" />
+    </div>
+    <div class="marquee__item">
+      <img class="marquee__logo" src="/logos/avista.svg" alt="Avista" loading="lazy" />
+    </div>
+  </div>
+</div>

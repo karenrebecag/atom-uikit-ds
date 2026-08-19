@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T21:55:43.222Z",
+  "generatedAt": "2026-08-19T17:06:44.337Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 134,
+    "items": 135,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 134
+      "withSourceCommit": 135
     },
     "webflow": {
       "emitted": 37,
       "excluded": 27
     },
-    "aggregateScore": 48.5
+    "aggregateScore": 48.3
   },
   "batches": [],
   "items": [
@@ -1945,6 +1945,25 @@
     },
     {
       "slug": "marquee-draggable",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
+    },
+    {
+      "slug": "marquee-css",
       "kind": "hook",
       "category": "hook",
       "hasReact": false,

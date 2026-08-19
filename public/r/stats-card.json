@@ -122,8 +122,8 @@
       "usage": "import { StatsCard } from '@/components/atoms/StatsCard';\n\n<StatsCard value=\"12.4k\" label=\"Active users\" trend=\"up\" trendValue=\"+8%\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-18T21:55:42.750Z",
-      "sourceCommit": "2d228b3",
+      "generatedAt": "2026-08-19T17:06:43.965Z",
+      "sourceCommit": "56d202a",
       "install": {
         "peerDeps": [],
         "cssImports": [

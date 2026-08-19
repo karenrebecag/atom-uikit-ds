@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee-css",
+  "type": "registry:file",
+  "title": "Marquee CSS",
+  "description": "Infinite marquee driven by CSS keyframes: duration from list width, auto-clone to fill the rail, pause out of view. No GSAP.",
+  "files": [
+    {
+      "path": "animations/marquee-css.ts",
+      "type": "registry:file",
+      "content": "// CSS Marquee — tira infinita movida por keyframes CSS, sin GSAP.\n//\n// DOM contract: [data-marquee] sobre la raiz .marquee\n//   data-speed=\"75\"   pixeles por segundo\n//\n// Anatomia: .marquee__list (una o varias; el modulo clona las que falten)\n//\n// La velocidad se declara en px/s y NO en segundos por vuelta a proposito: dos\n// tiras con distinto numero de items y la misma duracion se mueven a\n// velocidades distintas, y puestas en la misma pagina el desajuste canta. Lo\n// que el ojo compara es la velocidad; la duracion se deriva del ancho.\n//\n// El movimiento es la animacion CSS de .marquee__list. Este modulo solo aporta\n// lo que CSS no puede: medir para fijar --marquee-duration, clonar la lista\n// hasta tapar el carril, y pausar fuera de vista con --marquee-state.\n\n/** F8b — single source for Webflow/domContract; must list every data-* the module queries. */\nexport const REQUIRED_HOOKS = ['data-marquee', 'data-speed'] as const;\n\n/**\n * Solo pintura. El modulo clona la lista con cloneNode, asi que el prefijo ds-\n * del canal Webflow le da igual; lo que si necesita es encontrarla.\n */\nexport const REQUIRED_ANATOMY = ['.marquee__list'] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\n/** Wave-1 Webflow: behaviors must not write canonical BEM classes. */\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\ntype CleanupFn = () => void;\n\n/** px/s. La tira de logos de Osmo va a este ritmo y es el que Karen valido. */\nconst DEFAULT_SPEED = 75;\n\nfunction getNumberAttr(el: Element, name: string, fallback: number): number {\n  const value = parseFloat(el.getAttribute(name) || '');\n  return Number.isFinite(value) && value > 0 ? value : fallback;\n}\n\n/** Listas de autor: las copias que pone el modulo se excluyen del recuento. */\nfunction authoredLists(root: HTMLElement): HTMLElement[] {\n  return Array.from(root.querySelectorAll<HTMLElement>('.marquee__list')).filter(\n    (list) => list.dataset.marqueeClone === undefined,\n  );\n}\n\nexport function initCssMarquee(): CleanupFn {\n  if (typeof document === 'undefined') return () => {};\n\n  // Una tira infinita corriendo es exactamente lo que reduced-motion pide\n  // evitar. Sin init queda estatica y con UNA sola lista, que es la lectura\n  // correcta: el CSS ya la pausa, y sin clonar no hay contenido repetido.\n  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {\n    return () => {};\n  }\n\n  const cleanups: CleanupFn[] = [];\n\n  function setup(root: HTMLElement) {\n    if (root.dataset.motionExempt !== undefined) return;\n    if (root.dataset.marquee === 'initialized') return;\n    // El modo draggable desplaza __collection con GSAP sobre este mismo eje:\n    // con los dos vivos la tira avanza al doble y el wrap deja de cuadrar.\n    if (root.hasAttribute('data-draggable-marquee')) return;\n\n    const lists = authoredLists(root);\n    const first = lists[0];\n    if (!first) return;\n\n    const clones: HTMLElement[] = [];\n    const speed = getNumberAttr(root, 'data-speed', DEFAULT_SPEED);\n\n    /**\n     * Idempotente: mide, fija la duracion y anade las copias que falten.\n     *\n     * Se vuelve a llamar en cada resize porque las dos cosas que calcula\n     * dependen del ancho. Y mientras la seccion este oculta —el switch de\n     * seccion por viewport del sitio, un tab, un acordeon— no hay caja que\n     * medir: salir sin hacer nada deja que el ResizeObserver reintente cuando\n     * la haya, en vez de fijar una duracion de 0s para siempre.\n     */\n    function apply() {\n      const railWidth = root.getBoundingClientRect().width;\n      const listWidth = first.scrollWidth || first.getBoundingClientRect().width;\n      if (!railWidth || !listWidth) return;\n\n      // La vuelta del loop mide UNA lista (el keyframe es translateX(-100%)):\n      // las copias solo tapan el hueco, no alargan el recorrido.\n      root.style.setProperty('--marquee-duration', `${listWidth / speed}s`);\n\n      // Con una sola copia queda hueco al saltar si la lista es mas angosta\n      // que el carril: hacen falta tantas como quepan mas una.\n      const needed = Math.ceil((railWidth + listWidth) / listWidth);\n      for (let i = lists.length + clones.length; i < needed; i += 1) {\n        const clone = first.cloneNode(true) as HTMLElement;\n        clone.setAttribute('aria-hidden', 'true');\n        clone.dataset.marqueeClone = '';\n        root.appendChild(clone);\n        clones.push(clone);\n      }\n    }\n\n    apply();\n\n    if (typeof ResizeObserver !== 'undefined') {\n      // Anadir copias no cambia el ancho de la raiz (width:100% + overflow\n      // hidden), asi que el observer no se realimenta.\n      const resizeObserver = new ResizeObserver(apply);\n      resizeObserver.observe(root);\n      cleanups.push(() => resizeObserver.disconnect());\n    }\n\n    if (typeof IntersectionObserver !== 'undefined') {\n      const viewObserver = new IntersectionObserver(\n        (entries) => {\n          entries.forEach((entry) => {\n            root.style.setProperty('--marquee-state', entry.isIntersecting ? 'running' : 'paused');\n          });\n        },\n        { threshold: 0 },\n      );\n      viewObserver.observe(root);\n      cleanups.push(() => viewObserver.disconnect());\n    }\n\n    root.dataset.marquee = 'initialized';\n\n    cleanups.push(() => {\n      clones.forEach((clone) => clone.remove());\n      clones.length = 0;\n      root.style.removeProperty('--marquee-duration');\n      root.style.removeProperty('--marquee-state');\n      delete root.dataset.marquee;\n    });\n  }\n\n  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach(setup);\n\n  return () => {\n    cleanups.forEach((cleanup) => cleanup());\n    cleanups.length = 0;\n  };\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Marquee CSS",
+      "description": "Infinite marquee driven by CSS keyframes: duration from list width, auto-clone to fill the rail, pause out of view. No GSAP.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-19T17:06:43.965Z",
+      "sourceCommit": "56d202a",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-css-source"
+      ]
+    }
+  }
+}

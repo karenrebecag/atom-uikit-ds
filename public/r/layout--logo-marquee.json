@@ -2,35 +2,35 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout/logo-marquee",
   "type": "registry:block",
-  "title": "Logo Marquee",
+  "title": "Logos Marquee",
   "description": "Layout template: logo-marquee",
   "registryDependencies": [
     "tokens",
     "foundation",
     "marquee",
-    "image",
+    "marquee-css",
     "typography"
   ],
   "files": [
     {
       "path": "layouts/logo-marquee.ts",
       "type": "registry:file",
-      "content": "/**\n * Layout: logo-marquee\n *\n * Logos de clientes en marquee infinito con titular corto. Reusa el componente marquee.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const logoMarquee = {\n  slug: 'logo-marquee',\n  name: 'Logo Marquee',\n  description:\n    'Logos de clientes en marquee infinito con titular corto. Reusa el componente marquee. Structure only.',\n  components: ['marquee', 'image', 'typography'],\n  html: `<!-- Layout: logo-marquee -->\n<section class=\"l-logo-marquee\">\n  <h3 class=\"l-logo-marquee__headline\">{{headline}}</h3>\n  <div class=\"marquee l-logo-marquee__track\" data-marquee>\n    <div class=\"l-logo-marquee__logos\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n    <!-- duplicate for seamless loop -->\n    <div class=\"l-logo-marquee__logos\" aria-hidden=\"true\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: logo-marquee — structure only */\n.l-logo-marquee {\n  padding: var(--spacing-8) var(--spacing-8);\n  overflow: hidden;\n}\n.l-logo-marquee__headline {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n  font-size: var(--text-lg);\n}\n.l-logo-marquee__track {\n  display: flex;\n  gap: var(--spacing-12);\n}\n.l-logo-marquee__logos {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n  flex-shrink: 0;\n}\n.l-logo-marquee__logos img {\n  height: 32px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n}`,\n};"
+      "content": "/**\n * Layout: logo-marquee — \"Logos Marquee\"\n *\n * Tira infinita de logos de cliente. Reusa el componente marquee en su modo CSS\n * (keyframes + --marquee-duration), enganchado por el behavior marquee-css.\n *\n * Sustituye al par Logo_Marquee_Desktop / Logo_Marquee_Mobile del sitio, que no\n * eran dos disenos de un marquee sino dos rejillas ESTATICAS: la de desktop\n * recortada por overflow y la de movil sin recorte. Un solo componente que se\n * mueve de verdad hace innecesario el switch por viewport — en movil basta con\n * que el carril recorte antes.\n *\n * Structure-only. References DS components by BEM class.\n */\n\nexport const logoMarquee = {\n  slug: 'logo-marquee',\n  name: 'Logos Marquee',\n  description:\n    'Tira infinita de logos de cliente con avance continuo por CSS. La velocidad se declara en px/s y la duracion sale del ancho de la lista, asi que dos tiras con distinto numero de logos se mueven igual. Pausa sola fuera de viewport.',\n  components: ['marquee', 'marquee-css', 'typography'],\n  html: `<!-- Layout: logo-marquee -->\n<!-- Get component CSS: atom_uikit_source(\"marquee\") -->\n<!-- Behavior: atom_uikit_source(\"marquee-css\") — NO requiere gsap -->\n<!--\n  data-marquee   engancha el behavior sobre la raiz .marquee\n  data-speed     pixeles por segundo (75 por defecto). Se declara velocidad y no\n                 duracion porque es lo que el ojo compara entre dos tiras.\n\n  El behavior CLONA .marquee__list las veces que hagan falta para tapar el\n  carril y fija --marquee-duration a partir del ancho de UNA lista. No duplicar\n  a mano: los clones llevan data-marquee-clone y aria-hidden.\n\n  --marquee-logo-scale es la correccion optica por marca. Los logos llegan con\n  pesos visuales dispares y solo la altura se puede igualar por CSS; el resto es\n  caso por caso. Va como variable en el item, no como selector por nombre de\n  archivo, para que sobreviva a renombrar el asset.\n\n  El alt de cada logo es el nombre de la marca. Un alt vacio deja la prueba\n  social invisible para un lector de pantalla, que es justo lo que la seccion\n  viene a comunicar.\n-->\n\n<section class=\"l-logo-marquee\" id=\"{{section_id}}\">\n  <h2 class=\"l-logo-marquee__headline\">{{headline}}</h2>\n\n  <div class=\"marquee marquee--fade\" data-marquee data-speed=\"75\">\n    <div class=\"marquee__list\">\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo1}}\" alt=\"{{logo1_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo2}}\" alt=\"{{logo2_name}}\" loading=\"lazy\"\n             style=\"--marquee-logo-scale: {{logo2_scale}}\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo3}}\" alt=\"{{logo3_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo4}}\" alt=\"{{logo4_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo5}}\" alt=\"{{logo5_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo6}}\" alt=\"{{logo6_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo7}}\" alt=\"{{logo7_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo8}}\" alt=\"{{logo8_name}}\" loading=\"lazy\" />\n      </div>\n    </div>\n  </div>\n</section>`,\n  css: `/* Layout: logo-marquee — structure only, pure DS tokens */\n.l-logo-marquee {\n  padding-block: var(--section-padding-m);\n  overflow: hidden;\n}\n\n.l-logo-marquee__headline {\n  margin: 0 auto var(--rhythm-s);\n  padding-inline: var(--spacing-6);\n  max-width: 42rem;\n  text-align: center;\n  font-size: var(--font-size-xl);\n}\n\n/* La tira sangra a todo el ancho aunque la seccion tenga container: el recorte\n   lateral es lo que comunica que la lista sigue. */\n.l-logo-marquee .marquee__item {\n  padding-inline: var(--spacing-8);\n}\n`,\n};\n"
     },
     {
       "path": "layouts/logo-marquee.html",
       "type": "registry:file",
-      "content": "<!-- Layout: logo-marquee -->\n<section class=\"l-logo-marquee\">\n  <h3 class=\"l-logo-marquee__headline\">{{headline}}</h3>\n  <div class=\"marquee l-logo-marquee__track\" data-marquee>\n    <div class=\"l-logo-marquee__logos\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n    <!-- duplicate for seamless loop -->\n    <div class=\"l-logo-marquee__logos\" aria-hidden=\"true\">\n      <img src=\"{{logo1}}\" alt=\"{{logo1_name}}\" class=\"image\" />\n      <img src=\"{{logo2}}\" alt=\"{{logo2_name}}\" class=\"image\" />\n      <img src=\"{{logo3}}\" alt=\"{{logo3_name}}\" class=\"image\" />\n      <img src=\"{{logo4}}\" alt=\"{{logo4_name}}\" class=\"image\" />\n      <img src=\"{{logo5}}\" alt=\"{{logo5_name}}\" class=\"image\" />\n      <img src=\"{{logo6}}\" alt=\"{{logo6_name}}\" class=\"image\" />\n      <img src=\"{{logo7}}\" alt=\"{{logo7_name}}\" class=\"image\" />\n      <img src=\"{{logo8}}\" alt=\"{{logo8_name}}\" class=\"image\" />\n    </div>\n  </div>\n</section>\n"
+      "content": "<!-- Layout: logo-marquee -->\n<!-- Get component CSS: atom_uikit_source(\"marquee\") -->\n<!-- Behavior: atom_uikit_source(\"marquee-css\") — NO requiere gsap -->\n<!--\n  data-marquee   engancha el behavior sobre la raiz .marquee\n  data-speed     pixeles por segundo (75 por defecto). Se declara velocidad y no\n                 duracion porque es lo que el ojo compara entre dos tiras.\n\n  El behavior CLONA .marquee__list las veces que hagan falta para tapar el\n  carril y fija --marquee-duration a partir del ancho de UNA lista. No duplicar\n  a mano: los clones llevan data-marquee-clone y aria-hidden.\n\n  --marquee-logo-scale es la correccion optica por marca. Los logos llegan con\n  pesos visuales dispares y solo la altura se puede igualar por CSS; el resto es\n  caso por caso. Va como variable en el item, no como selector por nombre de\n  archivo, para que sobreviva a renombrar el asset.\n\n  El alt de cada logo es el nombre de la marca. Un alt vacio deja la prueba\n  social invisible para un lector de pantalla, que es justo lo que la seccion\n  viene a comunicar.\n-->\n\n<section class=\"l-logo-marquee\" id=\"{{section_id}}\">\n  <h2 class=\"l-logo-marquee__headline\">{{headline}}</h2>\n\n  <div class=\"marquee marquee--fade\" data-marquee data-speed=\"75\">\n    <div class=\"marquee__list\">\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo1}}\" alt=\"{{logo1_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo2}}\" alt=\"{{logo2_name}}\" loading=\"lazy\"\n             style=\"--marquee-logo-scale: {{logo2_scale}}\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo3}}\" alt=\"{{logo3_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo4}}\" alt=\"{{logo4_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo5}}\" alt=\"{{logo5_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo6}}\" alt=\"{{logo6_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo7}}\" alt=\"{{logo7_name}}\" loading=\"lazy\" />\n      </div>\n      <div class=\"marquee__item\">\n        <img class=\"marquee__logo\" src=\"{{logo8}}\" alt=\"{{logo8_name}}\" loading=\"lazy\" />\n      </div>\n    </div>\n  </div>\n</section>\n"
     },
     {
       "path": "layouts/logo-marquee.css",
       "type": "registry:file",
-      "content": "/* Layout: logo-marquee — structure only */\n.l-logo-marquee {\n  padding: var(--spacing-8) var(--spacing-8);\n  overflow: hidden;\n}\n.l-logo-marquee__headline {\n  text-align: center;\n  margin-bottom: var(--spacing-6);\n  font-size: var(--text-lg);\n}\n.l-logo-marquee__track {\n  display: flex;\n  gap: var(--spacing-12);\n}\n.l-logo-marquee__logos {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n  flex-shrink: 0;\n}\n.l-logo-marquee__logos img {\n  height: 32px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n}\n"
+      "content": "/* Layout: logo-marquee — structure only, pure DS tokens */\n.l-logo-marquee {\n  padding-block: var(--section-padding-m);\n  overflow: hidden;\n}\n\n.l-logo-marquee__headline {\n  margin: 0 auto var(--rhythm-s);\n  padding-inline: var(--spacing-6);\n  max-width: 42rem;\n  text-align: center;\n  font-size: var(--font-size-xl);\n}\n\n/* La tira sangra a todo el ancho aunque la seccion tenga container: el recorte\n   lateral es lo que comunica que la lista sigue. */\n.l-logo-marquee .marquee__item {\n  padding-inline: var(--spacing-8);\n}\n"
     }
   ],
   "atom": {
     "discovery": {
-      "name": "Logo Marquee",
+      "name": "Logos Marquee",
       "description": "Layout template: logo-marquee",
       "category": "layout",
       "variants": [],
@@ -49,11 +49,13 @@
     },
     "layout": {
       "slots": [
+        "section_id",
         "headline",
         "logo1",
         "logo1_name",
         "logo2",
         "logo2_name",
+        "logo2_scale",
         "logo3",
         "logo3_name",
         "logo4",
@@ -70,15 +72,15 @@
       "repeats": {},
       "components": [
         "marquee",
-        "image",
+        "marquee-css",
         "typography"
       ]
     }
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-08-18T21:55:42.750Z",
-      "sourceCommit": "2d228b3",
+      "generatedAt": "2026-08-19T17:06:43.965Z",
+      "sourceCommit": "56d202a",
       "install": {
         "peerDeps": [],
         "cssImports": []
@@ -91,7 +93,7 @@
         "resolved": [],
         "sizes": []
       },
-      "standaloneCss": "/* Layout: logo-marquee — structure only */\n.l-logo-marquee {\n  padding: 32px 32px;\n  overflow: hidden;\n}\n.l-logo-marquee__headline {\n  text-align: center;\n  margin-bottom: 24px;\n  font-size: var(--text-lg);\n}\n.l-logo-marquee__track {\n  display: flex;\n  gap: 48px;\n}\n.l-logo-marquee__logos {\n  display: flex;\n  align-items: center;\n  gap: 48px;\n  flex-shrink: 0;\n}\n.l-logo-marquee__logos img {\n  height: 32px;\n  width: auto;\n  filter: grayscale(1);\n  opacity: 0.8;\n}\n",
+      "standaloneCss": "/* Layout: logo-marquee — structure only, pure DS tokens */\n.l-logo-marquee {\n  padding-block: 100px;\n  overflow: hidden;\n}\n\n.l-logo-marquee__headline {\n  margin: 0 auto 80px;\n  padding-inline: 24px;\n  max-width: 42rem;\n  text-align: center;\n  font-size: 25px;\n}\n\n/* La tira sangra a todo el ancho aunque la seccion tenga container: el recorte\n   lateral es lo que comunica que la lista sigue. */\n.l-logo-marquee .marquee__item {\n  padding-inline: 32px;\n}\n",
       "motion": [],
       "degraded": true,
       "degradeReasons": [

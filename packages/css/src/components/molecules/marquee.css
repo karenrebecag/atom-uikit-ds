@@ -71,6 +71,28 @@
   white-space: nowrap;
 }
 
+/* ---- Logos mode ----
+   Tira de marcas de cliente. Los logos llegan con proporciones y pesos opticos
+   dispares, asi que la unica medida que se puede igualar por CSS es la ALTURA;
+   lo demas es correccion caso por caso.
+
+   --marquee-logo-scale existe justo para eso. La correccion optica que vivia en
+   prod la hacia un embed con selectores por nombre de archivo
+   (img[src*="toyota"] { transform: scale(.76) }): se rompia al renombrar el
+   asset y era invisible desde el panel. Como variable por item, la pone quien
+   edita y sobrevive al asset. */
+
+.marquee__logo {
+  display: block;
+  height: var(--marquee-logo-height, 2.5rem);
+  width: auto;
+  /* Webflow sirve img { max-width: 100% } de fabrica: sin esto, un wordmark
+     ancho se comprime en vez de respetar su altura. */
+  max-width: none;
+  object-fit: contain;
+  transform: scale(var(--marquee-logo-scale, 1));
+}
+
 /* ---- Separator (optional decorative element between items) ---- */
 
 .marquee__separator {

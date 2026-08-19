@@ -2193,11 +2193,11 @@
       "meta": {
         "webflow": {
           "previewProps": {
-          "draggable": true,
-          "fade": true,
-          "duration": 20,
-          "controls": true
-        },
+            "draggable": true,
+            "fade": true,
+            "duration": 20,
+            "controls": true
+          },
           "previewChildren": [
             "Atom",
             "UIKit",
@@ -3751,13 +3751,13 @@
       "kind": "layout",
       "framework": "css",
       "installGroup": "layouts",
-      "title": "Logo Marquee",
+      "title": "Logos Marquee",
       "description": "Layout template: logo-marquee",
       "registryDependencies": [
         "tokens",
         "foundation",
         "marquee",
-        "image",
+        "marquee-css",
         "typography"
       ],
       "files": [
@@ -4433,6 +4433,21 @@
         {
           "sourcePath": "packages/animations/src/marquee-draggable.ts",
           "outputPath": "animations/marquee-draggable.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "marquee-css",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Marquee CSS",
+      "description": "Infinite marquee driven by CSS keyframes: duration from list width, auto-clone to fill the rail, pause out of view. No GSAP.",
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/marquee-css.ts",
+          "outputPath": "animations/marquee-css.ts",
           "type": "registry:file"
         }
       ]
