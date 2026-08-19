@@ -59,20 +59,17 @@ export const logoMarquee = {
 
 <section class="l-logo-marquee" id="{{section_id}}">
   <!--
-    El titular va en gutter + contenedor, la tira NO. Es la herencia de layout
-    del proyecto (padding lateral fuera, ancho maximo dentro, centrado): asi el
-    titular arranca en la misma linea que el resto del contenido de la pagina.
-    La tira se queda a sangre a proposito — el recorte lateral es lo que
-    comunica que la lista sigue, y meterla en el contenedor lo delataria como
-    corte de maquetacion.
+    Titular y tira comparten gutter y contenedor: la herencia de layout del
+    proyecto (padding lateral fuera del ancho maximo, ancho maximo centrado
+    dentro). Compartir la MISMA caja es lo que garantiza que el borde izquierdo
+    del titular y el del primer logo no puedan separarse nunca.
+    El recorte del carril pasa a ser el del contenedor, no el del viewport.
   -->
-  <div class="l-logo-marquee__header">
+  <div class="l-logo-marquee__gutter">
     <div class="l-logo-marquee__container">
       <h2 class="l-logo-marquee__headline">{{headline}}</h2>
-    </div>
-  </div>
 
-  <div class="marquee marquee--fade" data-marquee data-speed="75">
+      <div class="marquee marquee--fade" data-marquee data-speed="75">
     <div class="marquee__list" data-marquee-list>
       <div class="marquee__item marquee__item--logo">
         <img class="marquee__logo" src="{{logo1}}" alt="{{logo1_name}}" loading="eager" />
@@ -99,6 +96,8 @@ export const logoMarquee = {
       <div class="marquee__item marquee__item--logo">
         <img class="marquee__logo" src="{{logo8}}" alt="{{logo8_name}}" loading="eager" />
       </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>`,
@@ -112,7 +111,7 @@ export const logoMarquee = {
    convencion del sitio consumidor (container-large = 80rem, padding-global =
    5%). Van como variables para que otro consumidor los cambie sin tocar el
    layout. */
-.l-logo-marquee__header {
+.l-logo-marquee__gutter {
   padding-inline: var(--l-logo-marquee-gutter, 5%);
 }
 
