@@ -109,6 +109,44 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* ---- Modificadores de rejilla ----
+
+   La card fija su ancho porque nacio para tiras horizontales; en una rejilla
+   manda la columna. Van como MODIFICADORES y no como selector descendente
+   desde el layout porque el panel de Webflow no declara descendentes: alli un
+   modo del contenedor no se puede reproducir y la rejilla quedaria con cards
+   de 20rem sueltas. Misma razon que marquee__item--logo. */
+
+.feature-card--fill {
+  width: auto;
+  height: 100%;
+}
+
+/* Tile de solo media: sin cuerpo y sin padding, la imagen sangra hasta el
+   radio. Comparte radio y tinte con las cards de contenido para que la rejilla
+   se lea como un sistema y no como dos cajas distintas puestas al lado. */
+.feature-card--media {
+  width: auto;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.feature-card__media--fill {
+  flex-grow: 1;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* Sobre la imagen, no sobre el contenedor: object-fit necesita ir en el propio
+   reemplazado, y Webflow no puede escribir `.feature-card__media--fill > *`. */
+.feature-card__media-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* ---- Acentos ----
 
    Dos variables por acento, no una: el intent tine la superficie y su par

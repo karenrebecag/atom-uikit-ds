@@ -41,13 +41,13 @@ export const metricsGrid = {
   </div>
 
   <div class="l-metrics-grid__list">
-    <article class="feature-card l-metrics-grid__media-card">
-      <div class="feature-card__media">
-        <img src="{{media1_src}}" alt="{{media1_alt}}" loading="lazy" />
+    <article class="feature-card feature-card--media">
+      <div class="feature-card__media feature-card__media--fill">
+        <img class="feature-card__media-fill" src="{{media1_src}}" alt="{{media1_alt}}" loading="lazy" />
       </div>
     </article>
 
-    <article class="feature-card feature-card--purple">
+    <article class="feature-card feature-card--fill feature-card--purple">
       <p class="feature-card__value">{{card1_value}}</p>
       <div class="feature-card__body">
         <h3 class="feature-card__title">{{card1_label}}</h3>
@@ -55,7 +55,7 @@ export const metricsGrid = {
       </div>
     </article>
 
-    <article class="feature-card feature-card--orange">
+    <article class="feature-card feature-card--fill feature-card--orange">
       <p class="feature-card__value">{{card2_value}}</p>
       <div class="feature-card__body">
         <h3 class="feature-card__title">{{card2_label}}</h3>
@@ -63,7 +63,7 @@ export const metricsGrid = {
       </div>
     </article>
 
-    <article class="feature-card feature-card--green">
+    <article class="feature-card feature-card--fill feature-card--green">
       <p class="feature-card__value">{{card3_value}}</p>
       <div class="feature-card__body">
         <h3 class="feature-card__title">{{card3_label}}</h3>
@@ -71,7 +71,7 @@ export const metricsGrid = {
       </div>
     </article>
 
-    <article class="feature-card feature-card--blue">
+    <article class="feature-card feature-card--fill feature-card--blue">
       <p class="feature-card__value">{{card4_value}}</p>
       <div class="feature-card__body">
         <h3 class="feature-card__title">{{card4_label}}</h3>
@@ -79,8 +79,8 @@ export const metricsGrid = {
       </div>
     </article>
 
-    <article class="feature-card l-metrics-grid__media-card">
-      <div class="feature-card__media">
+    <article class="feature-card feature-card--media">
+      <div class="feature-card__media feature-card__media--fill">
         <video autoplay loop muted playsinline poster="{{media2_poster}}">
           <source src="{{media2_webm}}" type="video/webm" />
           <source src="{{media2_mp4}}" type="video/mp4" />
@@ -124,25 +124,10 @@ export const metricsGrid = {
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 }
 
-/* La card de cifra fija su ancho para tiras horizontales; en rejilla manda la
-   columna. */
-.l-metrics-grid__list .feature-card {
-  width: auto;
-  height: 100%;
-}
-
-/* El tile de media no lleva padding: la imagen sangra hasta el radio. */
-.l-metrics-grid__media-card {
-  padding: 0;
-  overflow: hidden;
-}
-
-.l-metrics-grid__media-card .feature-card__media {
-  border-radius: inherit;
-  height: 100%;
-}
-
-.l-metrics-grid__media-card video {
+/* El ancho, el relleno y el recorte los ponen los modificadores del componente
+   (--fill, --media, __media--fill), no selectores descendentes desde aqui: asi
+   el canal de Webflow puede reproducirlos con combo classes. */
+.l-metrics-grid__list video {
   display: block;
   width: 100%;
   height: 100%;
