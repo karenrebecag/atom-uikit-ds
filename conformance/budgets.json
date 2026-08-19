@@ -18,9 +18,9 @@
       "gzipKb": 26
     },
     "packages/animations/dist/atom-animations.js": {
-      "rawKb": 170,
-      "gzipKb": 42,
-      "$comment": "marquee-css (modo CSS del marquee: mide, clona y pausa fuera de vista; behavior nº15): 155.5/39.1 medidos. SUBIDO de 155/40 el 2026-08-19 con Karen avisada — el modulo anterior dejo el raw en 154.9/155 y este lo paso por 0.5kb, asi que el gate pasaba solo por redondeo a kb enteros. Se sube a 170/42 para volver a tener holgura real en vez de vivir en el borde. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
+      "rawKb": 185,
+      "gzipKb": 46,
+      "$comment": "odometer (cifras que ruedan al entrar en viewport; behavior nº16): 167.5/42.6 medidos. SUBIDO de 170/42 el 2026-08-19 con Karen avisada, segunda subida del dia: marquee-css y odometer son dos behaviors nuevos en la misma sesion. A 16 modulos, TODA pagina paga los 16 aunque use dos: vale la pena evaluar partir el bundle antes de la proxima subida. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
     },
     "packages/css/dist/webflow.css": {
       "rawKb": 22,
@@ -35,8 +35,8 @@
   "registry": {
     "$comment": "El index es el warm-start del MCP (63kb con 110 items, 2026-07-29). El budget vigila crecimiento desbocado, no bloquea un componente nuevo.",
     "public/r/index.json": {
-      "rawKb": 90,
-      "$comment": "124 items (tooltip-animation empujo 81kb). Was 80."
+      "rawKb": 100,
+      "$comment": "138 items (metrics-grid, marquee-css, odometer y sus dos entradas empujaron a 91kb). Was 90 con 124."
     }
   }
 }

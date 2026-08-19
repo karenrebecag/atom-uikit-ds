@@ -53,6 +53,7 @@
 @import './molecules/user-profile.css';
 @import './molecules/bouncy-tabs.css';
 @import './molecules/marquee.css';
+@import './molecules/odometer.css';
 @import './molecules/video-player.css';
 @import './sidebar/sidebar.css';
 @import './atoms/feature.css';

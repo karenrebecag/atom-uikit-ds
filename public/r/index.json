@@ -2752,6 +2752,46 @@
     }
   },
   {
+    "name": "odometer",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "Odometer",
+    "description": "Digits roll like a mechanical counter. Selectors go by attribute, not class, so one sheet serves both the code and the Webflow channel.",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Odometer",
+      "description": "Digits roll like a mechanical counter. Selectors go by attribute, not class, so one sheet serves both the code and the Webflow channel.",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "odometer-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Odometer Animation",
+    "description": "Rolls each digit to its target on scroll. Non-digit characters stay put, so signs, symbols and separators work untouched.",
+    "discovery": {
+      "name": "Odometer Animation",
+      "description": "Rolls each digit to its target on scroll. Non-digit characters stay put, so signs, symbols and separators work untouched.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "menu-button-animation",
     "kind": "hook",
     "framework": "react",

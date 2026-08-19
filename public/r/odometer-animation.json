@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "odometer-animation",
+  "type": "registry:file",
+  "title": "Odometer Animation",
+  "description": "Rolls each digit to its target on scroll. Non-digit characters stay put, so signs, symbols and separators work untouched.",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "animations/odometer.ts",
+      "type": "registry:file",
+      "content": "// Odometer — cifras que ruedan como un contador mecanico al entrar en viewport.\n//\n// DOM contract:\n//   [data-odometer]           el elemento cuyo TEXTO es la cifra final\n//   [data-odometer-from]      arranque explicito; por defecto, 10 menos\n//   [data-odometer-duration]  segundos del giro (1.2 por defecto)\n//   [data-odometer-group]     contenedor opcional: dispara y escalona los suyos\n//\n// Cualquier caracter que no sea digito se queda quieto mientras las cifras\n// ruedan. Por eso \"+81%\", \"-30%\" y \"€12.499,95\" funcionan sin configurar nada:\n// el signo, el simbolo y los separadores son estaticos, no casos especiales.\n//\n// Sobre arrancar 10 antes y no en 0: desde 0 el numero atraviesa decenas que\n// no significan nada y el giro se lee como una carga. A diez de distancia se\n// lee como un remate — que es lo que una metrica quiere comunicar. Se clampa\n// en 0 porque una cifra menor que 10 arrancaria en negativo.\n//\n// Requires: gsap + ScrollTrigger (globales)\n// Respects: prefers-reduced-motion (cifra final, sin giro), data-motion-exempt\n\n/** F8b — single source for Webflow/domContract; must list every data-* the module queries. */\nexport const REQUIRED_HOOKS = [\n  'data-odometer',\n  'data-odometer-from',\n  'data-odometer-duration',\n  'data-odometer-group',\n] as const;\n\n/**\n * El markup interno lo genera este modulo; el CSS que lo sostiene va por\n * atributo (odometer.css), no por clase, asi que el prefijo ds- del canal\n * Webflow no le afecta.\n */\nexport const REQUIRED_ANATOMY = [] as const;\n\nexport const GSAP_PLUGINS = ['ScrollTrigger'] as const;\n\n/** Wave-1 Webflow: behaviors must not write canonical BEM classes. */\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\ntype CleanupFn = () => void;\n\ndeclare const gsap: any;\ndeclare const ScrollTrigger: any;\n\n/** Cuanto por debajo del destino arranca la cuenta si nadie dice otra cosa. */\nconst DEFAULT_GAP = 10;\nconst DEFAULT_DURATION = 1.2;\n/** Dos vueltas de 0-9 para que TODO digito ruede hacia adelante, nunca atras. */\nconst DIGIT_CYCLES = 2;\nconst DIGIT_STAGGER = 0.04;\nconst ELEMENT_STAGGER = 0.1;\n\ninterface Segment {\n  type: 'digit' | 'static';\n  char: string;\n  startDigit?: number;\n  hidden?: boolean;\n}\n\nfunction numberAttr(el: Element, name: string): number | null {\n  const raw = el.getAttribute(name);\n  if (raw === null || raw.trim() === '') return null;\n  const value = parseFloat(raw);\n  return Number.isFinite(value) ? value : null;\n}\n\n/** El paso vertical de la tira es una linea, en em para que escale con la fuente. */\nfunction lineStep(el: Element): number {\n  const styles = getComputedStyle(el);\n  const lh = styles.lineHeight;\n  if (lh === 'normal') return 1.2;\n  return parseFloat(lh) / parseFloat(styles.fontSize);\n}\n\nfunction parseSegments(text: string): Segment[] {\n  return [...text].map((char) => ({\n    type: /\\d/.test(char) ? 'digit' : 'static',\n    char,\n  }));\n}\n\n/** Reparte las cifras del arranque en los huecos de digito, alineadas a la derecha. */\nfunction mapStartDigits(segments: Segment[], startValue: number): Segment[] {\n  const slots = segments.filter((s) => s.type === 'digit').length;\n  const padded = String(Math.floor(Math.abs(startValue)))\n    .padStart(slots, '0')\n    .slice(-slots);\n  let i = 0;\n  return segments.map((s) =>\n    s.type === 'digit' ? { ...s, startDigit: parseInt(padded[i++], 10) } : s,\n  );\n}\n\n/**\n * Marca los ceros de relleno de la izquierda.\n *\n * Sin esto, 90 -> 100 arrancaria mostrando \"090\": el cero sobrante delata que\n * la cifra final tiene un digito mas y estropea la sorpresa. Marcados, esas\n * columnas se despliegan al animar.\n */\nfunction markHidden(segments: Segment[], startValue: number): Segment[] {\n  const total = segments.filter((s) => s.type === 'digit').length;\n  const abs = Math.floor(Math.abs(startValue));\n  const startDigits = abs === 0 ? 1 : String(abs).length;\n  const leading = Math.max(0, total - startDigits);\n  if (leading === 0) return segments;\n\n  let seen = 0;\n  let firstDigitSeen = false;\n  let prevHidden = false;\n  return segments.map((seg) => {\n    if (seg.type === 'digit') {\n      firstDigitSeen = true;\n      const hidden = seen < leading;\n      prevHidden = hidden;\n      seen += 1;\n      return { ...seg, hidden };\n    }\n    return { ...seg, hidden: firstDigitSeen && prevHidden };\n  });\n}\n\ninterface Roller {\n  roller: HTMLElement;\n  targetPos: number;\n}\n\nfunction buildRollers(\n  el: HTMLElement,\n  segments: Segment[],\n  step: number,\n  grow: boolean,\n): { rollers: Roller[]; reveals: HTMLElement[] } {\n  el.innerHTML = '';\n  const rollers: Roller[] = [];\n  const reveals: HTMLElement[] = [];\n  const strip = Array.from({ length: 10 * DIGIT_CYCLES }, (_, d) => d % 10).join('\\n');\n\n  segments.forEach((seg) => {\n    if (seg.type === 'static') {\n      const span = document.createElement('span');\n      span.setAttribute('data-odometer-part', 'static');\n      span.style.height = `${step}em`;\n      span.style.lineHeight = String(step);\n      span.textContent = seg.char;\n      el.appendChild(span);\n      if (grow && seg.hidden) {\n        gsap.set(span, { opacity: 0 });\n        reveals.push(span);\n      }\n      return;\n    }\n\n    const mask = document.createElement('span');\n    mask.setAttribute('data-odometer-part', 'mask');\n    mask.style.height = `${step}em`;\n    mask.style.lineHeight = String(step);\n\n    const roller = document.createElement('span');\n    roller.setAttribute('data-odometer-part', 'roller');\n    roller.style.lineHeight = String(step);\n    roller.textContent = strip;\n\n    mask.appendChild(roller);\n    el.appendChild(mask);\n\n    const startDigit = seg.startDigit ?? 0;\n    const isReveal = grow && !!seg.hidden;\n    gsap.set(roller, { y: isReveal ? `${step}em` : `${-startDigit * step}em` });\n\n    const endDigit = parseInt(seg.char, 10);\n    // Si el destino no es mayor que el arranque, se da la vuelta entera: asi\n    // el digito siempre avanza y nunca retrocede a la vista.\n    rollers.push({ roller, targetPos: endDigit > startDigit ? endDigit : 10 + endDigit });\n    if (isReveal) reveals.push(mask);\n  });\n\n  return { rollers, reveals };\n}\n\n/** Deja el texto final y retira las tiras: en una pagina con muchas cifras, el\n    DOM generado pesa mas que la animacion. */\nfunction restore(el: HTMLElement, text: string) {\n  el.innerHTML = '';\n  el.textContent = text;\n  el.style.removeProperty('width');\n  el.style.removeProperty('overflow');\n}\n\nexport function initOdometer(): CleanupFn {\n  if (typeof document === 'undefined') return () => {};\n  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return () => {};\n\n  gsap.registerPlugin(ScrollTrigger);\n\n  const cleanups: CleanupFn[] = [];\n  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;\n\n  const all = Array.from(document.querySelectorAll<HTMLElement>('[data-odometer]')).filter(\n    (el) => el.dataset.motionExempt === undefined && el.dataset.odometer !== 'initialized',\n  );\n  if (!all.length) return () => {};\n\n  // Sin giro, la cifra ya esta escrita en el markup: no hay nada que hacer.\n  if (reduced) return () => {};\n\n  // Cada grupo dispara y escalona a los suyos; los sueltos se disparan solos.\n  const groups = new Map<HTMLElement | null, HTMLElement[]>();\n  all.forEach((el) => {\n    const group = el.closest<HTMLElement>('[data-odometer-group]');\n    const key = group ?? el;\n    const list = groups.get(key) ?? [];\n    list.push(el);\n    groups.set(key, list);\n  });\n\n  groups.forEach((elements, trigger) => {\n    const prepared = elements.map((el) => {\n      const text = (el.textContent ?? '').trim();\n      const digits = parseInt(text.replace(/\\D/g, ''), 10) || 0;\n      const explicit = numberAttr(el, 'data-odometer-from');\n      const from = Math.max(0, explicit ?? digits - DEFAULT_GAP);\n      const duration = numberAttr(el, 'data-odometer-duration') ?? DEFAULT_DURATION;\n      const step = lineStep(el);\n\n      let segments = parseSegments(text);\n      segments = mapStartDigits(segments, from);\n      segments = markHidden(segments, from);\n\n      const startDigitCount = from === 0 ? 1 : String(Math.floor(from)).length;\n      const grow = startDigitCount < segments.filter((s) => s.type === 'digit').length;\n\n      const { rollers, reveals } = buildRollers(el, segments, step, grow);\n      const fontSize = parseFloat(getComputedStyle(el).fontSize);\n      const revealData = reveals.map((node) => {\n        const widthEm = node.offsetWidth / fontSize;\n        gsap.set(node, { width: 0, overflow: 'hidden' });\n        return { node, widthEm };\n      });\n\n      el.dataset.odometer = 'initialized';\n      return { el, text, rollers, revealData, duration, step };\n    });\n\n    const timeline = gsap.timeline({\n      scrollTrigger: { trigger: trigger as HTMLElement, start: 'top 80%', once: true },\n      onComplete() {\n        prepared.forEach(({ el, text }) => restore(el, text));\n      },\n    });\n\n    prepared.forEach(({ rollers, revealData, duration, step }, index) => {\n      const offset = index * ELEMENT_STAGGER;\n\n      revealData.forEach(({ node, widthEm }) => {\n        timeline.to(node, { width: `${widthEm}em`, opacity: 1, duration: 0.5, ease: 'power2.out' }, offset);\n      });\n\n      rollers.forEach(({ roller, targetPos }, digitIndex) => {\n        // De derecha a izquierda: las unidades salen primero, como en un\n        // contador real, donde las decenas solo se mueven cuando ya giraron.\n        const reversed = rollers.length - 1 - digitIndex;\n        timeline.to(\n          roller,\n          { y: `${-targetPos * step}em`, duration, ease: 'power3.out', force3D: true },\n          offset + reversed * DIGIT_STAGGER,\n        );\n      });\n    });\n\n    cleanups.push(() => {\n      timeline.scrollTrigger?.kill();\n      timeline.kill();\n      prepared.forEach(({ el, text }) => {\n        restore(el, text);\n        delete el.dataset.odometer;\n      });\n    });\n  });\n\n  return () => {\n    cleanups.forEach((cleanup) => cleanup());\n    cleanups.length = 0;\n  };\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Odometer Animation",
+      "description": "Rolls each digit to its target on scroll. Non-digit characters stay put, so signs, symbols and separators work untouched.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-19T20:34:33.894Z",
+      "sourceCommit": "9b45087",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-css-source"
+      ]
+    }
+  }
+}

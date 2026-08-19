@@ -1,0 +1,42 @@
+/* -------------------------------------------------------------------------
+   Odometer
+
+   Cifras que ruedan como un contador mecanico al entrar en viewport. El markup
+   interno lo construye el behavior; aqui va solo lo que no se puede poner
+   inline sin ensuciar cada nodo generado.
+
+   Selectores por ATRIBUTO y no por clase a proposito: el canal de Webflow
+   prefija las clases con ds- pero deja los atributos intactos, asi que una
+   sola hoja sirve a los dos canales sin duplicar nada.
+
+   Parts: [data-odometer], [data-odometer-part="mask"|"roller"|"static"]
+   ------------------------------------------------------------------------- */
+
+[data-odometer] {
+  display: inline-flex;
+  align-items: center;
+  /* Cifras de ancho fijo. Sin esto el numero cambia de ancho mientras rueda y
+     empuja lo que tenga al lado en cada frame. */
+  font-variant-numeric: tabular-nums;
+}
+
+[data-odometer-part='mask'],
+[data-odometer-part='static'] {
+  display: inline-block;
+  /* clip y no hidden: hidden convierte la caja en contenedor de scroll, y
+     entonces el navegador puede desplazarla al enfocar algo dentro. */
+  overflow: clip;
+  /* El padding evita que se recorten ascendentes y descendentes; el margin
+     negativo lo devuelve al flujo para que la caja no crezca por compensarlo. */
+  padding: 0.05em;
+  margin: -0.05em;
+}
+
+[data-odometer-part='roller'] {
+  display: block;
+  /* La tira de digitos es un solo nodo de texto separado por saltos de linea:
+     pre es lo que los conserva. */
+  white-space: pre;
+  text-align: center;
+  will-change: transform;
+}

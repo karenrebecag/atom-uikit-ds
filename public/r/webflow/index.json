@@ -186,6 +186,10 @@
     {
       "name": "pricing-card",
       "reason": "no React source (css-only / no-tsx)"
+    },
+    {
+      "name": "odometer",
+      "reason": "no React source (css-only / no-tsx)"
     }
   ]
 }

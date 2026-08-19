@@ -52,8 +52,8 @@
       "exclude": "render depende de new Date() (mes visible + ring de hoy): el artefacto cambiaba cada dia y el gate de deriva fallaba solo — el canal exige render determinista; un calendar interactivo se consume via React"
     },
     "derived": {
-      "generatedAt": "2026-08-19T20:07:16.183Z",
-      "sourceCommit": "796dab6",
+      "generatedAt": "2026-08-19T20:34:33.894Z",
+      "sourceCommit": "9b45087",
       "install": {
         "peerDeps": [],
         "cssImports": [
