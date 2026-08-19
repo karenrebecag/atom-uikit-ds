@@ -105,16 +105,26 @@
    El default de .marquee__item (12/16px) sirve para texto, no para marcas:
    dos logos separados por 32px se leen como un logo compuesto. */
 .marquee--logos .marquee__item {
-  gap: var(--spacing-6);
+  gap: var(--marquee-logo-gap, var(--spacing-12));
   padding-block: var(--spacing-6);
-  padding-inline: 0 var(--marquee-logo-gap, var(--spacing-16));
+  padding-inline: 0 var(--marquee-logo-gap, var(--spacing-12));
 }
 
-/* El separador es el unico color propio que admite una tira de marcas ajenas:
-   los logos llegan con la paleta de cada cliente y no se tocan, asi que el
-   acento tiene que ir en lo que si es nuestro. */
-.marquee--logos .marquee__separator {
-  color: var(--brand);
+/* El acento va como pseudo-elemento y no como .marquee__separator: en una tira
+   de logos el separador es RITMO, no contenido. Puesto en el markup, quien
+   edita puede olvidarlo en un item y romper la cadencia sin darse cuenta; como
+   pseudo-elemento no hay nada que olvidar.
+   Es ademas el unico color propio que admite una tira de marcas ajenas: los
+   logos llegan con la paleta de cada cliente y no se tocan.
+   Con el gap y el padding al mismo valor, el punto queda centrado entre logo y
+   logo — esa simetria es la que paga el padding a un solo lado. */
+.marquee--logos .marquee__item::after {
+  content: '';
+  flex: none;
+  width: var(--spacing-1);
+  height: var(--spacing-1);
+  border-radius: var(--radius-full);
+  background-color: var(--brand);
 }
 
 /* ---- Separator (optional decorative element between items) ---- */

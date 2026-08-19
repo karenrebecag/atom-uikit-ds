@@ -34,8 +34,8 @@
       "usage": "import { TypographyH1, TypographyP } from '@/components/atoms/Typography';\n\n<TypographyH1>Ship faster with ATOM</TypographyH1>\n<TypographyP>Design-system components for product teams.</TypographyP>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:37:42.396Z",
-      "sourceCommit": "82d9387",
+      "generatedAt": "2026-08-19T17:39:32.876Z",
+      "sourceCommit": "4ed4a66",
       "install": {
         "peerDeps": [],
         "cssImports": []

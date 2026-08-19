@@ -33,7 +33,8 @@ export const logoMarquee = {
 
   marquee--logos ajusta el espaciado al modelo de Osmo: padding a UN solo lado
   del item, para que el hueco entre logos sea el valor declarado y no el doble.
-  Tambien tine el separador con el acento de marca.
+  El punto de acento entre logos es un pseudo-elemento, no markup: en una tira
+  de logos el separador es ritmo, y puesto a mano se puede olvidar en un item.
 
   --marquee-logo-scale es la correccion optica por marca. Los logos llegan con
   pesos visuales dispares y solo la altura se puede igualar por CSS; el resto es
@@ -53,36 +54,28 @@ export const logoMarquee = {
     <div class="marquee__list">
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo1}}" alt="{{logo1_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo2}}" alt="{{logo2_name}}" loading="lazy"
              style="--marquee-logo-scale: {{logo2_scale}}" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo3}}" alt="{{logo3_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo4}}" alt="{{logo4_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo5}}" alt="{{logo5_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo6}}" alt="{{logo6_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo7}}" alt="{{logo7_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo8}}" alt="{{logo8_name}}" loading="lazy" />
-        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
     </div>
   </div>
