@@ -1,0 +1,14 @@
+<!--
+  F7 pilot — matches odometer.ts DOM contract.
+  El markup interno (mask/roller/static) lo genera el behavior; aqui va solo
+  el contrato de entrada. La CSS que lo sostiene va por atributo, asi que este
+  piloto es identico en el canal Webflow y en el canal de codigo.
+
+  Sin data-odometer-from en las dos primeras: por defecto arrancan 10 antes del
+  destino. La tercera lo fija a mano para probar el override.
+-->
+<div data-odometer-group="">
+  <p data-odometer="" data-odometer-duration="1.2">+81%</p>
+  <p data-odometer="">100%</p>
+  <p data-odometer="" data-odometer-from="0">1.250</p>
+</div>

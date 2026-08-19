@@ -19,4 +19,5 @@ export { initMegaNav } from './mega-nav';
 export { initNavAutohide } from './nav-autohide';
 export { initDraggableMarquee } from './marquee-draggable';
 export { initCssMarquee } from './marquee-css';
+export { initOdometer } from './odometer';
 export { initVideoPlayer } from './video-player';

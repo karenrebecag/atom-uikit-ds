@@ -1,0 +1,65 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "odometer",
+  "type": "registry:component",
+  "title": "Odometer",
+  "description": "Digits roll like a mechanical counter. Selectors go by attribute, not class, so one sheet serves both the code and the Webflow channel.",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/odometer.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Odometer\n\n   Cifras que ruedan como un contador mecanico al entrar en viewport. El markup\n   interno lo construye el behavior; aqui va solo lo que no se puede poner\n   inline sin ensuciar cada nodo generado.\n\n   Selectores por ATRIBUTO y no por clase a proposito: el canal de Webflow\n   prefija las clases con ds- pero deja los atributos intactos, asi que una\n   sola hoja sirve a los dos canales sin duplicar nada.\n\n   Parts: [data-odometer], [data-odometer-part=\"mask\"|\"roller\"|\"static\"]\n   ------------------------------------------------------------------------- */\n\n[data-odometer] {\n  display: inline-flex;\n  align-items: center;\n  /* Cifras de ancho fijo. Sin esto el numero cambia de ancho mientras rueda y\n     empuja lo que tenga al lado en cada frame. */\n  font-variant-numeric: tabular-nums;\n}\n\n[data-odometer-part='mask'],\n[data-odometer-part='static'] {\n  display: inline-block;\n  /* clip y no hidden: hidden convierte la caja en contenedor de scroll, y\n     entonces el navegador puede desplazarla al enfocar algo dentro. */\n  overflow: clip;\n  /* El padding evita que se recorten ascendentes y descendentes; el margin\n     negativo lo devuelve al flujo para que la caja no crezca por compensarlo. */\n  padding: 0.05em;\n  margin: -0.05em;\n}\n\n[data-odometer-part='roller'] {\n  display: block;\n  /* La tira de digitos es un solo nodo de texto separado por saltos de linea:\n     pre es lo que los conserva. */\n  white-space: pre;\n  text-align: center;\n  will-change: transform;\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Odometer",
+      "description": "Digits roll like a mechanical counter. Selectors go by attribute, not class, so one sheet serves both the code and the Webflow channel.",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-19T20:34:33.894Z",
+      "sourceCommit": "9b45087",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"odometer\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Odometer\n\n   Cifras que ruedan como un contador mecanico al entrar en viewport. El markup\n   interno lo construye el behavior; aqui va solo lo que no se puede poner\n   inline sin ensuciar cada nodo generado.\n\n   Selectores por ATRIBUTO y no por clase a proposito: el canal de Webflow\n   prefija las clases con ds- pero deja los atributos intactos, asi que una\n   sola hoja sirve a los dos canales sin duplicar nada.\n\n   Parts: [data-odometer], [data-odometer-part=\"mask\"|\"roller\"|\"static\"]\n   ------------------------------------------------------------------------- */\n\n[data-odometer] {\n  display: inline-flex;\n  align-items: center;\n  /* Cifras de ancho fijo. Sin esto el numero cambia de ancho mientras rueda y\n     empuja lo que tenga al lado en cada frame. */\n  font-variant-numeric: tabular-nums;\n}\n\n[data-odometer-part='mask'],\n[data-odometer-part='static'] {\n  display: inline-block;\n  /* clip y no hidden: hidden convierte la caja en contenedor de scroll, y\n     entonces el navegador puede desplazarla al enfocar algo dentro. */\n  overflow: clip;\n  /* El padding evita que se recorten ascendentes y descendentes; el margin\n     negativo lo devuelve al flujo para que la caja no crezca por compensarlo. */\n  padding: 0.05em;\n  margin: -0.05em;\n}\n\n[data-odometer-part='roller'] {\n  display: block;\n  /* La tira de digitos es un solo nodo de texto separado por saltos de linea:\n     pre es lo que los conserva. */\n  white-space: pre;\n  text-align: center;\n  will-change: transform;\n}\n",
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-color-declarations"
+      ]
+    }
+  }
+}
