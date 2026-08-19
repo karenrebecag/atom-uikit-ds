@@ -98,6 +98,40 @@
   transform: scale(var(--marquee-logo-scale, 1));
 }
 
+/* El espaciado sigue el modelo del marquee de Osmo: el padding del item va a UN
+   SOLO lado. Con padding en los dos, el hueco entre logos es el DOBLE del valor
+   declarado y el primer logo entra despegado del borde de la seccion; con un
+   solo lado, el valor declarado ES el hueco y la tira arranca a ras.
+   El default de .marquee__item (12/16px) sirve para texto, no para marcas:
+   dos logos separados por 32px se leen como un logo compuesto.
+
+   Va como modificador del ITEM y no como modo del carril (.marquee--logos ...)
+   por el canal de Webflow: el panel del Designer no declara selectores
+   descendentes, asi que un modo en el contenedor no se puede reproducir ahi y
+   la tira quedaria sin espaciado en el canvas. Como combo class del item, si. */
+.marquee__item--logo {
+  gap: var(--marquee-logo-gap, var(--spacing-12));
+  padding-block: var(--spacing-6);
+  padding-inline: 0 var(--marquee-logo-gap, var(--spacing-12));
+}
+
+/* El acento va como pseudo-elemento y no como .marquee__separator: en una tira
+   de logos el separador es RITMO, no contenido. Puesto en el markup, quien
+   edita puede olvidarlo en un item y romper la cadencia sin darse cuenta; como
+   pseudo-elemento no hay nada que olvidar.
+   Es ademas el unico color propio que admite una tira de marcas ajenas: los
+   logos llegan con la paleta de cada cliente y no se tocan.
+   Con el gap y el padding al mismo valor, el punto queda centrado entre logo y
+   logo — esa simetria es la que paga el padding a un solo lado. */
+.marquee__item--logo::after {
+  content: '';
+  flex: none;
+  width: var(--spacing-1);
+  height: var(--spacing-1);
+  border-radius: var(--radius-full);
+  background-color: var(--brand);
+}
+
 /* ---- Separator (optional decorative element between items) ---- */
 
 .marquee__separator {

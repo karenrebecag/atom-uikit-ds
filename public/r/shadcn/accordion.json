@@ -37,8 +37,8 @@
       "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:28:39.291Z",
-      "sourceCommit": "a2b03eb",
+      "generatedAt": "2026-08-19T17:40:49.301Z",
+      "sourceCommit": "8abb27d",
       "install": {
         "peerDeps": [],
         "cssImports": [

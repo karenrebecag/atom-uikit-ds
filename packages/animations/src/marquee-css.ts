@@ -105,9 +105,17 @@ export function initCssMarquee(): CleanupFn {
 
     if (typeof ResizeObserver !== 'undefined') {
       // Anadir copias no cambia el ancho de la raiz (width:100% + overflow
-      // hidden), asi que el observer no se realimenta.
+      // hidden) ni el de la lista de autor, asi que el observer no se
+      // realimenta.
       const resizeObserver = new ResizeObserver(apply);
       resizeObserver.observe(root);
+      // La LISTA tambien, y esto no es redundante: sus imagenes pueden llegar
+      // despues (loading="lazy" es el default de Webflow), y hasta entonces
+      // mide de menos. Vigilar solo la raiz no sirve porque su ancho no cambia
+      // cuando crece el contenido: la duracion y el numero de copias se
+      // quedarian calculados sobre una medida provisional, y eso se ve como
+      // huecos en la tira.
+      resizeObserver.observe(first);
       cleanups.push(() => resizeObserver.disconnect());
     }
 
