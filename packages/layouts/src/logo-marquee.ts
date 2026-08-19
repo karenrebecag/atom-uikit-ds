@@ -58,7 +58,19 @@ export const logoMarquee = {
 -->
 
 <section class="l-logo-marquee" id="{{section_id}}">
-  <h2 class="l-logo-marquee__headline">{{headline}}</h2>
+  <!--
+    El titular va en gutter + contenedor, la tira NO. Es la herencia de layout
+    del proyecto (padding lateral fuera, ancho maximo dentro, centrado): asi el
+    titular arranca en la misma linea que el resto del contenido de la pagina.
+    La tira se queda a sangre a proposito — el recorte lateral es lo que
+    comunica que la lista sigue, y meterla en el contenedor lo delataria como
+    corte de maquetacion.
+  -->
+  <div class="l-logo-marquee__header">
+    <div class="l-logo-marquee__container">
+      <h2 class="l-logo-marquee__headline">{{headline}}</h2>
+    </div>
+  </div>
 
   <div class="marquee marquee--fade" data-marquee data-speed="75">
     <div class="marquee__list" data-marquee-list>
@@ -96,11 +108,23 @@ export const logoMarquee = {
   overflow: hidden;
 }
 
+/* El DS no publica tokens de contenedor: el ancho maximo y el gutter son
+   convencion del sitio consumidor (container-large = 80rem, padding-global =
+   5%). Van como variables para que otro consumidor los cambie sin tocar el
+   layout. */
+.l-logo-marquee__header {
+  padding-inline: var(--l-logo-marquee-gutter, 5%);
+}
+
+.l-logo-marquee__container {
+  width: 100%;
+  max-width: var(--l-logo-marquee-container, 80rem);
+  margin-inline: auto;
+}
+
 .l-logo-marquee__headline {
-  margin: 0 auto var(--rhythm-s);
-  padding-inline: var(--spacing-6);
-  max-width: 42rem;
-  text-align: center;
+  margin: 0 0 var(--spacing-8);
+  text-align: left;
   font-size: var(--font-size-xl);
 }
 
