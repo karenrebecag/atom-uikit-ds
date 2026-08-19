@@ -1427,6 +1427,19 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
     expect(document.querySelectorAll('[data-marquee-clone]')).toHaveLength(2);
   });
 
+  it('sincroniza la fase de todas las listas al clonar', () => {
+    // Cada copia empieza a animarse cuando se inserta, no cuando lo hizo la
+    // original. Desfasadas, dos listas dejan de estar separadas exactamente un
+    // ancho y eso es hueco o solapamiento al reiniciar el ciclo.
+    mountMarquee();
+    initCssMarquee();
+
+    const all = document.querySelectorAll<HTMLElement>('.marquee__list');
+    expect(all).toHaveLength(3);
+    // Tras el reinicio ninguna conserva el animation:none del pulso de sincronia.
+    all.forEach((list) => expect(list.style.animation).toBe(''));
+  });
+
   it('reduced-motion: la tira queda estatica y sin contenido repetido', () => {
     setReducedMotion(true);
     const root = mountMarquee();
