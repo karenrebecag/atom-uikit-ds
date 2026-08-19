@@ -80,7 +80,12 @@
    prod la hacia un embed con selectores por nombre de archivo
    (img[src*="toyota"] { transform: scale(.76) }): se rompia al renombrar el
    asset y era invisible desde el panel. Como variable por item, la pone quien
-   edita y sobrevive al asset. */
+   edita y sobrevive al asset.
+
+   OJO en Webflow: el panel del Designer no declara custom properties y rechaza
+   el atributo style, asi que ahi la correccion va como combo class por marca
+   (.ds-marquee__logo.ds-logo--toyota { transform: scale(.76) }), que gana por
+   especificidad. La variable sigue siendo el contrato para React y CLI. */
 
 .marquee__logo {
   display: block;
