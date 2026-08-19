@@ -109,8 +109,8 @@
       "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:06:43.965Z",
-      "sourceCommit": "56d202a",
+      "generatedAt": "2026-08-19T17:28:39.291Z",
+      "sourceCommit": "a2b03eb",
       "install": {
         "peerDeps": [],
         "cssImports": [
