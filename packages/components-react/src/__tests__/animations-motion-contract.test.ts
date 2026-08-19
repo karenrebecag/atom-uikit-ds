@@ -1326,7 +1326,7 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
   function mountMarquee({ exempt = false, hidden = false, speed = '' } = {}) {
     document.body.innerHTML = `
       <div class="marquee" data-marquee ${speed ? `data-speed="${speed}"` : ''} ${exempt ? 'data-motion-exempt' : ''}>
-        <div class="marquee__list"><span class="marquee__item">A</span></div>
+        <div class="marquee__list" data-marquee-list><span class="marquee__item">A</span></div>
       </div>`;
     const root = document.querySelector<HTMLElement>('[data-marquee]')!;
     const list = document.querySelector<HTMLElement>('.marquee__list')!;
@@ -1407,6 +1407,26 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
     expect(clones()).toHaveLength(2);
   });
 
+  it('encuentra la lista por atributo, no por clase (canal ds- de Webflow)', () => {
+    // El canal de Webflow prefija TODAS las clases con ds-, asi que .marquee__list
+    // no existe ahi. Buscando por clase el modulo salia sin montar nada y la tira
+    // se quedaba con el default del CSS: 30s fijos y una sola lista — rapida y
+    // con hueco. Es el bug que se vio en produccion el 2026-08-19.
+    document.body.innerHTML = `
+      <div class="ds-marquee" data-marquee>
+        <div class="ds-marquee__list" data-marquee-list><span class="ds-marquee__item">A</span></div>
+      </div>`;
+    const root = document.querySelector<HTMLElement>('[data-marquee]')!;
+    const list = document.querySelector<HTMLElement>('[data-marquee-list]')!;
+    root.getBoundingClientRect = () => ({ width: 500 }) as DOMRect;
+    Object.defineProperty(list, 'scrollWidth', { value: 300, configurable: true });
+
+    initCssMarquee();
+
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('4s');
+    expect(document.querySelectorAll('[data-marquee-clone]')).toHaveLength(2);
+  });
+
   it('reduced-motion: la tira queda estatica y sin contenido repetido', () => {
     setReducedMotion(true);
     const root = mountMarquee();
@@ -1426,7 +1446,7 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
   it('no toca un marquee draggable: GSAP ya mueve ese mismo eje', () => {
     document.body.innerHTML = `
       <div class="marquee" data-marquee data-draggable-marquee>
-        <div class="marquee__list"><span class="marquee__item">A</span></div>
+        <div class="marquee__list" data-marquee-list><span class="marquee__item">A</span></div>
       </div>`;
     const root = document.querySelector<HTMLElement>('[data-marquee]')!;
     root.getBoundingClientRect = () => ({ width: 500 }) as DOMRect;

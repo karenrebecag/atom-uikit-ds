@@ -122,8 +122,8 @@
       "usage": "import { Combobox, ComboboxInput, ComboboxContent, ComboboxItem } from '@/components/molecules/Combobox';\n\n<Combobox value={v} onValueChange={setV}>\n  <ComboboxInput placeholder=\"Search country\" />\n  <ComboboxContent>\n    <ComboboxItem value=\"mx\">Mexico</ComboboxItem>\n    <ComboboxItem value=\"us\">United States</ComboboxItem>\n  </ComboboxContent>\n</Combobox>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:40:49.301Z",
-      "sourceCommit": "8abb27d",
+      "generatedAt": "2026-08-19T17:56:53.697Z",
+      "sourceCommit": "a7c48b1",
       "install": {
         "peerDeps": [],
         "cssImports": [

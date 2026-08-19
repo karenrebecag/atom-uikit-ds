@@ -27,15 +27,18 @@ export const logoMarquee = {
   data-speed     pixeles por segundo (75 por defecto). Se declara velocidad y no
                  duracion porque es lo que el ojo compara entre dos tiras.
 
-  El behavior CLONA .marquee__list las veces que hagan falta para tapar el
-  carril y fija --marquee-duration a partir del ancho de UNA lista. No duplicar
-  a mano: los clones llevan data-marquee-clone y aria-hidden.
+  data-marquee-list marca la lista que el behavior clona. Va por atributo y no
+  por clase porque el canal de Webflow prefija todo con ds-: buscando
+  .marquee__list el modulo no la encuentra ahi y la tira se queda con el default
+  del CSS (30s fijos, una sola lista) — rapida y con hueco.
+
+  El behavior la CLONA las veces que hagan falta para tapar el carril y fija
+  --marquee-duration a partir del ancho de UNA lista. No duplicar a mano: los
+  clones llevan data-marquee-clone y aria-hidden.
 
   marquee__item--logo ajusta el espaciado al modelo de Osmo: padding a UN solo
   lado del item, para que el hueco entre logos sea el valor declarado y no el
-  doble. El punto de acento entre logos es un pseudo-elemento, no markup: en una
-  tira de logos el separador es ritmo, y puesto a mano se puede olvidar en un
-  item.
+  doble.
 
   --marquee-logo-scale es la correccion optica por marca. Los logos llegan con
   pesos visuales dispares y solo la altura se puede igualar por CSS; el resto es
@@ -52,7 +55,7 @@ export const logoMarquee = {
   <h2 class="l-logo-marquee__headline">{{headline}}</h2>
 
   <div class="marquee marquee--fade" data-marquee data-speed="75">
-    <div class="marquee__list">
+    <div class="marquee__list" data-marquee-list>
       <div class="marquee__item marquee__item--logo">
         <img class="marquee__logo" src="{{logo1}}" alt="{{logo1_name}}" loading="lazy" />
       </div>
