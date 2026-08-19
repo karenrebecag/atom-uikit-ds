@@ -103,8 +103,13 @@
    declarado y el primer logo entra despegado del borde de la seccion; con un
    solo lado, el valor declarado ES el hueco y la tira arranca a ras.
    El default de .marquee__item (12/16px) sirve para texto, no para marcas:
-   dos logos separados por 32px se leen como un logo compuesto. */
-.marquee--logos .marquee__item {
+   dos logos separados por 32px se leen como un logo compuesto.
+
+   Va como modificador del ITEM y no como modo del carril (.marquee--logos ...)
+   por el canal de Webflow: el panel del Designer no declara selectores
+   descendentes, asi que un modo en el contenedor no se puede reproducir ahi y
+   la tira quedaria sin espaciado en el canvas. Como combo class del item, si. */
+.marquee__item--logo {
   gap: var(--marquee-logo-gap, var(--spacing-12));
   padding-block: var(--spacing-6);
   padding-inline: 0 var(--marquee-logo-gap, var(--spacing-12));
@@ -118,7 +123,7 @@
    logos llegan con la paleta de cada cliente y no se tocan.
    Con el gap y el padding al mismo valor, el punto queda centrado entre logo y
    logo — esa simetria es la que paga el padding a un solo lado. */
-.marquee--logos .marquee__item::after {
+.marquee__item--logo::after {
   content: '';
   flex: none;
   width: var(--spacing-1);

@@ -48,8 +48,8 @@
       "usage": "import { ButtonGroup } from '@/components/atoms/ButtonGroup';\nimport { Button } from '@/components/atoms/Button';\n\n<ButtonGroup orientation=\"horizontal\">\n  <Button variant=\"secondary\">Cancel</Button>\n  <Button variant=\"primary\">Save</Button>\n</ButtonGroup>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:39:32.876Z",
-      "sourceCommit": "4ed4a66",
+      "generatedAt": "2026-08-19T17:40:49.301Z",
+      "sourceCommit": "8abb27d",
       "install": {
         "peerDeps": [],
         "cssImports": [

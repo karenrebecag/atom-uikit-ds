@@ -87,8 +87,8 @@
       "usage": "import { Input } from '@/components/atoms/Input';\nimport { Field } from '@/components/atoms/Field';\n\n<Field label=\"Email\" error=\"Required\">\n  <Input type=\"email\" error placeholder=\"you@company.com\" />\n</Field>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:39:32.876Z",
-      "sourceCommit": "4ed4a66",
+      "generatedAt": "2026-08-19T17:40:49.301Z",
+      "sourceCommit": "8abb27d",
       "install": {
         "peerDeps": [],
         "cssImports": [
