@@ -111,6 +111,7 @@ export function initCssMarquee(): CleanupFn {
       // Con una sola copia queda hueco al saltar si la lista es mas angosta
       // que el carril: hacen falta tantas como quepan mas una.
       const needed = Math.ceil((railWidth + listWidth) / listWidth);
+      const had = clones.length;
       for (let i = lists.length + clones.length; i < needed; i += 1) {
         const clone = first.cloneNode(true) as HTMLElement;
         clone.setAttribute('aria-hidden', 'true');
@@ -118,6 +119,34 @@ export function initCssMarquee(): CleanupFn {
         root.appendChild(clone);
         clones.push(clone);
       }
+      if (clones.length !== had) syncAnimations();
+    }
+
+    /**
+     * Reinicia la animacion de todas las listas en el mismo frame.
+     *
+     * Cada copia empieza a animarse CUANDO SE INSERTA, no cuando lo hizo la
+     * original, asi que nacen desfasadas. El keyframe avanza -100% del ancho
+     * propio de cada lista: dos listas en distinta fase dejan de estar
+     * separadas exactamente un ancho, y esa diferencia es hueco o solapamiento
+     * — visible sobre todo al reiniciar el ciclo, donde se tocan el final de
+     * una y el principio de la siguiente.
+     *
+     * El reflow entre quitar y devolver la animacion no es opcional: sin el,
+     * el navegador agrupa los dos cambios de estilo y no hay reinicio.
+     *
+     * Solo se llama cuando se han anadido copias. Hacerlo en cada resize daria
+     * un salto visible mientras se arrastra el borde de la ventana.
+     */
+    function syncAnimations() {
+      const all = [...lists, ...clones];
+      all.forEach((list) => {
+        list.style.animation = 'none';
+      });
+      void root.offsetWidth;
+      all.forEach((list) => {
+        list.style.removeProperty('animation');
+      });
     }
 
     apply();
