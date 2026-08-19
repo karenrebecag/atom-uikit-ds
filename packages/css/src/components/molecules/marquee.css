@@ -89,7 +89,7 @@
 
 .marquee__logo {
   display: block;
-  height: var(--marquee-logo-height, 2.5rem);
+  height: var(--marquee-logo-height, 3.5rem);
   width: auto;
   /* Webflow sirve img { max-width: 100% } de fabrica: sin esto, un wordmark
      ancho se comprime en vez de respetar su altura. */
@@ -108,28 +108,14 @@
    Va como modificador del ITEM y no como modo del carril (.marquee--logos ...)
    por el canal de Webflow: el panel del Designer no declara selectores
    descendentes, asi que un modo en el contenedor no se puede reproducir ahi y
-   la tira quedaria sin espaciado en el canvas. Como combo class del item, si. */
-.marquee__item--logo {
-  gap: var(--marquee-logo-gap, var(--spacing-12));
-  padding-block: var(--spacing-6);
-  padding-inline: 0 var(--marquee-logo-gap, var(--spacing-12));
-}
+   la tira quedaria sin espaciado en el canvas. Como combo class del item, si.
 
-/* El acento va como pseudo-elemento y no como .marquee__separator: en una tira
-   de logos el separador es RITMO, no contenido. Puesto en el markup, quien
-   edita puede olvidarlo en un item y romper la cadencia sin darse cuenta; como
-   pseudo-elemento no hay nada que olvidar.
-   Es ademas el unico color propio que admite una tira de marcas ajenas: los
-   logos llegan con la paleta de cada cliente y no se tocan.
-   Con el gap y el padding al mismo valor, el punto queda centrado entre logo y
-   logo — esa simetria es la que paga el padding a un solo lado. */
-.marquee__item--logo::after {
-  content: '';
-  flex: none;
-  width: var(--spacing-1);
-  height: var(--spacing-1);
-  border-radius: var(--radius-full);
-  background-color: var(--brand);
+   Sin separador entre logos: se probo un punto de acento y en una tira de
+   marcas ajenas mete un tercer color que compite con cada logo. El ritmo lo
+   marca el hueco. */
+.marquee__item--logo {
+  padding-block: var(--spacing-4);
+  padding-inline: 0 var(--marquee-logo-gap, var(--spacing-10));
 }
 
 /* ---- Separator (optional decorative element between items) ---- */

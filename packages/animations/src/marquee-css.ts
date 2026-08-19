@@ -15,13 +15,17 @@
 // hasta tapar el carril, y pausar fuera de vista con --marquee-state.
 
 /** F8b — single source for Webflow/domContract; must list every data-* the module queries. */
-export const REQUIRED_HOOKS = ['data-marquee', 'data-speed'] as const;
+export const REQUIRED_HOOKS = ['data-marquee', 'data-marquee-list', 'data-speed'] as const;
 
 /**
- * Solo pintura. El modulo clona la lista con cloneNode, asi que el prefijo ds-
- * del canal Webflow le da igual; lo que si necesita es encontrarla.
+ * Fallback por clase, solo para consumidores que no marcan la lista.
+ *
+ * El hook real es [data-marquee-list]. Buscar por clase NO sirve en el canal de
+ * Webflow: ahi todo viaja con prefijo ds-, asi que .marquee__list no existe y
+ * el modulo salia sin montar nada — la tira se quedaba con el default del CSS
+ * (30s fijos, una sola lista) y por eso corria rapido y dejaba hueco.
  */
-export const REQUIRED_ANATOMY = ['.marquee__list'] as const;
+export const REQUIRED_ANATOMY = ['[data-marquee-list]'] as const;
 
 export const GSAP_PLUGINS = [] as const;
 
@@ -38,11 +42,17 @@ function getNumberAttr(el: Element, name: string, fallback: number): number {
   return Number.isFinite(value) && value > 0 ? value : fallback;
 }
 
-/** Listas de autor: las copias que pone el modulo se excluyen del recuento. */
+/**
+ * Listas de autor: las copias que pone el modulo se excluyen del recuento.
+ *
+ * Por atributo y no por clase: el canal de Webflow prefija todo con ds-, asi
+ * que .marquee__list no existe ahi. La clase queda de respaldo para el markup
+ * que aun no marca la lista.
+ */
 function authoredLists(root: HTMLElement): HTMLElement[] {
-  return Array.from(root.querySelectorAll<HTMLElement>('.marquee__list')).filter(
-    (list) => list.dataset.marqueeClone === undefined,
-  );
+  const marked = root.querySelectorAll<HTMLElement>('[data-marquee-list]');
+  const found = marked.length ? marked : root.querySelectorAll<HTMLElement>('.marquee__list');
+  return Array.from(found).filter((list) => list.dataset.marqueeClone === undefined);
 }
 
 export function initCssMarquee(): CleanupFn {
