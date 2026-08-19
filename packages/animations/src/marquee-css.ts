@@ -81,6 +81,15 @@ export function initCssMarquee(): CleanupFn {
     const clones: HTMLElement[] = [];
     const speed = getNumberAttr(root, 'data-speed', DEFAULT_SPEED);
 
+    // Las imagenes de un marquee estan SIEMPRE a la vista: no hay nada que
+    // diferir. Y mientras una este sin cargar la lista mide de menos, asi que
+    // cada copia puede acabar con un ancho distinto — y como el keyframe
+    // desplaza -100% del ancho PROPIO de cada lista, anchos distintos hacen que
+    // se desincronicen entre si.
+    first.querySelectorAll('img').forEach((img) => {
+      img.loading = 'eager';
+    });
+
     /**
      * Idempotente: mide, fija la duracion y anade las copias que falten.
      *

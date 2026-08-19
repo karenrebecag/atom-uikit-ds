@@ -36,14 +36,20 @@ export const logoMarquee = {
   --marquee-duration a partir del ancho de UNA lista. No duplicar a mano: los
   clones llevan data-marquee-clone y aria-hidden.
 
+  loading="eager" en los logos: en un marquee estan siempre a la vista, y una
+  imagen sin cargar hace que su lista mida de menos. Como el keyframe desplaza
+  -100% del ancho PROPIO de cada lista, dos listas con anchos distintos se
+  desincronizan. El behavior tambien lo fuerza, por si el markup llega de otro
+  sitio.
+
   marquee__item--logo ajusta el espaciado al modelo de Osmo: padding a UN solo
   lado del item, para que el hueco entre logos sea el valor declarado y no el
   doble.
 
-  --marquee-logo-scale es la correccion optica por marca. Los logos llegan con
-  pesos visuales dispares y solo la altura se puede igualar por CSS; el resto es
-  caso por caso. Va como variable en el item, no como selector por nombre de
-  archivo, para que sobreviva a renombrar el asset.
+  --marquee-logo-scale es la correccion optica por marca: multiplica la altura,
+  no un transform. Un transform no cambia la caja y el logo corregido al alza se
+  monta sobre el siguiente. Va como variable en el item, no como selector por
+  nombre de archivo, para que sobreviva a renombrar el asset.
   (En Webflow no se puede: ahi va como combo class. Ver marquee.css.)
 
   El alt de cada logo es el nombre de la marca. Un alt vacio deja la prueba
@@ -57,29 +63,29 @@ export const logoMarquee = {
   <div class="marquee marquee--fade" data-marquee data-speed="75">
     <div class="marquee__list" data-marquee-list>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo1}}" alt="{{logo1_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo1}}" alt="{{logo1_name}}" loading="eager" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo2}}" alt="{{logo2_name}}" loading="lazy"
+        <img class="marquee__logo" src="{{logo2}}" alt="{{logo2_name}}" loading="eager"
              style="--marquee-logo-scale: {{logo2_scale}}" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo3}}" alt="{{logo3_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo3}}" alt="{{logo3_name}}" loading="eager" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo4}}" alt="{{logo4_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo4}}" alt="{{logo4_name}}" loading="eager" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo5}}" alt="{{logo5_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo5}}" alt="{{logo5_name}}" loading="eager" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo6}}" alt="{{logo6_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo6}}" alt="{{logo6_name}}" loading="eager" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo7}}" alt="{{logo7_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo7}}" alt="{{logo7_name}}" loading="eager" />
       </div>
       <div class="marquee__item marquee__item--logo">
-        <img class="marquee__logo" src="{{logo8}}" alt="{{logo8_name}}" loading="lazy" />
+        <img class="marquee__logo" src="{{logo8}}" alt="{{logo8_name}}" loading="eager" />
       </div>
     </div>
   </div>

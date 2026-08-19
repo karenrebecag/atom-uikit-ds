@@ -41,8 +41,8 @@
       "usage": "import {\n  ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem,\n} from '@/components/atoms/ContextMenu';\n\n<ContextMenu>\n  <ContextMenuTrigger>Right-click me</ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem onSelect={() => {}}>Copy</ContextMenuItem>\n    <ContextMenuItem variant=\"destructive\" onSelect={() => {}}>Delete</ContextMenuItem>\n  </ContextMenuContent>\n</ContextMenu>"
     },
     "derived": {
-      "generatedAt": "2026-08-19T17:56:53.697Z",
-      "sourceCommit": "a7c48b1",
+      "generatedAt": "2026-08-19T18:37:19.881Z",
+      "sourceCommit": "e054078",
       "install": {
         "peerDeps": [],
         "cssImports": [
