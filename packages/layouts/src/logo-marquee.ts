@@ -31,10 +31,15 @@ export const logoMarquee = {
   carril y fija --marquee-duration a partir del ancho de UNA lista. No duplicar
   a mano: los clones llevan data-marquee-clone y aria-hidden.
 
+  marquee--logos ajusta el espaciado al modelo de Osmo: padding a UN solo lado
+  del item, para que el hueco entre logos sea el valor declarado y no el doble.
+  Tambien tine el separador con el acento de marca.
+
   --marquee-logo-scale es la correccion optica por marca. Los logos llegan con
   pesos visuales dispares y solo la altura se puede igualar por CSS; el resto es
   caso por caso. Va como variable en el item, no como selector por nombre de
   archivo, para que sobreviva a renombrar el asset.
+  (En Webflow no se puede: ahi va como combo class. Ver marquee.css.)
 
   El alt de cada logo es el nombre de la marca. Un alt vacio deja la prueba
   social invisible para un lector de pantalla, que es justo lo que la seccion
@@ -44,32 +49,40 @@ export const logoMarquee = {
 <section class="l-logo-marquee" id="{{section_id}}">
   <h2 class="l-logo-marquee__headline">{{headline}}</h2>
 
-  <div class="marquee marquee--fade" data-marquee data-speed="75">
+  <div class="marquee marquee--logos marquee--fade" data-marquee data-speed="75">
     <div class="marquee__list">
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo1}}" alt="{{logo1_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo2}}" alt="{{logo2_name}}" loading="lazy"
              style="--marquee-logo-scale: {{logo2_scale}}" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo3}}" alt="{{logo3_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo4}}" alt="{{logo4_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo5}}" alt="{{logo5_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo6}}" alt="{{logo6_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo7}}" alt="{{logo7_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
       <div class="marquee__item">
         <img class="marquee__logo" src="{{logo8}}" alt="{{logo8_name}}" loading="lazy" />
+        <span class="marquee__separator" aria-hidden="true">{{separator_svg}}</span>
       </div>
     </div>
   </div>

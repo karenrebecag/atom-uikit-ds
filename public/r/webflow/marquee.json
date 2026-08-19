@@ -523,12 +523,13 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee__separator svg{width:1em;height:1em}.ds-marquee--draggable .ds-marquee__list{animation:none}.ds-marquee__control svg{width:1em;height:1em}.ds-marquee__control:focus-visible{outline:var(--ring-width) solid var(--ring);outline-offset:var(--ring-offset)}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}.ds-marquee__control{transition-duration:0s}}",
-  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --border: #e5e5e5;\n  --border-focus: #171717;\n  --card: #ffffff;\n  --duration-200: 200ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --foreground: #0a0a0a;\n  --radius-full: 9999px;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n  --spacing-10: 40px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n  --spacing-6: 24px;\n  --stroke-thin: 1.5px;\n}",
+  "headCss": "@keyframes marquee-scroll{to{transform:translate(-100%)}}.ds-marquee--reverse .ds-marquee__list{animation-direction:reverse}.ds-marquee--pause-hover:hover .ds-marquee__list{animation-play-state:paused}.ds-marquee--logos .ds-marquee__item{gap:var(--spacing-6);padding-block:var(--spacing-6);padding-inline:0 var(--marquee-logo-gap,var(--spacing-16))}.ds-marquee--logos .ds-marquee__separator{color:var(--brand)}.ds-marquee__separator svg{width:1em;height:1em}.ds-marquee--draggable .ds-marquee__list{animation:none}.ds-marquee__control svg{width:1em;height:1em}.ds-marquee__control:focus-visible{outline:var(--ring-width) solid var(--ring);outline-offset:var(--ring-offset)}@media (prefers-reduced-motion:reduce){.ds-marquee__list{animation-play-state:paused}.ds-marquee__control{transition-duration:0s}}",
+  "tokensCss": ":root {\n  --accent: #f5f5f5;\n  --border: #e5e5e5;\n  --border-focus: #171717;\n  --brand: #ff6600;\n  --card: #ffffff;\n  --duration-200: 200ms;\n  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);\n  --font-family-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  --foreground: #0a0a0a;\n  --radius-full: 9999px;\n  --ring: #0a0a0a;\n  --ring-offset: 1.5px;\n  --ring-width: 2px;\n  --spacing-10: 40px;\n  --spacing-16: 64px;\n  --spacing-3: 12px;\n  --spacing-4: 16px;\n  --spacing-6: 24px;\n  --stroke-thin: 1.5px;\n}",
   "tokensResolved": [
     "accent",
     "border",
     "border-focus",
+    "brand",
     "card",
     "duration-200",
     "easing-out",
@@ -539,6 +540,7 @@
     "ring-offset",
     "ring-width",
     "spacing-10",
+    "spacing-16",
     "spacing-3",
     "spacing-4",
     "spacing-6",
@@ -562,6 +564,7 @@
       "accent",
       "border",
       "border-focus",
+      "brand",
       "card",
       "duration-200",
       "easing-out",
@@ -572,6 +575,7 @@
       "ring-offset",
       "ring-width",
       "spacing-10",
+      "spacing-16",
       "spacing-3",
       "spacing-4",
       "spacing-6",
@@ -614,6 +618,16 @@
     },
     {
       "prop": "selector",
+      "selector": ".marquee--logos .marquee__item",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".marquee--logos .marquee__separator",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
       "selector": ".marquee__separator svg",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
@@ -644,6 +658,11 @@
     },
     {
       "prop": "--marquee-duration",
+      "selector": ":root",
+      "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
+    },
+    {
+      "prop": "--marquee-logo-gap",
       "selector": ":root",
       "reason": "token not found in tokens-nested.json — resolve upstream or the declaration stays invalid on paste"
     },

@@ -1381,6 +1381,24 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
     expect(clones()).toHaveLength(2);
   });
 
+  it('remide cuando la lista crece: imagenes que cargan tarde no dejan huecos', () => {
+    // Con loading="lazy" (el default de Webflow) la lista mide de menos al
+    // cargar. La raiz NO cambia de ancho cuando crece su contenido, asi que
+    // vigilarla a ella sola dejaria la duracion y las copias congeladas sobre
+    // una medida provisional — y eso se ve como huecos en la tira.
+    const root = mountMarquee();
+    initCssMarquee();
+    expect(clones()).toHaveLength(2);
+
+    const list = document.querySelector<HTMLElement>('.marquee__list')!;
+    Object.defineProperty(list, 'scrollWidth', { value: 100, configurable: true });
+    resizeCallbacks.forEach((cb) => cb());
+
+    // 500 de carril sobre listas de 100 => 6 listas; ya habia 3.
+    expect(root.style.getPropertyValue('--marquee-duration')).toBe('1.3333333333333333s');
+    expect(clones()).toHaveLength(5);
+  });
+
   it('el resize no acumula copias: solo anade las que falten', () => {
     mountMarquee();
     initCssMarquee();

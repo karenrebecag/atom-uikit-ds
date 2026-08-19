@@ -1,19 +1,36 @@
 {
   "$comment": "Performance budgets del canal /v1 (medidos 2026-07-29 + ~15% de holgura). Estos archivos viajan a CADA página embebida: su peso es coste de carga en cada host. Subir un budget es un cambio consciente de este archivo, justificado en el PR — nunca un ajuste silencioso para que pase un build.",
   "files": {
-    "packages/css/dist/tokens.css": { "rawKb": 20, "gzipKb": 4 },
-    "packages/css/dist/foundation.css": { "rawKb": 30, "gzipKb": 6 },
-    "packages/css/dist/atom.css": { "rawKb": 185, "gzipKb": 24 },
-    "packages/css/dist/embed.css": { "rawKb": 205, "gzipKb": 26 },
-    "packages/animations/dist/atom-animations.js": {
-      "rawKb": 155,
-      "gzipKb": 40,
-      "$comment": "bouncy-tabs (indicador elastico + squash de card + altura animada, el segundo behavior mas grande tras mega-nav): 147/37 medidos. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
+    "packages/css/dist/tokens.css": {
+      "rawKb": 20,
+      "gzipKb": 4
     },
-    "packages/css/dist/webflow.css": { "rawKb": 22, "gzipKb": 3 }
+    "packages/css/dist/foundation.css": {
+      "rawKb": 30,
+      "gzipKb": 6
+    },
+    "packages/css/dist/atom.css": {
+      "rawKb": 185,
+      "gzipKb": 24
+    },
+    "packages/css/dist/embed.css": {
+      "rawKb": 205,
+      "gzipKb": 26
+    },
+    "packages/animations/dist/atom-animations.js": {
+      "rawKb": 170,
+      "gzipKb": 42,
+      "$comment": "marquee-css (modo CSS del marquee: mide, clona y pausa fuera de vista; behavior nº15): 155.5/39.1 medidos. SUBIDO de 155/40 el 2026-08-19 con Karen avisada — el modulo anterior dejo el raw en 154.9/155 y este lo paso por 0.5kb, asi que el gate pasaba solo por redondeo a kb enteros. Se sube a 170/42 para volver a tener holgura real en vez de vivir en el borde. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
+    },
+    "packages/css/dist/webflow.css": {
+      "rawKb": 22,
+      "gzipKb": 3
+    }
   },
   "directories": {
-    "packages/css/dist/fonts": { "totalKb": 640 }
+    "packages/css/dist/fonts": {
+      "totalKb": 640
+    }
   },
   "registry": {
     "$comment": "El index es el warm-start del MCP (63kb con 110 items, 2026-07-29). El budget vigila crecimiento desbocado, no bloquea un componente nuevo.",
