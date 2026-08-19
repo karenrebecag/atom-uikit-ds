@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T19:18:10.808Z",
+  "generatedAt": "2026-08-19T19:30:31.857Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 135,
+    "items": 136,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 135
+      "withSourceCommit": 136
     },
     "webflow": {
       "emitted": 37,
       "excluded": 27
     },
-    "aggregateScore": 48.3
+    "aggregateScore": 48.1
   },
   "batches": [],
   "items": [
@@ -1236,6 +1236,25 @@
       "eligibleAgent": false,
       "excludedAgent": "layout — composition block; agent manifest deferred",
       "contentScore": 20
+    },
+    {
+      "slug": "layout/metrics-grid",
+      "kind": "layout",
+      "category": "layout",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-color-declarations"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "layout",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "layout — composition block; agent manifest deferred",
+      "contentScore": 15
     },
     {
       "slug": "pricing-card",
