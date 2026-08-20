@@ -50,6 +50,12 @@
   flex-direction: column;
   gap: var(--spacing-4);
   width: var(--feature-card-width, 20rem);
+  /* En una tira, la altura la marca la card con mas texto y las demas la
+     igualan. Sin esto cada card mide su contenido y el carril las centra: se
+     leen como cajas sueltas a distinta altura, no como una fila.
+     No fuerza nada fuera de flex — con un ancho explicito, stretch en una
+     columna o en un grid no tiene efecto. */
+  align-self: stretch;
   padding: var(--spacing-8);
   border-radius: var(--radius-xl);
   background-color: color-mix(
@@ -66,16 +72,21 @@
 
 /* ---- Media (slot) ---- */
 
+/* La caja del media la fija la CARD, no el asset: 5/4 es la proporcion de la
+   remesa actual (751x597), asi que hoy no recorta nada, y manana una imagen con
+   otra proporcion se encuadra en vez de descuadrar la fila entera. */
 .feature-card__media {
   display: block;
   overflow: hidden;
   border-radius: var(--radius-md);
+  aspect-ratio: var(--feature-card-media-ratio, 5 / 4);
 }
 
 .feature-card__media > * {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---- Cuerpo (slot) ---- */
@@ -147,9 +158,12 @@
   overflow: hidden;
 }
 
+/* El tile de solo media llena la celda de la rejilla: ahi la proporcion la pone
+   la celda, no la card, asi que la del media sobra. */
 .feature-card__media--fill {
   flex-grow: 1;
   height: 100%;
+  aspect-ratio: auto;
   border-radius: inherit;
 }
 

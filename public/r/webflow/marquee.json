@@ -414,7 +414,7 @@
           "name": "ds-marquee__collection",
           "namespace": "",
           "comb": "",
-          "styleLess": "display: flex; align-items: center; flex: none; will-change: transform; cursor: grab;",
+          "styleLess": "display: flex; align-items: stretch; flex: none; will-change: transform; cursor: grab;",
           "variants": {
             "main_active": {
               "styleLess": "cursor: grabbing;"
@@ -431,7 +431,7 @@
           "name": "ds-marquee__list",
           "namespace": "",
           "comb": "",
-          "styleLess": "flex: none; display: flex; align-items: center; animation: marquee-scroll var(--marquee-duration, 30s) linear infinite; animation-play-state: var(--marquee-state, running);",
+          "styleLess": "flex: none; display: flex; align-items: stretch; animation: marquee-scroll var(--marquee-duration, 30s) linear infinite; animation-play-state: var(--marquee-state, running);",
           "variants": {},
           "children": [],
           "createdBy": "590cdb22ed5bf253e056f0a7",
