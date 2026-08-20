@@ -124,6 +124,16 @@
   padding-inline: 0 var(--marquee-logo-gap, var(--spacing-10));
 }
 
+/* Insignia: mas alta que un logo de cliente porque no es una marca, es un sello
+   —G2, Meta, HubSpot— y lleva texto dentro que a 3.5rem no se lee.
+
+   Va como modificador y no como --marquee-logo-height en el consumidor porque
+   el panel de Webflow no declara custom properties: alli una variable no se
+   puede pasar, un combo class si. */
+.marquee__logo--badge {
+  height: var(--marquee-badge-height, 5rem);
+}
+
 /* ---- Separator (optional decorative element between items) ---- */
 
 .marquee__separator {
