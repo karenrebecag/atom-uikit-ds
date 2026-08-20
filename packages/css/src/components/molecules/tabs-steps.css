@@ -182,8 +182,8 @@
        arrastraba con el la altura de toda la seccion, porque un item que abarca
        filas las estira hasta caber. Acotando el ancho conserva su proporcion —
        ni recortado ni con barras a los lados, que es lo que pasaria topando el
-       alto. 20rem de ancho son unos 26rem de alto, a la altura de los pasos. */
-    max-width: var(--tabs-steps-visual-max, 20rem);
+       alto. 24rem de ancho son unos 31rem de alto, a la altura de los pasos. */
+    max-width: var(--tabs-steps-visual-max, 24rem);
     min-height: 0;
   }
 
