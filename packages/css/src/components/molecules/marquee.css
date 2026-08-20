@@ -38,10 +38,14 @@
 
 /* ---- List (duplicated by JS) ---- */
 
+/* stretch y no center: los items miden lo mismo que el mas alto de la fila, y
+   cada uno decide dentro como coloca su contenido (.marquee__item sigue
+   centrando el suyo, asi que una tira de logos no cambia). Es lo que permite
+   que una fila de cards se lea pareja aunque una lleve mas texto. */
 .marquee__list {
   flex: none;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
   animation-play-state: var(--marquee-state, running);
 }
@@ -161,7 +165,7 @@
 
 .marquee__collection {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex: none;
   will-change: transform;
   cursor: grab;
