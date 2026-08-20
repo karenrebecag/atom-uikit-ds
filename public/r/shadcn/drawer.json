@@ -48,8 +48,8 @@
       "usage": "import {\n  Drawer, DrawerTrigger, DrawerContent, DrawerHeader,\n  DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter,\n} from '@/components/atoms/Drawer';\n\n<Drawer>\n  <DrawerTrigger><button type=\"button\">Filters</button></DrawerTrigger>\n  <DrawerContent direction=\"bottom\">\n    <DrawerHeader>\n      <DrawerTitle>Filters</DrawerTitle>\n      <DrawerDescription>Narrow the list.</DrawerDescription>\n    </DrawerHeader>\n    <DrawerBody>{/* controls */}</DrawerBody>\n    <DrawerFooter><button type=\"button\">Apply</button></DrawerFooter>\n  </DrawerContent>\n</Drawer>"
     },
     "derived": {
-      "generatedAt": "2026-08-20T00:35:40.240Z",
-      "sourceCommit": "64526b6",
+      "generatedAt": "2026-08-20T00:48:55.266Z",
+      "sourceCommit": "eaaa1e7",
       "install": {
         "peerDeps": [],
         "cssImports": [
