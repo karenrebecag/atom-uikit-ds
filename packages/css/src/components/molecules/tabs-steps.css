@@ -150,9 +150,13 @@
 @media (min-width: 992px) {
   .tabs-steps {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(var(--tabs-steps-count, 3), auto);
+    /* min-content y NO auto. Con filas auto, el visual que abarca las tres las
+       estira para caber en el, y los pasos se separan cientos de pixeles entre
+       si. Con min-content la altura de cada fila la dicta su paso, y el visual
+       se ajusta al total. */
+    grid-template-rows: repeat(var(--tabs-steps-count, 3), min-content);
     column-gap: var(--spacing-10);
-    align-items: start;
+    align-content: start;
   }
 
   .tabs-steps__item {
@@ -165,7 +169,20 @@
   .tabs-steps__visual {
     grid-column: 2;
     grid-row: 1 / -1;
-    align-self: start;
+    align-self: stretch;
+    /* Sin esto el minimo del contenido vuelve a empujar las filas. */
+    min-height: 0;
+    /* Suelo para que la columna tenga presencia aunque los pasos sean cortos.
+       Este si estira las filas, pero acotado y a proposito. */
+    min-height: var(--tabs-steps-visual-min, 24rem);
+  }
+
+  /* El visual se ajusta a la altura que le dejan los pasos. contain y no cover
+     porque el contenido es una demo de interfaz: recortarla esconde justo lo
+     que la seccion viene a enseñar. */
+  .tabs-steps__visual > * {
+    height: 100%;
+    object-fit: contain;
   }
 
   /* En desktop el visual no colapsa: se cambia por el del paso activo. */

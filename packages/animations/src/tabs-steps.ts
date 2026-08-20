@@ -3,7 +3,8 @@
 //
 // DOM contract:
 //   [data-tabs-steps]                    raiz
-//   [data-tabs-steps-item]               un paso (contiene su <button>)
+//   [data-tabs-steps-item]               un paso
+//   [data-tabs-steps-trigger]            el <button> que lo abre
 //   [data-tabs-steps-panel]              lo que colapsa dentro del paso
 //   [data-tabs-steps-progress]           la barra que se rellena
 //   [data-tabs-steps-visual]             el visual del paso, HERMANO del item
@@ -26,6 +27,7 @@
 export const REQUIRED_HOOKS = [
   'data-tabs-steps',
   'data-tabs-steps-item',
+  'data-tabs-steps-trigger',
   'data-tabs-steps-panel',
   'data-tabs-steps-progress',
   'data-tabs-steps-visual',
@@ -46,8 +48,23 @@ declare const gsap: any;
 
 const DEFAULT_DURATION = 5000;
 
+/**
+ * El disparador se busca por HOOK y no por etiqueta.
+ *
+ * El constructor de Webflow convierte <button> en <a> al pegar markup. Con una
+ * busqueda por 'button' el modulo no encontraba nada y fallaba EN SILENCIO: los
+ * paneles animaban y la barra corria, pero no habia listener de clic ni estado
+ * aria. Por hook da igual en que acabe convertido.
+ */
+function triggerOf(item: HTMLElement): HTMLElement | null {
+  return (
+    item.querySelector<HTMLElement>('[data-tabs-steps-trigger]') ??
+    item.querySelector<HTMLElement>('button')
+  );
+}
+
 function activate(item: HTMLElement, visual: HTMLElement | undefined, on: boolean) {
-  const trigger = item.querySelector<HTMLElement>('button');
+  const trigger = triggerOf(item);
   trigger?.setAttribute('aria-expanded', on ? 'true' : 'false');
   if (on) {
     item.dataset.active = '';
@@ -155,17 +172,28 @@ export function initTabsSteps(): CleanupFn {
     }
 
     items.forEach((item, index) => {
-      const trigger = item.querySelector<HTMLElement>('button');
+      const trigger = triggerOf(item);
       const panel = item.querySelector<HTMLElement>('[data-tabs-steps-panel]');
       if (panel) panel.style.height = '0px';
       activate(item, visuals[index], false);
 
-      const onClick = () => {
+      if (!trigger) {
+        // Sin disparador el paso queda inerte y la seccion PARECE funcionar,
+        // porque el autoplay sigue pasando. Avisar es la diferencia entre un
+        // fallo de dos minutos y uno de una tarde.
+        window.console?.warn('[atom] tabs-steps: paso sin [data-tabs-steps-trigger]', item);
+        return;
+      }
+
+      const onClick = (event: Event) => {
+        // Si el constructor lo convirtio en <a href="#">, sin esto la pagina
+        // salta al inicio antes de que se vea el cambio.
+        event.preventDefault();
         if (index === current) return;
         go(index);
       };
-      trigger?.addEventListener('click', onClick);
-      cleanups.push(() => trigger?.removeEventListener('click', onClick));
+      trigger.addEventListener('click', onClick);
+      cleanups.push(() => trigger.removeEventListener('click', onClick));
     });
 
     go(0);
