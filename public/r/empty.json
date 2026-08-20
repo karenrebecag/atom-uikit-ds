@@ -95,8 +95,8 @@
       "usage": "import {\n  Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent,\n} from '@/components/atoms/Empty';\n\n<Empty variant=\"outline\">\n  <EmptyHeader>\n    <EmptyMedia variant=\"icon\">{/* icon */}</EmptyMedia>\n    <EmptyTitle>No projects</EmptyTitle>\n    <EmptyDescription>Create one to get started.</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent><button type=\"button\">New project</button></EmptyContent>\n</Empty>"
     },
     "derived": {
-      "generatedAt": "2026-08-20T01:44:36.729Z",
-      "sourceCommit": "b60678f",
+      "generatedAt": "2026-08-20T01:53:45.137Z",
+      "sourceCommit": "ce46228",
       "install": {
         "peerDeps": [],
         "cssImports": [

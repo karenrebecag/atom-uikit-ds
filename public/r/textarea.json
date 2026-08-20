@@ -60,8 +60,8 @@
       "usage": "import { Textarea } from '@/components/atoms/Textarea';\n\n<Textarea rows={4} placeholder=\"Notes\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-20T01:44:36.729Z",
-      "sourceCommit": "b60678f",
+      "generatedAt": "2026-08-20T01:53:45.137Z",
+      "sourceCommit": "ce46228",
       "install": {
         "peerDeps": [],
         "cssImports": [

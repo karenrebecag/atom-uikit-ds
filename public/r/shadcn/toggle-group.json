@@ -91,8 +91,8 @@
       "usage": "import { ToggleGroup, ToggleGroupItem } from '@/components/atoms/ToggleGroup';\n\n<ToggleGroup type=\"single\" value={view} onValueChange={setView} size=\"m\">\n  <ToggleGroupItem value=\"list\">List</ToggleGroupItem>\n  <ToggleGroupItem value=\"grid\">Grid</ToggleGroupItem>\n</ToggleGroup>"
     },
     "derived": {
-      "generatedAt": "2026-08-20T01:44:36.729Z",
-      "sourceCommit": "b60678f",
+      "generatedAt": "2026-08-20T01:53:45.137Z",
+      "sourceCommit": "ce46228",
       "install": {
         "peerDeps": [],
         "cssImports": [
