@@ -92,8 +92,8 @@
       "usage": "import { Toaster, toast } from '@/components/atoms/Toast';\n\n// once in layout:\n<Toaster position=\"bottom-right\" />\n\n// on event:\ntoast.success('Saved', { description: 'Profile updated' });"
     },
     "derived": {
-      "generatedAt": "2026-08-20T01:15:51.510Z",
-      "sourceCommit": "36dd7b5",
+      "generatedAt": "2026-08-20T01:34:40.212Z",
+      "sourceCommit": "6024bd0",
       "install": {
         "peerDeps": [],
         "cssImports": [

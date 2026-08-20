@@ -172,41 +172,32 @@
   .tabs-steps__visual {
     grid-column: 2;
     grid-row: 1 / -1;
-    align-self: stretch;
+    align-self: start;
+    justify-self: center;
     overflow: hidden;
-    /* La ALTURA de la columna la mandan los pasos, no el visual.
 
-       Un item que abarca filas las estira hasta caber en el, y su aportacion
-       es el min-content de su contenido. El video es 630x810: a media pantalla
-       pide ~1080px de alto, y las tres filas crecian para acomodarlo — de ahi
-       que los pasos salieran separados cientos de pixeles.
+    /* El tope va en ANCHO, no en alto.
 
-       min-height: 0 en toda la cadena es lo que corta esa aportacion. Tiene que
-       ir tambien en los intermedios (> *) porque el canal de Webflow envuelve
-       los embeds en un div propio: sin el, ese wrapper conserva la altura
-       natural del video y el problema vuelve por debajo. */
+       El video es vertical (630x810): a media pantalla pedia mas de 1000px y
+       arrastraba con el la altura de toda la seccion, porque un item que abarca
+       filas las estira hasta caber. Acotando el ancho conserva su proporcion —
+       ni recortado ni con barras a los lados, que es lo que pasaria topando el
+       alto. 20rem de ancho son unos 26rem de alto, a la altura de los pasos. */
+    max-width: var(--tabs-steps-visual-max, 20rem);
     min-height: 0;
   }
 
+  /* El canal de Webflow envuelve los embeds en un div propio: sin esto, ese
+     wrapper conserva la altura natural del video y el tope no llega al medio. */
   .tabs-steps__visual > * {
-    height: 100%;
     min-height: 0;
   }
 
-  /* contain y no cover: el contenido es una demo de interfaz, y recortarla
-     esconde justo lo que la seccion viene a enseñar. Por etiqueta para
-     alcanzar el medio este donde este dentro del slot. */
   .tabs-steps__visual video,
   .tabs-steps__visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  /* En desktop el visual no colapsa: se cambia por el del paso activo. */
-  .tabs-steps__visual:not([data-active]) {
     display: block;
-    visibility: hidden;
+    width: 100%;
+    height: auto;
   }
 }
 
