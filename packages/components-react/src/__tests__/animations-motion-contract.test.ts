@@ -1478,13 +1478,13 @@ describe('tabs-steps (acordeon: un paso abierto a la vez)', () => {
     document.body.innerHTML = `
       <div data-tabs-steps data-tabs-steps-autoplay="${autoplay}" data-tabs-steps-duration="5000">
         <div data-tabs-steps-item>
-          <button type="button"></button>
+          <button type="button" data-tabs-steps-trigger></button>
           <div data-tabs-steps-panel></div>
           <div data-tabs-steps-progress></div>
         </div>
         <div data-tabs-steps-visual></div>
         <div data-tabs-steps-item>
-          <button type="button"></button>
+          <button type="button" data-tabs-steps-trigger></button>
           <div data-tabs-steps-panel></div>
           <div data-tabs-steps-progress></div>
         </div>
@@ -1525,6 +1525,48 @@ describe('tabs-steps (acordeon: un paso abierto a la vez)', () => {
     expect(buttons[0].getAttribute('aria-expanded')).toBe('false');
     expect(visuals[1].dataset.active).toBe('');
     expect(visuals[0].dataset.active).toBeUndefined();
+  });
+
+  it('encuentra el disparador por hook aunque no sea un <button>', () => {
+    // El constructor de Webflow convierte <button> en <a> al pegar markup. Con
+    // busqueda por etiqueta el modulo fallaba EN SILENCIO: los paneles animaban
+    // y la barra corria, pero no habia listener de clic ni estado aria.
+    g.gsap = gsapMock();
+    document.body.innerHTML = `
+      <div data-tabs-steps data-tabs-steps-autoplay="false">
+        <div data-tabs-steps-item>
+          <a href="#" data-tabs-steps-trigger></a>
+          <div data-tabs-steps-panel></div>
+        </div>
+        <div data-tabs-steps-visual></div>
+        <div data-tabs-steps-item>
+          <a href="#" data-tabs-steps-trigger></a>
+          <div data-tabs-steps-panel></div>
+        </div>
+        <div data-tabs-steps-visual></div>
+      </div>`;
+    initTabsSteps();
+    const links = document.querySelectorAll<HTMLElement>('[data-tabs-steps-trigger]');
+    expect(links[0].getAttribute('aria-expanded')).toBe('true');
+
+    const event = new MouseEvent('click', { bubbles: true, cancelable: true });
+    links[1].dispatchEvent(event);
+    expect(links[1].getAttribute('aria-expanded')).toBe('true');
+    // Un <a href="#"> sin preventDefault salta al inicio antes de verse el cambio.
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  it('avisa cuando un paso no tiene disparador en vez de fallar callado', () => {
+    g.gsap = gsapMock();
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    document.body.innerHTML = `
+      <div data-tabs-steps>
+        <div data-tabs-steps-item><div data-tabs-steps-panel></div></div>
+        <div data-tabs-steps-visual></div>
+      </div>`;
+    initTabsSteps();
+    expect(warn).toHaveBeenCalled();
+    warn.mockRestore();
   });
 
   it('reduced-motion: abre sin animar y sin avance automatico', () => {
