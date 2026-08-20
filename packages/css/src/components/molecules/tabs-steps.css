@@ -1,0 +1,190 @@
+/* -------------------------------------------------------------------------
+   Tabs Steps
+
+   Pasos numerados, cada uno con su visual. Uno abierto a la vez, con avance
+   automatico y barra de progreso.
+
+   ARIA de ACORDEON y no de tablist a proposito: en movil el visual cae dentro
+   del paso, asi que lo que hay es un desplegable. role="tab" le prometeria a un
+   lector de pantalla navegacion por flechas entre pestañas que en ese tamaño no
+   existe, y el disparador es un <button>, no un <a href="#"> que salta al top.
+
+   ESTRUCTURA PLANA: item y visual son HERMANOS, no anidados.
+
+     .tabs-steps
+       .tabs-steps__item    (1)
+       .tabs-steps__visual  (1)
+       .tabs-steps__item    (2)
+       .tabs-steps__visual  (2)
+
+   Eso es lo que hace que en movil cada visual caiga bajo su paso sin una sola
+   regla especial, y que en desktop el grid los mande a la columna derecha sin
+   sacar nada del flujo.
+
+   La alternativa evaluada —visual dentro del panel, position:absolute en
+   desktop— rompia de dos maneras: la seccion dejaba de contar la altura del
+   visual, y cualquier ancestro con transform pasaba a ser su contenedor de
+   referencia. Este componente usa GSAP, asi que el segundo fallo no era
+   hipotetico: bastaba con animar un paso para que el visual saltara dentro de
+   el, sin error y sin aviso.
+
+   Parts: .tabs-steps, __item, __trigger, __index, __title, __panel, __text,
+          __track, __progress, __visual
+   ------------------------------------------------------------------------- */
+
+.tabs-steps {
+  display: grid;
+  gap: var(--spacing-10);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- Paso ---- */
+
+.tabs-steps__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  padding-block: var(--spacing-4);
+  padding-inline-end: var(--spacing-6);
+}
+
+/* La pista inferior marca el paso; la barra la rellena mientras corre el
+   autoplay. Van en dos elementos y no en un border porque un borde no se puede
+   escalar desde un extremo. */
+.tabs-steps__track {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: 0;
+  height: var(--stroke-medium);
+  background-color: var(--border);
+}
+
+.tabs-steps__progress {
+  height: 100%;
+  background-color: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ---- Disparador ---- */
+
+.tabs-steps__trigger {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-3);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted-foreground);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--duration-200) var(--easing-out);
+}
+
+.tabs-steps__trigger[aria-expanded='true'] {
+  color: var(--foreground);
+}
+
+.tabs-steps__trigger:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+}
+
+.tabs-steps__index {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabs-steps__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-lg);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* ---- Panel ---- */
+
+/* La altura la anima el behavior; overflow hidden es lo que hace que el texto
+   se recorte en vez de desbordar mientras colapsa. */
+.tabs-steps__panel {
+  overflow: hidden;
+}
+
+.tabs-steps__text {
+  margin: 0;
+  padding-block-start: var(--spacing-3);
+  color: var(--muted-foreground);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  text-wrap: pretty;
+}
+
+/* ---- Visual ---- */
+
+.tabs-steps__visual {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.tabs-steps__visual > * {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* En movil el visual es un desplegable mas: cerrado no ocupa. No se puede
+   heredar del panel porque es su HERMANO, no su hijo — el behavior marca el
+   par. */
+.tabs-steps__visual:not([data-active]) {
+  display: none;
+}
+
+/* ---- Desktop ---- */
+
+@media (min-width: 992px) {
+  .tabs-steps {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(var(--tabs-steps-count, 3), auto);
+    column-gap: var(--spacing-10);
+    align-items: start;
+  }
+
+  .tabs-steps__item {
+    grid-column: 1;
+  }
+
+  /* Todos los visuales ocupan la MISMA celda de la columna derecha y se apilan;
+     solo el activo se pinta. Al abarcar todas las filas, la altura de la
+     seccion la resuelve el grid y ningun visual puede desbordarla. */
+  .tabs-steps__visual {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+  }
+
+  /* En desktop el visual no colapsa: se cambia por el del paso activo. */
+  .tabs-steps__visual:not([data-active]) {
+    display: block;
+    visibility: hidden;
+  }
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs-steps__trigger {
+    transition-duration: 0ms;
+  }
+
+  /* Una barra que se llena sola anuncia un cambio automatico que en este modo
+     no ocurre: mentiria. */
+  .tabs-steps__track {
+    display: none;
+  }
+}

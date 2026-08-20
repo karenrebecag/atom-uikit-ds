@@ -13,6 +13,7 @@ import { initButtonHover } from '../../../animations/src/button-hover';
 import { initSidebarAnimation } from '../../../animations/src/sidebar';
 import { initDraggableMarquee } from '../../../animations/src/marquee-draggable';
 import { initCssMarquee } from '../../../animations/src/marquee-css';
+import { initTabsSteps } from '../../../animations/src/tabs-steps';
 import { initVideoPlayer } from '../../../animations/src/video-player';
 
 const g = globalThis as any;
@@ -28,8 +29,10 @@ function setReducedMotion(reduced: boolean) {
 
 function gsapMock() {
   const tween = { kill: vi.fn(), progress: vi.fn(() => 0), timeScale: vi.fn(), pause: vi.fn(), resume: vi.fn() };
-  const timeline: any = { to: vi.fn() };
+  const timeline: any = { to: vi.fn(), fromTo: vi.fn(), set: vi.fn() };
   timeline.to.mockReturnValue(timeline);
+  timeline.fromTo.mockReturnValue(timeline);
+  timeline.set.mockReturnValue(timeline);
   return {
     registerPlugin: vi.fn(),
     set: vi.fn(),
@@ -1466,5 +1469,80 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
     initCssMarquee();
     expect(root.style.getPropertyValue('--marquee-duration')).toBe('');
     expect(clones()).toHaveLength(0);
+  });
+});
+
+
+describe('tabs-steps (acordeon: un paso abierto a la vez)', () => {
+  function mount(autoplay = 'true') {
+    document.body.innerHTML = `
+      <div data-tabs-steps data-tabs-steps-autoplay="${autoplay}" data-tabs-steps-duration="5000">
+        <div data-tabs-steps-item>
+          <button type="button"></button>
+          <div data-tabs-steps-panel></div>
+          <div data-tabs-steps-progress></div>
+        </div>
+        <div data-tabs-steps-visual></div>
+        <div data-tabs-steps-item>
+          <button type="button"></button>
+          <div data-tabs-steps-panel></div>
+          <div data-tabs-steps-progress></div>
+        </div>
+        <div data-tabs-steps-visual></div>
+      </div>`;
+    return {
+      items: document.querySelectorAll<HTMLElement>('[data-tabs-steps-item]'),
+      visuals: document.querySelectorAll<HTMLElement>('[data-tabs-steps-visual]'),
+      buttons: document.querySelectorAll<HTMLElement>('button'),
+    };
+  }
+
+  it('abre el primero y empareja su visual por orden', () => {
+    g.gsap = gsapMock();
+    const { items, visuals, buttons } = mount();
+    const cleanup = initTabsSteps();
+
+    expect(buttons[0].getAttribute('aria-expanded')).toBe('true');
+    expect(buttons[1].getAttribute('aria-expanded')).toBe('false');
+    // El visual es HERMANO del item, no hijo: si el emparejado por orden se
+    // rompe, en movil un paso abre el visual de otro.
+    expect(visuals[0].dataset.active).toBe('');
+    expect(visuals[1].dataset.active).toBeUndefined();
+    expect(items[0].dataset.active).toBe('');
+
+    cleanup();
+    expect(buttons[0].getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('un clic cambia el paso y arrastra su visual', () => {
+    g.gsap = gsapMock();
+    const { visuals, buttons } = mount();
+    initTabsSteps();
+
+    buttons[1].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+    expect(buttons[1].getAttribute('aria-expanded')).toBe('true');
+    expect(buttons[0].getAttribute('aria-expanded')).toBe('false');
+    expect(visuals[1].dataset.active).toBe('');
+    expect(visuals[0].dataset.active).toBeUndefined();
+  });
+
+  it('reduced-motion: abre sin animar y sin avance automatico', () => {
+    setReducedMotion(true);
+    g.gsap = gsapMock();
+    const { buttons } = mount();
+    initTabsSteps();
+
+    // Una barra que se llena sola anunciaria un cambio que en este modo no pasa.
+    expect(g.gsap.to).not.toHaveBeenCalled();
+    expect(buttons[0].getAttribute('aria-expanded')).toBe('true');
+  });
+
+  it('data-motion-exempt: ese bloque no se inicializa', () => {
+    g.gsap = gsapMock();
+    mount();
+    document.querySelector('[data-tabs-steps]')!.setAttribute('data-motion-exempt', '');
+    initTabsSteps();
+    expect(document.querySelector('button')!.getAttribute('aria-expanded')).toBeNull();
   });
 });

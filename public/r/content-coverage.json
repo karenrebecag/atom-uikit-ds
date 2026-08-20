@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T20:34:34.213Z",
+  "generatedAt": "2026-08-20T00:35:40.599Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 138,
+    "items": 140,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 138
+      "withSourceCommit": 140
     },
     "webflow": {
       "emitted": 37,
-      "excluded": 28
+      "excluded": 29
     },
-    "aggregateScore": 47.6
+    "aggregateScore": 47.2
   },
   "batches": [],
   "items": [
@@ -2021,6 +2021,42 @@
     },
     {
       "slug": "odometer-animation",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
+    },
+    {
+      "slug": "tabs-steps",
+      "kind": "component",
+      "category": "surfaces",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "excluded",
+      "webflowReason": "no React source (css-only / no-tsx)",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "no React source",
+      "contentScore": 25
+    },
+    {
+      "slug": "tabs-steps-animation",
       "kind": "hook",
       "category": "hook",
       "hasReact": false,

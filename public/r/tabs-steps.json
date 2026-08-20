@@ -1,0 +1,138 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-steps",
+  "type": "registry:component",
+  "title": "Tabs Steps",
+  "description": "Numbered steps, one open at a time, each with its own visual. Flat structure: item and visual are siblings, so the visual falls under its step on mobile and moves to the right column on desktop without leaving the flow.",
+  "registryDependencies": [
+    "tokens",
+    "foundation"
+  ],
+  "files": [
+    {
+      "path": "styles/components/tabs-steps.css",
+      "type": "registry:file",
+      "content": "/* -------------------------------------------------------------------------\n   Tabs Steps\n\n   Pasos numerados, cada uno con su visual. Uno abierto a la vez, con avance\n   automatico y barra de progreso.\n\n   ARIA de ACORDEON y no de tablist a proposito: en movil el visual cae dentro\n   del paso, asi que lo que hay es un desplegable. role=\"tab\" le prometeria a un\n   lector de pantalla navegacion por flechas entre pestañas que en ese tamaño no\n   existe, y el disparador es un <button>, no un <a href=\"#\"> que salta al top.\n\n   ESTRUCTURA PLANA: item y visual son HERMANOS, no anidados.\n\n     .tabs-steps\n       .tabs-steps__item    (1)\n       .tabs-steps__visual  (1)\n       .tabs-steps__item    (2)\n       .tabs-steps__visual  (2)\n\n   Eso es lo que hace que en movil cada visual caiga bajo su paso sin una sola\n   regla especial, y que en desktop el grid los mande a la columna derecha sin\n   sacar nada del flujo.\n\n   La alternativa evaluada —visual dentro del panel, position:absolute en\n   desktop— rompia de dos maneras: la seccion dejaba de contar la altura del\n   visual, y cualquier ancestro con transform pasaba a ser su contenedor de\n   referencia. Este componente usa GSAP, asi que el segundo fallo no era\n   hipotetico: bastaba con animar un paso para que el visual saltara dentro de\n   el, sin error y sin aviso.\n\n   Parts: .tabs-steps, __item, __trigger, __index, __title, __panel, __text,\n          __track, __progress, __visual\n   ------------------------------------------------------------------------- */\n\n.tabs-steps {\n  display: grid;\n  gap: var(--spacing-10);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- Paso ---- */\n\n.tabs-steps__item {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-1);\n  padding-block: var(--spacing-4);\n  padding-inline-end: var(--spacing-6);\n}\n\n/* La pista inferior marca el paso; la barra la rellena mientras corre el\n   autoplay. Van en dos elementos y no en un border porque un borde no se puede\n   escalar desde un extremo. */\n.tabs-steps__track {\n  position: absolute;\n  inset-block-end: 0;\n  inset-inline: 0;\n  height: var(--stroke-medium);\n  background-color: var(--border);\n}\n\n.tabs-steps__progress {\n  height: 100%;\n  background-color: var(--brand);\n  transform: scaleX(0);\n  transform-origin: left center;\n}\n\n/* ---- Disparador ---- */\n\n.tabs-steps__trigger {\n  display: flex;\n  align-items: baseline;\n  gap: var(--spacing-3);\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  background: none;\n  color: var(--muted-foreground);\n  font: inherit;\n  text-align: start;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: color var(--duration-200) var(--easing-out);\n}\n\n.tabs-steps__trigger[aria-expanded='true'] {\n  color: var(--foreground);\n}\n\n.tabs-steps__trigger:focus-visible {\n  outline: var(--ring-width) solid var(--ring);\n  outline-offset: var(--ring-offset);\n}\n\n.tabs-steps__index {\n  flex: none;\n  font-variant-numeric: tabular-nums;\n}\n\n.tabs-steps__title {\n  margin: 0;\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  letter-spacing: var(--letter-spacing-tight);\n}\n\n/* ---- Panel ---- */\n\n/* La altura la anima el behavior; overflow hidden es lo que hace que el texto\n   se recorte en vez de desbordar mientras colapsa. */\n.tabs-steps__panel {\n  overflow: hidden;\n}\n\n.tabs-steps__text {\n  margin: 0;\n  padding-block-start: var(--spacing-3);\n  color: var(--muted-foreground);\n  font-size: var(--font-size-base);\n  line-height: var(--line-height-base);\n  text-wrap: pretty;\n}\n\n/* ---- Visual ---- */\n\n.tabs-steps__visual {\n  overflow: hidden;\n  border-radius: var(--radius-xl);\n}\n\n.tabs-steps__visual > * {\n  display: block;\n  width: 100%;\n  height: auto;\n}\n\n/* En movil el visual es un desplegable mas: cerrado no ocupa. No se puede\n   heredar del panel porque es su HERMANO, no su hijo — el behavior marca el\n   par. */\n.tabs-steps__visual:not([data-active]) {\n  display: none;\n}\n\n/* ---- Desktop ---- */\n\n@media (min-width: 992px) {\n  .tabs-steps {\n    grid-template-columns: 1fr 1fr;\n    grid-template-rows: repeat(var(--tabs-steps-count, 3), auto);\n    column-gap: var(--spacing-10);\n    align-items: start;\n  }\n\n  .tabs-steps__item {\n    grid-column: 1;\n  }\n\n  /* Todos los visuales ocupan la MISMA celda de la columna derecha y se apilan;\n     solo el activo se pinta. Al abarcar todas las filas, la altura de la\n     seccion la resuelve el grid y ningun visual puede desbordarla. */\n  .tabs-steps__visual {\n    grid-column: 2;\n    grid-row: 1 / -1;\n    align-self: start;\n  }\n\n  /* En desktop el visual no colapsa: se cambia por el del paso activo. */\n  .tabs-steps__visual:not([data-active]) {\n    display: block;\n    visibility: hidden;\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .tabs-steps__trigger {\n    transition-duration: 0ms;\n  }\n\n  /* Una barra que se llena sola anuncia un cambio automatico que en este modo\n     no ocurre: mentiria. */\n  .tabs-steps__track {\n    display: none;\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Tabs Steps",
+      "description": "Numbered steps, one open at a time, each with its own visual. Flat structure: item and visual are siblings, so the visual falls under its step on mobile and moves to the right column on desktop without leaving the flow.",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "tabs-steps",
+      "cssClasses": [
+        "tabs-steps",
+        "tabs-steps__item",
+        "tabs-steps__visual",
+        "tabs-steps__track",
+        "tabs-steps__progress",
+        "tabs-steps__trigger",
+        "tabs-steps__index",
+        "tabs-steps__title",
+        "tabs-steps__panel",
+        "tabs-steps__text"
+      ],
+      "peerDeps": [],
+      "hasCss": true,
+      "hasReact": false
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-20T00:35:40.240Z",
+      "sourceCommit": "64526b6",
+      "install": {
+        "peerDeps": [],
+        "cssImports": [
+          "@atom-uikit/css/components.css",
+          "@atom-uikit/tokens/tokens.css"
+        ]
+      },
+      "anatomy": {
+        "bem": "<div class=\"tabs-steps\">\n  <span class=\"tabs-steps__index\"></span>\n  <span class=\"tabs-steps__item\"></span>\n  <span class=\"tabs-steps__panel\"></span>\n  <span class=\"tabs-steps__progress\"></span>\n  <span class=\"tabs-steps__text\"></span>\n  <span class=\"tabs-steps__title\"></span>\n  <span class=\"tabs-steps__track\"></span>\n  <span class=\"tabs-steps__trigger\"></span>\n  <span class=\"tabs-steps__visual\"></span>\n</div>",
+        "classes": [
+          {
+            "class": "tabs-steps",
+            "purpose": "root"
+          },
+          {
+            "class": "tabs-steps__index",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__item",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__panel",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__progress",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__text",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__title",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__track",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__trigger",
+            "purpose": "element"
+          },
+          {
+            "class": "tabs-steps__visual",
+            "purpose": "element"
+          }
+        ]
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "none",
+            "tokenPath": "(unparsed)"
+          },
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#525252",
+            "tokenPath": "muted.foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "border",
+            "hex": "0",
+            "tokenPath": "(unparsed)"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* -------------------------------------------------------------------------\n   Tabs Steps\n\n   Pasos numerados, cada uno con su visual. Uno abierto a la vez, con avance\n   automatico y barra de progreso.\n\n   ARIA de ACORDEON y no de tablist a proposito: en movil el visual cae dentro\n   del paso, asi que lo que hay es un desplegable. role=\"tab\" le prometeria a un\n   lector de pantalla navegacion por flechas entre pestañas que en ese tamaño no\n   existe, y el disparador es un <button>, no un <a href=\"#\"> que salta al top.\n\n   ESTRUCTURA PLANA: item y visual son HERMANOS, no anidados.\n\n     .tabs-steps\n       .tabs-steps__item    (1)\n       .tabs-steps__visual  (1)\n       .tabs-steps__item    (2)\n       .tabs-steps__visual  (2)\n\n   Eso es lo que hace que en movil cada visual caiga bajo su paso sin una sola\n   regla especial, y que en desktop el grid los mande a la columna derecha sin\n   sacar nada del flujo.\n\n   La alternativa evaluada —visual dentro del panel, position:absolute en\n   desktop— rompia de dos maneras: la seccion dejaba de contar la altura del\n   visual, y cualquier ancestro con transform pasaba a ser su contenedor de\n   referencia. Este componente usa GSAP, asi que el segundo fallo no era\n   hipotetico: bastaba con animar un paso para que el visual saltara dentro de\n   el, sin error y sin aviso.\n\n   Parts: .tabs-steps, __item, __trigger, __index, __title, __panel, __text,\n          __track, __progress, __visual\n   ------------------------------------------------------------------------- */\n\n.tabs-steps {\n  display: grid;\n  gap: 40px;\n  font-family: 'inter tight', -apple-system, blinkmacsystemfont, 'segoe ui', roboto, helvetica, arial, sans-serif, ui-sans-serif, system-ui, sans-serif;\n}\n\n/* ---- Paso ---- */\n\n.tabs-steps__item {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  padding-block: 16px;\n  padding-inline-end: 24px;\n}\n\n/* La pista inferior marca el paso; la barra la rellena mientras corre el\n   autoplay. Van en dos elementos y no en un border porque un borde no se puede\n   escalar desde un extremo. */\n.tabs-steps__track {\n  position: absolute;\n  inset-block-end: 0;\n  inset-inline: 0;\n  height: 2px;\n  background-color: #e5e5e5;\n}\n\n.tabs-steps__progress {\n  height: 100%;\n  background-color: #ff6600;\n  transform: scaleX(0);\n  transform-origin: left center;\n}\n\n/* ---- Disparador ---- */\n\n.tabs-steps__trigger {\n  display: flex;\n  align-items: baseline;\n  gap: 12px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  background: none;\n  color: #525252;\n  font: inherit;\n  text-align: start;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n  transition: color 200ms cubic-bezier(0.22, 1, 0.36, 1);\n}\n\n.tabs-steps__trigger[aria-expanded='true'] {\n  color: #0a0a0a;\n}\n\n.tabs-steps__trigger:focus-visible {\n  outline: 2px solid #0a0a0a;\n  outline-offset: 1.5px;\n}\n\n.tabs-steps__index {\n  flex: none;\n  font-variant-numeric: tabular-nums;\n}\n\n.tabs-steps__title {\n  margin: 0;\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1.45;\n  letter-spacing: -0.02em;\n}\n\n/* ---- Panel ---- */\n\n/* La altura la anima el behavior; overflow hidden es lo que hace que el texto\n   se recorte en vez de desbordar mientras colapsa. */\n.tabs-steps__panel {\n  overflow: hidden;\n}\n\n.tabs-steps__text {\n  margin: 0;\n  padding-block-start: 12px;\n  color: #525252;\n  font-size: 16px;\n  line-height: 1.5;\n  text-wrap: pretty;\n}\n\n/* ---- Visual ---- */\n\n.tabs-steps__visual {\n  overflow: hidden;\n  border-radius: 16px;\n}\n\n.tabs-steps__visual > * {\n  display: block;\n  width: 100%;\n  height: auto;\n}\n\n/* En movil el visual es un desplegable mas: cerrado no ocupa. No se puede\n   heredar del panel porque es su HERMANO, no su hijo — el behavior marca el\n   par. */\n.tabs-steps__visual:not([data-active]) {\n  display: none;\n}\n\n/* ---- Desktop ---- */\n\n@media (min-width: 992px) {\n  .tabs-steps {\n    grid-template-columns: 1fr 1fr;\n    grid-template-rows: repeat(3, auto);\n    column-gap: 40px;\n    align-items: start;\n  }\n\n  .tabs-steps__item {\n    grid-column: 1;\n  }\n\n  /* Todos los visuales ocupan la MISMA celda de la columna derecha y se apilan;\n     solo el activo se pinta. Al abarcar todas las filas, la altura de la\n     seccion la resuelve el grid y ningun visual puede desbordarla. */\n  .tabs-steps__visual {\n    grid-column: 2;\n    grid-row: 1 / -1;\n    align-self: start;\n  }\n\n  /* En desktop el visual no colapsa: se cambia por el del paso activo. */\n  .tabs-steps__visual:not([data-active]) {\n    display: block;\n    visibility: hidden;\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .tabs-steps__trigger {\n    transition-duration: 0ms;\n  }\n\n  /* Una barra que se llena sola anuncia un cambio automatico que en este modo\n     no ocurre: mentiria. */\n  .tabs-steps__track {\n    display: none;\n  }\n}\n",
+      "motion": [
+        {
+          "property": "color",
+          "duration": "var(--duration-200)",
+          "easing": "var(--easing-out)"
+        }
+      ]
+    }
+  }
+}

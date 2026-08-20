@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-steps-animation",
+  "type": "registry:file",
+  "title": "Tabs Steps Animation",
+  "description": "Opens one step at a time with an animated panel, autoplays through them and fills a progress bar. Accordion semantics, not tablist.",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "animations/tabs-steps.ts",
+      "type": "registry:file",
+      "content": "// Tabs Steps — pasos numerados con visual por paso, avance automatico y barra\n// de progreso.\n//\n// DOM contract:\n//   [data-tabs-steps]                    raiz\n//   [data-tabs-steps-item]               un paso (contiene su <button>)\n//   [data-tabs-steps-panel]              lo que colapsa dentro del paso\n//   [data-tabs-steps-progress]           la barra que se rellena\n//   [data-tabs-steps-visual]             el visual del paso, HERMANO del item\n//   [data-tabs-steps-autoplay=\"false\"]   apaga el avance solo\n//   [data-tabs-steps-duration=\"5000\"]    ms por paso\n//\n// El emparejado es POR ORDEN: el n-esimo item con el n-esimo visual. No hay\n// atributo de indice que mantener sincronizado, y como la estructura es plana\n// el orden del DOM ya es el orden visual en movil.\n//\n// Es un ACORDEON, no un tablist: el disparador es un <button> con\n// aria-expanded, porque en movil el visual cae dentro del paso y lo que hay es\n// un desplegable. El estado va en aria-expanded y data-active, nunca en clases\n// BEM — esas son del canal de pintura.\n//\n// Requires: gsap\n// Respects: prefers-reduced-motion, data-motion-exempt\n\n/** F8b — single source for Webflow/domContract; must list every data-* the module queries. */\nexport const REQUIRED_HOOKS = [\n  'data-tabs-steps',\n  'data-tabs-steps-item',\n  'data-tabs-steps-panel',\n  'data-tabs-steps-progress',\n  'data-tabs-steps-visual',\n  'data-tabs-steps-autoplay',\n  'data-tabs-steps-duration',\n] as const;\n\nexport const REQUIRED_ANATOMY = [] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\n/** Wave-1 Webflow: behaviors must not write canonical BEM classes. */\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\ntype CleanupFn = () => void;\n\ndeclare const gsap: any;\n\nconst DEFAULT_DURATION = 5000;\n\nfunction activate(item: HTMLElement, visual: HTMLElement | undefined, on: boolean) {\n  const trigger = item.querySelector<HTMLElement>('button');\n  trigger?.setAttribute('aria-expanded', on ? 'true' : 'false');\n  if (on) {\n    item.dataset.active = '';\n    if (visual) visual.dataset.active = '';\n  } else {\n    delete item.dataset.active;\n    if (visual) delete visual.dataset.active;\n  }\n}\n\nexport function initTabsSteps(): CleanupFn {\n  if (typeof document === 'undefined') return () => {};\n\n  const roots = Array.from(document.querySelectorAll<HTMLElement>('[data-tabs-steps]')).filter(\n    (root) => root.dataset.motionExempt === undefined,\n  );\n  if (!roots.length) return () => {};\n\n  const reduced = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;\n  const hasGsap = typeof gsap !== 'undefined';\n  const cleanups: CleanupFn[] = [];\n\n  roots.forEach((root) => {\n    const items = Array.from(root.querySelectorAll<HTMLElement>('[data-tabs-steps-item]'));\n    const visuals = Array.from(root.querySelectorAll<HTMLElement>('[data-tabs-steps-visual]'));\n    if (!items.length) return;\n\n    const autoplay = !reduced && root.getAttribute('data-tabs-steps-autoplay') !== 'false';\n    const duration =\n      parseInt(root.getAttribute('data-tabs-steps-duration') || '', 10) || DEFAULT_DURATION;\n\n    let current = -1;\n    let progressTween: any = null;\n    let switching = false;\n\n    function panelOf(index: number) {\n      return items[index]?.querySelector<HTMLElement>('[data-tabs-steps-panel]') ?? null;\n    }\n\n    function startProgress(index: number) {\n      if (!autoplay || !hasGsap) return;\n      const bar = items[index].querySelector<HTMLElement>('[data-tabs-steps-progress]');\n      if (!bar) return;\n      progressTween?.kill();\n      gsap.set(bar, { scaleX: 0, transformOrigin: 'left center' });\n      progressTween = gsap.to(bar, {\n        scaleX: 1,\n        duration: duration / 1000,\n        ease: 'none',\n        onComplete() {\n          // Solo encadena si nadie interrumpio: un clic durante el ultimo frame\n          // llevaria a dos cambios seguidos.\n          if (!switching) go((index + 1) % items.length);\n        },\n      });\n    }\n\n    function go(index: number) {\n      if (index === current) return;\n      switching = true;\n      progressTween?.kill();\n\n      const outgoing = current;\n      const outgoingPanel = outgoing >= 0 ? panelOf(outgoing) : null;\n      const incomingPanel = panelOf(index);\n\n      if (outgoing >= 0) activate(items[outgoing], visuals[outgoing], false);\n      activate(items[index], visuals[index], true);\n      // El indice activo se actualiza AQUI, no al terminar la animacion. El\n      // estado en el DOM (aria-expanded, data-active) ya cambio de forma\n      // sincrona; si el indice esperase al onComplete, un clic durante la\n      // transicion veria current todavia en el paso anterior y no lo cerraria\n      // — quedarian dos pasos abiertos a la vez.\n      current = index;\n\n      const outgoingBar =\n        outgoing >= 0\n          ? items[outgoing].querySelector<HTMLElement>('[data-tabs-steps-progress]')\n          : null;\n\n      if (reduced || !hasGsap) {\n        if (outgoingPanel) outgoingPanel.style.height = '0px';\n        if (incomingPanel) incomingPanel.style.height = 'auto';\n        if (outgoingBar) outgoingBar.style.transform = 'scaleX(0)';\n        switching = false;\n        return;\n      }\n\n      const timeline = gsap.timeline({\n        defaults: { duration: 0.45, ease: 'power3.out' },\n        onComplete() {\n          switching = false;\n          startProgress(index);\n        },\n      });\n\n      if (outgoingPanel) timeline.to(outgoingPanel, { height: 0 }, 0);\n      // La barra saliente se vacia desde el lado contrario: retrocede en vez de\n      // desaparecer, que es lo que la lee como \"este paso se cerro\".\n      if (outgoingBar) {\n        timeline.set(outgoingBar, { transformOrigin: 'right center' }, 0);\n        timeline.to(outgoingBar, { scaleX: 0, duration: 0.3 }, 0);\n      }\n      if (incomingPanel) timeline.fromTo(incomingPanel, { height: 0 }, { height: 'auto' }, 0);\n    }\n\n    items.forEach((item, index) => {\n      const trigger = item.querySelector<HTMLElement>('button');\n      const panel = item.querySelector<HTMLElement>('[data-tabs-steps-panel]');\n      if (panel) panel.style.height = '0px';\n      activate(item, visuals[index], false);\n\n      const onClick = () => {\n        if (index === current) return;\n        go(index);\n      };\n      trigger?.addEventListener('click', onClick);\n      cleanups.push(() => trigger?.removeEventListener('click', onClick));\n    });\n\n    go(0);\n\n    cleanups.push(() => {\n      progressTween?.kill();\n      items.forEach((item, index) => {\n        const panel = panelOf(index);\n        if (panel) panel.style.removeProperty('height');\n        activate(item, visuals[index], false);\n      });\n    });\n  });\n\n  return () => {\n    cleanups.forEach((cleanup) => cleanup());\n    cleanups.length = 0;\n  };\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Tabs Steps Animation",
+      "description": "Opens one step at a time with an animated panel, autoplays through them and fills a progress bar. Accordion semantics, not tablist.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-20T00:35:40.240Z",
+      "sourceCommit": "64526b6",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-css-source"
+      ]
+    }
+  }
+}
