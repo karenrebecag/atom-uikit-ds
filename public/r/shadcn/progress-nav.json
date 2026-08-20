@@ -58,8 +58,8 @@
       "usage": "import { ProgressNav } from '@/components/atoms/ProgressNav';\n\n<ProgressNav\n  items={[{ id: 'features', label: 'Features' }, { id: 'pricing', label: 'Pricing' }]}\n  cta={{ label: 'Contact', href: '#contact' }}\n/>"
     },
     "derived": {
-      "generatedAt": "2026-08-20T00:35:40.240Z",
-      "sourceCommit": "64526b6",
+      "generatedAt": "2026-08-20T00:48:55.266Z",
+      "sourceCommit": "eaaa1e7",
       "install": {
         "peerDeps": [
           "gsap"
