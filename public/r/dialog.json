@@ -91,8 +91,8 @@
       "usage": "import {\n  Dialog, DialogTrigger, DialogContent, DialogHeader,\n  DialogTitle, DialogDescription, DialogBody, DialogFooter,\n} from '@/components/atoms/Dialog';\n\n<Dialog>\n  <DialogTrigger><button type=\"button\">Edit</button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Update your public name.</DialogDescription>\n    </DialogHeader>\n    <DialogBody>{/* fields */}</DialogBody>\n    <DialogFooter><button type=\"button\">Save</button></DialogFooter>\n  </DialogContent>\n</Dialog>"
     },
     "derived": {
-      "generatedAt": "2026-08-20T01:34:40.212Z",
-      "sourceCommit": "6024bd0",
+      "generatedAt": "2026-08-20T01:44:36.729Z",
+      "sourceCommit": "b60678f",
       "install": {
         "peerDeps": [],
         "cssImports": [
