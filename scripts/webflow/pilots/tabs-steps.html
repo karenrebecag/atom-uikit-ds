@@ -1,0 +1,39 @@
+<!--
+  F7 pilot — matches tabs-steps.ts DOM contract.
+
+  Item y visual son HERMANOS, no anidados: es lo que hace que en movil cada
+  visual caiga bajo su paso sin regla especial, y que en desktop el grid los
+  mande a la columna derecha sin sacar nada del flujo.
+
+  El emparejado es por orden, no por atributo de indice: no hay numero que
+  mantener sincronizado.
+-->
+<div class="tabs-steps" data-tabs-steps="" data-tabs-steps-autoplay="true" data-tabs-steps-duration="5000" style="--tabs-steps-count: 2">
+  <div class="tabs-steps__item" data-tabs-steps-item="">
+    <button type="button" class="tabs-steps__trigger" aria-expanded="false" aria-controls="step-1">
+      <span class="tabs-steps__index">1.</span>
+      <span class="tabs-steps__title">Disenamos los flujos con tu equipo</span>
+    </button>
+    <div class="tabs-steps__panel" id="step-1" data-tabs-steps-panel="">
+      <p class="tabs-steps__text">Creamos junto a tu equipo los escenarios donde la IA conversa con tus leads.</p>
+    </div>
+    <div class="tabs-steps__track"><div class="tabs-steps__progress" data-tabs-steps-progress=""></div></div>
+  </div>
+  <div class="tabs-steps__visual" data-tabs-steps-visual="">
+    <img src="/steps/uno.avif" alt="" loading="lazy" />
+  </div>
+
+  <div class="tabs-steps__item" data-tabs-steps-item="">
+    <button type="button" class="tabs-steps__trigger" aria-expanded="false" aria-controls="step-2">
+      <span class="tabs-steps__index">2.</span>
+      <span class="tabs-steps__title">Integramos Atom a tu stack actual</span>
+    </button>
+    <div class="tabs-steps__panel" id="step-2" data-tabs-steps-panel="">
+      <p class="tabs-steps__text">Nos encargamos de la integracion tecnica con WhatsApp Business API y tu CRM.</p>
+    </div>
+    <div class="tabs-steps__track"><div class="tabs-steps__progress" data-tabs-steps-progress=""></div></div>
+  </div>
+  <div class="tabs-steps__visual" data-tabs-steps-visual="">
+    <img src="/steps/dos.avif" alt="" loading="lazy" />
+  </div>
+</div>

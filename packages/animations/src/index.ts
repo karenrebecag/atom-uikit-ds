@@ -20,4 +20,5 @@ export { initNavAutohide } from './nav-autohide';
 export { initDraggableMarquee } from './marquee-draggable';
 export { initCssMarquee } from './marquee-css';
 export { initOdometer } from './odometer';
+export { initTabsSteps } from './tabs-steps';
 export { initVideoPlayer } from './video-player';

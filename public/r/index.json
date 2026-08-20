@@ -2792,6 +2792,46 @@
     }
   },
   {
+    "name": "tabs-steps",
+    "kind": "component",
+    "framework": "css",
+    "installGroup": "styles",
+    "title": "Tabs Steps",
+    "description": "Numbered steps, one open at a time, each with its own visual. Flat structure: item and visual are siblings, so the visual falls under its step on mobile and moves to the right column on desktop without leaving the flow.",
+    "registryDependencies": [
+      "tokens",
+      "foundation"
+    ],
+    "discovery": {
+      "name": "Tabs Steps",
+      "description": "Numbered steps, one open at a time, each with its own visual. Flat structure: item and visual are siblings, so the visual falls under its step on mobile and moves to the right column on desktop without leaving the flow.",
+      "category": "surfaces",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "tabs-steps-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Tabs Steps Animation",
+    "description": "Opens one step at a time with an animated panel, autoplays through them and fills a progress bar. Accordion semantics, not tablist.",
+    "discovery": {
+      "name": "Tabs Steps Animation",
+      "description": "Opens one step at a time with an animated panel, autoplays through them and fills a progress bar. Accordion semantics, not tablist.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
     "name": "menu-button-animation",
     "kind": "hook",
     "framework": "react",
