@@ -1,91 +1,136 @@
 # atom-uikit-ds
 
-> Design system monorepo for ATOM's marketing web layer — tokens, components, registry, and the distribution pipeline that makes vibecoded pages come out on-brand.
+Design system monorepo for Atom’s marketing web layer — tokens, components, layouts, registry, and the distribution pipeline that keeps AI-generated and human-written pages on-brand.
 
-**Live:** [uikit.atomchat.io](https://uikit.atomchat.io) · [Storybook](https://atom-uikit-ds-storybook.vercel.app) · [Registry API](https://uikit.atomchat.io/api/r)
+**Live:** [uikit.atomchat.io](https://uikit.atomchat.io) · [Storybook](https://atom-uikit-ds-storybook.vercel.app) · [Registry API](https://uikit.atomchat.io/api/r) · Public CSS/tokens [`/v1`](https://atom-web-ds.vercel.app/v1/atom.css)
 
----
-
-## Why this exists
-
-Atom is an AI-first company where everyone vibecodes — marketing, founders, product. That culture ships fast and breaks brand consistency.
-
-This repo is the source of truth for the marketing design system: a reinterpretation of Atom's product DS, optimized for two readers at once — the developer and the LLM. The goal is that whoever writes the code (human or agent) produces correct output on the first try, without a platform engineer reviewing every page.
-
-→ Full write-up: [The Design System an AI Can't Hallucinate](https://karenrebecaortiz.com/en/articulos/design-system-that-ships-itself)
+This is production infrastructure for Atom marketing, not a component gallery. It is also a portfolio-facing statement of how product engineering, design systems, and agent workflows can share one source of truth.
 
 ---
 
-## Ecosystem
+## The problem
 
-This DS is one of four coordinated repos:
+Atom is an AI-first company. Marketing, founders, and product all ship UI by vibecoding. That culture is fast — and it breaks brand consistency the moment each person (or each agent) invents spacing, color, and structure in isolation.
 
-| Repository | Role |
-|---|---|
-| **`atom-uikit-ds`** ← you are here | Tokens (3 layers), packages, registry pipeline |
-| [`atom-uikit-docs`](https://github.com/karenrebecag/atom-uikit-docs) | Next.js docs site, Registry API (`/api/r`), Clerk auth, CLI token exchange |
-| `atom-uikit-cms` | Payload CMS — component articles, MCP-readable docs, restricted content |
-| `atom-uikit-db` | Hosted MCP server, OAuth 2.1, Supabase edge functions |
+A classical design system assumes a careful human reader. That is not enough here. The system has to work for **two readers at once**: the engineer and the LLM. If the model can hallucinate implementation, brand fails at the speed of generation.
 
-Distribution channels:
-- **CLI** — `npx @atomchat.io/mcp-uikit` for engineers inside the editor
-- **MCP over HTTP** — `https://uikit-mcp.vercel.app/mcp` for AI clients (Claude, Cursor)
-- **Registry API** — shadcn-style JSON, copy source to your project
-- **Webflow sync** — `pnpm sync:webflow` exports token-driven XML
+This repo exists so that whoever writes the page — human or agent — produces correct output on the first try, without a platform engineer reviewing every landing.
+
+Longer write-up: [The Design System an AI Can't Hallucinate](https://karenrebecaortiz.com/en/articulos/design-system-that-ships-itself).
 
 ---
 
-## Architecture
+## Product thesis
 
-### Token layers (3-tier, primitives → semantic → component)
+1. **One source of truth for brand on the web.** Tokens → CSS → components → layouts → channels. No parallel “marketing DS” and “product DS” for the same surfaces (see ADR 007).
+2. **Paint travels live; structure is installed.** Look-and-feel can evolve centrally via `/v1`. Anatomy of a section is published as a layout and installed deliberately — so a rebrand does not silently reshape every live page, and a new page does not reinvent markup three times.
+3. **Agents are first-class consumers.** Discovery tools return metadata only. Implementation tools return real source and require auth. Fail-closed beats “please don’t invent CSS.”
+4. **Fewer tokens, stricter layers.** ~350 tokens instead of an unbounded set. Component tokens never reference primitives directly. Dark mode is a semantic swap, not a second codebase.
+5. **Distribution matches how marketing actually ships.** Webflow, embeds, registry copy, MCP — not “npm install and hope.”
+
+---
+
+## What this monorepo owns
+
+| Layer | Responsibility |
+|--------|----------------|
+| **Tokens** (`packages/tokens`) | W3C DTCG JSON, 3 layers: primitives → semantic → component. Style Dictionary build. |
+| **CSS** (`packages/css`) | Foundation, components (BEM), utilities, embed-scoped artifact, Webflow-oriented entries. |
+| **React** (`packages/components-react`) | Interactive components where behavior matters. |
+| **Layouts** (`packages/layouts`) | Structure-only section anatomy (`layout/<slug>`), slots + repeats, no paint. |
+| **Animations** (`packages/animations`) | GSAP modules consuming motion tokens; `prefers-reduced-motion` discipline. |
+| **Registry pipeline** | Internal schema → `public/r/*.json` (and shadcn-compat channel). Derived at build time. |
+| **Conformance** | Executable contracts (scale laws, CSS literals, layout structure-only, budgets, referential integrity). |
+
+Related repos (not this tree):
+
+| Repo | Role |
+|------|------|
+| `atom-uikit-docs` | Docs site, Registry API `/api/r`, auth, CLI token exchange |
+| `atom-uikit-cms` | Payload CMS — component articles, MCP-readable docs |
+| `atom-uikit-db` / MCP host | Hosted MCP, OAuth 2.1, edge functions |
+
+---
+
+## Architecture in one picture
 
 ```
-primitives/        271 colors, base-4 spacing (13 steps), Major Third type scale
-semantic/          112 light + 112 dark — every surface has a -foreground pair
-component/         Scoped tokens for states (hover, pressed, disabled) only
+packages/tokens/src/*.json          ← only place design values are authored
+        │ Style Dictionary
+        ▼
+ resolved CSS vars + tokens-nested.json
+        │
+        ├── packages/css (component paint)
+        ├── public/r/ (registry + tokens for MCP)
+        └── Webflow Variables (plan + official MCP)
+                │
+                ▼
+        layouts (structure) + /v1/embed.css or atom.css (paint)
+                │
+                ▼
+        consumers: agents (MCP), engineers (registry/CLI), marketing (Webflow/embeds)
 ```
 
-**The rule that holds the whole building up:** a component token never references a primitive directly. It always goes through the semantic layer. That's what makes dark mode work without touching component CSS.
+**Hard rules (enforced, not optional):**
 
-Tokens follow the [W3C Design Tokens Community Group](https://designtokens.org) format (`{ "$value": "...", "$type": "..." }`), consumed by Style Dictionary v4.
+- Never edit generated outputs (`build/`, `dist/`, `public/r/` is regenerated by `build:registry`, `public-dist/out/`).
+- Component CSS consumes **semantic** variables only — never primitives, never raw hex.
+- A CSS-only component publishes **paint**, not anatomy. Anatomy is a **layout** or it is not distributed.
+- An organism is “done” only when it can be rebuilt from the registry without looking at the originating consumer repo (`docs/organism-pipeline.md`).
 
-### Packages
+---
 
-| Package | What it ships |
-|---|---|
-| `@atom-uikit/tokens` | Token JSON → CSS custom properties + JS exports |
-| `@atom-uikit/css` | Foundation CSS, utility classes, LightningCSS build |
-| `@atom-uikit/components-react` | React components, tsup build |
-| `@atom-uikit/components-astro` | Astro components, same token base |
-| `@atom-uikit/animations` | CSS-only animation primitives |
-| `@atom-uikit/layouts` | Layout composition patterns |
-| `@atom-uikit/cli` | Auth + install CLI for local dev |
-| `@atom-uikit/whatsapp` | WhatsApp widget — IIFE, Cloudflare Worker + R2 |
+## Distribution channels
 
-### Registry pipeline
+| Channel | Who it’s for | Auth |
+|---------|----------------|------|
+| **MCP** (`atom_uikit_*` tools) | Agents in Cursor/Claude etc. | Discovery open enough to search; implementation requires auth |
+| **Registry API** `/api/r` | CLI and tooling, shadcn-shaped install | Clerk / JWT / API key |
+| **Public `/v1/*`** | Browsers, embeds, Webflow custom code | Public by design (browser artifacts); repo and registry stay private |
+| **Webflow Variables** | Designers/marketers in Webflow | Site-authorized MCP session |
+| **npm** | — | **Disconnected** (ADR 002). Packages are `private: true`; `pnpm release` is blocked. |
 
-Components are not on npm. They follow the [shadcn/ui registry model](https://ui.shadcn.com/docs/registry) — source is copied to consumer projects, not installed as a black box.
+Paint vs structure is the important product split: change a token and every embed on `/v1` can pick up the new look; change a layout and consumers reinstall that block on purpose.
 
-```
-registry.json                  ← Internal AtomRegistryItem schema
-scripts/extract-component-metadata.ts  ← Pulls variants, props, cssClasses from source
-scripts/build-registry.mjs     ← Writes public/r/*.json (shadcn-compatible)
-public/r/index.json            ← Discovery catalog for MCP warm start
-public/r/{name}.json           ← Per-component files with full atom field
-```
+Deep map: [`docs/distribution-model.md`](docs/distribution-model.md) (currently Spanish; English summary lives in [`docs/PRODUCT.md`](docs/PRODUCT.md)).
 
-`pnpm build:registry` rebuilds the full catalog. `/public/r/` is not committed — it's derived at build time by the docs site to guarantee the registry and the source never diverge.
+---
 
-### Anti-hallucination split (MCP)
+## Decisions that define the system
 
-The MCP server enforces a deliberate separation between two tool classes:
+| Decision | Why |
+|----------|-----|
+| **Single DS for Atom web marketing** (ADR 007) | Two monorepos = two truths. Legacy `ATOM_DS` archived; wrappers for other frameworks only if a real consumer appears. |
+| **npm off** (ADR 002) | No public package authorization; hosts are often no-code; source-copy + live CSS fit the real consumers. |
+| **shadcn-style registry, not black-box packages** | Source is visible and forkable; agents and humans see the same files. |
+| **MCP discovery ≠ implementation** | Metadata without source forces a tool call for real CSS/TSX — anti-hallucination by protocol. |
+| **Embed CSS is a first-class artifact** (ADR 006) | `foundation.css` / `atom.css` include global `body` rules. Host pages need `.atom-embed`-scoped `/v1/embed.css`. |
+| **Astro channel frozen** (ADR 008) | No real Astro consumer → no maintenance theater. |
+| **Motion wave gated** (ADR 005) | Tokens exist; new GSAP behaviors need an approved spec so motion does not become untokenized chaos. |
+| **Conformance as data** | Laws of scale, structure-only layouts, budgets, and referential integrity are JSON contracts + a dumb runner — not prose agents can ignore. |
 
-| Class | Tools | What they return |
-|---|---|---|
-| Discovery | `atom_uikit_context`, `atom_uikit_component`, `atom_uikit_search`, `atom_uikit_list`, `atom_uikit_get`, `atom_uikit_install` | Metadata only — variants, props, install commands. No CSS. |
-| Implementation | `atom_uikit_source`, `atom_uikit_validate` | Real CSS/React source. Requires auth. |
+Full decision log: [`docs/decisions/`](docs/decisions/).
 
-Discovery tools emit `implementationAccess: requires_atom_uikit_source` — the agent knows not to invent implementation, and the system won't let it anyway.
+---
+
+## Current status (honest)
+
+**Strong**
+
+- Production use on Atom marketing surfaces, including Webflow-oriented workflows.
+- Token → build → registry → docs/MCP propagation path is real.
+- Conformance, contrast, embed leak tests, and organism acceptance criteria exist and have already caught production-class failures.
+- Agent operating manuals (`CLAUDE.md`, `docs/AGENTS.md`, `docs/component-agent-flow.md`) are detailed enough that implementation can be supervised rather than hand-written.
+
+**Gaps / debt**
+
+- **Documentation language split.** Operational depth is often Spanish (`CLAUDE.md`, `AGENTS.md`, organism pipeline, large parts of distribution model). Public/portfolio narrative is moving to English (this README, `docs/PRODUCT.md`). That split is intentional short-term and still a cost for external readers and future teammates.
+- **Catalog vs distribution.** Many atoms/molecules exist in source; not all have CMS articles + MCP manifest entries. Layouts ship on the new channel, but older layouts may still define local anatomy instead of composing published components — migration is **on demand**, not a big-bang.
+- **Changelog lag.** Root `CHANGELOG.md` still reflects early waves; internal package changelogs and decisions are ahead of it.
+- **Operational complexity.** Four coordinated repos, deploy hooks, and auth surfaces mean the system scales the author’s throughput more than it scales “any hire day-one.” `docs/RUNBOOK.md` is the mitigation; onboarding cost remains real.
+- **Webflow as critical path.** Variables have no REST Data API; sync is plan + official MCP. Correct under constraints, still a fragile external dependency for marketing’s primary surface.
+
+Product framing of the same points: [`docs/PRODUCT.md`](docs/PRODUCT.md).
 
 ---
 
@@ -98,54 +143,63 @@ node >= 20
 pnpm >= 10
 ```
 
-### Install
+### Install & develop
 
 ```bash
 pnpm install
+pnpm dev          # packages in watch mode
+pnpm --filter @atom-uikit/storybook dev
 ```
 
-### Dev
+### Build & validate
 
 ```bash
-pnpm dev          # all packages in watch mode
-pnpm --filter @atom-uikit/storybook dev  # Storybook only
+pnpm build
+pnpm build:registry       # regenerate public/r from source
+pnpm validate             # token validator
+pnpm validate:contrast    # WCAG pairs light + dark
+pnpm conformance          # executable architecture contracts
+pnpm test
 ```
 
-### Build
+### Webflow
 
 ```bash
-pnpm build                # all packages
-pnpm build:registry       # rebuild component registry
-pnpm sync:webflow         # export token XML to Webflow
+pnpm sync:webflow         # plan / export path — see docs/webflow-playbook.md
 ```
 
-### Validate
+Consumers should not `npm install @atom-uikit/*`. Use MCP, registry/CLI, or `/v1` CSS and token JSON.
 
-```bash
-pnpm validate             # token validator (must pass with 0 errors)
-pnpm validate:contrast    # WCAG contrast checks
-pnpm conformance          # architecture conformance rules
-pnpm test                 # component unit tests
-```
+---
+
+## Documentation map
+
+| Doc | Audience | Notes |
+|-----|----------|--------|
+| [`docs/PRODUCT.md`](docs/PRODUCT.md) | Humans, portfolio, product | Thesis, decisions, status, non-goals |
+| [`docs/DOCUMENTATION.md`](docs/DOCUMENTATION.md) | Maintainers | What exists, language, priority gaps |
+| [`docs/distribution-model.md`](docs/distribution-model.md) | Engineers / agents | Full channel model (Spanish depth) |
+| [`docs/organism-pipeline.md`](docs/organism-pipeline.md) | Agents shipping sections | Paint vs structure, acceptance test |
+| [`docs/component-agent-flow.md`](docs/component-agent-flow.md) | Agents editing components | Step-by-step modes |
+| [`docs/AGENTS.md`](docs/AGENTS.md) | Agents | Consume vs modify roles |
+| [`CLAUDE.md`](CLAUDE.md) | Agents | Hard rules, tokens, release, prohibitions |
+| [`docs/RUNBOOK.md`](docs/RUNBOOK.md) | Operators | Release, deploy, Webflow, access |
+| [`docs/decisions/`](docs/decisions/) | Everyone | ADRs |
+| [`conformance/README.md`](conformance/README.md) | Engineers / agents | Why gates exist |
 
 ---
 
 ## Contributing
 
-See [CONTRIBUTING-REGISTRY.md](./CONTRIBUTING-REGISTRY.md) for the component registry spec and [CLAUDE.md](./CLAUDE.md) for the full architectural rules — including token workflow, naming conventions, and distribution contracts.
+Registry and component contracts: [`CONTRIBUTING-REGISTRY.md`](CONTRIBUTING-REGISTRY.md).
 
-> npm publishing is disabled. All distribution goes through private channels (registry API, MCP, Webflow sync). See `CLAUDE.md → Canales de distribución`.
+Before any visual or structural change:
 
----
-
-## Design decisions
-
-- **~350 tokens instead of ~500** — fewer options means fewer errors for humans and models alike
-- **shadcn distribution, not npm** — source is always visible and modifiable; no black boxes
-- **Multi-framework from one token base** — React, Astro, CSS, IIFE from the same primitives
-- **Build-time sync, not committed JSONs** — anything derivable from source should be derived, not stored
-- **Fail-closed MCP** — the correct outcome is the only available path, not a request for good behavior
+1. `pnpm conformance` (green baseline)
+2. Edit tokens or CSS source — never generated output
+3. `pnpm conformance && pnpm build && pnpm validate && pnpm validate:contrast` (and visual/embed gates when relevant)
+4. Do not relax `conformance/*.json` to pass your own change without calling it out in review
 
 ---
 
-*Part of the ATOM UIKit ecosystem · Built by [Karen Ortiz](https://karenrebecaortiz.com)*
+*Part of the ATOM UIKit ecosystem · Product engineering by [Karen Ortiz](https://karenrebecaortiz.com)*
