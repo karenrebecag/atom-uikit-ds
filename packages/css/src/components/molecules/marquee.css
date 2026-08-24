@@ -100,7 +100,7 @@
      de mas. Se veia sobre todo al reiniciar el ciclo, porque ahi coinciden el
      ultimo item de una lista y el primero de la siguiente. Con height la caja
      crece o encoge con el logo y el ritmo del carril vuelve a ser real. */
-  height: calc(var(--marquee-logo-height, 3.5rem) * var(--marquee-logo-scale, 1));
+  height: calc(var(--marquee-logo-height, 3rem) * var(--marquee-logo-scale, 1));
   width: auto;
   /* Webflow sirve img { max-width: 100% } de fabrica: sin esto, un wordmark
      ancho se comprime en vez de respetar su altura. */
