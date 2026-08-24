@@ -76,10 +76,26 @@
    remesa actual (751x597), asi que hoy no recorta nada, y manana una imagen con
    otra proporcion se encuadra en vez de descuadrar la fila entera. */
 .feature-card__media {
-  display: block;
   overflow: hidden;
   border-radius: var(--radius-md);
   aspect-ratio: var(--feature-card-media-ratio, 5 / 4);
+}
+
+/* El display va aparte y dentro de :where() a proposito. Es el default de un
+   <div>, no una decision del componente: solo esta aqui por si el slot se monta
+   sobre un elemento inline, donde aspect-ratio no aplicaria.
+
+   A especificidad normal, esta declaracion EMPATA con cualquier regla de una
+   clase que el consumidor escriba para ocultar el slot, y como el CSS del DS se
+   carga despues del suyo, gana el DS y el slot no se puede esconder. Paso en
+   atomchat.io: las variantes "sin imagen" del componente de Webflow declaraban
+   display:none y el panel las emite con :where() —cero especificidad—, asi que
+   este display:block las pisaba y la imagen seguia ahi.
+
+   Un default pertenece a la capa de menor peso. Con :where() sigue cubriendo el
+   caso inline y deja de pelear con quien lo consume. */
+:where(.feature-card__media) {
+  display: block;
 }
 
 /* Un slot es opcional por definicion, pero la caja del media se reserva sola:
