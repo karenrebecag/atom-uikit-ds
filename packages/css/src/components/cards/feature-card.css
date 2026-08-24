@@ -82,6 +82,20 @@
   aspect-ratio: var(--feature-card-media-ratio, 5 / 4);
 }
 
+/* Un slot es opcional por definicion, pero la caja del media se reserva sola:
+   con aspect-ratio, un slot sin nada dentro sigue ocupando 5/4 de la columna y
+   se lee como una imagen que no cargo. El consumidor no puede arreglarlo desde
+   su lado sin tocar la clase del DS.
+
+   Se usa :not(:has(*)) y no :empty porque :empty cuenta los nodos de texto: un
+   salto de linea entre las etiquetas —lo normal en HTML escrito a mano— ya
+   bastaria para que la regla no aplicara. Aqui lo que importa es si hay un
+   elemento dentro, no si hay whitespace. Precedente de :has() en el repo:
+   marquee.css (.marquee__item:has(> .review-card)). */
+.feature-card__media:not(:has(*)) {
+  display: none;
+}
+
 .feature-card__media > * {
   display: block;
   width: 100%;
