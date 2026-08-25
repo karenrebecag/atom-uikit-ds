@@ -68,7 +68,7 @@
       "paginationRemovedCount": 0
     }
   },
-  "headCss": ".ds-accordion__chevron svg{width:100%;height:100%}.ds-accordion__item--open .ds-accordion__chevron,.ds-accordion__trigger[aria-expanded=true] .ds-accordion__chevron{transform:rotate(180deg)}.ds-accordion__item--open .ds-accordion__content-wrapper,.ds-accordion__trigger[aria-expanded=true]~.ds-accordion__content-wrapper{grid-template-rows:1fr}.ds-accordion__trigger:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:2px;border-radius:4px}@media (prefers-reduced-motion:reduce){.ds-accordion__content-wrapper,.ds-accordion__chevron{transition-duration:0s}}",
+  "headCss": ".ds-accordion__chevron svg{width:100%;height:100%}.ds-accordion__item--open .ds-accordion__chevron,.ds-accordion__trigger[aria-expanded=true] .ds-accordion__chevron{transform:rotate(180deg)}.ds-accordion__item--open .ds-accordion__content-wrapper,.ds-accordion__trigger[aria-expanded=true]~.ds-accordion__content-wrapper{grid-template-rows:1fr}.ds-accordion__item:has(.ds-accordion__trigger[aria-expanded=true]) .ds-accordion__content-wrapper{grid-template-rows:1fr}.ds-accordion__trigger:focus-visible{outline:var(--focus-ring-width,2px) solid var(--focus-ring-color);outline-offset:2px;border-radius:4px}@media (prefers-reduced-motion:reduce){.ds-accordion__content-wrapper,.ds-accordion__chevron{transition-duration:0s}}",
   "tokensCss": "",
   "tokensResolved": [],
   "manifest": {
@@ -110,6 +110,11 @@
     {
       "prop": "selector",
       "selector": ".accordion__trigger[aria-expanded='true'] ~ .accordion__content-wrapper",
+      "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
+    },
+    {
+      "prop": "selector",
+      "selector": ".accordion__item:has(.accordion__trigger[aria-expanded='true'])\n  .accordion__content-wrapper",
       "reason": "compound/descendant selector — moved to head Custom Code (Designer styles are single-class)"
     },
     {

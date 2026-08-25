@@ -88,8 +88,8 @@
       "usage": "import { Checkbox } from '@/components/atoms/Checkbox';\n\n<Checkbox checked={ok} onChange={setOk} label=\"I agree\" />"
     },
     "derived": {
-      "generatedAt": "2026-08-25T17:20:38.021Z",
-      "sourceCommit": "5f81d85f",
+      "generatedAt": "2026-08-25T17:50:14.861Z",
+      "sourceCommit": "20af45c8",
       "install": {
         "peerDeps": [
           "gsap"

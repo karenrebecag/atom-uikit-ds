@@ -111,6 +111,18 @@
   grid-template-rows: 1fr;
 }
 
+/* El caso que el selector de hermanos NO cubre, y que es el marcado correcto:
+   la pregunta va dentro de un heading, asi que el trigger deja de ser hermano
+   del panel y pasa a ser sobrino. Con solo la regla de arriba el JS alternaba
+   aria-expanded pero el panel no abria — sin error, sin pista.
+
+   Se resuelve desde el item, que es el ancestro comun, y asi da igual cuanto
+   se anide el trigger. */
+.accordion__item:has(.accordion__trigger[aria-expanded='true'])
+  .accordion__content-wrapper {
+  grid-template-rows: 1fr;
+}
+
 .accordion__content {
   overflow: hidden;
   min-height: 0;
