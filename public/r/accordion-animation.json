@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-animation",
+  "type": "registry:file",
+  "title": "Accordion Animation",
+  "description": "Toggle behavior for the plain accordion in static HTML: delegated click, optional one-open, state in aria-expanded. No gsap.",
+  "files": [
+    {
+      "path": "animations/accordion.ts",
+      "type": "registry:file",
+      "content": "// Tipos locales (no importar de './index'): este archivo se distribuye SOLO\n// como artefacto del registry y debe ser auto-contenido en el consumidor.\n// Mismo patron que accordion-morph/marquee-draggable/progress-nav.\n\n/**\n * Accordion — disclosure de altura por CSS grid, sin dependencias.\n *\n * Hermano de bajo coste de accordion-morph: mismo gesto, cero gsap. La altura\n * la anima el CSS ya publicado (grid-template-rows 0fr -> 1fr sobre\n * .ds-accordion__content-wrapper); este modulo solo decide QUIEN esta abierto.\n *\n * EL ESTADO VIVE EN aria-expanded, y no en una clase de estado. Un accordion\n * necesita aria-expanded de todas formas para ser accesible, asi que una clase\n * paralela solo anadiria una segunda fuente de verdad que se puede\n * desincronizar. El CSS lee ese mismo atributo. Ademas los behaviors del DS\n * tienen prohibido escribir clases BEM canonicas — son del canal de pintura,\n * ver STATES_WRITTEN_AS_CLASSES.\n *\n * UN listener por raiz, delegado. Con un listener por trigger, los items que\n * el CMS de Webflow inyecta despues de initAccordion nacen muertos.\n *\n * Contract:\n *   [data-accordion]                 raiz\n *   [data-accordion-single=\"true\"]   abrir uno cierra a sus hermanos\n *   [data-accordion-item]            cada fila\n *   [data-accordion-trigger]         el disparador de la pregunta\n *   [data-accordion-panel]           el wrapper que colapsa\n *   [data-accordion-open]            en un item, nace abierto\n *\n * FUNCIONAL, no decorativo: reduced-motion quita la transicion (ya lo hace el\n * CSS) pero NUNCA el toggle.\n *\n * Requires: nada\n * Respects: prefers-reduced-motion (via CSS)\n */\n\n/** F8b — single source for Webflow/domContract; must list every data-* the module queries. */\nexport const REQUIRED_HOOKS = [\n  'data-accordion',\n  'data-accordion-single',\n  'data-accordion-item',\n  'data-accordion-trigger',\n  'data-accordion-panel',\n  'data-accordion-open',\n] as const;\n\nexport const REQUIRED_ANATOMY = [] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\n/** Wave-1 Webflow: behaviors must not write canonical BEM classes. */\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\ntype CleanupFn = () => void;\n\nlet uid = 0;\n\n/**\n * El disparador se busca por HOOK y no por etiqueta.\n *\n * El constructor de Webflow convierte <button> en <a> al pegar markup, y el\n * panel del Designer no siempre deja elegir la etiqueta. Con una busqueda por\n * 'button' el modulo no encuentra nada y falla EN SILENCIO. Mismo motivo que\n * en tabs-steps.\n */\nfunction triggerOf(item: HTMLElement): HTMLElement | null {\n  return item.querySelector<HTMLElement>('[data-accordion-trigger]');\n}\n\nfunction panelOf(item: HTMLElement): HTMLElement | null {\n  return item.querySelector<HTMLElement>('[data-accordion-panel]');\n}\n\n/**\n * Un <button> y un <a href> ya reciben foco y disparan clic con Enter/Espacio.\n * Un <div> no: sin esto, el accordion solo existe para quien usa raton.\n */\nfunction ensureFocusable(trigger: HTMLElement): boolean {\n  const tag = trigger.tagName.toLowerCase();\n  if (tag === 'button') return false;\n  if (tag === 'a' && trigger.hasAttribute('href')) return false;\n\n  if (!trigger.hasAttribute('tabindex')) trigger.setAttribute('tabindex', '0');\n  if (!trigger.hasAttribute('role')) trigger.setAttribute('role', 'button');\n  return true;\n}\n\nfunction setOpen(item: HTMLElement, open: boolean): void {\n  const trigger = triggerOf(item);\n  const panel = panelOf(item);\n  if (!trigger) return;\n\n  trigger.setAttribute('aria-expanded', open ? 'true' : 'false');\n  // aria-hidden y no `inert`: el panel colapsado sigue en el flujo con altura\n  // 0fr, y `inert` sobre un contenedor que la transicion vuelve a abrir deja\n  // el foco atrapado fuera durante los 300ms del grid.\n  if (panel) panel.setAttribute('aria-hidden', open ? 'false' : 'true');\n}\n\nfunction isOpen(item: HTMLElement): boolean {\n  return triggerOf(item)?.getAttribute('aria-expanded') === 'true';\n}\n\nexport function initAccordion(): CleanupFn {\n  const roots = Array.from(document.querySelectorAll<HTMLElement>('[data-accordion]'));\n  const cleanups: CleanupFn[] = [];\n\n  roots.forEach((root) => {\n    const single = root.getAttribute('data-accordion-single') === 'true';\n    const items = Array.from(root.querySelectorAll<HTMLElement>('[data-accordion-item]'));\n    const patched: HTMLElement[] = [];\n\n    items.forEach((item) => {\n      const trigger = triggerOf(item);\n      const panel = panelOf(item);\n      if (!trigger) return;\n\n      if (ensureFocusable(trigger)) patched.push(trigger);\n\n      // Enlaza trigger y panel por id para que un lector de pantalla anuncie\n      // que la region pertenece a esa pregunta. Se generan solo si faltan:\n      // un id escrito a mano en el Designer manda sobre el nuestro.\n      if (panel) {\n        uid += 1;\n        if (!panel.id) panel.id = `ds-accordion-panel-${uid}`;\n        if (!trigger.id) trigger.id = `ds-accordion-trigger-${uid}`;\n        trigger.setAttribute('aria-controls', panel.id);\n        if (!panel.hasAttribute('role')) panel.setAttribute('role', 'region');\n        panel.setAttribute('aria-labelledby', trigger.id);\n      }\n\n      setOpen(item, item.hasAttribute('data-accordion-open'));\n    });\n\n    const onClick = (event: Event) => {\n      const target = event.target as Element | null;\n      const trigger = target?.closest<HTMLElement>('[data-accordion-trigger]');\n      if (!trigger || !root.contains(trigger)) return;\n\n      const item = trigger.closest<HTMLElement>('[data-accordion-item]');\n      if (!item) return;\n\n      // Un <a> convertido por Webflow navegaria a \"#\" y saltaria el scroll.\n      event.preventDefault();\n\n      const willOpen = !isOpen(item);\n      setOpen(item, willOpen);\n\n      if (single && willOpen) {\n        root.querySelectorAll<HTMLElement>('[data-accordion-item]').forEach((sibling) => {\n          if (sibling !== item && isOpen(sibling)) setOpen(sibling, false);\n        });\n      }\n    };\n\n    // Espacio no dispara clic en un <div role=\"button\">; Enter tampoco.\n    const onKeydown = (event: KeyboardEvent) => {\n      if (event.key !== 'Enter' && event.key !== ' ') return;\n      const target = event.target as Element | null;\n      const trigger = target?.closest<HTMLElement>('[data-accordion-trigger]');\n      if (!trigger || !patched.includes(trigger)) return;\n\n      event.preventDefault();\n      trigger.click();\n    };\n\n    root.addEventListener('click', onClick);\n    root.addEventListener('keydown', onKeydown);\n\n    cleanups.push(() => {\n      root.removeEventListener('click', onClick);\n      root.removeEventListener('keydown', onKeydown);\n      patched.forEach((trigger) => {\n        trigger.removeAttribute('tabindex');\n        trigger.removeAttribute('role');\n      });\n    });\n  });\n\n  return () => cleanups.forEach((fn) => fn());\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Accordion Animation",
+      "description": "Toggle behavior for the plain accordion in static HTML: delegated click, optional one-open, state in aria-expanded. No gsap.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-25T16:22:52.112Z",
+      "sourceCommit": "0163f3c",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-css-source"
+      ]
+    }
+  }
+}

@@ -18,9 +18,9 @@
       "gzipKb": 26
     },
     "packages/animations/dist/atom-animations.js": {
-      "rawKb": 185,
-      "gzipKb": 46,
-      "$comment": "odometer (cifras que ruedan al entrar en viewport; behavior nº16): 167.5/42.6 medidos. SUBIDO de 170/42 el 2026-08-19 con Karen avisada, segunda subida del dia: marquee-css y odometer son dos behaviors nuevos en la misma sesion. A 16 modulos, TODA pagina paga los 16 aunque use dos: vale la pena evaluar partir el bundle antes de la proxima subida. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a."
+      "rawKb": 195,
+      "gzipKb": 50,
+      "$comment": "odometer (cifras que ruedan al entrar en viewport; behavior nº16): 167.5/42.6 medidos. SUBIDO de 170/42 el 2026-08-19 con Karen avisada, segunda subida del dia: marquee-css y odometer son dos behaviors nuevos en la misma sesion. A 16 modulos, TODA pagina paga los 16 aunque use dos: vale la pena evaluar partir el bundle antes de la proxima subida. Was 140/36 tras text-reveal (espera de fuentes, guarda de gradiente, FOUC propio) y marquee-draggable (autoplay, lag, snap): 130/33 medidos. Was 130/32 (mega-nav — morph direccional + slide-over movil — 115/28), 93/24 (tooltip smart 89.3/22.4), 78/20 (accordion-morph), 60/16 (W6a), 49/13 pre-W6a. | accordion (toggle del accordion plano en HTML estatico; behavior nº18): 182.8/46.66 medidos, +6.90/+1.55 sobre los 175.9/45.11 previos. SUBIDO de 185/46 el 2026-08-25: el gzip cruzaba el techo. Mismo criterio que odometer: medido + ~7% de holgura. El modulo no trae gsap — el coste es codigo propio y comentarios."
     },
     "packages/css/dist/webflow.css": {
       "rawKb": 22,

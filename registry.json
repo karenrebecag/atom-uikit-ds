@@ -1303,7 +1303,8 @@
       "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
       "registryDependencies": [
         "tokens",
-        "foundation"
+        "foundation",
+        "accordion-animation"
       ],
       "files": [
         {
@@ -1333,6 +1334,21 @@
           "usage": "import { Accordion, AccordionItem } from @/components/atoms/Accordion;\n\n<Accordion>\n  <AccordionItem title=\"Shipping\" defaultOpen>\n    Ships in 2–3 days.\n  </AccordionItem>\n  <AccordionItem title=\"Returns\">\n    30-day window.\n  </AccordionItem>\n</Accordion>"
         }
       }
+    },
+    {
+      "name": "accordion-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Accordion Animation",
+      "description": "Toggle behavior for the plain accordion in static HTML: delegated click, optional one-open, state in aria-expanded. No gsap.",
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/accordion.ts",
+          "outputPath": "animations/accordion.ts",
+          "type": "registry:file"
+        }
+      ]
     },
     {
       "name": "alert-dialog",
@@ -3807,6 +3823,29 @@
         {
           "sourcePath": "packages/layouts/src/hero-fullbleed.ts",
           "outputPath": "layouts/hero-fullbleed.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "layout/hero-industry",
+      "kind": "layout",
+      "framework": "css",
+      "installGroup": "layouts",
+      "title": "Hero Industry",
+      "description": "Layout template: hero-industry",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "chip",
+        "button",
+        "link-button",
+        "typography"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/layouts/src/hero-industry.ts",
+          "outputPath": "layouts/hero-industry.ts",
           "type": "registry:file"
         }
       ]

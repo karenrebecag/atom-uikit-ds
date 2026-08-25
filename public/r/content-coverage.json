@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T02:19:36.171Z",
+  "generatedAt": "2026-08-25T16:22:52.445Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -13,7 +13,7 @@
     "max": 100
   },
   "totals": {
-    "items": 140,
+    "items": 142,
     "eligibleAgent": 50,
     "metaAgent": {
       "full": 50,
@@ -27,13 +27,13 @@
       "pct": 100
     },
     "derived": {
-      "withSourceCommit": 140
+      "withSourceCommit": 142
     },
     "webflow": {
       "emitted": 37,
       "excluded": 29
     },
-    "aggregateScore": 47.2
+    "aggregateScore": 46.8
   },
   "batches": [],
   "items": [
@@ -516,6 +516,25 @@
       "eligibleAgent": true,
       "excludedAgent": null,
       "contentScore": 95
+    },
+    {
+      "slug": "accordion-animation",
+      "kind": "hook",
+      "category": "hook",
+      "hasReact": false,
+      "hasCss": false,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [
+        "no-css-source"
+      ],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "hook",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "hook — animation hook, not registry:ui consumer surface",
+      "contentScore": 15
     },
     {
       "slug": "alert-dialog",
@@ -1502,6 +1521,23 @@
     },
     {
       "slug": "layout/hero-fullbleed",
+      "kind": "layout",
+      "category": "layout",
+      "hasReact": false,
+      "hasCss": true,
+      "metaAgent": "none",
+      "editorial": false,
+      "derivedPartials": [],
+      "derivedOk": true,
+      "webflow": "n/a",
+      "webflowReason": "layout",
+      "motionContract": false,
+      "eligibleAgent": false,
+      "excludedAgent": "layout — composition block; agent manifest deferred",
+      "contentScore": 20
+    },
+    {
+      "slug": "layout/hero-industry",
       "kind": "layout",
       "category": "layout",
       "hasReact": false,

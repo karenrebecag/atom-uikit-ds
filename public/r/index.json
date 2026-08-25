@@ -670,12 +670,31 @@
     "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
     "registryDependencies": [
       "tokens",
-      "foundation"
+      "foundation",
+      "accordion-animation"
     ],
     "discovery": {
       "name": "Accordion",
       "description": "Click a row and its height opens while the icon flips; one-open or many. FAQs and progressive disclosure.",
       "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "accordion-animation",
+    "kind": "hook",
+    "framework": "react",
+    "installGroup": "components",
+    "title": "Accordion Animation",
+    "description": "Toggle behavior for the plain accordion in static HTML: delegated click, optional one-open, state in aria-expanded. No gsap.",
+    "discovery": {
+      "name": "Accordion Animation",
+      "description": "Toggle behavior for the plain accordion in static HTML: delegated click, optional one-open, state in aria-expanded. No gsap.",
+      "category": "hook",
       "variants": [],
       "sizes": [],
       "defaultVariant": "",
@@ -2104,6 +2123,32 @@
     "discovery": {
       "name": "Hero Fullbleed",
       "description": "Layout template: hero-fullbleed",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false
+    }
+  },
+  {
+    "name": "layout/hero-industry",
+    "kind": "layout",
+    "framework": "css",
+    "installGroup": "layouts",
+    "title": "Hero Industry",
+    "description": "Layout template: hero-industry",
+    "registryDependencies": [
+      "tokens",
+      "foundation",
+      "chip",
+      "button",
+      "link-button",
+      "typography"
+    ],
+    "discovery": {
+      "name": "Hero Industry",
+      "description": "Layout template: hero-industry",
       "category": "layout",
       "variants": [],
       "sizes": [],
