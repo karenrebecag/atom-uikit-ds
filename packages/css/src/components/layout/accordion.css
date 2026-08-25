@@ -15,6 +15,18 @@
   border-bottom: 1px solid var(--border);
 }
 
+/* La pregunta va dentro de un heading real y el heading solo envuelve al
+   boton. Es lo que deja que un lector de pantalla liste las preguntas en su
+   indice de encabezados, y lo que hace que la FAQ cuente como contenido con
+   jerarquia. El reset es obligatorio: los margenes y el tamano por defecto del
+   h3 romperian el ritmo de la lista. */
+.accordion__heading {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
 .accordion__trigger {
   display: flex;
   align-items: center;
@@ -65,6 +77,23 @@
   transform: rotate(180deg);
 }
 
+/* -------------------------------------------------------------------------
+   Segundo canal de estado: aria-expanded.
+
+   React pinta .accordion__item--open porque tiene el estado en el componente.
+   En HTML plano (Webflow) lo mueve el behavior initAccordion, y a un behavior
+   del DS le esta prohibido escribir clases BEM canonicas: son del canal de
+   pintura. Escribe aria-expanded, que un accordion necesita igualmente para
+   ser accesible, y ese mismo atributo pinta aqui.
+
+   Asi no hay dos fuentes de verdad que se puedan desincronizar: en React manda
+   la clase, en HTML plano manda el atributo, y ninguna vista tiene las dos.
+   ------------------------------------------------------------------------- */
+
+.accordion__trigger[aria-expanded='true'] .accordion__chevron {
+  transform: rotate(180deg);
+}
+
 /* Content: animated height via grid */
 .accordion__content-wrapper {
   display: grid;
@@ -73,6 +102,12 @@
 }
 
 .accordion__item--open .accordion__content-wrapper {
+  grid-template-rows: 1fr;
+}
+
+/* Hermano general y no hijo directo: entre el trigger y el wrapper cabe algun
+   div de maquetacion que el Designer inserte, y `+` se romperia en silencio. */
+.accordion__trigger[aria-expanded='true'] ~ .accordion__content-wrapper {
   grid-template-rows: 1fr;
 }
 

@@ -77,11 +77,12 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
     vi.restoreAllMocks();
   });
 
-  it('expone el global AtomMotion con los 17 init* y initAll', () => {
+  it('expone el global AtomMotion con los 18 init* y initAll', () => {
     const api = loadBundle();
     expect(api).toBeDefined();
     const keys = Object.keys(api).sort();
     expect(keys).toEqual([
+      'initAccordion',
       'initAccordionMorph',
       'initAll',
       'initBouncyTabs',

@@ -9,6 +9,7 @@ export { initButtonHover } from './button-hover';
 export { initTextReveal } from './text-reveal';
 export { initScrollReveal } from './scroll-reveal';
 export { initBouncyTabs } from './bouncy-tabs';
+export { initAccordion } from './accordion';
 export { initAccordionMorph } from './accordion-morph';
 export { initTooltipSmart } from './tooltip';
 export { initSidebarAnimation } from './sidebar';

@@ -75,8 +75,8 @@
       "usage": "import { Divider } from '@/components/atoms/Divider';\n\n<section>…</section>\n<Divider orientation=\"horizontal\" />\n<section>…</section>"
     },
     "derived": {
-      "generatedAt": "2026-08-20T02:19:35.827Z",
-      "sourceCommit": "948fefc",
+      "generatedAt": "2026-08-25T16:22:52.112Z",
+      "sourceCommit": "0163f3c",
       "install": {
         "peerDeps": [],
         "cssImports": [

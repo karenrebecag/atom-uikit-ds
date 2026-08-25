@@ -1,0 +1,178 @@
+/**
+ * Contrato de initAccordion (packages/animations/src/accordion.ts).
+ *
+ * Vive aqui, y no en packages/animations, por el mismo motivo que
+ * animations-motion-contract: este package ya tiene la infra vitest+jsdom.
+ *
+ * Lo que se protege:
+ *   - el estado esta SOLO en aria-expanded, nunca en una clase BEM
+ *   - un accordion es navegable por teclado aunque Webflow degrade el <button>
+ *   - cleanup deja el DOM como estaba
+ */
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { initAccordion, STATES_WRITTEN_AS_CLASSES } from '../../../animations/src/accordion';
+
+type Cleanup = () => void;
+
+let cleanup: Cleanup | null = null;
+
+/** `triggerTag` simula lo que hace el constructor de Webflow al pegar markup. */
+function mount(opts: { single?: boolean; triggerTag?: string; openFirst?: boolean } = {}) {
+  const { single = false, triggerTag = 'button', openFirst = false } = opts;
+
+  document.body.innerHTML = `
+    <div class="ds-accordion" data-accordion ${single ? 'data-accordion-single="true"' : ''}>
+      <ul>
+        ${[0, 1, 2]
+          .map(
+            (i) => `
+        <li class="ds-accordion__item" data-accordion-item ${
+          openFirst && i === 0 ? 'data-accordion-open' : ''
+        }>
+          <h3>
+            <${triggerTag} class="ds-accordion__trigger" data-accordion-trigger>
+              <span>Pregunta ${i}</span>
+              <span class="ds-accordion__chevron"></span>
+            </${triggerTag}>
+          </h3>
+          <div class="ds-accordion__content-wrapper" data-accordion-panel>
+            <div class="ds-accordion__content">
+              <div class="ds-accordion__content-inner">Respuesta ${i}</div>
+            </div>
+          </div>
+        </li>`,
+          )
+          .join('')}
+      </ul>
+    </div>`;
+
+  cleanup = initAccordion();
+}
+
+const triggers = () =>
+  Array.from(document.querySelectorAll<HTMLElement>('[data-accordion-trigger]'));
+const panels = () => Array.from(document.querySelectorAll<HTMLElement>('[data-accordion-panel]'));
+const openState = () => triggers().map((t) => t.getAttribute('aria-expanded'));
+
+beforeEach(() => {
+  cleanup = null;
+});
+
+afterEach(() => {
+  cleanup?.();
+  document.body.innerHTML = '';
+});
+
+describe('initAccordion', () => {
+  it('arranca todo cerrado y abre al hacer clic', () => {
+    mount();
+    expect(openState()).toEqual(['false', 'false', 'false']);
+
+    triggers()[1].click();
+    expect(openState()).toEqual(['false', 'true', 'false']);
+    expect(panels()[1].getAttribute('aria-hidden')).toBe('false');
+  });
+
+  it('el segundo clic vuelve a cerrar', () => {
+    mount();
+    triggers()[0].click();
+    triggers()[0].click();
+    expect(openState()).toEqual(['false', 'false', 'false']);
+    expect(panels()[0].getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('data-accordion-open nace abierto', () => {
+    mount({ openFirst: true });
+    expect(openState()).toEqual(['true', 'false', 'false']);
+  });
+
+  it('sin data-accordion-single admite varios abiertos a la vez', () => {
+    mount();
+    triggers()[0].click();
+    triggers()[2].click();
+    expect(openState()).toEqual(['true', 'false', 'true']);
+  });
+
+  it('con data-accordion-single abrir uno cierra a los hermanos', () => {
+    mount({ single: true });
+    triggers()[0].click();
+    triggers()[2].click();
+    expect(openState()).toEqual(['false', 'false', 'true']);
+  });
+
+  /**
+   * El bug que este gate previene: un accordion que solo existe para el raton.
+   * Webflow convierte <button> en otras etiquetas al pegar markup, y un <div>
+   * ni recibe foco ni dispara clic con Enter.
+   */
+  it('un trigger que no es <button> se vuelve enfocable y responde a teclado', () => {
+    mount({ triggerTag: 'div' });
+    const t = triggers()[0];
+    expect(t.getAttribute('tabindex')).toBe('0');
+    expect(t.getAttribute('role')).toBe('button');
+
+    t.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    expect(openState()[0]).toBe('true');
+
+    t.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+    expect(openState()[0]).toBe('false');
+  });
+
+  it('un <button> nativo no recibe tabindex ni role postizos', () => {
+    mount();
+    const t = triggers()[0];
+    expect(t.hasAttribute('tabindex')).toBe(false);
+    expect(t.hasAttribute('role')).toBe(false);
+  });
+
+  it('empareja trigger y panel por id para el lector de pantalla', () => {
+    mount();
+    triggers().forEach((t, i) => {
+      const panel = panels()[i];
+      expect(t.getAttribute('aria-controls')).toBe(panel.id);
+      expect(panel.getAttribute('aria-labelledby')).toBe(t.id);
+      expect(panel.getAttribute('role')).toBe('region');
+    });
+  });
+
+  /**
+   * Regla del DS: el estado va en atributos, no en clases BEM — esas son del
+   * canal de pintura. Si un dia alguien anade classList.add('...--open'),
+   * habria dos fuentes de verdad que se pueden desincronizar.
+   */
+  it('no escribe ninguna clase de estado', () => {
+    expect(STATES_WRITTEN_AS_CLASSES).toBe(false);
+    mount();
+    const before = triggers().map((t) => t.className);
+    const itemsBefore = Array.from(document.querySelectorAll('[data-accordion-item]')).map(
+      (i) => i.className,
+    );
+
+    triggers()[0].click();
+
+    expect(triggers().map((t) => t.className)).toEqual(before);
+    expect(
+      Array.from(document.querySelectorAll('[data-accordion-item]')).map((i) => i.className),
+    ).toEqual(itemsBefore);
+  });
+
+  it('cleanup desactiva el toggle y retira los atributos postizos', () => {
+    mount({ triggerTag: 'div' });
+    cleanup?.();
+    cleanup = null;
+
+    const t = triggers()[0];
+    expect(t.hasAttribute('tabindex')).toBe(false);
+    expect(t.hasAttribute('role')).toBe(false);
+
+    t.click();
+    expect(openState()[0]).toBe('false');
+  });
+
+  it('un accordion sin items no revienta', () => {
+    document.body.innerHTML = '<div data-accordion></div>';
+    expect(() => {
+      cleanup = initAccordion();
+    }).not.toThrow();
+  });
+});
