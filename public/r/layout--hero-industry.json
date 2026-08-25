@@ -1,0 +1,106 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout/hero-industry",
+  "type": "registry:block",
+  "title": "Hero Industry",
+  "description": "Layout template: hero-industry",
+  "registryDependencies": [
+    "tokens",
+    "foundation",
+    "chip",
+    "button",
+    "link-button",
+    "typography"
+  ],
+  "files": [
+    {
+      "path": "layouts/hero-industry.ts",
+      "type": "registry:file",
+      "content": "/**\n * Layout: hero-industry\n *\n * Hero a sangre con art direction: una foto apaisada para desktop y una vertical\n * para movil, con scrim direccional que garantiza contraste sobre ambas.\n * Structure-only. References DS components by BEM class.\n *\n * Por que existe separado de hero-fullbleed: aquel resuelve UNA foto decorativa\n * como background de la seccion. Cuando la pieza necesita dos encuadres\n * distintos, meter la imagen en la clase obliga a duplicar la seccion entera\n * por breakpoint — el error que este layout viene a cerrar. Aqui la imagen es\n * slot (mismo precedente que Media Tile), asi que el texto existe una sola vez.\n */\n\nexport const heroIndustry = {\n  slug: 'hero-industry',\n  name: 'Hero Industry',\n  description:\n    'Hero a sangre con art direction (foto desktop + foto movil) y scrim direccional. Titular, entradilla y hasta 2 CTAs sobre la imagen. Structure only.',\n  components: ['chip', 'button', 'link-button', 'typography'],\n  html: `<!-- Layout: hero-industry -->\n<!-- Get component CSS: atom_uikit_source(\"chip\", [\"css\"]), atom_uikit_source(\"button\", [\"css\"]) -->\n<!-- data-theme=\"dark\" no es decoracion: el contenido va sobre un scrim oscuro, asi\n     que los componentes de dentro (chip, button) deben resolver sus tokens en modo\n     oscuro. Sin el, el chip pinta borde oscuro sobre foto oscura. -->\n<header class=\"l-hero-industry\" data-theme=\"dark\">\n  <img class=\"l-hero-industry__media l-hero-industry__media--desktop\" src=\"{{mediaDesktop}}\" alt=\"{{mediaAlt}}\" />\n  <img class=\"l-hero-industry__media l-hero-industry__media--mobile\" src=\"{{mediaMobile}}\" alt=\"\" />\n  <div class=\"l-hero-industry__scrim\"></div>\n  <div class=\"l-hero-industry__content\">\n    <span class=\"chip chip--outlined chip--s\">\n      <span class=\"chip__label\">{{eyebrow}}</span>\n    </span>\n    <h1 class=\"l-hero-industry__headline\">{{headline}}</h1>\n    <p class=\"l-hero-industry__subtitle\">{{subtitle}}</p>\n    <div class=\"l-hero-industry__actions\">\n      <a href=\"{{cta_primary_href}}\" class=\"button button--primary button--l\">\n        <span class=\"button__label\">{{primaryCta}}</span>\n      </a>\n      <a href=\"{{cta_secondary_href}}\" class=\"link-button\">\n        <span class=\"link-button__text\">{{secondaryCta}}</span>\n      </a>\n    </div>\n  </div>\n</header>`,\n  css: `/* Layout: hero-industry — structure only */\n.l-hero-industry {\n  position: relative;\n  isolation: isolate;\n  display: flex;\n  align-items: center;\n  min-height: 100svh;\n  padding: var(--spacing-20) var(--spacing-8);\n  color: var(--foreground);\n}\n\n/* La foto es un elemento, no un background: asi el encuadre es dato del\n   consumidor y el mismo bloque sirve para cualquier industria. */\n.l-hero-industry__media {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.l-hero-industry__media--mobile {\n  display: none;\n}\n\n.l-hero-industry__scrim {\n  position: absolute;\n  inset: 0;\n  z-index: 1;\n  pointer-events: none;\n  background: linear-gradient(90deg, var(--overlay) 0%, transparent 78%);\n}\n\n.l-hero-industry__content {\n  position: relative;\n  z-index: 2;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  gap: var(--spacing-4);\n  max-width: 40rem;\n}\n\n.l-hero-industry__headline {\n  margin: 0;\n  font-size: var(--font-size-5xl);\n  line-height: var(--line-height-5xl);\n  font-weight: var(--font-weight-bold);\n  letter-spacing: var(--letter-spacing-tight);\n}\n\n.l-hero-industry__subtitle {\n  margin: 0;\n  max-width: 34rem;\n  font-size: var(--font-size-lg);\n  line-height: var(--line-height-lg);\n}\n\n.l-hero-industry__actions {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: var(--spacing-4);\n  margin-top: var(--spacing-2);\n}\n\n/* El corte va en 991px, el mismo del breakpoint tablet de Webflow, para que el\n   layout se pueda reproducir en el Designer sin inventar un media query. */\n@media (max-width: 991px) {\n  .l-hero-industry {\n    padding: var(--spacing-16) var(--spacing-5);\n    text-align: center;\n  }\n\n  .l-hero-industry__media--desktop {\n    display: none;\n  }\n\n  .l-hero-industry__media--mobile {\n    display: block;\n  }\n\n  /* Vertical, no horizontal: en el encuadre movil el sujeto ocupa el ancho\n     completo y el texto se apoya abajo. */\n  .l-hero-industry__scrim {\n    background: linear-gradient(180deg, transparent 0%, var(--overlay) 55%, var(--overlay) 100%);\n  }\n\n  .l-hero-industry__content {\n    align-items: center;\n    margin-inline: auto;\n  }\n\n  .l-hero-industry__headline {\n    font-size: var(--font-size-4xl);\n    line-height: var(--line-height-4xl);\n  }\n}`,\n};\n"
+    },
+    {
+      "path": "layouts/hero-industry.html",
+      "type": "registry:file",
+      "content": "<!-- Layout: hero-industry -->\n<!-- Get component CSS: atom_uikit_source(\"chip\", [\"css\"]), atom_uikit_source(\"button\", [\"css\"]) -->\n<!-- data-theme=\"dark\" no es decoracion: el contenido va sobre un scrim oscuro, asi\n     que los componentes de dentro (chip, button) deben resolver sus tokens en modo\n     oscuro. Sin el, el chip pinta borde oscuro sobre foto oscura. -->\n<header class=\"l-hero-industry\" data-theme=\"dark\">\n  <img class=\"l-hero-industry__media l-hero-industry__media--desktop\" src=\"{{mediaDesktop}}\" alt=\"{{mediaAlt}}\" />\n  <img class=\"l-hero-industry__media l-hero-industry__media--mobile\" src=\"{{mediaMobile}}\" alt=\"\" />\n  <div class=\"l-hero-industry__scrim\"></div>\n  <div class=\"l-hero-industry__content\">\n    <span class=\"chip chip--outlined chip--s\">\n      <span class=\"chip__label\">{{eyebrow}}</span>\n    </span>\n    <h1 class=\"l-hero-industry__headline\">{{headline}}</h1>\n    <p class=\"l-hero-industry__subtitle\">{{subtitle}}</p>\n    <div class=\"l-hero-industry__actions\">\n      <a href=\"{{cta_primary_href}}\" class=\"button button--primary button--l\">\n        <span class=\"button__label\">{{primaryCta}}</span>\n      </a>\n      <a href=\"{{cta_secondary_href}}\" class=\"link-button\">\n        <span class=\"link-button__text\">{{secondaryCta}}</span>\n      </a>\n    </div>\n  </div>\n</header>\n"
+    },
+    {
+      "path": "layouts/hero-industry.css",
+      "type": "registry:file",
+      "content": "/* Layout: hero-industry — structure only */\n.l-hero-industry {\n  position: relative;\n  isolation: isolate;\n  display: flex;\n  align-items: center;\n  min-height: 100svh;\n  padding: var(--spacing-20) var(--spacing-8);\n  color: var(--foreground);\n}\n\n/* La foto es un elemento, no un background: asi el encuadre es dato del\n   consumidor y el mismo bloque sirve para cualquier industria. */\n.l-hero-industry__media {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.l-hero-industry__media--mobile {\n  display: none;\n}\n\n.l-hero-industry__scrim {\n  position: absolute;\n  inset: 0;\n  z-index: 1;\n  pointer-events: none;\n  background: linear-gradient(90deg, var(--overlay) 0%, transparent 78%);\n}\n\n.l-hero-industry__content {\n  position: relative;\n  z-index: 2;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  gap: var(--spacing-4);\n  max-width: 40rem;\n}\n\n.l-hero-industry__headline {\n  margin: 0;\n  font-size: var(--font-size-5xl);\n  line-height: var(--line-height-5xl);\n  font-weight: var(--font-weight-bold);\n  letter-spacing: var(--letter-spacing-tight);\n}\n\n.l-hero-industry__subtitle {\n  margin: 0;\n  max-width: 34rem;\n  font-size: var(--font-size-lg);\n  line-height: var(--line-height-lg);\n}\n\n.l-hero-industry__actions {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: var(--spacing-4);\n  margin-top: var(--spacing-2);\n}\n\n/* El corte va en 991px, el mismo del breakpoint tablet de Webflow, para que el\n   layout se pueda reproducir en el Designer sin inventar un media query. */\n@media (max-width: 991px) {\n  .l-hero-industry {\n    padding: var(--spacing-16) var(--spacing-5);\n    text-align: center;\n  }\n\n  .l-hero-industry__media--desktop {\n    display: none;\n  }\n\n  .l-hero-industry__media--mobile {\n    display: block;\n  }\n\n  /* Vertical, no horizontal: en el encuadre movil el sujeto ocupa el ancho\n     completo y el texto se apoya abajo. */\n  .l-hero-industry__scrim {\n    background: linear-gradient(180deg, transparent 0%, var(--overlay) 55%, var(--overlay) 100%);\n  }\n\n  .l-hero-industry__content {\n    align-items: center;\n    margin-inline: auto;\n  }\n\n  .l-hero-industry__headline {\n    font-size: var(--font-size-4xl);\n    line-height: var(--line-height-4xl);\n  }\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Hero Industry",
+      "description": "Layout template: hero-industry",
+      "category": "layout",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    },
+    "layout": {
+      "slots": [
+        "mediaDesktop",
+        "mediaAlt",
+        "mediaMobile",
+        "eyebrow",
+        "headline",
+        "subtitle",
+        "cta_primary_href",
+        "primaryCta",
+        "cta_secondary_href",
+        "secondaryCta"
+      ],
+      "repeats": {},
+      "components": [
+        "chip",
+        "button",
+        "link-button",
+        "typography"
+      ]
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-08-25T16:22:52.112Z",
+      "sourceCommit": "0163f3c",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "<div class=\"layoutHeroIndustry\">\n\n</div>",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [
+          {
+            "variant": "all",
+            "prop": "fg",
+            "hex": "#0a0a0a",
+            "tokenPath": "foreground"
+          },
+          {
+            "variant": "all",
+            "prop": "bg",
+            "hex": "linear-gradient(180deg, transparent 0%, var(--overlay) 55%, var(--overlay) 100%)",
+            "tokenPath": "(literal)"
+          }
+        ],
+        "sizes": []
+      },
+      "standaloneCss": "/* Layout: hero-industry — structure only */\n.l-hero-industry {\n  position: relative;\n  isolation: isolate;\n  display: flex;\n  align-items: center;\n  min-height: 100svh;\n  padding: 80px 32px;\n  color: #0a0a0a;\n}\n\n/* La foto es un elemento, no un background: asi el encuadre es dato del\n   consumidor y el mismo bloque sirve para cualquier industria. */\n.l-hero-industry__media {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.l-hero-industry__media--mobile {\n  display: none;\n}\n\n.l-hero-industry__scrim {\n  position: absolute;\n  inset: 0;\n  z-index: 1;\n  pointer-events: none;\n  background: linear-gradient(90deg, #00000080 0%, transparent 78%);\n}\n\n.l-hero-industry__content {\n  position: relative;\n  z-index: 2;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  gap: 16px;\n  max-width: 40rem;\n}\n\n.l-hero-industry__headline {\n  margin: 0;\n  font-size: 61.04px;\n  line-height: 1.1;\n  font-weight: 700;\n  letter-spacing: -0.02em;\n}\n\n.l-hero-industry__subtitle {\n  margin: 0;\n  max-width: 34rem;\n  font-size: 20px;\n  line-height: 1.45;\n}\n\n.l-hero-industry__actions {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 16px;\n  margin-top: 8px;\n}\n\n/* El corte va en 991px, el mismo del breakpoint tablet de Webflow, para que el\n   layout se pueda reproducir en el Designer sin inventar un media query. */\n@media (max-width: 991px) {\n  .l-hero-industry {\n    padding: 64px 20px;\n    text-align: center;\n  }\n\n  .l-hero-industry__media--desktop {\n    display: none;\n  }\n\n  .l-hero-industry__media--mobile {\n    display: block;\n  }\n\n  /* Vertical, no horizontal: en el encuadre movil el sujeto ocupa el ancho\n     completo y el texto se apoya abajo. */\n  .l-hero-industry__scrim {\n    background: linear-gradient(180deg, transparent 0%, #00000080 55%, #00000080 100%);\n  }\n\n  .l-hero-industry__content {\n    align-items: center;\n    margin-inline: auto;\n  }\n\n  .l-hero-industry__headline {\n    font-size: 48.83px;\n    line-height: 1.15;\n  }\n}\n",
+      "motion": []
+    }
+  }
+}
