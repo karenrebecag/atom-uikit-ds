@@ -169,6 +169,31 @@ describe('initAccordion', () => {
     expect(openState()[0]).toBe('false');
   });
 
+  /**
+   * El bug que este gate previene, y que llego a produccion: el host llamo a
+   * initAccordion a nivel SITIO y a nivel PAGINA. Dos listeners sobre la misma
+   * raiz — el primero abre, el segundo vuelve a cerrar — y el accordion parece
+   * muerto sin ningun error en consola.
+   */
+  it('llamarlo dos veces no duplica listeners', () => {
+    mount();
+    const second = initAccordion();
+
+    triggers()[0].click();
+    expect(openState()[0]).toBe('true');
+
+    second();
+  });
+
+  it('tras el cleanup se puede volver a enganchar', () => {
+    mount();
+    cleanup?.();
+    cleanup = initAccordion();
+
+    triggers()[0].click();
+    expect(openState()[0]).toBe('true');
+  });
+
   it('un accordion sin items no revienta', () => {
     document.body.innerHTML = '<div data-accordion></div>';
     expect(() => {

@@ -42,6 +42,7 @@ export const REQUIRED_HOOKS = [
   'data-accordion-trigger',
   'data-accordion-panel',
   'data-accordion-open',
+  'data-accordion-init',
 ] as const;
 
 export const REQUIRED_ANATOMY = [] as const;
@@ -101,11 +102,29 @@ function isOpen(item: HTMLElement): boolean {
   return triggerOf(item)?.getAttribute('aria-expanded') === 'true';
 }
 
+/**
+ * Marca de raiz ya enganchada.
+ *
+ * Existe porque llamar dos veces a initAccordion deja DOS listeners sobre la
+ * misma raiz: el primero abre, el segundo vuelve a cerrar, y el accordion
+ * parece muerto. Y pasa con facilidad — el host puede inicializar a nivel sitio
+ * Y a nivel pagina sin darse cuenta. Un behavior del DS tiene que aguantar que
+ * lo llamen de mas.
+ *
+ * Va como atributo y no como WeakSet de modulo para que aguante tambien dos
+ * cargas del bundle, que es un caso real: una pagina puede traer el <script>
+ * en su footer y ademas heredarlo de un embed global.
+ */
+const BOUND = 'data-accordion-init';
+
 export function initAccordion(): CleanupFn {
-  const roots = Array.from(document.querySelectorAll<HTMLElement>('[data-accordion]'));
+  const roots = Array.from(document.querySelectorAll<HTMLElement>('[data-accordion]')).filter(
+    (root) => !root.hasAttribute(BOUND),
+  );
   const cleanups: CleanupFn[] = [];
 
   roots.forEach((root) => {
+    root.setAttribute(BOUND, '');
     const single = root.getAttribute('data-accordion-single') === 'true';
     const items = Array.from(root.querySelectorAll<HTMLElement>('[data-accordion-item]'));
     const patched: HTMLElement[] = [];
@@ -168,6 +187,7 @@ export function initAccordion(): CleanupFn {
     root.addEventListener('keydown', onKeydown);
 
     cleanups.push(() => {
+      root.removeAttribute(BOUND);
       root.removeEventListener('click', onClick);
       root.removeEventListener('keydown', onKeydown);
       patched.forEach((trigger) => {
