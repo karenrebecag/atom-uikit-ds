@@ -36,10 +36,15 @@
   padding: var(--spacing-4, 16px) 0;
   border: none;
   background: none;
-  font-family: inherit;
+  /* La familia se DECLARA, no se hereda. `inherit` parecia correcto y no lo era:
+     depende de que el host haya puesto la fuente en el body, y hay hosts que no
+     lo hacen — atomchat.io es uno. El resultado es una FAQ en la fuente del
+     sistema dentro de un sitio tipografiado. El resto de componentes del DS ya
+     la declaran; el accordion era la excepcion. */
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
-  line-height: 1.4;
+  line-height: var(--line-height-base);
   color: var(--foreground);
   text-align: left;
   text-decoration: none;
@@ -130,9 +135,12 @@
 
 .accordion__content-inner {
   padding-bottom: var(--spacing-4, 16px);
-  font-family: inherit;
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;
+  /* base y no sm: --font-size-sm son 12.8px, un tamano de pie de foto. La
+     respuesta de un accordion es texto de lectura corrida y se lee entera, asi
+     que va al mismo cuerpo que el resto del contenido. */
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   color: var(--muted-foreground);
 }
 
