@@ -10,6 +10,8 @@
  *   - cleanup deja el DOM como estaba
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { initAccordion, STATES_WRITTEN_AS_CLASSES } from '../../../animations/src/accordion';
 
 type Cleanup = () => void;
@@ -199,5 +201,33 @@ describe('initAccordion', () => {
     expect(() => {
       cleanup = initAccordion();
     }).not.toThrow();
+  });
+});
+
+/**
+ * El CSS es quien abre el panel; el behavior solo escribe aria-expanded. Si el
+ * selector no alcanza al panel, el accordion queda mudo: alterna el atributo y
+ * no pasa nada, sin error en consola.
+ *
+ * Esto ya ocurrio en atomchat.io. La pregunta va dentro de un <h3> (es el
+ * marcado accesible correcto), y con eso el trigger deja de ser HERMANO del
+ * panel, asi que la regla `~` no podia alcanzarlo.
+ */
+describe('contrato del CSS que abre el panel', () => {
+  const css = readFileSync(
+    join(process.cwd(), '../css/src/components/layout/accordion.css'),
+    'utf8',
+  );
+
+  it('abre cuando el trigger es hermano del panel', () => {
+    expect(css).toMatch(
+      /\.accordion__trigger\[aria-expanded='true'\]\s*~\s*\.accordion__content-wrapper/,
+    );
+  });
+
+  it('abre tambien cuando el trigger va anidado en un heading', () => {
+    expect(css).toMatch(
+      /\.accordion__item:has\(\.accordion__trigger\[aria-expanded='true'\]\)\s*\.accordion__content-wrapper/,
+    );
   });
 });
