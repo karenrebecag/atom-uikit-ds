@@ -219,6 +219,27 @@ describe('contrato del CSS que abre el panel', () => {
     'utf8',
   );
 
+  /**
+   * La familia tiene que DECLARARSE. Con `inherit` el componente depende de que
+   * el host haya tipografiado el body, y hay hosts que no lo hacen: la FAQ sale
+   * en la fuente del sistema dentro de un sitio tipografiado, sin que nada
+   * falle. Paso en atomchat.io.
+   */
+  it('declara la familia por token en vez de heredarla', () => {
+    for (const sel of ['.accordion__trigger', '.accordion__content-inner']) {
+      const rule = css.slice(css.indexOf(sel + ' {'));
+      const body = rule.slice(0, rule.indexOf('}'));
+      expect(body).toMatch(/font-family:\s*var\(--font-family-sans/);
+    }
+  });
+
+  /** Cero literales: el contrato del DS prohibe valores a pelo en el CSS. */
+  it('no deja tamanos ni interlineados a pelo', () => {
+    const decls = css.match(/(?:font-size|line-height):\s*[^;]+/g) ?? [];
+    const literales = decls.filter((d) => !d.includes('var(') && !d.includes('inherit'));
+    expect(literales).toEqual([]);
+  });
+
   it('abre cuando el trigger es hermano del panel', () => {
     expect(css).toMatch(
       /\.accordion__trigger\[aria-expanded='true'\]\s*~\s*\.accordion__content-wrapper/,
