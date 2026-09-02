@@ -1,0 +1,39 @@
+{
+  "name": "@atom-uikit/forms",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Form validation and submit engine for the ATOM UIKit design system",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./widget": "./dist/auto-init.iife.js"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist/"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.2.7",
+    "jsdom": "26",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.0",
+    "vitest": "3"
+  }
+}
