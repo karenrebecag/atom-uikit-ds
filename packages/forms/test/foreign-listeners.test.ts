@@ -62,3 +62,34 @@ describe('detachForeignListeners', () => {
     expect(propio).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('el wrapper de Webflow queda desarmado', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '';
+  });
+
+  it('quita la clase w-form para que el modulo de Webflow no encuentre el formulario', () => {
+    document.body.innerHTML =
+      '<div class="w-form lp-form__form"><form data-atom-form="lead-basic"></form></div>';
+    const form = document.querySelector('form');
+    if (form === null) {
+      throw new Error('el fixture necesita un <form>');
+    }
+
+    const limpio = detachForeignListeners(form);
+
+    expect(document.querySelector('.w-form')).toBeNull();
+    // Las demas clases del consumidor sobreviven: solo se desarma el hook de Webflow.
+    expect(limpio.parentElement?.classList.contains('lp-form__form')).toBe(true);
+  });
+
+  it('no falla cuando el formulario no esta dentro de un wrapper de Webflow', () => {
+    document.body.innerHTML = '<form data-atom-form="lead-basic"></form>';
+    const form = document.querySelector('form');
+    if (form === null) {
+      throw new Error('el fixture necesita un <form>');
+    }
+
+    expect(() => detachForeignListeners(form)).not.toThrow();
+  });
+});
