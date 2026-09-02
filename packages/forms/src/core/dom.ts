@@ -344,5 +344,11 @@ export function markInitialized(host: HTMLElement): void {
 export function detachForeignListeners(form: HTMLFormElement): HTMLFormElement {
   const clone = form.cloneNode(true) as HTMLFormElement;
   form.replaceWith(clone);
+  // El clon no basta por si solo: si Webflow inicializa DESPUES que nosotros, bindea
+  // sobre el clon y volvemos al punto de partida. Se comprobo en produccion el
+  // 2026-09-02, con su mensaje de exito apareciendo tras un envio nuestro.
+  // Su modulo de forms busca `.w-form`; sin esa clase no encuentra el formulario, corra
+  // cuando corra. Es la unica defensa que no depende del orden.
+  clone.closest('.w-form')?.classList.remove('w-form');
   return clone;
 }
