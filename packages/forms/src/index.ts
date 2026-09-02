@@ -7,6 +7,7 @@ import { bindForm } from './core/engine';
 import { getForm, registerForm } from './core/registry';
 import {
   applySelectValues,
+  detachForeignListeners,
   isInitialized,
   markInitialized,
   queryFormHosts,
@@ -76,9 +77,7 @@ export function initAll(root?: ParentNode): void {
     if (isInitialized(host)) {
       continue;
     }
-    if (mountHost(host)) {
-      markInitialized(host);
-    }
+    mountHost(host);
   }
 }
 
@@ -110,12 +109,17 @@ function mountHost(host: HTMLElement): boolean {
   if (config === undefined) {
     return false;
   }
-  const form = resolveFormElement(host);
-  if (form === null) {
+  const original = resolveFormElement(host);
+  if (original === null) {
     return false;
   }
-  bindForm(form, buildInstance(host, form, config));
+  // El clon reemplaza al nodo original, asi que cuando el host ES el form hay que seguir
+  // al clon: el host anterior queda desconectado del documento.
+  const form = detachForeignListeners(original);
+  const liveHost = host === original ? form : host;
+  bindForm(form, buildInstance(liveHost, form, config));
   void applyGeo(form, config);
+  markInitialized(liveHost);
   return true;
 }
 

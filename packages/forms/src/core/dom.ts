@@ -6,6 +6,12 @@ import type { FieldDef } from './types';
 const LANDING_ATTR = 'data-atom-form-landing';
 const LANG_ATTR = 'data-atom-form-lang';
 const KEY_ATTR = 'data-atom-form';
+// El motor localiza el grupo y su hueco de error por ATRIBUTO, y solo cae a las clases
+// del DS como respaldo. Razon: Webflow descarta cualquier clase para la que no tenga
+// regla CSS propia, asi que un consumidor puede quedarse sin `.field` sin enterarse; los
+// atributos siempre sobreviven. Ademas el motor no deberia depender de como se pinta.
+const GROUP_ATTR = 'data-atom-field-group';
+const ERROR_ATTR = 'data-atom-field-error';
 // Elementos-fuente: atributo fijo, contenido bindeado al CMS. Ver readTextSource.
 const LANDING_SOURCE_ATTR = 'data-atom-form-landing-source';
 const LANG_SOURCE_ATTR = 'data-atom-form-lang-source';
@@ -23,8 +29,19 @@ function isControl(el: Element | null): el is FormControl {
   );
 }
 
+// CSS.escape no esta en todos los entornos (webviews viejas, jsdom sin el shim). Los
+// valores que llegan aqui son schemaKeys de nuestra propia config, no entrada de usuario,
+// asi que escapar comillas y barras basta cuando el global no existe. Sin la guarda,
+// getField lanza y el formulario queda mudo: ni valida ni envia.
+function escapeAttrValue(value: string): string {
+  if (typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
+    return CSS.escape(value);
+  }
+  return value.replace(/["\\]/g, '\\$&');
+}
+
 function attrSelector(attr: string, value: string): string {
-  return `[${attr}="${CSS.escape(value)}"]`;
+  return `[${attr}="${escapeAttrValue(value)}"]`;
 }
 
 export function getField(form: HTMLFormElement, def: Pick<FieldDef, 'name' | 'schemaKey'>): FormControl | null {
@@ -37,12 +54,12 @@ export function getField(form: HTMLFormElement, def: Pick<FieldDef, 'name' | 'sc
 }
 
 function fieldGroup(control: FormControl): HTMLElement | null {
-  const group = control.closest('.field');
+  const group = control.closest(`[${GROUP_ATTR}]`) ?? control.closest('.field');
   return group instanceof HTMLElement ? group : null;
 }
 
 function errorSlot(group: HTMLElement): HTMLElement | null {
-  const slot = group.querySelector('.field__error');
+  const slot = group.querySelector(`[${ERROR_ATTR}]`) ?? group.querySelector('.field__error');
   return slot instanceof HTMLElement ? slot : null;
 }
 
@@ -303,4 +320,29 @@ export function isInitialized(host: HTMLElement): boolean {
 
 export function markInitialized(host: HTMLElement): void {
   host.setAttribute(INIT_ATTR, '');
+}
+
+/**
+ * Devuelve un <form> equivalente sin ningun listener ajeno registrado.
+ *
+ * Webflow convierte TODO <form> en su Form Block (.w-form) y su webflow.js engancha el
+ * submit para mandar el envio a su propio store, ademas del nuestro. No hay forma de
+ * crear un <form> plano en el Designer: se comprobo por HTML y por tag personalizado, y
+ * las dos vias producen FormWrapper. Ver docs/specs/forms/WEBFLOW-BRIEF.md.
+ *
+ * Reemplazar el nodo por un clon descarta cualquier listener ya registrado sobre el. Es
+ * determinista, a diferencia de competir por orden de registro o por fase de captura.
+ *
+ * EXIGE que initAll() corra DESPUES de la inicializacion de Webflow. En la pagina:
+ *   window.Webflow = window.Webflow || [];
+ *   window.Webflow.push(function () { AtomForms.initAll(); });
+ * Si corriera antes, Webflow bindearia sobre el clon y el clon no serviria de nada.
+ *
+ * Un clon no arrastra el valor EN VIVO de los controles, solo el atributo. Al montar no
+ * hay nada escrito, pero un autorrelleno del navegador anterior al montaje se perderia.
+ */
+export function detachForeignListeners(form: HTMLFormElement): HTMLFormElement {
+  const clone = form.cloneNode(true) as HTMLFormElement;
+  form.replaceWith(clone);
+  return clone;
 }
