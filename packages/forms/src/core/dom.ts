@@ -6,6 +6,9 @@ import type { FieldDef } from './types';
 const LANDING_ATTR = 'data-atom-form-landing';
 const LANG_ATTR = 'data-atom-form-lang';
 const KEY_ATTR = 'data-atom-form';
+// Elementos-fuente: atributo fijo, contenido bindeado al CMS. Ver readTextSource.
+const LANDING_SOURCE_ATTR = 'data-atom-form-landing-source';
+const LANG_SOURCE_ATTR = 'data-atom-form-lang-source';
 const INIT_ATTR = 'data-atom-form-init';
 const FIELD_ATTR = 'data-atom-field';
 const STATUS_ATTR = 'data-atom-form-status';
@@ -215,15 +218,36 @@ export function readFormKey(host: HTMLElement): string {
   return readAttr(host, KEY_ATTR);
 }
 
+/**
+ * Webflow NO deja bindear el VALOR de un atributo a un campo de CMS ni a una prop de
+ * componente (400: value must be a string or a binding), y las catorce landings comparten
+ * una sola Collection Page, asi que el atributo tampoco puede ser fijo.
+ *
+ * El contenido de texto si se bindea. Por eso existe el elemento fuente: atributo fijo,
+ * texto del CMS. Se busca solo cuando el atributo falta, para que fuera de Webflow el
+ * atributo siga siendo la via normal.
+ */
+function readTextSource(host: HTMLElement, form: HTMLFormElement, attr: string): string {
+  for (const raiz of host === form ? [form] : [host, form]) {
+    const nodo = raiz.querySelector<HTMLElement>(`[${attr}]`);
+    const texto = nodo?.textContent?.trim() ?? '';
+    if (texto !== '') {
+      return texto;
+    }
+  }
+  return '';
+}
+
 export function readLandingId(host: HTMLElement, form: HTMLFormElement): string {
   const fromHost = readAttr(host, LANDING_ATTR);
   if (fromHost !== '') {
     return fromHost;
   }
-  if (host === form) {
-    return '';
+  const fromForm = host === form ? '' : readAttr(form, LANDING_ATTR);
+  if (fromForm !== '') {
+    return fromForm;
   }
-  return readAttr(form, LANDING_ATTR);
+  return readTextSource(host, form, LANDING_SOURCE_ATTR);
 }
 
 export function readLangRaw(host: HTMLElement, form: HTMLFormElement): string | undefined {
@@ -232,10 +256,15 @@ export function readLangRaw(host: HTMLElement, form: HTMLFormElement): string | 
     return fromHost;
   }
   if (host === form) {
-    return undefined;
+    const soloForm = readTextSource(host, form, LANG_SOURCE_ATTR);
+    return soloForm === '' ? undefined : soloForm;
   }
   const fromForm = readAttr(form, LANG_ATTR);
-  return fromForm === '' ? undefined : fromForm;
+  if (fromForm !== '') {
+    return fromForm;
+  }
+  const fromSource = readTextSource(host, form, LANG_SOURCE_ATTR);
+  return fromSource === '' ? undefined : fromSource;
 }
 
 export function resolveFormElement(host: HTMLElement): HTMLFormElement | null {

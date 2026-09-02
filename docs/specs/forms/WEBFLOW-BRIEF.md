@@ -91,13 +91,64 @@ dentro (`.button__spinner` / `.button__spinner-icon`). El motor pone
 
 ## Qué se bindea al CMS
 
-Por landing, no por componente maestro:
-
-- `landingId` → `data-atom-form-landing`
-- `locale` → `data-atom-form-lang`
-- Copy: headline, labels, texto legal, CTA
+Copy: headline, labels, texto legal, CTA.
 
 No se bindea: URL del validador, credenciales, nombre de plataforma, `action`.
+
+### El `landingId` NO viaja por atributo
+
+Webflow **no deja bindear el valor de un atributo** a un campo de colección ni a
+una prop de componente: devuelve `400 · value must be a string or a binding`.
+Verificado el 2026-09-02. Y las catorce landings comparten **una sola** Collection
+Page, así que el atributo tampoco puede ser fijo.
+
+El contenido de texto sí se bindea. Por eso el componente lleva dos elementos
+fuente: atributo fijo, texto del CMS.
+
+| Elemento | Atributo (fijo) | Texto (bindeado) |
+|---|---|---|
+| Text Block oculto | `data-atom-form-landing-source` | campo `landing-id` |
+| Text Block oculto | `data-atom-form-lang-source` | campo `idioma` |
+
+Van dentro del `<form>`. Ocultarlos con la clase de utilidad del DS o
+`display:none` — **no** con `hidden` sobre un Text Block bindeado, porque el
+Designer lo trata como contenido vacío y puede podarlo.
+
+El bundle prueba primero `data-atom-form-landing` / `data-atom-form-lang` y solo
+cae al elemento fuente si el atributo falta, así que fuera de Webflow el atributo
+sigue siendo la vía normal. Cubierto en `test/cms-source.test.ts`.
+
+Un `landing-id` vacío deja el campo vacío y el motor **no envía** (I7): es
+preferible perder un lead a mandarlo sin atribución, porque el validador lo
+rechazaría igual contra su allowlist.
+
+## Los diez campos
+
+| # | `schemaKey` = `name` | Control | `colSpan` | Req. |
+|---|---|---|---|---|
+| 1 | `nombre` | text | 100 | sí |
+| 2 | `email` | email | 50 | sí |
+| 3 | `whatsapp` | tel | 50 | sí |
+| 4 | `empresa` | text | 50 | sí |
+| 5 | `cargo` | select | 50 | sí |
+| 6 | `pais` | select (searchable) | 50 | sí |
+| 7 | `leads_mensuales` | select | 50 | sí |
+| 8 | `objetivo` | select | 100 | sí |
+| 9 | `sitio_web` | text | 100 | **no** |
+| 10 | `aceptacion` | checkbox | 100 | sí |
+
+Las OPCIONES de los cuatro selects se pintan en el markup de Webflow y sus
+valores tienen que ser **idénticos** a `packages/forms/src/data/options.ts`. El
+`<option>` inicial va vacío con el texto de `selectPlaceholder`: obliga a elegir
+en vez de aceptar un default silencioso.
+
+La aceptación se compone en dos partes, no como un HTML crudo: texto
+(`aceptacionPrefijo`) + enlace al aviso de privacidad (`aceptacionEnlace`). El
+`href` es distinto por idioma — en portugués es OTRO documento por LGPD, no una
+traducción.
+
+Solo `sitio_web` lleva la marca de opcional. Se marca lo opcional, no lo
+requerido: es uno de diez.
 
 ## Script en la página publicada (no en el canvas)
 
