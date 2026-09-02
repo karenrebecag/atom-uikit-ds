@@ -14,6 +14,7 @@ Host: **https://atom-web-ds.vercel.app** (scope personal `karenrebecags-projects
 | `/v1/tokens.json` | flat tokens | 5 min |
 | `/v1/tokens-nested.json` | nested tokens | 5 min |
 | `/v1/animations.js` | motion behaviours, IIFE, global `AtomMotion` | 5 min |
+| `/v1/forms.js` | motor de formularios, IIFE, global `AtomForms` | 5 min |
 | `/v1/fonts/*.woff2` | self-hosted webfonts | 1 year immutable |
 
 CORS: `Access-Control-Allow-Origin: *` on all of the above.
@@ -24,6 +25,7 @@ CORS: `Access-Control-Allow-Origin: *` on all of the above.
 pnpm --filter @atom-uikit/tokens build
 pnpm --filter @atom-uikit/css build
 pnpm --filter @atom-uikit/animations build
+pnpm --filter @atom-uikit/forms build
 pnpm --filter @atom-uikit/public-dist build
 # → public-dist/out/v1/
 # → public-dist/deploy/   (out + headers-only vercel.json)
@@ -103,3 +105,32 @@ node public-dist/smoke.mjs http://127.0.0.1:4173
 ## Versioning
 
 Only `/v1/` today. Breaking renames → new `/v2/` folder; never break `/v1/`.
+
+## `forms.js` — motor de formularios
+
+Bundle IIFE de `packages/forms` que expone el global **`AtomForms`**. 79 KB, 21 KB
+servidos con gzip.
+
+**A diferencia de `animations.js`, la dependencia SÍ viaja dentro**: zod es la validación
+misma, no una pieza que el host pueda cargar aparte. Un formulario sin su schema no
+degrada, miente.
+
+El endpoint (`forms.atomchat.io/api/submit`) va horneado en el bundle: es el único punto
+que sabe a dónde se envía y por eso vive en un archivo propio, trivial de auditar.
+
+**Orden de carga, no opcional.** El motor descarta los listeners que Webflow engancha a
+su Form Block, así que tiene que correr DESPUÉS de la inicialización de Webflow:
+
+```html
+<script src="https://atom-web-ds.vercel.app/v1/forms.js" defer></script>
+<script>
+  window.Webflow = window.Webflow || [];
+  window.Webflow.push(function () { AtomForms.initAll(); });
+</script>
+```
+
+Si corriera antes, Webflow bindearía después y cada lead se enviaría por duplicado: al
+endpoint propio y al store de formularios de Webflow.
+
+`initAll()` no hace nada en una página sin `[data-atom-form]`, así que el snippet puede
+vivir en una plantilla compartida por landings con y sin formulario.
