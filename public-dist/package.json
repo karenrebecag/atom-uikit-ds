@@ -11,6 +11,7 @@
   "devDependencies": {
     "@atom-uikit/animations": "workspace:*",
     "@atom-uikit/css": "workspace:*",
+    "@atom-uikit/forms": "workspace:*",
     "@atom-uikit/tokens": "workspace:*"
   }
 }

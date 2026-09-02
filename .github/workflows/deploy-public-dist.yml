@@ -7,6 +7,7 @@ on:
       - 'packages/tokens/**'
       - 'packages/css/**'
       - 'packages/animations/**'
+      - 'packages/forms/**'
       - 'public-dist/**'
       - 'pnpm-lock.yaml'
       - '.github/workflows/deploy-public-dist.yml'
@@ -43,6 +44,9 @@ jobs:
 
       - name: Build animation behaviours (browser bundle)
         run: pnpm --filter @atom-uikit/animations build
+
+      - name: Build forms engine (browser bundle)
+        run: pnpm --filter @atom-uikit/forms build
 
       - name: Assemble public-dist (out/ + deploy/)
         run: pnpm --filter @atom-uikit/public-dist build

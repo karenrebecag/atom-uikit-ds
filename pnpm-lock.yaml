@@ -194,6 +194,9 @@ importers:
       '@atom-uikit/css':
         specifier: workspace:*
         version: link:../packages/css
+      '@atom-uikit/forms':
+        specifier: workspace:*
+        version: link:../packages/forms
       '@atom-uikit/tokens':
         specifier: workspace:*
         version: link:../packages/tokens
