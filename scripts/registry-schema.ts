@@ -307,7 +307,8 @@ export interface AtomField {
 
 /**
  * Shape of each entry in the enriched index.json.
- * Contains only discovery-level metadata + slug for fast MCP startup (~50KB).
+ * Contains only discovery-level metadata + slug for fast MCP startup. El presupuesto
+ * por entrada lo fija y lo hace cumplir scripts/build-registry.mjs.
  * The MCP loads this once at init and uses it for context/search/component
  * tools without fetching individual {name}.json files.
  */
