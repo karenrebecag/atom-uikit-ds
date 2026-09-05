@@ -36,6 +36,15 @@ const KIND_TO_TYPE = {
 //           consumidor (o el MCP) arme el mapa de contenido sin parsear HTML
 // ---------------------------------------------------------------------------
 
+/**
+ * Presupuesto del índice enriquecido, POR ENTRADA. El MCP se lo baja entero en cada
+ * arranque en frío, así que lo que se vigila es que una entrada engorde, no que el
+ * catálogo crezca: un tope absoluto se rompe solo con publicar más componentes, y así
+ * fue como el de 50 KB se quedó atrás sin que nadie lo viera (el test que lo miraba
+ * llevaba desde siempre saltándose por una ruta mal escrita).
+ */
+const PRESUPUESTO_BYTES_POR_ENTRADA = 640;
+
 const SLOT_RE = /\{\{([\w-]+)\}\}/g;
 const REPEAT_RE = /<(\w+)[^>]*data-repeat="([\w-]+)"[^>]*>([\s\S]*?)<\/\1>/g;
 
@@ -265,7 +274,7 @@ async function main() {
     };
 
     // Inject lightweight discovery into index for MCP warm start.
-    // Excludes props[] to keep index under 50KB budget.
+    // Excludes props[] — el presupuesto vive en PRESUPUESTO_BYTES_POR_ENTRADA.
     // Full props available via per-item JSON fetch.
     const atom = metadataMap.get(item.name);
     if (atom) {
@@ -276,11 +285,21 @@ async function main() {
     return entry;
   });
 
-  await fs.writeFile(
-    path.join(OUT_DIR, 'index.json'),
-    JSON.stringify(index, null, 2),
-    'utf8'
+  // Minificado: nadie lee este archivo a mano y la indentación era el 23% del peso.
+  const indexJson = JSON.stringify(index);
+  await fs.writeFile(path.join(OUT_DIR, 'index.json'), indexJson, 'utf8');
+
+  const bytes = Buffer.byteLength(indexJson, 'utf8');
+  const porEntrada = Math.round(bytes / index.length);
+  console.log(
+    `  index.json: ${(bytes / 1024).toFixed(1)} KB · ${index.length} entradas · ${porEntrada} B/entrada`
   );
+  if (porEntrada > PRESUPUESTO_BYTES_POR_ENTRADA) {
+    throw new Error(
+      `index.json se pasa del presupuesto: ${porEntrada} B/entrada contra ${PRESUPUESTO_BYTES_POR_ENTRADA}. ` +
+        'Adelgaza discovery o saca campos al JSON por item, no subas el número sin decir por qué.'
+    );
+  }
 
   // Anti-drift: public/r/ es un ESPEJO de registry.json, no un acumulador.
   // Sin esto los items borrados del registry siguen sirviéndose para siempre
