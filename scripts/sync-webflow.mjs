@@ -88,12 +88,24 @@ function parseSize(raw) {
 }
 
 /**
+ * Webflow value for a dimension the DS emits as calc(N * var(--u)) in tokens.css.
+ * A static px value froze every Webflow-bound class (headings, section rhythm)
+ * while the ds-* components scaled with --u, so the two drifted apart at any
+ * width other than 1440. The 1px fallback is what the Designer canvas shows:
+ * it does not load the site's custom code, so --u is undefined there.
+ */
+function fluid(size) {
+  if (size.unit !== 'px') return size;
+  return { custom: `calc(${size.value} * var(--u, 1px))` };
+}
+
+/**
  * Build the desired Webflow variable set from tokens-nested.
  * Naming: color/background, type/font-size-base, space/section-padding-l,
  * radius/md, stroke/thin. Colors carry a dark value when semantic/dark.json
  * defines one (applied to the collection's "dark" mode).
  */
-function buildDesired(nested, darkSrc) {
+export function buildDesired(nested, darkSrc) {
   const desired = [];
 
   // Semantic colors
@@ -122,7 +134,7 @@ function buildDesired(nested, darkSrc) {
   for (const [k, v] of Object.entries(fs)) {
     const size = parseSize(v);
     if (!size) continue;
-    desired.push({ name: `type/font-size-${k}`, type: 'size', light: size });
+    desired.push({ name: `type/font-size-${k}`, type: 'size', light: fluid(size) });
   }
 
   // Line heights as unitless numbers
@@ -139,7 +151,7 @@ function buildDesired(nested, darkSrc) {
     if (!SIZE_PREFIXES.some((p) => key.startsWith(p))) continue;
     const size = parseSize(val);
     if (!size) continue;
-    desired.push({ name: `space/${key}`, type: 'size', light: size });
+    desired.push({ name: `space/${key}`, type: 'size', light: fluid(size) });
   }
 
   // Spacing primitives — retícula base-4. Webflow no tiene capa de component tokens,
@@ -148,7 +160,7 @@ function buildDesired(nested, darkSrc) {
   for (const [k, v] of Object.entries(spacing)) {
     const size = parseSize(v);
     if (!size) continue;
-    desired.push({ name: `space/spacing-${k}`, type: 'size', light: size });
+    desired.push({ name: `space/spacing-${k}`, type: 'size', light: fluid(size) });
   }
 
   // Radius
@@ -156,7 +168,7 @@ function buildDesired(nested, darkSrc) {
   for (const [k, v] of Object.entries(radius)) {
     const size = parseSize(v);
     if (!size) continue;
-    desired.push({ name: `radius/${k}`, type: 'size', light: size });
+    desired.push({ name: `radius/${k}`, type: 'size', light: fluid(size) });
   }
 
   // Stroke
@@ -174,6 +186,7 @@ function buildDesired(nested, darkSrc) {
  * MCP action hint per variable, mirroring data_variable_tool shapes:
  *   color      → create_color_variable { value: { static_value } }
  *   size       → create_size_variable  { value: { static_value: { value, unit } } }
+ *                or, when light is { custom }, { value: { custom_value } } (fluid over --u)
  *   number     → create_number_variable{ value: { static_value } }
  *   fontFamily → create_font_family_variable { value: { static_value } }
  * Dark values → update_color_variable with the dark mode_id after creation.
@@ -229,4 +242,5 @@ Apply via a Webflow-MCP session — see docs/webflow-playbook.md.`);
   }
 }
 
-main();
+const isMain = process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.dirname, 'sync-webflow.mjs');
+if (isMain) main();
