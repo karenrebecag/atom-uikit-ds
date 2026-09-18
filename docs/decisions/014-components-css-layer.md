@@ -37,3 +37,24 @@
        o `/v2`.
   - `webflow.css` (canal master, ADR 009) y `embed.css` (ADR 006) quedan fuera. `embed.css` tiene que
     ganarle al host a propósito.
+
+## Enmienda 2026-09-18 — los estados van fuera del layer
+
+- **Contexto:** con el link ya cambiado en staging, limpiar las copias de Webflow no bastó. El CSS base
+  de Webflow tampoco lleva layer: `button{color:inherit}`, `a{color:inherit}` y `.w-button{color:#fff}`
+  ganaban a la base y a los estados del DS. En bouncy-tabs, todos los botones heredaban el color de la
+  sección (texto oscuro sobre la barra oscura). En tabs-steps, los tres triggers salían blancos. El panel
+  de Webflow no puede escribir `[data-active]` ni `[aria-expanded]`, así que desde el sitio no había
+  arreglo.
+- **Decisión:** `components.layered.css` deja la base dentro de `@layer atom-ds` y emite detrás, sin
+  layer, las reglas cuyo selector depende de un estado: `[data-active]`, `[data-state]`, `[aria-expanded|
+  selected|current|pressed|checked|disabled|invalid]`, `:hover`, `:focus*`, `:active`, `:checked` y
+  `:disabled`. Así, el sitio manda en la base y el DS en los estados.
+- **Consecuencias:**
+  - La copia de Webflow de una clase interactiva declara su color base (por ejemplo `color:
+    var(--muted-foreground)` en `ds-bouncy-tabs__button` y `ds-tabs-steps__trigger`). Esa clase sin
+    layer gana al reset de Webflow, y el estado del DS, con más especificidad, gana a la clase.
+  - Un `:hover` editado en el panel de Webflow sobre una clase `ds-*` pierde contra el del DS.
+    Es a propósito.
+  - El build y el smoke de producción comprueban que fuera del layer solo haya reglas de estado
+    (`isLayeredWithStates`).

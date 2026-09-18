@@ -4,7 +4,7 @@
  * Usage: node smoke.mjs https://atom-web-ds.vercel.app
  *        node smoke.mjs http://127.0.0.1:4173
  */
-import { LAYER, isWrappedInLayer } from '../packages/css/scripts/layer-css.mjs';
+import { LAYER, isLayeredWithStates } from '../packages/css/scripts/layer-css.mjs';
 
 const base = process.argv[2];
 if (!base) {
@@ -114,11 +114,11 @@ if (/(^|})(body|:root|html)\s*\{/.test(wf)) {
 // components.layered.css solo sirve si TODO va dentro del layer: una regla
 // fuera volveria a ganarle al sitio por orden de carga (ADR 014).
 const layered = await fetch(busted(new URL('/v1/components.layered.css', base).href)).then((r) => r.text());
-if (!isWrappedInLayer(layered)) {
-  console.log(`FAIL components.layered.css has rules outside @layer ${LAYER}`);
+if (!isLayeredWithStates(layered)) {
+  console.log(`FAIL components.layered.css has base rules outside @layer ${LAYER}`);
   failed++;
 } else {
-  console.log(`OK  components.layered.css fully inside @layer ${LAYER}`);
+  console.log(`OK  components.layered.css base inside @layer ${LAYER}, state rules unlayered`);
 }
 
 // embed.css must never restyle a host page: a bare `body{` or `:root{` here is
