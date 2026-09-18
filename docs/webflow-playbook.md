@@ -186,6 +186,12 @@ edit packages/tokens/src/**.json
 
 One sync point per change, regardless of how many consumer sites exist.
 
+**Dimensions are fluid (ADR 013).** Font-size, section rhythm, gap, spacing and radius
+come in the plan as `{ custom: "calc(N * var(--u, 1px))" }`: apply them with
+`custom_value`, not `static_value`. Stroke stays in fixed px. The site must define `--u`
+(foundation.css does; a site with its own CSS copies the curve from `scaling.css`),
+otherwise every Webflow-bound size falls back to its 1440 px value.
+
 ## Dark mode
 
 Light values are the collection default. The MCP supports variable modes
