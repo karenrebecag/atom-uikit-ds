@@ -36,6 +36,12 @@
       "path": "packages/css/dist/components.css"
     },
     {
+      "$comment": "components.css dentro de @layer atom-ds (ADR 014): cualquier estilo del sitio sin layer le gana sin importar especificidad ni orden. Fase 1: se publica en paralelo; components.css no cambia hasta que los consumidores migren.",
+      "out": "components.layered.css",
+      "from": "@atom-uikit/css",
+      "path": "packages/css/dist/components.layered.css"
+    },
+    {
       "out": "tokens.json",
       "from": "@atom-uikit/tokens",
       "path": "packages/tokens/build/json/tokens.json"

@@ -242,6 +242,11 @@ Reglas duras del modo connected (paste-only desde 2026-07-31):
    no renderiza dentro del Designer); la verdad publicada es el canal. Por eso
    las ediciones del panel sobre propiedades que el canal también declara no se
    ven al publicar — correcto por decisión de negocio: en Webflow nadie itera.
+   **Revisado por ADR 014 (2026-09-18):** en atomchat.io sí se itera en Webflow, y
+   esta regla obligaba a crear combos solo para ganar especificidad. Existe
+   `/v1/components.layered.css`, el mismo CSS dentro de `@layer atom-ds`, donde
+   el panel manda. Todavía no lo uses en producción: las copias de Webflow
+   rompen los estados del DS hasta completar la fase 2 del ADR.
 4. `embed.css` es OTRO modo (zona `.atom-embed` para migraciones parciales con
    CSS legacy). No combinar con paste nativo dentro del wrapper.
 5. El artefacto (`public/r/webflow/{slug}.json`) trae `headCss` y `tokensCss`

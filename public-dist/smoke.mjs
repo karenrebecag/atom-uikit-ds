@@ -4,6 +4,8 @@
  * Usage: node smoke.mjs https://atom-web-ds.vercel.app
  *        node smoke.mjs http://127.0.0.1:4173
  */
+import { LAYER, isWrappedInLayer } from '../packages/css/scripts/layer-css.mjs';
+
 const base = process.argv[2];
 if (!base) {
   console.error('Usage: node smoke.mjs https://<host>');
@@ -19,6 +21,7 @@ const paths = [
   '/v1/tokens-nested.json',
   '/v1/animations.js',
   '/v1/webflow.css',
+  '/v1/components.layered.css',
 ];
 
 // CDN cache-buster: right after a deploy the edge can serve entries up to
@@ -106,6 +109,16 @@ if (/(^|})(body|:root|html)\s*\{/.test(wf)) {
   failed++;
 } else {
   console.log('OK  webflow.css is ds-namespaced, no global rules, keeps the char animation');
+}
+
+// components.layered.css solo sirve si TODO va dentro del layer: una regla
+// fuera volveria a ganarle al sitio por orden de carga (ADR 014).
+const layered = await fetch(busted(new URL('/v1/components.layered.css', base).href)).then((r) => r.text());
+if (!isWrappedInLayer(layered)) {
+  console.log(`FAIL components.layered.css has rules outside @layer ${LAYER}`);
+  failed++;
+} else {
+  console.log(`OK  components.layered.css fully inside @layer ${LAYER}`);
 }
 
 // embed.css must never restyle a host page: a bare `body{` or `:root{` here is

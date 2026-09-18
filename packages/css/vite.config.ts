@@ -10,6 +10,7 @@ import {
 } from 'node:fs';
 import { scopeEmbedCss, findUnscopedSelectors } from './scripts/scope-embed.mjs';
 import { prefixWebflowCss, findUnprefixedClasses, findUnrenamedStates } from './scripts/prefix-webflow.mjs';
+import { LAYER, wrapInLayer, isWrappedInLayer } from './scripts/layer-css.mjs';
 
 /**
  * Four public artifacts from one package:
@@ -204,6 +205,16 @@ export default defineConfig({
           );
         }
         console.log('[atom-components-prefix] dist/components.css namespaced under ds-');
+
+        // Variante en paralelo (ADR 014, fase 1): el mismo CSS dentro de un
+        // layer, para que el sitio consumidor le gane sin combos. No reemplaza
+        // a components.css hasta que los consumidores migren.
+        const layered = wrapInLayer(prefixed);
+        if (!isWrappedInLayer(layered)) {
+          throw new Error(`[atom-components-prefix] components.layered.css salio fuera de @layer ${LAYER}`);
+        }
+        writeFileSync(resolve(__dirname, 'dist/components.layered.css'), layered);
+        console.log(`[atom-components-prefix] dist/components.layered.css inside @layer ${LAYER}`);
       },
     },
   ],
