@@ -150,11 +150,13 @@
 @media (min-width: 992px) {
   .tabs-steps {
     grid-template-columns: 1fr 1fr;
-    /* min-content y NO auto. Con filas auto, el visual que abarca las tres las
-       estira para caber en el, y los pasos se separan cientos de pixeles entre
-       si. Con min-content la altura de cada fila la dicta su paso, y el visual
-       se ajusta al total. */
-    grid-template-rows: repeat(var(--tabs-steps-count, 3), min-content);
+    /* Filas min-content MAS una pista 1fr al final. min-content solo no basta:
+       un item que abarca pistas intrinsecas reparte entre ellas lo que le falta,
+       asi que el visual (mas alto que los tres pasos juntos) seguia separando
+       los pasos ~97px entre si en la home (medido 2026-09-18). Con una pista
+       flexible dentro de su rango, la especificacion de grid le da a ella todo
+       el sobrante y los pasos quedan a su altura. */
+    grid-template-rows: repeat(var(--tabs-steps-count, 3), min-content) 1fr;
     column-gap: var(--spacing-10);
     /* Los pasos ya traen su propio padding-block; en escritorio el hueco entre
        filas solo tiene que separarlos, no volver a espaciarlos. */
