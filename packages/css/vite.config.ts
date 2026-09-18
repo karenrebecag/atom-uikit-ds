@@ -10,7 +10,7 @@ import {
 } from 'node:fs';
 import { scopeEmbedCss, findUnscopedSelectors } from './scripts/scope-embed.mjs';
 import { prefixWebflowCss, findUnprefixedClasses, findUnrenamedStates } from './scripts/prefix-webflow.mjs';
-import { LAYER, wrapInLayer, isWrappedInLayer } from './scripts/layer-css.mjs';
+import { LAYER, layerWithStates, isLayeredWithStates } from './scripts/layer-css.mjs';
 
 /**
  * Four public artifacts from one package:
@@ -206,15 +206,16 @@ export default defineConfig({
         }
         console.log('[atom-components-prefix] dist/components.css namespaced under ds-');
 
-        // Variante en paralelo (ADR 014, fase 1): el mismo CSS dentro de un
-        // layer, para que el sitio consumidor le gane sin combos. No reemplaza
-        // a components.css hasta que los consumidores migren.
-        const layered = wrapInLayer(prefixed);
-        if (!isWrappedInLayer(layered)) {
-          throw new Error(`[atom-components-prefix] components.layered.css salio fuera de @layer ${LAYER}`);
+        // Variante en paralelo (ADR 014, fase 1): la base dentro de un layer,
+        // para que el sitio consumidor le gane sin combos; las reglas de estado
+        // quedan fuera porque el CSS base de Webflow les ganaria (enmienda del
+        // ADR). No reemplaza a components.css hasta que los consumidores migren.
+        const layered = layerWithStates(prefixed);
+        if (!isLayeredWithStates(layered)) {
+          throw new Error(`[atom-components-prefix] components.layered.css tiene reglas base fuera de @layer ${LAYER}`);
         }
         writeFileSync(resolve(__dirname, 'dist/components.layered.css'), layered);
-        console.log(`[atom-components-prefix] dist/components.layered.css inside @layer ${LAYER}`);
+        console.log(`[atom-components-prefix] dist/components.layered.css: base inside @layer ${LAYER}, states unlayered`);
       },
     },
   ],
