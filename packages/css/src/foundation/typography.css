@@ -14,7 +14,7 @@
 
 body {
   font-family: var(--font-family-sans);
-  font-size: var(--size-font);
+  font-size: calc(16 * var(--u-text, 1px));
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-base);
   color: var(--foreground, currentColor);
