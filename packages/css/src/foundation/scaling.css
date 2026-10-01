@@ -41,6 +41,10 @@
      (emitidos como calc(N * var(--u)) desde tokens). Absoluta -> inmune al
      font-size local, a diferencia de em. */
   --u: calc(var(--size-font) / 16);
+  /* Unidad solo del texto, con piso de 1px (texto base >= 16px): entre breakpoints el ancho
+     ideal supera al viewport y el texto base caia a 11px en 992. Spacing y radius siguen en
+     --u para no mover el layout. */
+  --u-text: max(1px, var(--u));
   /* Margen LATERAL del contenido — eje distinto al ritmo vertical de seccion.
      Patron ATOM: 30px desktop, 10px bajo 991 (casi full-bleed en movil). */
   --container-padding: calc(30 * var(--u));

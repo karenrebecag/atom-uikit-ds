@@ -25,7 +25,8 @@ StyleDictionary.registerTransform({
     const px = raw.endsWith('rem') ? parseFloat(raw) * 16 : parseFloat(raw);
     if (px === 0) return '0';
     if (px >= 9999) return `${px}px`; // radius-full stays a pill, not a length
-    return `calc(${px} * var(--u, 1px))`;
+    const unit = token.path[0] === 'font-size' ? 'var(--u-text, var(--u, 1px))' : 'var(--u, 1px)';
+    return `calc(${px} * ${unit})`;
   },
 });
 
