@@ -10,8 +10,9 @@
       "gzipKb": 6
     },
     "packages/css/dist/atom.css": {
-      "rawKb": 185,
-      "gzipKb": 24
+      "rawKb": 187,
+      "gzipKb": 24,
+      "$comment": "SUBIDO de 185 el 2026-10-09: boton de pausa del marquee (WCAG 2.2.2) + pausa con foco; 186 medido, la pintura del boton ya comparte reglas con .marquee__control."
     },
     "packages/css/dist/embed.css": {
       "rawKb": 205,

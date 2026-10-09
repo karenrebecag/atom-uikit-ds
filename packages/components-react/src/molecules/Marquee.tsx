@@ -33,6 +33,11 @@ export type MarqueeProps = {
       corre en tres idiomas y una etiqueta fija seria incorrecta en dos. */
   prevLabel?: string;
   nextLabel?: string;
+  /** Boton para detener la tira (WCAG 2.2.2): todo loop de mas de 5 s junto a
+      otro contenido lo necesita. Encendido por defecto por eso. */
+  pauseControl?: boolean;
+  /** Etiqueta fija del boton; el estado lo comunica aria-pressed. */
+  pauseLabel?: string;
   children: ReactNode;
   className?: string;
 };
@@ -52,12 +57,16 @@ export function Marquee({
   controls = false,
   prevLabel = 'Previous',
   nextLabel = 'Next',
+  pauseControl = true,
+  pauseLabel = 'Pause animation',
   children,
   className,
 }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const [cssDuration, setCssDuration] = useState('30s');
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(true);
 
   // CSS mode: calculate duration based on content width
   useEffect(() => {
@@ -73,9 +82,7 @@ export function Marquee({
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          el.style.setProperty('--marquee-state', entry.isIntersecting ? 'running' : 'paused');
-        });
+        entries.forEach((entry) => setInView(entry.isIntersecting));
       },
       { threshold: 0 },
     );
@@ -83,6 +90,20 @@ export function Marquee({
     observer.observe(el);
     return () => observer.disconnect();
   }, [draggable]);
+
+  const pauseButton = pauseControl ? (
+    <button
+      type="button"
+      className="marquee__toggle"
+      aria-label={pauseLabel}
+      // En draggable el loop es de GSAP: el behavior (marquee-draggable.ts)
+      // conecta el boton y escribe aria-pressed. Si React tambien lo escribiera,
+      // habria dos duenos del mismo estado.
+      {...(draggable
+        ? { 'data-marquee-toggle': '' }
+        : { 'aria-pressed': paused, onClick: () => setPaused((p) => !p) })}
+    />
+  ) : null;
 
   const listContent = Children.toArray(children);
 
@@ -111,20 +132,25 @@ export function Marquee({
           </div>
         </div>
       </div>
-      {controls && (
+      {(controls || pauseButton) && (
         <div className="marquee__controls">
+          {controls && (
           <button
             type="button"
             className="marquee__control marquee__control--prev"
             data-draggable-marquee-control="prev"
             aria-label={prevLabel}
           />
+          )}
+          {pauseButton}
+          {controls && (
           <button
             type="button"
             className="marquee__control marquee__control--next"
             data-draggable-marquee-control="next"
             aria-label={nextLabel}
           />
+          )}
         </div>
       )}
       </>
@@ -133,6 +159,7 @@ export function Marquee({
 
   // CSS mode
   return (
+    <>
     <div
       ref={containerRef}
       className={cn(
@@ -142,7 +169,12 @@ export function Marquee({
         fade && 'marquee--fade',
         className,
       )}
-      style={{ '--marquee-duration': cssDuration } as React.CSSProperties}
+      style={
+        {
+          '--marquee-duration': cssDuration,
+          '--marquee-state': inView && !paused ? 'running' : 'paused',
+        } as React.CSSProperties
+      }
     >
       <div ref={listRef} className="marquee__list">
         {listContent}
@@ -151,6 +183,8 @@ export function Marquee({
         {listContent}
       </div>
     </div>
+    {pauseButton && <div className="marquee__controls">{pauseButton}</div>}
+    </>
   );
 }
 

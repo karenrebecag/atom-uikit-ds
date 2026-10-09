@@ -15,7 +15,7 @@
 // hasta tapar el carril, y pausar fuera de vista con --marquee-state.
 
 /** F8b — single source for Webflow/domContract; must list every data-* the module queries. */
-export const REQUIRED_HOOKS = ['data-marquee', 'data-marquee-list', 'data-speed'] as const;
+export const REQUIRED_HOOKS = ['data-marquee', 'data-marquee-list', 'data-speed', 'data-marquee-toggle'] as const;
 
 /**
  * Fallback por clase, solo para consumidores que no marcan la lista.
@@ -36,6 +36,57 @@ type CleanupFn = () => void;
 
 /** px/s. La tira de logos de Osmo va a este ritmo y es el que Karen valido. */
 const DEFAULT_SPEED = 75;
+
+// Boton de pausa (WCAG 2.2.2): lo que se mueve solo mas de 5 s junto a otro
+// contenido necesita un mecanismo para detenerlo, y el hover no existe en
+// tactil. Etiqueta fija del consumidor (tres idiomas); el estado va en
+// aria-pressed. Duplicado a proposito en marquee-css.ts y marquee-draggable.ts:
+// el bundle envuelve cada modulo en su propio IIFE y no admite imports entre ellos.
+/** Dentro del marquee primero, despues en el padre: mismo criterio que prev/next. */
+function findMarqueeToggle(root: HTMLElement): HTMLButtonElement | null {
+  return (
+    root.querySelector<HTMLButtonElement>('[data-marquee-toggle]') ??
+    root.parentElement?.querySelector<HTMLButtonElement>('[data-marquee-toggle]') ??
+    null
+  );
+}
+
+/**
+ * Un boton puede servir a varias tiras: dos filas hermanas (reviews) comparten
+ * padre y las dos lo encuentran. Con un listener por tira, cada click lo
+ * voltearia dos veces y quedaria igual. Un solo listener por boton avisa a
+ * todas, asi que un boton para la pareja entera.
+ */
+const toggleSubscribers = new Map<HTMLButtonElement, Array<(paused: boolean) => void>>();
+
+function bindMarqueeToggle(
+  button: HTMLButtonElement,
+  onChange: (paused: boolean) => void,
+): CleanupFn {
+  const existing = toggleSubscribers.get(button);
+  if (existing) {
+    existing.push(onChange);
+    if (button.getAttribute('aria-pressed') === 'true') onChange(true);
+    return () => {
+      const i = existing.indexOf(onChange);
+      if (i >= 0) existing.splice(i, 1);
+    };
+  }
+  const subscribers = [onChange];
+  toggleSubscribers.set(button, subscribers);
+  button.setAttribute('aria-pressed', 'false');
+  const onClick = () => {
+    const paused = button.getAttribute('aria-pressed') !== 'true';
+    button.setAttribute('aria-pressed', String(paused));
+    subscribers.forEach((fn) => fn(paused));
+  };
+  button.addEventListener('click', onClick);
+  return () => {
+    button.removeEventListener('click', onClick);
+    button.removeAttribute('aria-pressed');
+    toggleSubscribers.delete(button);
+  };
+}
 
 function getNumberAttr(el: Element, name: string, fallback: number): number {
   const value = parseFloat(el.getAttribute(name) || '');
@@ -149,6 +200,25 @@ export function initCssMarquee(): CleanupFn {
       });
     }
 
+    // Fuera de vista y pausa del usuario escriben la MISMA variable: dos fuentes
+    // con su propia escritura se pisarian, y salir y volver a la vista
+    // reanudaria una tira que el usuario detuvo.
+    let inView = true;
+    let userPaused = false;
+    function syncState() {
+      root.style.setProperty('--marquee-state', inView && !userPaused ? 'running' : 'paused');
+    }
+
+    const toggle = findMarqueeToggle(root);
+    if (toggle) {
+      cleanups.push(
+        bindMarqueeToggle(toggle, (paused) => {
+          userPaused = paused;
+          syncState();
+        }),
+      );
+    }
+
     apply();
 
     if (typeof ResizeObserver !== 'undefined') {
@@ -171,7 +241,8 @@ export function initCssMarquee(): CleanupFn {
       const viewObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            root.style.setProperty('--marquee-state', entry.isIntersecting ? 'running' : 'paused');
+            inView = entry.isIntersecting;
+            syncState();
           });
         },
         { threshold: 0 },
