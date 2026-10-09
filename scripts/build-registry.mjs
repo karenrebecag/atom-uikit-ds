@@ -435,9 +435,13 @@ async function publishSkill(root, outDir) {
     ...contract.layers.map((l) => ({ file: l.file, out: `${l.layer}.md` })),
     ...contract.examples.map((f) => ({ file: f, out: `ejemplo/${path.basename(f)}` })),
   ];
+  // El canal renombra capas (SKILL.md -> entrada.md, ejemplos/ -> ejemplo/): los enlaces
+  // de la fuente se reescriben al nombre publicado o el cliente cae en un 404.
+  const published = new Map(entries.map((e) => [e.file, e.out]));
+  const relink = (text) => text.replace(/\]\(([^)#\s]+\.md)\)/g, (m, target) => (published.has(target) ? `](${published.get(target)})` : m));
   for (const { file, out } of entries) {
     await fs.mkdir(path.dirname(path.join(dest, out)), { recursive: true });
-    await fs.copyFile(path.join(dir, file), path.join(dest, out));
+    await fs.writeFile(path.join(dest, out), relink(await fs.readFile(path.join(dir, file), 'utf8')));
   }
   return entries.length;
 }
