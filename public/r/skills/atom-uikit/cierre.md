@@ -18,7 +18,7 @@ lees sus hallazgos y arreglas. Estas líneas se generan de `conformance/skill-ch
 - [ ] el body no lleva fondo oscuro. Si falla: el blanco es la base; lo oscuro va solo dentro de secciones concretas. <!-- check:no-body-dark -->
 - [ ] a lo más 2 secciones oscuras por página. Si falla: fuerza a la superficie default las secciones oscuras que sobren. <!-- check:too-many-dark-sections -->
 - [ ] el logo oficial no queda dentro de una sección oscura. Si falla: deja el logo sobre la base blanca o quítalo de la sección oscura. <!-- check:logo-contrast -->
-- [ ] ningún logo inventado: wordmark de texto, badge o powered by. Si falla: usa solo el logo oficial de Atom como imagen. <!-- check:official-logo -->
+- [ ] ningún logo inventado: wordmark de texto, badge o powered by. Si falla: usa solo el logo oficial de Atom como imagen, tomado del recurso atom://brand-assets. <!-- check:official-logo -->
 - [ ] toda imagen sale de la herramienta de imagen, no de URLs pegadas a mano. Si falla: rellena cada slot de imagen con atom_uikit_image. <!-- check:image-source -->
 - [ ] los slots de imagen obligatorios llevan un asset externo real, no un mock en CSS. Si falla: genera la imagen con atom_uikit_image y colócala en el slot. <!-- check:required-image-slots -->
 <!-- contable:end -->
