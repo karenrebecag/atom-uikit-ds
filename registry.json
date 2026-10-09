@@ -4550,6 +4550,41 @@
       ]
     },
     {
+      "name": "orbit-logos",
+      "kind": "component",
+      "framework": "css",
+      "installGroup": "styles",
+      "title": "Orbit Logos",
+      "description": "Integration logos orbiting a central brand on two tilted rings. Selectors go by attribute, so one sheet serves both the code and the Webflow channel; without JS the logos fall back to a static grid.",
+      "registryDependencies": [
+        "tokens",
+        "foundation",
+        "marquee"
+      ],
+      "files": [
+        {
+          "sourcePath": "packages/css/src/components/molecules/orbit-logos.css",
+          "outputPath": "styles/components/orbit-logos.css",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "orbit-logos-animation",
+      "kind": "hook",
+      "framework": "react",
+      "installGroup": "components",
+      "title": "Orbit Logos Animation",
+      "description": "Rotates the rings at 64 s and 88 s per turn and brakes with a critically damped spring on hover, focus or the pause button. Static under reduced motion.",
+      "files": [
+        {
+          "sourcePath": "packages/animations/src/orbit-logos.ts",
+          "outputPath": "animations/orbit-logos.ts",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
       "name": "tabs-steps",
       "kind": "component",
       "framework": "css",

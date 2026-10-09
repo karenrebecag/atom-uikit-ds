@@ -26,6 +26,7 @@ const SLUG_TO_MODULE = {
   // layout-ish hooks (no single registry component, but modules exist)
   'logos-marquee': 'marquee-css.js',
   odometer: 'odometer.js',
+  'orbit-logos': 'orbit-logos.js',
   'tabs-steps': 'tabs-steps.js',
   sidebar: 'sidebar.js',
   'progress-nav': 'progress-nav.js',
@@ -46,6 +47,7 @@ export const ALL_BEHAVIOR_MODULES = [
   'marquee-css.js',
   'marquee-draggable.js',
   'odometer.js',
+  'orbit-logos.js',
   'tabs-steps.js',
   'menu-button.js',
   'nav-autohide.js',

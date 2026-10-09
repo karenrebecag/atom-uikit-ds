@@ -13,6 +13,7 @@ import { initButtonHover } from '../../../animations/src/button-hover';
 import { initSidebarAnimation } from '../../../animations/src/sidebar';
 import { initDraggableMarquee } from '../../../animations/src/marquee-draggable';
 import { initCssMarquee } from '../../../animations/src/marquee-css';
+import { initOrbitLogos } from '../../../animations/src/orbit-logos';
 import { initTabsSteps } from '../../../animations/src/tabs-steps';
 import { initVideoPlayer } from '../../../animations/src/video-player';
 
@@ -1561,6 +1562,95 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
   });
 });
 
+
+describe('orbit-logos (decorativo: anillos que giran)', () => {
+  let frames: Array<(t: number) => void> = [];
+  const realRaf = window.requestAnimationFrame;
+  const realCancel = window.cancelAnimationFrame;
+
+  beforeEach(() => {
+    frames = [];
+    window.requestAnimationFrame = ((cb: (t: number) => void) => {
+      frames.push(cb);
+      return frames.length;
+    }) as typeof window.requestAnimationFrame;
+    window.cancelAnimationFrame = () => {};
+  });
+
+  afterEach(() => {
+    window.requestAnimationFrame = realRaf;
+    window.cancelAnimationFrame = realCancel;
+  });
+
+  /** Corre N frames de 16 ms y devuelve la transform del primer chip. */
+  function run(n: number, start = 0): string {
+    let t = start;
+    for (let i = 0; i < n; i += 1) {
+      const cb = frames.shift();
+      if (!cb) break;
+      t += 16;
+      cb(t);
+    }
+    return document.querySelector<HTMLElement>('[data-orbit-item]')!.style.transform;
+  }
+
+  function mount(exempt = false) {
+    document.body.innerHTML = `
+      <div data-orbit-logos ${exempt ? 'data-motion-exempt' : ''}>
+        <div data-orbit-stage>
+          <ul data-orbit-ring="inner"><li data-orbit-item><img alt="A"></li><li data-orbit-item><img alt="B"></li></ul>
+        </div>
+        <button data-orbit-toggle></button>
+      </div>`;
+    const stage = document.querySelector<HTMLElement>('[data-orbit-stage]')!;
+    stage.getBoundingClientRect = () => ({ width: 600 }) as DOMRect;
+    return document.querySelector<HTMLElement>('[data-orbit-logos]')!;
+  }
+
+  it('posiciona los chips y gira; el cleanup los devuelve a la rejilla', () => {
+    const root = mount();
+    const cleanup = initOrbitLogos();
+    expect(root.dataset.orbitLogos).toBe('initialized');
+    const a = run(2);
+    const b = run(30, 32);
+    expect(a).toContain('translate(');
+    expect(b).not.toBe(a);
+    cleanup();
+    expect(document.querySelector<HTMLElement>('[data-orbit-item]')!.style.transform).toBe('');
+    expect(root.dataset.orbitLogos).toBeUndefined();
+  });
+
+  it('el boton de pausa (WCAG 2.2.2) frena hasta detener el giro', () => {
+    mount();
+    initOrbitLogos();
+    run(5);
+    const toggle = document.querySelector<HTMLButtonElement>('[data-orbit-toggle]')!;
+    toggle.click();
+    expect(toggle.getAttribute('aria-pressed')).toBe('true');
+    // El resorte frena: tras ~3 s simulados el loop se apaga solo.
+    run(400, 100);
+    expect(frames).toHaveLength(0);
+    const parked = document.querySelector<HTMLElement>('[data-orbit-item]')!.style.transform;
+    toggle.click();
+    expect(run(40, 10000)).not.toBe(parked);
+  });
+
+  it('reduced-motion: chips posicionados, sin loop', () => {
+    setReducedMotion(true);
+    const root = mount();
+    initOrbitLogos();
+    expect(root.dataset.orbitLogos).toBe('initialized');
+    expect(document.querySelector<HTMLElement>('[data-orbit-item]')!.style.transform).toContain('translate(');
+    expect(frames).toHaveLength(0);
+  });
+
+  it('data-motion-exempt: no monta, queda la rejilla estatica', () => {
+    const root = mount(true);
+    initOrbitLogos();
+    expect(root.dataset.orbitLogos).toBe('');
+    expect(frames).toHaveLength(0);
+  });
+});
 
 describe('tabs-steps (acordeon: un paso abierto a la vez)', () => {
   function mount(autoplay = 'true') {
