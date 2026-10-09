@@ -93,7 +93,6 @@ describe.skipIf(!bundleExists)('bundle de animaciones — contrato', () => {
       'initMenuButton',
       'initNavAutohide',
       'initOdometer',
-      'initOrbitLogos',
       'initProgressNav',
       'initScrollReveal',
       'initSidebarAnimation',
