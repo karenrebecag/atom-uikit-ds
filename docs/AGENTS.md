@@ -7,7 +7,10 @@ cuál eres antes de tocar nada.
 
 ## Rol A — Consumes el DS (construyes UI en OTRO proyecto)
 
-Nunca copies valores a mano ni inventes componentes. Consume por canal:
+Nunca copies valores a mano ni inventes componentes. **Para construir una página, empieza por la
+skill del canal** ([`skills/atom-uikit/SKILL.md`](../skills/atom-uikit/SKILL.md), servida por el MCP con
+`atom_uikit_skill`): workflow, bloques ejemplares por región y el loop de cierre que se corre antes de
+entregar (ADR 016). Consume por canal:
 
 | Contexto | Canal | Cómo |
 |---|---|---|

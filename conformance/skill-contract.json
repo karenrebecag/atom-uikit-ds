@@ -1,0 +1,41 @@
+{
+  "$comment": "Contrato de la skill del canal (skills/atom-uikit). La skill describe el DS, asi que vive junto a el y pasa por conformance: una skill que cita una clase que el DS no publica falla aqui, que es justo el fallo que tenian las instructions del conector (bg-violet-soft, '49 componentes'). Lo ejecuta scripts/skill-conformance.mjs (seccion skill).",
+  "dir": "skills/atom-uikit",
+  "layers": [
+    { "layer": "entrada", "file": "SKILL.md", "max": 200 },
+    { "layer": "instrucciones", "file": "INSTRUCTIONS.md", "max": 60 },
+    { "layer": "bloques", "file": "bloques.md", "max": 200, "generated": true },
+    { "layer": "composicion", "file": "composicion.md", "max": 200 },
+    { "layer": "marca", "file": "marca.md", "max": 200 },
+    { "layer": "copy", "file": "copy.md", "max": 200 },
+    { "layer": "hosts", "file": "hosts.md", "max": 200 },
+    { "layer": "conversion", "file": "conversion.md", "max": 200 },
+    { "layer": "motion", "file": "motion.md", "max": 200 },
+    { "layer": "accesibilidad", "file": "accesibilidad.md", "max": 200 },
+    { "layer": "cierre", "file": "cierre.md", "max": 120 }
+  ],
+  "examples": [],
+  "regions": {
+    "hero": ["hero-split", "hero-centered"],
+    "beneficios": ["feature-grid", "feature-alternating"],
+    "prueba": ["metrics-grid"],
+    "planes": ["pricing-plans"],
+    "objeciones": ["faq-accordion"],
+    "cierre": ["cta-banner"]
+  },
+  "delegates": ["atom_uikit_finalize"],
+  "repeatableRules": ["no-forms", "logo-oficial"],
+  "maxFilesPerRepeatableRule": 3,
+  "maxClassCitationsPerLine": 2,
+  "rules": {
+    "skillReferencesResolve": "toda ruta, clase (.x), token (--x), layout/<slug> y hook:<nombre> citados entre backticks existen en el arbol",
+    "skillBlocksGenerated": "regenerar bloques.md deja diff vacio",
+    "skillExamplesUseExemplars": "toda region de un ejemplo resuelto nombra un bloque con .exemplar.ts",
+    "skillLayerBudget": "entrada <=200 lineas, capas <=200, cierre <=120; entrada enlaza todas las capas y ningun enlace esta roto",
+    "skillChecklistDelegates": "cierre declara las dos mitades y a que tool se delega",
+    "skillNoForms": "ninguna capa contiene <form>, <input>, <textarea> ni <select>",
+    "skillOneRuleOneFile": "una regla vive en un archivo; solo las dos de repeatableRules se repiten (en capa 0 y en una capa)",
+    "skillChecklistGenerated": "la mitad contable de cierre coincide con conformance/skill-checks.json y cada linea tiene un id del registro",
+    "skillVocabularyFromDS": "ninguna capa lista a mano 3 o mas clases en una linea: el vocabulario del DS se cita, no se copia"
+  }
+}

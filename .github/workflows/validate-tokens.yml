@@ -10,6 +10,7 @@ on:
       - 'packages/css/**'
       - 'packages/components-react/**'
       - 'packages/layouts/**'
+      - 'skills/**'
       - 'registry.json'
       - 'scripts/**'
       - 'public/r/**'

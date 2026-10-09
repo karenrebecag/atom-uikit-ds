@@ -16,6 +16,8 @@ import path from 'node:path';
 import { existsSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { resolveExemplarHtml } from './exemplar.mjs';
+import { loadExemplars, renderBlocks } from './build-skill-blocks.mjs';
+import { applyChecklist } from './build-skill-checklist.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const REGISTRY_PATH = path.join(ROOT, 'registry.json');
@@ -351,6 +353,11 @@ async function main() {
     process.exit(1);
   }
 
+  // Skill del canal: se regenera lo generado (bloques, mitad contable de cierre) y se publica una
+  // capa por archivo, para que el conector las sirva desde el canal en vez de copiarlas.
+  const skillPublished = await publishSkill(ROOT, OUT_DIR);
+  console.log(`  [skill] ${skillPublished} capa(s) → public/r/skills/atom-uikit/`);
+
   // F12c — editorial markdown → public/r/docs/{slug}.md (MCP + docs loadEditorialMarkdown)
   const editorialCopied = await emitEditorialDocs(ROOT, OUT_DIR);
 
@@ -406,6 +413,33 @@ async function main() {
       console.warn(`  Deploy hook: failed (${e.message})`);
     }
   }
+}
+
+/**
+ * Publica skills/atom-uikit como public/r/skills/atom-uikit/<layer>.md. Antes regenera las dos capas
+ * generadas, porque publicar prosa desfasada de los bloques o del registro de checks es el fallo
+ * que la skill existe para evitar.
+ */
+async function publishSkill(root, outDir) {
+  const contract = JSON.parse(await fs.readFile(path.join(root, 'conformance', 'skill-contract.json'), 'utf8'));
+  const checks = JSON.parse(await fs.readFile(path.join(root, 'conformance', 'skill-checks.json'), 'utf8'));
+  const dir = path.join(root, contract.dir);
+
+  await fs.writeFile(path.join(dir, 'bloques.md'), renderBlocks(await loadExemplars(root), contract.regions));
+  const cierrePath = path.join(dir, 'cierre.md');
+  await fs.writeFile(cierrePath, applyChecklist(await fs.readFile(cierrePath, 'utf8'), checks));
+
+  const dest = path.join(outDir, 'skills', 'atom-uikit');
+  await fs.rm(dest, { recursive: true, force: true });
+  const entries = [
+    ...contract.layers.map((l) => ({ file: l.file, out: `${l.layer}.md` })),
+    ...contract.examples.map((f) => ({ file: f, out: `ejemplo/${path.basename(f)}` })),
+  ];
+  for (const { file, out } of entries) {
+    await fs.mkdir(path.dirname(path.join(dest, out)), { recursive: true });
+    await fs.copyFile(path.join(dir, file), path.join(dest, out));
+  }
+  return entries.length;
 }
 
 /**
