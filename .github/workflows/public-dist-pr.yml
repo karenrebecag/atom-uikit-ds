@@ -5,6 +5,7 @@ on:
     paths:
       - 'packages/tokens/**'
       - 'packages/css/**'
+      - 'packages/forms/**'
       - 'public-dist/**'
       - '.github/workflows/public-dist-pr.yml'
 
@@ -33,6 +34,8 @@ jobs:
       - run: pnpm --filter @atom-uikit/tokens build
       - run: pnpm --filter @atom-uikit/css build
       - run: pnpm --filter @atom-uikit/animations build
+      # public-dist empaqueta el bundle de forms: sin este paso el check falla antes del smoke.
+      - run: pnpm --filter @atom-uikit/forms build
       - run: pnpm --filter @atom-uikit/public-dist build
 
       - name: Validate embed scoping
