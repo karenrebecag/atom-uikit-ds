@@ -127,7 +127,7 @@ export const pricingPlans = {
 <section class="section l-pricing-plans">
   <div class="container">
     <header class="section-header section-header--center">
-      <span class="eyebrow section-header__eyebrow">{{eyebrow}}</span>
+      <span class="eyebrow section-header__eyebrow" data-optional="eyebrow">{{eyebrow}}</span>
       <h2 class="h2 section-header__title" data-split="heading">{{headline}}</h2>
       <p class="section-header__subtitle" data-split="heading">{{subtitle}}</p>
     </header>
@@ -163,7 +163,7 @@ export const pricingPlans = {
 
 @media (max-width: 767px) {
   .l-pricing-plans__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }`,
 };

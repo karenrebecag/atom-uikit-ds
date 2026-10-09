@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T21:41:16.748Z",
+  "generatedAt": "2026-10-09T22:11:13.919Z",
   "source": "public/r + docs/editorial + webflow index + animations dist",
   "scoreRubric": {
     "metaAgentFull": 40,
@@ -1455,14 +1455,16 @@
       "hasCss": true,
       "metaAgent": "none",
       "editorial": false,
-      "derivedPartials": [],
+      "derivedPartials": [
+        "no-color-declarations"
+      ],
       "derivedOk": true,
       "webflow": "n/a",
       "webflowReason": "layout",
       "motionContract": false,
       "eligibleAgent": false,
       "excludedAgent": "layout — composition block; agent manifest deferred",
-      "contentScore": 20
+      "contentScore": 15
     },
     {
       "slug": "layout/article-toc",

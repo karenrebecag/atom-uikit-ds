@@ -13,7 +13,9 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { existsSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { resolveExemplarHtml } from './exemplar.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const REGISTRY_PATH = path.join(ROOT, 'registry.json');
@@ -103,6 +105,20 @@ async function enrichLayout(item, output) {
 
   output.atom ??= {};
   output.atom.layout = { ...extractSlots(mod.html), components: mod.components ?? [] };
+
+  // Bloque ejemplar (opt-in): el criterio viaja en atom.exemplar y el contenido ya aplicado en
+  // un tercer plano, para que nadie tenga que decidir la copy desde cero.
+  const exemplarPath = path.join(ROOT, 'packages', 'layouts', 'src', `${slug}.exemplar.ts`);
+  if (existsSync(exemplarPath)) {
+    const ex = await evalLayoutModule(await fs.readFile(exemplarPath, 'utf8'));
+    const { slug: _s, content: _c, repeats: _r, rawSlots: _w, ...criterion } = ex;
+    output.atom.exemplar = criterion;
+    output.files.push({
+      path: `layouts/${slug}.exemplar.html`,
+      type: 'registry:file',
+      content: resolveExemplarHtml(mod, ex),
+    });
+  }
 }
 
 // Dynamic import of the extraction module (TypeScript via tsx)

@@ -119,6 +119,21 @@ WhatsApp con ancho intrínseco (199px sobre card de 602px) con `data-atom-button
 iconos, card oscura en carbón `rgb(23,23,23)` con botón invertido, cero slots sin resolver,
 cero errores de consola.
 
+### 8. Hacer ejemplar un layout (opt-in por ola)
+
+Un layout es ejemplar cuando, ademas de cumplir §7, declara su decision de composicion en
+`packages/layouts/src/<slug>.exemplar.ts` (formato: `packages/layouts/src/EXEMPLAR.md`) y entra
+en una ola de `conformance/block-contract.json`.
+
+1. El html del layout lleva la clase de ritmo de `foundation/section.css` en su raiz; su `.l-<slug>`
+   pierde el padding/margin de bloque.
+2. Lo opcional (eyebrows, CTA secundario) se marca `data-optional="<slot>"`.
+3. `pnpm conformance` (seccion `blocks`) verde.
+4. Prueba §7 extendida: se instala desde el canal, se pega el `.exemplar.html` sin editar y la region
+   se ve terminada: 0 slots sin resolver, 0 errores de consola, la altura de seccion coincide con
+   el `rhythm` declarado, 390 px sin desborde, legible en `data-theme="dark"`.
+5. Capturas a 1440 y a 390 en `docs/evidence/` y en el PR.
+
 ## Checklist
 
 - [ ] `pnpm conformance` verde ANTES de empezar y DESPUÉS de terminar (contrato ejecutable)

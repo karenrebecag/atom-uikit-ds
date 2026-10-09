@@ -34,14 +34,14 @@ export const metricsGrid = {
   completa.
 -->
 
-<section class="l-metrics-grid" id="{{section_id}}">
+<section class="section l-metrics-grid" id="{{section_id}}">
   <div class="l-metrics-grid__header">
-    <p class="l-metrics-grid__eyebrow">{{eyebrow}}</p>
+    <p class="l-metrics-grid__eyebrow" data-optional="eyebrow">{{eyebrow}}</p>
     <h2 class="h2 l-metrics-grid__title" data-split="heading">{{heading}}</h2>
   </div>
 
   <div class="l-metrics-grid__list">
-    <article class="feature-card feature-card--media">
+    <article class="feature-card feature-card--media" data-optional="media1_src">
       <div class="feature-card__media feature-card__media--fill">
         <img class="feature-card__media-fill" src="{{media1_src}}" alt="{{media1_alt}}" loading="lazy" />
       </div>
@@ -79,7 +79,7 @@ export const metricsGrid = {
       </div>
     </article>
 
-    <article class="feature-card feature-card--media">
+    <article class="feature-card feature-card--media" data-optional="media2_poster">
       <div class="feature-card__media feature-card__media--fill">
         <video autoplay loop muted playsinline poster="{{media2_poster}}">
           <source src="{{media2_webm}}" type="video/webm" />
@@ -91,7 +91,6 @@ export const metricsGrid = {
 </section>`,
   css: `/* Layout: metrics-grid — structure only, pure DS tokens */
 .l-metrics-grid {
-  padding-block: var(--section-padding-l);
   padding-inline: var(--l-metrics-grid-gutter, 5%);
 }
 
