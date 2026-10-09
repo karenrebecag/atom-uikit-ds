@@ -51,20 +51,40 @@ function findMarqueeToggle(root: HTMLElement): HTMLButtonElement | null {
   );
 }
 
+/**
+ * Un boton puede servir a varias tiras: dos filas hermanas (reviews) comparten
+ * padre y las dos lo encuentran. Con un listener por tira, cada click lo
+ * voltearia dos veces y quedaria igual. Un solo listener por boton avisa a
+ * todas, asi que un boton para la pareja entera.
+ */
+const toggleSubscribers = new Map<HTMLButtonElement, Array<(paused: boolean) => void>>();
+
 function bindMarqueeToggle(
   button: HTMLButtonElement,
   onChange: (paused: boolean) => void,
 ): CleanupFn {
+  const existing = toggleSubscribers.get(button);
+  if (existing) {
+    existing.push(onChange);
+    if (button.getAttribute('aria-pressed') === 'true') onChange(true);
+    return () => {
+      const i = existing.indexOf(onChange);
+      if (i >= 0) existing.splice(i, 1);
+    };
+  }
+  const subscribers = [onChange];
+  toggleSubscribers.set(button, subscribers);
   button.setAttribute('aria-pressed', 'false');
   const onClick = () => {
     const paused = button.getAttribute('aria-pressed') !== 'true';
     button.setAttribute('aria-pressed', String(paused));
-    onChange(paused);
+    subscribers.forEach((fn) => fn(paused));
   };
   button.addEventListener('click', onClick);
   return () => {
     button.removeEventListener('click', onClick);
     button.removeAttribute('aria-pressed');
+    toggleSubscribers.delete(button);
   };
 }
 
