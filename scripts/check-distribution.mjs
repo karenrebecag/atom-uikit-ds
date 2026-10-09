@@ -143,6 +143,32 @@ export function checkDistribution({ fail, ok, note }) {
   }
 
   checkShadcnChannel({ fail, ok, note });
+  checkPublishedSkillLinks({ fail, ok, note });
+}
+
+/**
+ * Los enlaces de la skill PUBLICADA resuelven dentro del canal: la fuente se llama SKILL.md y el
+ * canal entrada.md, y un enlace sin reescribir manda al cliente a un 404.
+ */
+function checkPublishedSkillLinks({ fail, ok, note }) {
+  const S = 'distribution';
+  const root = join(ROOT, 'public', 'r', 'skills', 'atom-uikit');
+  if (!existsSync(root)) {
+    note(S, 'public/r/skills/atom-uikit no existe — corre pnpm build:registry');
+    return;
+  }
+  const files = [...readdirSync(root).map((f) => f), ...readdirSync(join(root, 'ejemplo')).map((f) => `ejemplo/${f}`)].filter((f) => f.endsWith('.md'));
+  const before = [];
+  for (const f of files) {
+    for (const m of readFileSync(join(root, f), 'utf8').matchAll(/\]\(([^)#\s]+\.md)\)/g)) {
+      const target = join(root, f, '..', m[1]);
+      if (!existsSync(target)) {
+        before.push(f);
+        fail(S, `skill publicada: ${f} enlaza a ${m[1]}, que no existe en el canal`);
+      }
+    }
+  }
+  if (!before.length) ok(S, `skill publicada: los enlaces de ${files.length} capas resuelven en el canal`);
 }
 
 /**

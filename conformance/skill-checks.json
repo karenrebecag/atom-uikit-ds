@@ -65,7 +65,7 @@
   ],
   "excluded": {
     "$comment": "Reglas que finalize ejecuta hoy y que NO entran al registro, con motivo. El CI del conector las trata como deuda declarada, no como check sin id.",
-    "tone-background": "vigila la clase bg-violet-soft, que el DS no publica (limpieza de F4)",
+    "tone-background": "vigila que el fondo de tono use las clases que el DS publica (brand-soft, forest-soft, gradient-soft)",
     "plan-token": "pertenece al planificador plan_page, que F4 retira",
     "plan-conformance": "pertenece al planificador plan_page, que F4 retira"
   }

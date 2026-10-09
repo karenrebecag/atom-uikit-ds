@@ -57,7 +57,7 @@ Cada archivo está a un salto. Lee solo el que la tarea pide.
 
 | Capa | Archivo | Léela cuando |
 |---|---|---|
-| instrucciones | [INSTRUCTIONS.md](INSTRUCTIONS.md) | pegas las reglas always-on en el `AGENTS.md` del repo consumidor |
+| instrucciones | [INSTRUCTIONS.md](instrucciones.md) | pegas las reglas always-on en el `AGENTS.md` del repo consumidor |
 | bloques | [bloques.md](bloques.md) | eliges qué bloque va en cada región |
 | composicion | [composicion.md](composicion.md) | decides regiones, orden, `h1`, secciones oscuras y cadencia de motion |
 | marca | [marca.md](marca.md) | tocas fondos, botones, gradiente, logo o imágenes |
@@ -67,7 +67,7 @@ Cada archivo está a un salto. Lee solo el que la tarea pide.
 | motion | [motion.md](motion.md) | animas algo o revisas un behavior |
 | accesibilidad | [accesibilidad.md](accesibilidad.md) | revisas `h1`, foco, nombres y contraste |
 | cierre | [cierre.md](cierre.md) | SIEMPRE, antes de entregar |
-| ejemplos | [landing de pauta](ejemplos/landing-pauta.md), [caso de éxito](ejemplos/caso-de-exito.md), [página de producto](ejemplos/pagina-de-producto.md) | quieres ver una página resuelta de punta a punta antes de componer la tuya |
+| ejemplos | [landing de pauta](ejemplo/landing-pauta.md), [caso de éxito](ejemplo/caso-de-exito.md), [página de producto](ejemplo/pagina-de-producto.md) | quieres ver una página resuelta de punta a punta antes de componer la tuya |
 
 ## Qué decide quién
 
