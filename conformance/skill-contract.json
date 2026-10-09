@@ -14,7 +14,7 @@
     { "layer": "accesibilidad", "file": "accesibilidad.md", "max": 200 },
     { "layer": "cierre", "file": "cierre.md", "max": 120 }
   ],
-  "examples": [],
+  "examples": ["ejemplos/landing-pauta.md", "ejemplos/caso-de-exito.md", "ejemplos/pagina-de-producto.md"],
   "regions": {
     "hero": ["hero-split", "hero-centered"],
     "beneficios": ["feature-grid", "feature-alternating"],
