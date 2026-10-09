@@ -3474,7 +3474,7 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Metrics Grid",
-      "description": "Layout template: metrics-grid",
+      "description": "Rejilla de metricas sobre fondo oscuro. Cada card lleva cifra, etiqueta y descripcion, con el acento de un intent del sistema; entre ellas se intercalan tiles de imagen o video. La cifra usa el par *-text del intent para que se lea sobre su propio tinte.",
       "registryDependencies": [
         "tokens",
         "foundation",
@@ -3485,6 +3485,11 @@
         {
           "sourcePath": "packages/layouts/src/metrics-grid.ts",
           "outputPath": "layouts/metrics-grid.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/metrics-grid.exemplar.ts",
+          "outputPath": "layouts/metrics-grid.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -3516,7 +3521,7 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Hero Centered",
-      "description": "Layout template: hero-centered",
+      "description": "Centered hero: eyebrow chip, heading, body, CTA button pair, avatar group proof, feature tags. Structure only — get component CSS via atom_uikit_source.",
       "registryDependencies": [
         "tokens",
         "foundation",
@@ -3524,12 +3529,19 @@
         "button",
         "avatar",
         "avatar-group",
-        "tag"
+        "tag",
+        "whatsapp-button",
+        "text-reveal"
       ],
       "files": [
         {
           "sourcePath": "packages/layouts/src/hero-centered.ts",
           "outputPath": "layouts/hero-centered.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/hero-centered.exemplar.ts",
+          "outputPath": "layouts/hero-centered.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -3540,17 +3552,24 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Hero Split",
-      "description": "Layout template: hero-split",
+      "description": "Two-column hero: content left (chip, heading, body, buttons), media right (image/video placeholder). Structure only.",
       "registryDependencies": [
         "tokens",
         "foundation",
         "chip",
-        "button"
+        "button",
+        "whatsapp-button",
+        "text-reveal"
       ],
       "files": [
         {
           "sourcePath": "packages/layouts/src/hero-split.ts",
           "outputPath": "layouts/hero-split.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/hero-split.exemplar.ts",
+          "outputPath": "layouts/hero-split.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -3561,16 +3580,22 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Feature Grid",
-      "description": "Layout template: feature-grid",
+      "description": "Section heading + 3-column grid of feature cards with icon, title, description. Collapses to 1 column on mobile. Structure only.",
       "registryDependencies": [
         "tokens",
         "foundation",
-        "badge"
+        "badge",
+        "scroll-reveal"
       ],
       "files": [
         {
           "sourcePath": "packages/layouts/src/feature-grid.ts",
           "outputPath": "layouts/feature-grid.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/feature-grid.exemplar.ts",
+          "outputPath": "layouts/feature-grid.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -3581,16 +3606,22 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Cta Banner",
-      "description": "Layout template: cta-banner",
+      "description": "Compact horizontal banner: heading + body left, CTA buttons right. Collapses to stacked on mobile. Structure only.",
       "registryDependencies": [
         "tokens",
         "foundation",
-        "button"
+        "button",
+        "whatsapp-button"
       ],
       "files": [
         {
           "sourcePath": "packages/layouts/src/cta-banner.ts",
           "outputPath": "layouts/cta-banner.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/cta-banner.exemplar.ts",
+          "outputPath": "layouts/cta-banner.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -3696,7 +3727,7 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Pricing Plans",
-      "description": "Dos planes espejo del pricing de Atom: Profesional destacado (oscuro) + Enterprise. Card con eyebrow, título display, precio, iconos de canal, CTA, beneficios y logos de integraciones.",
+      "description": "Dos planes espejo del pricing de Atom: Profesional destacado (oscuro) + Enterprise. Card con eyebrow, titulo display, precio, iconos de canal, CTA, beneficios y logos de integraciones. Structure only.",
       "registryDependencies": [
         "tokens",
         "foundation",
@@ -3707,12 +3738,18 @@
         "tag",
         "button",
         "icon",
-        "icon-row"
+        "icon-row",
+        "text-reveal"
       ],
       "files": [
         {
           "sourcePath": "packages/layouts/src/pricing-plans.ts",
           "outputPath": "layouts/pricing-plans.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/pricing-plans.exemplar.ts",
+          "outputPath": "layouts/pricing-plans.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -3723,18 +3760,25 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "FAQ Accordion",
-      "description": "Layout template: faq-accordion",
+      "description": "Preguntas frecuentes en accordion de una columna, con CTA de contacto al final. Structure only.",
       "registryDependencies": [
         "tokens",
         "foundation",
         "accordion",
         "button",
-        "typography"
+        "typography",
+        "whatsapp-button",
+        "accordion-animation"
       ],
       "files": [
         {
           "sourcePath": "packages/layouts/src/faq-accordion.ts",
           "outputPath": "layouts/faq-accordion.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/faq-accordion.exemplar.ts",
+          "outputPath": "layouts/faq-accordion.exemplar.ts",
           "type": "registry:file"
         }
       ]
@@ -4043,7 +4087,7 @@
       "framework": "css",
       "installGroup": "layouts",
       "title": "Feature Alternating",
-      "description": "Layout template: feature-alternating",
+      "description": "Bloques imagen + texto alternando lados. Para explicar 2-4 capacidades en profundidad. Structure only.",
       "registryDependencies": [
         "tokens",
         "foundation",
@@ -4056,6 +4100,11 @@
         {
           "sourcePath": "packages/layouts/src/feature-alternating.ts",
           "outputPath": "layouts/feature-alternating.ts",
+          "type": "registry:file"
+        },
+        {
+          "sourcePath": "packages/layouts/src/feature-alternating.exemplar.ts",
+          "outputPath": "layouts/feature-alternating.exemplar.ts",
           "type": "registry:file"
         }
       ]

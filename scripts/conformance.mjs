@@ -3,7 +3,7 @@
  * Conformance suite — ejecuta el contrato de conformance/*.json.
  *
  *   node scripts/conformance.mjs            # todo
- *   node scripts/conformance.mjs tokens     # tokens | css | layouts | registry | budgets | references
+ *   node scripts/conformance.mjs tokens     # tokens | css | layouts | blocks | registry | budgets | references
  *
  * El runner es deliberadamente tonto: las reglas y sus valores viven en los JSON
  * de conformance/ (modelo Willison: el contrato es data). Ver conformance/README.md.
@@ -13,6 +13,8 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { checkDistribution } from './check-distribution.mjs';
+import { checkExemplar } from './block-conformance.mjs';
+import { resolveExemplarHtml } from './exemplar.mjs';
 import {
   runPublishedConformance,
   formatReport,
@@ -273,6 +275,67 @@ async function sectionLayouts() {
 }
 
 // ---------------------------------------------------------------------------
+// blocks — bloques ejemplares: decision de composicion encima del layout
+// ---------------------------------------------------------------------------
+
+async function sectionBlocks() {
+  const contract = readJson(join(CONF, 'block-contract.json'));
+  const layoutContract = readJson(join(CONF, 'layout-contract.json'));
+  const registry = readJson(join(ROOT, 'registry.json'));
+  const exempt = new Set([
+    ...(layoutContract.deprecated?.layouts ?? []),
+    ...(layoutContract.legacy?.layouts ?? []),
+  ]);
+  const registryNames = new Set(registry.items.map((i) => i.name));
+  const hookNames = new Set(registry.items.filter((i) => i.kind === 'hook').map((i) => i.name));
+  const utilityClasses = new Set();
+  for (const file of walkFiles(join(ROOT, 'packages/css/src/utilities'), '.css')) {
+    for (const m of readFileSync(file, 'utf8').matchAll(/\.(bg-[\w-]+)/g)) utilityClasses.add(m[1]);
+  }
+
+  const srcDir = join(ROOT, 'packages/layouts/src');
+  const declared = Object.values(contract.waves).flat();
+  const onDisk = readdirSync(srcDir).filter((f) => f.endsWith('.exemplar.ts')).map((f) => f.replace('.exemplar.ts', ''));
+  for (const slug of declared) {
+    if (!onDisk.includes(slug)) fail('blocks', `${slug}: declarado en la ola pero falta ${slug}.exemplar.ts`);
+  }
+  for (const slug of onDisk) {
+    if (!declared.includes(slug)) fail('blocks', `${slug}: tiene .exemplar.ts pero no esta en ninguna ola de block-contract.json`);
+  }
+
+  let checked = 0;
+  for (const slug of onDisk) {
+    const item = registry.items.find((i) => i.name === `layout/${slug}`);
+    if (!item) {
+      fail('blocks', `${slug}: no hay item layout/${slug} en registry.json`);
+      continue;
+    }
+    const layout = await evalModule(readFileSync(join(srcDir, `${slug}.ts`), 'utf8'));
+    const exemplar = await evalModule(readFileSync(join(srcDir, `${slug}.exemplar.ts`), 'utf8'));
+    const errors = checkExemplar({
+      slug,
+      layout,
+      exemplar,
+      deps: item.registryDependencies ?? [],
+      description: item.description,
+      hookNames,
+      utilityClasses,
+      registryNames,
+      exempt,
+      fileExists: (rel) => existsSync(join(ROOT, rel)),
+    });
+    errors.forEach((e) => fail('blocks', e));
+    if (!errors.length) {
+      const kb = Buffer.byteLength(resolveExemplarHtml(layout, exemplar)) / 1024;
+      const cap = contract.maxExemplarHtmlKb[slug] ?? contract.maxExemplarHtmlKb.default;
+      if (kb > cap) fail('blocks', `${slug}: .exemplar.html pesa ${kb.toFixed(1)}kb > ${cap}kb`);
+    }
+    checked++;
+  }
+  ok('blocks', `${checked} bloques ejemplares bajo contrato (opt-in: el resto de layouts solo pasa layout-contract)`);
+}
+
+// ---------------------------------------------------------------------------
 // registry — espejo y bidireccionalidad
 // ---------------------------------------------------------------------------
 
@@ -500,6 +563,7 @@ const SECTIONS = {
   tokens: sectionTokens,
   css: sectionCss,
   layouts: sectionLayouts,
+  blocks: sectionBlocks,
   registry: sectionRegistry,
   budgets: sectionBudgets,
   distribution: () => checkDistribution({ fail, ok, note }),

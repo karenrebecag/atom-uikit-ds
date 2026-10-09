@@ -12,27 +12,27 @@ export const featureGrid = {
     'Section heading + 3-column grid of feature cards with icon, title, description. Collapses to 1 column on mobile. Structure only.',
   components: ['badge'],
   html: `<!-- Layout: feature-grid -->
-<section class="l-feature-grid">
+<section class="section l-feature-grid">
   <div class="l-feature-grid__header">
-    <span class="badge badge--filled badge--brand badge--s">{{eyebrow}}</span>
-    <h2 class="l-feature-grid__heading">{{heading}}</h2>
-    <p class="l-feature-grid__body">{{body}}</p>
+    <span class="badge badge--filled badge--brand badge--s" data-optional="eyebrow">{{eyebrow}}</span>
+    <h2 class="h2 l-feature-grid__heading">{{heading}}</h2>
+    <p class="body-lg l-feature-grid__body">{{body}}</p>
   </div>
-  <div class="l-feature-grid__grid">
+  <div class="l-feature-grid__grid" data-reveal>
     <div class="l-feature-grid__card">
-      <div class="l-feature-grid__icon"><!-- SVG icon --></div>
-      <h3 class="l-feature-grid__card-title">{{feature_1_title}}</h3>
-      <p class="l-feature-grid__card-body">{{feature_1_body}}</p>
+      <div class="l-feature-grid__icon">{{feature_1_icon}}</div>
+      <h3 class="h5 l-feature-grid__card-title">{{feature_1_title}}</h3>
+      <p class="body l-feature-grid__card-body">{{feature_1_body}}</p>
     </div>
     <div class="l-feature-grid__card">
-      <div class="l-feature-grid__icon"><!-- SVG icon --></div>
-      <h3 class="l-feature-grid__card-title">{{feature_2_title}}</h3>
-      <p class="l-feature-grid__card-body">{{feature_2_body}}</p>
+      <div class="l-feature-grid__icon">{{feature_2_icon}}</div>
+      <h3 class="h5 l-feature-grid__card-title">{{feature_2_title}}</h3>
+      <p class="body l-feature-grid__card-body">{{feature_2_body}}</p>
     </div>
     <div class="l-feature-grid__card">
-      <div class="l-feature-grid__icon"><!-- SVG icon --></div>
-      <h3 class="l-feature-grid__card-title">{{feature_3_title}}</h3>
-      <p class="l-feature-grid__card-body">{{feature_3_body}}</p>
+      <div class="l-feature-grid__icon">{{feature_3_icon}}</div>
+      <h3 class="h5 l-feature-grid__card-title">{{feature_3_title}}</h3>
+      <p class="body l-feature-grid__card-body">{{feature_3_body}}</p>
     </div>
   </div>
 </section>`,
@@ -42,7 +42,7 @@ export const featureGrid = {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-12);
-  padding: var(--spacing-20) var(--spacing-8);
+  padding-inline: var(--container-padding);
 }
 .l-feature-grid__header {
   display: flex;

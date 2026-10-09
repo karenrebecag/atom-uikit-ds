@@ -1,0 +1,29 @@
+{
+  "$comment": "Contrato de bloques ejemplares (docs spec uikit-arc-parity 10). Un bloque ejemplar es un layout al que se le declara la decision de composicion: ritmo, superficie, motion, copy de referencia y criterio de uso. No pinta: solo referencia clases ya publicadas. Es opt-in por ola: un layout sin .exemplar.ts sigue bajo layout-contract.json y no entra aqui. Las reglas las ejecuta scripts/block-conformance.mjs.",
+  "waves": {
+    "1": [
+      "pricing-plans",
+      "hero-split",
+      "hero-centered",
+      "feature-grid",
+      "feature-alternating",
+      "metrics-grid",
+      "cta-banner",
+      "faq-accordion"
+    ]
+  },
+  "rules": {
+    "exemplarComplete": "los 11 campos presentes; whenToUse y whenNotToUse >=2, states >=1, evidence.capture y captureMobile apuntan a archivos que existen",
+    "rhythmFromUseLayer": "rhythm es una de las 5 clases de foundation/section.css, el html del layout la lleva en su raiz, y .l-<slug> no declara padding ni margin de bloque",
+    "noNewMotion": "motion.hook es un item kind: hook, esta en registryDependencies y sus data-* estan en el html del layout",
+    "surfaceFromUtilities": "surface es default o una .bg-* que utilities emite de verdad (hoy bg-violet-soft no existe aunque el conector la ofrezca)",
+    "contentResolved": "el .exemplar.html tiene 0 {{}}, 0 data-repeat, a lo mas 1 h1 (coherente con a11y.carriesH1), 0 form/input y todo href es wa.me o un ancla",
+    "relatedExists": "cada related es un item real del registry y no esta deprecated ni legacy",
+    "descriptionIsReal": "un layout con ejemplar no conserva la description 'Layout template: ...'"
+  },
+  "maxExemplarHtmlKb": {
+    "default": 12,
+    "pricing-plans": 70,
+    "$comment": "Peso del .exemplar.html por bloque (kb). pricing-plans lleva 12 SVG de canales y logos fijos por posicion: 61 medidos. Subir un tope es un cambio consciente de este archivo."
+  }
+}

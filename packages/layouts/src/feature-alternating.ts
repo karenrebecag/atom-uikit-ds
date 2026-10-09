@@ -12,36 +12,36 @@ export const featureAlternating = {
     'Bloques imagen + texto alternando lados. Para explicar 2-4 capacidades en profundidad. Structure only.',
   components: ['chip', 'button', 'typography', 'image'],
   html: `<!-- Layout: feature-alternating -->
-<section class="l-feature-alternating">
+<section class="section l-feature-alternating">
   <div class="l-feature-alternating__header">
-    <h2 class="l-feature-alternating__headline">{{headline}}</h2>
+    <h2 class="h2 l-feature-alternating__headline">{{headline}}</h2>
   </div>
   <div class="l-feature-alternating__block">
     <div class="l-feature-alternating__content">
-      <span class="chip chip--outlined chip--s">{{block1_eyebrow}}</span>
-      <h3 class="l-feature-alternating__title">{{block1_title}}</h3>
-      <p class="l-feature-alternating__body">{{block1_body}}</p>
-      <a href="#" class="link-button">{{block1_ctaLabel}}</a>
+      <span class="chip chip--outlined chip--s" data-optional="block1_eyebrow">{{block1_eyebrow}}</span>
+      <h3 class="h3 l-feature-alternating__title">{{block1_title}}</h3>
+      <p class="body l-feature-alternating__body">{{block1_body}}</p>
+      <a href="{{block1_ctaHref}}" class="link-button">{{block1_ctaLabel}}</a>
     </div>
     <div class="l-feature-alternating__media">
-      <img src="{{block1_image}}" alt="" class="image" />
+      <img src="{{block1_image}}" alt="{{block1_imageAlt}}" class="image" />
     </div>
   </div>
   <div class="l-feature-alternating__block l-feature-alternating__block--reverse">
     <div class="l-feature-alternating__content">
-      <span class="chip chip--outlined chip--s">{{block2_eyebrow}}</span>
-      <h3 class="l-feature-alternating__title">{{block2_title}}</h3>
-      <p class="l-feature-alternating__body">{{block2_body}}</p>
-      <a href="#" class="link-button">{{block2_ctaLabel}}</a>
+      <span class="chip chip--outlined chip--s" data-optional="block2_eyebrow">{{block2_eyebrow}}</span>
+      <h3 class="h3 l-feature-alternating__title">{{block2_title}}</h3>
+      <p class="body l-feature-alternating__body">{{block2_body}}</p>
+      <a href="{{block2_ctaHref}}" class="link-button">{{block2_ctaLabel}}</a>
     </div>
     <div class="l-feature-alternating__media">
-      <img src="{{block2_image}}" alt="" class="image" />
+      <img src="{{block2_image}}" alt="{{block2_imageAlt}}" class="image" />
     </div>
   </div>
 </section>`,
   css: `/* Layout: feature-alternating — structure only */
 .l-feature-alternating {
-  padding: var(--spacing-12) var(--spacing-8);
+  padding-inline: var(--container-padding);
 }
 .l-feature-alternating__header {
   text-align: center;
@@ -69,9 +69,6 @@ export const featureAlternating = {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3);
-}
-.l-feature-alternating__title {
-  font-size: var(--text-2xl);
 }
 .l-feature-alternating__body {
   color: var(--muted-foreground);
