@@ -3,7 +3,7 @@
  * Conformance suite — ejecuta el contrato de conformance/*.json.
  *
  *   node scripts/conformance.mjs            # todo
- *   node scripts/conformance.mjs tokens     # tokens | css | layouts | blocks | registry | budgets | references
+ *   node scripts/conformance.mjs tokens     # tokens | css | layouts | blocks | skill | registry | budgets | references
  *
  * El runner es deliberadamente tonto: las reglas y sus valores viven en los JSON
  * de conformance/ (modelo Willison: el contrato es data). Ver conformance/README.md.
@@ -15,6 +15,8 @@ import { gzipSync } from 'node:zlib';
 import { checkDistribution } from './check-distribution.mjs';
 import { checkExemplar } from './block-conformance.mjs';
 import { resolveExemplarHtml } from './exemplar.mjs';
+import { checkSkill } from './skill-conformance.mjs';
+import { loadExemplars, renderBlocks } from './build-skill-blocks.mjs';
 import {
   runPublishedConformance,
   formatReport,
@@ -336,6 +338,50 @@ async function sectionBlocks() {
 }
 
 // ---------------------------------------------------------------------------
+// skill — la skill del canal no puede mentir sobre el DS
+// ---------------------------------------------------------------------------
+
+async function sectionSkill() {
+  const contract = readJson(join(CONF, 'skill-contract.json'));
+  const checks = readJson(join(CONF, 'skill-checks.json'));
+  const registry = readJson(join(ROOT, 'registry.json'));
+  const dir = join(ROOT, contract.dir);
+
+  const files = {};
+  for (const f of [...contract.layers.map((l) => l.file), ...contract.examples]) {
+    const p = join(dir, f);
+    if (existsSync(p)) files[f] = readFileSync(p, 'utf8');
+  }
+
+  const ds = dsCssSource();
+  let tokenSrc = '';
+  for (const file of walkFiles(join(ROOT, 'packages/tokens/src'), '.json')) tokenSrc += readFileSync(file, 'utf8');
+  const exemplars = await loadExemplars();
+  const names = (kind) => new Set(registry.items.filter((i) => i.kind === kind).map((i) => i.name));
+
+  const errors = checkSkill({
+    files,
+    contract,
+    checks,
+    blocksGenerated: renderBlocks(exemplars, contract.regions),
+    ctx: {
+      pathExists: (rel) => existsSync(join(ROOT, rel)),
+      classExists: (c) => ds.includes(`.${c}`),
+      tokenExists: (t) => ds.includes(t) || tokenSrc.includes(`"${t.slice(2)}"`),
+      layouts: names('layout'),
+      hooks: new Set([...names('hook')]),
+      exemplars: new Set(exemplars.map((e) => e.slug)),
+    },
+  });
+  errors.forEach((e) => fail('skill', e));
+  const regionSlugs = Object.values(contract.regions).flat();
+  for (const e of exemplars) {
+    if (!regionSlugs.includes(e.slug)) fail('skill', `${e.slug}: tiene .exemplar.ts pero ninguna region de skill-contract.json lo nombra`);
+  }
+  ok('skill', `${Object.keys(files).length} capas de skills/atom-uikit bajo contrato (${checks.checks.length} checks contables)`);
+}
+
+// ---------------------------------------------------------------------------
 // registry — espejo y bidireccionalidad
 // ---------------------------------------------------------------------------
 
@@ -564,6 +610,7 @@ const SECTIONS = {
   css: sectionCss,
   layouts: sectionLayouts,
   blocks: sectionBlocks,
+  skill: sectionSkill,
   registry: sectionRegistry,
   budgets: sectionBudgets,
   distribution: () => checkDistribution({ fail, ok, note }),

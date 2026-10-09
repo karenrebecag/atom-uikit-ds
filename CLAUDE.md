@@ -10,6 +10,8 @@ Monorepo for the ATOM UIKit component library. Distributes via private registry 
 **Publicar un organismo (card, hero, tabla…) de forma replicable:**
 [`docs/organism-pipeline.md`](docs/organism-pipeline.md) — proceso canónico y prueba de
 aceptación. Un organismo sin layout publicado NO está distribuido.
+**Construir páginas con el DS (skill del canal, bloques ejemplares, loop de cierre):**
+[`skills/atom-uikit/SKILL.md`](skills/atom-uikit/SKILL.md) — contrato en `conformance/skill-contract.json`.
 **Mapa del modelo de distribución (flujo de datos + comparación con estándares):**
 [`docs/distribution-model.md`](docs/distribution-model.md).
 

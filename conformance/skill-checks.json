@@ -1,0 +1,72 @@
+{
+  "$comment": "Registro de checks contables de la entrega (invariante G-6). FUENTE DE VERDAD de lo que comprueba atom_uikit_finalize: la mitad contable de skills/atom-uikit/cierre.md se GENERA de aqui (scripts/build-skill-checklist.mjs) y el CI del conector exige que cada check ejecutable de finalize/brand-checks tenga un id de este registro publicado. El id es el `rule` que finalize reporta en un hallazgo. Vive en el DS porque el flujo canonico es DS -> canal -> conector; no existe camino de publicacion inverso. Editar un check aqui obliga a regenerar cierre.md (gate skillChecklistGenerated).",
+  "tool": "atom_uikit_finalize",
+  "checks": [
+    {
+      "id": "audit",
+      "mide": "valores hardcodeados, clases desconocidas, hex/rgb/oklch y spacing o radius fuera de token",
+      "arregla": "corrige cada desviación que reporta atom_uikit_audit; usa atom_uikit_patch_plan para el parche mínimo"
+    },
+    {
+      "id": "validate",
+      "mide": "variantes, tamaños, aria y reimplementación de componentes que ya existen",
+      "arregla": "corre atom_uikit_validate y arregla cada error antes de volver a finalizar"
+    },
+    {
+      "id": "no-forms",
+      "mide": "ningún elemento form en el código entregado",
+      "arregla": "sustituye por el botón de WhatsApp (clases atom-wa-btn) a wa.me"
+    },
+    {
+      "id": "missing-whatsapp",
+      "mide": "hay al menos un enlace wa.me cuando el brief no prohíbe WhatsApp",
+      "arregla": "añade el CTA de WhatsApp con el número confirmado del brief"
+    },
+    {
+      "id": "wrong-whatsapp",
+      "mide": "los enlaces wa.me usan el número confirmado del brief",
+      "arregla": "usa exactamente ese número en todos los CTA de contacto"
+    },
+    {
+      "id": "no-gradient-on-buttons",
+      "mide": "ningún botón usa el gradiente de marca ni text-gradient",
+      "arregla": "los botones salen solo del componente button o del botón de WhatsApp; el gradiente solo va en titulares de hero"
+    },
+    {
+      "id": "no-body-dark",
+      "mide": "el body no lleva fondo oscuro",
+      "arregla": "el blanco es la base; lo oscuro va solo dentro de secciones concretas"
+    },
+    {
+      "id": "too-many-dark-sections",
+      "mide": "a lo más 2 secciones oscuras por página",
+      "arregla": "fuerza a la superficie default las secciones oscuras que sobren"
+    },
+    {
+      "id": "logo-contrast",
+      "mide": "el logo oficial no queda dentro de una sección oscura",
+      "arregla": "deja el logo sobre la base blanca o quítalo de la sección oscura"
+    },
+    {
+      "id": "official-logo",
+      "mide": "ningún logo inventado: wordmark de texto, badge o powered by",
+      "arregla": "usa solo el logo oficial de Atom como imagen"
+    },
+    {
+      "id": "image-source",
+      "mide": "toda imagen sale de la herramienta de imagen, no de URLs pegadas a mano",
+      "arregla": "rellena cada slot de imagen con atom_uikit_image"
+    },
+    {
+      "id": "required-image-slots",
+      "mide": "los slots de imagen obligatorios llevan un asset externo real, no un mock en CSS",
+      "arregla": "genera la imagen con atom_uikit_image y colócala en el slot"
+    }
+  ],
+  "excluded": {
+    "$comment": "Reglas que finalize ejecuta hoy y que NO entran al registro, con motivo. El CI del conector las trata como deuda declarada, no como check sin id.",
+    "tone-background": "vigila la clase bg-violet-soft, que el DS no publica (limpieza de F4)",
+    "plan-token": "pertenece al planificador plan_page, que F4 retira",
+    "plan-conformance": "pertenece al planificador plan_page, que F4 retira"
+  }
+}
