@@ -67,6 +67,7 @@ Cada archivo está a un salto. Lee solo el que la tarea pide.
 | motion | [motion.md](motion.md) | animas algo o revisas un behavior |
 | accesibilidad | [accesibilidad.md](accesibilidad.md) | revisas `h1`, foco, nombres y contraste |
 | cierre | [cierre.md](cierre.md) | SIEMPRE, antes de entregar |
+| ejemplos | [landing de pauta](ejemplos/landing-pauta.md), [caso de éxito](ejemplos/caso-de-exito.md), [página de producto](ejemplos/pagina-de-producto.md) | quieres ver una página resuelta de punta a punta antes de componer la tuya |
 
 ## Qué decide quién
 
