@@ -13,17 +13,19 @@ contrastarla con el cuerpo real.
 |---|---|---|---|
 | 1 | promesa | `layout/hero-centered` | el titular carga todo el peso y no hay imagen |
 | 2 | beneficios | `layout/feature-grid` | tres capacidades paralelas y cortas |
-| 3 | prueba | `layout/metrics-grid` | cuatro cifras de resultado |
-| 4 | planes | `layout/pricing-plans` | los dos planes de Atom, sin precio publicado |
-| 5 | cierre | `layout/cta-banner` | una frase y un único botón |
+| 3 | profundidad | `layout/feature-alternating` | dos capacidades explicadas a fondo, con imagen |
+| 4 | prueba | `layout/metrics-grid` | cuatro cifras de resultado |
+| 5 | planes | `layout/pricing-plans` | los dos planes de Atom, sin precio publicado |
+| 6 | objeciones | `layout/faq-accordion` | cinco preguntas cortas en una columna |
+| 7 | cierre | `layout/cta-banner` | una frase y un único botón |
 
 ## Decisiones de la skill (lo global)
 
 - **h1**: asignado al hero centrado, titular propio del documento. Es el único elegible de la página.
-- **Superficies**: las cinco secciones en `default`. La tarjeta destacada de los planes es oscura por el componente, no por la sección; el presupuesto de la página sigue en 0 secciones oscuras.
+- **Superficies**: las siete secciones en `default`. La tarjeta destacada de los planes es oscura por el componente, no por la sección; el presupuesto de la página sigue en 0 secciones oscuras.
 - **Ritmo**: `section--hero` solo en el hero; `section` en el cuerpo; `section--compact` en el cierre.
-- **Motion**: el de cada bloque, sin añadir ni suprimir. Animan 3 de 5 regiones (hero, beneficios y titular de planes).
-- **CTA**: el botón de WhatsApp inline en hero, cada plan y cierre, un primario por sección. Los de los planes antes eran botones genéricos a wa.me; ahora son el mismo botón de WhatsApp que el resto.
+- **Motion**: el de cada bloque, sin añadir ni suprimir. Animan 4 de 7 regiones (hero, beneficios, titular de planes y accordion).
+- **CTA**: el botón de WhatsApp inline en hero, cada plan, accordion y cierre, un primario por sección. Los de los planes antes eran botones genéricos a wa.me; ahora son el mismo botón de WhatsApp que el resto.
 
 ## Copy de referencia sustituida
 
@@ -31,12 +33,14 @@ contrastarla con el cuerpo real.
 - Capacidades: tres frases que solo reformulan la descripción del documento (conversación de punta a punta, cerebro comercial, medición).
 - Cifras: +82%, +40%, -30% y +5x, de financieras, tal como existen en el catálogo autorizado. Se eligió una sola industria para que la sección cuente una historia.
 - Planes: los planes y beneficios de referencia ya son los de Atom, sin cifras de precio ("a tu medida"); solo cambió el titular.
+- Profundidad: dos secciones con las mismas dos ideas del documento (conversación de punta a punta y Cortex); las imágenes son recuadros de referencia, por generar.
+- Objeciones: las cinco preguntas del bloque con sus respuestas de referencia, que ya hablan de lo que Atom publica (precio cotizado, CRM, puesta en marcha).
 - Cierre: se conserva el titular de referencia, que ya cumple el tono.
 
 ## Resultado del checklist
 
 `atom_uikit_finalize` no se corrió al escribir este ejemplo. Comprobado en el navegador: un `h1`, cero
-elementos de formulario, cero marcadores sin resolver, cuatro enlaces a wa.me (hero, dos planes, cierre).
+elementos de formulario, cero marcadores sin resolver, siete enlaces a wa.me (hero, dos secciones de profundidad, dos planes, accordion, cierre).
 
 Líneas incumplidas y declaradas:
 
