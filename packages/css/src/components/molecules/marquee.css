@@ -58,6 +58,13 @@
   animation-play-state: paused;
 }
 
+/* Siempre, no opcional como el hover: quien tabula por los items no puede
+   leerlos mientras se le escapan. Solo actua con foco dentro, asi que no
+   cambia nada para quien usa raton. */
+.marquee:focus-within .marquee__list {
+  animation-play-state: paused;
+}
+
 @keyframes marquee-scroll {
   to {
     transform: translateX(-100%);
@@ -199,7 +206,8 @@
   margin-block-start: var(--spacing-6);
 }
 
-.marquee__control {
+.marquee__control,
+.marquee__toggle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,12 +226,14 @@
     border-color var(--duration-200) var(--easing-out);
 }
 
-.marquee__control:hover {
+.marquee__control:hover,
+.marquee__toggle:hover {
   background-color: var(--accent);
   border-color: var(--border-focus);
 }
 
-.marquee__control:focus-visible {
+.marquee__control:focus-visible,
+.marquee__toggle:focus-visible {
   outline: var(--ring-width) solid var(--ring);
   outline-offset: var(--ring-offset);
 }
@@ -233,8 +243,35 @@
   height: 1em;
 }
 
+/* ---- Boton de pausa (WCAG 2.2.2) ----
+   Comparte la pintura de .marquee__control. El icono lo dibuja el CSS (dos
+   barras / triangulo) para que no pueda desincronizarse de aria-pressed. */
+
+.marquee__toggle::before {
+  content: '';
+  box-sizing: border-box;
+  width: 0.75em;
+  height: 0.875em;
+  border-inline: 0.25em solid currentColor;
+}
+
+.marquee__toggle[aria-pressed='true']::before {
+  border-inline: 0;
+  background-color: currentColor;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* Con reduced motion la tira no arranca y el modulo no conecta el boton: se
+   esconde para no dejar un control que no hace nada. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__toggle {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee__control {
     transition-duration: 0ms;
   }
 }
+

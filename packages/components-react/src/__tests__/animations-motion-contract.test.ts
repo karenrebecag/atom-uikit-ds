@@ -186,6 +186,36 @@ describe('marquee-draggable (decorativo: loop infinito)', () => {
     expect(wrapper.dataset.draggableMarquee).toBeUndefined();
   });
 
+  it('boton de pausa (WCAG 2.2.2): detiene el loop y reanuda en su sentido', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    const toggle = document.createElement('button');
+    toggle.setAttribute('data-marquee-toggle', '');
+    wrapper.appendChild(toggle);
+    initDraggableMarquee();
+    expect(toggle.getAttribute('aria-pressed')).toBe('false');
+
+    g.gsap._tween.timeScale.mockClear();
+    toggle.click();
+    expect(toggle.getAttribute('aria-pressed')).toBe('true');
+    expect(g.gsap._tween.timeScale).toHaveBeenLastCalledWith(0);
+
+    toggle.click();
+    expect(toggle.getAttribute('aria-pressed')).toBe('false');
+    expect(g.gsap._tween.timeScale).toHaveBeenLastCalledWith(1);
+  });
+
+  it('foco de teclado dentro de la tira la detiene; al salir reanuda', () => {
+    mountGlobals();
+    const wrapper = mountMarquee();
+    initDraggableMarquee();
+    g.gsap._tween.timeScale.mockClear();
+    wrapper.dispatchEvent(new FocusEvent('focusin'));
+    expect(g.gsap._tween.timeScale).toHaveBeenLastCalledWith(0);
+    wrapper.dispatchEvent(new FocusEvent('focusout', { relatedTarget: null }));
+    expect(g.gsap._tween.timeScale).toHaveBeenLastCalledWith(1);
+  });
+
   it('reduced-motion: el marquee queda estatico (cero GSAP)', () => {
     setReducedMotion(true);
     mountGlobals();
@@ -1441,6 +1471,37 @@ describe('marquee-css (decorativo: loop infinito por CSS)', () => {
     expect(all).toHaveLength(3);
     // Tras el reinicio ninguna conserva el animation:none del pulso de sincronia.
     all.forEach((list) => expect(list.style.animation).toBe(''));
+  });
+
+  it('boton de pausa: la pausa del usuario sobrevive a salir y volver a la vista', () => {
+    // La vista y el boton escriben la misma variable. Si el observer escribiera
+    // por su cuenta, volver a la vista reanudaria una tira que el usuario paro.
+    let onView: (entries: Array<{ isIntersecting: boolean }>) => void = () => {};
+    const RealIO = (globalThis as any).IntersectionObserver;
+    (globalThis as any).IntersectionObserver = class {
+      constructor(cb: typeof onView) {
+        onView = cb;
+      }
+      observe() {}
+      disconnect() {}
+    };
+    const root = mountMarquee();
+    const toggle = document.createElement('button');
+    toggle.setAttribute('data-marquee-toggle', '');
+    root.appendChild(toggle);
+    initCssMarquee();
+
+    toggle.click();
+    expect(toggle.getAttribute('aria-pressed')).toBe('true');
+    expect(root.style.getPropertyValue('--marquee-state')).toBe('paused');
+
+    onView([{ isIntersecting: false }]);
+    onView([{ isIntersecting: true }]);
+    expect(root.style.getPropertyValue('--marquee-state')).toBe('paused');
+
+    toggle.click();
+    expect(root.style.getPropertyValue('--marquee-state')).toBe('running');
+    (globalThis as any).IntersectionObserver = RealIO;
   });
 
   it('reduced-motion: la tira queda estatica y sin contenido repetido', () => {

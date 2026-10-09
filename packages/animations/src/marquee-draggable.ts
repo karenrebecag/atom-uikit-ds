@@ -11,6 +11,7 @@
 //
 // Controles opcionales (prev/next):
 //   [data-draggable-marquee-control="prev"|"next"]
+//   [data-marquee-toggle]   pausa/reanuda (WCAG 2.2.2), ver marquee-toggle.ts
 //
 // Pueden vivir DENTRO del wrapper o como fila hermana debajo. Lo segundo suele
 // ser lo correcto: el wrapper es el carril de recorte (overflow: hidden), y una
@@ -54,6 +55,7 @@ export const REQUIRED_HOOKS = [
   'data-lag',
   'data-snap',
   'data-draggable-marquee-control',
+  'data-marquee-toggle',
 ] as const;
 
 /**
@@ -77,6 +79,37 @@ type CleanupFn = () => void;
 declare const gsap: any;
 declare const Observer: any;
 declare const ScrollTrigger: any;
+
+// Boton de pausa (WCAG 2.2.2): lo que se mueve solo mas de 5 s junto a otro
+// contenido necesita un mecanismo para detenerlo, y el hover no existe en
+// tactil. Etiqueta fija del consumidor (tres idiomas); el estado va en
+// aria-pressed. Duplicado a proposito en marquee-css.ts y marquee-draggable.ts:
+// el bundle envuelve cada modulo en su propio IIFE y no admite imports entre ellos.
+/** Dentro del marquee primero, despues en el padre: mismo criterio que prev/next. */
+function findMarqueeToggle(root: HTMLElement): HTMLButtonElement | null {
+  return (
+    root.querySelector<HTMLButtonElement>('[data-marquee-toggle]') ??
+    root.parentElement?.querySelector<HTMLButtonElement>('[data-marquee-toggle]') ??
+    null
+  );
+}
+
+function bindMarqueeToggle(
+  button: HTMLButtonElement,
+  onChange: (paused: boolean) => void,
+): CleanupFn {
+  button.setAttribute('aria-pressed', 'false');
+  const onClick = () => {
+    const paused = button.getAttribute('aria-pressed') !== 'true';
+    button.setAttribute('aria-pressed', String(paused));
+    onChange(paused);
+  };
+  button.addEventListener('click', onClick);
+  return () => {
+    button.removeEventListener('click', onClick);
+    button.removeAttribute('aria-pressed');
+  };
+}
 
 function getNumberAttr(el: Element, name: string, fallback: number): number {
   const value = parseFloat(el.getAttribute(name) || '');
@@ -170,10 +203,14 @@ export function initDraggableMarquee(): CleanupFn {
     const baseDirection = initialDir === 'right' ? -1 : 1;
     // Velocidad de reposo: ±1 avanza sola, 0 deja la tira quieta hasta que la
     // arrastren. Es el unico valor que separa un marquee de un carrusel a mano.
-    const restingScale =
+    const autoplayScale =
       (wrapper.getAttribute('data-autoplay') || 'true').toLowerCase() === 'false'
         ? 0
         : baseDirection;
+    // Mutable: pausar es poner el reposo a 0, el mismo estado que un marquee sin
+    // autoplay. Asi arrastrar o pulsar prev/next con la tira pausada la deja
+    // otra vez quieta, en vez de reanudarla por la puerta de atras.
+    let restingScale = autoplayScale;
     const timeScale = { value: restingScale };
 
     if (baseDirection < 0) marqueeLoop.progress(1);
@@ -198,7 +235,7 @@ export function initDraggableMarquee(): CleanupFn {
     const pitch = itemCount > 0 ? listWidth / itemCount : 0;
     const itemsThatFit = pitch > 0 ? wrapperWidth / pitch : Infinity;
     const shouldSnap =
-      restingScale === 0 &&
+      autoplayScale === 0 &&
       pitch > 0 &&
       (snapMode === 'true' || (snapMode === 'auto' && itemsThatFit < 2));
 
@@ -263,6 +300,43 @@ export function initDraggableMarquee(): CleanupFn {
         );
 
     const controlCleanups: Array<() => void> = [];
+
+    // Pausa del usuario (boton) o foco de teclado dentro de la tira: quien
+    // tabula por los items no puede leerlos mientras se le escapan.
+    let userPaused = false;
+    let focusInside = false;
+    function syncPause() {
+      restingScale = userPaused || focusInside ? 0 : autoplayScale;
+      gsap.killTweensOf(timeScale);
+      timeScale.value = restingScale;
+      applyTimeScale();
+    }
+
+    const toggle = findMarqueeToggle(wrapper);
+    if (toggle) {
+      controlCleanups.push(
+        bindMarqueeToggle(toggle, (paused) => {
+          userPaused = paused;
+          syncPause();
+        }),
+      );
+    }
+
+    const onFocusIn = () => {
+      focusInside = true;
+      syncPause();
+    };
+    const onFocusOut = (ev: FocusEvent) => {
+      if (wrapper.contains(ev.relatedTarget as Node | null)) return;
+      focusInside = false;
+      syncPause();
+    };
+    wrapper.addEventListener('focusin', onFocusIn);
+    wrapper.addEventListener('focusout', onFocusOut);
+    controlCleanups.push(() => {
+      wrapper.removeEventListener('focusin', onFocusIn);
+      wrapper.removeEventListener('focusout', onFocusOut);
+    });
     controlNodes
       .forEach((btn) => {
         const dir =
