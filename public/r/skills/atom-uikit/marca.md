@@ -24,7 +24,8 @@ El CTA de contacto es el boton de WhatsApp, ver [conversion](conversion.md). Nun
 
 ## Logo
 
-El logo es siempre el oficial de Atom, en todo lo que generes, aunque la página sea de un cliente.
+El logo es siempre el oficial de Atom, en todo lo que generes, aunque la página sea de un cliente. Su única
+fuente es el recurso `atom://brand-assets`: no lo dibujes, no lo escribas como texto ni pegues otra URL.
 Nunca uno generado con IA, nunca un wordmark de texto inventado, nunca un badge "powered by".
 Mantén el logo sobre la base blanca; dentro de una sección oscura se omite. <!-- regla: logo-oficial -->
 

@@ -50,7 +50,7 @@
     {
       "id": "official-logo",
       "mide": "ningún logo inventado: wordmark de texto, badge o powered by",
-      "arregla": "usa solo el logo oficial de Atom como imagen"
+      "arregla": "usa solo el logo oficial de Atom como imagen, tomado del recurso atom://brand-assets"
     },
     {
       "id": "image-source",
