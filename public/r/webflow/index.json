@@ -192,10 +192,6 @@
       "reason": "no React source (css-only / no-tsx)"
     },
     {
-      "name": "orbit-logos",
-      "reason": "no React source (css-only / no-tsx)"
-    },
-    {
       "name": "tabs-steps",
       "reason": "no React source (css-only / no-tsx)"
     }
