@@ -1,0 +1,177 @@
+/* -------------------------------------------------------------------------
+   Orbit logos
+
+   Logos de integraciones que orbitan una marca central en dos anillos
+   inclinados. La posicion de cada logo la escribe el behavior (orbit-logos.ts)
+   en cada frame; aqui va el escenario, los anillos y el chip.
+
+   Selectores por ATRIBUTO y no por clase, como odometer: el canal de Webflow
+   prefija las clases con ds- y deja los atributos intactos, asi que una sola
+   hoja sirve a los dos canales.
+
+   Sin JS (o antes de montar) los logos caen en una rejilla legible alrededor
+   del centro: nunca una caja vacia. El boton de pausa reutiliza la pintura de
+   .marquee__toggle (mismo control, mismo icono por aria-pressed).
+
+   Parts: [data-orbit-logos], [data-orbit-stage], [data-orbit-center],
+          [data-orbit-ring="inner"|"outer"], [data-orbit-item], [data-orbit-toggle]
+   ------------------------------------------------------------------------- */
+
+[data-orbit-logos] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+  width: 100%;
+}
+
+[data-orbit-stage] {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-4);
+}
+
+[data-orbit-ring] {
+  display: contents;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[data-orbit-item] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: var(--spacing-2);
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-orbit-item] img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+
+[data-orbit-center] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+[data-orbit-center] img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+
+/* ---- Montado: escenario de orbita ----
+   El behavior marca data-orbit-logos="initialized" cuando ya posiciono cada
+   logo. Recien ahi el escenario pasa a cuadrado y los chips a absolutos: si se
+   hiciera antes, sin JS los logos quedarian apilados en el centro. */
+
+[data-orbit-logos='initialized'] [data-orbit-stage] {
+  display: block;
+  aspect-ratio: 1 / 0.72;
+}
+
+[data-orbit-logos='initialized'] [data-orbit-ring] {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* La elipse del anillo. Su tamano lo fija el behavior en --orbit-rx/--orbit-ry
+   para que la linea pase exactamente por el centro de los chips. */
+[data-orbit-logos='initialized'] [data-orbit-ring]::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--orbit-rx, 0px) * 2);
+  height: calc(var(--orbit-ry, 0px) * 2);
+  border: var(--stroke-hairline) solid var(--border);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+[data-orbit-logos='initialized'] [data-orbit-item] {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+[data-orbit-logos='initialized'] [data-orbit-center] {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: var(--z-index-10);
+  transform: translate(-50%, -50%);
+}
+
+/* Nombre del logo: solo con puntero real. En tactil un hover no existe y el
+   rotulo quedaria pegado tras el toque. */
+@media (hover: hover) {
+  [data-orbit-item][data-orbit-label]::after {
+    content: attr(data-orbit-label);
+    position: absolute;
+    left: 50%;
+    top: calc(100% + var(--spacing-2));
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+    white-space: nowrap;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity var(--duration-150) var(--easing-out);
+    pointer-events: none;
+  }
+
+  [data-orbit-item][data-orbit-label]:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 479px) {
+  /* El behavior abre la inclinacion bajo 480px: el escenario crece con ella. */
+  [data-orbit-logos='initialized'] [data-orbit-stage] {
+    aspect-ratio: 1 / 0.95;
+  }
+
+  [data-orbit-item] {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  [data-orbit-center] {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-orbit-item][data-orbit-label]::after {
+    transition-duration: 0ms;
+  }
+}

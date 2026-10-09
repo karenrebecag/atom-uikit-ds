@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orbit-logos-animation",
+  "type": "registry:file",
+  "title": "Orbit Logos Animation",
+  "description": "Rotates the rings at 64 s and 88 s per turn and brakes with a critically damped spring on hover, focus or the pause button. Static under reduced motion.",
+  "files": [
+    {
+      "path": "animations/orbit-logos.ts",
+      "type": "registry:file",
+      "content": "// Orbit logos — logos de integraciones en dos anillos inclinados (64 s y 88 s por vuelta).\n// Contrato: [data-orbit-logos] > [data-orbit-stage] > [data-orbit-center] +\n// [data-orbit-ring=\"inner\"|\"outer\"] > [data-orbit-item]; [data-orbit-toggle] y\n// data-orbit-speed en la raiz. Los chips no rotan, solo se mueven: el logo se lee derecho.\n// Hover, foco y boton (WCAG 2.2.2: en tactil no hay hover) frenan con un resorte\n// critico para que el logo bajo el puntero no se escape; fuera de vista el rAF se apaga.\n// Reduced motion: chips posicionados, sin loop. data-motion-exempt: rejilla del CSS.\n\n/** F8b — single source for Webflow/domContract; must list every data-* the module queries. */\nexport const REQUIRED_HOOKS = [\n  'data-orbit-logos',\n  'data-orbit-stage',\n  'data-orbit-ring',\n  'data-orbit-item',\n  'data-orbit-toggle',\n  'data-orbit-speed',\n] as const;\n\nexport const REQUIRED_ANATOMY = ['[data-orbit-stage]', '[data-orbit-ring]', '[data-orbit-item]'] as const;\n\nexport const GSAP_PLUGINS = [] as const;\n\n/** Wave-1 Webflow: behaviors must not write canonical BEM classes. */\nexport const STATES_WRITTEN_AS_CLASSES = false;\n\ntype CleanupFn = () => void;\n\n/** Segundos por vuelta con data-orbit-speed=1. El exterior mas lento: se lee como mas lejano. */\nconst PERIOD_SECONDS = { inner: 64, outer: 88 } as const;\n/** Radio horizontal de cada anillo como fraccion del ancho del escenario. */\nconst RADIUS_X = { inner: 0.24, outer: 0.44 } as const;\n/** Achatamiento vertical: lo que hace que el circulo se lea inclinado. En angosto\n    se abre, o los dos anillos quedan a menos de un chip y los logos se enciman. */\nconst TILT = 0.62;\nconst TILT_NARROW = 0.82;\nconst NARROW_PX = 480;\n/** Rigidez del resorte de frenado. Critico (sin rebote): 2*omega de amortiguacion. */\nconst OMEGA = 6;\n/** Los chips de atras: un poco mas chicos y tenues, nunca invisibles. */\nconst BACK_SCALE = 0.86;\nconst BACK_OPACITY = 0.72;\n\ntype RingName = keyof typeof PERIOD_SECONDS;\n\ninterface Ring {\n  el: HTMLElement;\n  name: RingName;\n  items: HTMLElement[];\n  angle: number;\n}\n\nfunction speedAttr(root: HTMLElement): number {\n  const value = parseFloat(root.getAttribute('data-orbit-speed') || '');\n  return Number.isFinite(value) && value > 0 ? value : 1;\n}\n\nfunction ringName(el: HTMLElement): RingName {\n  return el.getAttribute('data-orbit-ring') === 'outer' ? 'outer' : 'inner';\n}\n\n/** Escribe la posicion de cada chip del anillo para su angulo actual. */\nfunction place(ring: Ring, width: number): void {\n  const rx = width * RADIUS_X[ring.name];\n  const ry = rx * (width < NARROW_PX ? TILT_NARROW : TILT);\n  ring.el.style.setProperty('--orbit-rx', `${rx}px`);\n  ring.el.style.setProperty('--orbit-ry', `${ry}px`);\n  const n = ring.items.length;\n  ring.items.forEach((item, i) => {\n    const a = ring.angle + (i / n) * Math.PI * 2;\n    const x = Math.cos(a) * rx;\n    const y = Math.sin(a) * ry;\n    // sin(a) < 0 es la mitad de arriba de la elipse: la que queda \"atras\".\n    const depth = (Math.sin(a) + 1) / 2;\n    const scale = BACK_SCALE + (1 - BACK_SCALE) * depth;\n    item.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale})`;\n    item.style.opacity = String(BACK_OPACITY + (1 - BACK_OPACITY) * depth);\n    item.style.zIndex = y < 0 ? '0' : '2';\n  });\n}\n\nexport function initOrbitLogos(): CleanupFn {\n  if (typeof document === 'undefined') return () => {};\n\n  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;\n  const cleanups: CleanupFn[] = [];\n\n  function setup(root: HTMLElement) {\n    if (root.dataset.motionExempt !== undefined) return;\n    if (root.dataset.orbitLogos === 'initialized') return;\n\n    const stage = root.querySelector<HTMLElement>('[data-orbit-stage]');\n    if (!stage) return;\n    const rings: Ring[] = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-ring]')).map((el) => ({\n      el,\n      name: ringName(el),\n      items: Array.from(el.querySelectorAll<HTMLElement>('[data-orbit-item]')),\n      // Desfase: con los dos en 0 los primeros chips salen alineados en una recta.\n      angle: ringName(el) === 'outer' ? Math.PI / 8 : 0,\n    }));\n    if (!rings.some((r) => r.items.length)) return;\n\n    root.dataset.orbitLogos = 'initialized';\n    let width = stage.getBoundingClientRect().width;\n    const layout = () => rings.forEach((r) => place(r, width));\n    layout();\n\n    const resizeObserver =\n      typeof ResizeObserver !== 'undefined'\n        ? new ResizeObserver(() => {\n            width = stage.getBoundingClientRect().width;\n            layout();\n          })\n        : null;\n    resizeObserver?.observe(stage);\n\n    const restore = () => {\n      resizeObserver?.disconnect();\n      rings.forEach((r) => {\n        r.el.style.removeProperty('--orbit-rx');\n        r.el.style.removeProperty('--orbit-ry');\n        r.items.forEach((item) => {\n          item.style.removeProperty('transform');\n          item.style.removeProperty('opacity');\n          item.style.removeProperty('z-index');\n        });\n      });\n      delete root.dataset.orbitLogos;\n    };\n\n    // El CSS esconde el boton con reduced motion: aqui no hay nada que pausar.\n    if (reduced) {\n      cleanups.push(restore);\n      return;\n    }\n\n    const speed = speedAttr(root);\n    let hover = false;\n    let focus = false;\n    let userPaused = false;\n    let inView = true;\n    // Factor de velocidad 0..1 que sigue al objetivo con el resorte.\n    let velocity = 1;\n    let rate = 0;\n    let frame = 0;\n    let last = 0;\n\n    const target = () => (hover || focus || userPaused ? 0 : 1);\n\n    function tick(now: number) {\n      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;\n      last = now;\n      const accel = OMEGA * OMEGA * (target() - velocity) - 2 * OMEGA * rate;\n      rate += accel * dt;\n      velocity += rate * dt;\n      rings.forEach((r) => {\n        r.angle += ((Math.PI * 2) / PERIOD_SECONDS[r.name]) * speed * velocity * dt;\n        place(r, width);\n      });\n      const settled = target() === 0 && Math.abs(velocity) < 0.001 && Math.abs(rate) < 0.001;\n      if (settled) {\n        velocity = 0;\n        rate = 0;\n        frame = 0;\n        last = 0;\n        return;\n      }\n      frame = requestAnimationFrame(tick);\n    }\n\n    function wake() {\n      if (!inView || frame) return;\n      last = 0;\n      frame = requestAnimationFrame(tick);\n    }\n\n    function stop() {\n      if (frame) cancelAnimationFrame(frame);\n      frame = 0;\n      last = 0;\n    }\n\n    const onEnter = () => {\n      hover = true;\n      wake();\n    };\n    const onLeave = () => {\n      hover = false;\n      wake();\n    };\n    const onFocusIn = () => {\n      focus = true;\n      wake();\n    };\n    const onFocusOut = (ev: FocusEvent) => {\n      if (root.contains(ev.relatedTarget as Node | null)) return;\n      focus = false;\n      wake();\n    };\n    root.addEventListener('pointerenter', onEnter);\n    root.addEventListener('pointerleave', onLeave);\n    root.addEventListener('focusin', onFocusIn);\n    root.addEventListener('focusout', onFocusOut);\n\n    const toggle = root.querySelector<HTMLButtonElement>('[data-orbit-toggle]');\n    const onToggle = () => {\n      userPaused = toggle?.getAttribute('aria-pressed') !== 'true';\n      toggle?.setAttribute('aria-pressed', String(userPaused));\n      wake();\n    };\n    if (toggle) {\n      toggle.setAttribute('aria-pressed', 'false');\n      toggle.addEventListener('click', onToggle);\n    }\n\n    const viewObserver =\n      typeof IntersectionObserver !== 'undefined'\n        ? new IntersectionObserver(\n            (entries) => {\n              entries.forEach((entry) => {\n                inView = entry.isIntersecting;\n                if (inView) wake();\n                else stop();\n              });\n            },\n            { threshold: 0 },\n          )\n        : null;\n    viewObserver?.observe(root);\n\n    wake();\n\n    cleanups.push(() => {\n      stop();\n      viewObserver?.disconnect();\n      root.removeEventListener('pointerenter', onEnter);\n      root.removeEventListener('pointerleave', onLeave);\n      root.removeEventListener('focusin', onFocusIn);\n      root.removeEventListener('focusout', onFocusOut);\n      toggle?.removeEventListener('click', onToggle);\n      toggle?.removeAttribute('aria-pressed');\n      restore();\n    });\n  }\n\n  document.querySelectorAll<HTMLElement>('[data-orbit-logos]').forEach(setup);\n\n  return () => {\n    cleanups.forEach((fn) => fn());\n    cleanups.length = 0;\n  };\n}\n"
+    }
+  ],
+  "atom": {
+    "discovery": {
+      "name": "Orbit Logos Animation",
+      "description": "Rotates the rings at 64 s and 88 s per turn and brakes with a critically damped spring on hover, focus or the pause button. Static under reduced motion.",
+      "category": "hook",
+      "variants": [],
+      "sizes": [],
+      "defaultVariant": "",
+      "defaultSize": "",
+      "hasAnimation": false,
+      "props": []
+    },
+    "implementation": {
+      "baseClass": "",
+      "cssClasses": [],
+      "peerDeps": [],
+      "hasCss": false,
+      "hasReact": true
+    }
+  },
+  "meta": {
+    "derived": {
+      "generatedAt": "2026-10-09T15:56:42.525Z",
+      "sourceCommit": "798f0983",
+      "install": {
+        "peerDeps": [],
+        "cssImports": []
+      },
+      "anatomy": {
+        "bem": "",
+        "classes": []
+      },
+      "tokens": {
+        "resolved": [],
+        "sizes": []
+      },
+      "motion": [],
+      "degraded": true,
+      "degradeReasons": [
+        "no-css-source"
+      ]
+    }
+  }
+}

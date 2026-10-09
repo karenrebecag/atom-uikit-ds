@@ -54,6 +54,7 @@
 @import './molecules/bouncy-tabs.css';
 @import './molecules/marquee.css';
 @import './molecules/odometer.css';
+@import './molecules/orbit-logos.css';
 @import './molecules/video-player.css';
 @import './sidebar/sidebar.css';
 @import './atoms/feature.css';
