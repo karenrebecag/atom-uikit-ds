@@ -1,6 +1,6 @@
 # ADR 011 — shadcn-compat registry channel (`public/r/shadcn/`)
 
-**Status:** Accepted  
+**Status:** Accepted — §5 and §7 amended by [ADR 015](015-foundation-en-el-canal-shadcn.md)  
 **Date:** 2026-07-31  
 **Feature:** F5
 

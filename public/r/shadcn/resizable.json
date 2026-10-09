@@ -7,6 +7,9 @@
   "categories": [
     "layout"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/Resizable.tsx",
@@ -20,7 +23,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Resizable\n\n   Draggable panel layout. Horizontal or vertical.\n   Keyboard accessible (Arrow keys to resize).\n\n   Parts: .resizable, .resizable__panel, .resizable__handle\n   ------------------------------------------------------------------------- */\n\n/* ---- Group ---- */\n\n.resizable {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.resizable--vertical {\n  flex-direction: column;\n}\n\n/* ---- Panel ---- */\n\n.resizable__panel {\n  overflow: auto;\n  min-width: 0;\n  min-height: 0;\n}\n\n/* ---- Handle ---- */\n\n.resizable__handle {\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n  background: none;\n  border: none;\n  padding: 0;\n  cursor: col-resize;\n  -webkit-tap-highlight-color: transparent;\n  transition: background-color var(--duration-150) var(--easing-in-out);\n}\n\n.resizable--vertical .resizable__handle {\n  cursor: row-resize;\n}\n\n/* Horizontal handle: thin vertical bar */\n.resizable:not(.resizable--vertical) > .resizable__handle {\n  width: var(--spacing-2, 8px);\n}\n\n/* Vertical handle: thin horizontal bar */\n.resizable--vertical > .resizable__handle {\n  height: var(--spacing-2, 8px);\n}\n\n.resizable__handle:hover {\n  background-color: var(--accent);\n}\n\n.resizable__handle:focus-visible {\n  outline: var(--focus-ring-width, 2px) solid var(--focus-ring-color);\n  outline-offset: -2px;\n}\n\n/* ---- Visible grip ---- */\n\n.resizable__handle-grip {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: var(--radius-sm);\n  background-color: var(--border);\n}\n\n.resizable:not(.resizable--vertical) .resizable__handle-grip {\n  width: var(--spacing-1, 4px);\n  height: var(--spacing-6, 24px);\n}\n\n.resizable--vertical .resizable__handle-grip {\n  width: var(--spacing-6, 24px);\n  height: var(--spacing-1, 4px);\n}\n\n/* ---- Active drag state ---- */\n\n.resizable__handle--dragging {\n  background-color: var(--accent);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .resizable__handle {\n    transition-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "webflow": {
       "exclude": "paneles interactivos con estado (PanelGroup + drag) — sin equivalente estático útil en el Designer; consumir vía React"
@@ -63,8 +66,8 @@
       "usage": "import {\n  ResizablePanelGroup, ResizablePanel, ResizableHandle,\n} from '@/components/atoms/Resizable';\n\n<ResizablePanelGroup orientation=\"horizontal\" panels={2}>\n  <ResizablePanel index={0}>Left</ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel index={1}>Right</ResizablePanel>\n</ResizablePanelGroup>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [

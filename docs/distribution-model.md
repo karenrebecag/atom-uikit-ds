@@ -22,6 +22,8 @@ NIVEL 1 · valores resueltos
 NIVEL 2 · pintura — componentes CSS (button, tag, feature, icon, pricing-card…)
   · viajan COMPLETOS en /v1/embed.css (scopeado .atom-embed) y /v1/atom.css
   · viajan POR PIEZA como items del registry (framework: css → registry:component)
+  · canal shadcn: cada componente declara `atom-foundation` (foundation.css construido, con
+    dark y fuentes enlazadas a /v1/fonts); los hooks viajan como registry:lib (ADR 015)
         │   referenciados por clase BEM, jamás redefinidos aguas arriba
         ▼
 NIVEL 3 · plano — layouts (kind: layout → registry:block)
@@ -86,6 +88,7 @@ tienen pipeline de build ni pueden "reinstalar" un cambio de marca sitio por sit
 | `validate:embed` | ningún selector sin `.atom-embed` en embed.css |
 | `test:embed-leak` (8 checks) | ni fuga hacia el host ni del host hacia adentro |
 | `validate:contrast` | WCAG AA en light y dark |
+| `distribution` → canal shadcn (ADR 015) | todo componente arrastra `atom-foundation`, el grafo no apunta a nodos inexistentes ni pierde deps sin motivo, fuentes absolutas, dark presente, budget |
 | limpieza de huérfanos en `build:registry` | `public/r/` = espejo de `registry.json` (pasó: 60 `comp-N` sirviéndose meses después de borrados) |
 | verificación del installer (atom-pages) | cada componente del contrato del layout existe en embed.css |
 | baselines visuales por plataforma | regresión de pintura pre-merge |

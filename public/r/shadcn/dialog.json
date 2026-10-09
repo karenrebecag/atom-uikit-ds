@@ -7,6 +7,9 @@
   "categories": [
     "surfaces"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/Dialog.tsx",
@@ -20,7 +23,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Dialog\n\n   Modal window with overlay. Focus-trapped, scroll-locked.\n   Composable: Dialog > Trigger + Content > Header + Footer\n\n   Parts: .dialog__overlay, .dialog__content, .dialog__header,\n          .dialog__title, .dialog__description, .dialog__footer,\n          .dialog__close\n   ------------------------------------------------------------------------- */\n\n/* ---- Overlay ---- */\n\n.dialog__overlay {\n  position: fixed;\n  inset: 0;\n  z-index: var(--z-index-40);\n  background-color: var(--overlay);\n  animation: dialog-overlay-in var(--duration-200) var(--easing-out);\n}\n\n.dialog__overlay--exiting {\n  animation: dialog-overlay-out var(--duration-200) var(--easing-in) forwards;\n}\n\n@keyframes dialog-overlay-in {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n\n@keyframes dialog-overlay-out {\n  from { opacity: 1; }\n  to { opacity: 0; }\n}\n\n/* ---- Content ---- */\n\n.dialog__content {\n  position: fixed;\n  z-index: var(--z-index-50);\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - var(--spacing-8, 32px));\n  max-width: 512px;\n  max-height: calc(100vh - var(--spacing-8, 32px));\n  display: flex;\n  flex-direction: column;\n  border: var(--stroke-hairline) solid var(--border);\n  border-radius: var(--radius-xl);\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-xl);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  animation: dialog-content-in var(--duration-300) var(--easing-out);\n}\n\n.dialog__content--exiting {\n  animation: dialog-content-out var(--duration-200) var(--easing-in) forwards;\n}\n\n@keyframes dialog-content-in {\n  from {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n  to {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n}\n\n@keyframes dialog-content-out {\n  from {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n}\n\n/* ---- Header ---- */\n\n.dialog__header {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-2, 8px);\n  padding: var(--spacing-6, 24px);\n  padding-bottom: 0;\n}\n\n/* ---- Title ---- */\n\n.dialog__title {\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  color: var(--foreground);\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.dialog__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Body (scrollable) ---- */\n\n.dialog__body {\n  flex: 1;\n  overflow-y: auto;\n  padding: var(--spacing-6, 24px);\n}\n\n/* ---- Footer ---- */\n\n.dialog__footer {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n  padding-top: 0;\n}\n\n.dialog__footer--sticky {\n  border-top: var(--stroke-hairline) solid var(--border);\n  padding-top: var(--spacing-6, 24px);\n}\n\n/* ---- Close button ---- */\n\n.dialog__close {\n  position: absolute;\n  top: var(--spacing-4, 16px);\n  right: var(--spacing-4, 16px);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .dialog__overlay,\n  .dialog__overlay--exiting,\n  .dialog__content,\n  .dialog__content--exiting {\n    animation-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [
@@ -44,8 +47,8 @@
       "usage": "import {\n  Dialog, DialogTrigger, DialogContent, DialogHeader,\n  DialogTitle, DialogDescription, DialogBody, DialogFooter,\n} from '@/components/atoms/Dialog';\n\n<Dialog>\n  <DialogTrigger><button type=\"button\">Edit</button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Update your public name.</DialogDescription>\n    </DialogHeader>\n    <DialogBody>{/* fields */}</DialogBody>\n    <DialogFooter><button type=\"button\">Save</button></DialogFooter>\n  </DialogContent>\n</Dialog>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [
