@@ -10,6 +10,9 @@
   "dependencies": [
     "gsap"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/ProgressNav.tsx",
@@ -23,7 +26,7 @@
       "content": "/* ============================================================\n   ProgressNav — fixed one-page navigation with scroll indicator\n   Uses GSAP ScrollTrigger via @atom-uikit/animations\n   ============================================================ */\n\n.progress-nav {\n  width: 100%;\n  padding: var(--spacing-6);\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: var(--z-index-30);\n}\n\n.progress-nav__inner {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  position: relative;\n}\n\n/* ---- Logo ---- */\n.progress-nav__logo {\n  color: inherit;\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n}\n\n.progress-nav__logo-svg {\n  width: 8em;\n  height: auto;\n}\n\n/* ---- Pill wrapper (contains the nav list) ---- */\n.progress-nav__wrapper {\n  background-color: var(--muted);\n  border-radius: var(--radius-full);\n  padding: var(--spacing-1);\n}\n\n/* ---- Nav list ---- */\n.progress-nav__list {\n  border-radius: var(--radius-full);\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n}\n\n/* ---- Sliding indicator ---- */\n.progress-nav__indicator {\n  z-index: 2;\n  background-color: var(--card);\n  border-radius: var(--radius-full);\n  width: 2.5em;\n  height: 2.5em;\n  position: absolute;\n  left: -2.5em;\n  transition: all var(--duration-700) cubic-bezier(0.16, 1, 0.3, 1);\n  box-shadow: var(--shadow-xs);\n}\n\n/* ---- Nav buttons ---- */\n.progress-nav__btn {\n  z-index: 3;\n  cursor: pointer;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 2.5em;\n  padding-left: 1em;\n  padding-right: 1em;\n  text-decoration: none;\n  position: relative;\n  overflow: hidden;\n}\n\n/* Hidden sentinel buttons (before/after) */\n.progress-nav__btn.is--before {\n  z-index: 1;\n  width: 2.5em;\n  height: 2.5em;\n  padding: 0;\n  position: absolute;\n  right: 100%;\n}\n\n.progress-nav__btn.is--after {\n  z-index: 1;\n  width: 2.5em;\n  height: 2.5em;\n  padding: 0;\n  position: absolute;\n  left: 100%;\n}\n\n/* ---- Text with hover slide animation ---- */\n.progress-nav__btn-text {\n  white-space: nowrap;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n  font-size: var(--font-size-base);\n  font-weight: var(--font-weight-medium);\n  transition: transform var(--duration-500) cubic-bezier(0.16, 1, 0.3, 1);\n  transform: translateY(0%) rotate(0.001deg);\n}\n\n.progress-nav__btn-text.is--duplicate {\n  position: absolute;\n  top: 100%;\n}\n\n.progress-nav__btn:hover .progress-nav__btn-text,\n.progress-nav__contact-btn:hover .progress-nav__btn-text {\n  transform: translateY(-100%) rotate(0.001deg);\n}\n\n/* ---- CTA button ---- */\n.progress-nav__contact-btn {\n  color: var(--primary-foreground);\n  background-color: var(--primary);\n  border-radius: var(--radius-full);\n  height: 3.5em;\n  padding-left: var(--spacing-6);\n  padding-right: var(--spacing-6);\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  transition: background-color var(--duration-200) var(--easing-in-out);\n}\n\n.progress-nav__contact-btn:hover {\n  background-color: var(--primary-hover);\n}\n\n/* ---- Reduced motion ---- */\n@media (prefers-reduced-motion: reduce) {\n  .progress-nav__indicator {\n    transition-duration: 0ms;\n  }\n  .progress-nav__btn-text {\n    transition-duration: 0ms;\n  }\n  .progress-nav__contact-btn {\n    transition-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "webflow": {
       "previewProps": {
@@ -58,8 +61,8 @@
       "usage": "import { ProgressNav } from '@/components/atoms/ProgressNav';\n\n<ProgressNav\n  items={[{ id: 'features', label: 'Features' }, { id: 'pricing', label: 'Pricing' }]}\n  cta={{ label: 'Contact', href: '#contact' }}\n/>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [
           "gsap"

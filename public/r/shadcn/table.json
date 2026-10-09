@@ -7,6 +7,9 @@
   "categories": [
     "data-display"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/Table.tsx",
@@ -20,7 +23,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Table\n\n   Semantic HTML table with consistent styling.\n   Thin wrapper: Table, TableHeader, TableBody, TableFooter,\n                 TableRow, TableHead, TableCell, TableCaption\n\n   Parts: .table, .table__header, .table__body, .table__footer,\n          .table__row, .table__head, .table__cell, .table__caption\n   ------------------------------------------------------------------------- */\n\n/* ---- Wrapper ---- */\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: auto;\n}\n\n/* ---- Table ---- */\n\n.table {\n  width: 100%;\n  border-collapse: collapse;\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  text-align: left;\n}\n\n/* ---- Caption ---- */\n\n.table__caption {\n  padding-top: var(--spacing-4, 16px);\n  font-size: var(--font-size-sm);\n  color: var(--muted-foreground);\n  caption-side: bottom;\n}\n\n/* ---- Header ---- */\n\n.table__header {\n  border-bottom: var(--stroke-hairline) solid var(--border);\n}\n\n.table__head {\n  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);\n  font-weight: var(--font-weight-medium);\n  color: var(--muted-foreground);\n  white-space: nowrap;\n  vertical-align: middle;\n  height: var(--spacing-10, 40px);\n}\n\n/* ---- Body ---- */\n\n.table__row {\n  border-bottom: var(--stroke-hairline) solid var(--border);\n  transition: background-color var(--duration-100) var(--easing-in-out);\n}\n\n.table__row:hover {\n  background-color: var(--muted);\n}\n\n.table__row--selected {\n  background-color: var(--accent);\n}\n\n.table__cell {\n  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);\n  color: var(--foreground);\n  vertical-align: middle;\n}\n\n/* ---- Footer ---- */\n\n.table__footer {\n  border-top: var(--stroke-hairline) solid var(--border);\n  background-color: var(--muted);\n}\n\n.table__footer .table__cell {\n  font-weight: var(--font-weight-semibold);\n}\n\n/* ---- Alignment helpers ---- */\n\n.table__head--right,\n.table__cell--right {\n  text-align: right;\n}\n\n.table__head--center,\n.table__cell--center {\n  text-align: center;\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .table__row {\n    transition-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [],
@@ -37,8 +40,8 @@
       "usage": "import {\n  Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption,\n} from '@/components/atoms/Table';\n\n<Table>\n  <TableCaption>Invoices</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Customer</TableHead>\n      <TableHead>Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>Ada</TableCell>\n      <TableCell>$120</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [

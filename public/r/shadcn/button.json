@@ -10,6 +10,9 @@
   "dependencies": [
     "gsap"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/Button.tsx",
@@ -35,7 +38,7 @@
       "content": "/**\n * Anillo de foco del botón, en su propio partial porque el canal de Webflow lo\n * necesita y el panel de estilos no puede declararlo: un box-shadow compuesto\n * con dos var() se parsea como una sola variable y pierde la geometría.\n *\n * Doble anillo (superficie + contraste) para que se vea sobre cualquier fondo,\n * incluido el propio color del botón. Ambos colores salen de tokens.\n *\n * Solo `:focus-visible`: el foco de ratón no debe pintar anillo.\n */\n.button:focus-visible {\n  outline: none;\n  box-shadow:\n    0 0 0 var(--stroke-medium) var(--background),\n    0 0 0 calc(var(--stroke-medium) * 2) var(--ring);\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [
@@ -112,8 +115,8 @@
       }
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [
           "gsap"

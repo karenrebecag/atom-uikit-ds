@@ -7,6 +7,9 @@
   "categories": [
     "navigation"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/ContextMenu.tsx",
@@ -20,7 +23,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Context Menu\n\n   Right-click menu. Same visual as DropdownMenu, different trigger.\n   Positioned at mouse coordinates, not relative to trigger element.\n\n   Parts: .context-menu, .context-menu__trigger, .context-menu__content\n   Item styling reuses dropdown-menu classes for consistency.\n   ------------------------------------------------------------------------- */\n\n/* ---- Trigger zone ---- */\n\n.context-menu__trigger {\n  display: contents;\n}\n\n/* ---- Content (positioned at mouse coords via inline style) ---- */\n\n.context-menu__content {\n  position: fixed;\n  z-index: var(--z-index-20);\n  min-width: 192px;\n  overflow: hidden;\n  border: var(--stroke-hairline) solid var(--border);\n  border-radius: var(--radius-lg);\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-md);\n  padding: var(--spacing-1, 4px);\n  animation: context-menu-in var(--duration-200) var(--easing-out);\n}\n\n@keyframes context-menu-in {\n  from {\n    opacity: 0;\n    transform: scale(0.96);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1);\n  }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .context-menu__content {\n    animation-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [],
@@ -41,8 +44,8 @@
       "usage": "import {\n  ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem,\n} from '@/components/atoms/ContextMenu';\n\n<ContextMenu>\n  <ContextMenuTrigger>Right-click me</ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem onSelect={() => {}}>Copy</ContextMenuItem>\n    <ContextMenuItem variant=\"destructive\" onSelect={() => {}}>Delete</ContextMenuItem>\n  </ContextMenuContent>\n</ContextMenu>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [

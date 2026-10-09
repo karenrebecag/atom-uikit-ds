@@ -56,6 +56,12 @@ sola sesión):
 | El workflow compila cada paquete origen | idem |
 | El workflow se dispara con las rutas de cada paquete origen + `pnpm-lock.yaml` | el commit que arreglaba el lockfile no disparó deploy y el canal quedó sin publicar |
 | Los artefactos declarados llegan a `out/v1` | `/v1` sirvió solo CSS durante meses; nadie lo notó hasta que Webflow necesitó el JS |
+| `shadcnFoundationEmitted` | `atom-foundation` y `atom-tokens` existen en `public/r/shadcn` y apuntan a `dist` (ADR 015) |
+| `shadcnNoOrphanComponent` | `shadcn add @atom/button` copiaba 0 variables: 50 de 50 componentes salían sin `atom-foundation` |
+| `shadcnDepsResolve` | 49 de 50 ítems perdían sus `registryDependencies` en silencio; ahora ninguna apunta a un nodo inexistente ni se pierde sin quedar en `docs` |
+| `shadcnFontUrlsAbsolute` | el `foundation.css` copiado a un proyecto ajeno 404eaba sus woff2 relativos y caía a system sans |
+| `shadcnBudget` | el CSS emitido respeta el budget de `foundation.css` (30/6 kb) |
+| `shadcnDarkPresent` | sin `[data-theme="dark"]` el canal no tenía dark mode |
 
 **Prueba de aceptación:** un gate que no falla con un bug conocido no es un gate. Al
 escribirlo se revirtió cada uno de esos seis fixes por separado y el gate los cazó 7/7

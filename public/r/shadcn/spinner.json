@@ -7,6 +7,9 @@
   "categories": [
     "indicators"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/Spinner.tsx",
@@ -20,7 +23,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Spinner\n\n   Loading indicator. Rotating circle with partial stroke.\n   Sizes: xs, s, m, l. Inherits color from parent.\n\n   Parts: .spinner\n   ------------------------------------------------------------------------- */\n\n.spinner {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: currentColor;\n  animation: spinner-rotate var(--duration-700) linear infinite;\n}\n\n/* ---- Sizes ---- */\n\n.spinner--xs { width: 0.875rem; height: 0.875rem; }\n.spinner--s  { width: 1.125rem; height: 1.125rem; }\n.spinner--m  { width: 1.5rem; height: 1.5rem; }\n.spinner--l  { width: 2rem; height: 2rem; }\n\n.spinner svg {\n  width: 100%;\n  height: 100%;\n}\n\n@keyframes spinner-rotate {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .spinner {\n    animation-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [
@@ -51,8 +54,8 @@
       "usage": "import { Spinner } from '@/components/atoms/Spinner';\n\n<Spinner size=\"m\" />"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [

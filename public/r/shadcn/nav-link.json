@@ -7,6 +7,9 @@
   "categories": [
     "navigation"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/NavLink.tsx",
@@ -26,7 +29,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Nav Link — MOTION (subrayado)\n\n   Separado de la pintura a proposito: es la parte que el panel de estilos de\n   Webflow no puede declarar. Necesita un pseudo-elemento y un estado de\n   ANCESTRO (`:hover > hijo`), y el panel no expresa ninguno de los dos. Por eso\n   viaja en el canal `webflow.css`, igual que button-text-swap y\n   whatsapp-button-motion. Color, tamano y tracking del link si se declaran alla\n   como Variables nativas.\n\n   El indicador se ancla al PROPIO __text (position: relative), no al link como\n   en nav-link.css. Esa es la diferencia que hace consumible este subrayado\n   desde un mega-nav: su boton lleva caret y padding propio, asi que anclarlo al\n   link subrayaria tambien la flecha y obligaria al host a declarar `position`\n   en el padre. Anclado al texto, el host no declara nada.\n\n   EXIGE la anatomia: un contenedor cualquiera > .nav-link__text. Sin ese hijo\n   no hay nada que subrayar — reimplementar el link con una clase de etiqueta\n   propia es lo que dejaba el mega-nav sin animacion.\n   ------------------------------------------------------------------------- */\n\n.nav-link__text {\n  position: relative;\n}\n\n/* Contrato citado de ATOM [data-underline-link]: offset -0.0625em, alto\n   0.0625em, transform 0.6s con la cubica firma, origen right->left. */\n.nav-link__text::before {\n  content: \"\";\n  position: absolute;\n  bottom: -0.0625em;\n  left: 0;\n  width: 100%;\n  height: 0.0625em;\n  background-color: var(--nav-link-indicator-active);\n  transition: transform var(--duration-600) var(--easing-osmo);\n  transform-origin: right;\n  transform: scaleX(0) rotate(0.001deg);\n}\n\n/* El hover vive en el ancestro para que el area sensible sea el control entero\n   (boton + caret), no solo la caja del texto. */\n:hover > .nav-link__text::before {\n  transform-origin: left;\n  transform: scaleX(1) rotate(0.001deg);\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .nav-link__text::before {\n    transition-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [
@@ -70,8 +73,8 @@
       "usage": "import { NavLink } from '@/components/atoms/NavLink';\n\n<NavLink href=\"/docs\" size=\"default\" active>\n  Docs\n</NavLink>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [

@@ -15,6 +15,8 @@
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { gzipSync } from 'node:zlib';
+import { FOUNDATION_ALIASES, FOUNDATION_NAME, TOKENS_NAME, FONT_CDN } from './emit-shadcn-registry.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -138,6 +140,87 @@ export function checkDistribution({ fail, ok, note }) {
     } else {
       ok(S, `/${channel.major} publica los ${channel.artifacts.length} artefactos declarados`);
     }
+  }
+
+  checkShadcnChannel({ fail, ok, note });
+}
+
+/**
+ * Canal shadcn (ADR 015). Opera sobre lo COMMITEADO en public/r/shadcn, así que corre en el
+ * CI de conformance sin build; solo la comparación contra packages/css/dist necesita el build.
+ */
+function checkShadcnChannel({ fail, ok, note }) {
+  const S = 'distribution';
+  const dir = join(ROOT, 'public', 'r', 'shadcn');
+  if (!existsSync(dir)) {
+    note(S, 'public/r/shadcn no existe — corre pnpm build:registry');
+    return;
+  }
+  const items = readdirSync(dir)
+    .filter((f) => f.endsWith('.json') && f !== 'registry.json')
+    .map((f) => readJson(join(dir, f)));
+  const byName = new Map(items.map((i) => [i.name, i]));
+  const before = [];
+  const failS = (m) => {
+    before.push(m);
+    fail(S, m);
+  };
+
+  // 1 — shadcnFoundationEmitted
+  for (const name of [FOUNDATION_NAME, TOKENS_NAME]) {
+    const node = byName.get(name);
+    if (!node) {
+      failS(`shadcn: falta ${name}.json en public/r/shadcn`);
+      continue;
+    }
+    for (const f of node.files ?? []) {
+      if (!existsSync(join(ROOT, f.path))) {
+        note(S, `shadcn: ${f.path} no existe — corre pnpm build para comparar contra dist`);
+      }
+    }
+  }
+
+  // 2 — shadcnNoOrphanComponent
+  const orphans = items.filter(
+    (i) => i.type === 'registry:component' && !(i.registryDependencies ?? []).includes(FOUNDATION_NAME),
+  );
+  if (orphans.length) {
+    failS(`shadcn: ${orphans.length} componentes sin ${FOUNDATION_NAME} en registryDependencies (${orphans.slice(0, 5).map((i) => i.name).join(', ')}…)`);
+  }
+
+  // 3 — shadcnDepsResolve: integridad referencial + ninguna dep canónica se pierde sin motivo
+  for (const item of items) {
+    for (const dep of item.registryDependencies ?? []) {
+      if (!byName.has(dep)) failS(`shadcn: ${item.name} depende de ${dep}, que el canal no emite`);
+    }
+    const canonicalPath = join(ROOT, 'public', 'r', `${String(item.name).replace(/\//g, '--')}.json`);
+    if (!existsSync(canonicalPath)) continue;
+    const lost = (readJson(canonicalPath).registryDependencies ?? []).filter((dep) =>
+      FOUNDATION_ALIASES.has(dep)
+        ? !(item.registryDependencies ?? []).includes(FOUNDATION_NAME)
+        : !(item.registryDependencies ?? []).includes(dep) && !String(item.docs ?? '').includes(dep),
+    );
+    if (lost.length) failS(`shadcn: ${item.name} perdió ${lost.join(', ')} sin dejarlas en docs`);
+  }
+
+  // 4 — shadcnFontUrlsAbsolute, 6 — shadcnDarkPresent
+  const css = byName.get(FOUNDATION_NAME)?.files?.[0]?.content ?? '';
+  if (/url\(['"]?\.{1,2}\/fonts\//.test(css)) failS(`shadcn: ${FOUNDATION_NAME} trae url() relativas a fonts/`);
+  const fontUrls = [...css.matchAll(/url\(['"]?([^'")]*\.woff2)/g)].map((m) => m[1]);
+  const foreign = fontUrls.filter((u) => !u.startsWith(FONT_CDN));
+  if (foreign.length) failS(`shadcn: url() de fuente fuera de ${FONT_CDN}: ${foreign[0]}`);
+  if (!/\[data-theme=["']?dark["']?\]/.test(css)) failS(`shadcn: ${FOUNDATION_NAME} no contiene [data-theme="dark"]`);
+
+  // 5 — shadcnBudget: el CSS emitido respeta el budget de foundation.css
+  const budget = readJson(join(ROOT, 'conformance', 'budgets.json')).files['packages/css/dist/foundation.css'];
+  const raw = Buffer.byteLength(css) / 1024;
+  const gz = gzipSync(css).length / 1024;
+  if (raw > budget.rawKb || gz > budget.gzipKb) {
+    failS(`shadcn: ${FOUNDATION_NAME} pesa ${raw.toFixed(1)}/${gz.toFixed(1)}kb, budget ${budget.rawKb}/${budget.gzipKb}kb`);
+  }
+
+  if (!before.length) {
+    ok(S, `canal shadcn cerrado: ${items.length} nodos, ${FOUNDATION_NAME} arrastrado por todo componente, fuentes absolutas, dark presente, ${raw.toFixed(1)}kb raw`);
   }
 }
 

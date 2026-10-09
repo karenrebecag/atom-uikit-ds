@@ -35,6 +35,10 @@
   },
   "registry": {
     "$comment": "El index es el warm-start del MCP (63kb con 110 items, 2026-07-29). El budget vigila crecimiento desbocado, no bloquea un componente nuevo.",
+    "public/r/shadcn/atom-foundation.json": {
+      "rawKb": 30,
+      "$comment": "Nodo del canal shadcn (ADR 015): el mismo foundation.css con las url() de fuentes reescritas a absolutas, dentro de JSON (24.2kb medidos). El gate shadcnBudget del distribution tambien mide el CSS emitido contra el budget de foundation.css."
+    },
     "public/r/index.json": {
       "rawKb": 100,
       "$comment": "138 items (metrics-grid, marquee-css, odometer y sus dos entradas empujaron a 91kb). Was 90 con 124."

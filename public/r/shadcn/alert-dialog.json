@@ -7,6 +7,9 @@
   "categories": [
     "surfaces"
   ],
+  "registryDependencies": [
+    "atom-foundation"
+  ],
   "files": [
     {
       "path": "components/atoms/AlertDialog.tsx",
@@ -20,7 +23,7 @@
       "content": "/* -------------------------------------------------------------------------\n   Alert Dialog\n\n   Non-dismissible confirmation modal. No overlay close, no X button.\n   Requires explicit Cancel or Action to close.\n\n   Sizes: default (512px), sm (400px)\n   Parts: .alert-dialog, .alert-dialog__header, .alert-dialog__media,\n          .alert-dialog__title, .alert-dialog__description,\n          .alert-dialog__footer\n   ------------------------------------------------------------------------- */\n\n/* ---- Content ---- */\n\n.alert-dialog {\n  position: fixed;\n  z-index: var(--z-index-50);\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - var(--spacing-8, 32px));\n  max-width: 512px;\n  display: flex;\n  flex-direction: column;\n  border: var(--stroke-hairline) solid var(--border);\n  border-radius: var(--radius-xl);\n  background-color: var(--popover);\n  color: var(--popover-foreground);\n  box-shadow: var(--shadow-xl);\n  font-family: var(--font-family-sans), ui-sans-serif, system-ui, sans-serif;\n  animation: alert-dialog-in var(--duration-300) var(--easing-out);\n}\n\n.alert-dialog--sm {\n  max-width: 400px;\n}\n\n.alert-dialog--exiting {\n  animation: alert-dialog-out var(--duration-200) var(--easing-in) forwards;\n}\n\n@keyframes alert-dialog-in {\n  from {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n  to {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n}\n\n@keyframes alert-dialog-out {\n  from {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.95);\n  }\n}\n\n/* ---- Header ---- */\n\n.alert-dialog__header {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n  padding-bottom: 0;\n  text-align: center;\n}\n\n/* ---- Media ---- */\n\n.alert-dialog__media {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: var(--spacing-12, 48px);\n  height: var(--spacing-12, 48px);\n  border-radius: var(--radius-full);\n  background-color: var(--muted);\n  color: var(--muted-foreground);\n  padding: var(--spacing-3, 12px);\n}\n\n.alert-dialog__media--destructive {\n  background-color: var(--destructive);\n  color: var(--destructive-foreground);\n}\n\n.alert-dialog__media svg {\n  width: 100%;\n  height: 100%;\n}\n\n/* ---- Title ---- */\n\n.alert-dialog__title {\n  font-size: var(--font-size-lg);\n  font-weight: var(--font-weight-semibold);\n  line-height: var(--line-height-lg);\n  color: var(--foreground);\n  margin: 0;\n}\n\n/* ---- Description ---- */\n\n.alert-dialog__description {\n  font-size: var(--font-size-sm);\n  line-height: var(--line-height-sm);\n  color: var(--muted-foreground);\n  margin: 0;\n}\n\n/* ---- Footer ---- */\n\n.alert-dialog__footer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: var(--spacing-3, 12px);\n  padding: var(--spacing-6, 24px);\n}\n\n/* ---- Reduced motion ---- */\n\n@media (prefers-reduced-motion: reduce) {\n  .alert-dialog,\n  .alert-dialog--exiting {\n    animation-duration: 0ms;\n  }\n}\n"
     }
   ],
-  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Foundations (tokens/foundation) are not installed via this shadcn channel; use the Atom MCP or full DS setup for design tokens. Tuning ranges and gotchas: see meta.agent when present.",
+  "docs": "ATOM UIKit ships global BEM classes. CSS files MUST be imported in a global stylesheet (e.g. app/globals.css) — do not convert them to CSS Modules. Tokens and foundation come from the atom-foundation node this item depends on: import styles/atom-uikit/foundation.css once, before the component CSS (skip it if the page already loads /v1/foundation.css). Tuning ranges and gotchas: see meta.agent when present.",
   "meta": {
     "agent": {
       "configurables": [
@@ -44,8 +47,8 @@
       "usage": "import {\n  AlertDialog, AlertDialogTrigger, AlertDialogContent,\n  AlertDialogHeader, AlertDialogTitle, AlertDialogDescription,\n  AlertDialogFooter, AlertDialogCancel, AlertDialogAction,\n} from '@/components/atoms/AlertDialog';\n\n<AlertDialog>\n  <AlertDialogTrigger><button type=\"button\">Delete</button></AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Delete project?</AlertDialogTitle>\n      <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>\n    </AlertDialogHeader>\n    <AlertDialogFooter>\n      <AlertDialogCancel />\n      <AlertDialogAction variant=\"destructive-primary\" onAction={() => {}} />\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-09T21:49:02.583Z",
+      "sourceCommit": "32129992",
       "install": {
         "peerDeps": [],
         "cssImports": [
