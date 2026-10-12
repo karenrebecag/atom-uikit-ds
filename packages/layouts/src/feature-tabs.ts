@@ -65,7 +65,7 @@ export const featureTabs = {
   gap: var(--spacing-3);
 }
 .l-feature-tabs__title {
-  font-size: var(--text-xl);
+  font-size: var(--font-size-xl);
 }
 .l-feature-tabs__body {
   color: var(--muted-foreground);

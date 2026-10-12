@@ -57,7 +57,7 @@ export const footerNewsletter = {
   margin: 0 auto;
 }
 .l-footer-newsletter__newsletter-heading {
-  font-size: var(--text-lg);
+  font-size: var(--font-size-lg);
   font-weight: 600;
 }
 .l-footer-newsletter__form {

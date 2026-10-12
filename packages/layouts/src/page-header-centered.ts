@@ -30,7 +30,7 @@ export const pageHeaderCentered = {
   margin: 0 auto;
 }
 .l-page-header-centered__headline {
-  font-size: var(--text-4xl);
+  font-size: var(--font-size-4xl);
   margin: var(--spacing-4) 0;
 }
 .l-page-header-centered__description {

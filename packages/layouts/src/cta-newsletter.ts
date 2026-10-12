@@ -33,7 +33,7 @@ export const ctaNewsletter = {
   margin: 0 auto;
 }
 .l-cta-newsletter__headline {
-  font-size: var(--text-xl);
+  font-size: var(--font-size-xl);
 }
 .l-cta-newsletter__subtitle {
   color: var(--muted-foreground);
@@ -44,7 +44,7 @@ export const ctaNewsletter = {
   margin: var(--spacing-4) 0;
 }
 .l-cta-newsletter__privacy {
-  font-size: var(--text-xs);
+  font-size: var(--font-size-xs);
   color: var(--muted-foreground);
 }`,
 };

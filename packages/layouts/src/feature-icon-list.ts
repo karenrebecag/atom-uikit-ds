@@ -69,12 +69,12 @@ export const featureIconList = {
   border-radius: 50%;
 }
 .l-feature-icon-list__title {
-  font-size: var(--text-base);
+  font-size: var(--font-size-base);
   font-weight: 600;
   margin: 0;
 }
 .l-feature-icon-list__body {
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
   color: var(--muted-foreground);
   margin: 0;
 }`,

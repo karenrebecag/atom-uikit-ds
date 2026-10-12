@@ -83,6 +83,6 @@ export const galleryGrid = {
   color: white;
   padding: 2px 6px;
   border-radius: var(--radius-sm);
-  font-size: var(--text-xs);
+  font-size: var(--font-size-xs);
 }`,
 };

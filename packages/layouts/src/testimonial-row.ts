@@ -85,7 +85,7 @@ export const testimonialRow = {
   font-weight: 600;
 }
 .l-testimonial-row__role {
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
   color: var(--muted-foreground);
 }`,
 };

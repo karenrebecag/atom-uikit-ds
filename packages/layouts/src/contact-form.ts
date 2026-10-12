@@ -57,7 +57,7 @@ export const contactForm = {
   }
 }
 .l-contact-form__headline {
-  font-size: var(--text-xl);
+  font-size: var(--font-size-xl);
 }
 .l-contact-form__subtitle {
   color: var(--muted-foreground);

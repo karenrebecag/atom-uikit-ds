@@ -45,7 +45,7 @@ export const pageHeaderSplit = {
   gap: var(--spacing-4);
 }
 .l-page-header-split__headline {
-  font-size: var(--text-4xl);
+  font-size: var(--font-size-4xl);
 }
 .l-page-header-split__right {
   display: flex;

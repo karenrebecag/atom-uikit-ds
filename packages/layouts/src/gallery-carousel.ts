@@ -72,6 +72,6 @@ export const galleryCarousel = {
   color: white;
   padding: 4px 8px;
   border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
 }`,
 };

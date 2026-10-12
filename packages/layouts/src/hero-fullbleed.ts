@@ -50,7 +50,7 @@ export const heroFullbleed = {
   max-width: 640px;
 }
 .l-hero-fullbleed__headline {
-  font-size: var(--text-5xl);
+  font-size: var(--font-size-5xl);
   line-height: 1.1;
   margin: var(--spacing-4) 0;
 }

@@ -15,7 +15,7 @@
     {
       "path": "layouts/page-header-centered.ts",
       "type": "registry:file",
-      "content": "/**\n * Layout: page-header-centered\n *\n * Cabecera de pagina interior: breadcrumb + titulo + descripcion, centrado. Para blog, docs, pricing.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pageHeaderCentered = {\n  slug: 'page-header-centered',\n  name: 'Page Header Centered',\n  description:\n    'Cabecera de pagina interior: breadcrumb + titulo + descripcion, centrado. Para blog, docs, pricing. Structure only.',\n  components: ['breadcrumb', 'typography', 'tag'],\n  html: `<!-- Layout: page-header-centered -->\n<header class=\"l-page-header-centered\">\n  <nav class=\"breadcrumb\">\n    <a href=\"{{breadcrumb1_url}}\" class=\"nav-link\">{{breadcrumb1_label}}</a>\n    <span>/</span>\n    <a href=\"{{breadcrumb2_url}}\" class=\"nav-link\">{{breadcrumb2_label}}</a>\n  </nav>\n  <span class=\"tag tag--s\">{{eyebrow}}</span>\n  <h1 class=\"l-page-header-centered__headline\">{{headline}}</h1>\n  <p class=\"l-page-header-centered__description\">{{description}}</p>\n</header>`,\n  css: `/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--text-4xl);\n  margin: var(--spacing-4) 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}`,\n};"
+      "content": "/**\n * Layout: page-header-centered\n *\n * Cabecera de pagina interior: breadcrumb + titulo + descripcion, centrado. Para blog, docs, pricing.\n * Structure-only. References DS components by BEM class.\n */\n\nexport const pageHeaderCentered = {\n  slug: 'page-header-centered',\n  name: 'Page Header Centered',\n  description:\n    'Cabecera de pagina interior: breadcrumb + titulo + descripcion, centrado. Para blog, docs, pricing. Structure only.',\n  components: ['breadcrumb', 'typography', 'tag'],\n  html: `<!-- Layout: page-header-centered -->\n<header class=\"l-page-header-centered\">\n  <nav class=\"breadcrumb\">\n    <a href=\"{{breadcrumb1_url}}\" class=\"nav-link\">{{breadcrumb1_label}}</a>\n    <span>/</span>\n    <a href=\"{{breadcrumb2_url}}\" class=\"nav-link\">{{breadcrumb2_label}}</a>\n  </nav>\n  <span class=\"tag tag--s\">{{eyebrow}}</span>\n  <h1 class=\"l-page-header-centered__headline\">{{headline}}</h1>\n  <p class=\"l-page-header-centered__description\">{{description}}</p>\n</header>`,\n  css: `/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--font-size-4xl);\n  margin: var(--spacing-4) 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}`,\n};"
     },
     {
       "path": "layouts/page-header-centered.html",
@@ -25,7 +25,7 @@
     {
       "path": "layouts/page-header-centered.css",
       "type": "registry:file",
-      "content": "/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--text-4xl);\n  margin: var(--spacing-4) 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}\n"
+      "content": "/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: var(--spacing-12) var(--spacing-8);\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--font-size-4xl);\n  margin: var(--spacing-4) 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}\n"
     }
   ],
   "atom": {
@@ -67,8 +67,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-12T20:55:39.279Z",
+      "sourceCommit": "408b865f",
       "install": {
         "peerDeps": [],
         "cssImports": []
@@ -81,7 +81,7 @@
         "resolved": [],
         "sizes": []
       },
-      "standaloneCss": "/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: 48px 32px;\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: var(--text-4xl);\n  margin: 16px 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}\n",
+      "standaloneCss": "/* Layout: page-header-centered — structure only */\n.l-page-header-centered {\n  text-align: center;\n  padding: 48px 32px;\n  max-width: 720px;\n  margin: 0 auto;\n}\n.l-page-header-centered__headline {\n  font-size: 48.83px;\n  margin: 16px 0;\n}\n.l-page-header-centered__description {\n  max-width: 520px;\n  margin: 0 auto;\n}\n",
       "motion": [],
       "degraded": true,
       "degradeReasons": [

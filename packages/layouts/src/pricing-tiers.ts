@@ -3,7 +3,7 @@
  *
  * Motivo: define su propia anatomia de card (`l-pricing-tiers__card`) en vez de
  * consumir el componente `pricing-card` del DS, y su CSS referencia tokens que
- * ya no existen (--text-xl, --accent). Se conserva por si algun sitio lo pego
+ * ya no existen (--font-size-xl, --accent). Se conserva por si algun sitio lo pego
  * antes de la migracion; no recibe mantenimiento.
  *
  * 2-4 planes en cards verticales: nombre, precio, features, CTA. Plan destacado opcional.
@@ -133,14 +133,14 @@ export const pricingTiers = {
   margin-bottom: var(--spacing-4);
 }
 .l-pricing-tiers__tier-name {
-  font-size: var(--text-xl);
+  font-size: var(--font-size-xl);
   font-weight: 600;
 }
 .l-pricing-tiers__price {
   margin: var(--spacing-2) 0;
 }
 .l-pricing-tiers__price-value {
-  font-size: var(--text-3xl);
+  font-size: var(--font-size-3xl);
   font-weight: 700;
 }
 .l-pricing-tiers__features {

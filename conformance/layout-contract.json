@@ -6,9 +6,11 @@
       "forbidInCss": {
         "color-literal": "#[0-9a-fA-F]{3,8}\\b|\\brgba?\\(|\\bhsla?\\(|\\boklch\\(",
         "font-family": "font-family\\s*:",
-        "motion": "\\b(?:transition|animation)[\\w-]*\\s*:|@keyframes|cubic-bezier\\("
+        "motion": "\\b(?:transition|animation)[\\w-]*\\s*:|@keyframes|cubic-bezier\\(",
+        "phantom-text-token": "var\\(--text-[\\w-]+\\)"
       },
-      "$motion": "decisión de Karen 2026-07-30: los layouts maquetan, no animan. El motion vive en los componentes inner (spinner, item, nav-link…) o en behaviors de packages/animations enganchados por data-attrs. Referenciar behaviors en COMENTARIOS del html sí es legítimo."
+      "$motion": "decisión de Karen 2026-07-30: los layouts maquetan, no animan. El motion vive en los componentes inner (spinner, item, nav-link…) o en behaviors de packages/animations enganchados por data-attrs. Referenciar behaviors en COMENTARIOS del html sí es legítimo.",
+      "$phantom-text-token": "B6 (QA paridad Arc 2026-10-12): 21 layouts referenciaban var(--text-*), naming Tailwind que el DS no define (la escala es --font-size-*). El var no resolvía y la jerarquía tipográfica colapsaba al tamaño heredado, sin que validate ni finalize lo cazaran. Este patrón bloquea la reintroducción."
     },
     "classesExist": {
       "why": "toda clase del html debe existir: en el DS (componentes) o ser del propio layout (l-<slug>*). Una clase fantasma = anatomía que se verá sin estilos",
