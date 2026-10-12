@@ -90,7 +90,7 @@ export const testimonialGrid = {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
 }
 .l-testimonial-grid__role {
   color: var(--muted-foreground);

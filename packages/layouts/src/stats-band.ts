@@ -60,12 +60,12 @@ export const statsBand = {
   }
 }
 .l-stats-band__value {
-  font-size: var(--text-3xl);
+  font-size: var(--font-size-3xl);
   font-weight: 700;
   line-height: 1;
 }
 .l-stats-band__label {
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
   color: var(--muted-foreground);
 }`,
 };

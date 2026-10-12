@@ -62,7 +62,7 @@ export const contactCards = {
   margin-bottom: var(--spacing-3);
 }
 .l-contact-cards__title {
-  font-size: var(--text-lg);
+  font-size: var(--font-size-lg);
   font-weight: 600;
 }
 .l-contact-cards__body {

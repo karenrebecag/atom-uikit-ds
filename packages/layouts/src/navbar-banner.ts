@@ -40,7 +40,7 @@ export const navbarBanner = {
   background: var(--muted);
   text-align: center;
   padding: 4px;
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
 }
 .l-navbar-banner {
   display: flex;

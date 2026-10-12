@@ -31,7 +31,7 @@ export const testimonialSpotlight = {
   margin: 0 auto;
 }
 .l-testimonial-spotlight__quote {
-  font-size: var(--text-2xl);
+  font-size: var(--font-size-2xl);
   font-style: italic;
   margin-bottom: var(--spacing-6);
 }
@@ -45,7 +45,7 @@ export const testimonialSpotlight = {
   font-weight: 600;
 }
 .l-testimonial-spotlight__role {
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
   color: var(--muted-foreground);
 }
 .l-testimonial-spotlight__logo {

@@ -45,7 +45,7 @@ export const faqTwoCol = {
   }
 }
 .l-faq-two-col__headline {
-  font-size: var(--text-xl);
+  font-size: var(--font-size-xl);
 }
 .l-faq-two-col__intro {
   color: var(--muted-foreground);

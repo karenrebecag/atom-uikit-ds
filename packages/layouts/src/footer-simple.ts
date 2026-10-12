@@ -33,7 +33,7 @@ export const footerSimple = {
   gap: var(--spacing-6);
   padding: var(--spacing-6) var(--spacing-8);
   border-top: 1px solid var(--border);
-  font-size: var(--text-sm);
+  font-size: var(--font-size-sm);
 }
 .l-footer-simple__brand {
   flex-shrink: 0;

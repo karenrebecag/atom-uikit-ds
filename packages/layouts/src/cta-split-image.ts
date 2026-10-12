@@ -43,7 +43,7 @@ export const ctaSplitImage = {
   }
 }
 .l-cta-split-image__headline {
-  font-size: var(--text-2xl);
+  font-size: var(--font-size-2xl);
 }
 .l-cta-split-image__subtitle {
   color: var(--muted-foreground);
