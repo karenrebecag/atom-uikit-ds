@@ -1,0 +1,6 @@
+{
+  "$comment": "Contrato del catálogo de roles de sección (packages/layouts/section-roles.json, spec uikit-arc-parity 60 / G-A). Lo ejecuta scripts/section-roles-conformance.mjs (sección roles).",
+  "catalog": "packages/layouts/section-roles.json",
+  "formRoleIds": [57, 58, 60, 61, 62],
+  "$formRoleIds": "D2 (Karen 2026-10-13): CTA Form, Newsletter, Contact, Contact Form, Application Form. Atom no usa <form>; toda conversión es WhatsApp. Estos roles nunca son generables, aunque exista un layout parecido."
+}

@@ -1,0 +1,663 @@
+{
+  "$comment": "Catálogo de roles de sección (ola 2, RF-10). id = id estable del CSV maestro de Relume (D3). generable:true exige >=1 layout publicado y vigente en packages/layouts/src (conformance, sección roles). generable:false lleva reason: 'form' (D2: Atom no usa <form>, la conversión es WhatsApp) o 'sin-layout' (gap de autoría, no se inventa). global: Navbar/Footer envuelven la página. Editar a mano; no es un output generado.",
+  "roles": [
+    {
+      "id": 1,
+      "slug": "navbar",
+      "name": "Navbar",
+      "generable": true,
+      "layouts": [
+        "navbar-simple",
+        "navbar-dropdown",
+        "navbar-mega",
+        "navbar-banner"
+      ],
+      "global": true
+    },
+    {
+      "id": 2,
+      "slug": "hero-header",
+      "name": "Hero Header Section",
+      "generable": true,
+      "layouts": [
+        "hero-centered",
+        "hero-split",
+        "hero-split-right",
+        "hero-image-below",
+        "hero-split-image-below",
+        "hero-industry",
+        "hero-sticky-collage"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "header",
+      "name": "Header Section",
+      "generable": true,
+      "layouts": [
+        "page-header-centered",
+        "page-header-split"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "portfolio-item-header",
+      "name": "Portfolio Item Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 5,
+      "slug": "project-item-header",
+      "name": "Project Item Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 6,
+      "slug": "portfolio-item-body",
+      "name": "Portfolio Item Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 7,
+      "slug": "project-item-body",
+      "name": "Project Item Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 8,
+      "slug": "portfolio-list",
+      "name": "Portfolio List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 9,
+      "slug": "project-list",
+      "name": "Project List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 10,
+      "slug": "blog-post-header",
+      "name": "Blog Post Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 11,
+      "slug": "resource-item-header",
+      "name": "Resource Item Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 12,
+      "slug": "case-study-header",
+      "name": "Case Study Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 13,
+      "slug": "press-article-header",
+      "name": "Press Article Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 14,
+      "slug": "update-item-header",
+      "name": "Update Item Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 15,
+      "slug": "event-item-header",
+      "name": "Event Item Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 16,
+      "slug": "blog-post-body",
+      "name": "Blog Post Body Section",
+      "generable": true,
+      "layouts": [
+        "article-toc"
+      ]
+    },
+    {
+      "id": 17,
+      "slug": "resource-item-body",
+      "name": "Resource Item Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 18,
+      "slug": "case-study-body",
+      "name": "Case Study Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 19,
+      "slug": "documentation-body",
+      "name": "Documentation Body Section",
+      "generable": true,
+      "layouts": [
+        "article-toc"
+      ]
+    },
+    {
+      "id": 20,
+      "slug": "press-release-body",
+      "name": "Press Release Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 21,
+      "slug": "legal-page-body",
+      "name": "Legal Page Body Section",
+      "generable": true,
+      "layouts": [
+        "article-toc"
+      ]
+    },
+    {
+      "id": 22,
+      "slug": "update-item-body",
+      "name": "Update Item Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 23,
+      "slug": "event-schedule",
+      "name": "Event Schedule Section",
+      "generable": true,
+      "layouts": [
+        "events-list"
+      ]
+    },
+    {
+      "id": 24,
+      "slug": "event-item-body",
+      "name": "Event Item Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 25,
+      "slug": "course-item-body",
+      "name": "Course Item Body Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 26,
+      "slug": "featured-blog-list-header",
+      "name": "Featured Blog List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 27,
+      "slug": "featured-resources-list-header",
+      "name": "Featured Resources List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 28,
+      "slug": "featured-case-study-list-header",
+      "name": "Featured Case Study List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 29,
+      "slug": "featured-press-list-header",
+      "name": "Featured Press List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 30,
+      "slug": "featured-updates-list-header",
+      "name": "Featured Updates List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 31,
+      "slug": "featured-events-list-header",
+      "name": "Featured Events List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 32,
+      "slug": "featured-courses-list-header",
+      "name": "Featured Courses List Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 33,
+      "slug": "blog-list",
+      "name": "Blog List Section",
+      "generable": true,
+      "layouts": [
+        "blog-listing",
+        "blog-listing-3col"
+      ]
+    },
+    {
+      "id": 34,
+      "slug": "resources-list",
+      "name": "Resources List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 35,
+      "slug": "case-study-list",
+      "name": "Case Study List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 36,
+      "slug": "press-list",
+      "name": "Press List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 37,
+      "slug": "updates-list",
+      "name": "Updates List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 38,
+      "slug": "events-list",
+      "name": "Events List Section",
+      "generable": true,
+      "layouts": [
+        "events-list"
+      ]
+    },
+    {
+      "id": 39,
+      "slug": "courses-list",
+      "name": "Courses List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 40,
+      "slug": "feature",
+      "name": "Feature Section",
+      "generable": true,
+      "layouts": [
+        "feature-alternating",
+        "feature-grid",
+        "feature-tabs",
+        "bouncy-tabs",
+        "marquee-features"
+      ]
+    },
+    {
+      "id": 41,
+      "slug": "features-list",
+      "name": "Features List Section",
+      "generable": true,
+      "layouts": [
+        "feature-icon-list",
+        "feature-grid"
+      ]
+    },
+    {
+      "id": 42,
+      "slug": "benefits",
+      "name": "Benefits Section",
+      "generable": true,
+      "layouts": [
+        "feature-icon-list",
+        "feature-grid"
+      ]
+    },
+    {
+      "id": 43,
+      "slug": "how-it-works",
+      "name": "How It Works Section",
+      "generable": true,
+      "layouts": [
+        "steps-numbered"
+      ]
+    },
+    {
+      "id": 44,
+      "slug": "services",
+      "name": "Services Section",
+      "generable": true,
+      "layouts": [
+        "feature-grid",
+        "feature-icon-list"
+      ]
+    },
+    {
+      "id": 45,
+      "slug": "about",
+      "name": "About Section",
+      "generable": true,
+      "layouts": [
+        "feature-alternating"
+      ]
+    },
+    {
+      "id": 46,
+      "slug": "stats",
+      "name": "Stats Section",
+      "generable": true,
+      "layouts": [
+        "metrics-grid",
+        "stats-band"
+      ]
+    },
+    {
+      "id": 47,
+      "slug": "ecommerce-product",
+      "name": "Ecommerce Product Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 48,
+      "slug": "timeline",
+      "name": "Timeline Section",
+      "generable": true,
+      "layouts": [
+        "timeline-vertical"
+      ]
+    },
+    {
+      "id": 49,
+      "slug": "ecommerce-product-header",
+      "name": "Ecommerce Product Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 50,
+      "slug": "course-item-header",
+      "name": "Course Item Header Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 51,
+      "slug": "ecommerce-products-list",
+      "name": "Ecommerce Products List Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 52,
+      "slug": "testimonial",
+      "name": "Testimonial Section",
+      "generable": true,
+      "layouts": [
+        "testimonial-grid",
+        "testimonial-row",
+        "testimonial-spotlight"
+      ]
+    },
+    {
+      "id": 53,
+      "slug": "reviews",
+      "name": "Reviews Section",
+      "generable": true,
+      "layouts": [
+        "review-marquee",
+        "testimonial-grid"
+      ]
+    },
+    {
+      "id": 54,
+      "slug": "pricing",
+      "name": "Pricing Section",
+      "generable": true,
+      "layouts": [
+        "pricing-plans"
+      ]
+    },
+    {
+      "id": 55,
+      "slug": "pricing-comparison",
+      "name": "Pricing Comparison Section",
+      "generable": true,
+      "layouts": [
+        "pricing-comparison"
+      ]
+    },
+    {
+      "id": 56,
+      "slug": "cta",
+      "name": "CTA Section",
+      "generable": true,
+      "layouts": [
+        "cta-banner",
+        "cta-split-image"
+      ]
+    },
+    {
+      "id": 57,
+      "slug": "cta-form",
+      "name": "CTA Form Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "form"
+    },
+    {
+      "id": 58,
+      "slug": "newsletter",
+      "name": "Newsletter Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "form"
+    },
+    {
+      "id": 59,
+      "slug": "early-access",
+      "name": "Early Access Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 60,
+      "slug": "contact",
+      "name": "Contact Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "form"
+    },
+    {
+      "id": 61,
+      "slug": "contact-form",
+      "name": "Contact Form Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "form"
+    },
+    {
+      "id": 62,
+      "slug": "application-form",
+      "name": "Application Form Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "form"
+    },
+    {
+      "id": 63,
+      "slug": "locations",
+      "name": "Locations Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 64,
+      "slug": "gallery",
+      "name": "Gallery Section",
+      "generable": false,
+      "layouts": [],
+      "reason": "sin-layout"
+    },
+    {
+      "id": 65,
+      "slug": "faq",
+      "name": "FAQ Section",
+      "generable": true,
+      "layouts": [
+        "faq-accordion",
+        "faq-two-col"
+      ]
+    },
+    {
+      "id": 66,
+      "slug": "team",
+      "name": "Team Section",
+      "generable": true,
+      "layouts": [
+        "team-grid"
+      ]
+    },
+    {
+      "id": 67,
+      "slug": "logo-list",
+      "name": "Logo List Section",
+      "generable": true,
+      "layouts": [
+        "logo-grid",
+        "logo-marquee"
+      ]
+    },
+    {
+      "id": 68,
+      "slug": "award-logos-list",
+      "name": "Award Logos List Section",
+      "generable": true,
+      "layouts": [
+        "logo-grid",
+        "logo-marquee"
+      ]
+    },
+    {
+      "id": 69,
+      "slug": "customer-logos-list",
+      "name": "Customer Logos List Section",
+      "generable": true,
+      "layouts": [
+        "logo-grid",
+        "logo-marquee"
+      ]
+    },
+    {
+      "id": 70,
+      "slug": "client-logos-list",
+      "name": "Client Logos List Section",
+      "generable": true,
+      "layouts": [
+        "logo-grid",
+        "logo-marquee"
+      ]
+    },
+    {
+      "id": 71,
+      "slug": "partner-logos-list",
+      "name": "Partner Logos List Section",
+      "generable": true,
+      "layouts": [
+        "logo-grid",
+        "logo-marquee"
+      ]
+    },
+    {
+      "id": 72,
+      "slug": "job-listings",
+      "name": "Job Listings Section",
+      "generable": true,
+      "layouts": [
+        "jobs-grid"
+      ]
+    },
+    {
+      "id": 73,
+      "slug": "footer",
+      "name": "Footer",
+      "generable": true,
+      "layouts": [
+        "footer-simple",
+        "footer-minimal",
+        "footer-columns",
+        "footer-extended"
+      ],
+      "global": true
+    },
+    {
+      "id": 74,
+      "slug": "comparison",
+      "name": "Comparison Section",
+      "generable": true,
+      "layouts": [
+        "comparison-table"
+      ]
+    }
+  ]
+}
