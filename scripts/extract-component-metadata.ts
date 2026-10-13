@@ -325,6 +325,41 @@ function extractCssClasses(css: string, slug: string, declaredPrefixes?: string[
 }
 
 /**
+ * Derive the structural/visual modifiers of a component from its own CSS.
+ *
+ * A valid BEM class of this DS is `block`, `block__element`, `block--modifier` or
+ * `block__element--modifier`. `variants` and `sizes` come from the React source, so any
+ * `block--modifier` the CSS emits and the React props do not name was invisible to discovery:
+ * the gate then rejected real classes of the DS (`tag--mono`, `feature-card--fill`).
+ *
+ * Derived by scanning, never listed by hand: a hand-written list is complete the day it is
+ * written and wrong the next. Element modifiers (`block__element--modifier`) are not component
+ * API, so only root-block modifiers count.
+ *
+ * Invariant this closes: every valid BEM modifier lives in `variants` ∪ `sizes` ∪ `modifiers`.
+ */
+export function deriveModifiers(
+  cssClasses: string[],
+  variants: string[],
+  sizes: string[],
+): string[] {
+  const rootBlocks = cssClasses.filter((c) => !c.includes('--') && !c.includes('__'));
+  const known = new Set([...variants, ...sizes]);
+  const mods = new Set<string>();
+
+  for (const cls of cssClasses) {
+    const at = cls.indexOf('--');
+    if (at < 1) continue;
+    const block = cls.slice(0, at);
+    const mod = cls.slice(at + 2);
+    if (!mod || !rootBlocks.includes(block)) continue;
+    if (!known.has(mod)) mods.add(mod);
+  }
+
+  return [...mods].sort();
+}
+
+/**
  * Derive base CSS class from the component's class list.
  * The base class is the slug itself if it appears in the classes.
  * Fallback: the root class with the most BEM descendants.
@@ -496,6 +531,7 @@ export function extractMetadataForItem(
   const props = extractProps(reactSource);
   const defaults = extractDefaults(reactSource);
   const cssClasses = extractCssClasses(cssSource, item.name, item.cssClassPrefixes);
+  const modifiers = deriveModifiers(cssClasses, variants, sizes);
   const baseClass = deriveBaseClass(cssClasses, item.name);
   const hasAnimation = detectHasAnimation(allSources, item.name, dsRoot);
   const peerDeps = detectPeerDeps(allSources, dsRoot, hasAnimation);
@@ -524,6 +560,7 @@ export function extractMetadataForItem(
     category,
     variants,
     sizes,
+    ...(modifiers.length > 0 && { modifiers }),
     defaultVariant: defaults['variant'] ?? (variants[0] || ''),
     defaultSize: defaults['size'] ?? (sizes[0] || ''),
     hasAnimation,

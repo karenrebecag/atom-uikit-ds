@@ -206,6 +206,17 @@ export interface AtomDiscovery {
   /** Available size options (e.g. ["xs","s","m","l","xl"]) */
   sizes: string[];
 
+  /**
+   * Structural/visual modifiers the component's own CSS emits as `block--modifier` and that
+   * are not already a variant or a size (e.g. `fill`, `media`, `mono`, `inverse`).
+   * Auto-derived from the CSS, never hand-listed. Absent means none.
+   * Contract: every valid BEM modifier of a component lives in variants ∪ sizes ∪ modifiers.
+   * It is the COMPLETE set the CSS emits, so it also carries state-ish modifiers
+   * (`tag--disabled`, `alert-dialog--exiting`): a page that uses one is valid markup and the
+   * gate must not reject it. It is not a curated API list.
+   */
+  modifiers?: string[];
+
   /** Default variant when none is specified */
   defaultVariant: string;
 
