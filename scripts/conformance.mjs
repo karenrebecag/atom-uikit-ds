@@ -411,6 +411,7 @@ function sectionRegistry() {
       'index.json',
       'tokens-nested.json',
       'content-coverage.json',
+      'section-roles.json',
     ]);
     const actual = readdirSync(pubDir).filter((f) => f.endsWith('.json'));
     const orphan = actual.filter((f) => !expected.has(f));
