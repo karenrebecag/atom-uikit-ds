@@ -33,6 +33,10 @@
         "lg",
         "xl"
       ],
+      "modifiers": [
+        "animated",
+        "disabled"
+      ],
       "defaultVariant": "",
       "defaultSize": "default",
       "hasAnimation": true,
@@ -136,8 +140,8 @@
       }
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [
           "gsap"

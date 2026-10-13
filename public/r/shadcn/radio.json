@@ -36,8 +36,8 @@
       "usage": "import { Radio, RadioGroup } from '@/components/atoms/Radio';\n\n<RadioGroup value={v} onValueChange={setV}>\n  <Radio value=\"a\" label=\"A\" />\n  <Radio value=\"b\" label=\"B\" />\n</RadioGroup>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [

@@ -29,6 +29,11 @@
         "inbox"
       ],
       "sizes": [],
+      "modifiers": [
+        "enabled",
+        "focused",
+        "subtle"
+      ],
       "defaultVariant": "neutral",
       "defaultSize": "",
       "hasAnimation": false,
@@ -109,8 +114,8 @@
       "usage": "import { Badge } from '@/components/atoms/Badge';\n\n<Badge variant=\"inbox\" state=\"enabled\">\n  3\n</Badge>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [

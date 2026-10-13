@@ -27,6 +27,10 @@
       "category": "forms",
       "variants": [],
       "sizes": [],
+      "modifiers": [
+        "disabled",
+        "error"
+      ],
       "defaultVariant": "",
       "defaultSize": "",
       "hasAnimation": true,
@@ -88,8 +92,8 @@
       "usage": "import { Checkbox } from '@/components/atoms/Checkbox';\n\n<Checkbox checked={ok} onChange={setOk} label=\"I agree\" />"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [
           "gsap"

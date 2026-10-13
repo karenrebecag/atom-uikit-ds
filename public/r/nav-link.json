@@ -36,6 +36,12 @@
         "default",
         "lg"
       ],
+      "modifiers": [
+        "active",
+        "disabled",
+        "dropdown",
+        "underline-alt"
+      ],
       "defaultVariant": "",
       "defaultSize": "default",
       "hasAnimation": false,
@@ -131,8 +137,8 @@
       "usage": "import { NavLink } from '@/components/atoms/NavLink';\n\n<NavLink href=\"/docs\" size=\"default\" active>\n  Docs\n</NavLink>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [
