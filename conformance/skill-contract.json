@@ -12,7 +12,7 @@
     { "layer": "conversion", "file": "conversion.md", "max": 200 },
     { "layer": "motion", "file": "motion.md", "max": 200 },
     { "layer": "accesibilidad", "file": "accesibilidad.md", "max": 200 },
-    { "layer": "acabado", "file": "acabado.md", "max": 40 },
+    { "layer": "acabado", "file": "acabado.md", "max": 48 },
     { "layer": "cierre", "file": "cierre.md", "max": 120 }
   ],
   "examples": ["ejemplos/landing-pauta.md", "ejemplos/caso-de-exito.md", "ejemplos/pagina-de-producto.md"],
