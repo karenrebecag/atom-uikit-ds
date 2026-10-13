@@ -7,7 +7,7 @@ conformance suites de Simon Willison: el contrato es el archivo, no el párrafo.
 
 ```bash
 pnpm conformance            # todo el contrato
-pnpm conformance tokens     # una sección: tokens | css | layouts | registry | budgets | references
+pnpm conformance tokens     # una sección: tokens | css | layouts | registry | budgets | references | roles
 ```
 
 ## Diseño
@@ -38,6 +38,7 @@ pnpm conformance tokens     # una sección: tokens | css | layouts | registry | 
 | `reference-contract.json` | **integridad referencial**: que las referencias que SALEN de un archivo aterricen. `var()` sin fallback resuelve contra tokens o CSS local; toda clase de componente tiene emisor o está publicada en `cssClasses`; el `entry` de tsup cubre cada subdirectorio con fuentes; todo `sourcePath` del registry existe; y los baselines, exenciones y mapas slug→módulo apuntan a archivos vivos. Baseline ratchet de la deuda existente |
 | `block-contract.json` | **bloques ejemplares** (opt-in por ola): ritmo desde la capa de uso, motion existente, superficie que utilities emite, copy resuelta sin `{{}}`/form/hrefs ajenos a wa.me, related reales. Lo ejecuta `scripts/block-conformance.mjs` (seccion `blocks`) |
 | `skill-contract.json` + `skill-checks.json` | **skill del canal** (`skills/atom-uikit`): toda ruta, clase, token, bloque y behavior citados existen; `bloques.md` y la mitad contable de `cierre.md` se generan (diff vacío); una regla vive en un archivo; sin formularios; ejemplos solo con bloques ejemplares. `skill-checks.json` es el registro de checks de `atom_uikit_finalize` (G-6). Lo ejecuta `scripts/skill-conformance.mjs` (sección `skill`) |
+| `section-roles-contract.json` | **catálogo de roles de sección** (`packages/layouts/section-roles.json`, ola 2 / RF-10): ids únicos, todo rol `generable:true` tiene >=1 layout existente y no legacy/deprecated, y los roles de formulario (D2) nunca son generables. Los roles sin layout salen como nota (gap de autoría). Lo ejecuta `scripts/section-roles-conformance.mjs` (sección `roles`) |
 | `budgets.json` | performance: peso raw/gzip de los artefactos `/v1` y de las fuentes. Subir un budget es un cambio consciente de ESTE archivo |
 | `../public-dist/channel.json` | **pipeline de distribución**: qué artefactos publica `/v1` y de qué paquete sale cada uno. Lo verifica `scripts/check-distribution.mjs` (sección `distribution`) |
 

@@ -3,7 +3,7 @@
  * Conformance suite — ejecuta el contrato de conformance/*.json.
  *
  *   node scripts/conformance.mjs            # todo
- *   node scripts/conformance.mjs tokens     # tokens | css | layouts | blocks | skill | registry | budgets | references
+ *   node scripts/conformance.mjs tokens     # tokens | css | layouts | blocks | skill | registry | budgets | references | roles
  *
  * El runner es deliberadamente tonto: las reglas y sus valores viven en los JSON
  * de conformance/ (modelo Willison: el contrato es data). Ver conformance/README.md.
@@ -26,6 +26,7 @@ import {
   getDomContractSync,
   validateHtmlAgainstContract,
 } from './webflow/dom-contract.mjs';
+import { checkSectionRoles } from './section-roles-conformance.mjs';
 import {
   runReferenceChecks,
   formatReport as formatReferenceReport,
@@ -410,6 +411,7 @@ function sectionRegistry() {
       'index.json',
       'tokens-nested.json',
       'content-coverage.json',
+      'section-roles.json',
     ]);
     const actual = readdirSync(pubDir).filter((f) => f.endsWith('.json'));
     const orphan = actual.filter((f) => !expected.has(f));
@@ -605,6 +607,30 @@ function sectionReferences() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// roles — todo rol de sección generable tiene al menos un layout vigente
+// ---------------------------------------------------------------------------
+
+function sectionRoles() {
+  const contract = readJson(join(CONF, 'section-roles-contract.json'));
+  const catalog = readJson(join(ROOT, contract.catalog));
+  const src = join(ROOT, 'packages/layouts/src');
+  const layoutSlugs = new Set();
+  for (const f of readdirSync(src)) {
+    if (!f.endsWith('.ts') || f.endsWith('.exemplar.ts')) continue;
+    const m = readFileSync(join(src, f), 'utf8').match(/^\s*slug:\s*'([^']+)'/m);
+    if (m) layoutSlugs.add(m[1]);
+  }
+  const lc = readJson(join(CONF, 'layout-contract.json'));
+  const excludedSlugs = [...lc.deprecated.layouts, ...lc.legacy.layouts].map((l) => l.replace(/^layout\//, ''));
+  const published = join(ROOT, 'public/r/section-roles.json');
+  const publishedText = existsSync(published) ? readFileSync(published, 'utf8') : null;
+  const sourceText = readFileSync(join(ROOT, contract.catalog), 'utf8');
+  for (const r of checkSectionRoles({ catalog, contract, layoutSlugs, excludedSlugs, publishedText, sourceText })) {
+    ({ fail, note, ok })[r.level]('roles', r.msg);
+  }
+}
+
 const SECTIONS = {
   tokens: sectionTokens,
   css: sectionCss,
@@ -617,6 +643,7 @@ const SECTIONS = {
   'agent-meta': sectionAgentMeta,
   'webflow-dom': sectionWebflowDom,
   references: sectionReferences,
+  roles: sectionRoles,
 };
 
 const pick = process.argv[2];
