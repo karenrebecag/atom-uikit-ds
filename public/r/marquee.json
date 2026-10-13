@@ -27,6 +27,13 @@
       "category": "surfaces",
       "variants": [],
       "sizes": [],
+      "modifiers": [
+        "draggable",
+        "fade",
+        "logos",
+        "pause-hover",
+        "reverse"
+      ],
       "defaultVariant": "",
       "defaultSize": "",
       "hasAnimation": true,
@@ -253,8 +260,8 @@
       "usage": "import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/atoms/Marquee';\n\n<Marquee speed={75} fade pauseOnHover>\n  <MarqueeItem>Acme</MarqueeItem>\n  <MarqueeSeparator />\n  <MarqueeItem>Globex</MarqueeItem>\n</Marquee>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [
           "gsap"

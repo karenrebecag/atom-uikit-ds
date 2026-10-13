@@ -33,6 +33,9 @@
         "default",
         "sm"
       ],
+      "modifiers": [
+        "exiting"
+      ],
       "defaultVariant": "primary",
       "defaultSize": "default",
       "hasAnimation": false,
@@ -96,8 +99,8 @@
       "usage": "import {\n  AlertDialog, AlertDialogTrigger, AlertDialogContent,\n  AlertDialogHeader, AlertDialogTitle, AlertDialogDescription,\n  AlertDialogFooter, AlertDialogCancel, AlertDialogAction,\n} from '@/components/atoms/AlertDialog';\n\n<AlertDialog>\n  <AlertDialogTrigger><button type=\"button\">Delete</button></AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Delete project?</AlertDialogTitle>\n      <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>\n    </AlertDialogHeader>\n    <AlertDialogFooter>\n      <AlertDialogCancel />\n      <AlertDialogAction variant=\"destructive-primary\" onAction={() => {}} />\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [

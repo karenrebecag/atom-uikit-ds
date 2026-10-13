@@ -11,7 +11,11 @@
 
 import { strict as assert } from 'node:assert';
 import { resolve } from 'node:path';
-import { extractMetadataForItem, extractAllMetadata } from './extract-component-metadata.ts';
+import {
+  extractMetadataForItem,
+  extractAllMetadata,
+  deriveModifiers,
+} from './extract-component-metadata.ts';
 import type { AtomRegistryItem } from './registry-schema.ts';
 
 const DS_ROOT = resolve(import.meta.dirname, '..');
@@ -576,6 +580,46 @@ test('layout/faq-accordion: false aunque dependa de button (que declara true)', 
     results.get('layout/faq-accordion')!.discovery.hasAnimation,
     false,
   );
+});
+
+// --- deriveModifiers (B4/B5: el gate rechazaba modificadores reales del DS) ---
+
+const FEATURE_CARD_ITEM: AtomRegistryItem = {
+  name: 'feature-card',
+  kind: 'component',
+  framework: 'css',
+  installGroup: 'styles',
+  title: 'FeatureCard',
+  description: 'Card de feature.',
+  files: [
+    {
+      sourcePath: 'packages/css/src/components/cards/feature-card.css',
+      outputPath: 'styles/components/feature-card.css',
+      type: 'registry:file',
+    },
+  ],
+} as AtomRegistryItem;
+
+test('modifiers: deriva los del bloque raiz que no son variant ni size', () => {
+  const classes = ['tag', 'tag--filled', 'tag--mono', 'tag--inverse', 'tag--l'];
+  assert.deepStrictEqual(deriveModifiers(classes, ['filled'], ['s']), ['inverse', 'l', 'mono']);
+});
+
+test('modifiers: ignora los modificadores de elemento', () => {
+  const classes = ['card', 'card--fill', 'card__header', 'card__header--compact'];
+  assert.deepStrictEqual(deriveModifiers(classes, [], []), ['fill']);
+});
+
+test('modifiers: un componente sin modificadores propios da lista vacia', () => {
+  assert.deepStrictEqual(deriveModifiers(['spinner', 'spinner__dot'], [], []), []);
+});
+
+test('modifiers: feature-card publica sus 6 clases reales', () => {
+  const { discovery } = extractMetadataForItem(FEATURE_CARD_ITEM, DS_ROOT)!;
+  const todas = [...discovery.variants, ...discovery.sizes, ...(discovery.modifiers ?? [])];
+  for (const mod of ['fill', 'media', 'green', 'purple', 'orange', 'blue']) {
+    assert.ok(todas.includes(mod), `falta ${mod} en variants union sizes union modifiers`);
+  }
 });
 
 // Summary

@@ -35,6 +35,20 @@
         "s",
         "m"
       ],
+      "modifiers": [
+        "ai",
+        "brand",
+        "danger",
+        "disabled",
+        "gradient",
+        "info",
+        "inverse",
+        "l",
+        "mono",
+        "neutral",
+        "success",
+        "warning"
+      ],
       "defaultVariant": "filled",
       "defaultSize": "s",
       "hasAnimation": false,
@@ -173,8 +187,8 @@
       "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [

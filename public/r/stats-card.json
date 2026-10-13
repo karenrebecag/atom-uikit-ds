@@ -27,6 +27,10 @@
       "category": "surfaces",
       "variants": [],
       "sizes": [],
+      "modifiers": [
+        "compact",
+        "gradient"
+      ],
       "defaultVariant": "",
       "defaultSize": "",
       "hasAnimation": false,
@@ -122,8 +126,8 @@
       "usage": "import { StatsCard } from '@/components/atoms/StatsCard';\n\n<StatsCard value=\"12.4k\" label=\"Active users\" trend=\"up\" trendValue=\"+8%\" />"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [

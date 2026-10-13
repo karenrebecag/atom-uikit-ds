@@ -34,6 +34,22 @@
         "hero",
         "full"
       ],
+      "modifiers": [
+        "contain",
+        "cover",
+        "loaded",
+        "loading",
+        "ratio-16x9",
+        "ratio-1x1",
+        "ratio-21x9",
+        "ratio-4x3",
+        "rounded-full",
+        "rounded-lg",
+        "rounded-md",
+        "rounded-none",
+        "rounded-sm",
+        "rounded-xl"
+      ],
       "defaultVariant": "",
       "defaultSize": "xs",
       "hasAnimation": false,
@@ -157,8 +173,8 @@
       "usage": "import { Image } from '@/components/atoms/Image';\n\n<Image\n  src=\"/photos/hero.jpg\"\n  alt=\"Team workshop\"\n  size=\"l\"\n  ratio=\"16x9\"\n  fit=\"cover\"\n  radius=\"md\"\n/>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [

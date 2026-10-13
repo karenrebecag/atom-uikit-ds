@@ -33,6 +33,13 @@
         "l",
         "xl"
       ],
+      "modifiers": [
+        "disabled",
+        "error",
+        "filled",
+        "focused",
+        "outlined"
+      ],
       "defaultVariant": "",
       "defaultSize": "s",
       "hasAnimation": false,
@@ -181,8 +188,8 @@
       "usage": "import { Chip } from '@/components/atoms/Chip';\n\n<Chip type=\"filled\" size=\"s\" onClose={() => {}}>\n  Design\n</Chip>"
     },
     "derived": {
-      "generatedAt": "2026-10-13T17:38:04.469Z",
-      "sourceCommit": "a9392fcf",
+      "generatedAt": "2026-10-13T18:21:22.919Z",
+      "sourceCommit": "268fac70",
       "install": {
         "peerDeps": [],
         "cssImports": [
