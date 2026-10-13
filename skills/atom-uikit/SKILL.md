@@ -15,7 +15,7 @@ Tarea Atom UIKit:
 - [ ] 3. Trae el material: source de los bloques y componentes, y la foundation del canal. Nada a mano
 - [ ] 4. Rellena: copy real del brief, imágenes por la herramienta, CTA a wa.me. Sustituye TODA la copy de referencia
 - [ ] 5. Marca y host: marca y el host que toca (hosts)
-- [ ] 6. Revisa: capa cierre. Corre la mitad contable, arregla, vuelve a correr hasta verde. Reporta
+- [ ] 6. Revisa: capa cierre. Corre la mitad contable, relee contra acabado, arregla y vuelve a correr. Reporta
 ```
 
 ## Principios
@@ -35,6 +35,22 @@ Tarea Atom UIKit:
 - Un logo que no sea el oficial: ni generado, ni wordmark de texto, ni badge "powered by". <!-- regla: logo-oficial -->
 - Un control decorativo que no hace nada: un enlace con `href="#"` o un botón sin acción.
 - Entregar sin haber corrido el loop de cierre.
+
+## Tells de página generada
+
+Lo que delata una página hecha en automático. Ninguno es ilegal; todos son el default que el
+modelo elige cuando no decide. Si reconoces uno en tu página, es que no tomaste la decisión.
+
+- Fade-slide en cada sección, igual en todas, porque "hay que animar".
+- Acentuar una sola palabra del titular en otro color para dar énfasis.
+- ALL-CAPS en labels para fingir jerarquía: la jerarquía sale del tamaño y del aire.
+- Marcadores `01 / 02 / 03` sobre cosas que no son una secuencia.
+- Cards idénticas, mismo radio y misma sombra, repetidas hasta llenar la rejilla.
+- Un icono genérico en un cuadrito redondeado delante de cada título.
+- Tres columnas por defecto, aunque haya dos ideas o cuatro.
+- Relleno de texto de la misma longitud en cada card para que "cuadren".
+- Un gradiente de fondo para tapar que la sección no tiene jerarquía.
+- Secciones del mismo alto y el mismo aire, una detrás de otra, sin ritmo.
 
 ## Decisión rápida
 
@@ -66,6 +82,7 @@ Cada archivo está a un salto. Lee solo el que la tarea pide.
 | conversion | [conversion.md](conversion.md) | pones cualquier CTA de contacto |
 | motion | [motion.md](motion.md) | animas algo o revisas un behavior |
 | accesibilidad | [accesibilidad.md](accesibilidad.md) | revisas `h1`, foco, nombres y contraste |
+| acabado | [acabado.md](acabado.md) | antes de entregar: foco, ritmo, profundidad y el detalle memorable |
 | cierre | [cierre.md](cierre.md) | SIEMPRE, antes de entregar |
 | ejemplos | [landing de pauta](ejemplos/landing-pauta.md), [caso de éxito](ejemplos/caso-de-exito.md), [página de producto](ejemplos/pagina-de-producto.md) | quieres ver una página resuelta de punta a punta antes de componer la tuya |
 

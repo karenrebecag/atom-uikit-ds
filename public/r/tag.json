@@ -173,8 +173,8 @@
       "usage": "import { Tag } from '@/components/atoms/Tag';\n\n<Tag variant=\"filled\" intent=\"success\" size=\"s\">\n  Live\n</Tag>"
     },
     "derived": {
-      "generatedAt": "2026-09-18T21:41:16.310Z",
-      "sourceCommit": "dd9a83fb",
+      "generatedAt": "2026-10-13T17:38:04.469Z",
+      "sourceCommit": "a9392fcf",
       "install": {
         "peerDeps": [],
         "cssImports": [

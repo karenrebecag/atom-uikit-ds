@@ -124,8 +124,8 @@
   },
   "meta": {
     "derived": {
-      "generatedAt": "2026-10-09T22:11:13.429Z",
-      "sourceCommit": "e6b559e1",
+      "generatedAt": "2026-10-13T17:38:04.469Z",
+      "sourceCommit": "a9392fcf",
       "install": {
         "peerDeps": [],
         "cssImports": []

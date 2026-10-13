@@ -103,8 +103,8 @@
       "usage": "import {\n  SidebarProvider, Sidebar, SidebarHeader, SidebarContent,\n  SidebarFooter, SidebarItem, SidebarTrigger,\n} from '@/components/molecules/sidebar';\n\n<SidebarProvider>\n  <Sidebar side=\"left\">\n    <SidebarHeader>\n      <SidebarTrigger />\n    </SidebarHeader>\n    <SidebarContent>\n      <SidebarItem href=\"/home\">Home</SidebarItem>\n    </SidebarContent>\n    <SidebarFooter>v1</SidebarFooter>\n  </Sidebar>\n</SidebarProvider>"
     },
     "derived": {
-      "generatedAt": "2026-10-09T21:49:02.583Z",
-      "sourceCommit": "32129992",
+      "generatedAt": "2026-10-13T17:38:04.469Z",
+      "sourceCommit": "a9392fcf",
       "install": {
         "peerDeps": [
           "gsap"
