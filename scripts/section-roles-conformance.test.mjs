@@ -54,13 +54,15 @@ describe('section-roles', () => {
     assert.deepEqual(fails(run(base, { publishedText: 'a', sourceText: 'a' })), []);
   });
 
-  it('arquetipo con rol inexistente, no generable o requires fuera del arc falla', () => {
-    const arch = (a) => run(base, { catalog: { roles: base, archetypes: { landing: a } } });
-    const ok = { minSections: 1, maxSections: 2, firstRole: 2, lastRole: 2, requires: [2], arc: [[2]] };
-    assert.deepEqual(fails(arch(ok)), []);
-    assert.match(fails(arch({ ...ok, lastRole: 99 }))[0], /no existe/);
-    assert.match(fails(arch({ ...ok, arc: [[2], [57]] }))[0], /no es generable/);
-    assert.match(fails(arch({ ...ok, requires: [57] })).join(), /requires/);
-    assert.match(fails(arch({ ...ok, minSections: 5 }))[0], /minSections/);
+  it('arquetipos: slugs inexistentes o no generables, min>max y herencia', () => {
+    const home = { slug: 'home', min: 1, max: 2, required: ['hero-header'], order: ['hero-header'] };
+    const arch = (list, def = 'home') =>
+      run(base, { catalog: { roles: base, defaultArchetype: def, archetypes: list } });
+    assert.deepEqual(fails(arch([home, { slug: 'landing', extends: 'home', min: 1 }])), []);
+    assert.match(fails(arch([{ ...home, order: ['nope'] }]))[0], /no existe/);
+    assert.match(fails(arch([{ ...home, required: ['cta-form'] }]))[0], /no es generable/);
+    assert.match(fails(arch([{ ...home, min: 5 }]))[0], /min/);
+    assert.match(fails(arch([{ slug: 'landing', extends: 'home' }], 'landing')).join(), /extends/);
+    assert.match(fails(arch([home], 'otro'))[0], /defaultArchetype/);
   });
 });
