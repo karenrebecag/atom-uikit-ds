@@ -35,6 +35,7 @@ export const metricsGrid = {
 -->
 
 <section class="section l-metrics-grid" id="{{section_id}}">
+  <div class="container l-metrics-grid__container">
   <div class="l-metrics-grid__header">
     <p class="l-metrics-grid__eyebrow" data-optional="eyebrow">{{eyebrow}}</p>
     <h2 class="h2 l-metrics-grid__title" data-split="heading">{{heading}}</h2>
@@ -88,19 +89,17 @@ export const metricsGrid = {
       </div>
     </article>
   </div>
+  </div>
 </section>`,
-  css: `/* Layout: metrics-grid — structure only, pure DS tokens */
-.l-metrics-grid {
-  padding-inline: var(--l-metrics-grid-gutter, 5%);
-}
-
+  css: `/* Layout: metrics-grid — structure only, pure DS tokens.
+   El ancho y el gutter los da .container (token --size-container-content), igual
+   que el resto de las secciones; antes esta rejilla inventaba 80rem/5% porque se
+   creia que el DS no publicaba tokens de contenedor — si los publica. */
 .l-metrics-grid__header {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
-  margin-inline: auto;
   margin-block-end: var(--rhythm-s);
-  max-width: var(--l-metrics-grid-container, 80rem);
 }
 
 .l-metrics-grid__eyebrow {
@@ -118,8 +117,6 @@ export const metricsGrid = {
 .l-metrics-grid__list {
   display: grid;
   gap: var(--spacing-8);
-  margin-inline: auto;
-  max-width: var(--l-metrics-grid-container, 80rem);
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 }
 

@@ -12,7 +12,8 @@ export const testimonialGrid = {
     'Grid masonry de 4-9 quotes cortas. Volumen de prueba social. Structure only.',
   components: ['avatar', 'typography', 'item'],
   html: `<!-- Layout: testimonial-grid -->
-<section class="l-testimonial-grid">
+<section class="section l-testimonial-grid">
+  <div class="container l-testimonial-grid__container">
   <div class="l-testimonial-grid__header">
     <h2 class="l-testimonial-grid__headline">{{headline}}</h2>
   </div>
@@ -58,11 +59,10 @@ export const testimonialGrid = {
       </div>
     </div>
   </div>
+  </div>
 </section>`,
-  css: `/* Layout: testimonial-grid — structure only */
-.l-testimonial-grid {
-  padding: var(--spacing-12) var(--spacing-8);
-}
+  css: `/* Layout: testimonial-grid — structure only.
+   El ancho y el gutter los da .container; la seccion aporta el ritmo (.section). */
 .l-testimonial-grid__header {
   text-align: center;
   margin-bottom: var(--spacing-8);
