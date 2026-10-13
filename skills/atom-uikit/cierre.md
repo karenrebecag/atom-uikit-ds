@@ -25,7 +25,9 @@ lees sus hallazgos y arreglas. Estas líneas se generan de `conformance/skill-ch
 
 ## Mitad de criterio
 
-Lo que ningún servidor mide. Recórrelo contra tu diff.
+Lo que ningún servidor mide. Recórrelo contra tu diff. El acabado —foco, ritmo, profundidad y el
+detalle memorable— se juzga con la rúbrica de [acabado](acabado.md): es guía, no una línea
+contable, porque `atom_uikit_finalize` no puntúa estética y no va a rechazarte una página sosa.
 
 ```
 Revisión Atom:
@@ -47,6 +49,11 @@ Estados y motion
 - [ ] Vacío, un solo ítem, texto largo, 390 px y dark revisados
 - [ ] Todo motion sale de un behavior publicado, con su guarda de reduced-motion
 - [ ] Cero controles decorativos que no hacen nada
+Acabado (rúbrica de acabado, no la juzga el gate)
+- [ ] Cada región tiene un foco y lo puedes nombrar
+- [ ] El ritmo lo da el aire de la clase de uso, no el padding de un bloque
+- [ ] Hay un detalle memorable, uno solo, y sale de un behavior publicado
+- [ ] Ningún tell de la lista de la entrada
 ```
 
 ## El loop

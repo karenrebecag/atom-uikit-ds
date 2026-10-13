@@ -3,6 +3,20 @@
 Lo global: qué regiones lleva la página, en qué orden y con qué presupuesto. Lo local de cada región
 (ritmo, superficie natural, motion y copy de referencia) ya viene decidido en su bloque; no lo reescribas.
 
+## El loop
+
+Cuatro pasos, en este orden. El segundo es el que evita la página de catálogo.
+
+1. **Plan.** Escribe las regiones en orden, con el bloque de cada una y el foco de cada una.
+2. **Descarta el default.** Relee el plan contra el brief y tacha lo que pondrías por inercia:
+   la región que no aporta argumento, el bloque elegido por el nombre, el tell que reconoces de
+   la lista de [la entrada](SKILL.md). Si el plan serviría igual para otro producto, todavía no
+   es un plan.
+3. **Construye.** Pega los bloques, rellena con el brief, resuelve los estados.
+4. **Autocrítica.** Relee la página escrita contra la rúbrica de [acabado](acabado.md) y los
+   tells. No hace falta verla renderizada para notar que no hay foco. Luego ve a
+   [cierre](cierre.md).
+
 ## Regiones y orden
 
 1. Parte del brief: qué quiere hacer la persona al terminar de leer. Esa acción es el cierre.
