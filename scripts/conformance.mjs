@@ -622,7 +622,10 @@ function sectionRoles() {
   }
   const lc = readJson(join(CONF, 'layout-contract.json'));
   const excludedSlugs = [...lc.deprecated.layouts, ...lc.legacy.layouts].map((l) => l.replace(/^layout\//, ''));
-  for (const r of checkSectionRoles({ catalog, contract, layoutSlugs, excludedSlugs })) {
+  const published = join(ROOT, 'public/r/section-roles.json');
+  const publishedText = existsSync(published) ? readFileSync(published, 'utf8') : null;
+  const sourceText = readFileSync(join(ROOT, contract.catalog), 'utf8');
+  for (const r of checkSectionRoles({ catalog, contract, layoutSlugs, excludedSlugs, publishedText, sourceText })) {
     ({ fail, note, ok })[r.level]('roles', r.msg);
   }
 }

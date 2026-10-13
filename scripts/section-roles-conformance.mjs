@@ -4,7 +4,7 @@
  * Pura: recibe datos y devuelve reportes { level, msg }.
  */
 
-export function checkSectionRoles({ catalog, contract, layoutSlugs, excludedSlugs = [] }) {
+export function checkSectionRoles({ catalog, contract, layoutSlugs, excludedSlugs = [], publishedText, sourceText }) {
   const reports = [];
   const bad = (msg) => reports.push({ level: 'fail', msg });
   const roles = catalog.roles ?? [];
@@ -34,6 +34,26 @@ export function checkSectionRoles({ catalog, contract, layoutSlugs, excludedSlug
     const r = roles.find((x) => x.id === id);
     if (!r) bad(`rol de formulario ${id} ausente del catálogo`);
     else if (r.generable || r.reason !== 'form') bad(`D2: rol de formulario ${id} ${r.name} debe ser generable:false con reason "form"`);
+  }
+
+  // Anti-deriva: el conector lee public/r/section-roles.json, no la fuente.
+  if (publishedText !== undefined && publishedText !== sourceText) {
+    bad('public/r/section-roles.json difiere de packages/layouts/section-roles.json (corre pnpm build:registry y commitea)');
+  }
+
+  const byId = new Map(roles.map((r) => [r.id, r]));
+  for (const [name, a] of Object.entries(catalog.archetypes ?? {})) {
+    const ids = [a.firstRole, a.lastRole, ...(a.requires ?? []), ...(a.arc ?? []).flat()];
+    for (const id of ids) {
+      const r = byId.get(id);
+      if (!r) bad(`arquetipo ${name}: rol ${id} no existe en el catálogo`);
+      else if (!r.generable) bad(`arquetipo ${name}: rol ${id} ${r.name} no es generable`);
+    }
+    if (a.minSections > a.maxSections) bad(`arquetipo ${name}: minSections > maxSections`);
+    const flat = new Set((a.arc ?? []).flat());
+    for (const id of a.requires ?? []) {
+      if (!flat.has(id)) bad(`arquetipo ${name}: requires ${id} no aparece en el arc`);
+    }
   }
 
   if (!reports.length) {

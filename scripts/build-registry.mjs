@@ -327,6 +327,7 @@ async function main() {
     'index.json',
     'tokens-nested.json',
     'content-coverage.json',
+    'section-roles.json',
   ]);
   let removed = 0;
   for (const file of await fs.readdir(OUT_DIR)) {
@@ -350,6 +351,18 @@ async function main() {
   } catch (e) {
     console.error(`  ERROR: could not publish tokens-nested.json: ${e.message}`);
     console.error('  Run `pnpm --filter @atom-uikit/tokens build` first (build:registry chains it).');
+    process.exit(1);
+  }
+
+  // Catálogo de roles de sección + reglas de arquetipo: el conector lo lee de /api/r/section-roles.json.
+  // Sin copiarlo aquí el anti-drift de arriba lo trataría como huérfano y nunca llegaría al canal.
+  try {
+    const roles = await fs.readFile(path.join(ROOT, 'packages/layouts/section-roles.json'), 'utf8');
+    JSON.parse(roles);
+    await fs.writeFile(path.join(OUT_DIR, 'section-roles.json'), roles, 'utf8');
+    console.log('  Published: section-roles.json');
+  } catch (e) {
+    console.error(`  ERROR: could not publish section-roles.json: ${e.message}`);
     process.exit(1);
   }
 

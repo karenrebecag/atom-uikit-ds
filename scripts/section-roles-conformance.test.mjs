@@ -48,4 +48,19 @@ describe('section-roles', () => {
     assert.deepEqual(fails(r), []);
     assert.ok(r.some((x) => x.level === 'note' && /Gallery/.test(x.msg)));
   });
+
+  it('copia publicada distinta de la fuente falla', () => {
+    assert.match(fails(run(base, { publishedText: 'a', sourceText: 'b' }))[0], /difiere/);
+    assert.deepEqual(fails(run(base, { publishedText: 'a', sourceText: 'a' })), []);
+  });
+
+  it('arquetipo con rol inexistente, no generable o requires fuera del arc falla', () => {
+    const arch = (a) => run(base, { catalog: { roles: base, archetypes: { landing: a } } });
+    const ok = { minSections: 1, maxSections: 2, firstRole: 2, lastRole: 2, requires: [2], arc: [[2]] };
+    assert.deepEqual(fails(arch(ok)), []);
+    assert.match(fails(arch({ ...ok, lastRole: 99 }))[0], /no existe/);
+    assert.match(fails(arch({ ...ok, arc: [[2], [57]] }))[0], /no es generable/);
+    assert.match(fails(arch({ ...ok, requires: [57] })).join(), /requires/);
+    assert.match(fails(arch({ ...ok, minSections: 5 }))[0], /minSections/);
+  });
 });

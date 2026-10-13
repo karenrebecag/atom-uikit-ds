@@ -1,5 +1,48 @@
 {
   "$comment": "Catálogo de roles de sección (ola 2, RF-10). id = id estable del CSV maestro de Relume (D3). generable:true exige >=1 layout publicado y vigente en packages/layouts/src (conformance, sección roles). generable:false lleva reason: 'form' (D2: Atom no usa <form>, la conversión es WhatsApp) o 'sin-layout' (gap de autoría, no se inventa). global: Navbar/Footer envuelven la página. Editar a mano; no es un output generado.",
+  "$archetypesComment": "Reglas de página completa (no por rol). minSections=7: una landing no sale con 3 secciones (G1). maxSections=12: cap actual del conector. firstRole/lastRole/requires son ids de rol. arc = embudo en orden; cada paso es una lista de roles alternativos (basta uno). Navbar/Footer (global) no cuentan como sección.",
+  "archetypes": {
+    "landing": {
+      "minSections": 7,
+      "maxSections": 12,
+      "firstRole": 2,
+      "lastRole": 56,
+      "requires": [
+        52
+      ],
+      "arc": [
+        [
+          2
+        ],
+        [
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        [
+          40
+        ],
+        [
+          41
+        ],
+        [
+          46,
+          52
+        ],
+        [
+          43
+        ],
+        [
+          65
+        ],
+        [
+          56
+        ]
+      ]
+    }
+  },
   "roles": [
     {
       "id": 1,
