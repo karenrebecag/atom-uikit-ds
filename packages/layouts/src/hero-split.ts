@@ -25,36 +25,39 @@ export const heroSplit = {
   components: ['chip', 'whatsapp-button', 'button'],
   html: `<!-- Layout: hero-split -->
 <section class="section--hero l-hero-split">
-  <div class="l-hero-split__content">
-    <span class="chip chip--outlined chip--s" data-optional="eyebrow">
-      <span class="chip__dot"></span>
-      <span class="chip__label">{{eyebrow}}</span>
-    </span>
-    <h1 class="h1 l-hero-split__heading" data-split="heading">{{heading}}</h1>
-    <p class="body-lg l-hero-split__body">{{body}}</p>
-    <div class="l-hero-split__actions">
-      ${waButton('l', 'cta_primary_href', 'cta_primary')}
-      <a href="{{cta_secondary_href}}" class="button button--secondary button--l" data-optional="cta_secondary">
-        <span class="button__label">{{cta_secondary}}</span>
-      </a>
+  <div class="container l-hero-split__container">
+    <div class="l-hero-split__content">
+      <span class="chip chip--outlined chip--s" data-optional="eyebrow">
+        <span class="chip__dot"></span>
+        <span class="chip__label">{{eyebrow}}</span>
+      </span>
+      <h1 class="h1 l-hero-split__heading" data-split="heading">{{heading}}</h1>
+      <p class="body-lg l-hero-split__body">{{body}}</p>
+      <div class="l-hero-split__actions">
+        ${waButton('l', 'cta_primary_href', 'cta_primary')}
+        <a href="{{cta_secondary_href}}" class="button button--secondary button--l" data-optional="cta_secondary">
+          <span class="button__label">{{cta_secondary}}</span>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="l-hero-split__media">
-    <!-- Replace with <img>, <video>, iframe, or illustration -->
-    <div class="l-hero-split__placeholder">{{media}}</div>
+    <div class="l-hero-split__media">
+      <!-- Replace with <img>, <video>, iframe, or illustration -->
+      <div class="l-hero-split__placeholder">{{media}}</div>
+    </div>
   </div>
 </section>`,
 
-  css: `/* Layout: hero-split — structure only */
-.l-hero-split {
+  css: `/* Layout: hero-split — structure only.
+   El ancho y el gutter los da .container (token --size-container-content); la
+   seccion solo aporta ritmo vertical (.section--hero). */
+.l-hero-split__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-12);
   align-items: center;
-  padding-inline: var(--container-padding);
 }
 @media (max-width: 768px) {
-  .l-hero-split { grid-template-columns: 1fr; }
+  .l-hero-split__container { grid-template-columns: 1fr; }
 }
 .l-hero-split__content {
   display: flex;

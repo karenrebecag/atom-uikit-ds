@@ -59,14 +59,13 @@ export const logoMarquee = {
 
 <section class="l-logo-marquee" id="{{section_id}}">
   <!--
-    Titular y tira comparten gutter y contenedor: la herencia de layout del
-    proyecto (padding lateral fuera del ancho maximo, ancho maximo centrado
-    dentro). Compartir la MISMA caja es lo que garantiza que el borde izquierdo
-    del titular y el del primer logo no puedan separarse nunca.
-    El recorte del carril pasa a ser el del contenedor, no el del viewport.
+    Titular y tira comparten la MISMA caja .container (ancho maximo centrado +
+    gutter lateral, tokens del DS): asi el borde izquierdo del titular y el del
+    primer logo no pueden separarse nunca, y el ancho es el mismo que el del
+    resto de las secciones de la pagina. El recorte del carril es el del
+    contenedor, no el del viewport.
   -->
-  <div class="l-logo-marquee__gutter">
-    <div class="l-logo-marquee__container">
+  <div class="container l-logo-marquee__container">
       <h2 class="l-logo-marquee__headline">{{headline}}</h2>
 
       <div class="marquee marquee--fade" data-marquee data-speed="75">
@@ -98,27 +97,15 @@ export const logoMarquee = {
       </div>
         </div>
       </div>
-    </div>
   </div>
 </section>`,
-  css: `/* Layout: logo-marquee — structure only, pure DS tokens */
+  css: `/* Layout: logo-marquee — structure only, pure DS tokens.
+   El ancho y el gutter los da .container (token --size-container-content). Antes
+   esta tira inventaba 80rem/5% por una suposicion ya falsa: el DS SI publica
+   tokens de contenedor. */
 .l-logo-marquee {
   padding-block: var(--section-padding-m);
   overflow: hidden;
-}
-
-/* El DS no publica tokens de contenedor: el ancho maximo y el gutter son
-   convencion del sitio consumidor (container-large = 80rem, padding-global =
-   5%). Van como variables para que otro consumidor los cambie sin tocar el
-   layout. */
-.l-logo-marquee__gutter {
-  padding-inline: var(--l-logo-marquee-gutter, 5%);
-}
-
-.l-logo-marquee__container {
-  width: 100%;
-  max-width: var(--l-logo-marquee-container, 80rem);
-  margin-inline: auto;
 }
 
 .l-logo-marquee__headline {

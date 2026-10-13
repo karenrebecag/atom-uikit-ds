@@ -43,6 +43,15 @@ misma página, degrada el segundo a `h2`. Dos héroes no son dos `h1`.
 - Si un bloque llega con superficie oscura y ya agotaste el presupuesto, fuérzalo a `default`.
 - Nunca añadas un fondo que el DS no publique. Si una clase no está en ese archivo, no existe.
 
+## Un solo ancho de contenido
+
+Cada sección envuelve su contenido en `.container` (ancho `--size-container-content`, gutter
+`--container-padding`): es el MISMO ancho y el MISMO margen lateral para toda la página, así los
+bordes del contenido no bailan de una sección a otra. Los bloques ya vienen así; no les pongas un
+ancho máximo propio ni un gutter a mano (nada de `80rem`, `5%`, `1200px` sueltos), y no dejes una
+sección a sangre completa junto a otras centradas. Una banda que sangra a propósito (un marquee, un
+fondo de color a todo el viewport) lleva su contenido interior igualmente en `.container`.
+
 ## Cadencia entre secciones
 
 - Alterna el ritmo: no pongas dos `.section--hero` seguidas; el hero abre la página y el resto usa `.section`.

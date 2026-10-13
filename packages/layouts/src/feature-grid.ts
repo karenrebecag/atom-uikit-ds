@@ -13,36 +13,39 @@ export const featureGrid = {
   components: ['badge'],
   html: `<!-- Layout: feature-grid -->
 <section class="section l-feature-grid">
-  <div class="l-feature-grid__header">
-    <span class="badge badge--filled badge--brand badge--s" data-optional="eyebrow">{{eyebrow}}</span>
-    <h2 class="h2 l-feature-grid__heading">{{heading}}</h2>
-    <p class="body-lg l-feature-grid__body">{{body}}</p>
-  </div>
-  <div class="l-feature-grid__grid" data-reveal>
-    <div class="l-feature-grid__card">
-      <div class="l-feature-grid__icon">{{feature_1_icon}}</div>
-      <h3 class="h5 l-feature-grid__card-title">{{feature_1_title}}</h3>
-      <p class="body l-feature-grid__card-body">{{feature_1_body}}</p>
+  <div class="container l-feature-grid__container">
+    <div class="l-feature-grid__header">
+      <span class="badge badge--filled badge--brand badge--s" data-optional="eyebrow">{{eyebrow}}</span>
+      <h2 class="h2 l-feature-grid__heading">{{heading}}</h2>
+      <p class="body-lg l-feature-grid__body">{{body}}</p>
     </div>
-    <div class="l-feature-grid__card">
-      <div class="l-feature-grid__icon">{{feature_2_icon}}</div>
-      <h3 class="h5 l-feature-grid__card-title">{{feature_2_title}}</h3>
-      <p class="body l-feature-grid__card-body">{{feature_2_body}}</p>
-    </div>
-    <div class="l-feature-grid__card">
-      <div class="l-feature-grid__icon">{{feature_3_icon}}</div>
-      <h3 class="h5 l-feature-grid__card-title">{{feature_3_title}}</h3>
-      <p class="body l-feature-grid__card-body">{{feature_3_body}}</p>
+    <div class="l-feature-grid__grid" data-reveal>
+      <div class="l-feature-grid__card">
+        <div class="l-feature-grid__icon">{{feature_1_icon}}</div>
+        <h3 class="h5 l-feature-grid__card-title">{{feature_1_title}}</h3>
+        <p class="body l-feature-grid__card-body">{{feature_1_body}}</p>
+      </div>
+      <div class="l-feature-grid__card">
+        <div class="l-feature-grid__icon">{{feature_2_icon}}</div>
+        <h3 class="h5 l-feature-grid__card-title">{{feature_2_title}}</h3>
+        <p class="body l-feature-grid__card-body">{{feature_2_body}}</p>
+      </div>
+      <div class="l-feature-grid__card">
+        <div class="l-feature-grid__icon">{{feature_3_icon}}</div>
+        <h3 class="h5 l-feature-grid__card-title">{{feature_3_title}}</h3>
+        <p class="body l-feature-grid__card-body">{{feature_3_body}}</p>
+      </div>
     </div>
   </div>
 </section>`,
 
-  css: `/* Layout: feature-grid — structure only */
-.l-feature-grid {
+  css: `/* Layout: feature-grid — structure only.
+   El ancho y el gutter los da .container (token --size-container-content); la
+   seccion solo aporta ritmo vertical (.section). */
+.l-feature-grid__container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-12);
-  padding-inline: var(--container-padding);
 }
 .l-feature-grid__header {
   display: flex;
