@@ -27,10 +27,26 @@ ya existían en el catálogo. Veredicto: **rediseño del emisor, conservando el 
 - **F0 (hecho):** honestidad. `<slug>.report.json` (blocked / droppedAttrs / visualDecls / notes),
   fallo duro (exit 1) ante una primitiva sin mapa, manifiesto de slots completo (`*_href`), escala
   tipográfica real del DS.
-- **F1:** el contrato del DS como gate (allowlist de posicionamiento; roles `.h*` efectivos).
-- **F2:** `SectionModel` + tabla primitiva→componente del DS + variante de Button + transforms de marca.
-- **F3:** match contra el catálogo (rellenar layout existente; crear solo sin match).
-- **F4:** limpieza (extraer `assign` compartido, una sola tabla `ROLE`).
+- **F1 (hecho):** el contrato del DS como gate (allowlist de posicionamiento; roles `.h*` efectivos).
+- **F2+F3 (hecho):** modelo Relume. `SectionModel` recupera la semántica del IR (tipo, titular,
+  cuerpo, acciones, media, unidades repetidas: faq/metrics/features/logos); `catalog` liga el tipo
+  al layout NATIVO del DS que lo realiza y rellena sus slots con nombre. El converter ya NO escribe
+  HTML/CSS: el del layout del DS es la fuente. Camino primario = `emitFill`; sin layout en el
+  catálogo (unknown) cae al emisor plano con el gate del contrato.
+- **F4 (pendiente):** limpieza (extraer `assign` compartido, una sola tabla `ROLE`).
+
+### Cómo funciona (como Relume)
+
+```
+TSX (sección Relume) → IR → SectionModel (qué ES la sección)
+  → match en el catálogo del DS (packages/layouts/src) → rellenar sus {{slots}}
+  → layout nativo del DS con el contenido (HTML/CSS del DS, sin tocar)
+```
+
+Verificado en crudo sobre 5 secciones reales: hero→`hero-split`, cta→`cta-split-image`,
+faq→`faq-accordion`, logos→`logo-marquee`, metrics→`metrics-grid` (features→`feature-grid`).
+Los slots sin contenido del origen quedan vacíos y se reportan (`emptySlots`); el excedente de
+items sobre la capacidad del layout se reporta (`overflow`); nada se aplana en silencio.
 
 ## Uso
 

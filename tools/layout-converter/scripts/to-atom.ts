@@ -1,8 +1,13 @@
 // Runner: TSX (sección Relume propia) -> layout Atom-nativo.
-// Uso: bun --no-install run scripts/to-atom.ts <archivo.tsx> <slug-atom> [--out <dir>]
+//
+// Camino primario (Relume-like): recupera el modelo semántico, lo liga al layout del catálogo del
+// DS y rellena sus slots. Si el tipo de sección no tiene layout (unknown), cae al emisor plano
+// (compón) con el gate del contrato. Uso:
+//   bun --no-install run scripts/to-atom.ts <archivo.tsx> <slug-atom> [--out <dir>]
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { evaluateSandboxed } from '../src/eval/sandbox';
+import { emitFill } from '../src/emit/atom-fill';
 import { emitAtomLayout } from '../src/emit/atom-layout';
 
 async function main(argv: string[]): Promise<void> {
@@ -14,24 +19,35 @@ async function main(argv: string[]): Promise<void> {
   const [res] = await evaluateSandboxed([resolve(file)]);
   if (!res.ok) throw new Error(`eval falló: ${JSON.stringify(res)}`);
 
-  const layout = await emitAtomLayout(slug, res.tree);
-  writeFileSync(resolve(outDir, `${slug}.html`), layout.html + '\n');
-  writeFileSync(resolve(outDir, `${slug}.css`), layout.css + '\n');
-  writeFileSync(resolve(outDir, `${slug}.report.json`), JSON.stringify(layout.report, null, 2) + '\n');
+  const fill = await emitFill(slug, res.tree);
+  const reasons: string[] = [];
 
-  const r = layout.report;
-  console.log(
-    `${slug}: ${layout.html.split('\n').length} líneas html, ${layout.css.split('}').length - 1} reglas css, ` +
-      `${layout.slots.length} slots | visuales-retiradas=${r.droppedVisual.length} attrs-descartados=${r.droppedAttrs.length} ` +
-      `bloqueados=${r.blocked.length}${r.blocked.length ? ` [${r.blocked.map((b) => b.name).join(', ')}]` : ''}` +
-      `${r.contractViolations.length ? ` viola-contrato=${r.contractViolations.length}` : ''}`,
-  );
-  // Falla (lo coge CI/el gate) si hay primitiva sin mapa fiel al DS o si el CSS viola el contrato
-  // de layout: en ambos casos la salida no es un layout nativo válido.
-  const reasons = [
-    ...r.blocked.map((b) => `primitiva sin mapa: ${b.name}`),
-    ...r.contractViolations.map((v) => `contrato: ${v}`),
-  ];
+  if (fill.report.matched) {
+    writeFileSync(resolve(outDir, `${slug}.html`), fill.html + '\n');
+    writeFileSync(resolve(outDir, `${slug}.css`), fill.css + '\n');
+    writeFileSync(resolve(outDir, `${slug}.report.json`), JSON.stringify(fill.report, null, 2) + '\n');
+    const r = fill.report;
+    console.log(
+      `${slug}: ${r.kind} -> ${r.layoutSlug} | slots llenos=${r.filledSlots.length} vacíos=${r.emptySlots.length}` +
+        `${r.overflow.length ? ` desborde=[${r.overflow.join('; ')}]` : ''}` +
+        `${r.staleBindings.length ? ` binding-obsoleto=[${r.staleBindings.join(', ')}]` : ''}`,
+    );
+    // Falla solo si el binding no está alineado con el layout del DS: un slot que el binding da pero
+    // el layout no declara = contrato roto. Slots vacíos o desborde son reporte honesto, no fallo.
+    reasons.push(...r.staleBindings.map((s) => `binding fuera del layout: ${s}`));
+  } else {
+    // Sin layout en el catálogo: compón con el emisor plano y aplica el gate del contrato.
+    const layout = await emitAtomLayout(slug, res.tree);
+    writeFileSync(resolve(outDir, `${slug}.html`), layout.html + '\n');
+    writeFileSync(resolve(outDir, `${slug}.css`), layout.css + '\n');
+    writeFileSync(resolve(outDir, `${slug}.report.json`), JSON.stringify({ fill: fill.report, compose: layout.report }, null, 2) + '\n');
+    console.log(`${slug}: ${fill.report.kind} sin layout en catálogo -> compuesto plano (bloqueados=${layout.report.blocked.length})`);
+    reasons.push(
+      ...layout.report.blocked.map((b) => `primitiva sin mapa: ${b.name}`),
+      ...layout.report.contractViolations.map((v) => `contrato: ${v}`),
+    );
+  }
+
   if (reasons.length) {
     console.error(`FALLO (${reasons.length}): ${reasons.join('; ')}. Ver ${slug}.report.json`);
     process.exit(1);
