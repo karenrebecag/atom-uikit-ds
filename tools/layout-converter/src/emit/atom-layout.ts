@@ -30,7 +30,8 @@ export interface EmitReport {
   components: string[];                                   // primitivas de librería encontradas
   blocked: Array<{ name: string; reason: string }>;      // primitiva sin mapa al componente del DS (hoy aplanada)
   droppedAttrs: Array<{ tag: string; attr: string }>;    // atributos descartados (solo `class`/`alt` sobreviven)
-  visualDecls: Array<{ cls: string; prop: string }>;     // props visuales emitidas (el contrato del DS las prohíbe en una layout)
+  droppedVisual: Array<{ cls: string; prop: string }>;   // props NO de posicionamiento retiradas del CSS (las pinta el componente/rol, no el layout)
+  contractViolations: string[];                           // texto que viola conformance/layout-contract.json (color literal, font-family, motion)
   notes: string[];                                        // avisos de marca (p.ej. CTA → whatsapp-button)
 }
 
@@ -43,10 +44,18 @@ export interface AtomLayout {
   report: EmitReport;
 }
 
-/** Una declaración es "visual" si pinta (color/tipografía/borde/motion/sombra), por oposición a
- * posicionar. El contrato del DS (layout-contract.json → structureOnly) prohíbe estas en una layout:
- * aquí solo se CUENTAN (F0); el filtrado real llega en F1. */
-const VISUAL_PROP = /^(color|background|font-(family|size|weight|style)|border|box-shadow|text-(transform|decoration|shadow)|letter-spacing|line-height|text-align|object-fit|fill|stroke|opacity|transition|animation|filter)/;
+/** Un layout del DS es PLANO: estructura y rejilla. Solo estas props de POSICIONAMIENTO sobreviven
+ * en el CSS del layout; todo lo demás (color, tipografía, borde, sombra, motion) lo pinta el
+ * componente o el rol (.h1-.h6), no el layout. Lo descartado se registra en report.droppedVisual. */
+const POSITIONING_PROP = /^(display|box-sizing|flex|flex-[\w-]+|order|grid|grid-[\w-]+|gap|row-gap|column-gap|align-[\w-]+|justify-[\w-]+|place-[\w-]+|margin|margin-[\w-]+|padding|padding-[\w-]+|width|min-width|max-width|height|min-height|max-height|position|top|right|bottom|left|inset|inset-[\w-]+|aspect-ratio|overflow|overflow-[\w-]+|z-index)$/;
+
+/** Reglas ejecutables del contrato (conformance/layout-contract.json → structureOnly.forbidInCss).
+ * Se corren sobre el CSS final como gate duro: un match = el layout no es plano. */
+const CONTRACT_FORBIDDEN: Array<[string, RegExp]> = [
+  ['color-literal', /#[0-9a-fA-F]{3,8}\b|\brgba?\(|\bhsla?\(|\boklch\(/],
+  ['font-family', /font-family\s*:/],
+  ['motion', /\b(?:transition|animation)[\w-]*\s*:|@keyframes|cubic-bezier\(/],
+];
 
 function collectClasses(tree: IRNode[], set: Set<string>): string[] {
   for (const n of tree) {
@@ -57,26 +66,12 @@ function collectClasses(tree: IRNode[], set: Set<string>): string[] {
   return [...set];
 }
 
-/** Serializa un bloque de declaraciones ya mapeadas a tokens.
- * Relume hereda `border-style: solid` del preflight de Tailwind; el converter no lo incluye, así
- * que un `border-*-width` sin estilo no se vería. Se añade el estilo cuando hay ancho y no estilo. */
+/** Serializa un bloque de declaraciones de posicionamiento, mapeando los valores a tokens de
+ * spacing del DS. Un layout no pinta ni bordea (eso se filtró antes), así que aquí no hay bordes. */
 function declsToCss(decls: Decls, indent: string): string {
-  const keys = Object.keys(decls);
-  const lines = Object.entries(decls).map(([p, v]) => `${indent}${p}: ${mapValue(p, v)};`);
-  // El estilo se añade SOLO en el lado que trae ancho: sin el preflight de Tailwind
-  // (`*{border-width:0}`), un `border-style: solid` global encendería los otros tres lados con
-  // su ancho `medium` por defecto. Side-specific evita el recuadro completo.
-  for (const side of ['top', 'right', 'bottom', 'left'] as const) {
-    if (keys.includes(`border-${side}-width`) && !keys.includes(`border-${side}-style`)) {
-      lines.push(`${indent}border-${side}-style: solid;`);
-    }
-  }
-  if ((keys.includes('border-width') || keys.includes('border-color')) &&
-      !keys.some((p) => /^border(-(top|right|bottom|left))?-width$/.test(p)) &&
-      !keys.includes('border-style')) {
-    lines.push(`${indent}border-style: solid;`);
-  }
-  return lines.join('\n');
+  return Object.entries(decls)
+    .map(([p, v]) => `${indent}${p}: ${mapValue(p, v)};`)
+    .join('\n');
 }
 
 /** Diff de dos sets de decls: lo que cambia en `b` respecto de `a`. */
@@ -235,33 +230,47 @@ export async function emitAtomLayout(
     return Object.fromEntries(Object.entries(decls).filter(([p]) => !drop.has(p)));
   };
   const cssBlocks: string[] = [];
-  const visualDecls: Array<{ cls: string; prop: string }> = [];
-  const recordVisual = (cls: string, decls: Decls): void => {
-    for (const prop of Object.keys(decls)) if (VISUAL_PROP.test(prop)) visualDecls.push({ cls, prop });
+  const droppedVisual: Array<{ cls: string; prop: string }> = [];
+  // Parte las decls: posicionamiento se queda; lo demás (pintura, tipografía, borde, motion) se
+  // retira y se reporta. Es lo que hace que los roles .h1-.h6 pasen a mandar y que el layout sea plano.
+  const keepPositioning = (cls: string, decls: Decls): Decls => {
+    const kept: Decls = {};
+    for (const [prop, val] of Object.entries(decls)) {
+      if (POSITIONING_PROP.test(prop)) kept[prop] = val;
+      else droppedVisual.push({ cls, prop });
+    }
+    return kept;
   };
   for (const [cls, css] of cssByClass) {
     const ranges = BREAKPOINTS.map(([n]) => n as keyof typeof css.base);
-    const baseDecls = strip(cls, css.base[ranges[0]]);
+    const baseDecls = keepPositioning(cls, strip(cls, css.base[ranges[0]]));
     if (Object.keys(baseDecls).length) {
-      recordVisual(cls, baseDecls);
       cssBlocks.push(`.${cls} {\n${declsToCss(baseDecls, '  ')}\n}`);
     }
     for (let i = 1; i < ranges.length; i++) {
       const [, px] = BREAKPOINTS[i];
-      const d = strip(cls, diff(css.base[ranges[i - 1]], css.base[ranges[i]]));
+      const d = keepPositioning(cls, strip(cls, diff(css.base[ranges[i - 1]], css.base[ranges[i]])));
       if (Object.keys(d).length) {
-        recordVisual(cls, d);
         cssBlocks.push(`@media (min-width: ${px}px) {\n  .${cls} {\n${declsToCss(d, '    ')}\n  }\n}`);
       }
     }
   }
-  const css = `/* Layout: ${slug} — port fiel desde Relume, CSS con tokens del DS.\n   Ancho y gutter: .container. Ritmo: .section. */\n${cssBlocks.join('\n')}`;
+  const css = `/* Layout: ${slug} — estructura y rejilla (solo posicionamiento).\n   Ancho y gutter: .container. Ritmo: .section. La pintura la ponen componentes y roles. */\n${cssBlocks.join('\n')}`;
+
+  // Gate duro del contrato del DS: el CSS de un layout no puede traer color literal, font-family ni
+  // motion. Si algo se coló (p.ej. un valor de posicionamiento con color), se reporta y el runner falla.
+  const contractViolations: string[] = [];
+  for (const [name, re] of CONTRACT_FORBIDDEN) {
+    const m = css.match(re);
+    if (m) contractViolations.push(`${name}: "${m[0]}"`);
+  }
 
   const report: EmitReport = {
     components: [...components],
     blocked: [...blocked].map(([name, reason]) => ({ name, reason })),
     droppedAttrs,
-    visualDecls,
+    droppedVisual,
+    contractViolations,
     notes: [...notes],
   };
   return { slug, html, css, slots, components: [...components], report };

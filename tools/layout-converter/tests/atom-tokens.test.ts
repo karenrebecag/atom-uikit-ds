@@ -45,15 +45,16 @@ describe("emisor Atom", () => {
     expect(out.css).not.toContain("padding-bottom");
   });
 
-  test("un border-left-width emite border-left-style (sin preflight de Tailwind el borde no se vería)", async () => {
+  test("un layout es PLANO: el borde (visual) se retira del CSS y se reporta; el posicionamiento sobrevive", async () => {
     const root = el("section", [el("div", [{ kind: "text", value: "x" }], { classes: ["card"] })], { classes: ["sec"] });
     const resolved = resolvedOf({
       sec: [["display", "block"]],
-      card: [["border-left-width", "2px"]],
+      card: [["border-left-width", "2px"], ["gap", "1rem"]],
     });
     const out = await emitAtomLayout("prueba", [root], resolved);
-    expect(out.css).toContain("border-left-style: solid");
-    expect(out.css).not.toContain("border-style: solid;"); // side-specific, no recuadro completo
+    expect(out.css).not.toContain("border");
+    expect(out.css).toContain("gap");
+    expect(out.report.droppedVisual.some((d) => d.prop === "border-left-width")).toBe(true);
   });
 });
 
@@ -93,11 +94,26 @@ describe("reporte F0 — el emisor hace visible lo que NO traslada fiel", () => 
     expect(attrs).toContain("aria-label");
   });
 
-  test("una prop visual emitida (color) queda contada en el reporte (el contrato del DS la prohíbe)", async () => {
+  test("una prop visual (color) se RETIRA del CSS del layout y se reporta", async () => {
     const p = el("p", [{ kind: "text", value: "x" }], { classes: ["c"] });
     const root = el("section", [p], { classes: ["sec"] });
-    const resolved = resolvedOf({ sec: [["display", "block"]], c: [["color", "#111111"]] });
+    const resolved = resolvedOf({ sec: [["display", "block"]], c: [["color", "#111111"], ["gap", "0.5rem"]] });
     const out = await emitAtomLayout("v", [root], resolved);
-    expect(out.report.visualDecls.some((v) => v.prop === "color")).toBe(true);
+    expect(out.report.droppedVisual.some((v) => v.prop === "color")).toBe(true);
+    expect(out.css).not.toContain("#111111");
+    expect(out.css).not.toContain("color:");
+  });
+
+  test("F1: el CSS del layout pasa el contrato — sin color literal, font-family ni motion", async () => {
+    const root = el("section", [el("div", [{ kind: "text", value: "x" }], { classes: ["box"] })], { classes: ["sec"] });
+    const resolved = resolvedOf({
+      sec: [["display", "block"]],
+      box: [["display", "flex"], ["gap", "1rem"], ["transition-property", "all"], ["color", "#ef4444"]],
+    });
+    const out = await emitAtomLayout("x", [root], resolved);
+    expect(out.report.contractViolations).toEqual([]);
+    expect(out.css).toContain("gap");
+    expect(out.css).not.toMatch(/transition|#ef4444/);
+    expect(out.report.droppedVisual.map((d) => d.prop)).toEqual(expect.arrayContaining(["transition-property", "color"]));
   });
 });
