@@ -1,9 +1,11 @@
-// Emisor Atom: IR (TSX evaluado) -> layout Atom-nativo del DS (HTML BEM + CSS con tokens).
+// Emisor plano (FALLBACK): IR (TSX evaluado) -> shell `l-<slug>` con CSS de SOLO posicionamiento.
 //
-// WHY: el mismo IR que alimenta el emisor de Webflow se reexpresa aquí como un layout `l-<slug>`:
-// clases BEM, CSS mobile-first con tokens del DS (via atom/tokens), y la sección envuelta en
-// .section + .container (el ancho único del DS). Emitir DESDE el IR garantiza fidelidad: cada
-// elemento del bloque Relume original sobrevive — calca, no recrea.
+// WHY: el camino primario del converter es rellenar un layout nativo del catálogo del DS
+// (ver emit/atom-fill.ts). Este emisor solo entra cuando la sección NO tiene layout equivalente
+// (kind unknown): compone un shell con clases BEM y CSS mobile-first de posicionamiento, aplicando
+// el contrato del DS como gate (sin color/tipografía/borde/motion — eso lo pintarían componentes y
+// roles). NO es un port fiel: F1 retira toda decl visual y la reporta; aquí la estructura sobrevive,
+// el estilo de Relume no.
 
 import { elementCss, RANGES, type Decls } from '../cascade/invert';
 import { resolveClasses, DEFAULT_TAILWIND_CONFIG, type Resolved } from '../tailwind/resolve';
@@ -18,8 +20,9 @@ const ROLE: Record<string, string> = {
 /** clase de tipografía del DS por tag de encabezado (jerarquía por rol, no por tamaño). */
 const HEADING_CLASS: Record<string, string> = { h1: 'h1', h2: 'h2', h3: 'h3', h4: 'h4', h5: 'h5', h6: 'h6' };
 const BREAKPOINTS: Array<readonly [string, number]> = RANGES.map(([n, px]) => [n, px] as const);
-/** Atributos que el emisor conserva hoy. El resto (href, aria-*, data-*, role, viewBox, placeholder)
- * se descarta y se reporta — su preservación real llega en F2 con el nuevo render. */
+/** Atributos que este shell de fallback conserva. El resto (href, aria-*, data-*, role, viewBox,
+ * placeholder) se descarta y se reporta. En el camino primario (atom-fill) no aplica: el layout
+ * nativo del DS ya trae su markup y sus atributos; el converter solo rellena los slots con nombre. */
 const SURVIVING_IMG_ATTRS = new Set(['alt', 'src']);
 const NO_SURVIVING_ATTRS = new Set<string>();
 
@@ -209,7 +212,7 @@ export async function emitAtomLayout(
   const inner = rootEl ? renderChildren(rootEl.children, 'section', hasContainer ? '  ' : '    ') : '';
   const sectionOpen = `<section class="section ${rootBem ?? block}">`;
   const html =
-    `<!-- Layout: ${slug} (port fiel desde Relume) -->\n` +
+    `<!-- Layout: ${slug} (shell plano de fallback; sin layout nativo equivalente) -->\n` +
     (hasContainer
       ? `${sectionOpen}\n${inner}\n</section>`
       : `${sectionOpen}\n  <div class="container ${block}__container">\n${inner}\n  </div>\n</section>`);
