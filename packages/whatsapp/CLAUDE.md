@@ -27,13 +27,13 @@ loader del repo standalone — no el IIFE de este paquete.**
 
 Correcciones a este documento verificadas en producción:
 
-- **Endpoint del webhook:** `https://api.atomchat.io/wci` y
+- **Endpoint del webhook:** `https://wci.atomchat.io/wci` (antes api.atomchat.io, reasignado por producto el 2026-11-18) y
   `https://us-central1-atom-ai.cloudfunctions.net/api/webhook/wci` son el MISMO backend — la
   primera es un Worker de Cloudflare (`atom-wci-proxy`) que proxea a la segunda. Verificado con
   POSTs el 2026-07-22. Usar siempre la primera: pasa por el espejo de analítica.
 - **CSP:** ya no se necesita `unsafe-inline` en `style-src` — los estilos dinámicos van por CSSOM,
   que CSP no restringe. CSP actual del widget desplegado:
-  `script-src/style-src atom-whatsapp-buttons.vercel.app · connect-src api.atomchat.io atom-whatsapp-buttons.vercel.app`.
+  `script-src/style-src atom-whatsapp-buttons.vercel.app · connect-src wci.atomchat.io atom-whatsapp-buttons.vercel.app`.
 - **El bloqueante de backend (validación de Origin) sigue abierto** y se resolverá con reglas WAF
   desde el panel de Cloudflare (fase F3 del repo standalone), no con un ticket de backend.
 

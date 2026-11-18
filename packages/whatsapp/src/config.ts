@@ -46,7 +46,7 @@ export const DEFAULTS: Required<Omit<WhatsAppButtonConfig, 'companyToken' | 'pho
   size: 'm',
   cta: 'default',
   animated: true,
-  webhookUrl: 'https://api.atomchat.io/wci',
+  webhookUrl: 'https://wci.atomchat.io/wci',
   openInNewTab: true,
 };
 
